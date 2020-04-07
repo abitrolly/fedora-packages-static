@@ -2,28 +2,44 @@
 
 import os
 import sqlite3
+import argparse
+import shutil
 from jinja2 import Environment, PackageLoader, select_autoescape
 
-OUTPUT_DIR='output/'
+TEMPLATE_DIR='../templates'
+DBS_DIR='repositories'
+ASSETS_DIR='assets'
 
 def save_to(path, content):
     with open(path, 'w') as fh:
         fh.write(content)
 
 def main():
-    db = "koji-primary.sqlite"
+    # Handle command-line arguments.
+    parser = argparse.ArgumentParser(
+            description='Generate static pages for Fedora packages')
+    parser.add_argument(
+            '--target-dir', dest='target_dir', action='store', required=True)
+
+    args = parser.parse_args()
+
+    # 
+    output_dir = args.target_dir
+    db = os.path.join(DBS_DIR, "koji-primary.sqlite")
 
     env = Environment(
-            loader=PackageLoader('generate-html', 'templates'),
+            loader=PackageLoader('generate-html', TEMPLATE_DIR),
             autoescape=select_autoescape(['html'])
             )
     index = env.get_template('index.html.j2')
 
 
-    os.makedirs(os.path.join(OUTPUT_DIR, "pkgs"), exist_ok=True)
-    save_to(os.path.join(OUTPUT_DIR, 'index.html'), index.render())
+    os.makedirs(os.path.join(output_dir, "pkgs"), exist_ok=True)
+    shutil.copytree(ASSETS_DIR, os.path.join(output_dir, 'assets'))
 
-    conn = sqlite3.connect('koji-primary.sqlite')
+    save_to(os.path.join(output_dir, 'index.html'), index.render())
+
+    conn = sqlite3.connect(db)
     conn.row_factory = sqlite3.Row
     c = conn.cursor()
 
@@ -33,7 +49,7 @@ def main():
 
     count = 0
     for pkg in c.execute('SELECT * FROM packages'):
-        html_path = os.path.join(OUTPUT_DIR, 'pkgs', pkg["name"] + ".html")
+        html_path = os.path.join(output_dir, 'pkgs', pkg["name"] + ".html")
         html_template = env.get_template('package.html.j2')
         html_content = html_template.render(
                 name=pkg["name"],
