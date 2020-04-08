@@ -35,7 +35,7 @@ def main():
     index = env.get_template('index.html.j2')
 
 
-    os.makedirs(os.path.join(output_dir, "pkgs"), exist_ok=True)
+    os.makedirs(output_dir, exist_ok=True)
     shutil.copytree(ASSETS_DIR, os.path.join(output_dir, 'assets'))
 
     index_html = index.render(date=date.today().isoformat())
@@ -51,12 +51,19 @@ def main():
 
     count = 0
     for pkg in c.execute('SELECT * FROM packages'):
-        html_path = os.path.join(output_dir, 'pkgs', pkg["name"] + ".html")
+        pkg_dir = os.path.join(output_dir, 'pkgs', pkg["name"])
+        os.makedirs(pkg_dir, exist_ok=True)
+
+        html_path = os.path.join(pkg_dir, 'index.html')
         html_template = env.get_template('package.html.j2')
         html_content = html_template.render(
                 name=pkg["name"],
-                summary=pkg["description"],
+                summary=pkg["summary"],
                 description=pkg["description"],
+                upstream=pkg["url"],
+                license=pkg["rpm_license"],
+                version=pkg["version"],
+                release=pkg["release"]
                 )
         save_to(html_path, html_content)
         count += 1
