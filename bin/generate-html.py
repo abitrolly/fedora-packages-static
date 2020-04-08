@@ -4,6 +4,7 @@ import os
 import sqlite3
 import argparse
 import shutil
+from datetime import date
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 TEMPLATE_DIR='../templates'
@@ -37,7 +38,8 @@ def main():
     os.makedirs(os.path.join(output_dir, "pkgs"), exist_ok=True)
     shutil.copytree(ASSETS_DIR, os.path.join(output_dir, 'assets'))
 
-    save_to(os.path.join(output_dir, 'index.html'), index.render())
+    index_html = index.render(date=date.today().isoformat())
+    save_to(os.path.join(output_dir, 'index.html'), index_html)
 
     conn = sqlite3.connect(db)
     conn.row_factory = sqlite3.Row
