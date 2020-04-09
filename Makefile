@@ -7,6 +7,9 @@ sync-repositories:
 	mkdir -p $(DB_DIR)
 	bin/fetch-repository-dbs.py --target-dir $(DB_DIR)
 
+fetch-maintainers:
+	curl https://src.fedoraproject.org/extras/pagure_owner_alias.json -O pagure_owner_aliase.json
+
 html:
 	rm -fr $(OUTPUT_DIR)
 	mkdir -p $(OUTPUT_DIR)

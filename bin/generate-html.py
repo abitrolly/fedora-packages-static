@@ -4,12 +4,14 @@ import os
 import sqlite3
 import argparse
 import shutil
+import json
 from datetime import date
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 TEMPLATE_DIR='../templates'
 DBS_DIR='repositories'
 ASSETS_DIR='assets'
+SCM_MAINTAINER_MAPPING='pagure_owner_alias.json'
 
 def save_to(path, content):
     with open(path, 'w') as fh:
@@ -24,22 +26,31 @@ def main():
 
     args = parser.parse_args()
 
-    # 
+    # Initialize tamplating system / load initial data.
     output_dir = args.target_dir
     db = os.path.join(DBS_DIR, "koji-primary.sqlite")
+    os.makedirs(output_dir, exist_ok=True)
 
     env = Environment(
             loader=PackageLoader('generate-html', TEMPLATE_DIR),
             autoescape=select_autoescape(['html'])
             )
+
+    print("Loading maintainer mapping...")
+    with open(SCM_MAINTAINER_MAPPING) as raw:
+        maintainer_mapping = json.load(raw)
+
+    # Generate main entrypoint.
+    print("Generating generic pages...")
     index = env.get_template('index.html.j2')
-
-
-    os.makedirs(output_dir, exist_ok=True)
-    shutil.copytree(ASSETS_DIR, os.path.join(output_dir, 'assets'))
-
     index_html = index.render(date=date.today().isoformat())
     save_to(os.path.join(output_dir, 'index.html'), index_html)
+
+    # Import assets.
+    shutil.copytree(ASSETS_DIR, os.path.join(output_dir, 'assets'))
+
+    # Generate package pages from Rawhide.
+    print("Generating package pages...")
 
     conn = sqlite3.connect(db)
     conn.row_factory = sqlite3.Row
@@ -63,7 +74,8 @@ def main():
                 upstream=pkg["url"],
                 license=pkg["rpm_license"],
                 version=pkg["version"],
-                release=pkg["release"]
+                release=pkg["release"],
+                maintainers=maintainer_mapping["rpms"].get(pkg["name"], [])
                 )
         save_to(html_path, html_content)
         count += 1
