@@ -8,6 +8,8 @@ import sqlite3
 import os
 import argparse
 import hashlib
+import requests
+import sys
 
 repomd_xml_namespace = {
     'repo': 'http://linux.duke.edu/metadata/repo',
@@ -15,6 +17,7 @@ repomd_xml_namespace = {
 }
 padding = 22
 
+MIRROR = 'https://dl.fedoraproject.org'
 KOJI_REPO = 'https://kojipkgs.fedoraproject.org/repos'
 # Enforce, or not, checking the SSL certs
 DL_VERIFY = True
@@ -125,11 +128,11 @@ def handle(repo, target_dir):
         # First, determine if the file has changed by comparing hash
         db = None
         if 'primary.sqlite' in filename:
-            db = f'{name}-primary.sqlite'
+            db = f'{name}_primary.sqlite'
         elif 'filelists.sqlite' in filename:
-            db = f'{name}-filelists.sqlite'
+            db = f'{name}_filelists.sqlite'
         elif 'other.sqlite' in filename:
-            db = f'{name}-other.sqlite'
+            db = f'{name}_other.sqlite'
 
         # Have we downloaded this before?  Did it change?
         destfile = os.path.join(target_dir, db)
@@ -148,6 +151,25 @@ def handle(repo, target_dir):
             index_db(name, tempdb)
             install_db(name, tempdb, destfile)
 
+def get_repository_urls_for(product, version):
+    release = "{}-{}".format(product, version)
+    if product == "fedora":
+        if version == "rawhide":
+            return [(f'{KOJI_REPO}/rawhide/latest/x86_64/repodata', release)]
+
+        return [
+                ('{}/pub/fedora/linux/releases/{}/Everything/x86_64/os/repodata'.format(MIRROR, version), release),
+                ('{}/pub/fedora/linux/updates/{}/Everything/x86_64/repodata'.format(MIRROR, version), release + "-updates"),
+                ('{}/pub/fedora/linux/updates/testing/{}/Everything/x86_64/repodata'.format(MIRROR, version), release + "-updates-testing"),
+                ]
+    elif product == "epel":
+        return [
+                ('{}/pub/epel/{}/x86_64/repodata/'.format(MIRROR, version), release),
+                ('{}/pub/epel/testing/{}/x86_64/repodata'.format(MIRROR, version), release + "-testing"),
+                ]
+    else:
+        sys.exit("Unknown product: {}".format(product))
+
 def main():
     # Handle command-line arguments.
     parser = argparse.ArgumentParser(
@@ -157,14 +179,25 @@ def main():
 
     args = parser.parse_args()
 
-    # Define repositories to sync with.
+    # Get active releases from PDC.
+    print("Fetching active releases from PDC...")
+    r = requests.get(
+            "https://pdc.fedoraproject.org/rest_api/v1/product-versions/",
+            params={'active': 'true'})
+    if (r.status_code != 200):
+        sys.exit("Failed to fetch active releases from PDC (request returned {})"
+                .format(r.status_code))
+
+    # Generate repository URLs.
     repositories = []
+    active_releases = map(lambda e: (e["short"], e["version"]), r.json()["results"])
 
-    repositories.append(
-        (f'{KOJI_REPO}/rawhide/latest/x86_64/repodata', 'koji')
-    )
+    for (product, version) in active_releases:
+        repositories += get_repository_urls_for(product, version)
 
-    # Fetch databases.
+    print("Found: " + str(list(map(lambda p: p[1], repositories))))
+
+    # Fetch repository databases.
     for repo in repositories:
         handle(repo, args.target_dir)
 
