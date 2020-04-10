@@ -25,12 +25,20 @@ class Package:
         self.upstream = ""
         self.maintainers = []
         self.branches = {}
+        self.subpackage_of = None
+        self.subpackages = []
 
     def set_branch(self, name, revision):
         self.branches[name] = revision
 
     def get_branch(self, name):
         return self.branches[name]
+
+    def source(self):
+        if self.subpackage_of == None:
+            return self.name
+        else:
+            return self.subpackage_of
 
 def save_to(path, content):
     with open(path, 'w') as fh:
@@ -64,6 +72,7 @@ def main():
 
     # Build internal package metadata structure / cache.
     packages = {}
+
     for db in os.listdir(DBS_DIR):
         print("> Processing database file {}.".format(db))
         pattern = re.compile('^(fedora|epel)-([\w|-]+)_(primary|filelists|other).sqlite$')
@@ -78,24 +87,46 @@ def main():
         conn.row_factory = sqlite3.Row
         c = conn.cursor()
 
+        srpm_pattern = re.compile("^(.+)-.+-.+.src.rpm$")
         if db_type == "primary":
             for raw in c.execute('SELECT * FROM packages'):
                 pkg = packages.get(raw["name"])
                 revision = "{}-{}".format(raw["version"], raw["release"])
                 release = "{}-{}".format(product, branch)
+                first_pkg_encounter = False
+
+                # Register unknown packages.
                 if pkg == None:
                     pkg = Package(raw["name"])
+                    packages[pkg.name] = pkg
+                    first_pkg_encounter = True
+
+                # Override package metadata with rawhide (= lastest) values.
+                if first_pkg_encounter or branch == "rawhide":
                     pkg.summary = raw["summary"]
                     pkg.description = raw["description"]
                     pkg.upstream = raw["url"]
                     pkg.license = raw["rpm_license"]
                     pkg.maintainers = maintainer_mapping["rpms"].get(pkg.name, [])
 
-                    pkg.set_branch(release, revision)
-                    packages[pkg.name] = pkg
-                else:
-                    pkg.set_branch(release, revision)
+                # Handle subpackage specific case.
+                (srpm_name) = srpm_pattern.findall(raw["rpm_sourcerpm"])[0]
+                if pkg.name != srpm_name:
+                    pkg.subpackage_of = srpm_name
 
+                # Always register branch-specific metadata.
+                pkg.set_branch(release, revision)
+
+    # Set license and maintainers for subpackages. We have to wait for all
+    # packages to have been processed since subpackage might have been
+    # processed before its parent.
+    print("Syncing subpackages...")
+    for pkg in packages.values():
+        if pkg.subpackage_of != None:
+            parent = packages.get(pkg.subpackage_of)
+            if parent != None:
+                parent.subpackages += [pkg.name]
+                pkg.maintainers = packages[pkg.subpackage_of].maintainers
 
     print(">>> {} packages have been extracted.".format(len(packages)))
     # Generate main user entrypoint.
@@ -122,15 +153,7 @@ def main():
 
         html_path = os.path.join(pkg_dir, 'index.html')
         html_template = env.get_template('package.html.j2')
-        html_content = html_template.render(
-                name=pkg.name,
-                summary=pkg.summary,
-                description=pkg.description,
-                upstream=pkg.upstream,
-                license=pkg.license,
-                maintainers=pkg.maintainers,
-                branches=pkg.branches
-                )
+        html_content = html_template.render(pkg=pkg)
         save_to(html_path, html_content)
         count += 1
 
