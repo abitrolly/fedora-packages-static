@@ -30,8 +30,12 @@ class Package:
         self.subpackage_of = None
         self.subpackages = []
 
-    def set_branch(self, name, revision, changelog):
-        self.branches[name] = {"revision": revision, "changelog": changelog}
+    def set_branch(self, name, revision, changelog, files):
+        self.branches[name] = {
+                "revision": revision,
+                "changelog": changelog,
+                "files": files
+                }
 
     def get_branch(self, name):
         return self.branches[name]
@@ -142,8 +146,17 @@ def main():
                     "change": change["changelog"]
                     }]
 
+            # Extract file list from '-filelists' db.
+            files = []
+            for entry in filelist.execute('SELECT * FROM filelist WHERE pkgKey = ?', (pkg.key,)):
+                files += [{
+                    "dirname": entry["dirname"],
+                    "filenames": entry["filenames"],
+                    "filetypes": entry["filetypes"]
+                    }]
+
             # Always register branch-specific metadata.
-            pkg.set_branch(release, revision, changelog)
+            pkg.set_branch(release, revision, changelog, files)
 
     # Set license and maintainers for subpackages. We have to wait for all
     # packages to have been processed since subpackage might have been

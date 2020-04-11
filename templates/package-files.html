@@ -33,7 +33,27 @@
 				Content of {{ pkg.name }}
 				<small class="text-muted">{{ pkg.branches[branch].revision }} in {{ branch }}</small>
 			</h1>
-			<p>Not implemented yet.</p>
+			<p>
+			This page displays the content of the {{ pkg.name }} package. You might
+			want go back to <a href="..">the main page of {{ pkg.name }}</a>.
+			</p>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				{% for entry in pkg.branches[branch].files %}
+				<tr scope="row">
+					<td>{{ entry.filetypes }}</td>
+					<td>{{ entry.dirname}} {{ entry.filenames }}</td>
+				</tr>
+				{% endfor %}
+				<tbody>
+				</tbody>
+			</table>
 		</div>
 	</body>
 </html>
