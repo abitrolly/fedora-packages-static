@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Package: {{ pkg.name }}</title>
+		<title>{{ pkg.name }}</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 	</head>
@@ -53,13 +53,16 @@
 								<tr>
 									<th scope="col">Release</th>
 									<th scope="col">Version</th>
+									<th scope="col">Details</th>
 								</tr>
 							</thead>
 							<tbody>
 								{% for branch in pkg.branches | sort(reverse = True) %}
 								<tr scope="row">
 									<td>{{ branch }}</td>
-									<td>{{ pkg.branches[branch] }}</td>
+									<td>{{ pkg.branches[branch].revision }}</td>
+									<td><a href="{{ branch }}/changelog.html">changelog</a>, <a
+												 href="{{ branch }}/files.html">content</a></td>
 								</tr>
 								{% endfor %}
 							</tbody>
