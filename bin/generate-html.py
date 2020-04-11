@@ -30,12 +30,8 @@ class Package:
         self.subpackage_of = None
         self.subpackages = []
 
-    def set_branch(self, name, revision, changelog, files):
-        self.branches[name] = {
-                "revision": revision,
-                "changelog": changelog,
-                "files": files
-                }
+    def set_branch(self, name, revision):
+        self.branches[name] = revision
 
     def get_branch(self, name):
         return self.branches[name]
@@ -136,40 +132,17 @@ def main():
             if pkg.name != srpm_name:
                 pkg.subpackage_of = srpm_name
 
-            # Extract changelog from '-other' db.
-            changelog = []
-            for change in other.execute('SELECT * FROM changelog WHERE pkgKey = ?', (pkg.key,)):
-                # Make addresses less obvious to spot for spam bots.
-                author = change["author"]
-                if changelog_mail_pattern.search(change["author"]):
-                    addr = changelog_mail_pattern.findall(change["author"])[0]
-                    obfuscated_addr = addr.replace('@', ' at ').replace('.', ' dot ').replace('-', ' dash ')
-                    author = author.replace(addr, obfuscated_addr)
-
-
-                changelog += [{
-                    "author": author,
-                    "timestamp": change["date"],
-                    "date": date.fromtimestamp(change["date"]),
-                    "change": change["changelog"]
-                    }]
-
-            # Extract file list from '-filelists' db.
-            files = []
-            for entry in filelist.execute('SELECT * FROM filelist WHERE pkgKey = ?', (pkg.key,)):
-                files += [{
-                    "dirname": entry["dirname"],
-                    "filenames": entry["filenames"],
-                    "filetypes": entry["filetypes"]
-                    }]
+            # XXX: we do not resolve files and changelog here because storing
+            # them in the packages hash would require multiple GBs of RAM
+            # (roughly 1GB per repository).
 
             # Always register branch-specific metadata.
-            pkg.set_branch(release, revision, changelog, files)
+            pkg.set_branch(release, revision)
 
     # Set license and maintainers for subpackages. We have to wait for all
     # packages to have been processed since subpackage might have been
     # processed before its parent.
-    print("Handling subpackages...")
+    print(">> Handling subpackages...")
     for pkg in packages.values():
         if pkg.subpackage_of != None:
             parent = packages.get(pkg.subpackage_of)
@@ -193,9 +166,14 @@ def main():
     save_to(os.path.join(output_dir, 'crawler-entrypoint.html'), crawler_entrypoint_html)
 
     # Generate package pages from Rawhide.
-    print("Generating package pages...")
+    print("> Generating package pages...")
 
-    count = 0
+    # 3 pages per package: index, files, changelog
+    page_count = 0
+    max_page_count = len(packages) * 3
+
+    # Generate main pages.
+    print(">>> Index pages...")
     for pkg in packages.values():
         pkg_dir = os.path.join(output_dir, 'pkgs', pkg.name)
         os.makedirs(pkg_dir, exist_ok=True)
@@ -205,24 +183,82 @@ def main():
         html_content = html_template.render(pkg=pkg)
         save_to(html_path, html_content)
 
-        for branch in pkg.branches.keys():
-            os.makedirs(os.path.join(pkg_dir, branch), exist_ok=True)
-
-            pages = [
-                ('changelog.html', 'package-changelog.html'),
-                ('files.html', 'package-files.html')
-                ]
-            for output_filename, template in pages:
-                html_path = os.path.join(pkg_dir, branch, output_filename)
-                html_template = env.get_template(template)
-                html_content = html_template.render(pkg=pkg, branch=branch)
-                save_to(html_path, html_content)
-
         # Simple way to display progress.
-        count += 1
-        if (count % 1000 == 0) or (count == len(packages)):
-            print("Processed {}/{} packages.".format(count, len(packages)))
+        page_count += 1
+        if (page_count % 100 == 0):
+            print("Processed {}/{} pages.".format(page_count, max_page_count))
 
+    # Generate files and changelog pages.
+    db_conns = {}
+    print(">>> Files and changelog pages...")
+    for pkg in packages.values():
+      pkg_dir = os.path.join(output_dir, 'pkgs', pkg.name)
+      for branch in pkg.branches.keys():
+          os.makedirs(os.path.join(pkg_dir, branch), exist_ok=True)
+
+          # Cache DB connections.
+          if branch in db_conns:
+              filelist = db_conns[branch]["filelist"]
+              other = db_conns[branch]["other"]
+          else:
+              (_, filelist) = open_db(databases[release]["filelists"])
+              (_, other) = open_db(databases[release]["other"])
+
+              db_conns[branch] = {
+                      "filelist": filelist,
+                      "other": other,
+                      }
+
+          # Generate files page for pkg.
+          files = []
+          for entry in filelist.execute('SELECT * FROM filelist WHERE pkgKey = ?', (pkg.key,)):
+              filenames = entry["filenames"].split('/')
+              filetype_index = 0
+              for filename in filenames:
+                  try:
+                    filetype = entry["filetypes"][filetype_index]
+                  except Exception:
+                    filetype = '?'
+
+                  files += [{
+                      "type": filetype,
+                      "path": os.path.join(entry["dirname"], filename),
+                  }]
+                  filetype_index += 1
+
+          files_html_path = os.path.join(pkg_dir, branch, "files.html")
+          files_html_template = env.get_template("package-files.html.j2")
+          files_html_content = files_html_template.render(pkg=pkg, branch=branch, files=files)
+          save_to(files_html_path, files_html_content)
+
+          # Generate changelog page for pkg.
+          changelog = []
+          for change in other.execute('SELECT * FROM changelog WHERE pkgKey = ?', (pkg.key,)):
+              # Make addresses less obvious to spot for spam bots.
+              author = change["author"]
+              if changelog_mail_pattern.search(change["author"]):
+                  addr = changelog_mail_pattern.findall(change["author"])[0]
+                  obfuscated_addr = addr.replace('@', ' at ').replace('.', ' dot ').replace('-', ' dash ')
+                  author = author.replace(addr, obfuscated_addr)
+
+              changelog += [{
+                  "author": author,
+                  "timestamp": change["date"],
+                  "date": date.fromtimestamp(change["date"]),
+                  "change": change["changelog"]
+                  }]
+
+          changelog_html_path = os.path.join(pkg_dir, branch, "changelog.html")
+          changelog_html_template = env.get_template("package-changelog.html.j2")
+          changelog_html_content = changelog_html_template.render(pkg=pkg, branch=branch, changelog=changelog)
+          save_to(changelog_html_path, changelog_html_content)
+
+      page_count += 1
+      if (page_count % 100 == 0) or (page_count == max_page_count):
+          print("Processed {}/{} pages.".format(page_count, max_page_count))
+
+    print("DONE.")
+    print("> {} packages processed.".format(len(packages)))
 
 if __name__ == '__main__':
     main()

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{{ pkg.name }} - Changelog</title>
-		<link rel="stylesheet" href="../../../../assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../../../../assets/css/main.css">
+		<title>{{ pkg.name }} - Files</title>
+		<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../../assets/css/main.css">
 	</head>
 	<body>
 		<div class="page-large">
@@ -30,26 +30,25 @@
 			<hr />
 
 			<h1>
-				{{ pkg.name }}
+				Content of {{ pkg.name }}
 				<small class="text-muted">{{ pkg.branches[branch].revision }} in {{ branch }}</small>
 			</h1>
 			<p>
-			This page displays the changelog of the {{ pkg.name }} package. You might
+			This page displays the content of the {{ pkg.name }} package. You might
 			want go back to <a href="..">the main page of {{ pkg.name }}</a>.
 			</p>
+
 			<table class="table table-striped table-borderless">
 				<thead>
 					<tr>
-						<th scope="col">Date</th>
-						<th scope="col">Author</th>
-						<th scope="col">Change</th>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
 					</tr>
 				</thead>
-				{% for entry in pkg.branches[branch].changelog|sort(attribute="timestamp", reverse=True) %}
+				{% for file in files %}
 				<tr scope="row">
-					<td>{{ entry.date }}</td>
-					<td>{{ entry.author }}</td>
-					<td>{{ entry.change }}</td>
+					<td>{{ file.type }}</td>
+					<td>{{ file.path }}</td>
 				</tr>
 				{% endfor %}
 				<tbody>
