@@ -85,14 +85,12 @@ def main():
 
     # Group databases files.
     databases = {}
+    db_pattern = re.compile('^(fedora|epel)-([\w|-]+)_(primary|filelists|other).sqlite$')
     for db in os.listdir(DBS_DIR):
-        pattern = re.compile('^(fedora|epel)-([\w|-]+)_(primary|filelists|other).sqlite$')
-        match = pattern.match(db)
-
-        if (not match):
+        if (not db_pattern.match(db)):
             sys.exit("Invalid object in {}: {}".format(DBS_DIR, db))
 
-        (product, branch, db_type) = pattern.findall(db)[0]
+        (product, branch, db_type) = db_pattern.findall(db)[0]
         release = "{}-{}".format(product, branch)
         if release in databases:
             databases[release][db_type] = db
@@ -102,6 +100,7 @@ def main():
     # Build internal package metadata structure / cache.
     packages = {}
     srpm_pattern = re.compile("^(.+)-.+-.+.src.rpm$")
+    changelog_mail_pattern = re.compile("<(.+@.+)>")
     for release in databases.keys():
         print("> Processing database files for {}.".format(release))
 
@@ -140,9 +139,18 @@ def main():
             # Extract changelog from '-other' db.
             changelog = []
             for change in other.execute('SELECT * FROM changelog WHERE pkgKey = ?', (pkg.key,)):
+                # Make addresses less obvious to spot for spam bots.
+                author = change["author"]
+                if changelog_mail_pattern.search(change["author"]):
+                    addr = changelog_mail_pattern.findall(change["author"])[0]
+                    obfuscated_addr = addr.replace('@', ' at ').replace('.', ' dot ').replace('-', ' dash ')
+                    author = author.replace(addr, obfuscated_addr)
+
+
                 changelog += [{
-                    "author": change["author"], # TODO: obfuscate mail addresses
-                    "date": change["date"],
+                    "author": author,
+                    "timestamp": change["date"],
+                    "date": date.fromtimestamp(change["date"]),
                     "change": change["changelog"]
                     }]
 
