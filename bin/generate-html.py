@@ -24,9 +24,8 @@ ASSETS_DIR='assets'
 SCM_MAINTAINER_MAPPING='pagure_owner_alias.json'
 
 class Package:
-    def __init__(self, name, pkg_key):
+    def __init__(self, name):
         self.name = name
-        self.key = pkg_key
         self.summary = "No summary specified."
         self.description = "No description specified."
 
@@ -37,11 +36,12 @@ class Package:
         self.subpackage_of = None
         self.subpackages = []
 
-    def set_release(self, name, branch, revision):
+    def set_release(self, name, pkgKey, branch, revision):
         if name not in self.releases:
             self.releases[name] = {}
 
         self.releases[name][branch] = revision
+        self.releases[name]['pkgKey'] = pkgKey
 
     def get_release(self, name):
         return self.releases[name]
@@ -126,7 +126,7 @@ def main():
 
             # Register unknown packages.
             if pkg == None:
-                pkg = Package(raw["name"], raw["pkgKey"])
+                pkg = Package(raw["name"])
                 packages[pkg.name] = pkg
                 first_pkg_encounter = True
 
@@ -152,7 +152,7 @@ def main():
             if branch == "":
                 branch = "base"
 
-            pkg.set_release(release, branch, revision)
+            pkg.set_release(release, raw["pkgKey"], branch, revision)
 
     # Set license and maintainers for subpackages. We have to wait for all
     # packages to have been processed since subpackage might have been
@@ -211,6 +211,7 @@ def main():
     for pkg in packages.values():
       pkg_dir = os.path.join(output_dir, 'pkgs', pkg.name)
       for release in pkg.releases.keys():
+          pkg_key = pkg.get_release(release)['pkgKey']
           if "updates" in pkg.get_release(release):
             release_branch = "{}-{}".format(release, "updates")
           elif "base" in pkg.get_release(release):
@@ -233,7 +234,7 @@ def main():
 
           # Generate files page for pkg.
           files = []
-          for entry in filelist.execute('SELECT * FROM filelist WHERE pkgKey = ?', (pkg.key,)):
+          for entry in filelist.execute('SELECT * FROM filelist WHERE pkgKey = ?', (pkg_key,)):
               filenames = entry["filenames"].split('/')
               filetype_index = 0
               for filename in filenames:
@@ -250,7 +251,7 @@ def main():
 
           # Generate changelog page for pkg.
           changelog = []
-          for change in other.execute('SELECT * FROM changelog WHERE pkgKey = ?', (pkg.key,)):
+          for change in other.execute('SELECT * FROM changelog WHERE pkgKey = ?', (pkg_key,)):
               # Make addresses less obvious to spot for spam bots.
               author = change["author"]
               if changelog_mail_pattern.search(change["author"]):
