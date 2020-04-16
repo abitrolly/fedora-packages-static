@@ -3,7 +3,11 @@ DB_DIR=repositories
 MAINTAINER_MAPPING=pagure_owner_alias.json
 
 help:
-	@echo "Help message: TODO"
+	@echo "sync-repositories: download RPM repository metadata for active releases"
+	@echo "fetch-maintainers: download package-maintainer mapping from dist-git"
+	@echo "html: generate static website"
+	@echo "all: all of the above, in order"
+	@echo "clean: remove artefacts"
 
 all: sync-repositories fetch-maintainers html
 
@@ -15,7 +19,6 @@ fetch-maintainers:
 	curl https://src.fedoraproject.org/extras/pagure_owner_alias.json -O $(MAINTAINER_MAPPING)
 
 html:
-	rm -fr $(OUTPUT_DIR)
 	mkdir -p $(OUTPUT_DIR)
 	bin/generate-html.py --target-dir $(OUTPUT_DIR)
 
