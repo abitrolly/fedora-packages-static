@@ -16,7 +16,7 @@ an independent tool such as [Yacy](https://yacy.net/).
 * Fix EPEL8 support.
 * Display dependencies in package detail page.
 * Build container for use in CommunityShift.
-* Some changelog/files entry are missing or attached to the wrong package.
+* Use pkgKey correct pkgKey to generate changelog/files.
 
 ## Dependencies
 
