@@ -9,6 +9,15 @@ for context.
 The idea here is to generate a static page for every package and index it using
 an independent tool such as [Yacy](https://yacy.net/).
 
+## TODO
+
+* Clean code, make pylint happy.
+* Define license (likely MIT, GLPv3 would be nice).
+* Fix EPEL8 support.
+* Display dependencies in package detail page.
+* Build container for use in CommunityShift.
+* Some changelog/files entry are missing or attached to the wrong package.
+
 ## Dependencies
 
 The scripts contained in this repository depend
