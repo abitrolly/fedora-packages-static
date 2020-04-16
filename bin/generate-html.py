@@ -1,14 +1,21 @@
 #!/usr/bin/python3
-
+#
+# Naming conventions used in this script:
+#   * product: fedora, epel
+#   * release: fedora-31, epel-7, ...
+#   * branch: base (= none), updates, updates-testing
+#   * release_branch: fedora-31, fedora-31-updates, fedora-31-updates-testing, ...
 import os
-import sqlite3
-import sys
-import argparse
-import shutil
-import json
 import re
-from collections import defaultdict
+import sys
+import json
+import shutil
+import sqlite3
+import argparse
+
 from datetime import date
+from collections import defaultdict
+
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 TEMPLATE_DIR='../templates'
@@ -26,15 +33,18 @@ class Package:
         self.license = "unknown"
         self.upstream = ""
         self.maintainers = []
-        self.branches = {}
+        self.releases = {}
         self.subpackage_of = None
         self.subpackages = []
 
-    def set_branch(self, name, revision):
-        self.branches[name] = revision
+    def set_release(self, name, branch, revision):
+        if name not in self.releases:
+            self.releases[name] = {}
 
-    def get_branch(self, name):
-        return self.branches[name]
+        self.releases[name][branch] = revision
+
+    def get_release(self, name):
+        return self.releases[name]
 
     def source(self):
         if self.subpackage_of == None:
@@ -87,26 +97,27 @@ def main():
             sys.exit("Invalid object in {}: {}".format(DBS_DIR, db))
 
         (product, branch, db_type) = db_pattern.findall(db)[0]
-        release = "{}-{}".format(product, branch)
-        if release in databases:
-            databases[release][db_type] = db
+        release_branch = "{}-{}".format(product, branch)
+        if release_branch in databases:
+            databases[release_branch][db_type] = db
         else:
-            databases[release] = {db_type: db }
+            databases[release_branch] = { db_type: db }
 
     # Build internal package metadata structure / cache.
     packages = {}
     srpm_pattern = re.compile("^(.+)-.+-.+.src.rpm$")
     changelog_mail_pattern = re.compile("<(.+@.+)>")
-    for release in databases.keys():
-        print("> Processing database files for {}.".format(release))
+    release_branch_pattern = re.compile("^([fedora|epel]+-[\w|\d]+)-?([a-z|-]+)?$")
+    for release_branch in databases.keys():
+        print("> Processing database files for {}.".format(release_branch))
 
         for db_type in ["primary", "filelists", "other"]:
-            if db_type not in databases[release]:
-                sys.exit("No {} database for {}.".format(db_type, release))
+            if db_type not in databases[release_branch]:
+                sys.exit("No {} database for {}.".format(db_type, release_branch))
 
-        (_, primary) = open_db(databases[release]["primary"])
-        (_, filelist) = open_db(databases[release]["filelists"])
-        (_, other) = open_db(databases[release]["other"])
+        (_, primary) = open_db(databases[release_branch]["primary"])
+        (_, filelist) = open_db(databases[release_branch]["filelists"])
+        (_, other) = open_db(databases[release_branch]["other"])
 
         for raw in primary.execute('SELECT * FROM packages'):
             pkg = packages.get(raw["name"])
@@ -120,7 +131,7 @@ def main():
                 first_pkg_encounter = True
 
             # Override package metadata with rawhide (= lastest) values.
-            if first_pkg_encounter or branch == "rawhide":
+            if first_pkg_encounter or release_branch == "rawhide":
                 pkg.summary = raw["summary"]
                 pkg.description = raw["description"]
                 pkg.upstream = raw["url"]
@@ -137,7 +148,11 @@ def main():
             # (roughly 1GB per repository).
 
             # Always register branch-specific metadata.
-            pkg.set_branch(release, revision)
+            (release, branch) = release_branch_pattern.findall(release_branch)[0]
+            if branch == "":
+                branch = "base"
+
+            pkg.set_release(release, branch, revision)
 
     # Set license and maintainers for subpackages. We have to wait for all
     # packages to have been processed since subpackage might have been
@@ -158,7 +173,9 @@ def main():
     save_to(os.path.join(output_dir, 'index.html'), search_html)
 
     # Import assets.
-    shutil.copytree(ASSETS_DIR, os.path.join(output_dir, 'assets'))
+    assets_output = os.path.join(output_dir, 'assets')
+    if not os.path.exists(assets_output):
+        shutil.copytree(ASSETS_DIR, os.path.join(output_dir, 'assets'))
 
     # Generate indexing system entrypoint.
     crawler_entrypoint = env.get_template('crawler_entrypoint.html.j2')
@@ -168,9 +185,8 @@ def main():
     # Generate package pages from Rawhide.
     print("> Generating package pages...")
 
-    # 3 pages per package: index, files, changelog
     page_count = 0
-    max_page_count = len(packages) * 3
+    max_page_count = len(packages)
 
     # Generate main pages.
     print(">>> Index pages...")
@@ -185,26 +201,32 @@ def main():
 
         # Simple way to display progress.
         page_count += 1
-        if (page_count % 100 == 0):
+        if (page_count % 100 == 0 or page_count == max_page_count):
             print("Processed {}/{} pages.".format(page_count, max_page_count))
 
     # Generate files and changelog pages.
-    db_conns = {}
     print(">>> Files and changelog pages...")
+    db_conns = {}
+    detailed_page_count = 0
     for pkg in packages.values():
       pkg_dir = os.path.join(output_dir, 'pkgs', pkg.name)
-      for branch in pkg.branches.keys():
-          os.makedirs(os.path.join(pkg_dir, branch), exist_ok=True)
+      for release in pkg.releases.keys():
+          if "updates" in pkg.get_release(release):
+            release_branch = "{}-{}".format(release, "updates")
+          elif "base" in pkg.get_release(release):
+            release_branch = release
+          else:
+            continue
 
           # Cache DB connections.
-          if branch in db_conns:
-              filelist = db_conns[branch]["filelist"]
-              other = db_conns[branch]["other"]
+          if release_branch in db_conns:
+              filelist = db_conns[release_branch]["filelist"]
+              other = db_conns[release_branch]["other"]
           else:
-              (_, filelist) = open_db(databases[release]["filelists"])
-              (_, other) = open_db(databases[release]["other"])
+              (_, filelist) = open_db(databases[release_branch]["filelists"])
+              (_, other) = open_db(databases[release_branch]["other"])
 
-              db_conns[branch] = {
+              db_conns[release_branch] = {
                       "filelist": filelist,
                       "other": other,
                       }
@@ -226,11 +248,6 @@ def main():
                   }]
                   filetype_index += 1
 
-          files_html_path = os.path.join(pkg_dir, branch, "files.html")
-          files_html_template = env.get_template("package-files.html.j2")
-          files_html_content = files_html_template.render(pkg=pkg, branch=branch, files=files)
-          save_to(files_html_path, files_html_content)
-
           # Generate changelog page for pkg.
           changelog = []
           for change in other.execute('SELECT * FROM changelog WHERE pkgKey = ?', (pkg.key,)):
@@ -247,15 +264,14 @@ def main():
                   "date": date.fromtimestamp(change["date"]),
                   "change": change["changelog"]
                   }]
+          html_path = os.path.join(pkg_dir, release_branch + ".html")
+          html_template = env.get_template("package-details.html.j2")
+          html_content = html_template.render(pkg=pkg, release=release, changelog=changelog, files=files)
+          save_to(html_path, html_content)
 
-          changelog_html_path = os.path.join(pkg_dir, branch, "changelog.html")
-          changelog_html_template = env.get_template("package-changelog.html.j2")
-          changelog_html_content = changelog_html_template.render(pkg=pkg, branch=branch, changelog=changelog)
-          save_to(changelog_html_path, changelog_html_content)
-
-      page_count += 1
-      if (page_count % 100 == 0) or (page_count == max_page_count):
-          print("Processed {}/{} pages.".format(page_count, max_page_count))
+      detailed_page_count += 1
+      if (detailed_page_count % 100 == 0) or (detailed_page_count == max_page_count):
+          print("Processed {}/{} pages.".format(detailed_page_count, max_page_count))
 
     print("DONE.")
     print("> {} packages processed.".format(len(packages)))

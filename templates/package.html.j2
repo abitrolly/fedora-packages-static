@@ -52,18 +52,31 @@
 							<thead>
 								<tr>
 									<th scope="col">Release</th>
-									<th scope="col">Version</th>
-									<th scope="col">Details</th>
+									<th scope="col">Stable</th>
+									<th scope="col">Testing</th>
 								</tr>
 							</thead>
 							<tbody>
-								{% for branch in pkg.branches | sort(reverse = True) %}
+								{% for release in pkg.releases | sort(reverse = True) %}
 								<tr scope="row">
-									<td>{{ branch }}</td>
-									<td>{{ pkg.branches[branch] }}</td>
+									<td>{{ release }}</td>
 									<td>
-										<a href="{{ branch }}/changelog.html">changelog</a>,
-										<a href="{{ branch }}/files.html">content</a></td>
+									{% if pkg.get_release(release)["updates"] %}
+									<a href="{{ release }}-updates.html">{{ pkg.get_release(release)["updates"] }}</a>
+									{% elif pkg.get_release(release)["base"] %}
+									<a href="{{ release }}.html">{{ pkg.get_release(release)["base"] }}</a>
+									{% else %}
+										-
+									{% endif %}
+									</td>
+
+									<td>
+									{% if pkg.get_release(release)["updates-testing"] %}
+									<a href="{{ release }}-updates-testing.html">{{ pkg.get_release(release)["updates"] }}</a>
+									{% else %}
+										-
+									{% endif %}
+									</td>
 								</tr>
 								{% endfor %}
 							</tbody>
