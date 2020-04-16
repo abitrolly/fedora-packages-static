@@ -16,7 +16,7 @@ sync-repositories:
 	bin/fetch-repository-dbs.py --target-dir $(DB_DIR)
 
 fetch-maintainers:
-	curl https://src.fedoraproject.org/extras/pagure_owner_alias.json -O $(MAINTAINER_MAPPING)
+	curl https://src.fedoraproject.org/extras/pagure_owner_alias.json -o $(MAINTAINER_MAPPING)
 
 html:
 	mkdir -p $(OUTPUT_DIR)
