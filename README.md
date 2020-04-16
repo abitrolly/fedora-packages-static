@@ -9,6 +9,9 @@ for context.
 The idea here is to generate a static page for every package and index it using
 an independent tool such as [Yacy](https://yacy.net/).
 
+With the exception of the MIT `assets/css/bootstrap.min.css`, the content of
+this repository is licensed under the GPLv3.
+
 ## TODO
 
 * Clean code, make pylint happy.
