@@ -14,12 +14,12 @@ this repository is licensed under the GPLv3.
 
 ## TODO
 
-* Clean code, make pylint happy.
+* Clean code, make pylint and humans happy.
 * Define license (likely MIT, GLPv3 would be nice).
 * Fix EPEL8 support.
 * Display dependencies in package detail page.
+* Add support for modular and flatpak repositories.
 * Build container for use in CommunityShift.
-* Use pkgKey correct pkgKey to generate changelog/files.
 
 ## Dependencies
 
