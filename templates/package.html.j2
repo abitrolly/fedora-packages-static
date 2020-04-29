@@ -88,7 +88,11 @@
 						<ul>
 							<li>Upstream: <a href="{{ pkg.upstream }}">{{ pkg.upstream }}</a></li>
 							<li>License(s): {{ pkg.license }}</li>
-							<li>Maintainer(s):{% for fas in pkg.maintainers %} {{ fas }}{% endfor %}</li>
+							{% if pkg.maintainers | length == 1 %}
+							<li>Maintainer:{% for fas in pkg.maintainers %} {{ fas }}{% endfor %}</li>
+							{% else %}
+							<li>Maintainers:{% for fas in pkg.maintainers %} {{ fas }}{{ "," if not loop.last }}{% endfor %}</li>
+							{% endif %}
 						</ul>
 						<hr />
 						<p>
