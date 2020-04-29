@@ -94,19 +94,20 @@
 							<li>Maintainers:{% for fas in pkg.maintainers %} {{ fas }}{{ "," if not loop.last }}{% endfor %}</li>
 							{% endif %}
 						</ul>
+						{% if pkg.subpackages | length %}
+						<hr />
+						Subpackages:
+						<ul>
+						{% for subpkg in pkg.subpackages %}
+						<li><a href="../{{ subpkg }}">{{ subpkg }}</a></li>
+						{% endfor %}
+						</ul>
+						{% endif %}
 						<hr />
 						<p>
 						You can contact the maintainers of this package at
 						<code>{{ pkg.source() }} dash owner at fedoraproject dot org</code>.
 						</p>
-						{% if pkg.subpackages | length %}
-						<hr />
-						<ul>
-						{% for subpkg in pkg.subpackages %}
-						<li><a href="../{{ subpkg }}">{{ subpkg }}</a></li>
-						{% endfor %}
-						{% endif %}
-						</ul>
 					</div>
 				</div>
 			</div>
