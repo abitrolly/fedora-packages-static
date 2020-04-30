@@ -15,7 +15,6 @@ this repository is licensed under the GPLv3.
 ## TODO
 
 * Clean code, make pylint and humans happy.
-* Fix EPEL8 support.
 * Display dependencies in package detail page.
 * Add support for modular and flatpak repositories.
 * Build container for use in CommunityShift.
