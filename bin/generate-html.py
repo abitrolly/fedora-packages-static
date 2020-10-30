@@ -185,7 +185,7 @@ def main():
     pkgs_list = list(packages.keys())
     sitemap_list = []
     sitemap_dir = os.path.join(output_dir, 'sitemaps')
-    shutil.rmtree(sitemap_dir)
+    shutil.rmtree(sitemap_dir, ignore_errors=True)
     os.makedirs(sitemap_dir, exist_ok=True)
     i = 0
     # Number of pkgs in one sitemap. Should not be above 50,000
