@@ -19,7 +19,6 @@ this repository is licensed under the GPLv3.
 * Fix EPEL8 support.
 * Display dependencies in package detail page.
 * Add support for modular and flatpak repositories.
-* Build container for use in CommunityShift.
 
 ## Dependencies
 
@@ -36,6 +35,7 @@ The scripts contained in this repository depend
 * Download repository metadata for active releases: `make sync-repositories`
 * Download package-maintainers mapping from dist-git: `make fetch-maintainers`
 * Generate static website: `make html`
+* Install npm dependencies: `make setup-js`
 
 * All at once: `make all`
 * Help message: `make help`

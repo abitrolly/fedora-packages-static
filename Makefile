@@ -13,6 +13,8 @@ help:
 
 all: sync-repositories fetch-maintainers html js
 
+html-only: sync-repositories fetch-maintainers html
+
 sync-repositories:
 	mkdir -p $(DB_DIR)
 	bin/fetch-repository-dbs.py --target-dir $(DB_DIR)
@@ -21,7 +23,8 @@ fetch-maintainers:
 	curl https://src.fedoraproject.org/extras/pagure_owner_alias.json -o $(MAINTAINER_MAPPING)
 
 html:
-	mkdir -p $(OUTPUT_DIR)
+	mkdir -p $(OUTPUT_DIR)/assets
+	cp -r assets/* $(OUTPUT_DIR)/assets
 	bin/generate-html.py --target-dir $(OUTPUT_DIR)
 
 js:
