@@ -25,9 +25,7 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new ForkTsCheckerWebpackPlugin({
-      vue: true
-    })
+    new ForkTsCheckerWebpackPlugin()
   ],
   resolve: {
     extensions: [
