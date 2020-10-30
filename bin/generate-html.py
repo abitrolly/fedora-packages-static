@@ -22,6 +22,7 @@ TEMPLATE_DIR='../templates'
 DBS_DIR=os.environ.get('DB_DIR') or "repositories"
 ASSETS_DIR='assets'
 SCM_MAINTAINER_MAPPING=os.environ.get('MAINTAINER_MAPPING') or "pagure_owner_alias.json"
+SITEMAP_URL = 'https://pkgs.fedoraproject.org/pkgs/'
 
 class Package:
     def __init__(self, name):
@@ -180,10 +181,29 @@ def main():
     if not os.path.exists(assets_output):
         shutil.copytree(ASSETS_DIR, os.path.join(output_dir, 'assets'))
 
-    # Generate indexing system entrypoint.
-    crawler_entrypoint = env.get_template('crawler_entrypoint.html.j2')
-    crawler_entrypoint_html = crawler_entrypoint.render(packages=packages)
-    save_to(os.path.join(output_dir, 'crawler-entrypoint.html'), crawler_entrypoint_html)
+    # Generate sitemaps
+    pkgs_list = list(packages.keys())
+    sitemap_list = []
+    sitemap_dir = os.path.join(output_dir, 'sitemaps')
+    shutil.rmtree(sitemap_dir)
+    os.makedirs(sitemap_dir, exist_ok=True)
+    i = 0
+    # Number of pkgs in one sitemap. Should not be above 50,000
+    # https://www.sitemaps.org/protocol.html#index
+    sitemap_amount = 10000
+    while True:
+        sitemap_pkgs = pkgs_list[i * sitemap_amount:(i + 1) * sitemap_amount]
+        if not sitemap_pkgs:
+            break
+        crawler_sitemap = env.get_template('sitemap.xml.j2')
+        crawler_sitemap_xml = crawler_sitemap.render(packages=sitemap_pkgs, url=SITEMAP_URL)
+        save_to(os.path.join(sitemap_dir, 'sitemap{}.xml'.format(i)), crawler_sitemap_xml)
+        sitemap_list.append('/sitemaps/sitemap{}.xml'.format(i))
+        i = i + 1 
+        
+    sitemap_sitemap = env.get_template('sitemap-index.xml.j2')
+    sitemap_sitemap_xml = sitemap_sitemap.render(sitemaps=sitemap_list, url=SITEMAP_URL)
+    save_to(os.path.join(output_dir, 'sitemap.xml'), sitemap_sitemap_xml)
 
     # Generate package pages from Rawhide.
     print("> Generating package pages...")
