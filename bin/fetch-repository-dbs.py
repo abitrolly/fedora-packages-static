@@ -162,10 +162,15 @@ def get_repository_urls_for(product, version):
                 ('{}/pub/fedora/linux/updates/{}/Everything/x86_64/repodata'.format(MIRROR, version), release + "-updates"),
                 ('{}/pub/fedora/linux/updates/testing/{}/Everything/x86_64/repodata'.format(MIRROR, version), release + "-updates-testing"),
                 ]
-    elif product == "epel":
+    elif product == "epel" and int(version) < 8:
         return [
                 ('{}/pub/epel/{}/x86_64/repodata/'.format(MIRROR, version), release),
                 ('{}/pub/epel/testing/{}/x86_64/repodata'.format(MIRROR, version), release + "-testing"),
+                ]
+    elif product == "epel" and int(version) >= 8:
+        return [
+                ('{}/pub/epel/{}/Everything/x86_64/repodata/'.format(MIRROR, version), release),
+                ('{}/pub/epel/testing/{}/Everything/x86_64/repodata'.format(MIRROR, version), release + "-testing"),
                 ]
     else:
         sys.exit("Unknown product: {}".format(product))
