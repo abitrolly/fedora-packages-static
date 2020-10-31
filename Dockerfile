@@ -8,7 +8,8 @@ RUN dnf -y upgrade \
   python3-jinja2 \
   npm \
   cronie \
-  cronie-anacron
+  cronie-anacron \
+  rsync
 
 WORKDIR /usr/local/src/packages
 

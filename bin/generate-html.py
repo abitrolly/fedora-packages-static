@@ -22,7 +22,7 @@ TEMPLATE_DIR='../templates'
 DBS_DIR=os.environ.get('DB_DIR') or "repositories"
 ASSETS_DIR='assets'
 SCM_MAINTAINER_MAPPING=os.environ.get('MAINTAINER_MAPPING') or "pagure_owner_alias.json"
-SITEMAP_URL = 'https://pkgs.fedoraproject.org/pkgs/'
+SITEMAP_URL = 'https://pkgs.fedoraproject.org'
 
 class Package:
     def __init__(self, name):

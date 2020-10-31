@@ -1,5 +1,6 @@
 #!/bin/sh
 
 anacron -s
-make html-only
+make OUTPUT_DIR=/srv/packages all
+echo "Starting web server..."
 nginx
