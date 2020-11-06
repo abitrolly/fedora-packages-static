@@ -8,7 +8,6 @@ import sqlite3
 import os
 import argparse
 import hashlib
-import requests
 import sys
 
 repomd_xml_namespace = {

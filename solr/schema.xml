@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="fedora-packages" version="1.6">
+  <field name="_version_" type="plong" indexed="false" stored="false"/>
+  <field name="_root_" type="string" indexed="true" stored="false" docValues="false" />
+  <field name="_nest_path_" type="_nest_path_" />
+  <fieldType name="_nest_path_" class="solr.NestPathField" />
+
+  <!-- TODO: add facets for fedora version -->
+  <fieldType name="nameText" class="solr.TextField">
+    <analyzer type="index">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.WordDelimiterGraphFilterFactory" />
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.FlattenGraphFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.WordDelimiterGraphFilterFactory" />
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="englishText" class="solr.SortableTextField" positionIncrementGap="100" uninvertible="false">
+    <analyzer type="index">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <!-- <filter class="solr.SynonymGraphFilterFactory" synonyms="index_synonyms.txt" ignoreCase="true" expand="false"/> -->
+      <!-- <filter class="solr.FlattenGraphFilterFactory"/> -->
+      <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_en.txt" />
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.EnglishPossessiveFilterFactory"/>
+      <!-- <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/> -->
+      <filter class="solr.EnglishMinimalStemFilterFactory"/>
+      <!-- <filter class="solr.PorterStemFilterFactory"/> -->
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_en.txt" />
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.EnglishPossessiveFilterFactory"/>
+      <!-- <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/> -->
+      <filter class="solr.EnglishMinimalStemFilterFactory"/>
+      <!-- <filter class="solr.PorterStemFilterFactory"/> -->
+    </analyzer>
+  </fieldType>
+
+  <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
+  <fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
+
+  <field name="id" type="string" indexed="true" stored="true" multiValued="false" required="true"/>
+  <field name="name" type="nameText" indexed="true" stored="true" required="true" multiValued="false"/>
+
+  <uniqueKey>id</uniqueKey>
+  <copyField source="id" dest="name"/>
+
+  <field name="description" type="englishText"/>
+</schema>
