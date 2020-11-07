@@ -10,10 +10,14 @@ help:
 	@echo "setup-js: get js dependencies"
 	@echo "all: all of the above, in order"
 	@echo "clean: remove artefacts"
+	@echo "update-solr: update solr index. must have SOLR_CORE and SOLR_URL defined"
 
 all: sync-repositories fetch-maintainers html js
 
 html-only: sync-repositories fetch-maintainers html
+
+update-solr: 
+	bin/update-solr.py
 
 sync-repositories:
 	mkdir -p $(DB_DIR)

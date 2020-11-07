@@ -6,6 +6,7 @@
   <fieldType name="_nest_path_" class="solr.NestPathField" />
 
   <!-- TODO: add facets for fedora version -->
+  <!-- TODO: tokenize lib out of package names? -->
   <fieldType name="nameText" class="solr.TextField">
     <analyzer type="index">
       <tokenizer class="solr.WhitespaceTokenizerFactory"/>
@@ -19,7 +20,8 @@
       <filter class="solr.LowerCaseFilterFactory"/>
     </analyzer>
   </fieldType>
-  <fieldType name="englishText" class="solr.SortableTextField" positionIncrementGap="100" uninvertible="false">
+  <!-- Currently disabled. TODO: turn \n into space, stem filter not working -->
+  <fieldType name="descText" class="solr.SortableTextField" positionIncrementGap="100" uninvertible="false">
     <analyzer type="index">
       <tokenizer class="solr.StandardTokenizerFactory"/>
       <!-- <filter class="solr.SynonymGraphFilterFactory" synonyms="index_synonyms.txt" ignoreCase="true" expand="false"/> -->
@@ -51,5 +53,5 @@
   <uniqueKey>id</uniqueKey>
   <copyField source="id" dest="name"/>
 
-  <field name="description" type="englishText"/>
+  <field name="description" type="string" indexed="false" stored="true" />
 </schema>

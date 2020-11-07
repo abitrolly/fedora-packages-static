@@ -14,12 +14,11 @@ import sqlite3
 import argparse
 import requests
 
-from urllib.parse import urlparse
 from datetime import date
 from collections import defaultdict
 from xml.etree.ElementTree import Element, tostring
 
-SOLR_URL=urlparse(os.environ.get('SOLR_URL'))
+SOLR_URL=os.environ.get('SOLR_URL')
 SOLR_CORE=os.environ.get('SOLR_CORE')
 DBS_DIR=os.environ.get('DB_DIR') or "repositories"
 SCM_MAINTAINER_MAPPING=os.environ.get('MAINTAINER_MAPPING') or "pagure_owner_alias.json"
@@ -170,7 +169,7 @@ def main():
 
         pkg_count += 1
         if (pkg_count % 500 == 0 or pkg_count == max_pkg_count):
-            requests.post(f"{SOLR_URL.geturl()}solr/{SOLR_CORE}/update?commit={str(pkg_count == max_pkg_count).lower()}", data=tostring(pkg_xml), headers={'Content-Type': 'application/xml'})
+            requests.post(f"{SOLR_URL}solr/{SOLR_CORE}/update?commit={str(pkg_count == max_pkg_count).lower()}", data=tostring(pkg_xml), headers={'Content-Type': 'application/xml'})
             pkg_xml.clear()
             print("Submitted {}/{} packages.".format(pkg_count, max_pkg_count))
 
