@@ -1,29 +1,72 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Fedora Packages</title>
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/css/main.css">
-	</head>
-	<body>
-		<div class="page">
-			<div id="logo">
-				<img src="assets/images/logo.png">
-			</div>
-			<form action="/search" method="get">
-				<div class="form-row">
-					<div class="form-group col-md-8">
-						<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+
+<head>
+	<title>Fedora Packages</title>
+	<link rel="stylesheet"
+		href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet"
+		href="assets/css/main.css">
+</head>
+
+<body>
+	<div class="page-large">
+		<div class="container">
+			<div class="row">
+				<a href="/">
+					<div class="col-md-6">
+						<img src="../../assets/images/logo.png"
+							style="margin-top: -30px;">
 					</div>
-					<div class="form-group col-md-4">
-						<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
-					</div>
+				</a>
+				<div class="col-md-6">
+					<form action="/search"
+						method="get">
+						<div class="form-row">
+							<div class="form-group col-md-8">
+								<input class="form-control"
+									type="search"
+									placeholder="Search"
+									name="query"
+									aria-label="Search">
+							</div>
+							<div class="form-group col-md-4">
+								<button class="btn btn-primary btn-block"
+									type="submit"
+									value="{{ results.responseHeader.params.q }}">Search &raquo;</button>
+							</div>
+						</div>
+					</form>
 				</div>
-			</form>
-			<div>
-			<p>
-			{{ results }}
-			<p>
-			<div>
-	</body>
+			</div>
+		</div>
+
+		<hr />
+		
+		<!-- TODO: results returned, pagination -->
+
+		{% if results.spellcheck.collations[1] %}
+		<div>
+			<p>Did you mean <b>
+				<a href="/search?query={{results.spellcheck.collations[1]}}">
+					{{results.spellcheck.collations[1]}}</a></b>?
+			</p>
+		</div>
+		{% elif results.response.numfound == 0 %}
+		<div>
+			<p>No results found!</p>
+		</div>
+		{% endif %}
+
+		{% for result in results.response.docs %}
+		<div class="position-relative">
+			<a class="stretched-link"
+				href="/pkgs/{{ result.name }}">
+				<h3>{{ result.name }}</h3>
+			</a>
+			<p>{{ result.description }}</p>
+		</div>
+		{% endfor %}
+</body>
+
 </html>
