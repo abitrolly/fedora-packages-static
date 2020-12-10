@@ -1,0 +1,50 @@
+name: Manual trigger to build and upload to pages
+
+on:
+  # Runs when manually triggered using the UI or API.
+  workflow_dispatch:
+    inputs:
+      name:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Person to greet'
+        # Default value if no value is explicitly provided
+        default: 'World'
+        # Input has to be provided for the workflow to run
+        required: true
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Runs a single command using the runners shell
+    - name: Send greeting
+      run: echo "Hello ${{ github.event.inputs.name }}"
+
+    - name: Build
+      run: make all
+
+    - name: Upload to GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v2.2.0
+      with:
+        # Git branch where assets will be deployed
+        #target_branch: # optional, default is gh-pages
+        # Create incremental commit instead of doing push force
+        keep_history: true # optional, default is false
+        # Allow an empty commit to be created
+        #allow_empty_commit: # optional, default is true
+        # Build directory to deploy
+        build_dir: public_html
+        # The committer name and email address
+        #committer: # optional
+        # The author name and email address
+        #author: # optional
+        # Commit message
+        #commit_message: # optional
+        # Write the given domain name to the CNAME file
+        #fqdn: # optional
+        # Allow Jekyll to build your site
+        jekyll: false # optional, default is true
