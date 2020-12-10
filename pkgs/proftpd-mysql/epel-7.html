@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>proftpd-mysql - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				proftpd-mysql
+				<small class="text-muted"> in epel-7</small>
+			</h1>
+			<p>
+			This page displays detail informations of the proftpd-mysql package. You might
+			want go back to <a href=".">the main page of proftpd-mysql</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-09-14</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.5e-10</td>
+					<td>- Fix null pointer dereference for invalid SCP command by passing the
+  correct argument count to getopt(3)
+  https://github.com/proftpd/proftpd/issues/1043
+  https://github.com/proftpd/proftpd/pull/1044
+  https://bugzilla.redhat.com/show_bug.cgi?id=1878869</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-02-19</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.5e-9</td>
+					<td>- Fix use-after-free vulnerability in memory pools during data transfer
+  (CVE-2020-9273, https://github.com/proftpd/proftpd/issues/903)
+- mod_sftp: When handling the 'keyboard-interactive' authentication mechanism,
+  as used for (e.g.) PAM, make sure to properly handle DEBUG, IGNORE,
+  DISCONNECT, and UNIMPLEMENTED messages, per RFC 4253
+  http://bugs.proftpd.org/show_bug.cgi?id=4385</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-11-29</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.5e-8</td>
+					<td>- Fix handling of CRL lookups by properly using issuer for lookups, and
+  guarding against null pointers (GH#858, GH#859, GH#860, GH#861,
+  CVE-2019-19269, CVE-2019-19270, CVE-2019-19271, CVE-2019-19272)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-10-23</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.5e-7</td>
+					<td>- Fix build compatibility with MySQL 8 (#1764401)
+  https://github.com/proftpd/proftpd/issues/824
+  https://github.com/proftpd/proftpd/pull/825</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-10-20</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.5e-6</td>
+					<td>- Fixed pre-authentication remote denial-of-service issue
+  (CVE-2019-18217, https://github.com/proftpd/proftpd/issues/846)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-07-23</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.5e-5</td>
+					<td>- An arbitrary file copy vulnerability in mod_copy in ProFTPD allowed for
+  remote code execution and information disclosure without authentication
+  (CVE-2019-12815)
+  http://bugs.proftpd.org/show_bug.cgi?id=4372
+  https://github.com/proftpd/proftpd/pull/816</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2017-12-07</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.5e-4</td>
+					<td>- Add InsecureHostKeyPerms SFTP option (#1522998, upstream bug 4098)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2017-09-20</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.5e-3</td>
+					<td>- Add sqlite sub-package with mod_sql_sqlite for SQLite support (#1328321)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2017-05-03</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.5e-2</td>
+					<td>- AllowChrootSymlinks off could cause login failures depending on filesystem
+  permissions: use the IDs of the logging-in user to perform the directory
+  walk, looking for symlinks, to be more consistent with similar checks done
+  during login (#1443507, upstream bug 4306)
+- Crypt::CrackLib always available now</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2017-04-10</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.5e-1</td>
+					<td>- Update to 1.3.5e
+  - SFTP clients using umac-64@openssh.com digest failed to connect
+    (upstream bug 4287)
+  - SFTP rekeying failure with ProFTPD 1.3.5d, caused by null pointer
+    dereference (upstream bug 4288)
+  - AllowChrootSymlinks off did not check entire DefaultRoot path for symlinks
+    (CVE-2017-7418, upstream bug 4295)
+- Change shellbangs in shipped perl scripts to use system perl
+- Drop EL-5 support
+  - Drop BuildRoot: and Group: tags
+  - Drop explicit buildroot cleaning in %install section
+  - Drop explicit %clean section
+  - /etc/pam.d/password-auth always available now
+  - pcre 7.0 or later always available now</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_sql_mysql.so</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

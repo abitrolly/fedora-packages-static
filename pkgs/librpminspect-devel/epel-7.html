@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>librpminspect-devel - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				librpminspect-devel
+				<small class="text-muted"> in epel-7</small>
+			</h1>
+			<p>
+			This page displays detail informations of the librpminspect-devel package. You might
+			want go back to <a href=".">the main page of librpminspect-devel</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-09-11</td>
+					<td>David Cantrell <dcantrell at redhat dot com> - 1.1-1</td>
+					<td>- Formatting fixes in Makefile help output
+- Begin config file restructuring starting with rpminspect-data-generic
+- Support multiple configuration files.
+- Docs work in progress.
+- Only fail the annocheck inspection for RESULT_VERIFY.
+- Read debuginfo if available when running the 'annocheck' inspection.
+- Add the '%files' inspection to librpminspect
+- Add __attribute__((__sentinel__)) to the run_cmd() prototype
+- Add test suite cases for the '%files' inspection.
+- Added the 'types' inspection to compare MIME types between builds.
+- Update TODO file
+- Update the MISSING file
+- s/rpminspect.yaml/generic.yaml/ in the Makefile and README
+- Skip debuginfo and debugsource packages in the 'types' inspection
+- Add test_types.py to the test suite
+- Note the 'types' inspection generic.yaml
+- Modify add_entry() in init.c to skip duplicate entries
+- Start GitHub Action workflow files for rpminspect.
+- Install meson in ci-ubuntu.yml
+- Change 'nls' option in meson_options.txt to a boolean
+- Install gettext for ci-ubuntu
+- Add more build dependencies to ci-ubuntu.yml
+- Drop the 'method' parameter from dependency() lines in meson.build
+- Split xmlrpc libs to separate dependency() lines in meson.build
+- More xmlrpc updates for meson.build and lib/meson.build
+- Try to support systems with xmlrpc-c without the pkgconfig file.
+- Changes to build on Ubuntu, specifically the GitHub Actions system
+- Syntax error in ci-ubuntu.yml
+- Add ci-fedora.yml for GitHub Action CI on Fedora
+- Fix errors in ci-fedora.yml
+- Put all of the ci-ubuntu.yml steps in ci-ubuntu.yml
+- Remove install-libmandoc.sh and ubuntu-pkgs.sh helper scripts.
+- Install python3-setuptools in ci-ubuntu.yml
+- Install rpm-build in ci-fedora.yml
+- Install libxmlrpc-core-c3-dev in ci-ubuntu.yml
+- Disable ci-ubuntu.yml for now, enable code coverage in ci-fedora.yml
+- Remove Travis-CI files.
+- coverage fixes for ci-fedora.yml
+- Install git in ci-fedora.yml
+- Enable manual dispatching of the CI on Fedora tests
+- Remove actionspanel thing for GitHub Actions, drop Coveralls block
+- Comment the ci-fedora-yaml file
+- Fix the 'elf' inspection and test_elf.py on Ubuntu
+- Enable the ci-ubuntu GitHub Action again
+- Check all return values of getcwd()
+- Ignore installed Python modules with pip3 in ci-ubuntu.yml
+- Build 'execstack' test program with -Wl,-z,lazy
+- Add ci-centos8.yml to enable CI on CentOS 8 as a GitHub Action
+- s/centos8:latest/centos8/g
+- Trying 'container: centos:centos8'
+- Drop 'sudo' from ci-centos8.yml
+- Rename README to README.md
+- Enable GitHub Action for CI on CentOS 7
+- Drop -I from the pip install line in ci-centos7.yml
+- Use the 'make instreqs' target for install test suite deps.
+- Add back 'dnf -y install 'dnf-command(builddep)'' to ci-fedora.yml
+- Nope, that doesn't do it.  Just install make in ci-fedora.yml first
+- More 'make instreqs' fixes.
+- s/scripts/utils/g in the Makefile
+- s/TOPDIR/topdir/g in the Makefile
+- Install make in ci-centos7.yml
+- Move REQS and PIP lists out of the Makefile to files in osdep/
+- '^$$' -> '^$'
+- Slightly different sourcing of the osdep/ files
+- Set OS using := in the Makefile
+- Make the reqs.txt files in osdep/ contain all deps
+- linux-headers -> linux-headers-$(uname -r) for Ubuntu
+- Remove html401-dtds from osdep/centos8/reqs.txt
+- Use `` instead of $() since this list goes through make(1)
+- Does $(shell uname -r) work in this case?
+- More osdep/ work and simplification.
+- Rename 'osdep' to 'osdeps'
+- meson patches for opensuse
+- Move mandoc installation to post.sh in osdep/ubuntu
+- Add GitHub Action for CI on OpenSUSE
+- opensuse:latest -> opensuse/leap:latest
+- Install tar in ci-opensuse.yml
+- Install gzip in ci-opensuse.yml
+- More fixes for ci-opensuse.yml
+- Small fixes to determine-os.sh
+- ci: Add Python linting jobs
+- ShellCheck fixes for the regress/ scripts
+- ci: Add ShellCheck to lint shell scripts
+- Adjust how the Makefile reports unknown operating system.
+- Just check $ID in determine-os.sh for opensuse
+- Use pip for PIP_CMD on opensuse-leap
+- Update the centos images before doing anything else.
+- Install curl in opensuse-leap
+- Get 'rc' from Fedora on opensuse and copy it to /usr/local
+- Install kernel-default-devel for opensuse CI
+- Move the 'uses' part of the centos CI jobs to the first step
+- ShellCheck fixes for the utils/ scripts.
+- Some flake8 fixes in test/, using yapf
+- Combine all of the GitHub Actions CI runs in to ci.yml
+- Manually install rpmfluff on CentOS 7; pip is failing here
+- Use rpmfluff-0.5.7 explicitly for centos7
+- Use rpmfluff-0.5.6 on centos7
+- OK, let's try rpmfluff-0.5 for centos7
+- Last try, rpmfluff-0.5.4.1 for centos7
+- Back to trying to manually install rpmfluff for centos7
+- Style the Python code with Black
+- Add the Black formatting commit to blame revision ignore list
+- OK, just copy rpmfluff.py in place
+- Make sure to manually install rpmfluff-0.5.7.1 for centos7
+- Don't assume we have a header or even a list of files (#161)
+- python: flake8: drop * imports
+- python: flake8: wrap long lines to less than 100 characters
+- python: flake8: drop unused imports
+- python: flake8: remove unused local variables
+- python: flake8: add PEP8 whitespace
+- python: flake8: mark in-line bash scripts as raw strings
+- python: rename several duplicate test cases
+- ci: merge style workflows
+- Adjust rpminspect.spec.in for file moves and default changes.
+- Return the reallybadword to the metadata tests
+- Adjust test_metadata.LosingVendorCompareKojiBuild to expect VERIFY
+- The shared libmandoc check should not look for a static libmandoc
+- Update the AUTHORS file
+- Rename ipv6_blacklist to forbidden_ipv6_functions
+- Rename stat-whitelist to fileinfo
+- Rename 'caps_whitelist' to 'caps' and drop the use of 'whitelist'
+- Rename abi-checking-whitelist/ to abi/ in /usr/share/rpminspect
+- Rename 'version-whitelist/' to 'rebaseable/' in /usr/share/rpminspect
+- Rename "political-whitelist/" to "politics/" in /usr/share/rpminspect
+- Drop unnecessary method re-definitions in base test classes
+- Use super() rather than explicitly calling the parent class
+- Call configFile() on object instance rather than using the parent
+  class
+- Upload coverage report to codecov
+- Improve the error reporting for test result checking
+- Convert to AUTHORS.md file, add Makefile target to generate it.
+- Introduce the 'movedfiles' inspection and a lot of other fixes (#155)
+- AUTHORS -> AUTHORS.md in rpminspect.spec.in
+- Add basic tests for the filesize inspection
+- Multiply the file size difference before dividing
+- Update README.md
+- Update README.md (more Markdown changes)
+- Update POTFILES and rpminspect.pot
+- chmod 0755 test_filesize.py
+- tests: optionally check the result message
+- tests: add further filesize tests for shrinking files
+- inspect_filesize: drop extra - from the message about file shrinkage
+- Enable 'permissions' inspect for single build analysis.
+- Add 24 new test cases to cover the 'permissions' inspection.
+- chmod 0755 test_permissions.py
+- Make sure all RESULT_INFO results are set to NOT_WAIVABLE
+- Fix some specific problems with the 'permissions' inspection.
+- Pass "-r GENERIC" to rpminspect in the TestCompareKoji class
+- Add 12 more permissions test cases for setuid file checks
+- Update TODO list
+- Update test_symlink.py tests for new waiver_auth values
+- Add a fedora-rawhide job and renamed 'fedora' to fedora-stable
+- Update the rpminspect.pot translation template
+- Relicense librpminspect (lib/ and include/) as LGPL-3.0-or-later
+- Ignore .tox/ subdirectory
+- License the rpminspect-data-generic subpackage as CC-BY-4.0
+- Add a copy of the Apache 2.0 license for the 5 files in librpminspect
+- Update the License tag in the spec file and the %license lines
+- Add debian-testing as a CI workflow; add missing osdeps files.
+- Update determine-os.sh to handle Fedora stable and rawhide
+- Drop the use of 'sudo' in ci.yml
+- sudo required for Ubuntu CI job, install make for debian-testing
+- See what $ID is set to in determine-os.sh
+- Workaround a bug in meson 0.55.0 for Fedora CI jobs
+- Add 'debian' catch to utils/determine-os.sh
+- Rename 'osdeps/debian-testing/' to 'osdeps/debian/'
+- Add opensuse-tumbleweed to the CI job list
+- Add libmagic-dev to osdeps/debian/reqs.txt
+- Fix memory corruption in init_rpminspect
+- Add comment clarifying the License tag in the spec file.
+- If check_results() raises AssertionError, dump the JSON output
+- Fix test_changelog.py test cases that are failing.
+- Fix UnbalancedChangeLogEditCompareKoji
+- Handle rpm versions with x.y.z.w version numbers in test_symlinks.py
+- Fix mandoc build problems in opensuse-tumbleweed CI job
+- Install gcovr using pip on opensuse-tumbleweed
+- Handle systems that lack pkg-config files for libelf and libcap
+- Add archlinux CI job in GitHub Actions
+- Forgot --noconfirm on the 'pacman -Syu' line.
+- Add missing DESC_MOVEDFILES block to inspection_desc()
+- More minor fixes to the Arch Linux CI job.
+- Install gcovr with pip for the Arch Linux CI job.
+- Support building on systems that lack <sys/queue.h>
+- Add detection for <sys/queue.h> to meson.build
+- Ensure an int is used for snprintf() in inspect_manpage_path()
+- WIP: 'abidiff' inspection
+- Only report permissions change if there is a mode_diff (#181)
+- Fix -Werror failures in inspect_abidiff.c
+- Add sl_run_cmd() to librpminspect.
+- Add get_arches() to librpminspect
+- WIP: abidiff inspection
+- Some minor edits to the README.md file
+- More minor updates to the README.md file
+- Replace get_arches() with init_arches()
+- Add test_addedfiles.py to the integration test suite
+- Expand find_one_peer() to soft match versioned ELF shared libraries
+- Add the beginnings of the 'abidiff' inspection code.
+- Report out findings in the abidiff inspection.
+- Update the test suite to cover rpmfluff 0.6
+- libmandoc configure workaround needed on Debian too
+- shellcheck fixes for the scripts in utils/
+- Add abi.c, the code that reads in the ABI compat level files (#144)
+- Be sure to close the open file before exiting init_fileinfo()
+- Python formatting cleanups
+- Add --diff to the Python format checker
+- Add new setting to abidiff section of the config file
+- Add -n/--no-rebase command line option to disable rebase detection
+- Store size_threshold as a long int rather than a char *
+- Check abidiff(1) results against the ABI compat level definitions
+  (#144)
+- Add 'apt-get -y install libgcc-s1:i386' to pre.sh for Debian
+- Add integration test cases for the abidiff inspection (#144)
+- Add 'dpkg --configure -a' to pre.sh for debian
+- Install libterm-readline-perl-perl for debian CI
+- Install libabigail for Fedora and CentOS CI jobs
+- libgcc-s1:i386 -> lib32gcc-s1 for debian CI
+- Install libabigail for opensuse-leap, opensuse-tumbleweed, and arch CI
+- Install libabigail for debian and ubuntu CI
+- Install libabigail-dev for debian and ubuntu, not libabigail
+- Install libabigail-tools on opensuse-leap and opensuse-tumbleweed
+- Install libabigail-git for arch linux CI
+- Move free_argv_table() to runcmd.c
+- Install 'abigail-tools' for debian-testing and ubuntu CI
+- Install libabigail using the Arch User Repo on arch CI
+- Explain the osdeps/ subdirectory.
+- No, just clone libabigail from git and build it manually on arch
+- Add beginning of kmidiff inspection, put ABI functions in abi.c
+- Read list of possible kernel executable filenames from the config
+  file.
+- Drop abidiff_ and kmidiff_ from extra_args; add kernel_filenames
+- Just call the abidiff and kmidiff extra args settings "extra_args"
+- Define 'kmi_ignore_pattern' in the config file.
+- Handle builds that lack all debuginfo packages (#186)
+- Do not assume peer->after_hdr exists (#187)
+- Store copy of original pointer in strsplit() to free at the end.
+- Use mmap() and strsplit() in read_file() rather than a getline() loop
+- Fix memory leaks in abi.c functions
+- open() failure in readfile() is not fatal, just return NULL
+- Add utils/gate.sh
+- Have check_abi() pass back the ABI compat level found
+- Update descriptions for abidiff and kmidiff inspections
+- Hook up the kmidiff inspection.
+- Use read_file() in init_fileinfo() and init_caps()
+- Use read_file() in validate_desktop_contents()
+- Use read_file() in disttag_driver()
+- Adjust how init_fileinfo() and init_caps() iterate over file contents
+- Fix 'tox -e format' style problems found.
+- Avoid comparing elf files that are not shared libraries
+- Support --kmi-whitelist in the kmidiff inspection
+- Trim worksubdir from paths in reported abidiff and kmidiff commands
+- Remove the kmi_ignore_pattern setting for the config file.
+- Create include/queue.h to replace the _COMPAT_QUEUE blocks everywhere
+- Update AUTHORS.md
+- Report metadata changes for rebased packages as INFO
+- Do not fail the specname inspection when given a non-SRPM
+- For passing upstream inspections, do not report a remedy string.
+- Do not fail the lostpayload inspections if it only gives INFO messages
+- Clarify unapproved license message in the license inspection
+- Use FOPEN_MAX for nopenfd parameter in nftw() calls
+- Make sure to close open file descriptors from get_elf() calls.
+- Include 'src' architecture in the rpminspect runs in gate.sh
+- Make sure kmidiff is listed in the spec file
+- TODO updates
+- Update rpminspect.pot and POTFILES for translations</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-29</td>
+					<td>David Cantrell <dcantrell at redhat dot com> - 1.0-1</td>
+					<td>- Use this project's user.name and user.email for Koji builds
+- Use YAML for the rpminspect configuration file and profiles
+- Reduce the number if (null) prints in debug mode for shellsyntax
+- Update README
+- Fixes a ValueError if hostname has no periods
+- Remove '#include <iniparser.h>' from rpminspect.h
+- Install python3-pyyaml in the Docker test environment.
+- Use fedora:rawhide for the Docker tests.
+- Try multiple ways of finding the kernel development files in
+  test_kmod.py
+- Syntax error in test_kmod.py
+- Force kver in list iteration to a string.
+- Update 'hardened' annocheck definition, add another LTO prefix
+- Debugging output in inspect_lto.c
+- In test_ownership.py, use the built rpminspect rather than a script.
+- More debugging output in inspect_lto.c
+- In find_lto_symbols(), start at SHT_PROGBITS instead of SHT_SYMTAB.
+- In test_symlinks, use built rpminspect rather than a shell script.
+- Use built executables in test_upstream.py tests rather than scripts.
+- Add '%global __os_install_post %{nil}' to rpmfluff spec headers.
+- Make sure man pages we expect gzipped are gzipped in test_manpage.py
+- Set QA_SKIP_BUILD_ROOT=1 in %install in test_symlinks.py tests.
+- Add '%global __arch_install_post %{nil}' to symlinks spec headers.
+- Install kernel-core for the test suite.
+- Find the kernel build directory in test/data/derp-kmod/Makefile
+- Skip ELOOP symlink tests if rpm >= 4.15.90 is used
+- Pass the kernel build directory to derp-kmod/Makefile from
+  test_kmod.py
+- Install 'make' in the Docker test environment
+- Support Linux 5.6.0 struct proc_ops in derp-kmod
+- Final derp-kmod fixes for the 5.6.0 and higher kernels.
+- rpminspect.conf -> rpminspect.yaml in rpminspect.spec.in
+- Set default JVM byte code version to 43 in rpminspect.yaml
+- Update the local test instructions to run individual test scripts.
+- Report changed files as RESULT_INFO when rebasing packages (#150)
+- Ignore missing XML entity definition errors (#148)
+- Add some basic verbose output from rpminspect(1)
+- Split 'emptyrpm' inspection in to 'lostpayload' and 'emptyrpm' (#147)
+- Move _() usage for DESC_* macros to inspect.h
+- Handle INSPECT_LOSTPAYLOAD in inspection_desc()
+- Search correct files for POTFILES additions.
+- Update POTFILES and rpminspect.pot template
+- Add DESC_PATHMIGRATION and reformat the struct inspect for reading.
+- Small update to the MISSING file.
+- Install python3-devel for the test suite.
+- Install libffi-devel for the test suite
+- Use the rpm Python module in test_syslinks.py to get rpm version.
+- Add check_results() to test/baseclass.py
+- Report %changelog section differences as INFO (#123)
+- Report dangling symlinks as INFO for now (#145)
+- Add get_specfile_macros() and get_macros() to librpminspect (#152)
+- Fix ELF_K_AR handling in get_elf_machine() (#153)
+- Remove stray 7 from an #include line
+- Don't worry about EM_BPF objects in ELF_K_AR file types (#153)
+- Fix -fPIC loss/gain reporting in the elf inspection (#153)
+- Support macros in the Release tag in the 'disttag' inspection (#152)
+- Simplify the get_elf_section() function a bit.
+- Do not report all after objects without -fPIC as having lost PIC
+  (#153)
+- Drop eu-elfcmp(1) usage in the changedfiles inspection.
+- Rename on_stat_whitelist() to on_stat_whitelist_mode(), fix some
+  errors.
+- Add on_stat_whitelist_owner() and on_stat_whitelist_group()
+- Ignore debug paths in the symlinks inspection.
+- Install 'setup' in the Docker test image
+- Add mock(1) in the Docker test environment.
+- Remove DEBUG_PRINT for the config file name read in init.c
+- Display errno value when getpwnam_r() or getgrnam_r() fail
+- Handle missing users and groups from the system
+- Add sssd-client to the Docker test environment
+- More debugging output while working on Travis-CI problems
+- Further Travis-CI debugging for the ownership inspection.
+- Continuing to debug this problem in Travis-CI
+- And continued Travis-CI test_ownership debugging...
+- Fix problem constructing package download URLs in librpminspect.
+- Only try to read the UID or GID in the ownership inspection.
+- Update translation template file.
+- Update po/POTFILES list
+- Final getpwnam_r()/getgrnam_r() changes for whitelist.c
+- Restrict RPM spec file macro gathering to %define and %global.
+- If shdr in _get_elf_helper() is NULL, return NULL.
+- s/%%/%/g in results.h
+- Account for whitespace other than ' ' on Release: lines (#157)
+- Add a new disttag test case to cover tab field separators.
+- Ignore multiline macros in get_specfile_macros()
+- Add more example data to test_disttag.py to cover recent bug reports.
+- Add ignore_path() function to librpminspect
+- Expand foreach_peer_file() with use_ignores parameter.
+- Revert work-in-place changes in inspect_elf.c so the test suite
+  passes.
+- Update the 'ignore' section in rpminspect.yaml
+- Expand strreplace() to support removing substrings.
+- Trim rpminspect working directory from annocheck(1) details.
+- Skip debuginfo files in the annocheck inspection.
+- If reltarget is "", do not try to further modify it (#159)
+- Add manually-invoked regression testing scripts.
+- BR libmandoc-devel >= 1.14.5
+- BR libmandoc-devel without specific version for EPEL-7 and F-30
+- Make sure all static path buffers use PATH_MAX consistently.
+- Support a positional parameter on 'make check' to run part of test
+  suite.
+- Followup to the PIC check for static ELF libraries (#153)
+- Create TARGET_ARG to get optional target arguments.
+- Change *-dtds packages from Requires to Suggests for el8 and fedora.
+- 'sort | uniq' -> 'sort -u'
+- Rename 'make release' to 'make new-release'; add 'make release'
+- Fix build_module() in test_kmod.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-24</td>
+					<td>David Cantrell <dcantrell at redhat dot com> - 0.13-2</td>
+					<td>- Rebuild against latest mandoc package (#1850375)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-05-18</td>
+					<td>David Cantrell <dcantrell at redhat dot com> - 0.13-1</td>
+					<td>- Remove the GitHub Release page stuff from utils/release.sh
+- Drop meson_version from meson.build
+- Change meson.build to require xmlrpc-c >= 1.32.5
+- Fix some errors when running with libiniparser 3.1
+- Only set CURLOPT_TCP_FASTOPEN if we have it available.
+- Expand the template rpminspect.conf file for the test suite.
+- Handle 'localhost.localdomain' FQDN in the test suite base clases
+- Rework the test_manpage.py tests to work with rpm >= 4.11.x
+- BR xmlrpc-c >= 1.32.5 and iniparser >= 3.1
+- README updates
+- Modify the Makefile so it works with 'ninja' or 'ninja-build'
+- Rename the tests/ subdirectory to test/
+- Split meson.build out in to different meson.build files.
+- Move builds.c to lib/, remove builds.h from src/
+- Move rpminspect.conf to data/, expand data/meson.build
+- Fix the --version output to remove '@' wrapping the version number.
+- Remove diff.3, the code is gone from lib/
+- Begin doc/Doxyfile for API documentation.
+- Add Doxygen documentation for badwords.c, builds.c, and checksums.c
+- Make sure the changelog inspection runs with before/after pairs (#130)
+- Ignore debuginfo and debugsource packages in the kmod inspection.
+- Skip the kmod inspection if there is no peer_file (#131)
+- Handle kernel modules that move paths between builds (#131)
+- Test cases for kernel modules changing paths between builds (#131)
+- Add Doxygen documentation to four C files, update others.
+- First part of reworking the add_result() API.
+- Add init_result_params() to reset the struct result_params structures.
+- Additional Doxygen documentation blocks for librpminspect.
+- More librpminspect documentation work.
+- Un-static some of the inspect_elf.c functions.
+- Remove MPARSE_MAN to let libmandoc autodetect the type (#132)
+- Revise list_to_string() to support optional delimiter.
+- Add get_elf_section_names() to librpminspect
+- Support [lto] section with lto_symbol_name_prefixes in rpminspect.conf
+- Add 'LTO' inspection to librpminspect (#129)
+- Add 'LTO' inspection test cases (#129)
+- Fix free(): double free detected in tcache 2 (#134)
+- Do not strdup() header and remedy in add_result_entry()
+- Store package extract root in rpmpeer_entry_t for each package.
+- Add strtype() to librpminspect to return string indicating file type.
+- Add the 'symlinks' inspection to librpminspect (#133)
+- Add tests for the 'symlinks' inspection to the test suite
+- Update README file
+- chmod 0755 test_symlinks.py
+- symlink inspection adjustments based on feedback (#135 & #136)
+- Simplify the license inspection routine (#138)
+- Add get_elf_machine() to readelf.c (#139)
+- Elf64_Half -> GElf_Half in dt_needed_driver()
+- Skip eBPF ELF objects in the 'elf' inspection (#139)
+- Stop appending a newline to string in strappend()
+- Collect all results from getLatestBuild Koji XML-RPC call (#137)
+- Return EM_NONE in get_elf_machine()
+- In download_build(), fix how srcfmt is set.
+- Fix some memory errors associated with the results and parameters.
+- Add a new faux-result to the results output for 'rpminspect'
+- Use params.msg for reporting in check_bin_rpm_changelog()
+- Add teardown steps in baseclass to clean up rpm build files
+- Adding tests to validate file ownership and capabilities tests
+- Added build cleanup in baseclass and fixed setUp typo - still testing
+- Many more tests fixed - down to six failures.
+- Fixes to mockbuild tests
+- Fixed some duplicate class names and now passing all tests
+- Added docstrings to all tests and other small bugfixes
+- Added docstrings to all tests and other small bugfixes
+- Formatting and style fixes
+- Make sure only RPM files are passed to get_rpm_info()
+- Update TODO list
+- Return get_rpm_info() and add_peer() have void returns.
+- When public headers change in 'changedfiles', do not free
+  param.details
+- Check is eptr->data is NULL in find_one_peer (#142)
+- Define EM_BPF if we lack it.
+- Skip 'upstream' inspection if no source packages are provided.
+- Add explicit librpminspect Requires to the main package.
+- Add test cases for the 'upstream' inspection.
+- Simplify how the versions are collected in inspect_upstream()
+- Update translation template.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-04-21</td>
+					<td>Björn Esser <besser82 at fedoraproject dot org> - 0.12-2</td>
+					<td>- Rebuild (json-c)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-04-21</td>
+					<td>David Cantrell <dcantrell at redhat dot com> - 0.12-1</td>
+					<td>- Do not use headerLink() in extract_rpm()
+- Expand the 'kmod' inspection to check module dependencies.
+- Expand 'kmod' inspection to cover PCI device IDs
+- Update the TODO list
+- Update Dockerfile.test for Fedora 31
+- Updates for the MISSING file
+- Add DEBUG_PRINT() macro to librpminspect.
+- Add 'favor_release' setting in rpminspect.conf under [vendor] (#98)
+- Add more lines to [inspections] in src/rpminspect.conf
+- Change up the DEBUG_PRINT() macro
+- Don't assume favor_release is set in rpminspect.conf
+- Format stdout and stderr correctly from baseclass, run with -d
+- Correctly recognize parenthesized license substrings (#101)
+- Shorten the names of test classes.
+- Generate a dummy 'changelog' for the CI tests
+- Adjust how the dummy changelog is made for Travis-CI
+- One more slight change to how .travis.yml runs mkrpmchangelog.sh
+- Nope, just can't spell the name of my own script.
+- Copy the dummy changelog to /root/rpmbuild/SOURCES
+- Add /bin to PATH in mkrpmchangelog.sh
+- Make sure glibc[-devel].i686 is installed for the test suite.
+- Add test kernel module for use in the integration test suite.
+- Update the TODO list
+- Note the test suite needs kernel-devel installed.
+- Expand the derp kernel module for depends and alias support.
+- Fix up some of the kmod functions in librpminspect
+- In the test suite, use the same before & after package version.
+- Add test_kmod.py to the test suite.
+- Stub out test_ownership.py and test_shellsyntax.py
+- * extract_rpm -> *extract_rpm
+- Handle parenthesized license substrings with all tokens (#102)
+- Combine prototype sections in rpminspect.h for kmods.c
+- Implement the 'arch' inspection.
+- Add a section to the README file explaining how to run the tests.
+- Add the 'subpackages' inspection.
+- Ignore 'build' directory.
+- Fix the kernel module alias tests in test_kmod.py
+- Follow the pep8 style
+- Remove unused import in tests
+- Start some spec file changes to support building on OpenSUSE
+- Update TODO and MISSING
+- Move the assert() for ri in inspect_modularity() up.
+- Use 'pip3' in .travis.yml and Dockerfil.test
+- More updates to Travis-CI control files.
+- And another change for the .travis.yml file
+- Revert "Start some spec file changes to support building on OpenSUSE"
+- Handle return code 1000 from the Koji hub.
+- Expand meson.build and rpminspect.spec.in for EPEL-8
+- Support libiniparser v3.x and v4.x APIs
+- Added the 'changelog' inspection.
+- Add possibility to run integration test suites separately
+- Begin i18n support for string translations.
+- Mark strings in lib/ for translation, update rpminspect.pot
+- How to run and debug integration tests
+- Fixes for i18n string marking changes.
+- More build fixes for the change to translatable strings.
+- Favor libmandoc.a when build rpminspect
+- Display the line number in DEBUG_PRINT()
+- Expand the config file with [pathmigration] and [ignore]
+- Fix double free in list_free() (#107)
+- Really fix the double free() in arch/subpackages (#107)
+- Do not require a tty when running (#109).
+- Add the 'pathmigration' inspection and test cases.
+- Rework the 'xml' inspection to better handle DTDs and SVG files (#110)
+- Default rpminspect.conf updates
+- Expand 'filesize' to report changes at different levels by percentage
+- Update TODO list.
+- Fix bug in shellsyntax where before and after builds are invalid.
+- Add shellsyntax tests for /bin/sh
+- Add libdiff code snapshot to librpminspect
+- Patch diff.c so it builds in librpminspect
+- Include diff.h in rpminspect.h
+- Refactor variable names
+- Add some helper functions for reading and working with text files.
+- Implement the unified_diff() library function.
+- Add two utility functions to librpminspect.
+- Change upstream_driver() to use unified_diff()
+- Use unified_diff() in changedfiles rather than running DIFF_CMD
+- Fix for 'error: format not a string literal and no format arguments'
+- Split unified_diff() in to unified_file_diff() and unified_str_diff()
+- Change 'make POTFILES' to 'make update-pot', update po/rpminspect.pot
+- Add /bin/bash tests
+- Add DEBUG_PRINT() to annocheck_driver()
+- Rename 'Screendump' to 'Details' in the output listings.
+- s/depends/dependencies/ in meson.build
+- Fix SIGSEGV in inspect_changelog() (#115)
+- Add tests for shellsyntax for /bin/ksh
+- Handle RPMs with empty or missing changelogs (#116)
+- Update the AUTHORS file.
+- Add tests for shellsyntax for /bin/zsh
+- Add tests for shellsyntax for /bin/tcsh
+- Add tests for shellsyntax for /bin/csh
+- Refactor the unified_diff.c code to be more reliable (#116)
+- Correct RPM %changelog output to match rpm (#116)
+- Stop adding DIFF_COMMON lines twice when the hunk continues (#116)
+- Adjust the unified_output() function for more output control (#116).
+- Remove libdiff code and return to using diff(1) via fork and exec.
+- Fix some memory leaks in inspect_changelog.c
+- Update the test_changelog.py to do list.
+- Added the tests for losing the %changelog in the after builds
+- Update the 'make instreqs' target, README, and rpminspect.spec.in
+- Unify the readme with yum as rpminspect works on yum as well as dnf
+- Require xmlrpc >= 1.51.0
+- Add get_nevr() and get_rpmtag_str() to lib/rpm.c
+- Do not abort if the hdr is NULL in get_changelog() (#127)
+- Update test_changelog.py with more changelog inspection tests.
+- Remaining set of changelog inspection fixes.
+- Make sure remaining test_changelog.py test cases pass.
+- Handle shell syntax tests that don't return non-zero on failure.
+- Add tests for shellsyntax for /bin/rc
+- Add release.c to librpminspect source.
+- If no new %changelog entry is found, report OK if NVRs match. (#127)
+- Modify license inspection reporting.
+- Split add_result() in to add_result() and add_result_entry()
+- Prevent reporting unapproved license tokens for approved expressions.
+- Disable empty license tag tests, add ValidGlibcLicenseTagKoji
+- Temporarily disable UnprofessinalChangeLogEntryCompareKoji
+- Update po/ files.
+- Adjust how GitHub release assets are uploaded.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-02-14</td>
+					<td>David Cantrell <dcantrell at redhat dot com> - 0.11-1</td>
+					<td>- Change the way get_mime_type() works so it caches the type.
+- Support an optional [annocheck] section in the config file (#62)
+- Add a 'make help' target in the helper Makefile
+- Add 'annocheck' inspection to librpminspect (#62)
+- Add weak dependency for /usr/bin/annocheck (#62)
+- EM_S390 maps to R_390_* macros in /usr/include/elf.h
+- Only run the changedfiles inspection under certain conditions (#74)
+- Skip source packages in the changedfiles inspection (#74)
+- Add back missing free() in rpminspect.c, but in the right place.
+- Simplify the returns out of changedfiles_driver()
+- Add the 'DT_NEEDED' inspection to librpminspect.
+- Expand 'elf' inspection description to mention forbidden function
+  check.
+- Change result severity in 'upstream' based on package versions.
+- Cache rpmfile_entry_t checksums.
+- Add 'filesize' inspection to librpminspect.
+- Updated top level docs.
+- Check all license abbreviations in the 'license' inspection (#83)
+- Use MESON_BUILD_DIR in the Makefile 'all' target.
+- Drop MAGIC_SYMLINK from magic_open() in get_mime_type()
+- Move stat-whitelist checker to whitelist.c
+- fixup! Move stat-whitelist checker to whitelist.c
+- Change the prototype for add_result()
+- Add the 'permissions' inspection.
+- Replace check_stat_whitelist() with on_stat_whitelist()
+- Add 'make instreqs' target to install build and runtime dependencies.
+- Handle ENOENT failures from realpath() in unpack_archive() (#84)
+- Only run the DT_NEEDED check for ET_DYN files (#85)
+- Update the HISTORY file
+- Add a [specname] config file setting to rpminspect.conf (#86)
+- Boilerplate updates
+- Implement runtime profiles (#82)
+- Update TODO list
+- Compare JVM major version against the minimum JVM version (#89)
+- When reporting public header changes, skip first 3 lines from diff(1)
+- Address errors reported in DT_NEEDED inspection in BZ#1793113
+- Various word fixes in the rpminspect.1 man page
+- PRIMARY_BASENAME -> PRIMARY_FILENAME
+- Correct the javabytecode major JVM version comparison (#89)
+- Reset field to MODE when reading the stat-whitelist (#90)
+- Add vendor_data_dir setting to rpminspect.conf
+- Rename [tests] section in rpminspect.conf to [settings]
+- Expand rpminspect.conf with an [inspections] section
+- Improve failure reporting in the integration test suite
+- Handle symlinks in copytree() in src/builds.c (#92)
+- Make sure "noarch" and "src" are always honored as package arches
+  (#93)
+- Update TODO list.
+- Formatting changes on MISSING
+- Add get_rpm_header_arch() to librpminspect
+- Further improve the handling of 'noarch' and 'src' for -a (#93)
+- Use get_rpm_header_arch() to retrieve RPMTAG_ARCH
+- Move to using libcap instead of libcap-ng
+- Fix Koji scratch build download support in librpminspect (#94)
+- Add the 'capabilities' inspection to librpminspect.
+- Renamed [vendor-data] to just [vendor] in the config file.
+- Implement an RPM header cache in librpminspect
+- Restrict get_cap() to S_IFREG files.
+- Note the licenses for all of the dependent components.
+- get_rpm_header() pointer fixes
+- Implement Freedesktop.org icon lookup routine for 'desktop' (#95)
+- updating imports to use libcap, matching BuildRequires in specfile
+- If vendor is not set in rpminspect.conf, skip tag check.
+- Handle upstream source adds/removes with pkg version changes (#96)
+- Boilerplate updates
+- Improve "Missing license database" error message.
+- Update TODO list
+- Use xasprintf() instead of strdup() here for parameters
+- Begin the 'kmod' inspection for kernel modules.
+- Typo fix in src/rpminspect.conf:  s/not/no/
+- Remove some memory leaks in librpminspect and rpminspect.
+- Shorten -l output, use -v to get current output.
+- Remove -x from #! in utils/release.sh</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-12-09</td>
+					<td>David Cantrell <dcantrell at redhat dot com> - 0.10-1</td>
+					<td>- Disable jq usage in the release script for now
+- Generate a complete %changelog block for the spec file
+- Force overwrite of generate .tar file in .copr/Makefile
+- Run srpm and check targets before koji, pass name of tarball
+- Add utils/submit-koji-builds.sh, which drives 'make koji'
+- Genericize submit-koji-builds.sh a bit more
+- Start a .gitignore file
+- Changes to the release and build automation for the RPM changelog
+- Handle int32 and int64 size results from Koji over XMLRPC (#61)
+- Make --copr mode on utils/mkrpmchangelog.sh generic
+- Existing packages that go away in a comparison are VERIFY (#59)
+- inspect_elf() RESULT_OK should be NOT_WAIVABLE
+- Refactor strprefix()
+- Fix a memory leak in init_rpminspect() with the javabytecode array.
+- Fix a memory leak in the license inspection.
+- Update release and build steps in the README
+- test_elf.py tests that verify passing tests are Not Waviable
+- Build package download URLs correctly, drop use_volume_name setting
+- Clean up rpminspect error messages when downloading.
+- For fetch-only mode (-f), default workdir to getcwd()
+- The new libmandoc API works, drop explicit 1.14.4 BuildRequires
+- Add is_text_file() to librpminspect
+- Handle multiline results in run_cmd() correctly (#59)
+- Show diff(1) output for changing upstream text sources (#59)
+- Adjust run_cmd() calls to match the new API
+- Explain how the -w option works with the -f option in the man page
+- In REMEDY_LICENSE, explain that valid licenses need to be in licdb
+- Fix some memory leaks in the license inspection.
+- Add a [products] section to the config file for mapping release
+  strings (#68)
+- Fix json-c memory leak.
+- Small memory leak fixes for the product release string gathering.
+- Trying to get the automated release notice posting working on github.
+- Use printf to build github release body text
+- changelog -> ${CWD}/changelog
+- Make upstream spec file include the changelog like downstream.
+- Syntax errors fixed in utils/release.sh
+- Escape newlines in the release body text.
+- Run the release script with -x for now, for debugging.
+- Shift things around a bit in the release.sh script
+- Use jq(1) in utils/release.sh to generate the JSON data for GitHub.
+- Slight changes to the jq(1) commands.
+- Even more small changes to the jq(1) command.
+- Do not build the spec file or SRPM in the release.sh script
+- Correctly generate the git log entry for the release.
+- Edit the release on github rather than create a new one.
+- Still working out problems with automating releases on github.
+- Fix 'Builds have different product release (el7 != el7) (#70)
+- Remove unnecessary free()
+- Shorten the eu-elfcmp reporting (#71)
+- Switch to using a BUFSIZ buffer for getline() in run_cmd()
+- Expand the get_product_release() functionality (#72)
+- Detect product release strings correctly with underscores (#76)
+- Support SRPM files that lack RPMTAG_SOURCE entries (#78)
+- Handle subpackages with different version numbers (#77)
+- Add support for Koji scratch builds in rpminspect (#60)
+- Make get_product_release() even if [products] is missing.
+- Drop the extra strdup(), xmlrpc_decompose_value() handles it for us.
+- Update the rpminspect(1) man page.
+- line-buffer stdout - makes "rpminspect ... | tee" behave better
+- Clean up memory leaks with the Koji task handling code.
+- Add a SIGABRT handler to rpminspect(1)
+- bad free()
+- Change the task member of koji_task_entry_t to be 'struct koji_task *'
+- Skip shellsyntax inspection on source packages (#79)
+- Fix set_worksubdir() TASK_WORKDIR test (#80)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-11-20</td>
+					<td>David Cantrell <dcantrell at redhat dot com> - 0.9-3</td>
+					<td>- Drop explicit versioned BR for libmandoc-devel</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-11-14</td>
+					<td>David Cantrell <dcantrell at redhat dot com> - 0.9-2</td>
+					<td>- Fix a %changelog mishap</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/librpminspect/constants.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/librpminspect/inspect.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/librpminspect/output.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/librpminspect/readelf.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/librpminspect/results.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/librpminspect/rpminspect.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/librpminspect/types.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/include/librpminspect</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/librpminspect-devel-1.1/COPYING.LIB</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/librpminspect.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/librpminspect-devel-1.1</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

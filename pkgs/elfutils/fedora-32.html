@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>elfutils - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				elfutils
+				<small class="text-muted"> in fedora-32</small>
+			</h1>
+			<p>
+			This page displays detail informations of the elfutils package. You might
+			want go back to <a href=".">the main page of elfutils</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-03-30</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.179-1</td>
+					<td>- New upstream release.
+  debuginfod-client:
+  - When DEBUGINFOD_PROGRESS is set and the program doesn't
+    install its own debuginfod_progressfn_t show download
+    progress on stderr.
+  - DEBUGINFOD_TIMEOUT is now defined as seconds to get at
+    least 100K, defaults to 90 seconds.
+  - Default to $XDG_CACHE_HOME/debuginfod_client.
+  - New functions debuginfod_set_user_data,
+    debuginfod_get_user_data, debuginfod_get_url and
+    debuginfod_add_http_header.
+  - Support for file:// URLs.
+
+  debuginfod:
+  - Performance improvements through highly parallelized scanning
+    and archive content caching.
+  - Uses libarchive directly for reading rpm archives.
+  - Support for indexing .deb/.ddeb archives through dpkg-deb
+    or bsdtar.
+  - Generic archive support through -Z EXT[=CMD]. Which can be
+    used for example for arch-linux pacman files by using
+    -Z '.tar.zst=zstdcat'.
+  - Better logging using User-Agent and X-Forwarded-For headers.
+  - More prometheus metrics.
+  - Support for eliding dots or extraneous slashes in path names.
+
+  debuginfod-find:
+  - Accept /path/names in place of buildid hex.
+
+  libelf:
+  - Handle PN_XNUM in elf_getphdrnum before shdr 0 is cached
+  - Ensure zlib resource cleanup on failure.
+
+  libdwfl:
+  - dwfl_linux_kernel_find_elf and dwfl_linux_kernel_report_offline
+    now find and handle a compressed vmlinuz image.
+
+  readelf, elflint:
+  - Handle PT_GNU_PROPERTY.
+
+  translations:
+  - Updated Ukrainian translation.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-01-28</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 0.178-9</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-01-24</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.178-8</td>
+					<td>- Add elfutils-0.178-gcc10-null-dereference.patch</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-01-10</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.178-7</td>
+					<td>- Add elfutils-0.178-debuginfod-timeoutprogress.patch
+- Add elfutils-0.178-libasm-ebl.patch</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-12-11</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.178-6</td>
+					<td>- Add elfutils-0.178-curl-code-gcc-10.patch
+- Add elfutils-0.178-compressed-vmlinuz.patch</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-12-09</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.178-5</td>
+					<td>- Add elfutils-0.178-debuginfod-no-cache.patch.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-11-28</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.178-4</td>
+					<td>- Define %{depsuffix} before use.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-11-28</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.178-3</td>
+					<td>- Add elfutils-debuginfod-client Provides and Requires with depsuffix
+  to get multilib dependencies correct. Add %{version}-%{release} to
+  keep subpackages in sync.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-11-27</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.178-2</td>
+					<td>- Fix libdebuginfod file list for debuginfo-client[-devel].</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-11-26</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.178-1</td>
+					<td>- New upstream release.
+  - debuginfod: New server, client tool and library to index and fetch
+                ELF/DWARF files addressed by build-id through HTTP.
+  - doc: There are now some manual pages for functions and tools.
+  - backends: The libebl libraries are no longer dynamically loaded
+              through dlopen, but are now compiled into libdw.so directly.
+  - readelf: -n, --notes now takes an optional "SECTION" argument.
+             -p and -x now also handle section numbers.
+             New option --dyn-sym to show just the dynamic symbol table.
+  - libcpu: Add RISC-V disassembler.
+  - libdw: Abbrevs and DIEs can now be read concurrently by multiple
+           threads through the same Dwarf handle.
+  - libdwfl: Will try to use debuginfod when installed as fallback to
+             retrieve ELF and DWARF debug data files by build-id.</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/0a</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/1e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/2e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/39</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/3f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/57</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/5f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/72</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/89</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/92</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/99</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/c3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/c4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/d1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/d9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/72/6cc20c9ad8a2ecb1b4073f24039e757b37a4c3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f1/f1dd9fefa014bb9efc89e71f5df33e345556fd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/5f/3f2e1645e0fc71c6e21fd2c07f56a88f924c39</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/2e/6bfb4b72d1118a9c574b4e8db4df1742a0586e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/c3/851a75e2a0c36a0bbb1de8c6cfad52193fa25a</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/3f/5b13041f43a5ab26443c6c5580fe2a19c5d32c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d1/72291086db551769f183bfdf6ce57bd0c026c5</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-addr2line</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-ar</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-elfclassify</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-elfcmp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-elfcompress</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-elflint</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-findtextrel</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-make-debug-archive</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-nm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-objdump</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-ranlib</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-readelf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-size</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-stack</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-strings</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-strip</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/eu-unstrip</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/39/10ed47e945ff890c5212e76adf216ce35488e7</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/elfutils/CONTRIBUTING</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/elfutils/README</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/elfutils/TODO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/89/1c7612e31ce757a72f65c3f0e4b71a86919d41</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/0a/7bc60b3a1d61b92a91890c5dc9c3b4a3ecdc9f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/elfutils/COPYING</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/elfutils/COPYING-GFDL</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/elfutils/COPYING-GPLV2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/elfutils/COPYING-LGPLV3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/elfutils</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/1e/0a1593904836edffc493245d2f8bc4bc818e19</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/57/37546d16b1249954e6c762c62371350f912604</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/eu-elfclassify.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/eu-readelf.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/99/dc2589ee1d4d3af4a7bf2059e3d90973f78ee8</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/92/975eae4f73c442484eca87eecd1d1806339c36</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/c4/15ed4e73c995279f027cc60558cf66fae79655</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d9/190bdf01cce88d05ab3397989008016d827920</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/elfutils</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

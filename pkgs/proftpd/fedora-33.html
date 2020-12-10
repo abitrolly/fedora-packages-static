@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>proftpd - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				proftpd
+				<small class="text-muted"> in fedora-33</small>
+			</h1>
+			<p>
+			This page displays detail informations of the proftpd package. You might
+			want go back to <a href=".">the main page of proftpd</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-07-29</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.7a-3</td>
+					<td>- Handle changed API in check 0.15
+  (see https://bugzilla.redhat.com/show_bug.cgi?id=1850198)
+- Work around getaddrinfo() returning EAGAIN in netaddr api test
+  (https://github.com/proftpd/proftpd/pull/1075)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-28</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.3.7a-2</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-22</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.7a-1</td>
+					<td>- Update to 1.3.7a
+  - Fix build-time regression when using the --localstatedir configure option
+    (https://github.com/proftpd/proftpd/issues/1055)
+- Modernize spec using %{make_build} and %{make_install}</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-21</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.7-1</td>
+					<td>- Update to 1.3.7 (see RELEASE_NOTES for details)
+- Fix regression in configure script
+  https://github.com/proftpd/proftpd/issues/1055
+  https://github.com/proftpd/proftpd/pull/1056</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-21</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6e-1</td>
+					<td>- Update to 1.3.6e
+  - Fixed null pointer dereference in mod_sftp when using SCP incorrectly
+    (https://github.com/proftpd/proftpd/issues/1043)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-05-31</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6d-1</td>
+					<td>- Update to 1.3.6d
+  - Fixed issue with FTPS uploads of large files using TLSv1.3
+    (https://github.com/proftpd/proftpd/issues/959)
+  - Fixed regression in the handling of '%{env:...}' configuration variables
+    when the environment variable is not present
+    (https://github.com/proftpd/proftpd/issues/857)
+  - Second LIST of the same symlink shows different results
+    (https://github.com/proftpd/proftpd/issues/940)
+  - mod_sftp sends broken response when CREATETIME attribute is requested
+    (https://github.com/proftpd/proftpd/issues/980)
+  - Handle zero-length SFTP WRITE requests without error
+    (http://bugs.proftpd.org/show_bug.cgi?id=4398)
+  - PidFile should not be world-writable
+    (https://github.com/proftpd/proftpd/issues/1018)
+  - TLSv1.3 handshake fails due to missing session ticket key on some systems
+    (https://github.com/proftpd/proftpd/issues/1014)
+  - Lowercased FTP commands not properly identified
+    (https://github.com/proftpd/proftpd/issues/1023)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-05-09</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6c-3</td>
+					<td>- Avoid duplicate hostname and timestamps in syslog (#1808989)
+  http://bugs.proftpd.org/show_bug.cgi?id=4185
+  https://github.com/proftpd/proftpd/issues/1002
+  https://github.com/proftpd/proftpd/pull/1009</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-04-20</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6c-2</td>
+					<td>- Retain a memory pool after an aborted transfer so that the %{transfer-status}
+  LogFormat functionality still works
+- Own directory %{_sysconfdir}/logrotate.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-02-19</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6c-1</td>
+					<td>- Update to 1.3.6c
+  - Use-after-free vulnerability in memory pools during data transfer
+    (CVE-2020-9273, https://github.com/proftpd/proftpd/issues/903)
+  - Fix mod_tls compilation with LibreSSL 2.9.x
+    (https://github.com/proftpd/proftpd/issues/810)
+  - MaxClientsPerUser was not enforced for SFTP logins when mod_digest was
+    enabled (https://github.com/proftpd/proftpd/issues/750)
+  - mod_sftp now handles an OpenSSH-specific private key format; it detects
+    such keys, and logs a hint about reformatting them to a supported format
+    (https://github.com/proftpd/proftpd/issues/793)
+  - Directory listing was slower compared to previous ProFTPD versions
+    (https://github.com/proftpd/proftpd/issues/793)
+  - mod_sftp crashed when using pubkey-auth with DSA keys
+    (https://github.com/proftpd/proftpd/issues/866)
+  - Fix improper handling of TLS CRL lookups (CVE-2019-19269, CVE-2019-19270,
+    https://github.com/proftpd/proftpd/issues/859)
+  - Leaking PAM handler and data in case of unsuccessful authentication
+    (https://github.com/proftpd/proftpd/issues/870)
+  - SSH authentication failed for many clients due to receiving of
+    SSH_MSG_IGNORE packet (http://bugs.proftpd.org/show_bug.cgi?id=4385)
+  - SFTP publickey authentication failed unexpectedly when user had no shadow
+    password info. (https://github.com/proftpd/proftpd/issues/890)
+  - ftpasswd failed to restore password file permissions in some cases
+    (https://github.com/proftpd/proftpd/issues/898)
+  - Out-of-bounds read in mod_cap getstateflags() function; this has been
+    addressed by updating the bundled version of libcap
+    (CVE-2020-9272, https://github.com/proftpd/proftpd/issues/902)
+    Note that this build of ProFTPD uses the system version of libcap and not
+    the bundled version, and is not vulnerable to this issue</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-01-30</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.3.6b-4</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/1f/90de603ff820d2d8f4478218bde27bfc76fbe3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/e3/7489c8a5d29524e28f292aed8d6109825ed945</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/44/cb6416fad86824a812ea79fec71588a94b4bdd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/sysconfig/proftpd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/09/680559875704aa937a57785d5293880fe4219c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/tmpfiles.d/proftpd.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/ftpasswd.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/ftpmail.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/ftpquota.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/index.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_auth_otp.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_ban.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_copy.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_ctrls_admin.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_deflate.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_digest.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_dnsbl.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_dynmasq.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_exec.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_geoip.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_ifsession.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_ifversion.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_ldap.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_load.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_log_forensic.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_qos.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_quotatab.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_quotatab_file.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_quotatab_ldap.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_quotatab_radius.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_quotatab_sql.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_radius.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_ratio.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_readme.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_rewrite.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_sftp.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_sftp_pam.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_sftp_sql.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_shaper.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_site_misc.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_snmp.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_sql.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_sql_odbc.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_sql_passwd.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_sql_sqlite.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_statcache.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_tls.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_tls_fscache.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_tls_memcache.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_tls_redis.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_tls_shmcache.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_unique_id.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_wrap.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_wrap2.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_wrap2_file.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_wrap2_redis.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/contrib/mod_wrap2_sql.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/98/f824649e7db17ccdea1475a50d782ab4344a54</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/sample-configurations/PFTEST.conf.in</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/sample-configurations/PFTEST.group</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/sample-configurations/PFTEST.install</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/sample-configurations/PFTEST.passwd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/sample-configurations/PFTEST.shadow</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/sample-configurations/anonymous.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/sample-configurations/basic.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/sample-configurations/complex-virtual.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/sample-configurations/mod_sql.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/sample-configurations/virtual.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/e9/23b8a729b37b95460b791bd594e060259d23fc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/90/3fed24b58d92a926c3e911bc5a9894679e8f22</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/97/470c3017982404f535dc63f2a2ee64b0ba4aa3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/proftpd.conf.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/xferlog.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ko_KR/LC_MESSAGES/proftpd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/ftpdctl</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/proftpd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/CREDITS</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/ChangeLog</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/Configuration.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/Configuration.pdf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/Configuration.sgml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/NEWS</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/README.contrib</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/README.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/README.modules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/README.ratio</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/proftpd/contrib</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/faq.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/proftpd/howto</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/license.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/mod_sample.c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/proftpd/modules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/proftpd/rfc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/proftpd/sample-configurations</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/proftpd/utils</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/utils/ftpasswd.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/utils/ftpcount.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/utils/ftpdctl.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/utils/ftpmail.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/utils/ftpquota.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/utils/ftpscrub.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/utils/ftpshut.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/utils/ftptop.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/utils/ftpwho.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/utils/index.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/utils/prxs.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/49/0f320f7df5f3bf44e93f5b2c5867696bf552e2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/log/proftpd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/12/8bfac9f0a1bbdecd95d02d4811436a8e5f6b16</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/12/db2c39af341d2e1173e8674f09ab211735fcf0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/ftp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/fd/fdabebe797ed805add699c82a222cd1f89a934</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/8e/45fd241329972d9accd3a5ee807485f6dab56e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_CN/LC_MESSAGES/proftpd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ru_RU/LC_MESSAGES/proftpd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fr_FR/LC_MESSAGES/proftpd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/proftpd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/b7/593f1dd1fa44bd91bb216d8949a5d01ecdf7a5</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/af/d47a06f09b000520325d04e7d097c9c4f03d29</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/es_ES/LC_MESSAGES/proftpd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/proftpd.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/proftpd.socket</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/proftpd@.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/blacklist.dat</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/dhparams.pem</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/ftpusers</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/logrotate.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/proftpd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/proftpd.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ea/0892d261c8a256f8dce3f82e1ebd830bd5b5dd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ea/98ca311b3d1c26551b8487fecb174dc143170e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/23/0445b810048703cd01cef187cd450b2a136b12</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/65/339684ee7ae401ffc7906b88c64020a8e8b4ac</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/e6/c0f9d8216c57a5949c7cd5da6e4e14cc68869b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/6f/756113daf9c41425014e696df9467cc43c15b7</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/en_US/LC_MESSAGES/proftpd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/bg_BG/LC_MESSAGES/proftpd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/libexec/proftpd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/0f/243007d5a864c3c30381d64cf9a2566fba60f7</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/09</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/0f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/12</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/1f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/23</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/44</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/49</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/58</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/5c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/63</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/65</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/6f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/88</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/8e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/90</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/97</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/98</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/9e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/a3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/af</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/b7</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/bf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/c6</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/cb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/e3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/e6</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/e9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/ea</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f6</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f7</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/fd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/cb/dc2316154b921ce34d6817abc9b1116218913e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/5c/6e2173a013adf769438f76d736697693abf30b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/a3/2bd3c28e15c52a04d469a3cb03cfdcb179029d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/9e/ab7403ec292acfd0bfe545b92fa017f66602f2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/ASCII.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/AWS.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/AuthFiles.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Authentication.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/BCP.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Chroot.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Classes.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Compiling.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/ConfigFile.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/ConfigurationTricks.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/ConnectionACLs.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Controls.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/CreateHome.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/DNS.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/DSO.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Debugging.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Directory.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/DisplayFiles.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/ECCN.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/FTP.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/FXP.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Filters.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Globbing.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/IPv6.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/KeepAlives.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Limit.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/ListOptions.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/LogLevels.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/LogMessages.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Logging.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Memcache.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/NAT.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Nonroot.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Quotas.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Radius.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Redis.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Regex.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Rewrite.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/SQL.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/SSH.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Scoreboard.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Sendfile.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/ServerType.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Stopping.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/TLS.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Testing.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Timestamps.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Tracing.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Translations.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Umask.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Upgrade.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Versioning.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/Vhost.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/VirtualUsers.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/ftpaccess.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/howto/index.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f7/ba91be8646a05027b256d65a1ecf457aca4c1c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/88/0241f53d5e59c6400dbb9894279ed4ee57a9ca</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/index.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_auth.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_auth_file.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_auth_pam.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_auth_unix.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_cap.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_core.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_ctrls.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_delay.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_dso.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_facl.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_facts.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_ident.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_lang.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_log.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_ls.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_memcache.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_redis.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_rlimit.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_site.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/modules/mod_xfer.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/run/proftpd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_TW/LC_MESSAGES/proftpd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/58/44718b873c1c7d2dd9781eeaaa0ebed4c03bbc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/58/b99963406df56028fe67f60c3825eed4d4fe65</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/bf/9b7ee71a2ad41062e85791bdc27999e1dd40ab</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/it_IT/LC_MESSAGES/proftpd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/sbin/ftpscrub</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/sbin/ftpshut</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/sbin/in.proftpd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/sbin/proftpd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/63/2c558ea21636f3c3639050fbc1907d36b5c810</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/logrotate.d/proftpd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/ftpdctl.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/ftpscrub.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/ftpshut.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/proftpd.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/pam.d/proftpd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/rfc/draft-bonachea-sftp-00.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/rfc/draft-ietf-ftpext-mlst-15.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/rfc/draft-ietf-ftpext-sec-consider-02.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/rfc/draft-somers-ftp-mfxx-03.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/rfc/rfc0959.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/rfc/rfc2228.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/rfc/rfc2389.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/rfc/rfc2428.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/rfc/rfc2640.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/rfc/rfc3659.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/rfc/rfc4217.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/proftpd/rfc/rfc7151.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/ftp/pub</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/ftp/uploads</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/var/ftp/welcome.msg</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/proftpd/anonftp.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/proftpd/conf.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/proftpd/mod_ban.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/proftpd/mod_qos.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/proftpd/mod_tls.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/proftpd/modules.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ja_JP/LC_MESSAGES/proftpd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f6/35a7e17ca05ae044848a73450e22de0aa36b0a</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/proftpd/COPYING</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/c6/e212a1e02fe37ae5ce2bfaf6ff40b103d4de35</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_ban.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_copy.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_ctrls_admin.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_deflate.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_exec.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_facl.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_ifsession.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_ifversion.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_load.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_qos.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_quotatab.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_quotatab_file.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_quotatab_radius.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_quotatab_sql.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_radius.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_ratio.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_rewrite.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_sftp.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_sftp_pam.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_sftp_sql.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_shaper.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_site_misc.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_sql.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_sql_passwd.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_tls_memcache.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_tls_shmcache.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_vroot.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_wrap2.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_wrap2_file.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/proftpd/mod_wrap2_sql.so</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

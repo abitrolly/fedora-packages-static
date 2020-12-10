@@ -1,0 +1,3029 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>fwupd - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				fwupd
+				<small class="text-muted"> in fedora-32</small>
+			</h1>
+			<p>
+			This page displays detail informations of the fwupd package. You might
+			want go back to <a href=".">the main page of fwupd</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-12-08</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.5.3-1</td>
+					<td>- New upstream release
+- Add a UEFI quirk for Star Labs Lite Mk III
+- Add the device firmare ID for serio class hardware
+- Allow setting the GMainContext when used for sync methods
+- Allow the client to send legacy PKCS7 and GPG signatures
+- Export the driver name from FuUdevDevice
+- Fix a possible critical warning due to missing retval
+- Fix the endianness for the CRC check in bcm57xx
+- Make sure the correct interface number is used for QMI
+- Mark more user-visible strings as translatable
+- Restrict loading component types of firmware
+- Validate ModemManager firmware update method combinations</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-23</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.5.2-1</td>
+					<td>- New upstream release
+- Add a flag to indicate if packages are supported
+- Add a plugin for the Pinebook Pro laptop
+- Allow components to set the icon from the metadata
+- Fall back to FAT32 internal partitions for detecting ESP
+- Fix detection of ColorHug version on older firmware versions
+- Fix reading BCM57XX vendor and device ids from firmware
+- Fix replugging the MSP430 device
+- Fix sync method when called from threads without a context
+- Ignore an invalid vendor-id when adding releases for display
+- Improve synaptics-mst reliability when writing data
+- Install modules-load configs in the correct directory
+- Notify the service manager when idle-quitting
+- Only download the remote metadata as required
+- Remove HSI update and attestation suffixes
+- Restore recognizing GPG and PKCS7 signature types in libfwupd
+- Set the SMBIOS chassis type to portable if a DT battery exists
+- Switch from libsoup to libcurl for downloading data</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-20</td>
+					<td>Adam Williamson <awilliam at redhat dot com> - 1.5.1-2</td>
+					<td>- Backport #2605 for #2600, seems to help RHBZ #1896540</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-01</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.5.1-1</td>
+					<td>- New upstream release
+- Delete unused EFI variables when deploying firmware
+- Fix probe warning for the Logitech Unifying device
+- Include the amount of NVRAM size in use in the LVFS failure report
+- Make bcm57xx hotplug more reliable
+- Recognize authorized thunderbolt value of 2
+- Remove the duplicate parent-child data in FwupdDevice and FuDevice
+- Show a less scary fwupdate output for devices without info
+- Use a different Device ID for the OptionROM devices
+- Use UDisks to find out if swap devices are encrypted</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-10-26</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.5.0-1</td>
+					<td>- New upstream release
+- Add async versions of the library for GUI tools
+- Add commands for interacting with the ESP to fwupdtool
+- Add plugin for Goodix fingerprint sensors
+- Add plugin that can update the BCM5719 network adapter
+- Add plugin to update Elan Touchpads using HID
+- Add support for ChromeOS Quiche and Gingerbread
+- Add support for the Host Security ID
+- Add support for ThunderBolt retimers
+- Add switch-branch command to fwupdtool and fwupdmgr
+- Allow blocking specific firmware releases by checksum
+- Allow constructing a firmware with multiple images
+- Allow firmware to require specific features from front-end clients
+- Fix setting BootNext correctly when multiple updates are scheduled
+- Fix the topology of the audio device on the Lenovo TR dock
+- Include the HSI results and attributes in the uploaded report
+- Make return code different for get-updates with no updates
+- Make specific authorizations also imply others
+- Parse the HEX version before comparing for equality
+- Prevent dell-dock updates to occur via synaptics-mst plugin
+- Record the UEFI failure in more cases
+- Support loading DMI data from DT systems
+- Support LVFS::UpdateImage for GUI clients
+- Use pkttyagent to request user passwords if running without GUI</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-09-07</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.4.6-1</td>
+					<td>- New upstream release
+- Add a re-implementation of the rhboot dbxtool
+- Add missing Synaptics Prometheus GUIDs for ConfigId
+- Add support for the LabTop Mk IV
+- Add support for the Realtek RTD21XX I²C protocol
+- Allow blocking specific firmware releases by checksum
+- Allow DFU device to attach to runtime without a bus reset
+- Allow plugins to set remove delay only on the child
+- Cancel the file monitor before disposal to avoid a potential deadlock
+- Correctly label the vebdor for more NVMe devices
+- Specify a remove delay for Poly USB Cameras
+- Support download of large DFU firmware
+- Support polling the status from device in dfuManifest state
+- Use newer libxmlb features to properly display more AppStream markup</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-03</td>
+					<td>Peter Jones <pjones at redhat dot com> - 1.4.5-3</td>
+					<td>- Make dual signing happen.
+  Related: CVE-2020-10713</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-01</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.4.5-2</td>
+					<td>- Second attempt - Rebuilt for
+  https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-30</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.4.5-1</td>
+					<td>- New upstream release
+- Add dual-image feature for VL103 backup firmware
+- Add more CCGX hybrid dock support
+- Add support for a delayed activation flow for Thunderbolt
+- Allow firmware to require specific features from front-end clients
+- Be more defensive when remotes are missing required keys
+- Check all AppStream components when verifying
+- Check for free space after cleaning up ESP
+- Fix TPM PCR0 calculation
+- Modernize the thunderbolt plugin for future hardware
+- Only show UpdateMessage when state is success
+- Read the modem vendor ID correctly
+- Set the runtime version to 0.0.0 for pre-1.0.0 Thelio Io firmware
+- Support compiling libqmi-glib 1.26.0 and later
+- Support LVFS::UpdateImage in GUI clients
+- Use the GPIOB reset for the MiniDock VL103
+- Wait for the root device to be replugged when updating the MSP430</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-27</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.4.4-2</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/pki/fwupd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/pki/fwupd-metadata</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/it/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/c8/42915fdfa5b77f8bdd7a63b8558f0b48fe29d1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/4e/84b1c4f97333d3e082b296296d904e83e703ed</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/6d/c336a9bd5d16e83202dfb9a06b725400dd35e3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sr/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/oc/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/46/ede4bf0617e58462618eb66b5db273e79db9b1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system-shutdown/fwupd.shutdown</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d2/f3c392d80dae69fad85ec4e48d67739a74384e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d2/f9285533f6c1fa57463839d96d289bd8f07746</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ru/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hr/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/9f/b022f4955daf67a6297a89fc07c54f78a01791</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/fwupd/fwupd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/fwupd/fwupd-detect-cet</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/fwupd/fwupdoffline</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/af/6a2c881c6d0c1c0def9272667c3775957c8f16</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ed/6de399293bc6e4dd1c6738728e2e411eb8dc8a</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/78/26d6ee6008570fea4dc870e1efd4b8cb368275</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/97/41303b44a2f0525a443d83aac1023a999ba6d6</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/a7/5405e91d32526c142051eb8225ed597647192c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/2d/f3d02f5a744d86e899966e7f58b99d92195818</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/fwupd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system-preset/fwupd-refresh.preset</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/id/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/remotes.d/vendor/firmware/README.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/25/f128d836b5ce356626f693afaa9bb02a517cec</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fwupd/AUTHORS</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fwupd/README.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/de/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/de/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/de/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/de/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/de/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/de/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/de/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/de/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/en/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/en/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/en/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/en/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/en/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/en/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/en/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/en/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d0/cece2ae91d07a1560b33ad827b8a1f600de5f9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/metainfo/org.freedesktop.fwupd.metainfo.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/metainfo/org.freedesktop.fwupd.remotes.lvfs-testing.metainfo.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/metainfo/org.freedesktop.fwupd.remotes.lvfs.metainfo.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/10/f3117cec03c1518f54cacbf635f8c62404438b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/63/b39426d8d17d58e57dadd103a396be4dba069b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/cc/2d7ece33993d1cf83b674617034859f173f686</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/38/ce2808bbc96bdda9cf6124d5ddf349bc1d659b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/76/38140ec026ef5bff61a47a7bf3c51bb5d11265</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/remotes.d/dell-esrt/metadata.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/2b/928be73a4ca7d39c3197de7c057ffe293fbb18</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/2b/9ac7fd86fcfe837cf8525d9d1a15f5c00da971</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/fwupd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pl/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/libexec/fwupd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fi/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/dbus-1/interfaces/org.freedesktop.fwupd.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ky/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/61/c671c159ba0a6647ea226033ce89e64caaaa2f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_acpi_dmar.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_acpi_facp.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_altos.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_amt.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_ata.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_bcm57xx.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_bios.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_ccgx.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_colorhug.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_coreboot.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_cpu.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_cros_ec.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_csr.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_dell.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_dell_dock.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_dell_esrt.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_dfu.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_ebitdo.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_elantp.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_emmc.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_ep963x.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_fastboot.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_fresco_pd.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_goodixmoc.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_hailuck.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_invalid.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_iommu.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_jabra.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_linux_lockdown.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_linux_sleep.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_linux_swap.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_linux_tainted.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_logind.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_logitech_hidpp.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_msr.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_nitrokey.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_nvme.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_optionrom.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_pci_bcr.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_pci_mei.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_redfish.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_rts54hid.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_rts54hub.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_solokey.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_steelseries.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_superio.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_synaptics_cxaudio.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_synaptics_mst.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_synaptics_prometheus.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_synaptics_rmi.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_test.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_thelio_io.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_thunderbolt.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_tpm.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_tpm_eventlog.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_uefi.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_uefi_dbx.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_uefi_recovery.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_upower.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_vli.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_wacom_raw.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_wacom_usb.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hu/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ko/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/system-update.target.wants/fwupd-offline-update.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/7c/8d29b8bfab906bad41216b5be57c5a94be60a8</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ca/4675a834bef4a29795dfbc8ecd598930290663</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/36/b16585ce3b40d8cdaeaec55ffb5bbb0fa84ebb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/74/7d5d547e3f0956ad60e05d4c09a4c1c24605d2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/bash-completion/completions/fwupdagent</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/bash-completion/completions/fwupdmgr</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/bash-completion/completions/fwupdtool</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/93/4cf630b38b76a0da0b70be2c0818ed90cf8f66</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/fwupd/COPYING</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/altos.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/ata.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/bcm57xx.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/ccgx-ids.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/ccgx.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/colorhug.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/coreboot.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/cpu.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/cros-ec.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/csr-aiaiai.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/dell-dock.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/dell.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/dfu.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/ebitdo.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/elantp.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/emmc.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/ep963x.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/fastboot.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/flashrom.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/fresco-pd.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/goodixmoc.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/hailuck.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/iommu.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/jabra.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/logitech-hidpp.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/modem-manager.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/msr.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/nitrokey.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/nvme.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/optionrom.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/pci-bcr.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/pci-mei.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/rts54hid.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/rts54hub.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/solokey.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/steelseries.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/superio.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/synaptics-cxaudio.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/synaptics-mst.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/synaptics-prometheus.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/synaptics-rmi.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/thelio-io.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/thunderbolt.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/tpm.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/uefi-recovery.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/uefi.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/vli-pd.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/vli-usbhub-hyper.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/vli-usbhub-lenovo.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/vli-usbhub.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/wacom-raw.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/wacom-usb.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/dbxtool</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/dfu-tool</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/fwupdagent</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/fwupdate</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/fwupdmgr</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/fwupdtool</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/fwupdtpmevlog</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/01</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/02</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/03</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/09</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/10</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/11</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/14</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/1b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/1c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/21</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/25</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/2b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/2d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/33</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/35</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/36</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/38</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/3c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/41</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/46</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/49</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/4b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/4d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/4e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/5a</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/61</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/63</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/66</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/67</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/68</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/6d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/72</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/74</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/75</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/76</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/78</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/7a</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/7c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/93</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/94</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/97</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/9f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/a1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/a7</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/af</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/b4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/bd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/c0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/c8</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/ca</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/cc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/cf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/d0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/d2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/d3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/d5</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/d8</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/e0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/e1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/ea</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/ed</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/ee</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/02/72c61b29e666c5ffddabf37a9962e6e40e3eee</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/21/aa2d527a8b460e247bb5594cd687a1640b6660</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/e1/753a4274ce6a48aeddf57201843ec8e5b10ddd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/icons/hicolor/scalable/apps/org.freedesktop.fwupd.svg</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/fwupd-offline-update.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/fwupd-refresh.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/fwupd-refresh.timer</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/fwupd.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/systemd/system/system-update.target.wants</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/eu/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/68/6ae6fb92431703af9faf363e6713d111c68e1b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pt_BR/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/de/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/3c/756d40bffad614a5c3518f4c49de6ad98f7104</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/3c/f25e27c42e69ae92cf232e93fac792be59ab7c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/af/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/add_capsule_header.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/firmware_packager.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/install_dell_bios_exe.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/fwupd/quirks.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/simple_client.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f4/2eb3ec5d75aba23755c71afc3211c747dee05b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d5/f2a2fd2790bfe5b446deef347ec862b94a628f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/fwupd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/fwupd/ata.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/fwupd/daemon.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/fwupd/redfish.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/fwupd/remotes.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/fwupd/thunderbolt.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/fwupd/uefi.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/fwupd/upower.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/7a/1df70dd50eadaf8a1d58b907563434bc651693</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/72/239d5b98ed5df30b1f5be0bf0cc4b19e2ef27f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/a1/090d9de29e1e4cda80d3dc01c807df50b79110</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/c0/45ff6c91b03481773a0d295fed80b2494761eb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/c0/8b5322e61ec7b6980ea5095d4eaa746d74ef7a</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/modules-load.d/fwupd-msr.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/fwupd/efi/fwupdx64.efi</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/fwupd/efi/fwupdx64.efi.signed</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/49/59aa345f12c18524b9e8b729a74c2736ce6600</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/09/2ac85531ccd98798518f8275d28e1f46395546</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/66/580788d33d7483b820e6bf5869639402e338a0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/eo/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/1b/0726502c136b2ffe11f0d1fb66574c33eca6e8</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/b4/fe24ff72f055392830fe1d9493d62e39e326ff</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d3/850bae314defb54ad51d5f67c84665089b6f66</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f2/02e6f3ee9447d8cf5a12b31794a204cd2358a1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hi/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib64/fwupd-plugins-3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libfwupd.so.2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libfwupd.so.2.0.0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libfwupdplugin.so.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libfwupdplugin.so.1.0.0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/cf/f265b624f433ed0df21cfdabf12fc6dc3daee7</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ee/2c59d19d14fe98ed60ec790c6c875a3d8dfa8f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/id/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/id/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/id/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/id/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/id/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/id/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/id/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/id/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/4d/80672845c0855d464d0d5e2596d43064881368</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/4d/ac57891a96b9020517512e7f15be8615d51189</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/gl/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/dbus-1/system.d/org.freedesktop.fwupd.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/fwupd/remotes.d/dell-esrt.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/fwupd/remotes.d/lvfs-testing.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/fwupd/remotes.d/lvfs.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/fwupd/remotes.d/vendor-directory.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/fwupd/remotes.d/vendor.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sv/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f0/47d9f0b55c49d253734234d03eaed17328d234</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_CN/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/11/031402873b53f189b554883a6559c71d0d6699</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/11/242918887bd32e726218e5ad52381956b81a16</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/tr/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fur/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ca/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/var/lib/fwupd/builder/README.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/4b/505d9e67782b7b676d470d0888383001667bd1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/kk/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/polkit-1/rules.d/org.freedesktop.fwupd.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/sk/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/it/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/it/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/it/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/it/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/it/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/it/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/it/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/it/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d8/8a5ea82c4878b8f679526f7ea9fd7fa5798ae5</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d8/953e5388332909f63ff1a3c628035c831273f2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ea/7c25e3c6d33f1cf44e50107fb228e69dbc6cdd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/75/fdeff18f43bd9d78fa1217b9057a267882a417</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/94/8735590714654c0e70e49a164fce28ee0ccd5f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/polkit-1/actions/org.freedesktop.fwupd.policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/da/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ast/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/41/ad40772f47988040f3ff7c49fe314f9a256cec</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/03/49e23157f73004058d55f3967f67fd45762ccf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/en_GB/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fr/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/cs/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/da/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/da/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/da/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/da/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/da/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/da/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/da/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/da/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fish/vendor_completions.d/fwupdmgr.fish</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/pki/fwupd/GPG-KEY-Hughski-Limited</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/pki/fwupd/GPG-KEY-Linux-Foundation-Firmware</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/pki/fwupd/GPG-KEY-Linux-Vendor-Firmware-Service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/pki/fwupd/LVFS-CA.pem</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/pki/fwupd-metadata/GPG-KEY-Linux-Foundation-Metadata</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/pki/fwupd-metadata/GPG-KEY-Linux-Vendor-Firmware-Service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/pki/fwupd-metadata/LVFS-CA.pem</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/35/f16d7cdef651e33411e074dc8ea3d802f93041</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/girepository-1.0/Fwupd-2.0.typelib</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/girepository-1.0/FwupdPlugin-1.0.typelib</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/dbxtool.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/dfu-tool.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/fwupdagent.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/fwupdate.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/fwupdmgr.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/fwupdtool.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/fwupdtpmevlog.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/e0/2ce2d10e947e870deffa869b371093d1c82a9b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/lt/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/zh_TW/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/cache/fwupd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/01/d39fc562f90b51b801e8da38a49717d942bb01</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/he/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/bd/16d9345719d65ff5a12fd4cd1ede74cf7eb65f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/lib/fwupd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/67/942d6fb968905237bdba29459be0a46f79f4a9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/1c/01c8645152c9031360cf1b3a2a55b83cef3a67</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/5a/536cac449b6aac0a856c6ee3f42710605256b3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f3/536c899a2d39661c83d887b1d429527a016cdd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f3/d8d53f2fad4bf5504819c2c0b7a53a46398e05</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/90-fwupd-devices.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/14/a7b95ff92f4cb1cf68c11a598ab52ad837d9a0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/33/752ea72af6684da2bcc2f2904c0a4ee2c84143</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/uk/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/nl/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/dbus-1/system-services/org.freedesktop.fwupd.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-640-480.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/lib/fwupd/gnupg</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

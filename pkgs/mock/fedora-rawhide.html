@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>mock - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				mock
+				<small class="text-muted"> in fedora-rawhide</small>
+			</h1>
+			<p>
+			This page displays detail informations of the mock package. You might
+			want go back to <a href=".">the main page of mock</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-11-30</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 2.7-1</td>
+					<td>- bootstrap: copy-in katello CA pem file if exists
+- early error when bootstrap is off and external buildrequires are detected (msuchy@redhat.com)
+- hotfix preexec_fn traceback on RHEL 8 s390x (issue 653)
+- introduce external buildrequires (msuchy@redhat.com)
+- add rpkg spec preprocessing capability (clime@fedoraproject.org)
+- sign plugin: don't ignore signing command failure
+- don't setsid() twice with --shell
+- better logging when dynamic BR detected (msuchy@redhat.com)
+- do not TB if rpmbuild fails with exit code 11 (msuchy@redhat.com)
+- fix addrepo when repo is missing (markus.linnala@gmail.com)
+- own the cheat directory
+- Allow percent-sign in config_opts['resultdir']
+- add a new "postupdate" hook (dturecek@redhat.com)
+- log mock's NVR</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-09-15</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 2.6-1</td>
+					<td>- the --recurse option implies --continue
+- fix --chain --continue option
+- fail when --continue/--recurse is used without --chain
+- fix _copy_config() for broken symlinks in dst= (rhbz#1878924)
+- auto-download the source RPMs from web with --rebuild
+- handle exceptions from command_parse() method
+- fail verbosely for --chain & --resultdir combination
+- allow using -a|--addrepo with /absolute/path/argument
+- add support for -a/--addrepo in normal --rebuild mode
+- use systemd-nspawn --resolv-conf=off
+- create /etc/localtime as symlink even with isolation=simple (msuchy@redhat.com)
+- dump the reason for particular package build fail in --chain
+- raise PkgError when the source RPM can not be installed</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-09-03</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 2.5-2</td>
+					<td>- because of the mock-filesystem change, we need to enforce upgrade
+  of the old mock-core-configs package</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-09-03</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 2.5-1</td>
+					<td>- set the DNF user_agent in dnf.conf (msuchy@redhat.com)
+- introduce mock-filesystem subpackage (msuchy@redhat.com)
+- add showrc plugin to record the output of rpm --showrc (riehecky@fnal.gov)
+- document which packages we need in buildroot (msuchy@redhat.com)
+- macros without leading '%' like config_opts['macros']['macroname'] work
+  fine again (issue#605)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-21</td>
+					<td>Miroslav Suchý <msuchy at redhat dot com> 2.4-1</td>
+					<td>- mockbuild/buildroot: Make btrfs-control available if host supports it
+  (ngompa13@gmail.com)
+- Add `module_setup_commands` configuration option (praiskup@redhat.com)
+- Use a different .rpmmacros for install/build time (praiskup@redhat.com)
+- lvm: don't recall set_current_snapshot unnecessarily (praiskup@redhat.com)
+- mock: copy source CA certificates (kdreyer@redhat.com)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-05-22</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 2.3-1</td>
+					<td>- bindmount resultdir to bootstrap chroot so we can --postinstall from
+  bootstrap (issue #564)
+- fix mount.py plugin configuration (issue #578)
+- better error for dynamic_buildrequires %prep failure (issue #570)
+- mock: pre-create directory for file bind-mounts (rhbz#1816696)
+- fix doChroot() traceback for getresuid() (issue #571)
+- fix --rootdir option with bootstrap (issue #560)
+- avoid using host rpm _show_installed_packages() (pmatilai@redhat.com, PR#568)
+- expand braced dnf variables in repo url (dmarshall@gmail.com, PR#577)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-04-01</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 2.2-1</td>
+					<td>- depend on mock-configs, not mock-core-configs so users can pick an alternative
+  package with configuration
+- bind-mounting stuff below /tmp into bootstrap is fixed with nspawn (GH#502)
+- don't do util.getAddtlReqs when 'more_buildreqs' not specified
+- implement doOutChroot() abstraction which runs commands either in bootstrap
+  or on host, depending on isolation={nspawn|simple}
+- use doOutChroot() for package_state plugin (GH#525)
+- fix for "mock --chroot -- cmd arg1 arg2" use-case
+- site-defaults.cfg moved from /etc to %doc, and the config file is now
+  provided by mock-core-configs (GH#555)
+- bootstrap: expand dnf vars in local repo bind-mounts (rhbz#1815703)
+- bootstrap: bindmount local metalink/mirrorlist (rhbz#1816696)
+- config_opts['isolation'] option invented, replaces 'use_nspawn'
+- 'isolation' is now set to 'auto' (means 'nspawn' with fallback to 'simple',
+  (GH#337, otaylor@fishsoup.net)
+- Fedora Toolbox && bootstrap - don't re-bind-mount dev files, and fix
+  installation of filesystem.rpm from bootstrap to normal chroot (GH#550)
+- re-define %python3_pkgversion on el7 (GH#545)
+- docker use-case: use getpass.getuser() instead of os.getlogin() (GH#551)
+- set LANG to C.UTF-8 by default, even if host has different value (GH#451)
+- bootstrap: use configured yum commands (GH#518, paul@city-fan.org)
+- fixup doubled-logs by predictable bootstrap resultdir (GH#539, rhbz#1805631)
+- fix --chain --isolation=simple with external URLs (GH#542)
+- option --orphanskill fixed for --isolation=simple --bootstrap-chroot
+- orphan processes are now also killed "postyum", right after the installation
+  trasactions are executed to also kill daemons started from scriptlets (GH#183)
+- EL7 fix - use 'private' mount option for <bootsrap_root>/<root>, not 'rprivate'
+- ceanup rpmdb before checking installed packages (fixes builds against target
+  chroots that have different rpmdb backend, e.g. SQLite on F33+)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-03-11</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 2.1-1</td>
+					<td>- depend on mock-core-configs >= 32.4
+- new build-time testsuite
+- accept return code 0 from rpmbuild -br (thrnciar@redhat.com)
+- bootstrap: bind-mount the inner root mount with rprivate
+- new ssl_ca_bundle_path option
+- chain: don't run buildroot.finalize() for each package
+- don't fail when /etc/pki certs are not found (frostyx@email.cz)
+- lvm_root: fix --scrub=all
+- exclude plugin compiled stuff packaged in sub-packages
+- keep trailing newlines in jinja expand
+- sign-plugin: use %(rpms) variable expansion again
+- bootstrap: bind-mount also baseurl=/absolute/dir repos
+- 'dnf.conf' config is now equivalent to 'yum.conf'
+- don't emit unneeded warning for missing yum (remi@remirepo.net)
+- allow --install /usr/bin/time [GH#474] (miroslav@suchy.cz)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-02-07</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 2.0-2</td>
+					<td>- solve yum.conf vs. dnf.conf inconsistency in code and config
+- fix mockchain with --bootstrap-chroot (issue/469)
+- document 'mock --chain -c' in man page</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-02-06</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 2.0-1</td>
+					<td>- log reasons why src.rpm can not be installed into chroot
+- nspawn: non-interactive commands in chroot are executed with --pipe
+- bind mount local repos to bootstrap chroot (dturecek@redhat.com)
+- expand the generated config (includes) completely before passing it
+  to eval() (sergio@serjux.com)
+- do not ignore cleanup_on_success when post_install is True
+  (logans@cottsay.net)
+- fix fd resource-leak in 'mock --chain' (jcajka@redhat.com)
+- the --debug-config option only shows the differences from the mock's default
+  configuration
+- do not expand jinja for --debug-config
+- don't use chroot.pkg_manager in podman case, we need to install from within
+  the container
+- --use-bootstrap-image implies --bootstrap-chroot
+- drop python2 support from spec file, and code too
+- ammend man page and state that --dnf is the default now
+- rename --{old,new}-chroot to --isolation
+- turn ON the jinja rendering a bit earlier
+- pre-populate loop devices in nspawn chroot as with --isolation=chroot
+- deepcopy the plugin_conf options from chroot to bootstrap_chroot
+- simplified implementation of include() config option, accept relative files
+  (jkadlcik@redhat.com, sergio@serjux.com)
+- pass proxy environment to exec of Podman (RHBZ#1772598)
+- lvm_root: fix volume removal in --scrub
+- bootstrap: don't install shadow-utils, and distribution-gpg-keys
+- make --sources optional for --buildsrpm mode (sisi.chlupova@gmail.com)
+- bootstrap: bind-mount normal chroot into bootstrap chroot recursively
+- add --scrub=bootstrap parameter (frostyx@email.cz)
+- don't clean bootstrap with --clean
+- do not call traceLog decorator when no tracing
+- pre-create builddir before changing it's owner, and when we have proper
+  process privileges
+- copy /etc/pki/ca-trust/extracted into chroot [GH#397]
+- change default of 'package_manager' to 'dnf'
+- always copy distribution-gpg-keys into chroot [GH#308]
+- support DNF vars added [GH#346]
+- use jinja macros instead of python variable expansion
+- get the text representation of error code
+- --scrub=all also does --scrub=bootstrap (jkadlcik@redhat.com)
+- success/fail aren't created root-owned
+- compress_logs: setup defaults to 'gzip'
+- raise error for --localrepo without --chain
+- detect that forcearch can not work, and raise obvious error
+- drop unnecessary privilege escalations which only make unnecessary
+  root-owned files</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/pam.d/mock</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/bind_mount.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/bind_mount.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/ccache.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/ccache.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/chroot_scan.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/chroot_scan.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/compress_logs.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/compress_logs.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/hw_info.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/hw_info.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/mount.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/mount.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/overlayfs.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/overlayfs.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/package_state.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/package_state.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/pm_request.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/pm_request.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/procenv.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/procenv.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/root_cache.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/root_cache.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/rpkg_preprocessor.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/rpkg_preprocessor.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/selinux.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/selinux.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/showrc.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/showrc.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/sign.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/sign.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/tmpfs.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/tmpfs.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/yum_cache.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__/yum_cache.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/mock/site-defaults.cfg</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/__init__.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/__init__.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/backend.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/backend.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/buildroot.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/buildroot.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/config.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/config.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/exception.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/exception.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/external.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/external.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/file_downloader.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/file_downloader.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/file_util.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/file_util.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/mounts.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/mounts.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/package_manager.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/package_manager.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/plugin.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/plugin.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/podman.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/podman.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/rebuild.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/rebuild.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/state.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/state.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/text.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/text.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/trace_decorator.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/trace_decorator.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/uid.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/uid.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/util.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__/util.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/pki/mock</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/security/console.apps/mock</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/__pycache__</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/backend.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/buildroot.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/config.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/exception.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/external.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/file_downloader.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/file_util.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/mounts.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/package_manager.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugin.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/podman.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/rebuild.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/state.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/text.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/trace_decorator.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/uid.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/util.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/mock</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/mock-parse-buildlog</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/mockchain</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/mock/logging.ini</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/bash-completion/completions/mock</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/bash-completion/completions/mock-parse-buildlog</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/pki/mock/README.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/cheat/mock</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/mock/create_default_route_in_container.sh</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/libexec/mock/mock</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/lib/mock</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/libexec/mock</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/mock-parse-buildlog.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/mock.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/cache/mock</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/__pycache__</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/bind_mount.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/ccache.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/chroot_scan.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/compress_logs.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/hw_info.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/mount.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/overlayfs.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/package_state.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/pm_request.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/procenv.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/root_cache.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/rpkg_preprocessor.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/selinux.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/showrc.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/sign.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/tmpfs.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/mockbuild/plugins/yum_cache.py</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

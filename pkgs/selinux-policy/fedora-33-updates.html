@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>selinux-policy - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				selinux-policy
+				<small class="text-muted"> in fedora-33</small>
+			</h1>
+			<p>
+			This page displays detail informations of the selinux-policy package. You might
+			want go back to <a href=".">the main page of selinux-policy</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-11-09</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.6-30</td>
+					<td>- Introduce rpmdb_t type
+- Remove retired PCP pmwebd and pmmgr daemons (since 5.0)
+- Let keepalived bind a raw socket
+- Allow user domains transition to rpmdb_t
+- Revert "Add miscfiles_add_entry_generic_cert_dirs() interface"
+- Revert "Add miscfiles_create_generic_cert_dirs() interface"
+- Update miscfiles_manage_all_certs() to include managing directories
+- Add miscfiles_create_generic_cert_dirs() interface
+- Add miscfiles_add_entry_generic_cert_dirs() interface
+- Revert "Label /var/run/zincati/public/motd.d/* as motd_var_run_t"</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-10-19</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.6-29</td>
+					<td>- Create chronyd_pid_filetrans() interface
+- Allow openvswitch fowner capability and create netlink sockets
+- Change invalid type redisd_t to redis_t in redis_stream_connect()
+- Revert "Removed adding to attribute unpriv_userdomain from userdom_unpriv_type template"
+- Allow initrc_t create /run/chronyd-dhcp directory with a transition
+- Allow dyntransition from sshd_t to unconfined_t
+- Removed adding to attribute unpriv_userdomain from userdom_unpriv_type template</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-09-25</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.6-28</td>
+					<td>- Allow chronyd_t to accept and make NTS-KE connections
+- Allow domain write to an automount unnamed pipe
+- Label /var/run/zincati/public/motd.d/* as motd_var_run_t
+- Allow login programs to (only) read MOTD files and symlinks
+- Relabel /usr/sbin/charon-systemd as ipsec_exec_t
+- Confine systemd-sleep service
+- Add fstools_rw_swap_files() interface
+- Label 4460/tcp port as ntske_port_t
+- Add lvm_dbus_send_msg(), lvm_rw_var_run() interfaces
+- Check out the right -contrib branch in Travis
+- Allow additional permissions for gnome-initial-setup
+- Add to map non_security_files to the userdom_admin_user_template template</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-09-18</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.6-27</td>
+					<td>- kernel/filesystem: Add exfat support (no extended attributes)
+- Allow additional permissions for gnome-initial-setup</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-09-08</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.6-26</td>
+					<td>- Allow php-fpm write access to /var/run/redis/redis.sock
+- Allow journalctl to read and write to inherited user domain tty
+- Update rkt policy to allow rkt_t domain to read sysfs filesystem
+- Allow arpwatch create and use rdma socket
+- Allow plymouth sys_chroot capability
+- Allow gnome-initial-setup execute in a xdm sandbox
+- Add new devices and filesystem interfaces</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-27</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.6-25</td>
+					<td>- Allow certmonger fowner capability
+- The nfsdcld service is now confined by SELinux
+- Change transitions for ~/.config/Yubico
+- Allow all users to connect to systemd-userdbd with a unix socket
+- Add file context for ~/.config/Yubico
+- Allow syslogd_t domain to read/write tmpfs systemd-bootchart files
+- Allow login_pgm attribute to get attributes in proc_t
+- Allow passwd to get attributes in proc_t
+- Revert "Allow passwd to get attributes in proc_t"
+- Revert "Allow login_pgm attribute to get attributes in proc_t"
+- Allow login_pgm attribute to get attributes in proc_t
+- Allow passwd to get attributes in proc_t
+- Allow traceroute_t and ping_t to bind generic nodes.
+- Create macro corenet_icmp_bind_generic_node()
+- Allow unconfined_t to node_bind icmp_sockets in node_t domain</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-13</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.6-24</td>
+					<td>- Add ipa_helper_noatsecure() interface unconditionally
+- Conditionally allow nagios_plugin_domain dbus chat with init
+- Revert "Update allow rules set for nrpe_t domain"
+- Add ipa_helper_noatsecure() interface to ipa.if
+- Label /usr/libexec/qemu-pr-helper with virtd_exec_t
+- Allow kadmind manage kerberos host rcache
+- Allow nsswitch_domain to connect to systemd-machined using a unix socket
+- Define named file transition for sshd on /tmp/krb5_0.rcache2
+- Allow systemd-machined create userdbd runtime sock files
+- Disable kdbus module before updating</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-03</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.6-23</td>
+					<td>- Revert "Add support for /sys/fs/kdbus and allow login_pgm domain to access it."
+- Revert "Add interface to allow types to associate with cgroup filesystems"
+- Revert "kdbusfs should not be accessible for now."
+- Revert "kdbusfs should not be accessible for now by default for shipped policies. It should be moved to kdbus.pp"
+- Revert "Add kdbus.pp policy to allow access /sys/fs/kdbus. It needs to go with own module because this is workaround for now to avoid SELinux in enforcing mode."
+- Remove the legacy kdbus module
+- Remove "kdbus = module" from modules-targeted-base.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-30</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.6-22</td>
+					<td>- Allow virtlockd only getattr and lock block devices
+- Allow qemu-ga read all non security file types conditionally
+- Allow virtlockd manage VMs posix file locks
+- Allow smbd get attributes of device files labeled samba_share_t
+- Label /tmp/krb5_0.rcache2 with krb5_host_rcache_t
+- Add a new httpd_can_manage_courier_spool boolean
+- Create interface courier_manage_spool_sockets() in courier policy to allow to search dir and allow manage sock files
+- Revert "Allow qemu-kvm read and write /dev/mapper/control"
+- Revert "Allow qemu read and write /dev/mapper/control"
+- Revert "Dontaudit and disallow sys_admin capability for keepalived_t domain"
+- Dontaudit pcscd_t setting its process scheduling
+- Dontaudit thumb_t setting its process scheduling
+- Allow munin domain transition with NoNewPrivileges
+- Add dev_lock_all_blk_files() interface
+- Allow auditd manage kerberos host rcache files
+- Allow systemd-logind dbus chat with fwupd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-29</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 3.14.6-21</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/selinux-policy/COPYING</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/rpm/macros.d/macros.selinux-policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/tmpfiles.d/selinux-policy.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/sysconfig/selinux</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/selinux</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/selinux/config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/selinux-policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/packages</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

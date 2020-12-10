@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>copr-backend - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				copr-backend
+				<small class="text-muted"> in fedora-32</small>
+			</h1>
+			<p>
+			This page displays detail informations of the copr-backend package. You might
+			want go back to <a href=".">the main page of copr-backend</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-02-05</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.132-1</td>
+					<td>- better handle invalid options in copr-repo --add/--delete
+- copr-repo: optimize-out useless createrepo_c runs
+- move initial createrepo check from dispatcher to worker
+- don't send messages on bus N-times
+- /bin/copr-repo now respects .disable-appstream files
+- drop unused build_deleting_without_createrepo option</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-01-15</td>
+					<td>Tomas Hrnciar <thrnciar at redhat dot com> 1.131-1</td>
+					<td>- put build-ID.log file to resultdir
+- call call_copr_repo if initial createrepo failed
+- Build Dispatcher does not wait forever till repo is created,
+  it creates it manually
+- properly delete logs for old builds
+- delete build-ID.log files again
+- edit repositories only by new 'copr-repo' tool
+- fix multi-build delete
+- fix for not saving end time of actions
+- lower traffic in build_dispatcher log
+- more resilient redis logging
+- attempt to publish on msgbus N-times
+- log service: move RequiredBy to [Install]
+- keep worker ID in proc title</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-12-06</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.130-1</td>
+					<td>- backend: execute actions with sane umask=0022</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-12-04</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.129-1</td>
+					<td>- do not start a build if copr_base is not available yet
+- systemd services' restart re-ordering
+- de-duplicate frontend_.update() call when reattaching to existing build
+- allow specifying timeout for spawn/terminate playbooks
+- removing dependecy on euca2ools in spec
+- send `uses_devel_repo' as a part of task info
+- correctly configure logrotate
+- get_redis_logger: skip log entries bellow log_level
+- delete leftover action workers from redis</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-10-11</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.128-1</td>
+					<td>- restart copr-backend sub-services on failure
+- don't kill action processors by 'systemctl restart'
+- lower the log traffic in build_dispatcher.log</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-10-03</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.127-1</td>
+					<td>- fix testsuite for slow Koji builders</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-10-03</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.126-1</td>
+					<td>- more reliable communication with frontend (#1021)
+- only ask for auto_createrepo once per project
+- parallel handling of actions (#1007)
+- don't provide builder-live.log once the build ended, and
+  add 'copr-compress-live-logs' helper (#985)
+- less exceptions in logs
+- project forking fixes
+- depend on copr-messaging, not fedora-messaging
+- fixes for copr_print_results_to_delete.py script</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-08-28</td>
+					<td>Dominik Turecek <dturecek at redhat dot com> 1.125-1</td>
+					<td>- minimize redis traffic for looping over pending-jobs (issue#902)
+- batch delete builds into a single action (issue#688)
+- admin opt-out createrepo after build-deleting
+- fix wrong message validation class
+- refine cleanup_vm_nova.py
+- depend on copr-messaging</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-07-29</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.124-1</td>
+					<td>- run createrepo immediately, don't wait for build (issue#833)
+- compress backend-live.log by calling gzip (issue#86)
+- use copr-messaging module for validating outgoing messages
+- don't run appstream-builder for PR dirs
+- don't run createrepo for srpm directories
+- skip VMs with failing live-check in scheduler
+- sandbox builds per user/submitter/project
+- drop unused compat code for droped /bin/copr-builder
+- do not call appstream builder with --max-threads (issue#717)
+- added copr_print_results_to_delete.py script, should help
+  us with removal of orphaned resources on backend storage (issue#712)
+- allow disabling appstream builder per project (issue#738)
+- tabular output from copr_get_vm_info.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-04-24</td>
+					<td>Jakub Kadlčík <frostyx at email dot cz> 1.123-1</td>
+					<td>- clean data for failed builds; fix #619
+- replace runnecessary regex with str.endswith
+- move clean_copr from prunerepo to our codebase
+- cleanup_vm_nova.py: use yaml.safe_load
+- don't rely on createrepo from prunerepo
+- simplify logging through redis
+- run sign command without sudo to fix #636
+- encode 'msg' in LogRecord sooner
+- fix charset warnings on redis-py v3
+- fix default arguments in redis scripts
+- don't prunerepo too old directories
+- LogHandler: don't drop exc_info from LogRecord
+- use the correct data for rawhide_to_release createrepo
+- make copr_prune_results skip already pruned outdated chroots
+- require libmodulemd in at least 1.7.0
+- remove dependency on python3-configparser</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/copr/backend/__pycache__</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/actions.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/ans_utils.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/constants.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/createrepo.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/copr/backend/daemons</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/exceptions.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/frontend.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/helpers.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/job.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/copr/backend/mockremote</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/msgbus.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/sign.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/sshcmd.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/copr/backend/vm_manage</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/worker_manager.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/action_dispatcher.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/backend.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/build_dispatcher.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/log.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/vm_master.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/worker.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/copr</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/ansible.cfg</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/builderpb_nova.yml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/playbooks/files</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/playbooks/filter_plugins</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/inventory</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/nova_cloud_vars.yml.example</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/playbooks/older</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/prepare_builder_base_image_pb.yml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/provision_builder_tasks.yml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/spawn_local.yml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/spinup_nova_task.yml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/terminate_local.yml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/terminatepb_nova.yml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/lighttpd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/playbooks</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/cron.daily/copr-backend</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/lighttpd/dirlisting.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/lighttpd/mime.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/mockremote/__pycache__/__init__.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/mockremote/__pycache__/__init__.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/mockremote/__pycache__/builder.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/mockremote/__pycache__/builder.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/lib/copr</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/playbooks/files/mock</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/__init__.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/__init__.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/actions.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/actions.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/ans_utils.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/ans_utils.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/constants.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/constants.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/createrepo.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/createrepo.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/exceptions.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/exceptions.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/frontend.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/frontend.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/helpers.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/helpers.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/job.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/job.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/msgbus.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/msgbus.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/sign.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/sign.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/sshcmd.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/sshcmd.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/worker_manager.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/__pycache__/worker_manager.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/copr/backend</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/logstash/patterns/lighttpd.pattern</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/__init__.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/__init__.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/action_dispatcher.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/action_dispatcher.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/backend.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/backend.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/build_dispatcher.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/build_dispatcher.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/log.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/log.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/vm_master.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/vm_master.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/worker.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/daemons/__pycache__/worker.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/lib/copr/jobs</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/lib/copr/public_html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/copr/copr-be.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/copr-backend/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/lib/copr/public_html/results</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/copr-backend</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/sbin/copr-backend-service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/mockremote/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/copr/backend/mockremote/__pycache__</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/mockremote/builder.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/copr-backend-action.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/copr-backend-build.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/copr-backend-log.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/copr-backend-vmm.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/copr-backend.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/check.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/event_handle.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/executor.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/manager.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/models.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/spawn.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/terminate.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/logrotate.d/copr-backend</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/log/copr-backend</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/tmpfiles.d/copr-backend.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/older/builderpb-i386.yml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/older/builderpb-x86_64.yml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/older/builderpb.yml.ec2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/older/terminatepb.yml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/older/terminatepb.yml.ec2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/var/run/copr-backend/copr-be.pid</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/run/copr-backend</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/var/log/copr-backend/copr.log</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/var/log/copr-backend/prune_old.log</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/check_consecutive_build_fails.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/cleanup_vm_nova.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr-backend-process-action</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr-compress-live-logs</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr-repo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_be.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_createrepo.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_find_obsolete_builds.sh</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_fix_gpg.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_get_vm_info.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_log_hitcounter.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_print_results_to_delete.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_prune_results.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_run_action_dispatcher.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_run_build_dispatcher.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_run_logger.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_run_vmm.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_sign_unsigned.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/print_queues.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/filter_plugins/os_nova.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/sudoers.d/copr</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/__init__.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/__init__.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/check.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/check.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/event_handle.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/event_handle.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/executor.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/executor.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/manager.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/manager.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/models.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/models.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/spawn.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/spawn.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/terminate.cpython-38.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/backend/vm_manage/__pycache__/terminate.cpython-38.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/playbooks/files/mock/site-defaults.cfg</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>perl-MCE-Shared - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				perl-MCE-Shared
+				<small class="text-muted"> in fedora-32</small>
+			</h1>
+			<p>
+			This page displays detail informations of the perl-MCE-Shared package. You might
+			want go back to <a href=".">the main page of perl-MCE-Shared</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-01-30</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.864-2</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-12-04</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.864-1</td>
+					<td>- Update to 1.864
+  - Use monotonic clock if available in MCE::Hobo->yield
+  - Bumped MCE dependency to 1.864</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-11-25</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.863-1</td>
+					<td>- Update to 1.863
+  - Use MCE::Channel for MCE::Hobo->yield not to incur unnecessary delays due
+    to busy shared-manager process
+  - Re-factored recent changes regarding IPC safety in MCE::Shared::Server;
+    this update defers signal handling for HUP, INT, PIPE, QUIT, TERM, and
+    custom handlers during IPC without incurring a performance penalty (see
+    POD section labled "DEFER SIGNAL" in MCE::Signal 1.863)
+  - Reverted $hobo->exit back to sending the SIGQUIT signal in MCE::Hobo now
+    that MCE::Shared::Server defers signal during IPC
+  - Improved reliability for spawning MCE::Hobo inside threads including nested
+    parallelization, made possible using a global lock $MCE::_GMUTEX in MCE
+    1.863
+  - Updated signal handling in mce-examples/framebuffer on GitHub
+  - Bumped MCE dependency to 1.863</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-09-19</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.862-1</td>
+					<td>- Update to 1.862
+  - The edge cases regarding signal handling have finally been resolved for
+    MCE::Hobo; see mce-examples/framebuffer on GitHub
+  - Bumped MCE dependency to 1.862</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-09-16</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.860-1</td>
+					<td>- Update to 1.860
+  - Signal-handling update release
+  - SIGINT and SIGTERM safety for shared objects during IPC
+  - IPC safety in MCE::Hobo during SIGINT and SIGTERM
+  - Method $hobo->exit in MCE::Hobo now sends the SIGINT signal for extra
+    reliability with MCE::Shared (previously SIGQUIT)
+  - Bumped MCE dependency to 1.860</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-09-09</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.850-1</td>
+					<td>- Update to 1.850
+  - More safety around clean-up code in MCE::Shared::Server
+  - Bumped MCE dependency to 1.850</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-09-09</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.849-1</td>
+					<td>- Update to 1.849
+  - Fixed edge case in MCE::Hobo when reaping inside a signal handler
+  - Guard clean-up code in MCE::Shared::Server during global destruction
+  - Configured extra data channel used for reaping Hobos and exporting
+  - Optimized reaping in MCE::Hobo when void_context is set
+  - Added list_pids class method to MCE::Hobo
+  - Added pid class method to MCE::Shared
+  - Bumped MCE dependency to 1.849</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-09-04</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.848-1</td>
+					<td>- Update to 1.848
+  - Fixed broken examples in the MCE::Shared documentation
+  - Bumped MCE dependency to 1.848</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-09-03</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.847-1</td>
+					<td>- Update to 1.847
+  - Obsolete RedHat MCE-Shared-1.841-Sereal-deps.patch file; this patch file is
+    no longer needed and finally resolved with this release
+  - Updated PDL examples in the documentation including Cookbook on GitHub:
+    - Resolved segmentation fault in global cleanup for shared PDL objects
+    - Added missing pdl_random class method to MCE::Shared
+  - Bumped MCE dependency to 1.847</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-08-27</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.846-1</td>
+					<td>- Update to 1.846
+  - Fixed code tags in documentation
+  - Bumped MCE dependency to 1.846</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/perl-MCE-Shared/Changes</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/perl-MCE-Shared/README.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/perl-MCE-Shared/Copying</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/perl-MCE-Shared/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/perl-MCE-Shared</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Hobo.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Shared.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Shared::Array.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Shared::Base.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Shared::Cache.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Shared::Condvar.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Shared::Handle.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Shared::Hash.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Shared::Minidb.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Shared::Ordhash.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Shared::Queue.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Shared::Scalar.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Shared::Sequence.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Shared::Server.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Hobo.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/perl-MCE-Shared</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared/Array.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared/Base.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared/Cache.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared/Condvar.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared/Handle.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared/Hash.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared/Minidb.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared/Ordhash.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared/Queue.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared/Scalar.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared/Sequence.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Shared/Server.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/perl5/vendor_perl/MCE</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

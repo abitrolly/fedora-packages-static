@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>selinux-policy-sandbox - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				selinux-policy-sandbox
+				<small class="text-muted"> in fedora-32</small>
+			</h1>
+			<p>
+			This page displays detail informations of the selinux-policy-sandbox package. You might
+			want go back to <a href=".">the main page of selinux-policy-sandbox</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-11-09</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-45</td>
+					<td>- Introduce rpmdb_t type
+- Allow openvswitch fowner capability and create netlink sockets
+- Change invalid type redisd_t to redis_t in redis_stream_connect()
+- Allow user domains transition to rpmdb_t
+- Allow systemd-logind read swap files
+- Add fstools_read_swap_files() interface
+- Add fstools_rw_swap_files() interface
+- Allow domain write to an automount unnamed pipe</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-09-30</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-44</td>
+					<td>- Allow php-fpm write access to /var/run/redis/redis.sock
+- Allow journalctl to read and write to inherited user domain tty
+- Update rkt policy to allow rkt_t domain to read sysfs filesystem
+- kernel/filesystem: Add exfat support (no extended attributes)
+- Add lvm_dbus_send_msg(), lvm_rw_var_run() interfaces
+- Update TARGET_BRANCH to f32
+- Check out the right -contrib branch in Travis
+- Allow unconfined_t to node_bind icmp_sockets in node_t domain</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-27</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-43</td>
+					<td>- The nfsdcld service is now confined by SELinux
+- Dontaudit thumb_t setting its process scheduling
+- Allow munin domain transition with NoNewPrivileges
+- Allow unconfined_t to node_bind icmp_sockets in node_t domain
+- Change transitions for ~/.config/Yubico
+- Add file context for ~/.config/Yubico
+- Allow syslogd_t domain to read/write tmpfs systemd-bootchart files
+- Create macro corenet_icmp_bind_generic_node()
+- Allow traceroute_t and ping_t to bind generic nodes.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-07</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-42</td>
+					<td>- Allow certmonger manage dirsrv services
+- Run ipa_helper_noatsecure(oddjob_t) only if the interface exists
+- Allow oddjob_t process noatsecure permission for ipa_helper_t
+- Allow systemd_private_tmp(dirsrv_tmp_t) instead of dirsrv_t
+- Allow systemd_private_tmp(dirsrv_tmp_t)
+- Allow irqbalance file transition for pid sock_files and directories
+- Update irqbalance runtime directory file context
+- Allow irqbalance nnp_transition
+- Dontaudit vpnc_t setting its process scheduling
+- Allow systemd set efivarfs files attributes
+- Modify kernel_rw_key() not to include append permission
+- Add kernel_rw_key() interface to access to kernel keyrings</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-23</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-41</td>
+					<td>- Allow tlp_t can_exec() tlp_exec_t
+- Create the kerberos_write_kadmind_tmp_files() interface
+- Allow dirsrv_t list cgroup directories
+- Allow sshd write to kadmind temporary files</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-04</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-40</td>
+					<td>- Add fetchmail_uidl_cache_t type for /var/mail/.fetchmail.pid
+- Support multiple ways of tlp invocation
+- Allow to getattr files on an nsfs filesystem
+- httpd: Allow NoNewPriv transition from systemd
+- Allow rhsmd read process state of all domains and kernel threads
+- Allow rhsmd mmap /etc/passwd
+- Allow systemd-logind manage efivarfs files
+- Allow systemd_modules_load_t to read efivarfs
+- Allow named transition for /run/tlp from a user shell
+- Allow initrc_t tlp_filetrans_named_content()
+- Introduce systemd_read_efivarfs_type attribute
+- Allow systemd_resolved_t to read efivarfs
+- Allow ipsec_mgmt_t mmap ipsec_conf_file_t files
+- Merge pull request #357 from zpytela/f32-tracefs
+- Add file context for /sys/kernel/tracing</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-05-19</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-39</td>
+					<td>- Label dirsrv systemd unit files and add dirsrv_systemctl()
+- Allow nagios_plugin_domain execute programs in bin directories
+- Allow sys_admin capability for domain labeled systemd_bootchart_t
+- Split the arping path regexp to 2 lines to prevent from relabeling
+- Revert "Change arping path regexp to work around fixfiles incorrect handling"
+- Change arping path regexp to work around fixfiles incorrect handling
+- Allow read efivarfs_t files by domains executing systemctl file</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-05-05</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-38</td>
+					<td>- Disable ipa_custodia before policy update
+- Extend use of DISTRO=redhat UBAC=n DIRECT_INITRC=n MONOLITHIC=n MLS_CATS=1024 MCS_CATS=1024
+- Drop unused seusers file</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-04-29</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-37</td>
+					<td>- Update networkmanager_read_pid_files() to allow also list_dir_perms
+- Update policy for NetworkManager_ssh_t
+- Allow glusterd synchronize between master and slave
+- Allow spamc_t domain to read network state
+- Allow strongswan use tun/tap devices and keys
+- Allow systemd_userdbd_t domain logging to journal</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-04-09</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-36</td>
+					<td>- Allow rngd create netlink_kobject_uevent_socket and read udev runtime files
+- Allow ssh-keygen create file in /var/lib/glusterd
+- Update ctdbd_manage_lib_files() to also allow mmap ctdbd_var_lib_t files
+- Introduce daemons_dontaudit_scheduling boolean</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/packages/sandbox.pp</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,2976 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>selinux-policy-devel - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				selinux-policy-devel
+				<small class="text-muted"> in fedora-32</small>
+			</h1>
+			<p>
+			This page displays detail informations of the selinux-policy-devel package. You might
+			want go back to <a href=".">the main page of selinux-policy-devel</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-03-25</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-32</td>
+					<td>- Allow openfortivpn exec shell
+- Remove label session_dbusd_tmp_t for /run/user/USERID/systemd
+- Add ibacm_t ipc_lock capability
+- Allow ipsec_t connectto ipsec_mgmt_t
+- Remove ipa_custodia
+- Allow systemd-journald to read user_tmp_t symlinks</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-03-18</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-31</td>
+					<td>- Allow zabbix_t manage and filetrans temporary socket files
+- Makefile: fix tmp/%.mod.fc target</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-03-13</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-30</td>
+					<td>- Allow NetworkManager read its unit files and manage services
+- Add init_daemon_domain() for geoclue_t
+- Allow to use nnp_transition in pulseaudio_role
+- Allow pdns_t domain to map files in /usr.
+- Label all NetworkManager fortisslvpn plugins as openfortivpn_exec_t
+- Allow sssd read systemd-resolved runtime directory
+- Allow sssd read NetworkManager's runtime directory
+- Mark nm-cloud-setup systemd units as NetworkManager_unit_file_t
+- Allow system_mail_t to signull pcscd_t
+- Create interface pcscd_signull
+- Allow login_pgm create and bind on netlink_selinux_socket
+- Allow auditd poweroff or switch to single mode</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-02-28</td>
+					<td>Lukas Vrabec <lvrabec at redhat dot com> - 3.14.5-29</td>
+					<td>- Allow postfix stream connect to cyrus through runtime socket
+- Dontaudit daemons to set and get scheduling policy/parameters</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-02-22</td>
+					<td>Lukas Vrabec <lvrabec at redhat dot com> - 3.14.5-28</td>
+					<td>- Allow certmonger_t domain to read pkcs_slotd lock files
+- Allow httpd_t domain to mmap own var_lib_t files BZ(1804853)
+- Allow ipda_custodia_t to create udp_socket and added permission nlmsg_read for netlink_route_sockets
+- Make file context more variable for /usr/bin/fusermount and /bin/fusermount
+- Allow local_login_t domain to getattr cgroup filesystem
+- Allow systemd_logind_t domain to manage user_tmp_t char and block devices</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-02-18</td>
+					<td>Lukas Vrabec <lvrabec at redhat dot com> - 3.14.5-27</td>
+					<td>- Update virt_read_qemu_pid_files inteface
+- Allow systemd_logind_t domain to getattr cgroup filesystem
+- Allow systemd_logind_t domain to manage user_tmp_t char and block devices
+- Allow nsswitch_domain attribute to stream connect to systemd process</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-02-16</td>
+					<td>Lukas Vrabec <lvrabec at redhat dot com> - 3.14.5-26</td>
+					<td>- Allow systemd labeled as init_t to manage systemd_userdbd_runtime_t symlinks
+- Allow systemd_userdbd_t domain to read efivarfs files</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-02-15</td>
+					<td>Lukas Vrabec <lvrabec at redhat dot com> - 3.14.5-25</td>
+					<td>- Allow vhostmd communication with hosted virtual machines
+- Add and update virt interfaces
+- Update radiusd policy
+- Allow systemd_private_tmp(named_tmp_t)
+- Allow bacula dac_override capability
+- Allow systemd_networkd_t to read efivarfs
+- Add support for systemd-userdbd
+- Allow systemd system services read efivarfs files</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-02-07</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-24</td>
+					<td>- Allow ptp4l_t create and use packet_socket sockets
+- Allow ipa_custodia_t create and use netlink_route_socket sockets.
+- Allow networkmanager_t transition to setfiles_t
+- Create init_create_dirs boolean to allow init create directories</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-01-31</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.5-23</td>
+					<td>- Allow thumb_t connect to system_dbusd_t BZ(1795044)
+- Allow saslauthd_t filetrans variable files for /tmp directory
+- Added apache create log dirs macro
+- Tiny documentation fix
+- Allow openfortivpn_t to manage net_conf_t files.
+- Introduce boolean openfortivpn_can_network_connect.
+- Dontaudit domain chronyd_t to list in user home dirs.
+- Allow init_t to create apache log dirs.
+- Add file transition for /dev/nvidia-uvm BZ(1770588)
+- Allow syslog_t to read efivarfs_t files
+- Add ioctl to term_dontaudit_use_ptmx macro
+- Update xserver_rw_session macro</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/html/Fedora release 32 (Thirty Two).html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/html/style.css</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/Makefile</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/devel/include/admin</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/admin.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/devel/include/apps</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/apps.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/build.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/devel/include/contrib</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/global_booleans.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/global_tunables.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/devel/include/kernel</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/devel/include/roles</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/roles.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/devel/include/services</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/services.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/devel/include/support</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/devel/include/system</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/support/all_perms.spt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/support/divert.m4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/support/file_patterns.spt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/support/ipc_patterns.spt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/support/loadable_module.spt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/support/misc_macros.spt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/support/misc_patterns.spt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/support/mls_mcs_macros.spt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/support/obj_perm_sets.spt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/support/policy.dtd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/support/segenxml.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/support/undivert.m4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/admin/bootloader.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/admin/consoletype.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/admin/dmesg.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/admin/netutils.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/admin/su.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/admin/sudo.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/admin/usermanage.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/corecommands.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/corenetwork.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/devices.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/domain.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/files.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/filesystem.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/kernel.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/mcs.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/mls.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/selinux.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/storage.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/terminal.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/ubac.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/kernel/unlabelednet.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/abrt.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/accountsd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/acct.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ada.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/afs.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/aiccu.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/aide.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/aisexec.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ajaxterm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/alsa.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/amanda.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/amavis.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/amtu.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/anaconda.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/antivirus.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/apache.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/apcupsd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/apm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/apt.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/arpwatch.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/asterisk.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/authbind.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/authconfig.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/automount.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/avahi.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/awstats.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/backup.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/bacula.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/bcfg2.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/bind.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/bird.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/bitlbee.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/blkmapd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/blueman.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/bluetooth.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/boinc.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/boltd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/brctl.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/brltty.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/bugzilla.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/bumblebee.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cachefilesd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/calamaris.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/callweaver.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/canna.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ccs.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cdrecord.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/certmaster.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/certmonger.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/certwatch.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cfengine.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cgdcbxd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cgroup.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/chrome.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/chronyd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cinder.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cipe.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/clamav.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/clockspeed.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/clogd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cloudform.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cmirrord.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cobbler.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cockpit.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/collectd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/colord.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/comsat.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/condor.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/conman.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/conntrackd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/consolekit.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/container.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/corosync.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/couchdb.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/courier.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cpucontrol.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cpufreqselector.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cpuplug.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cron.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ctdb.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cups.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cvs.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cyphesis.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/cyrus.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/daemontools.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dante.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dbadm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dbskk.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dbus.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dcc.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ddclient.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ddcprobe.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/denyhosts.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/devicekit.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dhcp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dictd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dirmngr.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dirsrv-admin.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dirsrv.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/distcc.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/djbdns.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dkim.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dmidecode.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dnsmasq.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dnssec.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dnssectrigger.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dovecot.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dpkg.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/drbd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/dspam.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/entropyd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/etcd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/evolution.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/exim.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/fail2ban.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/fcoe.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/fetchmail.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/finger.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/firewalld.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/firewallgui.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/firstboot.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/fprintd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/freeipmi.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/freqset.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ftp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/fwupd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/games.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/gatekeeper.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/gdomap.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/gear.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/geoclue.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/gift.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/git.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/gitosis.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/glance.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/glusterd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/gnome.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/gnomeclock.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/gpg.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/gpm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/gpsd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/gssproxy.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/guest.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/hadoop.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/hal.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/hddtemp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/hostapd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/howl.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/hsqldb.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/hwloc.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/hypervkvp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/i18n_input.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ibacm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/icecast.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ifplugd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/imaze.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/inetd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/inn.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/iodine.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/iotop.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ipa.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ipa_custodia.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ipmievd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/irc.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ircd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/irqbalance.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/iscsi.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/isns.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/jabber.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/java.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/jetty.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/jockey.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/journalctl.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/kde.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/kdump.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/kdumpgui.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/keepalived.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/kerberos.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/kerneloops.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/keyboardd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/keystone.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/kismet.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/kmscon.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/kpatch.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ksmtuned.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ktalk.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/kubernetes.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/kudzu.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/l2tp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ldap.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/lightsquid.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/likewise.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/linuxptp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/lircd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/livecd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/lldpad.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/loadkeys.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/lockdev.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/logrotate.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/logwatch.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/lpd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/lsm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/lttng-tools.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mailman.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mailscanner.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/man2html.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mandb.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mcelog.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mcollective.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mediawiki.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/memcached.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/milter.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/minidlna.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/minissdpd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mip6d.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mirrormanager.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mock.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/modemmanager.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mojomojo.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mon_statd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mongodb.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mono.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/monop.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/motion.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mozilla.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mpd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mplayer.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mrtg.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mta.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/munin.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mysql.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/mythtv.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/naemon.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/nagios.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/namespace.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ncftool.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/nessus.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/networkmanager.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ninfod.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/nis.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/nova.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/nscd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/nsd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/nslcd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/nsplugin.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ntop.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ntp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/numad.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/nut.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/nx.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/oav.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/obex.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/oddjob.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/oident.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/opafm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/openca.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/openct.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/opendnssec.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/openfortivpn.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/openhpi.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/openhpid.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/openshift-origin.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/openshift.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/opensm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/openvpn.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/openvswitch.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/openwsman.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/oracleasm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/osad.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pacemaker.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pads.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/passenger.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pcmcia.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pcp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pcscd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pdns.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pegasus.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/perdition.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pesign.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pingd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/piranha.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pkcs.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pkcs11proxyd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pki.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/plymouthd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/podsleuth.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/policykit.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/polipo.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/portage.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/portmap.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/portreserve.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/portslave.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/postfix.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/postfixpolicyd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/postgrey.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ppp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/prelink.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/prelude.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/privoxy.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/procmail.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/prosody.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/psad.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ptchown.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/publicfile.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pulseaudio.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/puppet.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pwauth.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pxe.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/pyzor.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/qemu.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/qmail.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/qpid.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/quantum.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/quota.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rabbitmq.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/radius.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/radvd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/raid.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rasdaemon.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/razor.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rdisc.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/readahead.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/realmd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/redis.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/remotelogin.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/resmgr.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rgmanager.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rhcs.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rhev.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rhgb.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rhnsd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rhsmcertd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ricci.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rkhunter.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rkt.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rlogin.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rngd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rolekit.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/roundup.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rpc.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rpcbind.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rpm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rrdcached.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rshd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rssh.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rsync.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rtas.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rtkit.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/rwho.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/samba.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sambagui.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/samhain.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sandbox.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sandboxX.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sanlock.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sasl.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sbd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sblim.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/screen.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sectoolm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sendmail.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sensord.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/setroubleshoot.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sge.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/shorewall.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/shutdown.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/slocate.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/slpd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/slrnpull.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/smartmon.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/smokeping.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/smoltclient.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/smsd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/smstools.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/snapper.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/snmp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/snort.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sosreport.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/soundserver.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/spamassassin.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/speech-dispatcher.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/speedtouch.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/squid.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sslh.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sssd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/stapserver.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/stratisd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/stunnel.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/svnserve.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/swift.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/swift_alias.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sxid.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/sysstat.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/tangd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/targetd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/tcpd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/tcsd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/telepathy.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/telnet.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/tftp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/tgtd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/thin.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/thumb.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/thunderbird.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/timedatex.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/timidity.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/tlp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/tmpreaper.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/tomcat.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/tor.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/transproxy.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/tripwire.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/tuned.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/tvtime.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/tzdata.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ucspitcp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/udisks2.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/ulogd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/uml.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/updfstab.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/uptime.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/usbmodules.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/usbmuxd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/userhelper.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/usernetctl.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/uucp.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/uuidd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/uwimap.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/varnishd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/vbetool.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/vdagent.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/vhostmd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/virt.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/vlock.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/vmtools.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/vmware.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/vnstatd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/vpn.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/w3c.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/watchdog.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/wdmd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/webadm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/webalizer.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/wine.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/wireshark.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/wm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/xen.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/xfs.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/xguest.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/xprint.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/xscreensaver.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/yam.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/zabbix.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/zarafa.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/zebra.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/zoneminder.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/contrib/zosremote.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/macro-expander</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/application.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/authlogin.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/clock.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/fstools.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/getty.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/hostname.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/hotplug.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/init.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/ipsec.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/iptables.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/kdbus.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/libraries.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/locallogin.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/logging.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/lvm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/miscfiles.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/modutils.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/mount.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/netlabel.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/selinuxutil.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/setrans.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/sysnetwork.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/systemd.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/udev.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/unconfined.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/system/userdomain.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/roles/auditadm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/roles/logadm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/roles/secadm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/roles/staff.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/roles/sysadm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/roles/sysadm_secadm.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/roles/unconfineduser.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/roles/unprivuser.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/Makefile</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/example.fc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/example.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/example.te</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/devel/html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/devel/include</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/policy.dtd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/policy.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/apps/seunshare.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/services/postgresql.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/services/ssh.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/selinux/devel/include/services/xserver.if</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/devel</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/var/lib/sepolgen/interface_info</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

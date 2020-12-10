@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>elfutils-debuginfod-client-devel - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				elfutils-debuginfod-client-devel
+				<small class="text-muted"> in fedora-33</small>
+			</h1>
+			<p>
+			This page displays detail informations of the elfutils-debuginfod-client-devel package. You might
+			want go back to <a href=".">the main page of elfutils-debuginfod-client-devel</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-09-08</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.181-1</td>
+					<td>- Upgrade to upstream 0.181
+  - libelf: elf_update now compensates (fixes up) a bad sh_addralign
+    for SHF_COMPRESSED sections.
+  - libdebuginfod: configure now takes --enable-libdebuginfod=dummy or
+    --disable-libdebuginfod for bootstrapping.
+    DEBUGINFOD_URLS now accepts "scheme-free" urls
+    (guessing at what the user meant, either http:// or file://)
+  - readelf, elflint: Handle aarch64 bti, pac bits in dynamic table and
+    gnu property notes.
+  - libdw, readelf: Recognize DW_CFA_AARCH64_negate_ra_state. Allows
+    unwinding on arm64 for code that is compiled for PAC
+    (Pointer Authentication Code) as long as it isn't enabled.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-25</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.180-7</td>
+					<td>- Add elfutils-0.180-shf-compressed.patch</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-27</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 0.180-6</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-22</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.180-5</td>
+					<td>- Remove elfutils-libelf-devel-static and elfutils-devel-static subpackages.
+- Remove duplicate listing of sysconfig/debuginfod (config) file.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-13</td>
+					<td>Tom Stellard <tstellar at redhat dot com> - 0.180-4</td>
+					<td>- Use make macros
+- https://fedoraproject.org/wiki/Changes/UseMakeBuildInstallMacro</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-03</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.180-3</td>
+					<td>- Add elfutils-0.180-mhd-result.patch</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-01</td>
+					<td>Jeff Law <law at redhat dot com> - 0.180-2</td>
+					<td>- Disable LTO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-11</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.180-1</td>
+					<td>- New upstream release.
+  elflint: Allow SHF_EXCLUDE as generic section flag when --gnu is given.
+  libdw, readelf: Handle GCC LTO .gnu.debuglto_ prefix.
+  libdw: Use correct CU to resolve file names in dwarf_decl_file.
+  libdwfl: Handle debugaltlink in dwfl_standard_find_debuginfo.
+  size: Also obey radix printing for bsd format.
+  nm: Explicitly print weak 'V' or 'T' and common 'C' symbols.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-04-30</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.179-2</td>
+					<td>- Add elfutils-0.179-debug-client-alt-link.patch</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-03-30</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.179-1</td>
+					<td>- New upstream release.
+  debuginfod-client:
+  - When DEBUGINFOD_PROGRESS is set and the program doesn't
+    install its own debuginfod_progressfn_t show download
+    progress on stderr.
+  - DEBUGINFOD_TIMEOUT is now defined as seconds to get at
+    least 100K, defaults to 90 seconds.
+  - Default to $XDG_CACHE_HOME/debuginfod_client.
+  - New functions debuginfod_set_user_data,
+    debuginfod_get_user_data, debuginfod_get_url and
+    debuginfod_add_http_header.
+  - Support for file:// URLs.
+
+  debuginfod:
+  - Performance improvements through highly parallelized scanning
+    and archive content caching.
+  - Uses libarchive directly for reading rpm archives.
+  - Support for indexing .deb/.ddeb archives through dpkg-deb
+    or bsdtar.
+  - Generic archive support through -Z EXT[=CMD]. Which can be
+    used for example for arch-linux pacman files by using
+    -Z '.tar.zst=zstdcat'.
+  - Better logging using User-Agent and X-Forwarded-For headers.
+  - More prometheus metrics.
+  - Support for eliding dots or extraneous slashes in path names.
+
+  debuginfod-find:
+  - Accept /path/names in place of buildid hex.
+
+  libelf:
+  - Handle PN_XNUM in elf_getphdrnum before shdr 0 is cached
+  - Ensure zlib resource cleanup on failure.
+
+  libdwfl:
+  - dwfl_linux_kernel_find_elf and dwfl_linux_kernel_report_offline
+    now find and handle a compressed vmlinuz image.
+
+  readelf, elflint:
+  - Handle PT_GNU_PROPERTY.
+
+  translations:
+  - Updated Ukrainian translation.</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/elfutils/debuginfod.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libdebuginfod.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/pkgconfig/libdebuginfod.pc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/debuginfod_add_http_header.3.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/debuginfod_begin.3.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/debuginfod_end.3.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/debuginfod_find_debuginfo.3.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/debuginfod_find_executable.3.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/debuginfod_find_source.3.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/debuginfod_get_url.3.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/debuginfod_get_user_data.3.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/debuginfod_set_progressfn.3.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/debuginfod_set_user_data.3.gz</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

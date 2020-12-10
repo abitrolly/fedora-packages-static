@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>proftpd-devel - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				proftpd-devel
+				<small class="text-muted"> in fedora-32</small>
+			</h1>
+			<p>
+			This page displays detail informations of the proftpd-devel package. You might
+			want go back to <a href=".">the main page of proftpd-devel</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-02-19</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6c-1</td>
+					<td>- Update to 1.3.6c
+  - Use-after-free vulnerability in memory pools during data transfer
+    (https://github.com/proftpd/proftpd/issues/903)
+  - Fix mod_tls compilation with LibreSSL 2.9.x
+    (https://github.com/proftpd/proftpd/issues/810)
+  - MaxClientsPerUser was not enforced for SFTP logins when mod_digest was
+    enabled (https://github.com/proftpd/proftpd/issues/750)
+  - mod_sftp now handles an OpenSSH-specific private key format; it detects
+    such keys, and logs a hint about reformatting them to a supported format
+    (https://github.com/proftpd/proftpd/issues/793)
+  - Directory listing was slower compared to previous ProFTPD versions
+    (https://github.com/proftpd/proftpd/issues/793)
+  - mod_sftp crashed when using pubkey-auth with DSA keys
+    (https://github.com/proftpd/proftpd/issues/866)
+  - Fix improper handling of TLS CRL lookups (CVE-2019-19269, CVE-2019-19270,
+    https://github.com/proftpd/proftpd/issues/859)
+  - Leaking PAM handler and data in case of unsuccessful authentication
+    (https://github.com/proftpd/proftpd/issues/870)
+  - SSH authentication failed for many clients due to receiving of
+    SSH_MSG_IGNORE packet (http://bugs.proftpd.org/show_bug.cgi?id=4385)
+  - SFTP publickey authentication failed unexpectedly when user had no shadow
+    password info. (https://github.com/proftpd/proftpd/issues/890)
+  - ftpasswd failed to restore password file permissions in some cases
+    (https://github.com/proftpd/proftpd/issues/898)
+  - Out-of-bounds read in mod_cap getstateflags() function; this has been
+    addressed by updating the bundled version of libcap
+    (https://github.com/proftpd/proftpd/issues/902)
+    Note that this build of ProFTPD uses the system version of libcap and not
+    the bundled version</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-01-30</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.3.6b-4</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-01-22</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6b-3</td>
+					<td>- Fix API tests compile failure with GCC 10
+  https://github.com/proftpd/proftpd/pull/886
+- mod_sftp: When handling the 'keyboard-interactive' authentication mechanism,
+  as used for (e.g.) PAM, make sure to properly handle DEBUG, IGNORE,
+  DISCONNECT, and UNIMPLEMENTED messages, per RFC 4253
+  (http://bugs.proftpd.org/show_bug.cgi?id=4385)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-11-29</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6b-2</td>
+					<td>- Fix handling of CRL lookups by properly using issuer for lookups, and
+  guarding against null pointers (GH#859, GH#861, CVE-2019-19269,
+  CVE-2019-19270)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-10-20</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6b-1</td>
+					<td>- Update to 1.3.6b
+  - Fixed pre-authentication remote denial-of-service issue
+    (CVE-2019-18217, https://github.com/proftpd/proftpd/issues/846)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-10-13</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6a-1</td>
+					<td>- Update to 1.3.6a
+  - Configure script wrongly detected AIX lastlog functions
+    (http://bugs.proftpd.org/show_bug.cgi?id=4304)
+  - AllowChrootSymlinks off could cause login failures depending on filesystem
+    permissions (http://bugs.proftpd.org/show_bug.cgi?id=4306)
+  - mod_ctrls: error: unable to bind to local socket: Address already in use
+    (https://github.com/proftpd/proftpd/issues/501)
+  - Failed to handle multiple %{env:...} variables in single word in
+    configuration (https://github.com/proftpd/proftpd/issues/507)
+  - mod_sftp failed to check shadow password information when publickey
+    authentication used (http://bugs.proftpd.org/show_bug.cgi?id=4308)
+  - Use of "AllowEmptyPasswords off" broke SFTP/SCP logins
+    (http://bugs.proftpd.org/show_bug.cgi?id=4309)
+  - Use of mod_facl as static module caused ProFTPD to die on SIGHUP/restart
+    (http://bugs.proftpd.org/show_bug.cgi?id=4310)
+  - Use of curve25519-sha256@libssh.org SSH2 key exchange sometimes failed
+    (https://github.com/proftpd/proftpd/issues/556)
+  - Close extra file descriptors at startup
+    (http://bugs.proftpd.org/show_bug.cgi?id=4312)
+  - <Anonymous> with AuthAliasOnly in effect did not work as expected
+    (http://bugs.proftpd.org/show_bug.cgi?id=4314)
+  - CreateHome NoRootPrivs only worked partially
+    (https://github.com/proftpd/proftpd/issues/568)
+  - SFTP OPEN response included attribute flags that are not actually provided
+    (https://github.com/proftpd/proftpd/issues/578)
+  - Truncation of file while being downloaded with sendfile enabled caused
+    timeouts due to infinite loop (http://bugs.proftpd.org/show_bug.cgi?id=4318)
+  - FTP uploads frequently broke due to "Interrupted system call" error
+    (http://bugs.proftpd.org/show_bug.cgi?id=4319)
+  - Site-to-site transfers over TLS failed
+    (https://github.com/proftpd/proftpd/issues/618)
+  - Can't see symlinks using any FTP client when using MLSD
+    (http://bugs.proftpd.org/show_bug.cgi?id=4322)
+  - mod_tls 1.3.6 failed to compile using OpenSSL 0.9.8e
+    (http://bugs.proftpd.org/show_bug.cgi?id=4325)
+  - Using MaxClientsPerHost 1 in <Anonymous> section denied logins
+    (http://bugs.proftpd.org/show_bug.cgi?id=4326)
+  - SQLNamedConnectInfo with different backend database did not work properly
+    (https://github.com/proftpd/proftpd/issues/642)
+  - Segfault with mod_sftp+mod_sftp_pam after successful authentication using
+    keyboard-interactive method (https://github.com/proftpd/proftpd/issues/656)
+  - autoconf always failed to detect support for FIPS
+    (https://github.com/proftpd/proftpd/issues/660)
+  - SFTP connections failed when using "arcfour256" cipher
+    (https://github.com/proftpd/proftpd/issues/663)
+  - mod_auth_otp failed to build with OpenSSL 1.1.x
+    (http://bugs.proftpd.org/show_bug.cgi?id=4335)
+  - scp broken on FreeBSD 11 (http://bugs.proftpd.org/show_bug.cgi?id=4341)
+  - Update mod_sftp to handle changed APIs in OpenSSL 1.1.x releases
+    (https://github.com/proftpd/proftpd/issues/674)
+  - Infinite loop possible in mod_sftp's set_sftphostkey() function
+    (http://bugs.proftpd.org/show_bug.cgi?id=4356)
+  - Some ASCII text files corrupted when downloading
+    (http://bugs.proftpd.org/show_bug.cgi?id=4352)
+  - Properly use the --includedir, --libdir configure variables in the
+    generated proftpd.pc pkgconfig file
+    (https://github.com/proftpd/proftpd/issues/797)
+  - Reading invalid SSH key from database resulted in unexpected/unlogged
+    disconnect failures (http://bugs.proftpd.org/show_bug.cgi?id=4350)
+  - Symlink navigation broken after 1.3.6 update
+    (http://bugs.proftpd.org/show_bug.cgi?id=4332)
+  - Unable to connect to ProFTPD using TLSSessionTickets and TLSv1.3
+    (https://github.com/proftpd/proftpd/issues/795)
+  - SITE CPFR/CPTO did not honor <Limit> configurations
+    (http://bugs.proftpd.org/show_bug.cgi?id=4372)
+  - Using "TLSProtocol SSLv23" did not enable all protocol versions
+    (https://github.com/proftpd/proftpd/issues/807)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-09-15</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6-23</td>
+					<td>- Refactor configuration to support /etc/proftpd/conf.d configuration and use
+  config snippets (#1589441)
+- Drop legacy GeoIP support from F-32, EL-8 onwards
+  http://bugs.proftpd.org/show_bug.cgi?id=4053
+  https://github.com/proftpd/proftpd/issues/605</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-07-26</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.3.6-22</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-07-23</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6-21</td>
+					<td>- An arbitrary file copy vulnerability in mod_copy in ProFTPD allowed for
+  remote code execution and information disclosure without authentication
+  (CVE-2019-12815)
+  http://bugs.proftpd.org/show_bug.cgi?id=4372
+  https://github.com/proftpd/proftpd/pull/816</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-02-02</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.3.6-20</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/include/proftpd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/pkgconfig/proftpd.pc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/ascii.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/auth.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/bindings.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/buildstamp.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/ccan-json.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/child.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/class.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/cmd.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/compat.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/conf.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/config.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/configdb.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/ctrls.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/data.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/default_paths.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/dirtree.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/display.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/encode.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/env.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/event.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/expr.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/feat.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/filter.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/fsio.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/ftp.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/glibc-glob.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/hanson-tpl.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/help.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/ident.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/inet.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/json.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/lastlog.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/libsupp.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/log.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/logfmt.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/memcache.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/mkhome.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/mod_ctrls.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/mod_load.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/mod_quotatab.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/mod_sftp.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/mod_sql.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/mod_tls.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/mod_vroot.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/mod_wrap2.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/modules.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/netacl.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/netaddr.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/netio.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/options.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/parser.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/pidfile.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/pool.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/pr-syslog.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/privs.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/proctitle.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/proftpd.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/redis.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/regexp.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/response.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/rlimit.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/scoreboard.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/session.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/sets.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/signals.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/stash.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/str.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/support.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/table.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/throttle.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/timers.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/trace.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/utf8.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/var.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/version.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/include/proftpd/xferlog.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/prxs</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

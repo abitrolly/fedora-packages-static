@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>copr-backend-doc - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				copr-backend-doc
+				<small class="text-muted"> in fedora-rawhide</small>
+			</h1>
+			<p>
+			This page displays detail informations of the copr-backend-doc package. You might
+			want go back to <a href=".">the main page of copr-backend-doc</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-12-01</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.140-1</td>
+					<td>- fix frontend-client post arguments</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-30</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.139-1</td>
+					<td>- require appropriate common version
+- use common for repeatedly sends requests to frontend</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-30</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.138-1</td>
+					<td>- get back to using standard createrepo_c command from createrepo_mod
+- drop call to stomp's conn.start() (it was dropped)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-09</td>
+					<td>Jakub Kadlcik <frostyx at email dot cz> 1.137-1</td>
+					<td>- backend: test action for deleting chroot
+- backend: fix testsuite for the new createrepo_c
+- frontend: don't set ended_on for canceled builds
+- all: run pytest with -vv in package build
+- common, cli, python, rpmbuild, frontend, backend: DistGit source method
+- backend: use createrepo_mod tool for generating module repodata</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-12</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.136-1</td>
+					<td>- testsuite: give more time to the slow Koji builders</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-10</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.135-1</td>
+					<td>- prioritize all non-background jobs
+- fix up libmodulemd dependency</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-19</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.134-1</td>
+					<td>- fix copr-repo to work with absolute paths
+- automatically batch the createrepo requests
+- scheduler is now fair, and ordered
+- indefinitely retry workers' talk to frontend
+- allow canceling also "starting" builds
+- more verbose delete action in logs
+- cleanup the example configuration
+- use FileHandler for backend.log, fixes traceback</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-09</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.133-1</td>
+					<td>- better build task priority processing
+- dump attempt to send message to backend.log
+- drop the VMM concept, replaced with resalloc
+- delegate more work to the builder code
+- external blob tarball for unittests
+- buggy error handler in pkg_name_evr()
+- basic build task priority
+- the reschedule-all builds idiom removed
+- fix the build cancelation
+- drop duplicate BuildRequire on python-requests
+- require the newest version of copr-common
+- minimalize the transfered amount of information about actions from FE
+- process actions in regard to their priority
+- move backend's code to standard PYTHONPATH
+- move ActionResult to copr_common.enums
+- actions/builds use the same WorkerManager logic
+- more verbose rawhide to release action processing</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-02-05</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.132-1</td>
+					<td>- better handle invalid options in copr-repo --add/--delete
+- copr-repo: optimize-out useless createrepo_c runs
+- move initial createrepo check from dispatcher to worker
+- don't send messages on bus N-times
+- /bin/copr-repo now respects .disable-appstream files
+- drop unused build_deleting_without_createrepo option</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-01-15</td>
+					<td>Tomas Hrnciar <thrnciar at redhat dot com> 1.131-1</td>
+					<td>- put build-ID.log file to resultdir
+- call call_copr_repo if initial createrepo failed
+- Build Dispatcher does not wait forever till repo is created,
+  it creates it manually
+- properly delete logs for old builds
+- delete build-ID.log files again
+- edit repositories only by new 'copr-repo' tool
+- fix multi-build delete
+- fix for not saving end time of actions
+- lower traffic in build_dispatcher log
+- more resilient redis logging
+- attempt to publish on msgbus N-times
+- log service: move RequiredBy to [Install]
+- keep worker ID in proc title</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/.buildinfo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/Autodoc.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/Backend_design.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/Configuration.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/INSTALL.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/README.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/Statistics.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/VmManagement.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/html/_sources</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/html/_static</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/genindex.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/index.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/objects.inv</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/html/package</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/run_scripts.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/search.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/searchindex.js</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/examples</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/basic.css</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/classic.css</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/default.css</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/doctools.js</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/documentation_options.js</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/file.png</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/jquery-3.5.1.js</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/jquery.js</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/language_data.js</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/minus.png</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/plus.png</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/pygments.css</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/searchtools.js</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/sidebar.js</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/underscore-1.3.1.js</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_static/underscore.js</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/copr-backend-doc/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/actions.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/constants.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/createrepo.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/html/package/daemons</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/exceptions.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/frontend.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/helpers.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/job.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/html/package/mockremote</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/sign.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/html/package/vm_manage</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/examples/etc/logstash.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/vm_manage/__init__.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/vm_manage/check.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/vm_manage/event_handle.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/vm_manage/executor.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/vm_manage/manager.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/vm_manage/models.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/vm_manage/spawn.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/vm_manage/terminate.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/mockremote/__init__.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/mockremote/builder.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/Autodoc.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/Backend_design.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/Configuration.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/INSTALL.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/README.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/Statistics.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/VmManagement.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/index.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/run_scripts.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/mockremote/__init__.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/mockremote/builder.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/actions.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/constants.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/createrepo.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/daemons</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/exceptions.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/frontend.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/helpers.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/job.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/mockremote</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/sign.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/vm_manage</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/vm_manage/__init__.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/vm_manage/check.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/vm_manage/event_handle.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/vm_manage/executor.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/vm_manage/manager.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/vm_manage/models.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/vm_manage/spawn.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/vm_manage/terminate.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/copr-backend-doc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/daemons/backend.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/daemons/dispatcher.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/daemons/job_grab.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/daemons/log.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/package/daemons/vm_master.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/daemons/backend.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/daemons/dispatcher.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/daemons/job_grab.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/daemons/log.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/html/_sources/package/daemons/vm_master.rst.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend/examples/etc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/copr-backend</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/examples/etc/logstash.d/copr_backend.conf</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

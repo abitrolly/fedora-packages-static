@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ghc-rpm-macros - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				ghc-rpm-macros
+				<small class="text-muted"> in epel-7</small>
+			</h1>
+			<p>
+			This page displays detail informations of the ghc-rpm-macros package. You might
+			want go back to <a href=".">the main page of ghc-rpm-macros</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2019-07-27</td>
+					<td>Jens Petersen <petersen at redhat dot com> - 1.0.12-1</td>
+					<td>- set ghc_without_dynamic for Haskell static executable</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2018-07-28</td>
+					<td>Jens Petersen <petersen at redhat dot com> - 1.0.11-1</td>
+					<td>- update url
+- add macros.ghc-os and cabal-tweak-drop-dep
+- install licenses (Cabal docdir) in licenses dir</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2016-12-01</td>
+					<td>Jens Petersen <petersen at redhat dot com> - 1.0.10-1</td>
+					<td>- workaround unversioned _pkgdocdir in RHEL 7.3 (see #1392354)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2016-10-27</td>
+					<td>Jens Petersen <petersen at redhat dot com> - 1.0.7.5-3</td>
+					<td>- sync with 1.2.20.fc21
+- add aarch64 and ppc64le until RHEL 7.3 redhat-rpm-config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2016-10-26</td>
+					<td>Jens Petersen <petersen at redhat dot com> - 1.0.7.5-2</td>
+					<td>- rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2015-10-08</td>
+					<td>Jens Petersen <petersen at redhat dot com> - 1.0.7.5-1</td>
+					<td>- cabal macro now sets utf8 locale
+- introduce ghc_pkgdocdir since no _pkgdocdir in RHEL 7 and earlier
+- add cabal_test macro
+- ghc_fix_dynamic_rpath: on ARMv7 RPATH is RUNPATH
+- add new names ghc_html_dir, ghc_html_libraries_dir, and ghc_html_pkg_dir
+- correct cabal-tweak-flag error message for missing flag (#1184508)
+- split ghc.attr into ghc_lib.attr and ghc_bin.attr for finer grained handling
+- require ghc-compiler for ghc_version
+- ghc-deps.sh: support ghc-pkg for ghc builds <= 7.4.2 as well
+- ghc.attr needs to handle requires for /usr/bin files too
+- improve ghc_fix_dynamic_rpath not to assume cwd = pkg_name
+- drop -O2: it often uses too much build mem
+- add an rpm .attr file for ghc-deps.sh rather than running it
+  as an external dep generator (#1132275)
+  (see http://rpm.org/wiki/PackagerDocs/DependencyGenerator)
+- condition use of execstack since no prelink on ppc64le or arm64</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2014-05-17</td>
+					<td>Jens Petersen <petersen at redhat dot com> - 1.0.7.4-1</td>
+					<td>- do bcond cabal configure --enable-tests also for Bin packages
+- enable configure bcond check for tests
+- use -O2 also for executable (Bin) packages and allow it to be overrided
+- set Url field when generating subpackages
+- update license tag to GPLv3+
+- handle no _pkgdocdir in RHEL7 and docdir path different to F20+
+- abort ghc_fix_dynamic_rpath if no chrpath
+- Install macros to %{_rpmconfigdir}/macros.d.
+- set datasubdir in cabal_configure for ghc-7.8</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2014-03-28</td>
+					<td>Jens Petersen <petersen at redhat dot com> - 1.0.4.1-1</td>
+					<td>- backport recent changes from F20:
+- quote the ghc_fix_dynamic_rpath error message
+- ghc_fix_dynamic_rpath: abort for non-existent executable name
+- cabal-tweak-flag: add manual field to enforce flag changes
+- ghc-deps.sh: fix ghc-pkg path when bootstrapping new ghc version
+- fix ghc-deps.sh when bootstrapping a new ghc version
+- use objdump -p instead of ldd to read executable dependencies
+- update ghc-deps.sh to handling ghc-7.8 rts
+- ghcpkgdocdir should be versioned (for F20 and earlier)
+- add ghcpkgdocdir, which like _pkgdocdir allows for unversioned haddock dirs</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2013-07-11</td>
+					<td>Jens Petersen <petersen at redhat dot com> - 1.0.4-1</td>
+					<td>- check for bindir before looking for executables in ghc_clear_execstack</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2013-07-10</td>
+					<td>Jens Petersen <petersen at redhat dot com> - 1.0.3-1</td>
+					<td>- add ghc_clear_execstack and use it also in ghc_lib_install (#973512)
+  and require prelink for execstack</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/rpm/ghc-deps.sh</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/rpm/macros.d/macros.ghc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/rpm/macros.d/macros.ghc-os</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/ghc-rpm-macros-1.0.12/COPYING</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/rpm/fileattrs/ghc_bin.attr</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/rpm/fileattrs/ghc_lib.attr</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/cabal-tweak-dep-ver</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/cabal-tweak-drop-dep</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/cabal-tweak-flag</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/ghc-rpm-macros-1.0.12</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/ghc-rpm-macros-1.0.12</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/ghc-rpm-macros-1.0.12/AUTHORS</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

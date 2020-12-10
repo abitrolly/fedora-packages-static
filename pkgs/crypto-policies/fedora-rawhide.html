@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>crypto-policies - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				crypto-policies
+				<small class="text-muted"> in fedora-rawhide</small>
+			</h1>
+			<p>
+			This page displays detail informations of the crypto-policies package. You might
+			want go back to <a href=".">the main page of crypto-policies</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-09-23</td>
+					<td>Tomáš Mráz <tmraz at redhat dot com> - 20200918-1.git85dccc5</td>
+					<td>- add RSA-PSK algorithm support
+- add GOST algorithms support for openssl
+- add GOST-ONLY policy and fix GOST subpolicy
+- update-crypto-policies: added --check parameter to perform
+  comparison of actual configuration files with the policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-13</td>
+					<td>Tomáš Mráz <tmraz at redhat dot com> - 20200813-1.git66d4068</td>
+					<td>- libreswan: enable X25519 group
+- libreswan: properly disable FFDH in ECDHE-ONLY subpolicy
+- libreswan: add generation of authby parameter based on sign property
+- libssh: Add diffie-hellman-group14-sha256</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-27</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 20200702-2.gitc40cede</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-13</td>
+					<td>Tomáš Mráz <tmraz at redhat dot com> - 20200702-1.gitc40cede</td>
+					<td>- OSPP subpolicy: remove AES-CCM
+- openssl: handle the AES-CCM removal properly
+- openssh/libssh: drop CBC ciphersuites from DEFAULT and FIPS
+- add AD-SUPPORT subpolicy which re-enables RC4 for Kerberos
+- gnutls: disallow X448/ED448 in FIPS policy
+- merge fips-mode-setup package into the scripts subpackage</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-25</td>
+					<td>Tomáš Mráz <tmraz at redhat dot com> - 20200625-1.gitb298a9e</td>
+					<td>- DEFAULT policy: Drop DH < 2048 bits, TLS 1.0, 1.1, SHA-1
+- make the NEXT policy just an alias for DEFAULT as they are now identical
+- policies: introduce sha1_in_dnssec value for BIND
+- add SHA1 and FEDORA32 policy modules to provide backwards compatibility
+  they can be applied as DEFAULT:SHA1 or DEFAULT:FEDORA32
+- avoid duplicates of list items in resulting policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-24</td>
+					<td>Tomáš Mráz <tmraz at redhat dot com> - 20200619-1.git781bbd4</td>
+					<td>- gnutls: enable DSA signatures in LEGACY</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-10</td>
+					<td>Tomáš Mráz <tmraz at redhat dot com> - 20200610-1.git7f9d474</td>
+					<td>- openssh server: new format of configuration to be loaded by config include
+- fallback to FIPS policy instead of the default-config in FIPS mode
+- java: Document properly how to override the crypto policy
+- reorder the signature algorithms to follow the order in default openssl list</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-09</td>
+					<td>Tomáš Mráz <tmraz at redhat dot com> - 20200527-5.gitb234a47</td>
+					<td>- make the post script work in environments where /proc/sys is not available</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-05-29</td>
+					<td>Tomáš Mráz <tmraz at redhat dot com> - 20200527-4.gitb234a47</td>
+					<td>- move the symlink fix-up script to post and fix it</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-05-29</td>
+					<td>Tomáš Mráz <tmraz at redhat dot com> - 20200527-3.gitb234a47</td>
+					<td>- automatically set up FIPS policy in FIPS mode on first install</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/state/CURRENT.pol</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/state/current</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/DEFAULT.pol</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/EMPTY.pol</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/FIPS.pol</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/FUTURE.pol</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/GOST-ONLY.pol</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/LEGACY.pol</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/NEXT.pol</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/crypto-policies/policies/modules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/DEFAULT/bind.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/DEFAULT/gnutls.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/DEFAULT/java.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/DEFAULT/krb5.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/DEFAULT/libreswan.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/DEFAULT/libssh.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/DEFAULT/nss.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/DEFAULT/openssh.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/DEFAULT/opensshserver.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/DEFAULT/openssl.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/DEFAULT/opensslcnf.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FIPS/bind.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FIPS/gnutls.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FIPS/java.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FIPS/krb5.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FIPS/libreswan.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FIPS/libssh.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FIPS/nss.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FIPS/openssh.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FIPS/opensshserver.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FIPS/openssl.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FIPS/opensslcnf.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man7/crypto-policies.7.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/EMPTY/bind.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/EMPTY/gnutls.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/EMPTY/java.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/EMPTY/krb5.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/EMPTY/libreswan.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/EMPTY/libssh.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/EMPTY/nss.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/EMPTY/openssh.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/EMPTY/opensshserver.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/EMPTY/openssl.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/EMPTY/opensslcnf.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/crypto-policies</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/crypto-policies/DEFAULT</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/crypto-policies/EMPTY</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/crypto-policies/FIPS</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/crypto-policies/FUTURE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/crypto-policies/LEGACY</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/crypto-policies/back-ends</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/default-config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/crypto-policies/policies</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/reload-cmds.sh</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/LEGACY/bind.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/LEGACY/gnutls.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/LEGACY/java.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/LEGACY/krb5.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/LEGACY/libreswan.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/LEGACY/libssh.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/LEGACY/nss.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/LEGACY/openssh.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/LEGACY/opensshserver.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/LEGACY/openssl.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/LEGACY/opensslcnf.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/crypto-policies/policies/modules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/LEGACY/bind.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/LEGACY/gnutls.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/LEGACY/java.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/LEGACY/krb5.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/LEGACY/libreswan.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/LEGACY/libssh.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/LEGACY/nss.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/LEGACY/openssh.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/LEGACY/opensshserver.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/LEGACY/openssl.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/LEGACY/opensslcnf.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/crypto-policies/COPYING.LESSER</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/crypto-policies</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/back-ends/bind.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/back-ends/gnutls.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/back-ends/java.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/back-ends/krb5.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/back-ends/libreswan.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/back-ends/libssh.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/back-ends/nss.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/back-ends/openssh.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/back-ends/opensshserver.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/back-ends/openssl.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/back-ends/opensslcnf.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/crypto-policies/back-ends</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/crypto-policies/config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/crypto-policies/local.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/crypto-policies/policies</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/crypto-policies/state</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/crypto-policies/back-ends/DEFAULT</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/crypto-policies/back-ends/FIPS</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/crypto-policies/back-ends/FUTURE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/crypto-policies/back-ends/LEGACY</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FIPS/bind.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FIPS/gnutls.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FIPS/java.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FIPS/krb5.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FIPS/libreswan.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FIPS/libssh.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FIPS/nss.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FIPS/openssh.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FIPS/opensshserver.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FIPS/openssl.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FIPS/opensslcnf.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/modules/AD-SUPPORT.pmod</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/modules/ECDHE-ONLY.pmod</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/modules/FEDORA32.pmod</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/modules/GOST.pmod</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/modules/NO-CAMELLIA.pmod</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/modules/NO-SHA1.pmod</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/modules/OSPP.pmod</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/policies/modules/SHA1.pmod</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/DEFAULT/bind.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/DEFAULT/gnutls.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/DEFAULT/java.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/DEFAULT/krb5.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/DEFAULT/libreswan.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/DEFAULT/libssh.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/DEFAULT/nss.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/DEFAULT/openssh.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/DEFAULT/opensshserver.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/DEFAULT/openssl.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/DEFAULT/opensslcnf.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FUTURE/bind.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FUTURE/gnutls.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FUTURE/java.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FUTURE/krb5.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FUTURE/libreswan.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FUTURE/libssh.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FUTURE/nss.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FUTURE/openssh.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FUTURE/opensshserver.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FUTURE/openssl.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/FUTURE/opensslcnf.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/crypto-policies</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FUTURE/bind.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FUTURE/gnutls.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FUTURE/java.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FUTURE/krb5.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FUTURE/libreswan.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FUTURE/libssh.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FUTURE/nss.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FUTURE/openssh.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FUTURE/opensshserver.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FUTURE/openssl.config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/crypto-policies/back-ends/FUTURE/opensslcnf.config</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>selinux-policy - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				selinux-policy
+				<small class="text-muted"> in fedora-rawhide</small>
+			</h1>
+			<p>
+			This page displays detail informations of the selinux-policy package. You might
+			want go back to <a href=".">the main page of selinux-policy</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-12-09</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-11</td>
+					<td>- Allow systemd-logind manage init's pid files
+- Allow tcsd the setgid capability
+- Allow systemd-resolved manage its private runtime symlinks
+- Update systemd_resolved_read_pid() to also read symlinks
+- Update systemd-sleep policy
+- Add groupadd_t fowner capability
+- Migrate to GitHub Actions
+- Update README.md to reflect the state after contrib and base merge
+- Add README.md announcing merging of selinux-policy and selinux-policy-contrib
+- Adapt .travis.yml to contrib merge
+- Merge contrib into the main repo
+- Prepare to merge contrib repo
+- Move stuff around to match the main repo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-26</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-10</td>
+					<td>- Allow Xephyr connect to 6000/tcp port and open user ptys
+- Allow kexec manage generic tmp files
+- Update targetd nfs & lvm
+- Add interface rpc_manage_exports
+- Merge selinux-policy and selinux-policy-contrib repos</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-24</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-9</td>
+					<td>- Allow varnish map its private tmp files
+- Allow dovecot bind to smtp ports
+- Change fetchmail temporary files path to /var/spool/mail
+- Allow cups_pdf_t domain to communicate with unix_dgram_socket
+- Set file context for symlinks in /etc/httpd to etc_t
+- Allow rpmdb rw access to inherited console, ttys, and ptys
+- Allow dnsmasq read public files
+- Announce merging of selinux-policy and selinux-policy-contrib
+- Label /etc/resolv.conf as net_conf_t only if it is a plain file
+- Fix range for unreserved ports
+- Add files_search_non_security_dirs() interface
+- Introduce logging_syslogd_append_public_content tunable
+- Add miscfiles_append_public_files() interface</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-13</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-8</td>
+					<td>- Set correct default file context for /usr/libexec/pcp/lib/*
+- Introduce rpmdb_t type
+- Allow slapd manage files/dirs in ldap certificates directory
+- Revert "Allow certmonger add new entries in a generic certificates directory"
+- Allow certmonger add new entries in a generic certificates directory
+- Allow slapd add new entries in ldap certificates directory
+- Remove retired PCP pmwebd and pmmgr daemons (since 5.0)
+- Let keepalived bind a raw socket
+- Add default file context for /usr/libexec/pcp/lib/*
+- squid: Allow net_raw capability when squid_use_tproxy is enabled
+- systemd: allow networkd to check namespaces
+- Add ability to read init_var_run_t where fs_read_efivarfs_files is allowed
+- Allow resolved to created varlink sockets and the domain to talk to it
+- selinux: tweak selinux_get_enforce_mode() to allow status page to be used
+- systemd: allow all systemd services to check selinux status
+- Set default file context for /var/lib/ipsec/nss
+- Allow user domains transition to rpmdb_t
+- Revert "Add miscfiles_add_entry_generic_cert_dirs() interface"
+- Revert "Add miscfiles_create_generic_cert_dirs() interface"
+- Update miscfiles_manage_all_certs() to include managing directories
+- Add miscfiles_create_generic_cert_dirs() interface
+- Add miscfiles_add_entry_generic_cert_dirs() interface
+- Revert "Label /var/run/zincati/public/motd.d/* as motd_var_run_t"</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-03</td>
+					<td>Petr Lautrbach <plautrba at redhat dot com> - 3.14.7-7</td>
+					<td>- Rebuild with latest libsepol
+- Bump policy version to 33</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-10-22</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-6</td>
+					<td>- rpc.fc: Include /etc/exports.d dir & files
+- Create chronyd_pid_filetrans() interface
+- Change invalid type redisd_t to redis_t in redis_stream_connect()
+- Revert "Removed adding to attribute unpriv_userdomain from userdom_unpriv_type template"
+- Allow init dbus chat with kernel
+- Allow initrc_t create /run/chronyd-dhcp directory with a transition
+- Drop gcc from dependencies in Travis CI
+- fc_sort.py: Use "==" for comparing integers.
+- re-implement fc_sort in python
+- Remove invalid file context line
+- Drop git from dependencies in Travis CI</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-10-06</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-5</td>
+					<td>- Remove empty line from rshd.fc
+- Allow systemd-logind read swap files
+- Add fstools_read_swap_files() interface
+- Allow dyntransition from sshd_t to unconfined_t
+- Removed adding to attribute unpriv_userdomain from userdom_unpriv_type template</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-09-25</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-4</td>
+					<td>- Allow chronyd_t to accept and make NTS-KE connections
+- Allow domain write to an automount unnamed pipe
+- Label /var/run/zincati/public/motd.d/* as motd_var_run_t
+- Allow login programs to (only) read MOTD files and symlinks
+- Relabel /usr/sbin/charon-systemd as ipsec_exec_t
+- Confine systemd-sleep service
+- Add fstools_rw_swap_files() interface
+- Label 4460/tcp port as ntske_port_t
+- Add lvm_dbus_send_msg(), lvm_rw_var_run() interfaces</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-09-21</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-3</td>
+					<td>- Check out the right -contrib branch in Travis</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-09-18</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-2</td>
+					<td>- Allow openvswitch fowner capability and create netlink sockets
+- Allow additional permissions for gnome-initial-setup
+- Add to map non_security_files to the userdom_admin_user_template template
+- kernel/filesystem: Add exfat support (no extended attributes)</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/selinux-policy/COPYING</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/rpm/macros.d/macros.selinux-policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/tmpfiles.d/selinux-policy.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/sysconfig/selinux</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/selinux</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/selinux/config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/selinux-policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/packages</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

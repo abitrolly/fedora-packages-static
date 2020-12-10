@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>convert2rhel - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				convert2rhel
+				<small class="text-muted"> in epel-7</small>
+			</h1>
+			<p>
+			This page displays detail informations of the convert2rhel package. You might
+			want go back to <a href=".">the main page of convert2rhel</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-11-13</td>
+					<td>Michal Bocek <mbocek at redhat dot com> 0.13-1</td>
+					<td>- allow conversions of CentOS and Oracle Linux 8
+- fix "TypeError: execve()" py2.6-related error when calling external commands
+- remove unused code related to using offline snapshot or RHEL repositories
+- remove all Red Hat Network (RHN)-related code as RHN has been shut down
+- set POSIX/C locale at the start of running the tool
+- remove python-syspurpose dependency from spec - not available on OL 7 and 8
+- not renaming the original system repofiles anymore
+- replace the word blacklist with exclude/excluded
+- clearing yum versionlock that could cause the conversion to fail
+- printing rpm files that were modified during the conversion
+- minor UX improvements and test infrastructure improvements</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-19</td>
+					<td>Michal Bocek <mbocek at redhat dot com> 0.12-1</td>
+					<td>- require --enablerepo with --disable-submgr
+- fix failing conversions if gpgcheck=1 not in used custom repos
+- always logging debug info to the log file
+- unnecessary backup of kernel packages is not being performed
+- add missing python-setuptools dependency on RHEL 6 to a spec file
+- unregister from RHN Classic if in use
+- change a temporary folder path from /tmp/convert2rhel/ to /var/lib/convert2rhel
+- add the ability to specify custom RHSM URL
+- unsubscribe from RHSM during a rollback
+- drop the support for conversions of RHEL 5
+- make sure that RHEL kernel has been installed correctly during the conversion
+- fix parsing RHSM output due to its change in RHEL 7.8
+- fix stopping the convert2rhel execution when not running as root
+- the convert2rhel.log file is not being overwritten but appended
+- do not traceback when intentionally stopping the conversion
+- do not ask for subscription SKU pool IDs when activation key is used</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-05-12</td>
+					<td>Michal Bocek <mbocek at redhat dot com> 0.11-1</td>
+					<td>- updated license in spec files from GPLv3 to GPLv3+
+- set up automated pylint and unit test coverage checks in GitHub
+- removed packit smoke test
+- fixed packit configuration for downstream release proposals</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-05-06</td>
+					<td>Michal Bocek <mbocek at redhat dot com> 0.10-1</td>
+					<td>- fixed rpm dependencies
+- blacklisted kmod-kvdo causing a transaction failure on CentOS 7
+- convert2rhel exits with 0 on a help message
+- added packit configuration for Copr builds and unit testing on a PR</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-12-13</td>
+					<td>Michal Bocek <mbocek at redhat dot com> 0.9-1</td>
+					<td>- basic rollback capability up to the point before replacing all pkgs
+- added basic system tests running on CentOS 5/6/7 Vagrant boxes
+- unit tests can be run now in CentOS 5/6/7 Docker images
+- improved handling of kernel installation corner cases
+- added possibility to upgrade i386 OL5
+- added --debug option
+- license changed from GPLv2 to GPLv3
+- autogenerating manpage
+- collecting output of 'rpm -Va' before the conversion
+- added possibility to use custom repositories instead of RHSM
+- removed bundled rpms and repomapping for the public release</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2017-11-10</td>
+					<td>Michal Bocek <mbocek at redhat dot com> 0.8-1</td>
+					<td>- added support for conversion from CentOS/OL 5 to RHEL 5
+- the oldest supported version is CentOS/OL 5.6</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2017-03-31</td>
+					<td>Michal Bocek <mbocek at redhat dot com> 0.7-1</td>
+					<td>- remove shebang from all the python scripts
+- update spec to create arch specific rpms
+- move all the tool data into /usr/share/convert2rhel/
+- remove ppc64 RHEL 6 data - CentOS 6 and OL 6
+  were not released for this arch
+- create new SystemReleaseFile class for handling
+  /etc/system-release
+- do not print traceback on keyboard interrupt
+- move initializing Red Hat GPG key fingerprint variable
+  from main to gpgkey.py
+- update configs to add centos-release* to blacklist</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2016-07-20</td>
+					<td>Michal Bocek <mbocek at redhat dot com> 0.6-1</td>
+					<td>- Code refactored and split into new files
+- Added support for CentOS/OL 6 to RHEL 6 conversion
+- Created 'framework' for unit tests
+- Added logging to a file</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2016-06-15</td>
+					<td>Michal Bocek <mbocek at redhat dot com> 0.5-1</td>
+					<td>- The tool renamed to convert2rhel.
+- All the original kernels are removed during the conversion now.
+- Added man page.
+- EULA needs to be accepted before the conversion.
+- Packages are filtered per signature, not per vendor.
+- Added support for conversions from Oracle Linux 7 to RHEL 7.
+- Added support for --auto-attach, --activationkey and --org
+  subscription-manager arguments.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2016-05-09</td>
+					<td>Michal Bocek <mbocek at redhat dot com> 0.4-1</td>
+					<td>- Added both interactive and cmd line option for choosing RHEL variant.
+- Added autodetection of platform architecture.
+- Implemented handling of unsuccessful subscription attachment.
+- Added a config file for each supported distribution.
+- Added possibility to blacklist conflicting pkgs.</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel-0.13-py2.7.egg-info/PKG-INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel-0.13-py2.7.egg-info/SOURCES.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel-0.13-py2.7.egg-info/dependency_links.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel-0.13-py2.7.egg-info/entry_points.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel-0.13-py2.7.egg-info/top_level.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/convert2rhel.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel-0.13-py2.7.egg-info</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/__init__.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/__init__.pyo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/logger.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/logger.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/logger.pyo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/main.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/main.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/main.pyo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/pkghandler.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/pkghandler.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/pkghandler.pyo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/pkgmanager.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/pkgmanager.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/pkgmanager.pyo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/redhatrelease.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/redhatrelease.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/redhatrelease.pyo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/repo.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/repo.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/repo.pyo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/rhelvariant.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/rhelvariant.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/rhelvariant.pyo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/subscription.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/subscription.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/subscription.pyo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/systeminfo.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/systeminfo.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/systeminfo.pyo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/toolopts.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/toolopts.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/toolopts.pyo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/utils.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/utils.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python2.7/site-packages/convert2rhel/utils.pyo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/convert2rhel</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/convert2rhel</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/lib/convert2rhel</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/convert2rhel-0.13/README.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/convert2rhel/configs/centos-7-x86_64.cfg</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/convert2rhel/configs/oracle-7-x86_64.cfg</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/convert2rhel/configs/suse_es-7-x86_64.cfg</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/convert2rhel/GLOBAL_EULA_RHEL</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/convert2rhel/configs</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/convert2rhel/gpg-keys</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/convert2rhel/gpg-keys/RPM-GPG-KEY-redhat-legacy-release</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/convert2rhel/gpg-keys/RPM-GPG-KEY-redhat-release</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/convert2rhel-0.13</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/convert2rhel-0.13</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/convert2rhel-0.13/LICENSE</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

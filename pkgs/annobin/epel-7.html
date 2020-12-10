@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>annobin - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				annobin
+				<small class="text-muted"> in epel-7</small>
+			</h1>
+			<p>
+			This page displays detail informations of the annobin package. You might
+			want go back to <a href=".">the main page of annobin</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-11-24</td>
+					<td>Nick Clifton <nickc at redhat dot com> - 9.46-1</td>
+					<td>- Annocheck: Disable reporting future fails by default.
+- GCC plugin: Always record global notes for the .text.startup,
+  .text.exit, .text.hot and .text.cold sections.
+- Clang plugin: Add -lLLVM to the build command line.
+- Annocheck: Improve reporting of missing -D_FORTIFY_SOURCE option.  (#1898075)
+- Annocheck: Improve reporting of missing LTO option.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-10</td>
+					<td>Nick Clifton <nickc at redhat dot com> - 9.41-1</td>
+					<td>- Annocheck: Handle gimple compiled binaries.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-09</td>
+					<td>Nick Clifton <nickc at redhat dot com> - 9.38-1</td>
+					<td>- Rebase to 9.39
+- Annocheck: Add fixes for building on RHEL-7.
+- Annocheck: Fix bug parsing DW_AT_producer.
+- Add test of .note.gnu.property section for PowerPC.
+- Add test of objcopy's ability to merge notes.
+- Record the -flto setting and produce a soft warning if it is absent.
+- Suppress warnings about _D_GLIBCXX_ASSERTIONS if the source code is known to be something other than C++.
+- Correct the directory chosen for 32-bit LLVM and Clang plugins.  (#1884951)
+- Allow the use of the SHF_LINK_ORDER section flag to discard unused notes.  (Experimental).
+- Enable the build and installation of the LLVM and Clang plugins.  (Experimental).
+- gcc-plugin: Fix test for empty PowerPC sections.  (#1880634)
+- annocheck: Add tests for the AArch64 BTI and PAC security features.  (#1862478)
+- gcc plugin: Use a 4 byte offset for PowerPC start symbols, so that they do not break disassemblies.
+- gcc plugin: Correct the detection of 32-bit x86 builds.  (#1876197)
+- gcc plugin: Detect any attempt to access the global_options array.
+- gcc plugin: Do not complain about missing pre-processor options when examining a preprocessed input file.  (#1862718)
+- Use more robust checks for AArch64 options.
+- Detect CLANG compiled assembler that is missing IBT support.
+- Improved target pointer size discovery.
+- Rebuild with plugin enabled to check that suppression works.
+- Add support for installing clang and llvm plugins.
+- Temporary suppression of aarch64 pointer size check.  (#1860549)
+- Annocheck: Do not skip tests of the short-enums notes.  (#1743635)
+- Add (optional) llvm plugin.
+- Annobin: Fall back on using the flags if the option cannot be found in cl_options.  (#1817659)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-04-16</td>
+					<td>Nick Clifton <nickc at redhat dot com> - 9.20-1</td>
+					<td>- Annocheck: Detect Fortran compiled programs.  (#1824393)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-04-01</td>
+					<td>Nick Clifton <nickc at redhat dot com> - 9.19-1</td>
+					<td>- Annobin: If option name mismatch occurs, seach for the real option.  (#1817452)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-03-30</td>
+					<td>Nick Clifton <nickc at redhat dot com> - 9.18-1</td>
+					<td>- Annocheck: Fix a division by zero error when parsing GO binaries.  (#1818863)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-03-27</td>
+					<td>Nick Clifton <nickc at redhat dot com> - 9.17-1</td>
+					<td>- Annobin: Fix access to the -flto and -fsanitize flags.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-03-26</td>
+					<td>Nick Clifton <nickc at redhat dot com> - 9.14-1</td>
+					<td>- Use offsets stored in gcc's cl_option structure to access the global_options array, thus removing the need to check for changes in the size of this structure.
+- Rename gcc plugin directory to gcc-plugin.
+- Stop annocheck from complaining about missing options when the binary has been built in a mixed environment.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-03-04</td>
+					<td>Nick Clifton <nickc at redhat dot com> - 9.12-1</td>
+					<td>- Improve builtby tool.
+- Stop annocheck complaining about missing notes when the binary is not compiled by either gcc or clang.
+- Skip the check of the ENTRY instruction for binaries not compiled by gcc or clang.  (#1809656)
+- Fix infinite loop hangup in annocheck.
+- Disable debuginfod support by default.
+- Improve parsing of .comment section.
+- Fix clang plugin to use hidden symbols.
+- Add ability to build clang plugin (disabled by default).
+- Annocheck: Fix error printing out the version number.
+- Annobin: Add checks of the exact location of the examined switches.
+- Annobin: Note when stack clash notes are generated.
+- Annocheck: Handle multiple builder IDs in the .comment section.
+- Add configure option to suppress building annocheck.
+- Fix debuginfod test.
+- Correct the build requirement for building with debuginfod support.
+- Add debuginfod support.
+- Add clang plugin (experimental).
+- Have annocheck ignore notes with an end address of 0.
+- Improve checking of gcc versions.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-11-15</td>
+					<td>Nick Clifton <nickc at redhat dot com> - 8.90-1</td>
+					<td>- Do not skip positive results.</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/gcc/x86_64-redhat-linux/4.8.5/plugin</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/annobin-plugin/annotation.proposal.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/annocheck</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/annobin.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/annocheck.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/built-by.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/check-abi.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/hardened.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/run-on-binaries-in.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/info/annobin.info.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/annobin-9.46/COPYING3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/annobin-9.46/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/annobin-9.46</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/gcc/x86_64-redhat-linux/4.8.5/plugin/annobin.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/gcc/x86_64-redhat-linux/4.8.5/plugin/annobin.so.0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/gcc/x86_64-redhat-linux/4.8.5/plugin/annobin.so.0.0.0</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

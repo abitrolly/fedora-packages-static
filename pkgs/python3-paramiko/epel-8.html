@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>python3-paramiko - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				python3-paramiko
+				<small class="text-muted"> in epel-8</small>
+			</h1>
+			<p>
+			This page displays detail informations of the python3-paramiko package. You might
+			want go back to <a href=".">the main page of python3-paramiko</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2019-09-24</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 2.4.3-1</td>
+					<td>- Update to 2.4.3
+  - Fix Ed25519 key handling so certain key comment lengths don't cause
+    'SSHException("Invalid key")' (GH#1306, GH#1400)
+  - Add support for the modern (as of Python 3.3) import location of
+    'MutableMapping' (used in host key management) to avoid the old location
+    becoming deprecated in Python 3.8</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-09-24</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 2.4.2-2</td>
+					<td>- Drop Python 2 package
+  https://fedoraproject.org/wiki/Changes/Mass_Python_2_Package_Removal</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2018-10-09</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 2.4.2-1</td>
+					<td>- Update to 2.4.2
+  - Fix exploit (GH#1283, CVE-2018-1000805) in Paramiko’s server mode (not
+    client mode) where hostile clients could trick the server into thinking
+    they were authenticated without actually submitting valid authentication
+  - Modify protocol message handling such that Transport does not respond to
+    MSG_UNIMPLEMENTED with its own MSG_UNIMPLEMENTED; this behavior probably
+    didn’t cause any outright errors, but it doesn’t seem to conform to the
+    RFCs and could cause (non-infinite) feedback loops in some scenarios
+    (usually those involving Paramiko on both ends)
+  - Add *.pub files to the MANIFEST so distributed source packages contain
+    some necessary test assets (GH#1262)
+- Test suite now requires mock ≥ 2.0.0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2018-07-14</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 2.4.1-5</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2018-06-20</td>
+					<td>Miro Hrončok <mhroncok at redhat dot com> - 2.4.1-4</td>
+					<td>- Rebuilt for Python 3.7
+- Remove dependency on on pytest-relaxed</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2018-03-16</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 2.4.1-1</td>
+					<td>- Update to 2.4.1
+  - Fix a security flaw (GH#1175, CVE-2018-7750) in Paramiko's server mode
+    (this does not impact client use) where authentication status was not
+    checked before processing channel-open and other requests typically only
+    sent after authenticating
+  - Ed25519 auth key decryption raised an unexpected exception when given a
+    unicode password string (typical in python 3) (GH#1039)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2018-02-09</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 2.4.0-3</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2017-11-18</td>
+					<td>Athmane Madjoudj <athmane at fedoraproject dot org> - 2.4.0-2</td>
+					<td>- Add gssapi patch back since 2.4.0 still not compatible
+- Add missing BR (lost during merge)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2017-11-17</td>
+					<td>Igor Gnatenko <ignatenkobrain at fedoraproject dot org> - 2.4.0-1</td>
+					<td>- Update to 2.4.0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2017-11-15</td>
+					<td>Athmane Madjoudj <athmane at fedoraproject dot org> - 2.4.0-1</td>
+					<td>- Update to 2.4.0 (rhbz #1513208)
+- Revamp check section</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko-2.4.3-py3.6.egg-info/PKG-INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko-2.4.3-py3.6.egg-info/SOURCES.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko-2.4.3-py3.6.egg-info/dependency_links.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko-2.4.3-py3.6.egg-info/requires.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko-2.4.3-py3.6.egg-info/top_level.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/__init__.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/__init__.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/_version.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/_version.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/_winapi.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/_winapi.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/agent.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/agent.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/auth_handler.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/auth_handler.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/ber.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/ber.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/buffered_pipe.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/buffered_pipe.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/channel.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/channel.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/client.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/client.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/common.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/common.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/compress.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/compress.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/config.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/config.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/dsskey.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/dsskey.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/ecdsakey.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/ecdsakey.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/ed25519key.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/ed25519key.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/file.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/file.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/hostkeys.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/hostkeys.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/kex_ecdh_nist.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/kex_ecdh_nist.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/kex_gex.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/kex_gex.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/kex_group1.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/kex_group1.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/kex_group14.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/kex_group14.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/kex_gss.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/kex_gss.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/message.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/message.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/packet.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/packet.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/pipe.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/pipe.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/pkey.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/pkey.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/primes.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/primes.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/proxy.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/proxy.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/py3compat.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/py3compat.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/rsakey.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/rsakey.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/server.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/server.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp_attr.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp_attr.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp_client.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp_client.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp_file.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp_file.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp_handle.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp_handle.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp_server.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp_server.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp_si.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/sftp_si.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/ssh_exception.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/ssh_exception.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/ssh_gss.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/ssh_gss.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/transport.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/transport.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/util.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/util.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/win_pageant.cpython-36.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__/win_pageant.cpython-36.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/python3-paramiko</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/python3-paramiko/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko-2.4.3-py3.6.egg-info</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/python3-paramiko/NEWS</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/python3-paramiko/README.rst</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/__pycache__</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/_version.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/_winapi.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/agent.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/auth_handler.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/ber.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/buffered_pipe.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/channel.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/client.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/common.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/compress.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/config.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/dsskey.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/ecdsakey.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/ed25519key.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/file.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/hostkeys.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/kex_ecdh_nist.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/kex_gex.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/kex_group1.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/kex_group14.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/kex_gss.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/message.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/packet.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/pipe.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/pkey.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/primes.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/proxy.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/py3compat.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/rsakey.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/server.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/sftp.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/sftp_attr.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/sftp_client.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/sftp_file.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/sftp_handle.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/sftp_server.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/sftp_si.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/ssh_exception.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/ssh_gss.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/transport.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/util.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/paramiko/win_pageant.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/python3-paramiko</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

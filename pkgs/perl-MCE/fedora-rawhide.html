@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>perl-MCE - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				perl-MCE
+				<small class="text-muted"> in fedora-rawhide</small>
+			</h1>
+			<p>
+			This page displays detail informations of the perl-MCE package. You might
+			want go back to <a href=".">the main page of perl-MCE</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2020-08-19</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.874-1</td>
+					<td>- Update to 1.874
+  - Improved MCE->yield when used together with MCE::Relay</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-02</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.873-1</td>
+					<td>- Update to 1.873
+  - Removed unused variable in MCE::Mutex::Channel</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-28</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.872-3</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-23</td>
+					<td>Jitka Plesnikova <jplesnik at redhat dot com> - 1.872-2</td>
+					<td>- Perl 5.32 rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-15</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.872-1</td>
+					<td>- Update to 1.872
+  - Added open to required dependencies
+  - Set default encodings on standard filehandles in tests using UTF-8
+  - Bumped minimal Perl version to 5.8.1
+  - Bumped MCE version to 1.872 to align with MCE::Shared
+  - The MCE project is feature complete</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-05-11</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.868-1</td>
+					<td>- Update to 1.868
+  - Bug fix for UTF-8 issues during inter-process communication:
+    - This update required undoing optimizations specific to scalar args
+    - Essentially, IPC involves serialization for everything going forward
+    - Install Sereal::Encoder and Sereal::Decoder for better performance in
+      Perl 5.8.8+
+  - MCE options flush_stdout, flush_stderr, and flush_file now default to
+    enabled for the MCE->print, MCE->printf, and MCE->say output routines
+  - Improved MCE::Child with threads-like detach capability (see POD)
+  - Improved IPC in MCE::Queue with permanent fast-like dequeue including
+    dequeue_nb; going forward, the fast and barrier options are silently
+    ignored if specified (i.e. no-op)
+  - Improved IPC performance on Linux
+  - Completed threads-like detach capability in MCE::Child
+  - Resolved MCE::Channel failing when calling dequeue multiple times on an
+    ended channel
+  - MCE->say, MCE->print, and MCE->printf now return 1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-02-09</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.866-1</td>
+					<td>- Update to 1.866
+  - Bug fix for restart_worker, race condition introduced in 1.863</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-01-30</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.865-2</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-12-26</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.865-1</td>
+					<td>- Update to 1.865
+  - Bug fix for two-way IPC stalling on Windows in MCE::Channel::Threads:
+    see https://www.perlmonks.org/?node_id=11110612
+  - Remove the check for MSWin32 in MCE::Channel::Mutex; MCE::Channel since
+    the 1st release silently defaults to MCE::Channel::Threads on Windows
+  - Small tweak to MCE::Signal</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-12-04</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.864-1</td>
+					<td>- Update to 1.864
+  - Bug fix to MCE::Signal - Shared manager not exiting, introduced in 1.863
+  - Use monotonic clock if available in MCE->yield and MCE::Child->yield:
+    see https://www.perlmonks.org/?node_id=11109673</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Mutex/Channel.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Mutex/Channel2.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Mutex/Flock.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/perl-MCE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/perl-MCE/Changes</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/perl-MCE/Credits</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/perl-MCE/README.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Candy.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Channel.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Channel::Mutex.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Channel::Simple.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Channel::Threads.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Child.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Core.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Core::Input::Generator.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Core::Input::Handle.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Core::Input::Iterator.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Core::Input::Request.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Core::Input::Sequence.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Core::Manager.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Core::Validation.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Core::Worker.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Examples.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Flow.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Grep.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Loop.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Map.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Mutex.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Mutex::Channel.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Mutex::Channel2.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Mutex::Flock.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Queue.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Relay.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Signal.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Step.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Stream.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Subs.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man3/MCE::Util.3pm.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Core/Input/Generator.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Core/Input/Handle.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Core/Input/Iterator.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Core/Input/Request.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Core/Input/Sequence.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/perl-MCE/Copying</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/perl-MCE/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Core/Input</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Core/Manager.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Core/Validation.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Core/Worker.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Candy.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Channel</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Channel.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Child.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Core</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Core.pod</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Examples.pod</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Flow.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Grep.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Loop.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Map.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Mutex</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Mutex.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Queue.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Relay.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Signal.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Step.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Stream.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Subs.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Util.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/perl-MCE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Channel/Mutex.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Channel/Simple.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE/Channel/Threads.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/perl5/vendor_perl/MCE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE.pm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/perl5/vendor_perl/MCE.pod</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>
