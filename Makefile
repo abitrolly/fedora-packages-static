@@ -12,7 +12,11 @@ help:
 	@echo "clean: remove artefacts"
 	@echo "update-solr: update solr index. must have SOLR_CORE and SOLR_URL defined"
 
+ifneq (,$(wildcard vue/node_modules))
 all: sync-repositories fetch-maintainers html js
+else
+all: sync-repositories fetch-maintainers html setup-js js
+endif
 
 html-only: sync-repositories fetch-maintainers html
 
