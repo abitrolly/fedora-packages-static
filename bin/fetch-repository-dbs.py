@@ -83,6 +83,70 @@ def index_db(name, tempdb):
         conn.commit()
         conn.close()
 
+# Adds a table named 'changes' listing if certian packages were changed,
+#  added, or deleted.
+def gen_db_diff(name, new, old):
+    if not os.path.isfile(old) or not new.endswith('primary.sqlite'):
+        return
+    
+    print(f'{name.ljust(padding)} Creating diff for file: {old}')
+    conn = sqlite3.connect(new)
+    conn.execute(f'ATTACH DATABASE \'{old}\' as old')
+    # changes table schema:
+    # name - package name
+    # arch - package arch
+    # version - {epoch}:{package version}-{package release}
+    # change - 'updated', 'removed', or 'added'
+    conn.execute('''
+        CREATE TABLE changes (
+            name TEXT NOT NULL,
+            arch TEXT NOT NULL,
+            version TEXT,
+            change TEXT NOT NULL,
+            UNIQUE(name, arch)
+        )
+        ''')
+    # Insert added packages list to changes table
+    conn.execute('''
+        INSERT INTO changes (name, arch, version, change)
+        SELECT main.packages.name, main.packages.arch,
+            IIF(main.packages.epoch IS NOT NULL, main.packages.epoch || ':', '') ||
+                main.packages.version || '-' || main.packages.release || '.' || main.packages.arch,
+            'added'
+        FROM main.packages LEFT JOIN old.packages ON main.packages.name = old.packages.name
+            AND main.packages.arch = old.packages.arch
+        WHERE old.packages.name IS NULL
+        ''')
+    # Insert removed packages list to changes table
+    conn.execute('''
+        INSERT INTO changes (name, arch, version, change)
+        SELECT old.packages.name, old.packages.arch,
+            IIF(old.packages.epoch IS NOT NULL, old.packages.epoch || ':', '') ||
+                old.packages.version || '-' || old.packages.release,
+            'removed'
+        FROM old.packages LEFT JOIN main.packages ON main.packages.name = old.packages.name
+            AND main.packages.arch = old.packages.arch
+        WHERE main.packages.name IS NULL
+        ''')
+    # Insert changed packages list to changes table
+    conn.execute('''
+        INSERT INTO changes (name, arch, change)
+        SELECT name, arch, 'changed' FROM 
+            (SELECT main.packages.name, main.packages.arch,
+                IIF(main.packages.epoch IS NOT NULL, main.packages.epoch || ':', '') ||
+                main.packages.version || '-' || main.packages.release || '.' || main.packages.arch
+            FROM main.packages
+            UNION
+            SELECT old.packages.name, old.packages.arch,
+                IIF(old.packages.epoch IS NOT NULL, old.packages.epoch || ':', '') ||
+                old.packages.version || '-' || old.packages.release || '.' || old.packages.arch
+            FROM old.packages)
+        GROUP BY name, arch
+        HAVING COUNT(*) > 1
+        ''')
+    conn.commit()
+    conn.close()
+
 def install_db(name, src, dest):
     print(f'{name.ljust(padding)} Installing {src} to {dest}.')
     shutil.move(src, dest)
@@ -148,6 +212,7 @@ def handle(repo, target_dir):
             download_db(name, repomd_url, archive)
             decompress_db(name, archive, tempdb)
             index_db(name, tempdb)
+            gen_db_diff(name, tempdb, destfile)
             install_db(name, tempdb, destfile)
 
 def get_repository_urls_for(product, version):
