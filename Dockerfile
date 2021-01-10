@@ -24,6 +24,7 @@ ENV DB_DIR /etc/packages/repositories
 ENV MAINTAINER_MAPPING /etc/packages/pagure_owner_alias.json
 ENV SOLR_CORE packages
 ENV SOLR_URL http://127.0.0.1:8983/
+ENV SITEMAP_URL https://localhost:8080
 
 COPY . .
 RUN chmod -R o+rx assets
@@ -32,7 +33,7 @@ RUN make setup-js \
   && make js
 
 COPY container/nginx.conf /etc/nginx/nginx.conf
-COPY container/update-packages.sh /etc/cron.weekly/
+COPY container/update-packages.sh /etc/cron.daily/
 COPY container/supervisord.conf /etc/supervisord.conf
 
 # TODO: Figure out how to use a read-write volume for

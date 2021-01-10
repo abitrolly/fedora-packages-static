@@ -12,6 +12,7 @@ import json
 import shutil
 import sqlite3
 import argparse
+import glob
 
 from datetime import date
 from collections import defaultdict
@@ -22,7 +23,7 @@ TEMPLATE_DIR='../templates'
 DBS_DIR=os.environ.get('DB_DIR') or "repositories"
 ASSETS_DIR='assets'
 SCM_MAINTAINER_MAPPING=os.environ.get('MAINTAINER_MAPPING') or "pagure_owner_alias.json"
-SITEMAP_URL = 'https://pkgs.fedoraproject.org'
+SITEMAP_URL = os.environ.get('SITEMAP_URL') or 'https://localhost:8080'
 
 class Package:
     def __init__(self, name):
@@ -63,6 +64,15 @@ def open_db(db):
 
     return (conn, c)
 
+def clean_dir(path):
+    files = glob.glob(os.path.join(path, '*.html'))
+    for file in files:
+        try:
+            os.remove(file)
+        except:
+            print("Error cleaning directory!")
+            print(sys.exc_info()[0])
+
 def save_to(path, content):
     with open(path, 'w') as fh:
         fh.write(content)
@@ -81,7 +91,6 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
 
     # Initialize templating system.
-    db = os.path.join(DBS_DIR, "koji-primary.sqlite")
     env = Environment(
             loader=PackageLoader('generate-html', TEMPLATE_DIR),
             autoescape=select_autoescape(['html'])
@@ -109,6 +118,7 @@ def main():
 
     # Build internal package metadata structure / cache.
     packages = {}
+    partial_update = False
     srpm_pattern = re.compile("^(.+)-.+-.+.src.rpm$")
     changelog_mail_pattern = re.compile("<(.+@.+)>")
     release_branch_pattern = re.compile("^([fedora|epel]+-[\w|\d]+)-?([a-z|-]+)?$")
@@ -122,6 +132,16 @@ def main():
         (_, primary) = open_db(databases[release_branch]["primary"])
         (_, filelist) = open_db(databases[release_branch]["filelists"])
         (_, other) = open_db(databases[release_branch]["other"])
+
+        if not partial_update:
+            primary.execute("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'changes'")
+            partial_update = primary.fetchone() is not None
+
+        partial_update_packages = []
+        if partial_update:
+            primary.execute('SELECT name FROM changes')
+            for row in primary.fetchall():
+                partial_update_packages.append(row['name'])
 
         for raw in primary.execute('SELECT * FROM packages'):
             pkg = packages.get(raw["name"])
@@ -141,6 +161,12 @@ def main():
                 pkg.upstream = raw["url"]
                 pkg.license = raw["rpm_license"]
                 pkg.maintainers = maintainer_mapping["rpms"].get(pkg.name, [])
+
+            # Check if package should be updated during a partial update
+            if partial_update and pkg.name in partial_update_packages:
+                pkg.should_update = True
+            elif first_pkg_encounter and partial_update:
+                pkg.should_update = False
 
             # Handle subpackage specific case.
             (srpm_name) = srpm_pattern.findall(raw["rpm_sourcerpm"])[0]
@@ -214,7 +240,10 @@ def main():
     # Generate main pages.
     print(">>> Index pages...")
     for pkg in packages.values():
+        if pkg.should_update == False:
+            continue
         pkg_dir = os.path.join(output_dir, 'pkgs', pkg.name)
+        clean_dir(pkg_dir)
         os.makedirs(pkg_dir, exist_ok=True)
 
         html_path = os.path.join(pkg_dir, 'index.html')
@@ -232,6 +261,8 @@ def main():
     db_conns = {}
     detailed_page_count = 0
     for pkg in packages.values():
+      if pkg.should_update == False:
+        continue
       pkg_dir = os.path.join(output_dir, 'pkgs', pkg.name)
       for release in pkg.releases.keys():
         for branch in pkg.get_release(release).keys():
@@ -299,7 +330,7 @@ def main():
           print("Processed {}/{} pages.".format(detailed_page_count, max_page_count))
 
     print("DONE.")
-    print("> {} packages processed.".format(len(packages)))
+    print("> {} packages processed.".format(page_count))
 
 if __name__ == '__main__':
     main()

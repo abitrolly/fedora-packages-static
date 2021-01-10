@@ -95,7 +95,7 @@ def gen_db_diff(name, new, old):
     # changes table schema:
     # name - package name
     # arch - package arch
-    # version - {epoch}:{package version}-{package release}
+    # version (optional) - {epoch}:{package version}-{package release}
     # change - 'updated', 'removed', or 'added'
     conn.execute('''
         CREATE TABLE changes (
@@ -131,7 +131,7 @@ def gen_db_diff(name, new, old):
     # Insert changed packages list to changes table
     conn.execute('''
         INSERT INTO changes (name, arch, change)
-        SELECT name, arch, 'changed' FROM 
+        SELECT name, arch, 'updated' FROM 
             (SELECT main.packages.name, main.packages.arch,
                 IIF(main.packages.epoch IS NOT NULL, main.packages.epoch || ':', '') ||
                 main.packages.version || '-' || main.packages.release || '.' || main.packages.arch
@@ -145,6 +145,14 @@ def gen_db_diff(name, new, old):
         HAVING COUNT(*) > 1
         ''')
     conn.commit()
+    conn.close()
+
+def clear_diff_table(db):
+    conn = sqlite3.connect(db)
+    result = conn.execute("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'changes'")
+    if result.fetchone() is not None:
+        conn.execute("DELETE FROM changes")
+        conn.commit()
     conn.close()
 
 def install_db(name, src, dest):
@@ -200,6 +208,7 @@ def handle(repo, target_dir):
         # Have we downloaded this before?  Did it change?
         destfile = os.path.join(target_dir, db)
         if not needs_update(destfile, shasum, shatype):
+            clear_diff_table(destfile)
             print(f'{name.ljust(padding)} No change of {repomd_url}')
             continue
 
