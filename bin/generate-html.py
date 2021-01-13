@@ -119,6 +119,7 @@ def main():
     # Build internal package metadata structure / cache.
     packages = {}
     partial_update = False
+    removed_packages = set()
     srpm_pattern = re.compile("^(.+)-.+-.+.src.rpm$")
     changelog_mail_pattern = re.compile("<(.+@.+)>")
     release_branch_pattern = re.compile("^([fedora|epel]+-[\w|\d]+)-?([a-z|-]+)?$")
@@ -183,6 +184,17 @@ def main():
                 branch = "base"
 
             pkg.set_release(release, raw["pkgKey"], branch, revision)
+        
+        # Get removed packages to determine if folder needs to be deleted later
+        if partial_update:
+            for removed in primary.execute("SELECT name FROM changes WHERE change = 'removed'"):
+                removed_packages.add(removed["name"])
+
+    # If a package was removed and it was not in any repository, attempt to
+    # delete the folder from the target directory
+    for removed_package in removed_packages:
+        if removed_package not in packages:
+            shutil.rmtree(os.path.join(output_dir, 'pkgs', removed_package), True)
 
     # Set license and maintainers for subpackages. We have to wait for all
     # packages to have been processed since subpackage might have been
