@@ -134,9 +134,9 @@ def main():
         (_, filelist) = open_db(databases[release_branch]["filelists"])
         (_, other) = open_db(databases[release_branch]["other"])
 
-        if not partial_update:
-            primary.execute("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'changes'")
-            partial_update = primary.fetchone() is not None
+        # Check if this db has a changes table
+        primary.execute("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'changes'")
+        partial_update = primary.fetchone() is not None
 
         partial_update_packages = []
         if partial_update:
@@ -168,6 +168,11 @@ def main():
                 pkg.should_update = True
             elif first_pkg_encounter and partial_update:
                 pkg.should_update = False
+            
+            # If a changes table does not exist, then the package should
+            # always be updated.
+            if not partial_update:
+                pkg.should_update = True
 
             # Handle subpackage specific case.
             (srpm_name) = srpm_pattern.findall(raw["rpm_sourcerpm"])[0]
