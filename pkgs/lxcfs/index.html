@@ -68,14 +68,26 @@
 					</a>
 				</li>
 			</ul>
-			<p class="yacy-index">LXCFS is a small FUSE filesystem written with the intention of making
-Linux containers feel more like a virtual machine. It started as a
-side-project of LXC but is usable by any runtime.
+			<p class="yacy-index">LXCFS is a simple userspace filesystem designed to work around some
+current limitations of the Linux kernel.
 
-LXCFS will take care that the information provided by crucial files in
-procfs are container aware such that the values displayed (e.g. in
-/proc/uptime) really reflect how long the container is running and not
-how long the host is running.</p>
+Specifically, it's providing two main things
+
+- A set of files which can be bind-mounted over their /proc originals
+  to provide CGroup-aware values.
+
+- A cgroupfs-like tree which is container aware.
+
+The code is pretty simple, written in C using libfuse.
+
+The main driver for this work was the need to run systemd based
+containers as a regular unprivileged user while still allowing systemd
+inside the container to interact with cgroups.
+
+Now with the introduction of the cgroup namespace in the Linux kernel,
+that part is no longer necessary on recent kernels and focus is now on
+making containers feel more like a real independent system through the
+proc masking feature.</p>
 			<div id="vue">
 				<hr />
 				<div class="row">
@@ -95,7 +107,7 @@ how long the host is running.</p>
 									<td>fedora-rawhide</td>
 									<td>
 									
-									<a href="fedora-rawhide.html">4.0.6-1.fc34</a>
+									<a href="fedora-rawhide.html">4.0.7-1.fc34</a>
 									
 									</td>
 
@@ -110,7 +122,7 @@ how long the host is running.</p>
 									<td>fedora-33</td>
 									<td>
 									
-									<a href="fedora-33-updates.html">4.0.6-1.fc33</a>
+									<a href="fedora-33-updates.html">4.0.7-1.fc33</a>
 									
 									</td>
 
@@ -125,7 +137,7 @@ how long the host is running.</p>
 									<td>fedora-32</td>
 									<td>
 									
-									<a href="fedora-32-updates.html">4.0.6-1.fc32</a>
+									<a href="fedora-32-updates.html">4.0.7-1.fc32</a>
 									
 									</td>
 

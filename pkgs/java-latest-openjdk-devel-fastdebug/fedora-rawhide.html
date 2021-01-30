@@ -49,6 +49,71 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-01-22</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.2.0.7-0.rolling</td>
+					<td>- Update to jdk-15.0.2.0+7
+- Add release notes for 15.0.1.0 & 15.0.2.0
+- Use JEP-322 Time-Based Versioning so we can handle a future 11.0.9.1-like release correctly.
+- Still use 15.0.x rather than 15.0.x.0 for file naming, as the trailing zero is omitted from tags.
+- Cleanup debug package descriptions and version number placement.
+- Remove unused patch files.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-19</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.1.9-10.rolling</td>
+					<td>- Use -march=i686 for x86 builds if -fcf-protection is detected (needs CMOV)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-22</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-9.rolling</td>
+					<td>- fixed missing condition for fastdebug packages being counted as debug ones</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-19</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-8.rolling</td>
+					<td>- removed lib-style provides for fastdebug_suffix_unquoted</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-19</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-6.rolling</td>
+					<td>- many cosmetic changes taken from more maintained jdk11
+- introduced debug_arches, bootstrap_arches, systemtap_arches, fastdebug_arches, sa_arches, share_arches, shenandoah_arches, zgc_arches 
+  instead of various hardcoded ifarches
+- updated systemtap
+- added requires excludes for debug pkgs
+- removed redundant logic around jsa files
+- added runtime requires of lksctp-tools and libXcomposite%
+- added and used Source15 TestSecurityProperties.java, but is made always positive as jdk15 now does not honor system policies
+- s390x excluded form fastdebug build</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-17</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.1.9-5.rolling</td>
+					<td>- introduced nm based check to verify alt-java on x86_64 is patched, and no other alt-java or java is patched
+- patch600 rh1750419-redhat_alt_java.patch amended to die, if it is used wrongly
+- introduced ssbd_arches with currently only valid arch of x86_64 to separate real alt-java architectures</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-09</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-4.rolling</td>
+					<td>- moved wrongly placed licenses to accompany other ones
+- this bad placement was killng parallel-installability and thus having bad impact to leapp if used</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-01</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-3.rolling</td>
+					<td>- added patch600, rh1750419-redhat_alt_java.patch, suprassing removed patch
+- no longer copying of java->alt-java as it is created by  patch600</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2020-11-23</td>
 					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-2.rolling</td>
 					<td>- Create a copy of java as alt-java with alternatives and man pages
@@ -59,66 +124,6 @@
 					<td>2020-10-25</td>
 					<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:15.0.1.9-1.rolling</td>
 					<td>- updated to October CPU 2020 sources</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-10-22</td>
-					<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:15.0.0.36-4.rolling</td>
-					<td>- Fix directory ownership of -static-libs sub-package.</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-10-09</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.0.36-3.rolling</td>
-					<td>- Build static-libs-image and add resulting files via -static-libs sub-package.
-- Disable stripping of debug symbols for static libraries part of the -static-libs sub-package.
-- JDK-8245832 increases the set of static libraries, so try and include them all with a wildcard.
-- Update static-libs packaging to new layout</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-09-21</td>
-					<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:15.0.0.36-2.rolling</td>
-					<td>- Add support for fastdebug builds on 64 bit architectures</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-09-15</td>
-					<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:15.0.0.36-1.rolling</td>
-					<td>- Remove EA designation
-- Re-generate sources with PR3803 patch</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-31</td>
-					<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:15.0.0.36-0.1.ea.rolling</td>
-					<td>- Update to jdk 15.0.0.36 tag
-- Modify rh1648249-add_commented_out_nss_cfg_provider_to_java_security.patch
-- Update vendor version string to 20.9
-- jjs removed from packaging after JEP 372: Nashorn removal
-- rmic removed from packaging after JDK-8225319</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-07-27</td>
-					<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:14.0.2.12-2.rolling</td>
-					<td>- Disable LTO so as to pass debuginfo check</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-07-22</td>
-					<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:14.0.2.12-1.rolling</td>
-					<td>- update to jdk 14.0.2.12 CPU version
-- remove upstreamed patch jdk8237879-make_4_3_build_fixes.patch
-- remove upstreamed patch jdk8235833-posixplatform_cpp_should_not_include_sysctl_h.patch
-- remove upstreamed patch jdk8243059-build_fails_when_with_vendor_contains_comma.patch</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-07-09</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:14.0.1.7-4.rolling</td>
-					<td>- Re-introduce java-openjdk-src & java-openjdk-demo for system_jdk builds.
-- Fix accidental renaming of java-openjdk-devel to java-devel-openjdk.</td>
 				</tr>
 				
 				<tbody>
@@ -136,153 +141,338 @@
 				</thead>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/0f</td>
+					<td>f</td>
+					<td>/usr/lib/.build-id/47/3686f1569434060af5bce58a0c9ec1fa6e8ec9</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/1f</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/23</td>
+					<td>f</td>
+					<td>/usr/lib/.build-id/14/d355c6a542d121645c7d8f409d06215df27f2f</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/63</td>
+					<td>/usr/lib/.build-id/13</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/67</td>
+					<td>/usr/lib/.build-id/14</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/6c</td>
+					<td>/usr/lib/.build-id/47</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/9d</td>
+					<td>/usr/lib/.build-id/52</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/a2</td>
+					<td>/usr/lib/.build-id/79</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/df</td>
+					<td>/usr/lib/.build-id/81</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/e7</td>
+					<td>/usr/lib/.build-id/83</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/90</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/92</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/9a</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/a3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/ab</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/e5</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/ef</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/46/02fdea179a8fec00bbd8b2642c1f151b0a9b76</td>
+					<td>/usr/lib/.build-id/79/a665066740803c8c5481baeb532d6dfc307f03</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/44/560d89a256512cc3ff2c7abda08668f11a256a</td>
+					<td>/usr/lib/.build-id/13/41446a1ed3ebe2f64fa78690968bf1f842e2da</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/44/5c75feec0f6445d20d488c8821683a2dfb0db8</td>
+					<td>/usr/lib/.build-id/be/7944103b1592244fc1ecdbe5e9352a56333d87</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/tapset/hotspot15.0.1.9-2.rolling.fc34.x86_64.stp</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jaotc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/tapset/hotspot_gc15.0.1.9-2.rolling.fc34.x86_64.stp</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jar</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/tapset/hotspot_jni15.0.1.9-2.rolling.fc34.x86_64.stp</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jarsigner</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/tapset/jstack15.0.1.9-2.rolling.fc34.x86_64.stp</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/javac</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/0f/6d5c10cb1a95519bfb84febc7d2e9324c7bd94</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/javadoc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/0f/bc2cd5e2525af9ce912df7e71bac06c6d43a47</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/javap</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/76/bc087146b65228d7db448a3782a0f49f561cc1</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jcmd</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/10/28fc6aa630d687db8f02a2cb1239e72ee2a84d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jconsole</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/a2/ce4ee00354b6febc5133c89549ecc172175456</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jdb</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/include/linux/jawt_md.h</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jdeprscan</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/include/linux/jni_md.h</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jdeps</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/42/eac38786488cfd54159953f56866d94c0804b9</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jfr</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/ec/9e0b994643954abec23a4a35421fdd4bd48165</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jhsdb</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/systemtap/tapset/x86_64/hotspot15.0.1.9-2.rolling.fc34.x86_64-fastdebug.stp</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jimage</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/systemtap/tapset/x86_64/hotspot_gc15.0.1.9-2.rolling.fc34.x86_64-fastdebug.stp</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jinfo</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/systemtap/tapset/x86_64/hotspot_jni15.0.1.9-2.rolling.fc34.x86_64-fastdebug.stp</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jlink</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/systemtap/tapset/x86_64/jstack15.0.1.9-2.rolling.fc34.x86_64-fastdebug.stp</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jmap</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jmod</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jpackage</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jps</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jrunscript</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jshell</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jstack</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jstat</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/jstatd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/serialver</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/ct.sym</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/2b/46cc01a3e734f3c7d0a5b3a9dd72c1e1236443</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/92/31613fb9d9f2b1fdee6662c6acbec820fb2cc1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/a3/cf48c309188a65e7354de29d550c2ffad3e63b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ef/ced16310d3bce97ebcc6cf97ae4b063ff37b54</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d5/cb9711a360f3c65d86a25f7573a0c97ccc7e27</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/8f/9ce33b405f566d36dd851aff151d05c3544286</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/90/9f123982864f4133dce61f691f14e92d0533d6</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/include/classfile_constants.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/include/jawt.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/include/jdwpTransport.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/include/jni.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/include/jvmti.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/include/jvmticmlr.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/include/linux</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/systemtap/tapset/x86_64/hotspot15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.stp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/systemtap/tapset/x86_64/hotspot_gc15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.stp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/systemtap/tapset/x86_64/hotspot_jni15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.stp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/systemtap/tapset/x86_64/jstack15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.stp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/include</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/tapset</td>
 				</tr>
 				
 				<tr scope="row">
@@ -292,177 +482,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/b6/2de1e49b799cdd5241b9946a7b4bac00d1e6af</td>
+					<td>/usr/share/applications/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug-jconsole-fastdebug.desktop</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/applications/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug-jconsole-fastdebug.desktop</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/include</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/tapset</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/b5/62992c2a18e3f70d948e8eef46126cc14bad14</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/23/7bb9f8982cb6e929f991bbfb4721cc35860fcd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/e7/c6c93375db972c2048ea8e075cf7a129cb71da</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jaotc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jar</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jarsigner</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/javac</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/javadoc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/javap</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jcmd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jconsole</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jdeprscan</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jdeps</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jfr</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jhsdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jimage</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jinfo</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jlink</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jmap</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jmod</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jpackage</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jps</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jrunscript</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jshell</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jstack</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jstat</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/jstatd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/serialver</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/ct.sym</td>
+					<td>/usr/lib/.build-id/e7/490be4e20925bbb6e494750cdae137ffc19ea1</td>
 				</tr>
 				
 				<tr scope="row">
@@ -472,67 +497,47 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/1f/30e10f696bd68c4383dedb3f80154003dec10f</td>
+					<td>/usr/lib/.build-id/6d/b8ad2451ed92c907f066f0abb19214750a246a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/include/classfile_constants.h</td>
+					<td>/usr/lib/.build-id/86/0ccee6d2faa430219aefdbc6ea076f92c6d266</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/include/jawt.h</td>
+					<td>/usr/lib/.build-id/e5/6bf776295246c10479174940d2a0325532d0de</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/include/jdwpTransport.h</td>
+					<td>/usr/lib/.build-id/ff/ed0541f4a43371e59b9650e7b405bda234635e</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/include/jni.h</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/include/linux/jawt_md.h</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/include/jvmti.h</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/include/linux/jni_md.h</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/include/jvmticmlr.h</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/include/linux</td>
+					<td>/usr/lib/.build-id/52/4d7db6493c79bf94f26aae2d003108c44d9d4f</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/6c/0d03dcdb7d5b56a34e4524f14ebb458621a3df</td>
+					<td>/usr/lib/.build-id/03/3c1dc35528168a87de51ae68a8376387c60df6</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/6c/fada2ffa4f7ba0b5511323c68b34385bc30899</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/53/b5bf0746ed5609a99f15488ccbd7f7e22ad172</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/69/355ed9515f23917e40c2b050a1c9ed1b6feddf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/9d/7183902d8e9c3e69eb124be949b74c38166be6</td>
+					<td>/usr/lib/.build-id/83/2244a58c459aea13acaaa1eecd86af08f8265c</td>
 				</tr>
 				
 				<tr scope="row">
@@ -542,22 +547,32 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/67/a35f00db4eb4a5484809e10b4939075add83b7</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/tapset/hotspot15.0.2.0.7-0.rolling.fc34.x86_64.stp</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/c6/5824ae2a0cc9c52b80ea28670390b4f718165f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/tapset/hotspot_gc15.0.2.0.7-0.rolling.fc34.x86_64.stp</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/fa/c6ededf9520f5611cb325a40a5c64c55e2d03e</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/tapset/hotspot_jni15.0.2.0.7-0.rolling.fc34.x86_64.stp</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/1a/9a1894aa03911cbbad1b4d555e9d4b0fca7974</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/tapset/jstack15.0.2.0.7-0.rolling.fc34.x86_64.stp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/66/030cb520ca4cc9c3671642151a090a87fe8dd4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/9a/39590fe6a96ac99115a4dc51f23b0eb33cc2b6</td>
 				</tr>
 				
 				<tr scope="row">
@@ -567,137 +582,147 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/df/577e0fed7d752d71663406a04a25ec17c99fd9</td>
+					<td>/usr/lib/.build-id/ab/027f407cd74717bf891c9ebb63749c80249645</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jaotc-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/lib/.build-id/ab/731d8e9b642584b2d81196d1b80a8276341e73</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jar-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/lib/.build-id/de/3017b634f4961f04c47f06e9dd502d7b8dbfce</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jarsigner-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/lib/.build-id/81/7bf7ba64677c7b45790619164a42bd6b890ea6</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/javac-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jaotc-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/javadoc-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jar-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/javap-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jarsigner-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jcmd-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/javac-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jconsole-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/javadoc-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jdb-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/javap-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jdeprscan-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jcmd-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jdeps-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jconsole-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jfr-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jdb-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jhsdb-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jdeprscan-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jinfo-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jdeps-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jlink-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jfr-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jmap-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jhsdb-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jmod-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jinfo-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jpackage-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jlink-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jps-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jmap-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jrunscript-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jmod-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jshell-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jpackage-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jstack-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jps-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jstat-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jrunscript-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/jstatd-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jshell-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/serialver-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/share/man/man1/jstack-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/63/1771ded506f7f9754032a04dd33dde0f88d2b5</td>
+					<td>/usr/share/man/man1/jstat-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jstatd-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/serialver-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tbody>

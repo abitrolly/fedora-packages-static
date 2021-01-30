@@ -49,6 +49,41 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-01-21</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.174-1</td>
+					<td>- fix error 500 during build resubmit in Web-UI</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-20</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.173-1</td>
+					<td>- temporarily revert one patch breaking 'copr modify' command</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-20</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.172-1</td>
+					<td>- reworked chroots fields in copr/build forms
+- do not fork EOLed/disabled chroots
+- allow disabling modules in the buildroot
+- rename button from Update to Request in permission form
+- allow excluding chroots when submitting builds
+- delete ReviewedOutdatedChroot rows on cascade
+- disable gpgcheck for external runtime dependencies
+- generate build_chroots for resubmitted SRPM-upload builds
+- drop dependencies on orphaned and useless javascript packages
+- allow setting isolation option per chroot
+- depend on python3-email-validator
+- allow project admins to edit chroots
+- allow overriding the api token instructions downstream
+- drop delete_after tag for re-activated EOLed chroot
+- sync delete_after_timestamp for all EOLed copr_chroots
+- support modulemd v2
+- keep showing the link to EOLed repo files in copr project
+- allow enabling not-yet-deleted but only eoled chroots</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2020-11-30</td>
 					<td>Pavel Raiskup <praiskup at redhat dot com> 1.171-1</td>
 					<td>- re-process killed SRPM tasks
@@ -208,33 +243,6 @@
 - disallow creating modules without any packages
 - don't show builds table when there are none of them
 - fix pagure-events so it submits correct packages</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-02-24</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.164-1</td>
-					<td>- rawhide-to-release should create the chroots deactivated
-- new rawhide-to-release --retry-forked option
-- allow repeated run of 'rawhide-to-release'
-- bugfix rawihde to release
-- raise timeout limit for builds to 24h</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-02-05</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.163-1</td>
-					<td>- don't generate 'modules' in build-job unnecessarily</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-02-05</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.162-1</td>
-					<td>- module enable option for chroot settings
-- delete action fix for incomplete builds
-- custom webhook to accept utf-8 hook data
-- users can now pick against what dist-git to build module
-- fix delete-chroot e-mail notification
-- change panel order in 'Rebuild all packages' page</td>
 				</tr>
 				
 				<tbody>
@@ -563,6 +571,11 @@
 				
 				<tr scope="row">
 					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/tests/test_views/test_coprs_ns/test_coprs_chroots.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
 					<td>/usr/share/copr/coprs_frontend/tests/test_views/test_coprs_ns/test_coprs_general.py</td>
 				</tr>
 				
@@ -789,6 +802,16 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/copr/coprs_frontend/tests/test_views/test_coprs_ns/__pycache__/test_coprs_builds.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/tests/test_views/test_coprs_ns/__pycache__/test_coprs_chroots.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/tests/test_views/test_coprs_ns/__pycache__/test_coprs_chroots.cpython-39.pyc</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1244,6 +1267,11 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/copr/coprs_frontend/tests/test_config_overrides.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/tests/test_copr_create.py</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1954,6 +1982,11 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/copr/coprs_frontend/alembic/versions/8bf844cc7135_add_index_for_delete_after_a_delete_.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/alembic/versions/8fd7c4714189_isolation_option_for_chroot.py</td>
 				</tr>
 				
 				<tr scope="row">
@@ -3074,6 +3107,16 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/copr/coprs_frontend/alembic/versions/__pycache__/8bf844cc7135_add_index_for_delete_after_a_delete_.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/alembic/versions/__pycache__/8fd7c4714189_isolation_option_for_chroot.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/alembic/versions/__pycache__/8fd7c4714189_isolation_option_for_chroot.cpython-39.pyc</td>
 				</tr>
 				
 				<tr scope="row">
@@ -4869,6 +4912,16 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/copr/coprs_frontend/tests/__pycache__/test_config_overrides.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/tests/__pycache__/test_copr_create.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/tests/__pycache__/test_copr_create.cpython-39.pyc</td>
 				</tr>
 				
 				<tr scope="row">

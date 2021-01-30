@@ -49,6 +49,71 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-01-22</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.2.0.7-0.rolling</td>
+					<td>- Update to jdk-15.0.2.0+7
+- Add release notes for 15.0.1.0 & 15.0.2.0
+- Use JEP-322 Time-Based Versioning so we can handle a future 11.0.9.1-like release correctly.
+- Still use 15.0.x rather than 15.0.x.0 for file naming, as the trailing zero is omitted from tags.
+- Cleanup debug package descriptions and version number placement.
+- Remove unused patch files.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-19</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.1.9-10.rolling</td>
+					<td>- Use -march=i686 for x86 builds if -fcf-protection is detected (needs CMOV)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-22</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-9.rolling</td>
+					<td>- fixed missing condition for fastdebug packages being counted as debug ones</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-19</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-8.rolling</td>
+					<td>- removed lib-style provides for fastdebug_suffix_unquoted</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-19</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-6.rolling</td>
+					<td>- many cosmetic changes taken from more maintained jdk11
+- introduced debug_arches, bootstrap_arches, systemtap_arches, fastdebug_arches, sa_arches, share_arches, shenandoah_arches, zgc_arches 
+  instead of various hardcoded ifarches
+- updated systemtap
+- added requires excludes for debug pkgs
+- removed redundant logic around jsa files
+- added runtime requires of lksctp-tools and libXcomposite%
+- added and used Source15 TestSecurityProperties.java, but is made always positive as jdk15 now does not honor system policies
+- s390x excluded form fastdebug build</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-17</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.1.9-5.rolling</td>
+					<td>- introduced nm based check to verify alt-java on x86_64 is patched, and no other alt-java or java is patched
+- patch600 rh1750419-redhat_alt_java.patch amended to die, if it is used wrongly
+- introduced ssbd_arches with currently only valid arch of x86_64 to separate real alt-java architectures</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-09</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-4.rolling</td>
+					<td>- moved wrongly placed licenses to accompany other ones
+- this bad placement was killng parallel-installability and thus having bad impact to leapp if used</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-01</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-3.rolling</td>
+					<td>- added patch600, rh1750419-redhat_alt_java.patch, suprassing removed patch
+- no longer copying of java->alt-java as it is created by  patch600</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2020-11-23</td>
 					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-2.rolling</td>
 					<td>- Create a copy of java as alt-java with alternatives and man pages
@@ -59,66 +124,6 @@
 					<td>2020-10-25</td>
 					<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:15.0.1.9-1.rolling</td>
 					<td>- updated to October CPU 2020 sources</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-10-22</td>
-					<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:15.0.0.36-4.rolling</td>
-					<td>- Fix directory ownership of -static-libs sub-package.</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-10-09</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.0.36-3.rolling</td>
-					<td>- Build static-libs-image and add resulting files via -static-libs sub-package.
-- Disable stripping of debug symbols for static libraries part of the -static-libs sub-package.
-- JDK-8245832 increases the set of static libraries, so try and include them all with a wildcard.
-- Update static-libs packaging to new layout</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-09-21</td>
-					<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:15.0.0.36-2.rolling</td>
-					<td>- Add support for fastdebug builds on 64 bit architectures</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-09-15</td>
-					<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:15.0.0.36-1.rolling</td>
-					<td>- Remove EA designation
-- Re-generate sources with PR3803 patch</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-31</td>
-					<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:15.0.0.36-0.1.ea.rolling</td>
-					<td>- Update to jdk 15.0.0.36 tag
-- Modify rh1648249-add_commented_out_nss_cfg_provider_to_java_security.patch
-- Update vendor version string to 20.9
-- jjs removed from packaging after JEP 372: Nashorn removal
-- rmic removed from packaging after JDK-8225319</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-07-27</td>
-					<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:14.0.2.12-2.rolling</td>
-					<td>- Disable LTO so as to pass debuginfo check</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-07-22</td>
-					<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:14.0.2.12-1.rolling</td>
-					<td>- update to jdk 14.0.2.12 CPU version
-- remove upstreamed patch jdk8237879-make_4_3_build_fixes.patch
-- remove upstreamed patch jdk8235833-posixplatform_cpp_should_not_include_sysctl_h.patch
-- remove upstreamed patch jdk8243059-build_fails_when_with_vendor_contains_comma.patch</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-07-09</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:14.0.1.7-4.rolling</td>
-					<td>- Re-introduce java-openjdk-src & java-openjdk-demo for system_jdk builds.
-- Fix accidental renaming of java-openjdk-devel to java-devel-openjdk.</td>
 				</tr>
 				
 				<tbody>
@@ -137,482 +142,442 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.jpackage/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.desktop/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.jpackage/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.desktop/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.jpackage/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.desktop/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/6d/983261a42a429029467b7b9ca5f4ff4eea1b86</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.desktop/colorimaging.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/8c/fcab9fea76a14d8fb316a8a29caa2bc20bbd4b</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.desktop/harfbuzz.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.logging/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.desktop/mesa3d.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.logging/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.desktop/xwd.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.logging/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.zipfs/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/08/842e4f48e0d81aa9cdf75b7f4a3d8e4318b834</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.zipfs/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/sdp/sdp.conf.template</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.zipfs/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.instrument/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/.build-id/6d/48d5e4af577d161ba9feeea0ff9786816188bd</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.instrument/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.management/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.instrument/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.management/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.jvmstat/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.management/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.jvmstat/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/.build-id/da/3442f1581d95fc74f7a6821f0c8fe6cc0d67b0</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.jvmstat/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/1a/219965d21efdaf4a9c5527f2d9f96a00a87edb</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/security/policy/limited/default_US_export.policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/security/policy/limited/default_local.policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/security/policy/limited/exempt_local.policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/9f/17fbf4ad0b6114ed81c5a12c6ae7cc672addce</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.cryptoki/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.cryptoki/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.cryptoki/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.cryptoki/pkcs11cryptotoken.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.cryptoki/pkcs11wrapper.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/59/0d8bd07914bf0bf4d8319cf3ce244896639a43</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.dns/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.dns/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.dns/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.sql/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.sql/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.sql/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/2d/936c3c3a7ed6f0e1468d7b539a15263b3e6ea4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.instrument/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.instrument/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.instrument/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.xml.dom/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.xml.dom/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.xml.dom/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jfr/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jfr/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jfr/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.management.jfr/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.management.jfr/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.management.jfr/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.prefs/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.prefs/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.prefs/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/logging.properties</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/management</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/net.properties</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.net/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.net/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.net/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/c6/07e6a22a59b622774f1434b97d27050eb8ebba</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/c6/f5bca8d6c8237d070c32e931a304089092e961</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/c6/f5bca8d6c8237d070c32e931a304089092e961.1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.net.http/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.net.http/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.net.http/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/e5/3f9474c5bccc4aa35f7bd0c8f559a36c9cc8ec</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/06/312465dd8ba6c2e47c959d1fd38a4e861fb7a8</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/44/4b2a8f1fc54ffa0bfb7117f5b36c0078ebd4d5</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.ed/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.ed/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.ed/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/b1/2a0dd2aba05895131d74a4c0b3c46564837fbc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/classlist</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/sdp</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/client</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/security</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/jexec</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/jfr</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/sound.properties</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/jrt-fs.jar</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.net.http/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/jspawnhelper</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.net.http/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/jvm.cfg</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.net.http/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libattach.so</td>
+					<td>/usr/lib/.build-id/82/de2e3ce3ebfa845a2de1a19fffe31a658446ef</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libawt.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.foreign/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libawt_headless.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.foreign/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libdt_socket.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.foreign/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libextnet.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.se/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libfontmanager.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.se/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libinstrument.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.se/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libj2gss.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.aot/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libj2pcsc.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.aot/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libj2pkcs11.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.aot/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libjaas.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.jpackage/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libjava.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.jpackage/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libjavajpeg.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.jpackage/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libjdwp.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jartool/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libjimage.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jartool/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libjli.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jartool/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libjsig.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.management.agent/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libjsound.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.management.agent/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/liblcms.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.management.agent/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libmanagement.so</td>
+					<td>/usr/lib/.build-id/cc/1f1cbc6da9aaab8534f153917a9824d365e4e4</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libmanagement_agent.so</td>
+					<td>/usr/lib/.build-id/eb/75bad3c07113a08d216816cc9687b6dbec626d</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libmanagement_ext.so</td>
+					<td>/usr/lib/.build-id/38/a50ef3b7ba0b09954536298056b22238215b74</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libmlib_image.so</td>
+					<td>/usr/lib/.build-id/38/a50ef3b7ba0b09954536298056b22238215b74.1</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libnet.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.compiler/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libnio.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.compiler/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libprefs.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.compiler/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/librmi.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.ed/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libsaproc.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.ed/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libsctp.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libsunec.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libverify.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/libzip.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/modules</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/psfont.properties.ja</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/psfontj2d.properties</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/security</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/server</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/tzdb.dat</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jdeps/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jdeps/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jdeps/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.management.agent/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.management.agent/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.management.agent/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.management.jfr/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.management.jfr/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.management.jfr/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jfr/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jfr/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jfr/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.prefs/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.prefs/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.prefs/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/2b/83af17a4242fd6454e58df400eaa4f911f6e49</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.ed/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
@@ -622,137 +587,57 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.datatransfer/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/.build-id/c4/d25c95fe356704820aa62e2a3d0c7015e3c88d</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.datatransfer/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.datatransfer/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.scripting/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.scripting/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.scripting/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/alt-java</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/java</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/keytool</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/rmid</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin/rmiregistry</td>
+					<td>/usr/lib/.build-id/4a/6f7f89df9e5e95d9631d44c1a66d6bf93d1d31</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/security</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/release</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>g</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/server/classes.jsa</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/server/classes.jsa</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/server/classes_nocoops.jsa</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/server/classes_nocoops.jsa</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/server/libjsig.so</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/server/libjsig.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/server/libjvm.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.localedata/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.localedata/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.localedata/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.localedata/cldr.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.localedata/thaidict.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.se/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.se/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.se/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.aot/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.aot/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.aot/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/server/libjvm.so</td>
 				</tr>
 				
 				<tr scope="row">
@@ -762,77 +647,142 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/ab/60acbedb16de31fcfea164c47898977247a9dd</td>
+					<td>/usr/lib/.build-id/5d/acd06057cd612ffd8a792a335b7469f0e836da</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/ca/2cb120d2e32debed1334874289528432afedc0</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jconsole/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.zipfs/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jconsole/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.zipfs/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jconsole/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.zipfs/LICENSE</td>
+					<td>/usr/lib/.build-id/36/424df0d90c84731fce95f93b3244379f10c87c</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/0a/93ce39b57ec98bf733a36f25cbea2a8d781fab</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.security.jgss/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/e1/0735a66ffff2588550f0c51931c12954e6bc56</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.security.jgss/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/security/blacklisted.certs</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.security.jgss/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/security/cacerts</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.base/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/security/default.policy</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.base/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/security/public_suffix_list.dat</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.base/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.base/aes.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.base/asm.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.base/c-libutl.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.base/cldr.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.base/icu.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.base/public_suffix.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.base/unicode.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.ec/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.ec/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.ec/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.ec/ecc.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.datatransfer/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.datatransfer/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.datatransfer/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/08</td>
+					<td>/usr/lib/.build-id/00</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/0a</td>
+					<td>/usr/lib/.build-id/07</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/1a</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/1b</td>
+					<td>/usr/lib/.build-id/09</td>
 				</tr>
 				
 				<tr scope="row">
@@ -842,12 +792,22 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/2b</td>
+					<td>/usr/lib/.build-id/24</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/34</td>
+					<td>/usr/lib/.build-id/2d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/36</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/38</td>
 				</tr>
 				
 				<tr scope="row">
@@ -857,22 +817,17 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/41</td>
+					<td>/usr/lib/.build-id/4a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/53</td>
+					<td>/usr/lib/.build-id/51</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/54</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/69</td>
+					<td>/usr/lib/.build-id/56</td>
 				</tr>
 				
 				<tr scope="row">
@@ -882,217 +837,192 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/75</td>
+					<td>/usr/lib/.build-id/8f</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/88</td>
+					<td>/usr/lib/.build-id/9f</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/ab</td>
+					<td>/usr/lib/.build-id/a1</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/c6</td>
+					<td>/usr/lib/.build-id/b5</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/f7</td>
+					<td>/usr/lib/.build-id/c4</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/fd</td>
+					<td>/usr/lib/.build-id/c5</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/c7</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/cc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/d4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/de</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/eb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/ff</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.nio.mapmode/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.opt/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.nio.mapmode/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.opt/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.nio.mapmode/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.opt/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jdwp.agent/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.opt/jopt-simple.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jdwp.agent/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/.build-id/8f/305ff5b4839089160658f5451ef3ff98fef99a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jdwp.agent/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jshell/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/1d/d6d5c49c210ccec41b7084a53b98cd4a4f4541</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jshell/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/3c/b406d360ad70a91d3e7650bd62d789b6a46f54</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jshell/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.management.rmi/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.dynalink/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.management.rmi/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.dynalink/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.management.rmi/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.dynalink/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.transaction.xa/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.dynalink/dynalink.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.transaction.xa/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.sql.rowset/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.transaction.xa/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.sql.rowset/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.httpserver/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.sql.rowset/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.httpserver/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/.build-id/1d/0dd1dae67bf2648bfee50fcedfae52612c1d2a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.httpserver/LICENSE</td>
+					<td>/usr/lib/.build-id/1d/299e4e267317ca59eeb5da4813c184ce5a7abb</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.smartcardio/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/.build-id/3c/8f2e131f138c65772010721957c2616affc71e</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.smartcardio/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/share/doc/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/NEWS</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.smartcardio/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.accessibility/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.smartcardio/pcsclite.md</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.accessibility/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.rmi/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.accessibility/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.rmi/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.security.auth/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.rmi/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.security.auth/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/34/e394635af9246ce7fd247e9ff769b1739d39d3</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/53/3322bb4b8dbd7d59592425b3d795bac9512263</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/53/60fc70b18d2ee10fbee86dc3c20c5c220a5262</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.desktop/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.desktop/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.desktop/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.desktop/colorimaging.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.desktop/harfbuzz.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.desktop/mesa3d.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.desktop/xwd.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.security.auth/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1102,1322 +1032,1407 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jshell/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/.build-id/a1/c820e5c03891ff9dd58021cac6063e34b6865e</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jshell/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.naming/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jshell/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.naming/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jcmd/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.naming/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
+					<td>d</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jcmd/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.attach/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jcmd/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.attach/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.attach/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/.build-id/00/bd6cede3ba9f2d929240aa191efc4b546a84f5</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jsobject/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml/bcel.md</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jsobject/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml/dom.md</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jsobject/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml/jcup.md</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/security/java.policy</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml/xalan.md</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/security/java.security</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml/xerces.md</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/security/nss.cfg</td>
 				</tr>
 				
 				<tr scope="row">
+					<td>d</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/security/policy</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.opt/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/classlist</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.opt/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/jexec</td>
 				</tr>
 				
 				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/jfr</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.opt/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/jrt-fs.jar</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.opt/jopt-simple.md</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/jspawnhelper</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.management/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/jvm.cfg</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.management/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libattach.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.management/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libawt.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.xml.dom/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libawt_headless.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.xml.dom/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libdt_socket.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.xml.dom/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libextnet.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/28/acaef1d8b7d0333ccdb6cf59ff2e99d90fcf60</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libfontmanager.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.base</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libinstrument.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.compiler</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libj2gss.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.datatransfer</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libj2pcsc.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.desktop</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libj2pkcs11.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.instrument</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libjaas.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.logging</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libjava.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.management</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libjavajpeg.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.management.rmi</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libjdwp.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.naming</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libjimage.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.net.http</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libjli.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.prefs</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libjsig.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.rmi</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libjsound.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.scripting</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/liblcms.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.se</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libmanagement.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.security.jgss</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libmanagement_agent.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.security.sasl</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libmanagement_ext.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.smartcardio</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libmlib_image.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.sql</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libnet.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.sql.rowset</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libnio.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.transaction.xa</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libprefs.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/librmi.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml.crypto</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libsaproc.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.accessibility</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libsctp.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.aot</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libsunec.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.attach</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libverify.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.charsets</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/libzip.so</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.compiler</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/modules</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.cryptoki</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/psfont.properties.ja</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.ec</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/psfontj2d.properties</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.dynalink</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/security</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.editpad</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/server</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.hotspot.agent</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/tzdb.dat</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.httpserver</td>
+					<td>f</td>
+					<td>/usr/lib/.build-id/09/26116bf83219c3eebf32f8e36561c865ac9412</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.foreign</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.management/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.jpackage</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.management/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.ed</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.management/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.jvmstat</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jstatd/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.le</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jstatd/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.opt</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jstatd/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.ci</td>
+					<td>f</td>
+					<td>/usr/lib/.build-id/f2/3e5783585eb1e549cfe57df4316784ab2fc9ba</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.charsets/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler.management</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.charsets/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jartool</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.charsets/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.javadoc</td>
+					<td>f</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/security/blacklisted.certs</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jcmd</td>
+					<td>f</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/security/cacerts</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jconsole</td>
+					<td>f</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/security/default.policy</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jdeps</td>
+					<td>f</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/security/public_suffix_list.dat</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jdi</td>
+					<td>f</td>
+					<td>/usr/lib/.build-id/51/b718fe0c2827f24c1766d1f2c799af9b07f1fc</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jdwp.agent</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/alt-java</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jfr</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/java</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jlink</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/keytool</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jshell</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/rmid</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/bin/rmiregistry</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.jvmstat/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.jvmstat/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.jvmstat/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/security/policy/unlimited/default_US_export.policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/security/policy/unlimited/default_local.policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.javadoc/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.javadoc/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.javadoc/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.javadoc/jquery.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.javadoc/jqueryUI.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/c7/4850f01ed2d16e0ffa0281d5f757021a873327</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jsobject</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.base</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jstatd</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.compiler</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.localedata</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.datatransfer</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.management</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.desktop</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.management.agent</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.instrument</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.management.jfr</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.logging</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.dns</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.management</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.rmi</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.management.rmi</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.net</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.naming</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.nio.mapmode</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.net.http</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.sctp</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.prefs</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.security.auth</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.rmi</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.security.jgss</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.scripting</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.se</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported.desktop</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.security.jgss</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.xml.dom</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.security.sasl</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.zipfs</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.smartcardio</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/security/policy/README.txt</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.sql</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/security/policy/limited</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.sql.rowset</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/security/policy/unlimited</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.transaction.xa</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/1b/5e0e498c58c15dfca03ca74f47c544895940ff</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jartool/ADDITIONAL_LICENSE_INFO</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml.crypto</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jartool/ASSEMBLY_EXCEPTION</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.accessibility</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jartool/LICENSE</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.aot</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>g</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/client/classes.jsa</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.attach</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.attach/ADDITIONAL_LICENSE_INFO</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.charsets</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.attach/ASSEMBLY_EXCEPTION</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.compiler</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.attach/LICENSE</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.cryptoki</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/32/a446c314ebee2e3315b879a7f93fe4de703302</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.ec</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.rmi/ADDITIONAL_LICENSE_INFO</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.dynalink</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.rmi/ASSEMBLY_EXCEPTION</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.editpad</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.rmi/LICENSE</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.hotspot.agent</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.foreign/ADDITIONAL_LICENSE_INFO</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.httpserver</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.foreign/ASSEMBLY_EXCEPTION</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.foreign</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.foreign/LICENSE</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.incubator.jpackage</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jstatd/ADDITIONAL_LICENSE_INFO</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.ed</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jstatd/ASSEMBLY_EXCEPTION</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.jvmstat</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jstatd/LICENSE</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.le</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported/ADDITIONAL_LICENSE_INFO</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.opt</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported/ASSEMBLY_EXCEPTION</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.ci</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported/LICENSE</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.sctp/ADDITIONAL_LICENSE_INFO</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler.management</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.sctp/ASSEMBLY_EXCEPTION</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jartool</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.sctp/LICENSE</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.javadoc</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported.desktop/ADDITIONAL_LICENSE_INFO</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jcmd</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported.desktop/ASSEMBLY_EXCEPTION</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jconsole</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported.desktop/LICENSE</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jdeps</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/64/d5bf1228c4f273f3b8554067701d5bbcf20ee9</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jdi</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.dns/ADDITIONAL_LICENSE_INFO</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jdwp.agent</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.dns/ASSEMBLY_EXCEPTION</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jfr</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.dns/LICENSE</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jlink</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/d1/532dd023d5d2c2eac7fa22c07bfbce02fa50ff</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jshell</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.base/ADDITIONAL_LICENSE_INFO</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jsobject</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.base/ASSEMBLY_EXCEPTION</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jstatd</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.base/LICENSE</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.localedata</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.base/aes.md</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.management</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.base/asm.md</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.management.agent</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.base/c-libutl.md</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.management.jfr</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.base/cldr.md</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.dns</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.base/icu.md</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.rmi</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.base/public_suffix.md</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.net</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.base/unicode.md</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.nio.mapmode</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/security/policy/limited/default_US_export.policy</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.sctp</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/security/policy/limited/default_local.policy</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.security.auth</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/security/policy/limited/exempt_local.policy</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.security.jgss</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/7f/1e2135c1c4849bc6043b0b2adb62d366ebdd22</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/30/2707137d15634713165b3e2962181294f760f2</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported.desktop</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.xml.dom</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/96/cae2977b6933e560a604d880c11b67434429f9</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.zipfs</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.le/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.editpad/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.le/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.editpad/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.le/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.editpad/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.le/jline.md</td>
+					<td>/usr/lib/.build-id/07/dee44caa247f6d5906340c74dd10186890d4b1</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/bin</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.hotspot.agent/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.hotspot.agent/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.hotspot.agent/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.logging/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/release</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.logging/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.security.jgss/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.logging/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.security.jgss/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported.desktop/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.security.jgss/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported.desktop/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.compiler/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported.desktop/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.compiler/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler.management/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.compiler/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler.management/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/management/jmxremote.access</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler.management/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/management/jmxremote.password.template</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jdi/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/management/management.properties</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jdi/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.compiler/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jdi/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.compiler/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.compiler/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/logging.properties</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.unsupported/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/management</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/net.properties</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jlink/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/sdp</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jlink/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/security</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jlink/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/sound.properties</td>
+					<td>/usr/lib/.build-id/a6/4b235e80dea62095ba4bf838d1fe03147f8991</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jconsole/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/.build-id/c5/370f632415d5b7eec757a9b5a2352000a8d06a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jconsole/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/.build-id/c5/39e1152638677bdd99e06c99ffe78a1c2199ed</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jconsole/LICENSE</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/sdp/sdp.conf.template</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.sql/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/jfr/default.jfc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.sql/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/jfr/profile.jfc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.sql/LICENSE</td>
+					<td>/usr/lib/.build-id/24/964caf5dff5aa1159d78e35ce263d73644edca</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/f7/124cff3dbf838f183763d728cebee4c8322fb1</td>
+					<td>/usr/lib/.build-id/ff/b904e708dbad3fd9cce51a0dcd1ff944e89920</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/f7/124cff3dbf838f183763d728cebee4c8322fb1.1</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.security.jgss/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jdi/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.security.jgss/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jdi/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.security.jgss/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jdi/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.security.sasl/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.cryptoki/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.security.sasl/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.cryptoki/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.security.sasl/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.cryptoki/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.management.rmi/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.cryptoki/pkcs11cryptotoken.md</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.management.rmi/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.cryptoki/pkcs11wrapper.md</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.management.rmi/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.naming/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.transaction.xa/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.naming/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.transaction.xa/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.naming/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.transaction.xa/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/jfr/default.jfc</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.le/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/lib/jfr/profile.jfc</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.le/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/75/528a09b82e95966ba7397b04c31131f43c38be</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.le/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.security.jgss/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.le/jline.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.security.jgss/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.scripting/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.security.jgss/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.scripting/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.accessibility/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.scripting/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.accessibility/ASSEMBLY_EXCEPTION</td>
+					<td>d</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/lib/security</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.accessibility/LICENSE</td>
+					<td>/usr/lib/.build-id/18/844c82c54464e17fafd14a9bcf04362e722e2e</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.security.sasl/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.localedata/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.security.sasl/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.localedata/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.security.sasl/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.localedata/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.security.auth/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.localedata/cldr.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.security.auth/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.localedata/thaidict.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.security.auth/LICENSE</td>
+					<td>/usr/lib/.build-id/56/fee682a5a6f59a5bacc826bcf08b862e522d0d</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/41/65631edf76c1d049e695963c597dc49f9bb257</td>
+					<td>/usr/lib/.build-id/0b/81602e9172f93997f83a35e7423b8e935c3737</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.ec/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/.build-id/a4/4157c518353337e0749fec936080329a8af557</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.ec/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.compiler/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.ec/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.compiler/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.crypto.ec/ecc.md</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.compiler/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/fd/b73e2816baa4f91028b697bf490596b6344f86</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.ci/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.sql.rowset/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.ci/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.sql.rowset/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.ci/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.sql.rowset/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.smartcardio/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/69/07b18adadfe8a5052147458bb9de112f0180b3</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.smartcardio/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/88/bbaaa66b491c1c4e089605b2e43500e3a8149a</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.smartcardio/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.dynalink/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.smartcardio/pcsclite.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.dynalink/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/.build-id/bf/3814e91010e1ffe95b9f7642102dc22ca534c9</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.dynalink/LICENSE</td>
+					<td>/usr/lib/.build-id/de/539a71d49b214c202941c8a228d4994cab3b64</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.dynalink/dynalink.md</td>
+					<td>d</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/security/policy/unlimited/default_US_export.policy</td>
+					<td>/usr/lib/jvm/jre-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/security/policy/unlimited/default_local.policy</td>
+					<td>/usr/lib/.build-id/69/4d2b94d4859d52912fd2df62ed032ed5b65fb0</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/22/175c44ce57ab186a36cde09516083e2f8a8c5b</td>
+					<td>/usr/lib/.build-id/69/d63293affdac4ad4890e396fb2623e8bb5435b</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.javadoc/ADDITIONAL_LICENSE_INFO</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/security/policy/README.txt</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.javadoc/ASSEMBLY_EXCEPTION</td>
+					<td>d</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/security/policy/limited</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/security/policy/unlimited</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.javadoc/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jcmd/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.javadoc/jquery.md</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jcmd/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.javadoc/jqueryUI.md</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jcmd/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/jre-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.ci/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.ci/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml/bcel.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.ci/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml/dom.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/54/47846bba0f6682bca170c20da5d62d7b0651a9</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml/jcup.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/security/java.policy</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml/xalan.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/security/java.security</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml/xerces.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/security/nss.cfg</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/management/jmxremote.access</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/conf/security/policy</td>
+					<td>f</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/management/jmxremote.password.template</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml.crypto/ADDITIONAL_LICENSE_INFO</td>
+					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/conf/management/management.properties</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml.crypto/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jdwp.agent/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml.crypto/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jdwp.agent/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/java.xml.crypto/santuario.md</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jdwp.agent/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jsobject/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/share/man/man1/alt-java-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jsobject/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/share/man/man1/java-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jsobject/LICENSE</td>
+					<td>/usr/share/man/man1/keytool-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler.management/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/share/man/man1/rmid-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler.management/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/share/man/man1/rmiregistry-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.internal.vm.compiler.management/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jdeps/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.editpad/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jdeps/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.editpad/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.jdeps/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.editpad/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.httpserver/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/alt-java-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.httpserver/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/java-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.httpserver/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/keytool-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/lib/.build-id/8e/cf5b27b1c7072ad572adc5ecb5ad2fe760a243</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/rmid-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.rmi/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man1/rmiregistry-java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug.1.gz</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.rmi/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/dc/34f319ca2e16e82a6e0540507d0e288b08b08a</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.naming.rmi/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.charsets/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.nio.mapmode/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.charsets/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.nio.mapmode/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.charsets/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.nio.mapmode/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/b5/0de4737a0224ea49a48a4d0c66cca6d13e027e</td>
+					<td>/usr/lib/.build-id/b5/96cde53f883438b678c3098af4687a9621eefd</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/b5/27486bc9781e13a81eb9f345ed6f1e90fe112f</td>
+					<td>/usr/lib/.build-id/d4/5ea33f1cc3329378544226b2f4d831c6f9a1d9</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2427,47 +2442,67 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jlink/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml.crypto/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jlink/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml.crypto/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.jlink/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml.crypto/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.hotspot.agent/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.xml.crypto/santuario.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.hotspot.agent/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.rmi/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.hotspot.agent/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.rmi/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.management/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/java.rmi/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.management/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.sctp/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-2.rolling.fc34.x86_64-fastdebug/legal/jdk.management/LICENSE</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.sctp/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.sctp/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.net/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.net/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64-fastdebug/legal/jdk.net/LICENSE</td>
 				</tr>
 				
 				<tbody>

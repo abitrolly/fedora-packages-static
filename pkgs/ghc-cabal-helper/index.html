@@ -35,7 +35,7 @@
 				ghc-cabal-helper
 				
 			</h1>
-			<p class="text-muted">Give Haskell development tools access to Cabal project environment</p>
+			<p class="text-muted">Simple interface to some of Cabal's configuration state, mainly used by ghc-mod</p>
 			<ul class="list-group list-group-horizontal-lg">
 				<li class="list-group-item max-width">
 					<a href="https://bodhi.fedoraproject.org/updates/ghc-cabal-helper">
@@ -68,9 +68,27 @@
 					</a>
 				</li>
 			</ul>
-			<p class="yacy-index">The purpose of the 'cabal-helper' library is to give Haskell development tools
-access to the same environment which build tools such as 'cabal' and 'stack'
-normally provide to the compiler.</p>
+			<p class="yacy-index">Cabal's little helper provides access to build information gathered by 'cabal'
+when configuring a project. Specifically we're interested in retrieving enough
+information to bring up a compiler session, using the GHC API, which is similar
+to running 'cabal repl' in a project.
+
+While simple in principle this is complicated by the fact that the information
+Cabal writes to disk is in an unstable format and only really accessible
+through the Cabal API itself.
+
+Since we do not want to bind the user of a development tool which utilises this
+library to a specific version of Cabal we compile the code which interfaces
+with the Cabal library's API on the user's machine, at runtime, against
+whichever version of Cabal was used to write the on disk information for a
+given project.
+
+If this version of Cabal is not available on the users machine anymore, which
+is fairly likely since cabal-install is usually linked statically, we have
+support for compiling the Cabal library also. In this case the library is
+installed into a private, isolated, package database in
+'$XDG_CACHE_HOME/cabal-helper' so as to not interfere with the user's package
+database.</p>
 			<div id="vue">
 				<hr />
 				<div class="row">
@@ -139,7 +157,7 @@ normally provide to the compiler.</p>
 						<b>Package Info</b>
 						<ul>
 							<li>Upstream: <a href="https://hackage.haskell.org/package/cabal-helper">https://hackage.haskell.org/package/cabal-helper</a></li>
-							<li>License(s): ASL 2.0</li>
+							<li>License(s): AGPLv3</li>
 							
 							<li>Maintainer: petersen</li>
 							
@@ -148,14 +166,6 @@ normally provide to the compiler.</p>
 						<hr />
 						<b>Subpackages</b>
 						<ul>
-						
-						<li><a href="../ghc-assoc">ghc-assoc</a></li>
-						
-						<li><a href="../ghc-assoc-devel">ghc-assoc-devel</a></li>
-						
-						<li><a href="../ghc-assoc-doc">ghc-assoc-doc</a></li>
-						
-						<li><a href="../ghc-assoc-prof">ghc-assoc-prof</a></li>
 						
 						<li><a href="../ghc-cabal-helper-devel">ghc-cabal-helper-devel</a></li>
 						
@@ -170,6 +180,14 @@ normally provide to the compiler.</p>
 						<li><a href="../ghc-cabal-plan-doc">ghc-cabal-plan-doc</a></li>
 						
 						<li><a href="../ghc-cabal-plan-prof">ghc-cabal-plan-prof</a></li>
+						
+						<li><a href="../ghc-assoc">ghc-assoc</a></li>
+						
+						<li><a href="../ghc-assoc-devel">ghc-assoc-devel</a></li>
+						
+						<li><a href="../ghc-assoc-doc">ghc-assoc-doc</a></li>
+						
+						<li><a href="../ghc-assoc-prof">ghc-assoc-prof</a></li>
 						
 						<li><a href="../ghc-indexed-profunctors">ghc-indexed-profunctors</a></li>
 						

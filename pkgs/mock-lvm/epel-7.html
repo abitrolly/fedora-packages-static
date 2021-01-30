@@ -49,6 +49,32 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2020-12-15</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 2.8-1</td>
+					<td>- fix use of nspawn (#678) (awilliam@redhat.com)
+- file_util: Improve an error message (tbaeder@redhat.com)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-30</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 2.7-1</td>
+					<td>- bootstrap: copy-in katello CA pem file if exists
+- early error when bootstrap is off and external buildrequires are detected (msuchy@redhat.com)
+- hotfix preexec_fn traceback on RHEL 8 s390x (issue 653)
+- introduce external buildrequires (msuchy@redhat.com)
+- add rpkg spec preprocessing capability (clime@fedoraproject.org)
+- sign plugin: don't ignore signing command failure
+- don't setsid() twice with --shell
+- better logging when dynamic BR detected (msuchy@redhat.com)
+- do not TB if rpmbuild fails with exit code 11 (msuchy@redhat.com)
+- fix addrepo when repo is missing (markus.linnala@gmail.com)
+- own the cheat directory
+- Allow percent-sign in config_opts['resultdir']
+- add a new "postupdate" hook (dturecek@redhat.com)
+- log mock's NVR</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2020-09-15</td>
 					<td>Pavel Raiskup <praiskup at redhat dot com> 2.6-1</td>
 					<td>- the --recurse option implies --continue
@@ -169,73 +195,6 @@
 					<td>- solve yum.conf vs. dnf.conf inconsistency in code and config
 - fix mockchain with --bootstrap-chroot (issue/469)
 - document 'mock --chain -c' in man page</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-02-06</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 2.0-1</td>
-					<td>- log reasons why src.rpm can not be installed into chroot
-- nspawn: non-interactive commands in chroot are executed with --pipe
-- bind mount local repos to bootstrap chroot (dturecek@redhat.com)
-- expand the generated config (includes) completely before passing it
-  to eval() (sergio@serjux.com)
-- do not ignore cleanup_on_success when post_install is True
-  (logans@cottsay.net)
-- fix fd resource-leak in 'mock --chain' (jcajka@redhat.com)
-- the --debug-config option only shows the differences from the mock's default
-  configuration
-- do not expand jinja for --debug-config
-- don't use chroot.pkg_manager in podman case, we need to install from within
-  the container
-- --use-bootstrap-image implies --bootstrap-chroot
-- drop python2 support from spec file, and code too
-- ammend man page and state that --dnf is the default now
-- rename --{old,new}-chroot to --isolation
-- turn ON the jinja rendering a bit earlier
-- pre-populate loop devices in nspawn chroot as with --isolation=chroot
-- deepcopy the plugin_conf options from chroot to bootstrap_chroot
-- simplified implementation of include() config option, accept relative files
-  (jkadlcik@redhat.com, sergio@serjux.com)
-- pass proxy environment to exec of Podman (RHBZ#1772598)
-- lvm_root: fix volume removal in --scrub
-- bootstrap: don't install shadow-utils, and distribution-gpg-keys
-- make --sources optional for --buildsrpm mode (sisi.chlupova@gmail.com)
-- bootstrap: bind-mount normal chroot into bootstrap chroot recursively
-- add --scrub=bootstrap parameter (frostyx@email.cz)
-- don't clean bootstrap with --clean
-- do not call traceLog decorator when no tracing
-- pre-create builddir before changing it's owner, and when we have proper
-  process privileges
-- copy /etc/pki/ca-trust/extracted into chroot [GH#397]
-- change default of 'package_manager' to 'dnf'
-- always copy distribution-gpg-keys into chroot [GH#308]
-- support DNF vars added [GH#346]
-- use jinja macros instead of python variable expansion
-- get the text representation of error code
-- --scrub=all also does --scrub=bootstrap (jkadlcik@redhat.com)
-- success/fail aren't created root-owned
-- compress_logs: setup defaults to 'gzip'
-- raise error for --localrepo without --chain
-- detect that forcearch can not work, and raise obvious error
-- drop unnecessary privilege escalations which only make unnecessary
-  root-owned files</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2019-10-04</td>
-					<td>Miroslav Suchý <msuchy at redhat dot com> 1.4.20-1</td>
-					<td>- /bin/mockchain wrapper around 'mock --chain' (praiskup@redhat.com)
-- mock: options for retrying packager managers' actions (praiskup@redhat.com)
-- remove mockchain [RHBZ#1757388]
-- chain: don't skip local repository (praiskup@redhat.com)
-- chain: propagate local repository to bootstrap chroot (praiskup@redhat.com)
-- hw_info: don't create root-owned files (praiskup@redhat.com)
-- ignore ./var/log when creating root_cache - fixes #309
-  (jiri.novak@ghorland.net)
-- mock: don't create root files if possible (praiskup@redhat.com)
-- add commandline options for using bootstrap image (frostyx@email.cz)
-- Use podman to pull and export an image as a bootstrap chroot
-  (dmach@redhat.com)</td>
 				</tr>
 				
 				<tbody>

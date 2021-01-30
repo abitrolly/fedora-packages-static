@@ -49,6 +49,49 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-01-22</td>
+					<td>Kairui Song <kasong at redhat dot com> - 2.0.21-4</td>
+					<td>- dracut-module-setup.sh: enable ForwardToConsole=yes in fadump mode
+- kdump.conf: add ipv6 example for nfs and ssh dump
+- fix kdump failure of saving vmcore with the scp + ipv6 method</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-20</td>
+					<td>Kairui Song <kasong at redhat dot com> - 2.0.21-3</td>
+					<td>- module-setup.sh: don't polute the namespace unnecessarily
+- module-setup.sh: don't source $dracutfunctions
+- logger: source the logger file individually
+- Fix dump_fs mount point detection and fallback mount
+- Revert "Don's try to restart dracut-initqueue if it's already failed"
+- Revert "Append both nofail and x-systemd.before to kdump mount target"
+- Doc: Improve the kdump sysconfig document
+- kdump.conf: Update doc about core_collector for ssh target
+- Merge #4 `Make dracut-squash a weak dep`
+- Fix a date error in the change log</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-08</td>
+					<td>Kairui Song <kasong at redhat dot com> - 2.0.21-2</td>
+					<td>- makedumpfile: make use of 'uts_namespace.name' offset in VMCOREINFO
+- kdumpctl: fix a variable expansion in check_fence_kdump_config()
+- Add BuildRequires: make
+- Save the final failure information to log file if saving vmcore failed</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-23</td>
+					<td>Kairui Song <kasong at redhat dot com> - 2.0.21-1</td>
+					<td>- makedumpfile: printk: use committed/finalized state values
+- makedumpfile: printk: add support for lockless ringbuffer
+- dracut-module-setup.sh: Use systemctl call to replace ln_r
+- Doc: improve mkdumprd man page
+- Don's try to restart dracut-initqueue if it's already failed
+- dracut-module-setup.sh: use auto6 for ipv6</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2020-11-30</td>
 					<td>Kairui Song <kasong at redhat dot com> - 2.0.20-21</td>
 					<td>- Rebase makedumpfile to 1.6.8
@@ -143,72 +186,6 @@
   https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
 				</tr>
 				
-				<tr scope="row">
-					<td>2020-07-28</td>
-					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 2.0.20-15</td>
-					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-07-01</td>
-					<td>Kairui Song <kasong at redhat dot com> - 2.0.20-14</td>
-					<td>- s390x: enable the kexec file load by default
-- x86_64: enable the kexec file load by default
-- Revert "s390x: add kdump sysconfig option to use the kexec_file_load() syscall"
-- Revert "kdump-lib: switch to the kexec_file_load() syscall on x86_64 by default"
-- kdump.conf: fix a grammar issue
-- man: improve description about /etc/kdump/{pre.d,post.d}interface
-- mkdumprd: Improve the error message for umounted dump target
-- mkdumprd: Fix nfs detection in to_mount
-- Always wrap up call to dracut get_persistent_dev function
-- s390x: add kdump sysconfig option to use the kexec_file_load() syscall
-- mkdumprd: Fix dracut error on multiple extra_modules
-- Fix kdump failure when mount target specified by dracut_args
-- kdump.conf: Specify /etc/kdump/{pre.d,post.d}interface
-- dracut-kdump.sh: Execute the binary and script filesin /etc/kdump/{pre.d,post.d}
-- kdumpctl: Check the update of the binary and script files in /etc/kdump/{pre.d,post.d}
-- dracut-module-setup.sh: Install files under /etc/kdump/{pre.d,post.d} into kdump initramfs
-- Drop switch root capability for non fadump initramfs
-- fadump: update fadump-howto.txt with some more troubleshooting help
-- fadump-howto.txt: source it in spec file
-- Don't inherit swiotlb parameter form 1st kernel by default
-- module-setup.sh: Add "rd.neednet" parameter if network is needed
-- Revert "Add a hook to wait for kdump target in initqueue"
-- kdump.sysconfig: Remove the option 'log_buf_len' from kdump command line</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-05-22</td>
-					<td>Kairui Song <kasong at redhat dot com> - 2.0.20-13</td>
-					<td>- Update docs for the new noauto dump target support
-- kexec-kdump-howto.txt: Add some format to the document
-- mkdumprd: generate usable kdump initramfs even target is not mounted
-- User get_mount_info to replace findmnt calls
-- kdump-lib.sh: add fstab failback helper for getting mount info
-- Allow calling mkdumprd from kdumpctl even if targat not mounted
-- Add a is_mounted helper
-- Introduce get_kdump_mntpoint_from_target and fix duplicated /
-- Append both nofail and x-systemd.before to kdump mount target
-- Fix the problem that kdump prints redundant /
-- Partially Revert "Don't mount the dump target unless needed"
-- fadump: update fadump-howto.txt with some troubleshooting help
-- Add a new option 'rd.znet_ifname' in order to use it in udev rules
-- Don't unmount the dump target just after saving vmcore
-- dracut-module-setup.sh: fix breakage in get_pcs_fence_kdump_nodes()
-- dracut-module-setup.sh: ensure cluster info is ready before query</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-04-02</td>
-					<td>Kairui Song <kasong at redhat dot com> - 2.0.20-12</td>
-					<td>- Remove adjust_bind_mount_path call
-- No longer treat atomic/silverblue specially
-- mkdumprd: Simplify handling of user specified target
-- mkdumprd: Use get_save_path instead of parsing config
-- Remove is_dump_target_configured
-- dracut-module-setup.sh: improve get_alias()</td>
-				</tr>
-				
 				<tbody>
 				</tbody>
 			</table>
@@ -225,27 +202,27 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/d9/0f7c38093dfe58be6d0bb48fa73e7c22962fe9</td>
+					<td>/usr/lib/.build-id/f4/3dedd4933f18a93b01db11c20e33fd2e00d576</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/88</td>
+					<td>/usr/lib/.build-id/0f</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/a2</td>
+					<td>/usr/lib/.build-id/6d</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/d0</td>
+					<td>/usr/lib/.build-id/ba</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/d9</td>
+					<td>/usr/lib/.build-id/f4</td>
 				</tr>
 				
 				<tr scope="row">
@@ -275,12 +252,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib64/eppic_makedumpfile.so</td>
+					<td>/usr/lib/.build-id/0f/c2598beb51c40e83f476b36c1391ceee156126</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/a2/592aa0bd3427a19fbdb2c43088544c99dfe660</td>
+					<td>/usr/lib64/eppic_makedumpfile.so</td>
 				</tr>
 				
 				<tr scope="row">
@@ -296,6 +273,11 @@
 				<tr scope="row">
 					<td>d</td>
 					<td>/etc/kdump/pre.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ba/735fae5d5f255ffc05bfc6797227bfc68394af</td>
 				</tr>
 				
 				<tr scope="row">
@@ -326,86 +308,6 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/lib/systemd/system-generators/kdump-dep-generator.sh</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/d0/5035463575624c2d130036baa5bf9ee7bd47a6</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/kernel/install.d/60-kdump.install</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/licenses/kexec-tools</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/kdump</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/makedumpfile</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/88/ac9bb092abfd7c3cc228fbc3bc453a0908e1d6</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/sbin/kexec</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/sbin/makedumpfile</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/sbin/mkdumprd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/sbin/vmcore-dmesg</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/kexec-tools</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man8/kdumpctl.8.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man8/kexec.8.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man8/makedumpfile.8.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man8/mkdumprd.8.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man8/vmcore-dmesg.8.gz</td>
 				</tr>
 				
 				<tr scope="row">
@@ -475,6 +377,81 @@
 				
 				<tr scope="row">
 					<td>f</td>
+					<td>/usr/lib/kernel/install.d/60-kdump.install</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/sbin/kexec</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/sbin/makedumpfile</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/sbin/mkdumprd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/sbin/vmcore-dmesg</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/kdump</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/makedumpfile</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/kexec-tools</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/6d/db343003e304c9ae0cb7c97f05145251b1f751</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/kdumpctl.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/kexec.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/makedumpfile.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/mkdumprd.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/vmcore-dmesg.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/kdump.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
 					<td>/usr/lib/kdump/kdump-lib-initramfs.sh</td>
 				</tr>
 				
@@ -489,18 +466,8 @@
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/systemd/system/kdump.service</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man5/kdump.conf.5.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man5/makedumpfile.conf.5.gz</td>
+					<td>d</td>
+					<td>/usr/share/doc/kexec-tools</td>
 				</tr>
 				
 				<tr scope="row">
@@ -536,6 +503,16 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/doc/kexec-tools/live-image-kdump-howto.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/kdump.conf.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/makedumpfile.conf.5.gz</td>
 				</tr>
 				
 				<tr scope="row">
