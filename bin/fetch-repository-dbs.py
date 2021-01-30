@@ -9,6 +9,7 @@ import os
 import argparse
 import hashlib
 import sys
+import tqdm
 
 repomd_xml_namespace = {
     'repo': 'http://linux.duke.edu/metadata/repo',
@@ -47,10 +48,15 @@ def needs_update(local_file, remote_sha, sha_type):
 
 def download_db(name, repomd_url, archive):
     print(f'{name.ljust(padding)} Downloading file: {repomd_url} to {archive}')
-    response = requests.get(repomd_url, verify=DL_VERIFY)
+    response = requests.get(repomd_url, verify=DL_VERIFY, stream=True)
     response.raise_for_status()
-    with open(archive, 'wb') as stream:
-        stream.write(response.content)
+    with tqdm.tqdm.wrapattr(
+            open(archive, 'wb'),
+            "write",
+            desc=repomd_url.split('/')[-1],
+            total=int(response.headers.get('content-length', 0))) as stream:
+        for chunk in response.iter_content(chunk_size=1024*1024):
+            stream.write(chunk)
 
 def decompress_db(name, archive, location):
     ''' Decompress the given XZ archive at the specified location. '''
