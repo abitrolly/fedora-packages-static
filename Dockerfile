@@ -10,6 +10,7 @@ RUN dnf -y upgrade \
   python3-requests \
   python3-jinja2 \
   python3-defusedxml \
+  python3-tqdm \
   npm \
   rsync
 
