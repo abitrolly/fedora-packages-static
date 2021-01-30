@@ -9,6 +9,7 @@ RUN dnf -y upgrade \
   make \
   python3-requests \
   python3-jinja2 \
+  python3-tqdm \
   npm \
   cronie \
   cronie-anacron \
