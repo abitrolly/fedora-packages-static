@@ -3,14 +3,6 @@ name: Manual trigger to build and upload to pages
 on:
   # Runs when manually triggered using the UI or API.
   workflow_dispatch:
-    inputs:
-      name:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
-        # Default value if no value is explicitly provided
-        #default: 'World'
-        # Input has to be provided for the workflow to run
-        #required: true
 
 jobs:
   # This workflow contains a single job called "build"
@@ -28,6 +20,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
  
+    - name: Install
+      run: apt install $(grep "^[^#]" dependencies.txt)
+
     - name: Build
       run: make all
 
