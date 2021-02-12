@@ -103,7 +103,7 @@ def gen_db_diff(name, new, old):
             arch TEXT NOT NULL,
             version TEXT,
             change TEXT NOT NULL,
-            UNIQUE(name, arch)
+            UNIQUE(name, arch) ON CONFLICT IGNORE
         )
         ''')
     # Insert added packages list to changes table
