@@ -1,6 +1,6 @@
-OUTPUT_DIR=public_html
-DB_DIR=repositories
-MAINTAINER_MAPPING=pagure_owner_alias.json
+OUTPUT_DIR?=public_html
+DB_DIR?=repositories
+MAINTAINER_MAPPING?=pagure_owner_alias.json
 
 help:
 	@echo "sync-repositories: download RPM repository metadata for active releases"
