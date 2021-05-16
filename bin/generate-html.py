@@ -23,6 +23,7 @@ TEMPLATE_DIR='../templates'
 DBS_DIR=os.environ.get('DB_DIR') or "repositories"
 ASSETS_DIR='assets'
 SCM_MAINTAINER_MAPPING=os.environ.get('MAINTAINER_MAPPING') or "pagure_owner_alias.json"
+PRODUCT_VERSION_MAPPING=os.environ.get('PRODUCT_VERSION_MAPPING') or "product_version_mapping.json"
 SITEMAP_URL = os.environ.get('SITEMAP_URL') or 'https://localhost:8080'
 
 class Package:
@@ -38,18 +39,22 @@ class Package:
         self.subpackage_of = None
         self.subpackages = []
 
-    def set_release(self, name, pkgKey, branch, revision):
+    def set_release(self, name, pkgKey, branch, revision, human_name=None):
         if name not in self.releases:
             self.releases[name] = {}
 
-        if branch not in self.releases[name]:
-            self.releases[name][branch] = {}
+        if 'branches' not in self.releases[name]:
+            self.releases[name]['branches'] = {}
 
-        self.releases[name][branch]['revision'] = revision
-        self.releases[name][branch]['pkg_key'] = pkgKey
+        if branch not in self.releases[name]:
+            self.releases[name]['branches'][branch] = {}
+
+        self.releases[name]['branches'][branch]['revision'] = revision
+        self.releases[name]['branches'][branch]['pkg_key'] = pkgKey
+        self.releases[name]['human_name'] = human_name or name
 
     def get_release(self, name):
-        return self.releases[name]
+        return self.releases[name]['branches']
 
     def source(self):
         if self.subpackage_of == None:
@@ -101,6 +106,11 @@ def main():
     print("Loading maintainer mapping...")
     with open(SCM_MAINTAINER_MAPPING) as raw:
         maintainer_mapping = json.load(raw)
+
+    # Load product release->name mapping
+    print("Loading release name mapping...")
+    with open(PRODUCT_VERSION_MAPPING) as raw:
+        release_mapping = json.load(raw)
 
     # Group databases files.
     databases = {}
@@ -168,7 +178,7 @@ def main():
                 pkg.should_update = True
             elif first_pkg_encounter and partial_update:
                 pkg.should_update = False
-            
+
             # If a changes table does not exist, then the package should
             # always be updated.
             if not partial_update:
@@ -188,8 +198,8 @@ def main():
             if branch == "":
                 branch = "base"
 
-            pkg.set_release(release, raw["pkgKey"], branch, revision)
-        
+            pkg.set_release(release, raw["pkgKey"], branch, revision, release_mapping.get(release))
+
         # Get removed packages to determine if folder needs to be deleted later
         if partial_update:
             for removed in primary.execute("SELECT name FROM changes WHERE change = 'removed'"):
@@ -242,8 +252,8 @@ def main():
         crawler_sitemap_xml = crawler_sitemap.render(packages=sitemap_pkgs, url=SITEMAP_URL)
         save_to(os.path.join(sitemap_dir, 'sitemap{}.xml'.format(i)), crawler_sitemap_xml)
         sitemap_list.append('/sitemaps/sitemap{}.xml'.format(i))
-        i = i + 1 
-        
+        i = i + 1
+
     sitemap_sitemap = env.get_template('sitemap-index.xml.j2')
     sitemap_sitemap_xml = sitemap_sitemap.render(sitemaps=sitemap_list, url=SITEMAP_URL)
     save_to(os.path.join(output_dir, 'sitemap.xml'), sitemap_sitemap_xml)

@@ -1,10 +1,11 @@
 OUTPUT_DIR?=public_html
 DB_DIR?=repositories
 MAINTAINER_MAPPING?=pagure_owner_alias.json
+PRODUCT_VERSION_MAPPING?=product_version_mapping.json
 
 help:
 	@echo "sync-repositories: download RPM repository metadata for active releases"
-	@echo "fetch-maintainers: download package-maintainer mapping from dist-git"
+	@echo "fetch-data: download package-maintainer mapping from dist-git and release version mapping from pdc"
 	@echo "html: generate static website"
 	@echo "js: generate js"
 	@echo "setup-js: get js dependencies"
@@ -13,22 +14,23 @@ help:
 	@echo "update-solr: update solr index. must have SOLR_CORE and SOLR_URL defined"
 
 ifneq (,$(wildcard vue/node_modules))
-all: sync-repositories fetch-maintainers html js
+all: sync-repositories fetch-data html js
 else
-all: sync-repositories fetch-maintainers html setup-js js
+all: sync-repositories fetch-data html setup-js js
 endif
 
-html-only: sync-repositories fetch-maintainers html
+html-only: sync-repositories fetch-data html
 
-update-solr: 
+update-solr:
 	bin/update-solr.py
 
 sync-repositories:
 	mkdir -p $(DB_DIR)
 	bin/fetch-repository-dbs.py --target-dir $(DB_DIR)
 
-fetch-maintainers:
+fetch-data:
 	curl https://src.fedoraproject.org/extras/pagure_owner_alias.json -o $(MAINTAINER_MAPPING)
+	bin/get-product-names.py
 
 html:
 	mkdir -p $(OUTPUT_DIR)/assets
