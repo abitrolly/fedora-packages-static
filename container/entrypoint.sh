@@ -1,5 +1,6 @@
 #!/bin/sh
-INIT_FILE=/etc/packages/.init_complete
+cd /etc/packages
+INIT_FILE=.init_complete
 if [[ ! -f "$INIT_FILE" ]]; then
   mkdir -p /var/run/supervisor
   make OUTPUT_DIR=/srv/packages all
