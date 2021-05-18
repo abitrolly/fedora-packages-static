@@ -16,21 +16,34 @@ jobs:
     - name: Greet
       run: echo "Hello ${{ github.event.inputs.name }}"
 
+    - name: Install disk space diagnostic tools
+      run: |
+        brew install duf
+        brew install abitrolly/tap/tdu
+        duf
+        tdu
+        tdu /
+
     # Code checkout is not automatic
     - name: Checkout
       uses: actions/checkout@v2
  
     - name: Install
       #run: sudo apt-get -y install $(grep "^[^#]" dependencies.txt)
-      run: pip install tqdm
+      run: |
+        pip install tqdm
+        duf
 
     - name: Build
       env:
         SITEMAP_URL: https://abitrolly.github.io/fedora-packages-static/
-      run: make all
+      run: |
+        make all
+        duf
+        tdu
 
     - name: Upload to GitHub Pages
-      uses: crazy-max/ghaction-github-pages@v2.2.0
+      uses: crazy-max/ghaction-github-pages@v2.4.1
       with:
         # Git branch where assets will be deployed
         #target_branch: # optional, default is gh-pages
