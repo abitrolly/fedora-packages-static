@@ -16,13 +16,18 @@ jobs:
     - name: Greet
       run: echo "Hello ${{ github.event.inputs.name }}"
 
-    - name: Install disk space diagnostic tools
+    - name: Disk space diagnostic
       run: |
         brew install duf
         brew install abitrolly/tap/tdu
+        echo "--------- DUF"
         duf
+        echo "--------- TDU"
         tdu
+        echo "--------- TDU /"
         tdu /
+        echo "--------- Plain du"
+        du -Sh / | sort -rh | head -30
 
     # Code checkout is not automatic
     - name: Checkout
