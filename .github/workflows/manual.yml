@@ -18,8 +18,11 @@ jobs:
 
     - name: Install disk space diagnostic tools
       run: |
-        sudo snap install duf-utility
+        brew install duf
+        brew install abitrolly/tap/tdu
         duf
+        tdu
+        tdu /
 
     # Code checkout is not automatic
     - name: Checkout
@@ -37,6 +40,7 @@ jobs:
       run: |
         make all
         duf
+        tdu
 
     - name: Upload to GitHub Pages
       uses: crazy-max/ghaction-github-pages@v2.4.1
