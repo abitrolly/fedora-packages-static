@@ -22,6 +22,7 @@ ENV OUTPUT_DIR /srv/packages
 RUN mkdir /etc/packages
 ENV DB_DIR /etc/packages/repositories
 ENV MAINTAINER_MAPPING /etc/packages/pagure_owner_alias.json
+ENV PRODUCT_VERSION_MAPPING /etc/packages/product_version_mapping.json
 ENV SOLR_CORE packages
 ENV SOLR_URL http://127.0.0.1:8983/
 ENV SITEMAP_URL https://localhost:8080
