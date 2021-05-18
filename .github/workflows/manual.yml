@@ -12,17 +12,35 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: Disk space diagnostic
+      run: |
+        brew install duf
+        brew install abitrolly/tap/tdu
+        echo "--------- DUF"
+        duf
+        echo "--------- TDU"
+        tdu
+        echo "--------- TDU /"
+        tdu /
+        echo "--------- Plain du"
+        du -Sh / | sort -rh | head -30
+
     - name: Checkout
       uses: actions/checkout@v2
 
     - name: Install
       #run: sudo apt-get -y install $(grep "^[^#]" dependencies.txt)
-      run: pip install tqdm defusedxml
+      run: |
+        pip install tqdm defusedxml
+        duf
 
     - name: Build
       env:
         SITEMAP_URL: https://abitrolly.github.io/fedora-packages-static/
-      run: make all
+      run: |
+        make all
+        duf
+        tdu
 
     - name: Upload to GitHub Pages
       uses: crazy-max/ghaction-github-pages@v2.5.0
