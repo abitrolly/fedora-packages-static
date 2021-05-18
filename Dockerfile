@@ -41,6 +41,6 @@ COPY container/supervisord.conf /etc/supervisord.conf
 #  one container that manages static files
 #  and just serve from the rest with read-only mounts
 VOLUME /srv/packages
-EXPOSE 80
+EXPOSE 8080
 
 ENTRYPOINT [ "./container/entrypoint.sh" ]
