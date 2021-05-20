@@ -266,9 +266,9 @@ def main():
 
     page_count = 0
     max_page_count = len(packages)
+    db_conns = {}
 
-    # Generate main pages.
-    print(">>> Index pages...")
+    # Generate package index and version pages
     for pkg in packages.values():
         if pkg.should_update == False:
             continue
@@ -284,80 +284,68 @@ def main():
         # Simple way to display progress.
         page_count += 1
         if (page_count % 100 == 0 or page_count == max_page_count):
-            print("Processed {}/{} pages.".format(page_count, max_page_count))
+            print("Processed {}/{} package pages.".format(page_count, max_page_count))
 
-    # Generate files and changelog pages.
-    print(">>> Files and changelog pages...")
-    db_conns = {}
-    detailed_page_count = 0
-    for pkg in packages.values():
-      if pkg.should_update == False:
-        continue
-      pkg_dir = os.path.join(output_dir, 'pkgs', pkg.name)
-      for release in pkg.releases.keys():
-        for branch in pkg.get_release(release).keys():
-            if branch == "base":
-                release_branch = release
-            else:
-                release_branch = "{}-{}".format(release, branch)
+        for release in pkg.releases.keys():
+            for branch in pkg.get_release(release).keys():
+                if branch == "base":
+                    release_branch = release
+                else:
+                    release_branch = "{}-{}".format(release, branch)
 
-            pkg_key = pkg.get_release(release)[branch]['pkg_key']
-            revision = pkg.get_release(release)[branch]['revision']
+                pkg_key = pkg.get_release(release)[branch]['pkg_key']
+                revision = pkg.get_release(release)[branch]['revision']
 
-            # Cache DB connections.
-            if release_branch in db_conns:
-                filelist = db_conns[release_branch]["filelist"]
-                other = db_conns[release_branch]["other"]
-            else:
-                (_, filelist) = open_db(databases[release_branch]["filelists"])
-                (_, other) = open_db(databases[release_branch]["other"])
+                # Cache DB connections.
+                if release_branch in db_conns:
+                    filelist = db_conns[release_branch]["filelist"]
+                    other = db_conns[release_branch]["other"]
+                else:
+                    (_, filelist) = open_db(databases[release_branch]["filelists"])
+                    (_, other) = open_db(databases[release_branch]["other"])
 
-                db_conns[release_branch] = {
-                        "filelist": filelist,
-                        "other": other,
-                        }
+                    db_conns[release_branch] = {
+                            "filelist": filelist,
+                            "other": other,
+                            }
 
-            # Generate files page for pkg.
-            files = []
-            for entry in filelist.execute('SELECT * FROM filelist WHERE pkgKey = ?', (pkg_key,)):
-                filenames = entry["filenames"].split('/')
-                filetype_index = 0
-                for filename in filenames:
-                    try:
-                      filetype = entry["filetypes"][filetype_index]
-                    except Exception:
-                      filetype = '?'
+                # Generate files page for pkg.
+                files = []
+                for entry in filelist.execute('SELECT * FROM filelist WHERE pkgKey = ?', (pkg_key,)):
+                    filenames = entry["filenames"].split('/')
+                    filetype_index = 0
+                    for filename in filenames:
+                        try:
+                            filetype = entry["filetypes"][filetype_index]
+                        except Exception:
+                            filetype = '?'
 
-                    files += [{
-                        "type": filetype,
-                        "path": os.path.join(entry["dirname"], filename),
-                    }]
-                    filetype_index += 1
+                        files += [{
+                            "type": filetype,
+                            "path": os.path.join(entry["dirname"], filename),
+                        }]
+                        filetype_index += 1
 
-            # Generate changelog page for pkg.
-            changelog = []
-            for change in other.execute('SELECT * FROM changelog WHERE pkgKey = ?', (pkg_key,)):
-                # Make addresses less obvious to spot for spam bots.
-                author = change["author"]
-                if changelog_mail_pattern.search(change["author"]):
-                    addr = changelog_mail_pattern.findall(change["author"])[0]
-                    obfuscated_addr = addr.replace('@', ' at ').replace('.', ' dot ').replace('-', ' dash ')
-                    author = author.replace(addr, obfuscated_addr)
+                # Generate changelog page for pkg.
+                changelog = []
+                for change in other.execute('SELECT * FROM changelog WHERE pkgKey = ?', (pkg_key,)):
+                    # Make addresses less obvious to spot for spam bots.
+                    author = change["author"]
+                    if changelog_mail_pattern.search(change["author"]):
+                        addr = changelog_mail_pattern.findall(change["author"])[0]
+                        obfuscated_addr = addr.replace('@', ' at ').replace('.', ' dot ').replace('-', ' dash ')
+                        author = author.replace(addr, obfuscated_addr)
 
-                changelog += [{
-                    "author": author,
-                    "timestamp": change["date"],
-                    "date": date.fromtimestamp(change["date"]),
-                    "change": change["changelog"]
-                    }]
-            html_path = os.path.join(pkg_dir, release_branch + ".html")
-            html_template = env.get_template("package-details.html.j2")
-            html_content = html_template.render(pkg=pkg, release=release, changelog=changelog, files=files)
-            save_to(html_path, html_content)
-
-      detailed_page_count += 1
-      if (detailed_page_count % 100 == 0) or (detailed_page_count == max_page_count):
-          print("Processed {}/{} pages.".format(detailed_page_count, max_page_count))
+                    changelog += [{
+                        "author": author,
+                        "timestamp": change["date"],
+                        "date": date.fromtimestamp(change["date"]),
+                        "change": change["changelog"]
+                        }]
+                html_path = os.path.join(pkg_dir, release_branch + ".html")
+                html_template = env.get_template("package-details.html.j2")
+                html_content = html_template.render(pkg=pkg, release=release, changelog=changelog, files=files)
+                save_to(html_path, html_content)
 
     print("DONE.")
     print("> {} packages processed.".format(page_count))
