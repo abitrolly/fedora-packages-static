@@ -38,6 +38,7 @@ class Package:
         self.releases = {}
         self.subpackage_of = None
         self.subpackages = []
+        self.parent_not_exist = False
 
     def set_release(self, name, pkgKey, branch, revision, human_name=None):
         if name not in self.releases:
@@ -221,6 +222,8 @@ def main():
             if parent != None:
                 parent.subpackages += [pkg.name]
                 pkg.maintainers = packages[pkg.subpackage_of].maintainers
+            else:
+                pkg.parent_not_exist = True
 
     print(">>> {} packages have been extracted.".format(len(packages)))
     # Generate main user entrypoint.

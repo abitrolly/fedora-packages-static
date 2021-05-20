@@ -35,7 +35,9 @@
 
 			<h1>
 				{{ pkg.name }}
-				{% if pkg.subpackage_of %}
+				{% if pkg.subpackage_of and pkg.parent_not_exist %}
+				<small class="text-muted">Subpackage of {{ pkg.subpackage_of }}</small>
+				{% elif pkg.subpackage_of %}
 				<small class="text-muted">Subpackage of <a href="../{{ pkg.subpackage_of }}">{{ pkg.subpackage_of }}</a></small>
 				{% endif %}
 			</h1>
