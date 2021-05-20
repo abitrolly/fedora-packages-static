@@ -16,21 +16,12 @@ jobs:
     - name: Greet
       run: echo "Hello ${{ github.event.inputs.name }}"
 
-    - name: Disk space diagnostic
+    - name: Disk space utils
       run: |
         brew install duf
-        brew install abitrolly/tap/tdu
         brew install dust
-        echo "--------- DUF"
+        brew install abitrolly/tap/tdu
         duf
-        echo "--------- TDU"
-        tdu
-        echo "--------- TDU /"
-        tdu /
-        echo "--------- Plain du"
-        du -ah / | sort -rh | head -30
-        echo "--------- Dust"
-        dust /
 
     # Code checkout is not automatic
     - name: Checkout
@@ -50,7 +41,7 @@ jobs:
       run: |
         make all
         duf
-        tdu
+        tdu -human
 
     - name: Upload to GitHub Pages
       uses: crazy-max/ghaction-github-pages@v2.4.1
