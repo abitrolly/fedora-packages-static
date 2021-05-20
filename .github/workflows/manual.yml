@@ -20,6 +20,7 @@ jobs:
       run: |
         brew install duf
         brew install abitrolly/tap/tdu
+        brew install dust
         echo "--------- DUF"
         duf
         echo "--------- TDU"
@@ -27,17 +28,21 @@ jobs:
         echo "--------- TDU /"
         tdu /
         echo "--------- Plain du"
-        du -Sh / | sort -rh | head -30
+        du -ah / | sort -rh | head -30
+        echo "--------- Dust"
+        dust /
 
     # Code checkout is not automatic
     - name: Checkout
       uses: actions/checkout@v2
  
-    - name: Install
+    - name: Install and free space
       #run: sudo apt-get -y install $(grep "^[^#]" dependencies.txt)
       run: |
         pip install tqdm
-        duf
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /usr/local/lib/android
+        dust /
 
     - name: Build
       env:
