@@ -10,8 +10,6 @@ RUN dnf -y upgrade \
   python3-requests \
   python3-jinja2 \
   npm \
-  cronie \
-  cronie-anacron \
   rsync
 
 WORKDIR /usr/local/src/packages
@@ -34,7 +32,6 @@ RUN make setup-js \
   && make js
 
 COPY container/nginx.conf /etc/nginx/nginx.conf
-COPY container/update-packages.sh /etc/cron.daily/
 COPY container/supervisord.conf /etc/supervisord.conf
 
 # TODO: Figure out how to use a read-write volume for

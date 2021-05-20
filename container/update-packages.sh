@@ -1,4 +1,7 @@
 #!/bin/sh
 cd /usr/local/src/packages
-make html-only
-make update-solr
+while true; do
+    make html-only
+    make update-solr
+    sleep 3600
+done
