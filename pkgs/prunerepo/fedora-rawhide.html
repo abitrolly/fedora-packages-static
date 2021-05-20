@@ -49,15 +49,28 @@
 				</thead>
 				
 				<tr scope="row">
-					<td>2020-07-28</td>
-					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.18-3</td>
-					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+					<td>2021-04-30</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.21-1</td>
+					<td>- Don't leak descriptors in Python API call
+- fix misleading /bin/prunerepo message when no rpms are to be removed</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-05-26</td>
-					<td>Miro Hrončok <mhroncok at redhat dot com> - 1.18-2</td>
-					<td>- Rebuilt for Python 3.9</td>
+					<td>2021-04-27</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.20-1</td>
+					<td>- Move the stderr output to log
+- Don't sys.exit() from library function</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-19</td>
+					<td>Silvie Chlupova <schlupov at redhat dot com> 1.19-1</td>
+					<td>- api: new api method get_rpms_to_remove
+- Enhance the logging mechanism a bit
+- Faster srpm pairing with rpms
+- Start using functions from helpers
+- Move prunerepo to helpers.py
+- Explicitly depend on python3-setuptools</td>
 				</tr>
 				
 				<tr scope="row">
@@ -84,34 +97,6 @@
 - Drop useless double-quote in --queryformat</td>
 				</tr>
 				
-				<tr scope="row">
-					<td>2019-04-01</td>
-					<td>clime <clime7 at gmail dot com> 1.15-1</td>
-					<td>- fix changelog</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2018-10-19</td>
-					<td>Miroslav Suchý <msuchy at redhat dot com> 1.14-1</td>
-					<td>- /usr/bin/env python3 -> /usr/bin/python3
-- use git_dir_archive instead of git_dir_pack
-- fix test non-determinism</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2018-08-18</td>
-					<td>clime <clime at redhat dot com> 1.13-1</td>
-					<td>- keep all the latest NEVRAS on disk since dnf3</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2018-08-06</td>
-					<td>clime <clime at redhat dot com> 1.12-1</td>
-					<td>- fix reading spec file values from setup.py
-- rpkg deployment into COPR
-- use builtin cd in tests</td>
-				</tr>
-				
 				<tbody>
 				</tbody>
 			</table>
@@ -128,27 +113,67 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/licenses/prunerepo</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo-1.21-py3.9.egg-info</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/prunerepo-1.18-py3.9.egg-info/PKG-INFO</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo/__pycache__</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/prunerepo-1.18-py3.9.egg-info/SOURCES.txt</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo/helpers.py</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/prunerepo-1.18-py3.9.egg-info/dependency_links.txt</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo/main.py</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/prunerepo-1.18-py3.9.egg-info/top_level.txt</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo/pair_srpm_rpm.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo-1.21-py3.9.egg-info/PKG-INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo-1.21-py3.9.egg-info/SOURCES.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo-1.21-py3.9.egg-info/dependency_links.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo-1.21-py3.9.egg-info/entry_points.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo-1.21-py3.9.egg-info/top_level.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/prunerepo</td>
 				</tr>
 				
 				<tr scope="row">
@@ -163,12 +188,47 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/python3.9/site-packages/prunerepo-1.18-py3.9.egg-info</td>
+					<td>/usr/share/licenses/prunerepo</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/bin/prunerepo</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo/__pycache__/__init__.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo/__pycache__/__init__.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo/__pycache__/helpers.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo/__pycache__/helpers.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo/__pycache__/main.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo/__pycache__/main.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo/__pycache__/pair_srpm_rpm.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/prunerepo/__pycache__/pair_srpm_rpm.cpython-39.pyc</td>
 				</tr>
 				
 				<tbody>

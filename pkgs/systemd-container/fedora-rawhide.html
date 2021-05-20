@@ -49,89 +49,79 @@
 				</thead>
 				
 				<tr scope="row">
-					<td>2020-12-16</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247.2-1</td>
-					<td>- Minor stable release
-- Fixes #1908071.</td>
+					<td>2021-05-15</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.3-1</td>
+					<td>- A fix for resolved crashes (#1946386, #1960227, #1950241)
+- Some minor fixes for documentation, systemd-networkd, systemd-run, bootctl.</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-08</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247.1-3</td>
-					<td>- Rebuild with fallback hostname change reverted.</td>
+					<td>2021-05-07</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.2-1</td>
+					<td>- Pull in some more patches from upstream (#1944646, #1885090, #1941340)
+- Adjust modes of some %ghost files (#1956059)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-04</td>
-					<td>Bastien Nocera <bnocera at redhat dot com> - 247.1-2</td>
-					<td>- Unset fallback-hostname as plenty of applications expected localhost
-  to mean "default hostname" without ever standardising it (#1892235)</td>
+					<td>2021-05-06</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.1-1</td>
+					<td>- Latest stable version: a long list of minor correctness fixes all around
+  (#1955475, #911766, #1958167, #1952919)
+- Enable tpm2-tss dependency (#1949505)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-01</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247.1-1</td>
-					<td>- Latest stable release
-- Fixes #1902819.
-- Files to configure networking with systemd-networkd in a VM or container are
-  moved to systemd-networkd subpackage. (They were previously in the -container
-  subpackage, which is for container/VM management.)</td>
+					<td>2021-04-06</td>
+					<td>Adam Williamson <awilliam at redhat dot com> - 248-2</td>
+					<td>- Re-enable resolved caching, we hope all major bugs are resolved now</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-11-26</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247-1</td>
-					<td>- Update to the latest version
-- #1900878 should be fixed</td>
+					<td>2021-03-31</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248-1</td>
+					<td>- Latest upstream release, see
+  https://github.com/systemd/systemd/blob/v248/NEWS.
+- The changes since -rc4 are rather small, various fixes all over the place.
+  A fix to how systemd-oomd selects a candidate to kill, and more debug logging
+  to make this more transparent.</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-10-20</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247~rc2</td>
-					<td>- New upstream pre-release. See
-  https://github.com/systemd/systemd/blob/v247-rc1/NEWS.
-  Many smaller and bigger improvements and features are introduced.
-  (#1885101, #1890632, #1879216)
-
-  A backwards-incompatible change affects PCI network devices which
-  are connected through a bridge which is itself associated with a
-  slot. When more than one device was associated with the same slot,
-  one of the devices would pseudo-randomly get named after the slot.
-  That name is now not generated at all. This changed behaviour is
-  causes the net naming scheme to be changed to "v247". To restore
-  previous behaviour, specify net.naming-scheme=v245.
-
-  systemd-oomd is built, but should not be considered "production
-  ready" at this point. Testing and bug reports are welcome.</td>
+					<td>2021-03-30</td>
+					<td>Anita Zhang <the dot anitazha at gmail dot com> - 248~rc4-6</td>
+					<td>- Increase oomd user memory pressure limit to 50% (#1941170)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-09-30</td>
-					<td>Dusty Mabe <dusty at dustymabe dot com> - 246.6-3</td>
-					<td>- Try to make files in subpackages (especially the networkd subpackage)
-  more appropriate.</td>
+					<td>2021-03-26</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-5</td>
+					<td>- Do not preset systemd-networkd.service and systemd-networkd-wait-online.service
+  on upgrades from before systemd-networkd was split out (#1943263)
+- In nsswitch.conf, move nss-myhostname to the front, before nss-mdns4 (#1943199)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-09-24</td>
-					<td>Filipe Brandenburger <filbranden at gmail dot com> - 246.6-2</td>
-					<td>- Build a package with standalone binaries for non-systemd systems.
-  For now, only systemd-sysusers is included.</td>
+					<td>2021-03-24</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-4</td>
+					<td>- Revert patch that seems to cause problems with dns resolution
+  (see comments on https://bodhi.fedoraproject.org/updates/FEDORA-2021-1c1a870ceb)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-09-24</td>
-					<td>Christian Glombek <lorbus at fedoraproject dot org> - 246.6-2</td>
-					<td>- Split out networkd sub-package and add to main package as recommended dependency</td>
+					<td>2021-03-22</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-3</td>
+					<td>- Fix hang when processing timers during DST switch in Europe/Dublin timezone (#1941335)
+- Fix returning combined IPv4/IPv6 responses from systemd-resolved cache (#1940715)
+  (But note that the disablement of caching added previously is
+  retained until we can do more testing.)
+- Minor fix to interface naming by udev
+- Fix for systemd-repart --size</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-09-20</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 246.6-1</td>
-					<td>- Update to latest stable release (various minor fixes: manager,
-  networking, bootct, kernel-install, systemd-dissect, systemd-homed,
-  fstab-generator, documentation) (#1876905)
-- Do not fail in test because of kernel bug (#1803070)</td>
+					<td>2021-03-19</td>
+					<td>Adam Williamson <awilliam at redhat dot com> - 248~rc4-2</td>
+					<td>- Disable resolved cache via config snippet (#1940715)</td>
 				</tr>
 				
 				<tbody>
@@ -150,62 +140,62 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/1e</td>
+					<td>/usr/lib/.build-id/2d</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/43</td>
+					<td>/usr/lib/.build-id/6c</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/4a</td>
+					<td>/usr/lib/.build-id/71</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/68</td>
+					<td>/usr/lib/.build-id/ad</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/b6</td>
+					<td>/usr/lib/.build-id/f2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/0f/27470cf90fae0c352c5110c1578be926a7d348</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/dbus-1/system-services/org.freedesktop.import1.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/dbus-1/system-services/org.freedesktop.machine1.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/org.freedesktop.import1.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/org.freedesktop.machine1.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ad/ad2ebe8ff9f8b22434b8cc09816672c0408728</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/e8</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/systemd/import-pubring.gpg</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/systemd/systemd-import</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/systemd/systemd-import-fs</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/systemd/systemd-importd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/systemd/systemd-machined</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/systemd/systemd-pull</td>
+					<td>/usr/lib/.build-id</td>
 				</tr>
 				
 				<tr scope="row">
@@ -240,26 +230,6 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man5/org.freedesktop.import1.5.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man5/org.freedesktop.machine1.5.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/4a/4a8d0959ae8cbb96bd3db4e17fccb895bfd37c</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/share/zsh/site-functions/_machinectl</td>
 				</tr>
 				
@@ -280,17 +250,22 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/bash-completion/completions/machinectl</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/bash-completion/completions/systemd-nspawn</td>
+					<td>/usr/lib/.build-id/71/dd9ac1a6da0a8d4c797fe03c12390372a41024</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/lib/systemd/system/remote-fs.target.wants/var-lib-machines.mount</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/6c/228911d5c26b85b144d047c11f8e6ab2484c5a</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/2d/a424abad57e1a19e5d109b3723a82be2222a0c</td>
 				</tr>
 				
 				<tr scope="row">
@@ -305,17 +280,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/43/71a630714eeb12d74326dcee577341106b0a48</td>
+					<td>/usr/share/bash-completion/completions/machinectl</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/bd/40cd20e320492966c3b1c80086f16e0a419d45</td>
+					<td>/usr/share/bash-completion/completions/systemd-nspawn</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/e8/8c23b7c137dc3762d5f90d3408315875eab98c</td>
+					<td>/usr/lib/.build-id/07/201bf1eb4281aedaa8f1afdbd0f6eb7fffb54d</td>
 				</tr>
 				
 				<tr scope="row">
@@ -325,37 +300,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/dbus-1/system.d/org.freedesktop.import1.conf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/dbus-1/system.d/org.freedesktop.machine1.conf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/1e/1795c09b8afd9ddfad722e661736bd638f4a48</td>
+					<td>/usr/lib/.build-id/f2/e9da8bbfa0410c7d55abee017ea541169769d4</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/lib64/libnss_mymachines.so.2</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/dbus-1/system-services/org.freedesktop.import1.service</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/dbus-1/system-services/org.freedesktop.machine1.service</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/fb/0cb003ade990de8e8cbc2967f4a4da15cb9a17</td>
 				</tr>
 				
 				<tr scope="row">
@@ -405,12 +355,47 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/68/6133178f4a17639cfb8e74d147be99df65ccc5</td>
+					<td>/usr/share/dbus-1/system.d/org.freedesktop.import1.conf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/b6/1fefc6c98b9474a42859c31fa7e7ccc0b2f16b</td>
+					<td>/usr/share/dbus-1/system.d/org.freedesktop.machine1.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/import-pubring.gpg</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-import</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-import-fs</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-importd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-machined</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-pull</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/c4/f625de66b8a16cd20587c9966d9d956b068f1f</td>
 				</tr>
 				
 				<tr scope="row">

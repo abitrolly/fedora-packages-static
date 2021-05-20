@@ -49,6 +49,37 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-03-26</td>
+					<td>Petr Šplíchal <psplicha at redhat dot com> - 0.15.2-1</td>
+					<td>- Do not use mutable objects as default arguments
+- A bunch of adjustments for the epel-7 build</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-24</td>
+					<td>Petr Šplíchal <psplicha at redhat dot com> - 0.15-1</td>
+					<td>- Implement the new 'fmf clean' command
+- Functions to manipulate cache
+- Fetch the whole tree using utils.fetch_tree()
+- Raise FileException on duplicate YAML keys
+- Allow to set desired cache location
+- Adjust support for storing modified data to disk
+- Add support for storing modified metadata to disk
+- Prevent exploring tests in the tmt directory
+- Simplify special distro comparison examples
+- Store command output in run(), fetch() exceptions
+- Use filelock for locking, expand test coverage
+- Adjust locking for Tree.node() and utils.fetch()
+- Use locking to checkout/read tree
+- Enable integration testing with tmt, some cleanup
+- Implement a new method copy() for cloning nodes
+- Adjust fetch() with custom destination and env
+- Support calls fetch(destination, env) and run(env)
+- Use the origin default branch instead of master
+- Store commit hash if the tree is under a git repo</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2021-01-12</td>
 					<td>Petr Šplíchal <psplicha at redhat dot com> - 0.14-1</td>
 					<td>- Adjust context docs, fix typos, style cleanup
@@ -129,37 +160,6 @@
 - Enable packit</td>
 				</tr>
 				
-				<tr scope="row">
-					<td>2019-07-26</td>
-					<td>Petr Šplíchal <psplicha at redhat dot com> - 0.7-1</td>
-					<td>- Support both old and new yaml loader
-- Add advanced python filtering [fix #55]
-- Drop explicit locale setting during build and install
-- Drop Python 2 subpackage on Fedora 30+ (#1647798)
-- Better handle yaml errors [fix #50]
-- Support reducing attributes using the "-" suffix
-- Prevent extra new lines in the show() output
-- Adjust FullLoader to load all strings as unicode
-- Suppress yaml warnings by specifying the loader
-- Support Tree.find() for non-leaf nodes as well</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2018-10-08</td>
-					<td>Petr Šplíchal <psplicha at redhat dot com> 0.6-1</td>
-					<td>- Ignore directories with no metadata defined
-- Give a nice error when .fmf file exists [fix #37]
-- Ignore metadata subtrees [fix #43]
-- Support for direct deep dictionary value retrieval
-- Separate exception for missing tree root [fix #42]
-- Move data merging into a separate method [fix #41]
-- Ensure that data or parent are provided for Tree
-- Test coverage for yaml syntax and finding root
-- Do not walk through the whole directory hierarchy
-- Example typo, handle yaml parse errors [fix #38]
-- Require the same version of the rpm package</td>
-				</tr>
-				
 				<tbody>
 				</tbody>
 			</table>
@@ -175,333 +175,348 @@
 				</thead>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/.fmf/version</td>
-				</tr>
-				
-				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/child</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/code</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/conditions</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/deep</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/empty</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/merge</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/scatter</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/touch</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/scatter/.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/scatter/.fmf/version</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/merge/.fmf/version</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/scatter/main.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/protocols/ftp</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/scatter/object</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/scatter/object.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/scatter/test.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/protocols/https/main.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/protocols/ftp/main.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/requirements/main.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/.fmf/version</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/protocols/http</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/child/.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/child/eve.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/child/main.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/protocols/https</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/protocols/main.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/empty/nothing/ignored.txt</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/requirements/main.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/scatter/object/main.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/protocols/https/main.fmf</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/child/nobody</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/child/.fmf</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/child/son</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/touch/.fmf/version</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/empty/nothing/ignored.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/child/.fmf/version</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/recursion/deep.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/recursion/fast.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/recursion/main.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/child/ha</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/child/nobody/.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/child/main.fmf</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/child/nobody/main.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/child/nobody/.fmf/version</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/conditions/.fmf/version</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/child/nobody</td>
+					<td>/usr/share/doc/fmf-0.15.2</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/child/son</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/empty/.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/child/nobody/.fmf/version</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/empty/main.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/empty/nothing</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/scatter/.fmf</td>
+					<td>/usr/share/licenses/fmf-0.15.2</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/scatter/main.fmf</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/code/simple.py</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/scatter/object</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/deep/.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/scatter/object.fmf</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/deep/main.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/licenses/fmf-0.14</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/README.rst</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/child</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/protocols/http/main.fmf</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/code</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/child/nobody/.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/child/nobody/main.fmf</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/conditions</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/empty/.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/empty/main.fmf</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/deep</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/empty/nothing</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/code/simple.py</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/empty</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/deep/.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/deep/main.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/touch/.fmf/version</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/deep/.fmf/version</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/child/.fmf/version</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/child/son/main.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/recursion/deep.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/recursion/fast.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/recursion/main.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/protocols/ftp/main.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/download/main.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/licenses/fmf-0.14/LICENSE</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/merge</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/touch/.fmf</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/scatter</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/touch</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/touch/main.fmf</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/empty/.fmf/version</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/conditions/.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/touch/runtest.sh</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/conditions/main.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/.hidden</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/touch/.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/.hidden.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/download</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/touch/main.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/main.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/protocols</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/recursion</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/requirements</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/touch/runtest.sh</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/conditions/.fmf/version</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/.hidden/main.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/child/ha/ha</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/merge/.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/merge/parent.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/deep/.fmf/version</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/.hidden</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/.hidden.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/download</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/main.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/protocols</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/recursion</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/requirements</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/test.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/merge/.fmf/version</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/protocols/ftp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/protocols/http</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/protocols/https</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/protocols/main.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/download/main.fmf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/download/test.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/scatter/.fmf/version</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/fmf-0.15.2/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
@@ -510,18 +525,18 @@
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/merge/.fmf</td>
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/wget/protocols/http/main.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/merge/parent.fmf</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/child/son/main.fmf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/wget/.hidden/main.fmf</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples/scatter/object/main.fmf</td>
 				</tr>
 				
 				<tr scope="row">
@@ -530,18 +545,13 @@
 				</tr>
 				
 				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/fmf-0.15.2/README.rst</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/doc/fmf-0.14/examples/conditions/.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/conditions/main.fmf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/fmf-0.14/examples/empty/.fmf/version</td>
+					<td>/usr/share/doc/fmf-0.15.2/examples</td>
 				</tr>
 				
 				<tbody>

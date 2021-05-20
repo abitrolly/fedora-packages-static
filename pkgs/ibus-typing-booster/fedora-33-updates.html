@@ -49,6 +49,81 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-04-29</td>
+					<td>Mike FABIAN <mfabian at redhat dot com> - 2.11.4-1</td>
+					<td>- Update to 2.11.4
+- In main.py “import factory” only when the --xml option is not used
+  Resolves: rhbz#1711646
+- Limit the “capitalize” case mode used in auto-capitalization to the
+  first index in a string
+  Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/167</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-14</td>
+					<td>Mike FABIAN <mfabian at redhat dot com> - 2.11.2-1</td>
+					<td>- Update to 2.11.2
+- Improve the handling of typing digits into the preedit
+  Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/164
+- Make the keybindings treeview also sortable by clicking the column headers
+- Make custom shortcut treeview sortable by clicking on the column headers
+- Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/163
+- Don’t use surrounding text if InputPurpose.TERMINAL is set</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-11</td>
+					<td>Mike FABIAN <mfabian at redhat dot com> - 2.11.0-1</td>
+					<td>- Update to 2.11.0
+- Use sensitivity feature of buttons in the setup tool tab where shortcuts are defined
+- Don’t let dialog action area of setup tool expand.
+- Improve the setup tool to make it possible to enter multi-line expansions of shortcuts
+- Resolves https://github.com/mike-fabian/ibus-typing-booster/issues/158
+- Elide extremely long candidates in the lookup table in the middle.
+- If a candidate contains newlines, replace the newlines with arrows in the lookup table.
+- If a commit string contains new-lines, commit it in several chunks
+  and forward Return between the chunks.
+- Update emoji annotations from CLDR
+- Put the remote icon back in emoji-picker.appdata.xml, it was a
+  false positive by appstreamcli
+- Translation update from Weblate (pt_PT updated, 100% complete now)
+- Skip the inscript2 test cases if these transliterations are not available.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-17</td>
+					<td>Mike FABIAN <mfabian at redhat dot com> - 2.10.5-1</td>
+					<td>- Update to 2.10.5
+- Run the voikko tests only for libvoikko version >= 4.3
+- Adapt voikko test cases to the newest voikko version
+  libvoikko-4.3-3, python3-libvoikko-4.3-3, voikko-fi-2.4-3
+- Log a warning when language is “fi” and “import libvoikko” failed
+- Return an empty list [] in spellcheck_suggest_voikko() when libvoikko was not imported
+- Update emoji annotations from CLDR, switching “no” and “nb”
+  See: https://unicode-org.atlassian.net/browse/CLDR-2698
+- Remove icon in emoji-picker.appdata.xml (to avoid warnings
+  from appstream-util and appstreamcli).</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-02</td>
+					<td>Mike FABIAN <mfabian at redhat dot com> - 2.10.4-1</td>
+					<td>- Update to 2.10.4
+- Use “from unittest import mock” instead of just “import mock”.
+- Update emoji annotations from CLDR
+- Translation update from Weblate for zh_CN (still 100% complete)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-24</td>
+					<td>Mike FABIAN <mfabian at redhat dot com> - 2.10.3-1</td>
+					<td>- Update to 2.10.3
+- Update emoji annotations from CLDR
+- Translation update from Weblate for ja, zh_CN
+  (zh_CN is 100% complete now)</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2020-12-17</td>
 					<td>Mike FABIAN <mfabian at redhat dot com> - 2.10.2-1</td>
 					<td>- Update to 2.10.2
@@ -92,64 +167,6 @@
 - Fix typo in variable name in do_reset()
 - KP_Delete should be handled the same way as Delete
 - Translation update form Weblate for de, he, pl, tr, uk</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-10-06</td>
-					<td>Mike FABIAN <mfabian at redhat dot com> - 2.9.8-1</td>
-					<td>- Update to 2.9.8
-- Prevent also Delete from reopening a preedit when the option
-  “Arrow keys can reopen a preedit” is off
-- When the input is empty, Escape should be passed through,
-  not inserted into the preedit
-- Fix itb_util.tokenize(): if the input is only whitespace,
-  the return should be an empty list
-- Don’t clear context after typing Return, KP_Enter, ISO_Enter
-- Improve behaviour of case modes
-- Update emoji annotations from CLDR</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-09-07</td>
-					<td>Mike FABIAN <mfabian at redhat dot com> - 2.9.7-1</td>
-					<td>- Update to 2.9.7
-- Add commands “next_case_mode” and “previous_case_mode”
-  with configurable key bindings
-- Better hot key handling for modifier keys like Shift_L, …
-- Use labels 1, 2, 3, … for the lookup table instead of 1., 2., 3., …
-- Update emoji annotations from CLDR</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-27</td>
-					<td>Mike FABIAN <mfabian at redhat dot com> - 2.9.6-1</td>
-					<td>- Update to 2.9.6
-- Make translations of 'Edit key bindings for command “%s”' work
-- Don't hide emoji-picker.desktop from AppStream (by Gunnar Hjalmarsson)
-- Translation update from Weblate for pt_BR, sv (100%)</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-05</td>
-					<td>Mike FABIAN <mfabian at redhat dot com> - 2.9.5-1</td>
-					<td>- Update to 2.9.5
-- Treat characters 'ÅåÄäÖö' as special when matching in the Swedish dictionary
-  (Resolves: http ://github.com/mike-fabian/ibus-typing-booster/issues/126)
-- Update emoji annotations from CLDR
-- AppStream tweaks by Gunnar Hjalmarsson
-- Translation update from Weblate for ca, de, es, sv</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-07-28</td>
-					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 2.9.4-4</td>
-					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-07-16</td>
-					<td>Mike FABIAN <mfabian at redhat dot com> - 2.9.4-2</td>
-					<td>- Fix build on rawhide and f31</td>
 				</tr>
 				
 				<tbody>

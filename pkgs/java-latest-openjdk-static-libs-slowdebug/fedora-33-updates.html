@@ -49,79 +49,83 @@
 				</thead>
 				
 				<tr scope="row">
-					<td>2020-12-22</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-9.rolling</td>
-					<td>- fixed missing condition for fastdebug packages being counted as debug ones</td>
+					<td>2021-05-07</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:16.0.1.0.9-2.rolling</td>
+					<td>- removed cjc backward comaptiblity, to fix when both rpm 4.16 and 4.17 are in transaction</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-19</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-8.rolling</td>
-					<td>- removed lib-style provides for fastdebug_suffix_unquoted</td>
+					<td>2021-04-29</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> -  1:16.0.1.0.9-2.rolling</td>
+					<td>- adapted to debug handling  in newer cjc
+- The rest of the "rpm 4.17" patch must NOT be backported, as on rpm 4.16 and down, it would casue double execution
+- Disable copy-jdk-configs for Flatpak builds</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-19</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-6.rolling</td>
-					<td>- many cosmetic changes taken from more maintained jdk11
-- introduced debug_arches, bootstrap_arches, systemtap_arches, fastdebug_arches, sa_arches, share_arches, shenandoah_arches, zgc_arches 
-  instead of various hardcoded ifarches
-- updated systemtap
-- added requires excludes for debug pkgs
-- removed redundant logic around jsa files
-- added runtime requires of lksctp-tools and libXcomposite%
-- added and used Source15 TestSecurityProperties.java, but is made always positive as jdk15 now does not honor system policies
-- s390x excluded form fastdebug build</td>
+					<td>2021-04-25</td>
+					<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:16.0.1.0.9-1.rolling</td>
+					<td>- update to 16.0.1+9 april cpu tag
+- dropped jdk8259949-allow_cf-protection_on_x86.patch</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-17</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.1.9-5.rolling</td>
-					<td>- introduced nm based check to verify alt-java on x86_64 is patched, and no other alt-java or java is patched
-- patch600 rh1750419-redhat_alt_java.patch amended to die, if it is used wrongly
-- introduced ssbd_arches with currently only valid arch of x86_64 to separate real alt-java architectures</td>
+					<td>2021-03-11</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:16.0.0.0.36-2.rolling</td>
+					<td>- Perform static library build on a separate source tree with bundled image libraries
+- Make static library build optional
+- Based on initial work by Severin Gehwolf</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-07</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-4.rolling</td>
-					<td>- moved wrongly placed licenses to accompany other ones
-- this bad placement was killng parallel-installability and thus having bad impact to leapp if used</td>
+					<td>2021-03-09</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:16.0.0.0.36-1.rolling</td>
+					<td>- fixed suggests of wrong pcsc-lite-devel(x86-64) to correct pcsc-lite-libs(x86-64)
+- bumped buildjdkver to build by itself - 16</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-01</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-3.rolling</td>
-					<td>- added patch600, rh1750419-redhat_alt_java.patch, suprassing removed patch
-- no longer copying of java->alt-java as it is created by  patch600</td>
+					<td>2021-02-19</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:16.0.0.0.36-0.rolling</td>
+					<td>- Update to jdk-16.0.0.0+36
+- Update tarball generation script to use git following OpenJDK's move to github
+- Update tarball generation script to use PR3823 which handles JDK-8235710 changes
+- Use upstream default for version-pre rather than setting it to "ea" or ""
+- Drop libsunec.so which is no longer generated, thanks to JDK-8235710
+- Drop unnecessary compiler flags, dating back to work on GCC 6 & 10
+- Adapt RH1750419 alt-java patch to still apply after some variable re-naming in the makefiles
+- Update filever to remove any trailing zeros, as in the OpenJDK build, and use for source filename
+- Use system harfbuzz now this is supported.
+- Pass SOURCE_DATE_EPOCH to build for reproducible builds</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-11-23</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-2.rolling</td>
-					<td>- Create a copy of java as alt-java with alternatives and man pages
-- java-11-openjdk doesn't have a JRE tree, so don't try and copy alt-java there...</td>
+					<td>2021-02-19</td>
+					<td>Stephan Bergmann <sbergman at redhat dot com> - 1:15.0.2.0.7-1.rolling</td>
+					<td>- Hardcode /usr/sbin/alternatives for Flatpak builds</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-10-25</td>
-					<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:15.0.1.9-1.rolling</td>
-					<td>- updated to October CPU 2020 sources</td>
+					<td>2021-01-26</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:15.0.2.0.7-0.rolling.1</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-10-22</td>
-					<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:15.0.0.36-4.rolling</td>
-					<td>- Fix directory ownership of -static-libs sub-package.</td>
+					<td>2021-01-22</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.2.0.7-0.rolling</td>
+					<td>- Update to jdk-15.0.2.0+7
+- Add release notes for 15.0.1.0 & 15.0.2.0
+- Use JEP-322 Time-Based Versioning so we can handle a future 11.0.9.1-like release correctly.
+- Still use 15.0.x rather than 15.0.x.0 for file naming, as the trailing zero is omitted from tags.
+- Cleanup debug package descriptions and version number placement.
+- Remove unused patch files.</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-10-09</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.0.36-3.rolling</td>
-					<td>- Build static-libs-image and add resulting files via -static-libs sub-package.
-- Disable stripping of debug symbols for static libraries part of the -static-libs sub-package.
-- JDK-8245832 increases the set of static libraries, so try and include them all with a wildcard.
-- Update static-libs packaging to new layout</td>
+					<td>2021-01-19</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.1.9-10.rolling</td>
+					<td>- Use -march=i686 for x86 builds if -fcf-protection is detected (needs CMOV)</td>
 				</tr>
 				
 				<tbody>
@@ -140,202 +144,202 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libattach.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libattach.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libawt.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libawt.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libawt_headless.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libawt_headless.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libawt_xawt.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libawt_xawt.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libdt_socket.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libdt_socket.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libextnet.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libextnet.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libfdlibm.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libfdlibm.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libfontmanager.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libfontmanager.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libinstrument.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libharfbuzz.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libj2gss.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libinstrument.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libj2pcsc.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libj2gss.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libj2pkcs11.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libj2pcsc.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjaas.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libj2pkcs11.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjava.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjaas.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjavajpeg.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjava.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjawt.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjavajpeg.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjdwp.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjawt.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjimage.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjdwp.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjli.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjimage.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjpackageapplauncher.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjli.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjsig.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjpackageapplauncher.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjsound.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjsig.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/liblcms.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libjsound.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libmanagement.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/liblcms.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libmanagement_agent.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libmanagement.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libmanagement_ext.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libmanagement_agent.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libmlib_image.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libmanagement_ext.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libnet.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libmlib_image.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libnio.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libnet.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libprefs.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libnio.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/librmi.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libprefs.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libsaproc.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/librmi.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libsctp.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libsaproc.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libsplashscreen.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libsctp.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libsunec.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libsplashscreen.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libverify.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libverify.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libzip.a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc/libzip.a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.1.9-9.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64/glibc</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc33.x86_64-slowdebug/lib/static/linux-amd64</td>
 				</tr>
 				
 				<tbody>

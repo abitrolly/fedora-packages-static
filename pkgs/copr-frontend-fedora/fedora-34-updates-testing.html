@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>copr-frontend-fedora - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				copr-frontend-fedora
+				<small class="text-muted"> in fedora-34</small>
+			</h1>
+			<p>
+			This page displays detail informations of the copr-frontend-fedora package. You might
+			want go back to <a href=".">the main page of copr-frontend-fedora</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2021-03-16</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.175-1</td>
+					<td>- preparations for the centos-stream-8 rename
+- support per-build --enable-net
+- a lot of caching implemented to support flawless build-batches
+- fix: don't schedule blocked BuildChroots
+- bettter preloaded /pending-jobs/ queries
+- the /backend/pending-tasks/ json minimized
+- better identify the build submitter from pagure events
+- stop deleting unclicked CoprChroots
+- exchange xstatitc-jquery-ui-common for js-jquery-ui
+- rhbz#1937217, filter HTML tags from description and instructions
+- allow underscore in blacklisting chroot regexp
+- optionally run fedora-review after build
+- respect DELETE_EOL_CHROOTS_AFTER constant
+- don't show repo files expired chroots
+- add --comment option for 'copr-frontend create-chroot' command
+- chroot fields in forms reworked</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-21</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.174-1</td>
+					<td>- fix error 500 during build resubmit in Web-UI</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-20</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.173-1</td>
+					<td>- temporarily revert one patch breaking 'copr modify' command</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-20</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.172-1</td>
+					<td>- reworked chroots fields in copr/build forms
+- do not fork EOLed/disabled chroots
+- allow disabling modules in the buildroot
+- rename button from Update to Request in permission form
+- allow excluding chroots when submitting builds
+- delete ReviewedOutdatedChroot rows on cascade
+- disable gpgcheck for external runtime dependencies
+- generate build_chroots for resubmitted SRPM-upload builds
+- drop dependencies on orphaned and useless javascript packages
+- allow setting isolation option per chroot
+- depend on python3-email-validator
+- allow project admins to edit chroots
+- allow overriding the api token instructions downstream
+- drop delete_after tag for re-activated EOLed chroot
+- sync delete_after_timestamp for all EOLed copr_chroots
+- support modulemd v2
+- keep showing the link to EOLed repo files in copr project
+- allow enabling not-yet-deleted but only eoled chroots</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-30</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.171-1</td>
+					<td>- re-process killed SRPM tasks
+- backward compat APIv3 build-chroot fix
+- copr homepage/contact empty string converted to None
+- use URL path parameter (if there is such) instead of failing
+- fix custom webhook for binary payload
+- added new mock --isolation option in Copr
+- don't allow prolonging already expired chroots
+- try-except block for github webhook without clone_url
+- deduplicate APIv3 build-chroot parameters
+- don't traceback when the build ID larger than integer
+- allow searching builds by build ID
+- fix email recipient for permissions update</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-09</td>
+					<td>Jakub Kadlcik <frostyx at email dot cz> 1.170-1</td>
+					<td>- frontend: hide buttons in repositories pages for non-admins
+- frontend: fix User.copr_permission relationship
+- frontend: de-dup the rendering html code for repositories
+- frontend: sync flash about EOL repos with the listing indent
+- frontend, python: we cannot order chroots by name
+- frontend: show a warning that user should visit their EOL repositories page
+- frontend: add EOL repositories page for user (in opposite to project)
+- frontend: not access flask.g.user, user parameter instead
+- frontend: put the "running/starting/..." text to breadcrumb
+- frontend: silence cyclic-import warnings
+- cli, frontend: custom build batches
+- frontend: silence warnings from confused PyLint
+- frontend: de-duplicate forms
+- frontend: fix canceling builds
+- frontend: document the attributes related to EOLed chroots
+- frontend: fix APIv3 ordering
+- frontend: test: adding tests for canceling builds
+- frontend: don't set ended_on for canceled builds
+- frontend: don't re-set Build.package value
+- frontend: assign package ASAP with rebuilds
+- frontend: test chroot-edit 403 and form errors
+- frontend: fix-up the CoprChroot form rendering
+- frontend: de-duplicate work with build form
+- frontend: merge two methods which were split needlessly
+- frontend: short-cut the loop in build_config chroot search
+- frontend, cli, python, rpmbuild: better bootstrap config
+- beaker-tests, cli, frontend, python, rpmbuild: add option to config bootstrap
+- frontend: fix the monitor page
+- frontend: exception handlers fix once more
+- Revert "frontend: fix exception tests for F31"
+- frontend: redirect to URLs with trailing slashes
+- all: run pytest with -vv in package build
+- cli: fix timeout option to allow change timeout for build
+- frontend: reduce the timeout to 5 hours
+- frontend: input field for setting timeout for builds
+- frontend: remove setting memory requirements
+- frontend: access chroots more safely to avoid KeyError
+- frontend: don't mark ELN as fedora latest version
+- frontend: use "source build" collocation, not "srpm build"
+- frontend: don't duplicate enums.BuildSourceEnum
+- common, cli, python, rpmbuild, frontend, backend: DistGit source method
+- frontend: nicer message in package name validator
+- frontend: nicer web-UI error message on missing default source method
+- frontend: catch NoPackageSourceException in apiv3 on rebuild
+- frontend: move error handlers to the same file
+- frontend: fix exception tests for F31
+- frontend: improve APIv3 exception handling for better messages
+- frontend: fix custom form errors also for CoprFormFactory and
+  CreateModuleForm
+- frontend: make sure user cannot pin projects that he doesn't have permissions
+  to
+- frontend: fix PinnedCoprsForm validation
+- frontend: count srpm builds in statistics
+- frontend: allow . and disallow : in package name
+- frontend: allow '+' symbol in package name
+- frontend: enable coverage for ./commands
+- frontend: silence pylint issues
+- frontend: fix testsuite stderr warnings
+- frontend: test branch-fedora command
+- frontend: fix rawhide-to-release to inherit comment
+- frontend: fix forking into an existing project</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-18</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.169-1</td>
+					<td>- fix rawhide-to-release command
+- simplify API and UI error handlers</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-11</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.168-1</td>
+					<td>- get-package API to support with_latest* args</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-10</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.167-1</td>
+					<td>- catch OSError when srpm_storage is full
+- drop the duplicate jquery-ui.min.js reference from html layout
+- move to jQuery 3
+- drop redundant dependency on python3-flask-cache
+- more understandable permissions error messages
+- allow users to upvote or downvote projects
+- more understandable build state descriptions in web UI
+- add new overview tab showing starting builds
+- fix avatars for copr groups
+- validate package name input
+- more effective query of packages with their latest builds
+- return user-friedly error message for non-admin exceptions
+- admins can now create projects for others via API
+- fix up libmodulemd dependency</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-18</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.166-1</td>
+					<td>- show _all_ build-delete checkboxes when javascript is on
+- don't submit builds when there are no CoprChroot(s) assigned
+- make pending-jobs faster again
+- allow canceling also "starting" builds
+- don't traceback on invalid cancel requests
+- build.source_status None accepted for old builds
+- don't raise 500 on misconfigured build-time repos
+- print source build.log in starting state</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/copr-frontend-fedora</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/coprs/templates/additional_token_info.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/coprs/templates/contact_us.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/coprs/templates/project_info.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/coprs/templates/quick_enable.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/coprs/templates/user_meta.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/coprs/templates/welcome.html</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/coprs/static/css/copr-flavor.css</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/coprs/static/copr_logo.png</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/coprs/static/favicon.ico</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/copr/coprs_frontend/coprs/static/header_background.png</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/copr-frontend-fedora/LICENSE</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

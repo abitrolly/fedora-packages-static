@@ -49,6 +49,80 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-05-13</td>
+					<td>Kairui Song <kasong at redhat dot com> - 2.0.22-2</td>
+					<td>- Disable CMA in kdump 2nd kernel
+- Warn the user if network scripts are used
+- Set up bond cmdline by "nmcli --get-values"
+- Set up dns cmdline by parsing "nmcli --get-values"
+- Set up s390 znet cmdline by "nmcli --get-values"
+- Add helper to get nmcli connection show cmd by ifname
+- Add helper to get nmcli connection apath by ifname
+- Add helper to get value by field using "nmcli --get-values"
+- Update makedumpfile to 1.6.9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-05-11</td>
+					<td>Kairui Song <kasong at redhat dot com> - 2.0.22-1</td>
+					<td>- Update kexec-tools to 2.0.22
+- rd.route should use the name from kdump_setup_ifname
+- get kdump ifname once in kdump_install_net
+- Fix incorrect file permissions of vmcore-dmesg-incomplete.txt
+- Revert "Always set vm.zone_reclaim_mode = 3 in kdump kernel"
+- kdumpctl: fix check_config error when kdump.conf is empty</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-28</td>
+					<td>Kairui Song <kasong at redhat dot com> - 2.0.21-9</td>
+					<td>- Make dracut-squash required for kexec-tools
+- Show write byte size in report messages
+- Add shorthand --show-stats option to show report stats
+- Add --dry-run option to prevent writing the dumpfile
+- fadump: fix dump capture failure to root disk
+- Write to `/var/lib/kdump` if $KDUMP_BOOTDIR not writable
+- Drop dependency on ipcalc
+- Implement IP netmask calculation to replace "ipcalc -m"
+- Don't use die in dracut-module-setup.sh
+- Don't iterate the whole /sys/devices just to find drm device</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-03</td>
+					<td>Kairui Song <kasong at redhat dot com> - 2.0.21-8</td>
+					<td>- Update eppic to latest upstream snapshot
+- mkdumprd: prompt the user to install nfs-utils when mounting NFS fs failed
+- Fix incorrect permissions on kdump dmesg file
+- Fix incorrect vmcore permissions when dumped through ssh
+- (origin/main) Stop reloading kdump service on CPU hotplug event for FADump
+- Rebuilt for updated systemd-rpm-macros
+- fadump: improve fadump-howto.txt about remote dump target setup
+- kdumpctl: enable secure boot on ppc64le LPARs
+- add dependency on ipcalc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-02</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 2.0.21-7</td>
+					<td>- Rebuilt for updated systemd-rpm-macros
+  See https://pagure.io/fesco/issue/2583.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-08</td>
+					<td>Kairui Song <kasong at redhat dot com> - 2.0.21-6</td>
+					<td>- Remove trace_buf_size and trace_event from the kernel bootparameters of the kdump kernel
+- kdump-lib.sh: introduce functions to return recommened mem size</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-26</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 2.0.21-5</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2021-01-22</td>
 					<td>Kairui Song <kasong at redhat dot com> - 2.0.21-4</td>
 					<td>- dracut-module-setup.sh: enable ForwardToConsole=yes in fadump mode
@@ -80,112 +154,6 @@
 - Save the final failure information to log file if saving vmcore failed</td>
 				</tr>
 				
-				<tr scope="row">
-					<td>2020-12-23</td>
-					<td>Kairui Song <kasong at redhat dot com> - 2.0.21-1</td>
-					<td>- makedumpfile: printk: use committed/finalized state values
-- makedumpfile: printk: add support for lockless ringbuffer
-- dracut-module-setup.sh: Use systemctl call to replace ln_r
-- Doc: improve mkdumprd man page
-- Don's try to restart dracut-initqueue if it's already failed
-- dracut-module-setup.sh: use auto6 for ipv6</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-11-30</td>
-					<td>Kairui Song <kasong at redhat dot com> - 2.0.20-21</td>
-					<td>- Rebase makedumpfile to 1.6.8
-- fadump-howto: update about 'nocma' and 'off' options for 'fadump=' parameter
-- module-setup.sh: enable vlan on team interface
-- kdump-lib: Fix get_bind_mount_source to support btrfs and fstab
-- Make get_mount_info work with bind mount
-- Set watchdog's pretimeout to zero in kdump kernel
-- kdump-lib.sh: Use a more generic helper to detect omitted dracut module
-- Fix the watchdog drivers detection code
-- Add a helper for detecting watchdog drivers
-- Remove a redundant nfs check
-- kdumpctl: split the driver detection from fs dection function</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-11-19</td>
-					<td>Kairui Song <kasong at redhat dot com> - 2.0.20-20</td>
-					<td>- selftest: Fix several test issue with Fedora 33
-- selftest: add more detailed log and fix a test failure issue
-- selftest: Update test base image to Fedora 33
-- selftest: Fix qcow2 image format detect
-- selftest: Always use the get_image_fmt helper
-- Doc: improve the usage documentation of the logger
-- Update the kdump sysconfig
-- Capitalize the configuration name of log level
-- Add the rd.kdumploglvl option to control log level in the second kernel
-- Appropriately converts logger numeric level to syslog log level
-- Remove unused log levels for kdump logger
-- Add sanity checks for the log levels
-- Move watchdog detect and install code to module-setup.sh
-- Add a helper to omit non-mandatory dracut module
-- Move some dracut module dependencies checks to module-setup.sh
-- Add code comments to help better understanding</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-11-05</td>
-					<td>Kairui Song <kasong at redhat dot com> - 2.0.20-19</td>
-					<td>- Fix comment about ssh dump target
-- mkdumprd: Ensure kdumpbase is added
-- kdump.service: use ConditionKernelCommandLine=crashkernel
-- Revert "Revert "s390x: enable the kexec file load by def
-- increase makdumpfile default message level to 7
-- Fix error when using raw target with opalcore
-- module-setup.sh: Instead of drop journalctl log, just don't read kmsg
-- Doc: add a documentation for the usage of logger
-- Improve debugging in the kdump kernel
-- kdumpctl: add the '-d' option to enable the kexec loading debugging messages
-- kdump.sysconfig: add the kdump logger configurations
-- enable the logger for kdump
-- introduce the kdump logger from the dracut
-- Rework check_config and warn on any duplicated option
-- (watchdog) kdump-lib.sh: detect secure boot on s390
-- Don't drop journalctl content if failure action is "shell"
-- dracut-module-install: Move systemd conf install code to a function
-- selftest: Show the path of dumped vmcore on test end
-- selftest: Add document for selftests
-- selftest: Add basic test framework
-- selftest: Add basic infrastructure to build test image</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-27</td>
-					<td>Kairui Song <kasong at redhat dot com> - 2.0.20-18</td>
-					<td>- mkdumprd: Improve the warning message when using encrypted target
-- kdump-lib.sh: Remove is_atomic
-- Refactor kernel image and initrd detection code
-- early-kdump: Use consistent symbol link for kernel and initramfs
-- Add a kernel install hook to clean up kdump initramfs</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-04</td>
-					<td>Kairui Song <kasong at redhat dot com> - 2.0.20-17</td>
-					<td>- Drop static lib dependencies
-- Revert "x86_64: enable the kexec file load by default"
-- Revert "s390x: enable the kexec file load by default"
-- kdumpctl: exit if either pre.d or post.d is missing
-- kdump_pre: make notes more precise
-- dracut-kdump.sh: exit shell when machine reboot
-- kdumpctl: detect modification of scripts by its directory's timestamp
-- module-setup.sh: suppress false alarm
-- kexec-tools.spec: make the existence of pre.d and post.d mandatory
-- ppc64/kdump: use kexec_file_load when secureboot is enabled</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-01</td>
-					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 2.0.20-16</td>
-					<td>- Second attempt - Rebuilt for
-  https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
-				</tr>
-				
 				<tbody>
 				</tbody>
 			</table>
@@ -201,28 +169,23 @@
 				</thead>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/f4/3dedd4933f18a93b01db11c20e33fd2e00d576</td>
+					<td>d</td>
+					<td>/usr/lib/.build-id/50</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/0f</td>
+					<td>/usr/lib/.build-id/7c</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/6d</td>
+					<td>/usr/lib/.build-id/7e</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/ba</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/f4</td>
+					<td>/usr/lib/.build-id/cf</td>
 				</tr>
 				
 				<tr scope="row">
@@ -251,8 +214,8 @@
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/0f/c2598beb51c40e83f476b36c1391ceee156126</td>
+					<td>d</td>
+					<td>/var/lib/kdump</td>
 				</tr>
 				
 				<tr scope="row">
@@ -273,11 +236,6 @@
 				<tr scope="row">
 					<td>d</td>
 					<td>/etc/kdump/pre.d</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/ba/735fae5d5f255ffc05bfc6797227bfc68394af</td>
 				</tr>
 				
 				<tr scope="row">
@@ -303,6 +261,11 @@
 				<tr scope="row">
 					<td>d</td>
 					<td>/usr/lib/dracut/modules.d/99kdumpbase</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/cf/e8bfc394d9f7314bffb5d7c4bbe7f2c3caa245</td>
 				</tr>
 				
 				<tr scope="row">
@@ -417,7 +380,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/6d/db343003e304c9ae0cb7c97f05145251b1f751</td>
+					<td>/usr/lib/systemd/system/kdump.service</td>
 				</tr>
 				
 				<tr scope="row">
@@ -447,11 +410,6 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/systemd/system/kdump.service</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/lib/kdump/kdump-lib-initramfs.sh</td>
 				</tr>
 				
@@ -468,6 +426,16 @@
 				<tr scope="row">
 					<td>d</td>
 					<td>/usr/share/doc/kexec-tools</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/kdump.conf.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/makedumpfile.conf.5.gz</td>
 				</tr>
 				
 				<tr scope="row">
@@ -507,16 +475,6 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man5/kdump.conf.5.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man5/makedumpfile.conf.5.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/lib/udev/kdump-udev-throttler</td>
 				</tr>
 				
@@ -528,6 +486,11 @@
 				<tr scope="row">
 					<td>d</td>
 					<td>/var/crash</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/50/67d41cb623fdeda5d419a1c53769b7b83a56ec</td>
 				</tr>
 				
 				<tr scope="row">
@@ -583,6 +546,16 @@
 				<tr scope="row">
 					<td>d</td>
 					<td>/usr/lib/kdump</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/7e/eb142df9e15227fd9100f9383696cc70fda8fc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/7c/71b31e54dc7b1c11f665751305bf530935a624</td>
 				</tr>
 				
 				<tbody>

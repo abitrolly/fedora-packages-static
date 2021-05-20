@@ -49,6 +49,24 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-05-17</td>
+					<td>Jakub Kadlcik <frostyx at email dot cz> 0.6.17-1</td>
+					<td>- Update releasers.conf (frostyx@email.cz)
+- Make build --verbose autocompletable (nmoumoul@redhat.com)
+- Add support for centpkg (wpoteat@redhat.com)
+- Remove extraneous extra newline (areese@users.noreply.github.com)
+- Add some documentation for tito.builder.SubmoduleAwareBuilder
+  (areese999@apple.com)
+- Update based on feedback: 1. Remove PushDir, tito.common.chdir has the same
+  functionality so use that instead. 2. Remove useless override of constructor,
+  it's just extra noise. (areese999@apple.com)
+- 150 Add support for repos that use submodules. Allow though submodules are a
+  contentious topic, this adds a submodule_aware_builder (areese999@apple.com)
+- doc: fix typo tito.props (subpop@users.noreply.github.com)
+- Update fedora releaser in .tito/releasers.conf (frostyx@email.cz)</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2021-01-26</td>
 					<td>Jakub Kadlcik <frostyx at email dot cz> 0.6.16-1</td>
 					<td>- Fix manpage generation on Fedora Rawhide (F34)
@@ -199,25 +217,6 @@
   (skuznets@redhat.com)</td>
 				</tr>
 				
-				<tr scope="row">
-					<td>2017-01-09</td>
-					<td>Devan Goodwin <dgoodwin at rm dash rf dot ca> 0.6.9-1</td>
-					<td>- Simplified version and release update logic (skuznets@redhat.com)
-- Added `--use-release` flag for `tito tag` (skuznets@redhat.com)
-- Use `def` instead of a lambda for function assignment (skuznets@redhat.com)
-- Fix typos in man pages (lsedlar@redhat.com)
-- explain how automatic tagging was done (msuchy@redhat.com)
-- Rename CargoTagger as CargoBump (msehnout@redhat.com)
-- Fix errors in documentation (lsedlar@redhat.com)
-- fix few pep8 errors (sehnoutka.martin@gmail.com)
-- Read tito.props and look for pkg managers section.
-  (sehnoutka.martin@gmail.com)
-- Implement cargo tagger using regular expressions (without toml library)
-  (sehnoutka.martin@gmail.com)
-- Add entry point for Cargo tagger and tagger class.
-  (sehnoutka.martin@gmail.com)</td>
-				</tr>
-				
 				<tbody>
 				</tbody>
 			</table>
@@ -250,6 +249,11 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/lib/python3.6/site-packages/tito/builder/main.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/tito/builder/submodule_aware_builder.py</td>
 				</tr>
 				
 				<tr scope="row">
@@ -404,37 +408,37 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/__init__.cpython-36.opt-1.pyc</td>
+					<td>/usr/lib/python3.6/site-packages/tito/tagger/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.6/site-packages/tito/tagger/__pycache__</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/__init__.cpython-36.pyc</td>
+					<td>/usr/lib/python3.6/site-packages/tito/tagger/cargobump.py</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/fetch.cpython-36.opt-1.pyc</td>
+					<td>/usr/lib/python3.6/site-packages/tito/tagger/main.py</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/fetch.cpython-36.pyc</td>
+					<td>/usr/lib/python3.6/site-packages/tito/tagger/rheltagger.py</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/main.cpython-36.opt-1.pyc</td>
+					<td>/usr/lib/python3.6/site-packages/tito/tagger/susetagger.py</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/main.cpython-36.pyc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/bash-completion/completions/tito</td>
+					<td>/usr/lib/python3.6/site-packages/tito/tagger/zstreamtagger.py</td>
 				</tr>
 				
 				<tr scope="row">
@@ -539,62 +543,47 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito/tagger/__init__.py</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/python3.6/site-packages/tito/tagger/__pycache__</td>
+					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/__init__.cpython-36.opt-1.pyc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito/tagger/cargobump.py</td>
+					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/__init__.cpython-36.pyc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito/tagger/main.py</td>
+					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/fetch.cpython-36.opt-1.pyc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito/tagger/rheltagger.py</td>
+					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/fetch.cpython-36.pyc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito/tagger/susetagger.py</td>
+					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/main.cpython-36.opt-1.pyc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito/tagger/zstreamtagger.py</td>
+					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/main.cpython-36.pyc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito-0.6.16-py3.6.egg-info/PKG-INFO</td>
+					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/submodule_aware_builder.cpython-36.opt-1.pyc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito-0.6.16-py3.6.egg-info/SOURCES.txt</td>
+					<td>/usr/lib/python3.6/site-packages/tito/builder/__pycache__/submodule_aware_builder.cpython-36.pyc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito-0.6.16-py3.6.egg-info/dependency_links.txt</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito-0.6.16-py3.6.egg-info/entry_points.txt</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.6/site-packages/tito-0.6.16-py3.6.egg-info/top_level.txt</td>
+					<td>/usr/share/bash-completion/completions/tito</td>
 				</tr>
 				
 				<tr scope="row">
@@ -610,6 +599,31 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/man/man5/titorc.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/tito-0.6.17-py3.6.egg-info/PKG-INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/tito-0.6.17-py3.6.egg-info/SOURCES.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/tito-0.6.17-py3.6.egg-info/dependency_links.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/tito-0.6.17-py3.6.egg-info/entry_points.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.6/site-packages/tito-0.6.17-py3.6.egg-info/top_level.txt</td>
 				</tr>
 				
 				<tr scope="row">
@@ -654,7 +668,7 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/python3.6/site-packages/tito-0.6.16-py3.6.egg-info</td>
+					<td>/usr/lib/python3.6/site-packages/tito-0.6.17-py3.6.egg-info</td>
 				</tr>
 				
 				<tr scope="row">

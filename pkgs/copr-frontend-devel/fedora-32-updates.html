@@ -49,6 +49,115 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-04-30</td>
+					<td>Jakub Kadlcik <frostyx at email dot cz> 1.178-1</td>
+					<td>- frontend: oops, forgot to change these two instances
+- frontend: show deletion tooltip in project overview</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-30</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.177-1</td>
+					<td>- fix chroot disabling in project settings
+- not display EOL warning for per-project disabled chroots</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-27</td>
+					<td>Jakub Kadlcik <frostyx at email dot cz> 1.176-1</td>
+					<td>- frontend: fix tests that fail in Fedora Rawhide chroots
+- frontend: create project for Fedora Review
+- frontend: memory_analyzer route module
+- frontend: fix unrelated pylint warnings
+- frontend: use correct auto_prune default when creating via API
+- frontend: better test the branch-fedora command
+- frontend: print forking stats for rawhide-to-release
+- frontend: rawhide-to-release fix for deactivated chroots
+- frontend: clone all CoprChroot attributes when forking
+- frontend: simplified Build.state logic, and better log
+- frontend: avoid NULLed source_status
+- frontend: don't create builds if there are no active chroots
+- frontend: hide deactivated chroots in the project overview
+- frontend: traceback for outdated-chroots flash message
+- frontend: make the [modified] chroot clickable
+- frontend: fix Jinja traceback on nulled buildroot_pkgs
+- frontend: catch tracebacks when rendering invalid modules
+- frontend: update FAS links to use the new site
+- frontend: fix unrelated pylint warnings
+- frontend: introduce ChrootDeletionStatus
+- frontend: delete data for unclicked chroots after few days
+- frontend: assure unique Copr name for group/user in DB
+- frontend: test that we can set these options via API
+- frontend: drop an unused pagure_events.py knob
+- GitLab moved their webhook settings to a different page.
+- frontend: fix createrepo scope for chroot enable
+- frontend: fix already defined method name
+- frontend: add base form for creating and modifying projects
+- frontend: move tests to proper class
+- frontend: explain what actions are
+- frontend: use Builds instead of Tasks in stats/
+- backend, frontend, keygen, distgit: keep cca 3 months of logs
+- frontend: test API for 'copr modify'
+- fronted: stats - sort chroots by name</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-16</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.175-1</td>
+					<td>- preparations for the centos-stream-8 rename
+- support per-build --enable-net
+- a lot of caching implemented to support flawless build-batches
+- fix: don't schedule blocked BuildChroots
+- bettter preloaded /pending-jobs/ queries
+- the /backend/pending-tasks/ json minimized
+- better identify the build submitter from pagure events
+- stop deleting unclicked CoprChroots
+- exchange xstatitc-jquery-ui-common for js-jquery-ui
+- rhbz#1937217, filter HTML tags from description and instructions
+- allow underscore in blacklisting chroot regexp
+- optionally run fedora-review after build
+- respect DELETE_EOL_CHROOTS_AFTER constant
+- don't show repo files expired chroots
+- add --comment option for 'copr-frontend create-chroot' command
+- chroot fields in forms reworked</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-21</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.174-1</td>
+					<td>- fix error 500 during build resubmit in Web-UI</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-20</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.173-1</td>
+					<td>- temporarily revert one patch breaking 'copr modify' command</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-20</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.172-1</td>
+					<td>- reworked chroots fields in copr/build forms
+- do not fork EOLed/disabled chroots
+- allow disabling modules in the buildroot
+- rename button from Update to Request in permission form
+- allow excluding chroots when submitting builds
+- delete ReviewedOutdatedChroot rows on cascade
+- disable gpgcheck for external runtime dependencies
+- generate build_chroots for resubmitted SRPM-upload builds
+- drop dependencies on orphaned and useless javascript packages
+- allow setting isolation option per chroot
+- depend on python3-email-validator
+- allow project admins to edit chroots
+- allow overriding the api token instructions downstream
+- drop delete_after tag for re-activated EOLed chroot
+- sync delete_after_timestamp for all EOLed copr_chroots
+- support modulemd v2
+- keep showing the link to EOLed repo files in copr project
+- allow enabling not-yet-deleted but only eoled chroots</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2020-11-30</td>
 					<td>Pavel Raiskup <praiskup at redhat dot com> 1.171-1</td>
 					<td>- re-process killed SRPM tasks
@@ -136,105 +245,6 @@
 					<td>Pavel Raiskup <praiskup at redhat dot com> 1.169-1</td>
 					<td>- fix rawhide-to-release command
 - simplify API and UI error handlers</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-11</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.168-1</td>
-					<td>- get-package API to support with_latest* args</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-10</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.167-1</td>
-					<td>- catch OSError when srpm_storage is full
-- drop the duplicate jquery-ui.min.js reference from html layout
-- move to jQuery 3
-- drop redundant dependency on python3-flask-cache
-- more understandable permissions error messages
-- allow users to upvote or downvote projects
-- more understandable build state descriptions in web UI
-- add new overview tab showing starting builds
-- fix avatars for copr groups
-- validate package name input
-- more effective query of packages with their latest builds
-- return user-friedly error message for non-admin exceptions
-- admins can now create projects for others via API
-- fix up libmodulemd dependency</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-06-18</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.166-1</td>
-					<td>- show _all_ build-delete checkboxes when javascript is on
-- don't submit builds when there are no CoprChroot(s) assigned
-- make pending-jobs faster again
-- allow canceling also "starting" builds
-- don't traceback on invalid cancel requests
-- build.source_status None accepted for old builds
-- don't raise 500 on misconfigured build-time repos
-- print source build.log in starting state</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-06-09</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.165-1</td>
-					<td>- enable cov by default in testsute
-- more obvious links to the live logs
-- return a user friendly error when modulemd is not ok
-- basic build task priority implemented
-- droped the reschedule-all builds idiom
-- new build cancel implementation
-- WorkerManager used for builds, too
-- enable deleting multiple builds from cli
-- drop RequestCannotBeExecuted and BuildInProgressException
-- re-assign BuildChroots to re-enabled CoprChroot
-- not finished build_chroots to disallow copr_chroot removal
-- models: link BuildChroot(s) with corresponding CoprChroot(s)
-- fix repo generation for modules with dash in their name
-- added support for project runtime dependencies
-- return user friendly error when build chroot was not found
-- large sync of model with migrations
-- require the newest version of copr-common
-- fix for the new werkzeug in rawhide
-- use flask caching instead of flask cache
-- prioritize initial createrepo action, set lower priority for some actions
-- make ActionsLogic.send_* methods to return the generated action
-- minimalize the transfered amount of action information to BE
-- disable group build delete checkboxes if js is not enabled
-- provide status information for build chroots in APIv3
-- fix application context error for add-user command
-- move some constants to copr.conf so we can tweak them
-- disallow creating modules without any packages
-- don't show builds table when there are none of them
-- fix pagure-events so it submits correct packages</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-02-24</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.164-1</td>
-					<td>- rawhide-to-release should create the chroots deactivated
-- new rawhide-to-release --retry-forked option
-- allow repeated run of 'rawhide-to-release'
-- bugfix rawihde to release
-- raise timeout limit for builds to 24h</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-02-05</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.163-1</td>
-					<td>- don't generate 'modules' in build-job unnecessarily</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-02-05</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.162-1</td>
-					<td>- module enable option for chroot settings
-- delete action fix for incomplete builds
-- custom webhook to accept utf-8 hook data
-- users can now pick against what dist-git to build module
-- fix delete-chroot e-mail notification
-- change panel order in 'Rebuild all packages' page</td>
 				</tr>
 				
 				<tbody>

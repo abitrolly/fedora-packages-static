@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>systemd-udev - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				systemd-udev
+				<small class="text-muted"> in fedora-34</small>
+			</h1>
+			<p>
+			This page displays detail informations of the systemd-udev package. You might
+			want go back to <a href=".">the main page of systemd-udev</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2021-05-15</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.3-1</td>
+					<td>- A fix for resolved crashes (#1946386, #1960227, #1950241)
+- Some minor fixes for documentation, systemd-networkd, systemd-run, bootctl.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-05-07</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.2-1</td>
+					<td>- Pull in some more patches from upstream (#1944646, #1885090, #1941340)
+- Adjust modes of some %ghost files (#1956059)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-05-06</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.1-1</td>
+					<td>- Latest stable version: a long list of minor correctness fixes all around
+  (#1955475, #911766, #1958167, #1952919)
+- Enable tpm2-tss dependency (#1949505)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-06</td>
+					<td>Adam Williamson <awilliam at redhat dot com> - 248-2</td>
+					<td>- Re-enable resolved caching, we hope all major bugs are resolved now</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-31</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248-1</td>
+					<td>- Latest upstream release, see
+  https://github.com/systemd/systemd/blob/v248/NEWS.
+- The changes since -rc4 are rather small, various fixes all over the place.
+  A fix to how systemd-oomd selects a candidate to kill, and more debug logging
+  to make this more transparent.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-30</td>
+					<td>Anita Zhang <the dot anitazha at gmail dot com> - 248~rc4-6</td>
+					<td>- Increase oomd user memory pressure limit to 50% (#1941170)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-26</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-5</td>
+					<td>- Do not preset systemd-networkd.service and systemd-networkd-wait-online.service
+  on upgrades from before systemd-networkd was split out (#1943263)
+- In nsswitch.conf, move nss-myhostname to the front, before nss-mdns4 (#1943199)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-24</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-4</td>
+					<td>- Revert patch that seems to cause problems with dns resolution
+  (see comments on https://bodhi.fedoraproject.org/updates/FEDORA-2021-1c1a870ceb)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-22</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-3</td>
+					<td>- Fix hang when processing timers during DST switch in Europe/Dublin timezone (#1941335)
+- Fix returning combined IPv4/IPv6 responses from systemd-resolved cache (#1940715)
+  (But note that the disablement of caching added previously is
+  retained until we can do more testing.)
+- Minor fix to interface naming by udev
+- Fix for systemd-repart --size</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-19</td>
+					<td>Adam Williamson <awilliam at redhat dot com> - 248~rc4-2</td>
+					<td>- Disable resolved cache via config snippet (#1940715)</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/74/9669517c2a2746431d062a58dbef7fc85774d1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/kernel/install.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/39/d2ef9533f00878f8c4d2dc720f512f2a5ec1a9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/02/67dfde5abae5a1d4498dec5ea95f9c1ca66f11</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/lib/systemd/backlight</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/var/lib/systemd/random-seed</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/lib/systemd/rfkill</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/var/lib/systemd/timesync</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/ntp-units.d/80-systemd-timesync.list</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/tmpfiles.d/systemd-pstore.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/68/3c64bf70ad184c95722d5e4128eee5e90c3bf8</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/9b/87463d3428638a41bdc1c2a307e7f819b46735</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/systemd/boot</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/systemd/system-sleep</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-backlight</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-bless-boot</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-cryptsetup</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-fsck</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-growfs</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-hibernate-resume</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-makefs</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-modules-load</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-pstore</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-quotacheck</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-random-seed</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-remount-fs</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-rfkill</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-sleep</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-timesyncd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-udevd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-vconsole-setup</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/systemd-volatile-root</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/initrd-root-fs.target.wants/systemd-repart.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/kernel/install.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/e9/a95c999182cfab32403272fc22ae8b8cf079d8</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f4/6423faa1ff2388370aec203f206b4a2005c7d0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/85/8d6b49b78e6a239c47ba8d7afc4f7f625fda7f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/aa/a85e72937205dfc84a9c07f4de695182e7cefc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/08/d7a1a1d3c1aa97603f3d29c5b63f9a2cb4bb1d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/loader.conf.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/modules-load.d.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/pstore.conf.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/pstore.conf.d.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/repart.d.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/sleep.conf.d.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/systemd-sleep.conf.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/timesyncd.conf.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/timesyncd.conf.d.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/udev.conf.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/vconsole.conf.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/kernel/install.d/00-entry-directory.install</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/kernel/install.d/20-grubby.install</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/kernel/install.d/50-depmod.install</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/kernel/install.d/90-loaderentry.install</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/bootctl</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/kernel-install</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/systemd-hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/systemd-repart</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/udevadm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/udev/hwdb.bin</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/udev/hwdb.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/udev/rules.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/udev/udev.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/e8/6885ecea915e9cefe5fb9d9674fda420d4cce1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/var/lib/systemd/timesync/clock</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/49/0b36544afda83a3800fd622ff037119fdd708d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/49/92f0e1db54c42b057e8698b48b63f826d94bbd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/c3/f9fab1ecee5774b5bc2f3115acfc90d0df6a69</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/0a/e25a7c421270c1b635d5480a69f697bcb68349</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/bb/715308a47107cb53e4017600a5ccb9f00bc725</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/dbus-1/system.d/org.freedesktop.timesync1.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system-generators/systemd-bless-boot-generator</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system-generators/systemd-cryptsetup-generator</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system-generators/systemd-gpt-auto-generator</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system-generators/systemd-hibernate-resume-generator</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/systemd/boot/efi</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/50-udev-default.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-autosuspend.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-block-scheduler.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-block.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-cdrom_id.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-drm.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-evdev.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-fido-id.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-input-id.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-persistent-alsa.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-persistent-input.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-persistent-storage-tape.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-persistent-storage.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-persistent-v4l.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-sensor.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/60-serial.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/64-btrfs.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/70-joystick.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/70-memory.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/70-mouse.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/70-power-switch.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/70-touchpad.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/70-uaccess.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/71-seat.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/73-seat-late.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/75-net-description.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/75-probe_mtd.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/78-sound-card.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/80-drivers.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/80-net-setup-link.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/90-vconsole.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/99-systemd.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/rules.d/README</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f2/61694d985fe3bcf2ddc0f98a886d31a44d79a3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/network/99-default.link</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/c9/0d3fea0d8f620fbfc8ae4aca281974798a62f0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-OUI.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-acpi-vendor.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-bluetooth-vendor-product.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-dmi-id.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-net-ifname.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-pci-classes.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-pci-vendor-model.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-sdio-classes.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-sdio-vendor-model.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-usb-classes.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-usb-vendor-model.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-vmbus-class.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-autosuspend-chromiumos.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-autosuspend-fingerprint-reader.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-autosuspend.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-evdev.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-input-id.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-keyboard.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-sensor.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/70-joystick.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/70-mouse.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/70-pointingstick.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/70-touchpad.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/README</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/kernel</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/modules-load.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/udev</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/vconsole.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/kernel</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/modprobe.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/modules-load.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/udev</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sockets.target.wants/systemd-udevd-control.socket</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sockets.target.wants/systemd-udevd-kernel.socket</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/cryptsetup-pre.target</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/cryptsetup.target</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/hibernate.target</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/hybrid-sleep.target</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/initrd-udevadm-cleanup-db.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/kmod-static-nodes.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/quotaon.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/remote-cryptsetup.target</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sleep.target</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/suspend-then-hibernate.target</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/suspend.target</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/system-systemd\x2dcryptsetup.slice</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-backlight@.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-bless-boot.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-boot-system-token.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-fsck-root.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-fsck@.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-hibernate-resume@.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-hibernate.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-hwdb-update.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-hybrid-sleep.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-modules-load.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-pstore.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-quotacheck.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-random-seed.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-remount-fs.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-repart.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-rfkill.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-rfkill.socket</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-suspend-then-hibernate.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-suspend.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-timesyncd.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-tmpfiles-setup-dev.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-udev-settle.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-udev-trigger.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/systemd/system/systemd-udev-trigger.service.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-udevd-control.socket</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-udevd-kernel.socket</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-udevd.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-vconsole-setup.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-volatile-root.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/systemd/pstore.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/systemd/sleep.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/systemd/timesyncd.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/systemd-udev-trigger.service.d/systemd-udev-trigger-no-reload.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/59/6967e49371aa32921248c1c1d7fd0d90d1f115</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/8c/de7c9adf6d9e4ea3584acab749e53f50c0b636</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/02</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/04</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/0a</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/39</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/63</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/68</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/74</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/88</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/9b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/aa</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/b4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/bb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/c3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/c9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/e4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/e8</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/ee</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f6</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f7</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/modprobe.d/README</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/modprobe.d/systemd.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/bash-completion/completions/bootctl</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/bash-completion/completions/kernel-install</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/bash-completion/completions/udevadm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/initrd-root-device.target.wants/remote-cryptsetup.target</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sysinit.target.wants/cryptsetup.target</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sysinit.target.wants/kmod-static-nodes.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sysinit.target.wants/systemd-boot-system-token.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sysinit.target.wants/systemd-hwdb-update.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sysinit.target.wants/systemd-modules-load.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sysinit.target.wants/systemd-random-seed.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sysinit.target.wants/systemd-repart.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup-dev.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sysinit.target.wants/systemd-udev-trigger.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sysinit.target.wants/systemd-udevd.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/04/70e11e4fc8dc301038d168af96dbf26d49e4e3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/88/f91a9eee204f2fca32f492ab59a556028ea9db</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ef/7f78474a5eeff10e18f4e5648813e478c9cdb9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f7/61e175cec0cc9786adf8eea145dcd6bf4c2e34</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f7/651c0b1170e2e1e6c216c9c4c1462b5b896f3c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/bootctl.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/sbin/udevadm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/dbus-1/system-services/org.freedesktop.timesync1.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/fa/6c376f0af37cec2ac885f742942d57adc8fdc0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d2/7e7df56a9677ab157b5c0ef8103c1eb6bb6733</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/boot/efi/linuxx64.efi.stub</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/boot/efi/systemd-bootx64.efi</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/63/9870799bd97728cf21007dc087bdd752086451</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/kernel-install.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-backlight.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-backlight@.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-bless-boot-generator.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-bless-boot.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-bless-boot.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-boot-system-token.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-cryptsetup-generator.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-cryptsetup.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-cryptsetup@.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-fsck-root.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-fsck.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-fsck@.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-gpt-auto-generator.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-growfs.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-growfs@.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-hibernate-resume-generator.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-hibernate-resume.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-hibernate-resume@.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-hibernate.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-hwdb.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-hybrid-sleep.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-makefs.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-makefs@.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-mkswap@.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-modules-load.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-modules-load.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-pstore.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-pstore.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-quotacheck.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-quotacheck.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-random-seed.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-random-seed.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-remount-fs.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-remount-fs.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-repart.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-repart.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-rfkill.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-rfkill.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-rfkill.socket.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-sleep.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-suspend-then-hibernate.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-suspend.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-timesyncd.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-timesyncd.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-tmpfiles-setup-dev.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-udev-settle.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-udevd-control.socket.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-udevd-kernel.socket.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-udevd.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-udevd.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-vconsole-setup.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-vconsole-setup.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-volatile-root.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-volatile-root.service.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/udevadm.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/e4/eb5c9a197b44cf714b0a6356b93890900f102c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/b4/b4cb59f3697db8ce0b1199ee504893c1ae1d38</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f6/7932fe5318f1e7d8e612cd8ac1db58c1fcdb15</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ee/8d727e3d58d2a0ce502d9c4fa7cb2b435e90f6</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man7/hwdb.7.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man7/sd-boot.7.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man7/systemd-boot.7.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man7/udev.7.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/ata_id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/cdrom_id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/dmi_memory_id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/fido_id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/udev/hwdb.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/mtd_probe</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/udev/rules.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/scsi_id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/v4l_id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/zsh/site-functions/_bootctl</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/zsh/site-functions/_kernel-install</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/zsh/site-functions/_udevadm</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

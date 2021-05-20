@@ -49,6 +49,12 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-01-26</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 4.2.0-7</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2020-07-28</td>
 					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 4.2.0-6</td>
 					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
@@ -60,15 +66,15 @@
 					<td>- Touch pcb.pdf pcb.info pcb.html after the main build is complete so
   that they don't need rebuilding if 
   
-  CFLAGS="${CFLAGS:--O2 -flto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection}" ; export CFLAGS ; 
-  CXXFLAGS="${CXXFLAGS:--O2 -flto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection}" ; export CXXFLAGS ; 
-  FFLAGS="${FFLAGS:--O2 -flto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules}" ; export FFLAGS ; 
-  FCFLAGS="${FCFLAGS:--O2 -flto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules}" ; export FCFLAGS ; 
-  LDFLAGS="${LDFLAGS:--Wl,-z,relro -Wl,--as-needed  -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld}" ; export LDFLAGS ; 
+  CFLAGS="${CFLAGS:--O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64  -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection}" ; export CFLAGS ; 
+  CXXFLAGS="${CXXFLAGS:--O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64  -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection}" ; export CXXFLAGS ; 
+  FFLAGS="${FFLAGS:--O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64  -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules}" ; export FFLAGS ; 
+  FCFLAGS="${FCFLAGS:--O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1  -m64  -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I/usr/lib64/gfortran/modules}" ; export FCFLAGS ; 
+  LDFLAGS="${LDFLAGS:--Wl,-z,relro -Wl,--as-needed  -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld }" ; export LDFLAGS ; 
   LT_SYS_LIBRARY_PATH="${LT_SYS_LIBRARY_PATH:-/usr/lib64:}" ; export LT_SYS_LIBRARY_PATH ; 
-  CC=gcc; export CC ; 
-  CXX=g++; export CXX; 
-  [ "-flto -ffat-lto-objects"x != x ] && 
+  CC="${CC:-gcc}" ; export CC ; 
+  CXX="${CXX:-g++}" ; export CXX; 
+  [ "-flto=auto -ffat-lto-objects"x != x ] && 
   for file in $(find . -type f -name configure -print); do 
     /usr/bin/sed -r --in-place=.backup 's/^char \(\*f\) \(\) = /__attribute__ ((used)) char (*f) () = /g' $file; 
     diff -u $file.backup $file && mv $file.backup $file 
@@ -139,18 +145,6 @@
 					<td>2019-02-01</td>
 					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 4.1.3-2</td>
 					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2018-10-08</td>
-					<td>Alain Vigne <alain DOT vigne DOT 14 AT gmail DOT com> - 4.1.3-1</td>
-					<td>- New upstream release - 4.1.3</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2018-09-17</td>
-					<td>Alain Vigne <alain DOT vigne DOT 14 AT gmail DOT com> - 4.1.2-1</td>
-					<td>- New upstream release - 4.1.2</td>
 				</tr>
 				
 				<tbody>
@@ -1269,11 +1263,6 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/0a/a492f8d6c03366b237df7687118ad5d1a295c8</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/share/pcb/pcblib-newlib/pci/PCI5V_AVE_HEIGHT.fp</td>
 				</tr>
 				
@@ -1905,6 +1894,11 @@
 				<tr scope="row">
 					<td>d</td>
 					<td>/usr/share/pcb/pcblib-newlib/united_chemicon</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ea/bbb92443c19f74995efbb6040259b1ff7fe0c7</td>
 				</tr>
 				
 				<tr scope="row">
@@ -6349,7 +6343,7 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/0a</td>
+					<td>/usr/lib/.build-id/ea</td>
 				</tr>
 				
 				<tr scope="row">

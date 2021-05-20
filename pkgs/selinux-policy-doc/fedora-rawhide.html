@@ -49,154 +49,141 @@
 				</thead>
 				
 				<tr scope="row">
-					<td>2021-01-22</td>
-					<td>Petr Lautrbach <plautrba at redhat dot com> - 3.14.7-15</td>
-					<td>- Update specfile to not verify md5/size/mtime for active store files
-- Add /var/mnt equivalency to /mnt
-- Rebuild with SELinux userspace 3.2-rc1 release</td>
+					<td>2021-05-13</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.7-1</td>
+					<td>- Allow tgtd read and write infiniband devices
+- Add a comment on virt_sandbox booleans with empty content
+- Deprecate duplicate dev_write_generic_sock_files() interface
+- Allow vnstatd_t map vnstatd_var_lib_t files
+- Allow privoxy execmem
+- Allow pmdakvm read information from the debug filesystem
+- Add lockdown integrity into kernel_read_debugfs() and kernel_manage_debugfs()
+- Add permissions to delete lnk_files into gnome_delete_home_config()
+- Remove rules for inotifyfs
+- Remove rules for anon_inodefs
+- Allow systemd nnp_transition to login_userdomain
+- Allow unconfined_t write other processes perf_event records
+- Allow sysadm_t dbus chat with tuned
+- Allow tuned write profile files with file transition
+- Allow tuned manage perf_events
+- Make domains use kernel_write_perf_event() and kernel_manage_perf_event()</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2021-01-08</td>
-					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-14</td>
-					<td>- Allow domain read usermodehelper state information
-- Remove all kernel_read_usermodehelper_state() interface calls
-- .copr: improve timestamp format
-- Allow wireshark create and use rdma socket
-- Allow domain stat /proc filesystem
-- Remove all kernel_getattr_proc() interface calls
-- Revert "Allow passwd to get attributes in proc_t"
-- Revert "Allow dovecot_auth_t stat /proc filesystem"
-- Revert "Allow sssd, unix_chkpwd, groupadd stat /proc filesystem"
-- Allow sssd read /run/systemd directory
-- Label /dev/vhost-vdpa-[0-9]+ as vhost_device_t</td>
+					<td>2021-05-07</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.6-1</td>
+					<td>- Make domains use kernel_write_perf_event() and kernel_manage_perf_event()
+- Add kernel_write_perf_event() and kernel_manage_perf_event()
+- Allow syslogd_t watch root and var directories
+- Allow unconfined_t read other processes perf_event records
+- Allow login_userdomain read and map /var/lib/systemd files
+- Allow NetworkManager watch its config dir
+- Allow NetworkManager read and write z90crypt device
+- Allow tgtd create and use rdma socket
+- Allow aide connect to init with a unix socket</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-17</td>
-					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-13</td>
-					<td>- Label /dev/isst_interface as cpu_device_t
-- Dontaudit firewalld dac_override capability
-- Allow ipsec set the context of a SPD entry to the default context
-- Build binary RPMs in CI
-- Add SRPM build scripts for COPR</td>
+					<td>2021-05-04</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.5-1</td>
+					<td>- Grant execmem to varnishlog_t
+- We no longer need signull for varnishlog_t
+- Add map permission to varnishd_read_lib_files
+- Allow systemd-sleep tlp_filetrans_named_content()
+- Allow systemd-sleep execute generic programs
+- Allow systemd-sleep execute shell
+- Allow to sendmail read/write kerberos host rcache files
+- Allow freshclam get attributes of cgroup filesystems
+- Fix context of /run/systemd/timesync
+- Allow udev create /run/gdm with proper type
+- Allow chronyc socket file transition in user temp directory
+- Allow virtlogd_t to create virt_var_lockd_t dir
+- Allow pluto IKEv2 / ESP over TCP</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-15</td>
-					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-12</td>
-					<td>- Allow dovecot_auth_t stat /proc filesystem
-- Allow sysadm_u user and unconfined_domain_type manage perf_events
-- Allow pcp-pmcd manage perf_events
-- Add manage_perf_event_perms object permissions set
-- Add perf_event access vectors.
-- Allow sssd, unix_chkpwd, groupadd stat /proc filesystem
-- Allow stub-resolv.conf to be a symlink
-- sysnetwork.if: avoid directly referencing systemd_resolved_var_run_t
-- Create the systemd_dbus_chat_resolved() compatibility interface
-- Allow nsswitch-domain write to systemd-resolved PID socket files
-- Add systemd_resolved_write_pid_sock_files() interface
-- Add default file context for "/var/run/chrony-dhcp(/.*)?"
-- Allow timedatex dbus chat with cron system domain
-- Add cron_dbus_chat_system_job() interface
-- Allow systemd-logind manage init's pid files</td>
+					<td>2021-04-27</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.4-1</td>
+					<td>- Allow domain create anonymous inodes
+- Add anon_inode class to the policy
+- Allow systemd-coredump getattr nsfs files and net_admin capability
+- Allow systemd-sleep transition to sysstat_t
+- Allow systemd -sleep transition to tlp_t
+- Allow systemd-sleep transition to unconfined_service_t on bin_t executables
+- Allow systemd-timedated watch runtime dir and its parent
+- Allow system dbusd read /var/lib symlinks
+- Allow unconfined_service_t confidentiality and integrity lockdown
+- Label /var/lib/brltty with brltty_var_lib_t
+- Allow domain and unconfined_domain_type watch /proc/PID dirs
+- Additional permission for confined users loging into graphic session
+- Make for screen fsetid/setuid/setgid permission conditional
+- Allow for confined users acces to wtmp and run utempter</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-09</td>
-					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-11</td>
-					<td>- Allow systemd-logind manage init's pid files
-- Allow tcsd the setgid capability
-- Allow systemd-resolved manage its private runtime symlinks
-- Update systemd_resolved_read_pid() to also read symlinks
-- Update systemd-sleep policy
-- Add groupadd_t fowner capability
-- Migrate to GitHub Actions
-- Update README.md to reflect the state after contrib and base merge
-- Add README.md announcing merging of selinux-policy and selinux-policy-contrib
-- Adapt .travis.yml to contrib merge
-- Merge contrib into the main repo
-- Prepare to merge contrib repo
-- Move stuff around to match the main repo</td>
+					<td>2021-04-09</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.3-1</td>
+					<td>- Label /etc/redis as redis_conf_t
+- Add brltty new permissions required by new upstream version
+- Allow cups-lpd read its private runtime socket files
+- Dontaudit daemon open and read init_t file
+- Add file context specification for /var/tmp/tmp-inst
+- Allow brltty create and use bluetooth_socket
+- Allow usbmuxd get attributes of cgroup filesystems</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-11-26</td>
-					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-10</td>
-					<td>- Allow Xephyr connect to 6000/tcp port and open user ptys
-- Allow kexec manage generic tmp files
-- Update targetd nfs & lvm
-- Add interface rpc_manage_exports
-- Merge selinux-policy and selinux-policy-contrib repos</td>
+					<td>2021-04-06</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.2-1</td>
+					<td>- Allow usbmuxd get attributes of cgroup filesystems
+- Allow accounts-daemon get attributes of cgroup filesystems
+- Allow pool-geoclue get attributes of cgroup filesystems
+- allow systemd-sleep to set timer for suspend-then-hibernate
+- Allow aide connect to systemd-userdbd with a unix socket
+- Add new interfaces with watch_mount and watch_with_perm permissions
+- Add file context specification for /usr/libexec/realmd
+- Allow /tmp file transition for dbus-daemon also for sock_file
+- Allow login_userdomain create cgroup files
+- Allow plymouthd_t exec generic program in bin directories</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-11-24</td>
-					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-9</td>
-					<td>- Allow varnish map its private tmp files
-- Allow dovecot bind to smtp ports
-- Change fetchmail temporary files path to /var/spool/mail
-- Allow cups_pdf_t domain to communicate with unix_dgram_socket
-- Set file context for symlinks in /etc/httpd to etc_t
-- Allow rpmdb rw access to inherited console, ttys, and ptys
-- Allow dnsmasq read public files
-- Announce merging of selinux-policy and selinux-policy-contrib
-- Label /etc/resolv.conf as net_conf_t only if it is a plain file
-- Fix range for unreserved ports
-- Add files_search_non_security_dirs() interface
-- Introduce logging_syslogd_append_public_content tunable
-- Add miscfiles_append_public_files() interface</td>
+					<td>2021-04-01</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.1-1</td>
+					<td>- Change the package versioning</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-11-13</td>
-					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-8</td>
-					<td>- Set correct default file context for /usr/libexec/pcp/lib/*
-- Introduce rpmdb_t type
-- Allow slapd manage files/dirs in ldap certificates directory
-- Revert "Allow certmonger add new entries in a generic certificates directory"
-- Allow certmonger add new entries in a generic certificates directory
-- Allow slapd add new entries in ldap certificates directory
-- Remove retired PCP pmwebd and pmmgr daemons (since 5.0)
-- Let keepalived bind a raw socket
-- Add default file context for /usr/libexec/pcp/lib/*
-- squid: Allow net_raw capability when squid_use_tproxy is enabled
-- systemd: allow networkd to check namespaces
-- Add ability to read init_var_run_t where fs_read_efivarfs_files is allowed
-- Allow resolved to created varlink sockets and the domain to talk to it
-- selinux: tweak selinux_get_enforce_mode() to allow status page to be used
-- systemd: allow all systemd services to check selinux status
-- Set default file context for /var/lib/ipsec/nss
-- Allow user domains transition to rpmdb_t
-- Revert "Add miscfiles_add_entry_generic_cert_dirs() interface"
-- Revert "Add miscfiles_create_generic_cert_dirs() interface"
-- Update miscfiles_manage_all_certs() to include managing directories
-- Add miscfiles_create_generic_cert_dirs() interface
-- Add miscfiles_add_entry_generic_cert_dirs() interface
-- Revert "Label /var/run/zincati/public/motd.d/* as motd_var_run_t"</td>
+					<td>2021-04-01</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.8-10</td>
+					<td>- Allow plymouthd_t exec generic program in bin directories
+- Allow dhcpc_t domain transition to chronyc_t
+- Allow login_userdomain bind xmsg port
+- Allow ibacm the net_raw and sys_rawio capabilities
+- Allow nsswitch_domain read cgroup files
+- Allow systemd-sleep create hardware state information files</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-11-03</td>
-					<td>Petr Lautrbach <plautrba at redhat dot com> - 3.14.7-7</td>
-					<td>- Rebuild with latest libsepol
-- Bump policy version to 33</td>
+					<td>2021-03-29</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.8-9</td>
+					<td>- Add watch_with_perm_dirs_pattern file pattern</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-10-22</td>
-					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-6</td>
-					<td>- rpc.fc: Include /etc/exports.d dir & files
-- Create chronyd_pid_filetrans() interface
-- Change invalid type redisd_t to redis_t in redis_stream_connect()
-- Revert "Removed adding to attribute unpriv_userdomain from userdom_unpriv_type template"
-- Allow init dbus chat with kernel
-- Allow initrc_t create /run/chronyd-dhcp directory with a transition
-- Drop gcc from dependencies in Travis CI
-- fc_sort.py: Use "==" for comparing integers.
-- re-implement fc_sort in python
-- Remove invalid file context line
-- Drop git from dependencies in Travis CI</td>
+					<td>2021-03-26</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.8-8</td>
+					<td>- Allow arpwatch_t create netlink generic socket
+- Allow postgrey read network state
+- Add watch_mount_dirs_pattern file pattern
+- Allow bluetooth_t dbus chat with fwupd_t
+- Allow xdm_t watch accountsd lib directories
+- Add additional interfaces for watching /boot
+- Allow sssd_t get attributes of tmpfs filesystems
+- Allow local_login_t get attributes of tmpfs filesystems
+- Dontaudit domain the fowner capability
+- Extend fs_manage_nfsd_fs() to allow managing dirs as well
+- Allow spice-vdagentd watch systemd-logind session dirs</td>
 				</tr>
 				
 				<tbody>

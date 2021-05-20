@@ -49,89 +49,79 @@
 				</thead>
 				
 				<tr scope="row">
-					<td>2020-12-16</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247.2-1</td>
-					<td>- Minor stable release
-- Fixes #1908071.</td>
+					<td>2021-05-15</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.3-1</td>
+					<td>- A fix for resolved crashes (#1946386, #1960227, #1950241)
+- Some minor fixes for documentation, systemd-networkd, systemd-run, bootctl.</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-08</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247.1-3</td>
-					<td>- Rebuild with fallback hostname change reverted.</td>
+					<td>2021-05-07</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.2-1</td>
+					<td>- Pull in some more patches from upstream (#1944646, #1885090, #1941340)
+- Adjust modes of some %ghost files (#1956059)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-04</td>
-					<td>Bastien Nocera <bnocera at redhat dot com> - 247.1-2</td>
-					<td>- Unset fallback-hostname as plenty of applications expected localhost
-  to mean "default hostname" without ever standardising it (#1892235)</td>
+					<td>2021-05-06</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.1-1</td>
+					<td>- Latest stable version: a long list of minor correctness fixes all around
+  (#1955475, #911766, #1958167, #1952919)
+- Enable tpm2-tss dependency (#1949505)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-01</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247.1-1</td>
-					<td>- Latest stable release
-- Fixes #1902819.
-- Files to configure networking with systemd-networkd in a VM or container are
-  moved to systemd-networkd subpackage. (They were previously in the -container
-  subpackage, which is for container/VM management.)</td>
+					<td>2021-04-06</td>
+					<td>Adam Williamson <awilliam at redhat dot com> - 248-2</td>
+					<td>- Re-enable resolved caching, we hope all major bugs are resolved now</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-11-26</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247-1</td>
-					<td>- Update to the latest version
-- #1900878 should be fixed</td>
+					<td>2021-03-31</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248-1</td>
+					<td>- Latest upstream release, see
+  https://github.com/systemd/systemd/blob/v248/NEWS.
+- The changes since -rc4 are rather small, various fixes all over the place.
+  A fix to how systemd-oomd selects a candidate to kill, and more debug logging
+  to make this more transparent.</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-10-20</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247~rc2</td>
-					<td>- New upstream pre-release. See
-  https://github.com/systemd/systemd/blob/v247-rc1/NEWS.
-  Many smaller and bigger improvements and features are introduced.
-  (#1885101, #1890632, #1879216)
-
-  A backwards-incompatible change affects PCI network devices which
-  are connected through a bridge which is itself associated with a
-  slot. When more than one device was associated with the same slot,
-  one of the devices would pseudo-randomly get named after the slot.
-  That name is now not generated at all. This changed behaviour is
-  causes the net naming scheme to be changed to "v247". To restore
-  previous behaviour, specify net.naming-scheme=v245.
-
-  systemd-oomd is built, but should not be considered "production
-  ready" at this point. Testing and bug reports are welcome.</td>
+					<td>2021-03-30</td>
+					<td>Anita Zhang <the dot anitazha at gmail dot com> - 248~rc4-6</td>
+					<td>- Increase oomd user memory pressure limit to 50% (#1941170)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-09-30</td>
-					<td>Dusty Mabe <dusty at dustymabe dot com> - 246.6-3</td>
-					<td>- Try to make files in subpackages (especially the networkd subpackage)
-  more appropriate.</td>
+					<td>2021-03-26</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-5</td>
+					<td>- Do not preset systemd-networkd.service and systemd-networkd-wait-online.service
+  on upgrades from before systemd-networkd was split out (#1943263)
+- In nsswitch.conf, move nss-myhostname to the front, before nss-mdns4 (#1943199)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-09-24</td>
-					<td>Filipe Brandenburger <filbranden at gmail dot com> - 246.6-2</td>
-					<td>- Build a package with standalone binaries for non-systemd systems.
-  For now, only systemd-sysusers is included.</td>
+					<td>2021-03-24</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-4</td>
+					<td>- Revert patch that seems to cause problems with dns resolution
+  (see comments on https://bodhi.fedoraproject.org/updates/FEDORA-2021-1c1a870ceb)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-09-24</td>
-					<td>Christian Glombek <lorbus at fedoraproject dot org> - 246.6-2</td>
-					<td>- Split out networkd sub-package and add to main package as recommended dependency</td>
+					<td>2021-03-22</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-3</td>
+					<td>- Fix hang when processing timers during DST switch in Europe/Dublin timezone (#1941335)
+- Fix returning combined IPv4/IPv6 responses from systemd-resolved cache (#1940715)
+  (But note that the disablement of caching added previously is
+  retained until we can do more testing.)
+- Minor fix to interface naming by udev
+- Fix for systemd-repart --size</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-09-20</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 246.6-1</td>
-					<td>- Update to latest stable release (various minor fixes: manager,
-  networking, bootct, kernel-install, systemd-dissect, systemd-homed,
-  fstab-generator, documentation) (#1876905)
-- Do not fail in test because of kernel bug (#1803070)</td>
+					<td>2021-03-19</td>
+					<td>Adam Williamson <awilliam at redhat dot com> - 248~rc4-2</td>
+					<td>- Disable resolved cache via config snippet (#1940715)</td>
 				</tr>
 				
 				<tbody>
@@ -150,12 +140,7 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/06</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/58</td>
+					<td>/usr/lib/.build-id/4d</td>
 				</tr>
 				
 				<tr scope="row">
@@ -165,7 +150,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/zsh/site-functions/_networkctl</td>
+					<td>/usr/lib/.build-id/4d/17bbb525695870a27bb5651a19a7ad67e3a5f6</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/be/7848a0992e1f327cf02a99b87cc746a51afd5e</td>
 				</tr>
 				
 				<tr scope="row">
@@ -210,7 +200,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/bash-completion/completions/networkctl</td>
+					<td>/usr/lib/.build-id/01/92d0c9e0aede0d2b7495762194d1988411db6a</td>
 				</tr>
 				
 				<tr scope="row">
@@ -220,7 +210,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/58/b3f67d88cbb8b327b37de13332fbadc468d10b</td>
+					<td>/usr/share/bash-completion/completions/networkctl</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/zsh/site-functions/_networkctl</td>
 				</tr>
 				
 				<tr scope="row">
@@ -235,7 +230,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/5d/e067612a59197a083433ce275e27165ef93056</td>
+					<td>/usr/share/polkit-1/rules.d/systemd-networkd.rules</td>
 				</tr>
 				
 				<tr scope="row">
@@ -250,22 +245,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man8/systemd-networkd-wait-online.8.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man8/systemd-networkd-wait-online.service.8.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man8/systemd-networkd.8.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man8/systemd-networkd.service.8.gz</td>
+					<td>/usr/share/dbus-1/system-services/org.freedesktop.network1.service</td>
 				</tr>
 				
 				<tr scope="row">
@@ -300,17 +280,22 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/06/38e0cef1176c3b9a05c229ac51f2aa1b6504d6</td>
+					<td>/usr/share/man/man8/systemd-networkd-wait-online.8.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/dbus-1/system-services/org.freedesktop.network1.service</td>
+					<td>/usr/share/man/man8/systemd-networkd-wait-online.service.8.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/polkit-1/rules.d/systemd-networkd.rules</td>
+					<td>/usr/share/man/man8/systemd-networkd.8.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man8/systemd-networkd.service.8.gz</td>
 				</tr>
 				
 				<tbody>

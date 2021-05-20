@@ -49,6 +49,73 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-05-02</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.147-1</td>
+					<td>- fix logging traceback for module builds
+- call creatrepo_c with --update if possible
+- don't do full createrpeo with --rpms-to-remove</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-30</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.146-1</td>
+					<td>- better fixes for the appstream-builder generated files
+- new helper script named /bin/copr-assure-permissions
+- do not rsync-copy permissions from the builder
+- log the partial "prunerepo" effects into resultdir
+- better, more verbose call_copr_repo logging</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-27</td>
+					<td>Jakub Kadlcik <frostyx at email dot cz> 1.145-1</td>
+					<td>- backend: make the walk_limited test not dependend on its output order, pt2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-27</td>
+					<td>Jakub Kadlcik <frostyx at email dot cz> 1.144-1</td>
+					<td>- backend: make the walk_limited test not dependend on its output order</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-27</td>
+					<td>Jakub Kadlcik <frostyx at email dot cz> 1.143-1</td>
+					<td>- backend: fix copr_prune_results logging once more
+- backend: better logging in prunerepo
+- backend: prunerepo: don't re-createrepo when no rpm is removed
+- backend: catch correct client exceptions in copr_prune_results
+- test: backend: change prunerepo logic, use get_rpms_to_remove from prunerepo
+- backend: new fixture for testing prunerepo
+- backend: use safe defaults if APIv3 result doesn't contain what it should
+- backend: migrate to APIv3
+- backend: better how-to-redirect logs comment
+- backend, frontend, keygen, distgit: keep cca 3 months of logs
+- backend: don't createrepo in srpm-builds on delete
+- backend: test walk_limited function from helpers</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-16</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.142-1</td>
+					<td>- prepare for the centos-stream-8 rename
+- add script to prune srpm-build directories
+- pruner: correctly deliver the final prunerepo stamp to frontend
+- pruner: logging through RedisLogHandler
+- pruner: better parallelization
+- pruner: re-try be-fe communication upon failures
+- require up2date modulemd-tools</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-20</td>
+					<td>Pavel Raiskup <praiskup at redhat dot com> 1.141-1</td>
+					<td>- run prunerepo in parallel
+- add one-shot copr_find_wrong_chroot_artifacts.py script
+- support modulemd v2</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2020-12-01</td>
 					<td>Pavel Raiskup <praiskup at redhat dot com> 1.140-1</td>
 					<td>- fix frontend-client post arguments</td>
@@ -66,95 +133,6 @@
 					<td>Pavel Raiskup <praiskup at redhat dot com> 1.138-1</td>
 					<td>- get back to using standard createrepo_c command from createrepo_mod
 - drop call to stomp's conn.start() (it was dropped)</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-11-09</td>
-					<td>Jakub Kadlcik <frostyx at email dot cz> 1.137-1</td>
-					<td>- backend: test action for deleting chroot
-- backend: fix testsuite for the new createrepo_c
-- frontend: don't set ended_on for canceled builds
-- all: run pytest with -vv in package build
-- common, cli, python, rpmbuild, frontend, backend: DistGit source method
-- backend: use createrepo_mod tool for generating module repodata</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-12</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.136-1</td>
-					<td>- testsuite: give more time to the slow Koji builders</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-10</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.135-1</td>
-					<td>- prioritize all non-background jobs
-- fix up libmodulemd dependency</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-06-19</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.134-1</td>
-					<td>- fix copr-repo to work with absolute paths
-- automatically batch the createrepo requests
-- scheduler is now fair, and ordered
-- indefinitely retry workers' talk to frontend
-- allow canceling also "starting" builds
-- more verbose delete action in logs
-- cleanup the example configuration
-- use FileHandler for backend.log, fixes traceback</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-06-09</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.133-1</td>
-					<td>- better build task priority processing
-- dump attempt to send message to backend.log
-- drop the VMM concept, replaced with resalloc
-- delegate more work to the builder code
-- external blob tarball for unittests
-- buggy error handler in pkg_name_evr()
-- basic build task priority
-- the reschedule-all builds idiom removed
-- fix the build cancelation
-- drop duplicate BuildRequire on python-requests
-- require the newest version of copr-common
-- minimalize the transfered amount of information about actions from FE
-- process actions in regard to their priority
-- move backend's code to standard PYTHONPATH
-- move ActionResult to copr_common.enums
-- actions/builds use the same WorkerManager logic
-- more verbose rawhide to release action processing</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-02-05</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 1.132-1</td>
-					<td>- better handle invalid options in copr-repo --add/--delete
-- copr-repo: optimize-out useless createrepo_c runs
-- move initial createrepo check from dispatcher to worker
-- don't send messages on bus N-times
-- /bin/copr-repo now respects .disable-appstream files
-- drop unused build_deleting_without_createrepo option</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-01-15</td>
-					<td>Tomas Hrnciar <thrnciar at redhat dot com> 1.131-1</td>
-					<td>- put build-ID.log file to resultdir
-- call call_copr_repo if initial createrepo failed
-- Build Dispatcher does not wait forever till repo is created,
-  it creates it manually
-- properly delete logs for old builds
-- delete build-ID.log files again
-- edit repositories only by new 'copr-repo' tool
-- fix multi-build delete
-- fix for not saving end time of actions
-- lower traffic in build_dispatcher log
-- more resilient redis logging
-- attempt to publish on msgbus N-times
-- log service: move RequiredBy to [Install]
-- keep worker ID in proc title</td>
 				</tr>
 				
 				<tbody>
@@ -178,7 +156,7 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/python3.9/site-packages/copr_backend-1.140-py3.9.egg-info</td>
+					<td>/usr/lib/python3.9/site-packages/copr_backend-1.147-py3.9.egg-info</td>
 				</tr>
 				
 				<tr scope="row">
@@ -262,18 +240,13 @@
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/copr-backend/lighttpd/dirlisting.conf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/doc/copr-backend/lighttpd/mime.conf</td>
+					<td>d</td>
+					<td>/var/lib/copr</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/var/log/copr-backend</td>
+					<td>/var/lib/copr/public_html/results</td>
 				</tr>
 				
 				<tr scope="row">
@@ -287,33 +260,18 @@
 				</tr>
 				
 				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/lighttpd/dirlisting.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/copr-backend/lighttpd/mime.conf</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>d</td>
-					<td>/var/lib/copr</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_backend-1.140-py3.9.egg-info/PKG-INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_backend-1.140-py3.9.egg-info/SOURCES.txt</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_backend-1.140-py3.9.egg-info/dependency_links.txt</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_backend-1.140-py3.9.egg-info/not-zip-safe</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_backend-1.140-py3.9.egg-info/top_level.txt</td>
+					<td>/var/log/copr-backend</td>
 				</tr>
 				
 				<tr scope="row">
@@ -428,7 +386,7 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/var/lib/copr/public_html/results</td>
+					<td>/etc/copr</td>
 				</tr>
 				
 				<tr scope="row">
@@ -439,11 +397,6 @@
 				<tr scope="row">
 					<td>d</td>
 					<td>/var/lib/copr/public_html</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/etc/copr</td>
 				</tr>
 				
 				<tr scope="row">
@@ -773,6 +726,11 @@
 				
 				<tr scope="row">
 					<td>f</td>
+					<td>/usr/bin/copr-assure-permissions</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
 					<td>/usr/bin/copr-backend-process-action</td>
 				</tr>
 				
@@ -788,6 +746,11 @@
 				
 				<tr scope="row">
 					<td>f</td>
+					<td>/usr/bin/copr-rename-chroot</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
 					<td>/usr/bin/copr-repo</td>
 				</tr>
 				
@@ -798,12 +761,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/bin/copr_createrepo.py</td>
+					<td>/usr/bin/copr_find_obsolete_builds.sh</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/bin/copr_find_obsolete_builds.sh</td>
+					<td>/usr/bin/copr_find_wrong_chroot_artifacts.py</td>
 				</tr>
 				
 				<tr scope="row">
@@ -824,6 +787,11 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/bin/copr_prune_results.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/copr_prune_srpms.py</td>
 				</tr>
 				
 				<tr scope="row">
@@ -869,6 +837,31 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/doc/copr-backend/playbooks/filter_plugins/os_nova.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/copr_backend-1.147-py3.9.egg-info/PKG-INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/copr_backend-1.147-py3.9.egg-info/SOURCES.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/copr_backend-1.147-py3.9.egg-info/dependency_links.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/copr_backend-1.147-py3.9.egg-info/not-zip-safe</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/copr_backend-1.147-py3.9.egg-info/top_level.txt</td>
 				</tr>
 				
 				<tr scope="row">

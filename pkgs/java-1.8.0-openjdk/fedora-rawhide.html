@@ -49,76 +49,82 @@
 				</thead>
 				
 				<tr scope="row">
-					<td>2021-01-26</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b08-3</td>
-					<td>- Include a test in the RPM to check the build has the correct vendor information.
-- Use 'oj_' prefix on new vendor globals to avoid a conflict with RPM's vendor value.</td>
+					<td>2021-05-10</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:1.8.0.292.b10-3</td>
+					<td>- removed cjc backward comaptiblity, to fix when both rpm 4.16 and 4.17 are in transaction</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2021-01-25</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b08-2</td>
-					<td>- Add directories to files directive for demo package.</td>
+					<td>2021-05-03</td>
+					<td>Sérgio Basto <sergio at serjux dot com> - 1:1.8.0.292.b10-2</td>
+					<td>- Fix upgrade path after removal of accessibility subpackage. As main accessibility was requiring main package,
+  main package now have to obsolete java-1.8.0-openjdk-accessibility-{release, slowdebug, fastdebug} < 1:1.8.0.292.b06
+  otherwise update fails</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2021-01-24</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b08-1</td>
-					<td>- Use RSA as default for keytool, as DSA is disabled in all crypto policies except LEGACY</td>
+					<td>2021-04-29</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:1.8.0.292.b10-1</td>
+					<td>- adapted to newst cjc to fix issue with rpm 4.17</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2021-01-15</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b08-0</td>
-					<td>- Update to aarch64-shenandoah-jdk8u282-b08 (GA)
-- Update release notes for 8u282-b08.</td>
+					<td>2021-04-13</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.292.b10-0</td>
+					<td>- Update to aarch64-shenandoah-jdk8u292-b10 (GA)
+- Update release notes for 8u292-b10.</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2021-01-15</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b07-0.0.ea</td>
-					<td>- Update to aarch64-shenandoah-jdk8u282-b07 (EA)
-- Update release notes for 8u282-b07 and make some minor corrections.</td>
+					<td>2021-03-30</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.292.b09-0.0.ea</td>
+					<td>- Update to aarch64-shenandoah-jdk8u292-b09 (EA)
+- Update release notes for 8u292-b09.</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2021-01-06</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b04-0.0.ea</td>
-					<td>- Update to aarch64-shenandoah-jdk8u282-b04 (EA)
-- Update release notes for 8u282-b04.
-- Remove upstreamed patch PR3519</td>
+					<td>2021-03-27</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.292.b08-0.0.ea</td>
+					<td>- Update to aarch64-shenandoah-jdk8u292-b08 (EA)
+- Update release notes for 8u292-b08.
+- Require tzdata 2021a due to JDK-8260356</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2021-01-02</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b03-0.0.ea</td>
-					<td>- Update to aarch64-shenandoah-jdk8u282-b03 (EA)
-- Update release notes for 8u282-b03.</td>
+					<td>2021-03-25</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.292.b07-0.0.ea</td>
+					<td>- Update to aarch64-shenandoah-jdk8u292-b07 (EA)
+- Update release notes for 8u292-b07.</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-29</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b02-0.0.ea</td>
-					<td>- Update to aarch64-shenandoah-jdk8u282-b02 (EA)
-- Update release notes for 8u282-b02.</td>
+					<td>2021-03-24</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:1.8.0.292.b06-0.1.ea</td>
+					<td>- removal of atk accessibility bridge bindings:
+- removed libatk-wrapper[.]so.* from global _privatelibs
+- removed files_accessibility and java_accessibility_rpo macros
+- removed patch1 rh1648242-accessible_toolkit_crash_do_not_break_jvm.patch and patch3 rh1648644-java_access_bridge_privileged_security.patch
+- removal of accessibility{,-slowdebug,-fastdebug} subpackages
+- no longer creating symlinks of %{_libdir}/java-atk-wrapper/libatk-wrapper.so.0 libatk-wrapper.so and  %{_libdir}/java-atk-wrapper/java-atk-wrapper.jar  java-atk-wrapper.jar
+- no longer creating %{_jvmdir}/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64$suffix/jre/lib/accessibility.properties with content of "assistive_technologies=org.GNOME.Accessibility.AtkWrapper"
+- removal of accessibility{,-slowdebug,-fastdebug} subpackages files sections</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-22</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b01-0.0.ea</td>
-					<td>- Update to aarch64-shenandoah-jdk8u282-b01 (EA)
-- Update release notes for 8u282-b01.
-- Switch to EA mode.
-- Remove PR3601, covered upstream by JDK-8062808.
-- Remove upstreamed JDK-8197981/PR3548, JDK-8062808/PR3548 & JDK-8254177.
-- Extend RH1750419 alt-java fix to include external debuginfo, following JDK-8252395
-- Adapt JDK-8143245 patch, following JDK-8254166</td>
+					<td>2021-03-22</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.292.b06-0.0.ea</td>
+					<td>- Update to aarch64-shenandoah-jdk8u292-b06 (EA)
+- Update release notes for 8u292-b06.
+- Require tzdata 2020f due to JDK-8259048</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-22</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:1.8.0.275.b01-6</td>
-					<td>- fixed missing condition for fastdebug packages being counted as debug ones</td>
+					<td>2021-03-18</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.292.b05-0.2.ea</td>
+					<td>- Update to aarch64-shenandoah-jdk8u292-b05-shenandoah-merge-2021-03-11 (EA)
+- Update release notes for 8u292-b05-shenandoah-merge-2021-03-11.
+- Extend s390 patch to fix issue caused by JDK-8252660 backport and lack of JDK-8188813 in 8u.
+- Revise JDK-8252660 s390 failure to make _soft_max_size a jlong so pointer types are accurate.</td>
 				</tr>
 				
 				<tbody>
@@ -137,42 +143,27 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/c2/3b54194c0edb66ac01b74f6c777120f6e5ac37</td>
+					<td>/usr/lib/.build-id/ba/6d496d637ce2e0a6dc59108b08571f6a394771</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/a2/0b853657b2512208859d64c675084978015eda</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/ae/898867f61659da760b1a2015da0a5c3db8b15c</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64/jre/bin/policytool</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64/jre/bin/policytool</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/a2</td>
+					<td>/usr/lib/.build-id/2a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/ae</td>
+					<td>/usr/lib/.build-id/ba</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/c2</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/e3</td>
+					<td>/usr/lib/.build-id/d6</td>
 				</tr>
 				
 				<tr scope="row">
@@ -181,43 +172,13 @@
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/icons/hicolor/48x48/apps/java-1.8.0-openjdk.png</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64/jre/lib/amd64/libawt_xawt.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64/jre/lib/amd64/libjawt.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64/jre/lib/amd64/libjsoundalsa.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64/jre/lib/amd64/libsplashscreen.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/applications/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-policytool.desktop</td>
-				</tr>
-				
-				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id</td>
+					<td>/usr/lib/.build-id/fb</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/e5/5381207db02c11ca67e08a89c4e58ff0225a7e</td>
+					<td>/usr/lib/.build-id/d6/bb87881a6fd58227ee5289adcdd2614a96d084</td>
 				</tr>
 				
 				<tr scope="row">
@@ -227,17 +188,62 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/e3/c5424dd177dfec6e958032783ebca04a40b5fe</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64/jre/lib/amd64/libawt_xawt.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/icons/hicolor/32x32/apps/java-1.8.0-openjdk.png</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64/jre/lib/amd64/libjawt.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64/jre/lib/amd64/libjsoundalsa.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64/jre/lib/amd64/libsplashscreen.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/applications/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-policytool.desktop</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/icons/hicolor/48x48/apps/java-1.8.0-openjdk.png</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/e5/2ef7d460af5caef8045dc117c1b326714ece09</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/2a/ecc895f998c97cb11de61c8722f8a37e8b4cf3</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/icons/hicolor/24x24/apps/java-1.8.0-openjdk.png</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/fb/d1e40affc9baafa126707fd878dbfe83532fd7</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/icons/hicolor/32x32/apps/java-1.8.0-openjdk.png</td>
 				</tr>
 				
 				<tbody>

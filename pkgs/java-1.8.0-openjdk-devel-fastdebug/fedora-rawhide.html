@@ -49,76 +49,82 @@
 				</thead>
 				
 				<tr scope="row">
-					<td>2021-01-26</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b08-3</td>
-					<td>- Include a test in the RPM to check the build has the correct vendor information.
-- Use 'oj_' prefix on new vendor globals to avoid a conflict with RPM's vendor value.</td>
+					<td>2021-05-10</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:1.8.0.292.b10-3</td>
+					<td>- removed cjc backward comaptiblity, to fix when both rpm 4.16 and 4.17 are in transaction</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2021-01-25</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b08-2</td>
-					<td>- Add directories to files directive for demo package.</td>
+					<td>2021-05-03</td>
+					<td>Sérgio Basto <sergio at serjux dot com> - 1:1.8.0.292.b10-2</td>
+					<td>- Fix upgrade path after removal of accessibility subpackage. As main accessibility was requiring main package,
+  main package now have to obsolete java-1.8.0-openjdk-accessibility-{release, slowdebug, fastdebug} < 1:1.8.0.292.b06
+  otherwise update fails</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2021-01-24</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b08-1</td>
-					<td>- Use RSA as default for keytool, as DSA is disabled in all crypto policies except LEGACY</td>
+					<td>2021-04-29</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:1.8.0.292.b10-1</td>
+					<td>- adapted to newst cjc to fix issue with rpm 4.17</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2021-01-15</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b08-0</td>
-					<td>- Update to aarch64-shenandoah-jdk8u282-b08 (GA)
-- Update release notes for 8u282-b08.</td>
+					<td>2021-04-13</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.292.b10-0</td>
+					<td>- Update to aarch64-shenandoah-jdk8u292-b10 (GA)
+- Update release notes for 8u292-b10.</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2021-01-15</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b07-0.0.ea</td>
-					<td>- Update to aarch64-shenandoah-jdk8u282-b07 (EA)
-- Update release notes for 8u282-b07 and make some minor corrections.</td>
+					<td>2021-03-30</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.292.b09-0.0.ea</td>
+					<td>- Update to aarch64-shenandoah-jdk8u292-b09 (EA)
+- Update release notes for 8u292-b09.</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2021-01-06</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b04-0.0.ea</td>
-					<td>- Update to aarch64-shenandoah-jdk8u282-b04 (EA)
-- Update release notes for 8u282-b04.
-- Remove upstreamed patch PR3519</td>
+					<td>2021-03-27</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.292.b08-0.0.ea</td>
+					<td>- Update to aarch64-shenandoah-jdk8u292-b08 (EA)
+- Update release notes for 8u292-b08.
+- Require tzdata 2021a due to JDK-8260356</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2021-01-02</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b03-0.0.ea</td>
-					<td>- Update to aarch64-shenandoah-jdk8u282-b03 (EA)
-- Update release notes for 8u282-b03.</td>
+					<td>2021-03-25</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.292.b07-0.0.ea</td>
+					<td>- Update to aarch64-shenandoah-jdk8u292-b07 (EA)
+- Update release notes for 8u292-b07.</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-29</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b02-0.0.ea</td>
-					<td>- Update to aarch64-shenandoah-jdk8u282-b02 (EA)
-- Update release notes for 8u282-b02.</td>
+					<td>2021-03-24</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:1.8.0.292.b06-0.1.ea</td>
+					<td>- removal of atk accessibility bridge bindings:
+- removed libatk-wrapper[.]so.* from global _privatelibs
+- removed files_accessibility and java_accessibility_rpo macros
+- removed patch1 rh1648242-accessible_toolkit_crash_do_not_break_jvm.patch and patch3 rh1648644-java_access_bridge_privileged_security.patch
+- removal of accessibility{,-slowdebug,-fastdebug} subpackages
+- no longer creating symlinks of %{_libdir}/java-atk-wrapper/libatk-wrapper.so.0 libatk-wrapper.so and  %{_libdir}/java-atk-wrapper/java-atk-wrapper.jar  java-atk-wrapper.jar
+- no longer creating %{_jvmdir}/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64$suffix/jre/lib/accessibility.properties with content of "assistive_technologies=org.GNOME.Accessibility.AtkWrapper"
+- removal of accessibility{,-slowdebug,-fastdebug} subpackages files sections</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-22</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.282.b01-0.0.ea</td>
-					<td>- Update to aarch64-shenandoah-jdk8u282-b01 (EA)
-- Update release notes for 8u282-b01.
-- Switch to EA mode.
-- Remove PR3601, covered upstream by JDK-8062808.
-- Remove upstreamed JDK-8197981/PR3548, JDK-8062808/PR3548 & JDK-8254177.
-- Extend RH1750419 alt-java fix to include external debuginfo, following JDK-8252395
-- Adapt JDK-8143245 patch, following JDK-8254166</td>
+					<td>2021-03-22</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.292.b06-0.0.ea</td>
+					<td>- Update to aarch64-shenandoah-jdk8u292-b06 (EA)
+- Update release notes for 8u292-b06.
+- Require tzdata 2020f due to JDK-8259048</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-22</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:1.8.0.275.b01-6</td>
-					<td>- fixed missing condition for fastdebug packages being counted as debug ones</td>
+					<td>2021-03-18</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.292.b05-0.2.ea</td>
+					<td>- Update to aarch64-shenandoah-jdk8u292-b05-shenandoah-merge-2021-03-11 (EA)
+- Update release notes for 8u292-b05-shenandoah-merge-2021-03-11.
+- Extend s390 patch to fix issue caused by JDK-8252660 backport and lack of JDK-8188813 in 8u.
+- Revise JDK-8252660 s390 failure to make _soft_max_size a jlong so pointer types are accurate.</td>
 				</tr>
 				
 				<tbody>
@@ -137,627 +143,67 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/02/bcd3edf3874721fda348c9d47994aaf0f53576</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/44/d94734771ec82d4eb6c89945fcb1bb04f272f9.1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/09/299ff35b18d3608dc4879cdedeefe071b88985</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/THIRD_PARTY_README</td>
+					<td>/usr/lib/.build-id/c1/e8aece8403174a555bcc670d497eb9134e45c8</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin</td>
+					<td>/usr/lib/.build-id/0b</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/include</td>
+					<td>/usr/lib/.build-id/13</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/lib</td>
+					<td>/usr/lib/.build-id/18</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/tapset</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/bd/149f57fd1553c31b8a01fc30b091043a045eb8</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/d0/5d01c3d4750de0f2c77a794ea31d263109d469</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/d0/69e5bfb6dc8058660f18ad8efa379cc730c489.1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/26/a11a2f5b5b3a358721b9463bf2fe4d79398215.1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/applications/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug-jconsole-fastdebug.desktop</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/a0/86a0e732be7dbfb414f68faaf0cb701b809d0d.1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/e9/bd4a687486930bc05dfbdac6c78f1a3d818bf3</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/1e/ed7c9d7d5c5f6b80a7cdf19a749650ff2f4ed6</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/43/fdbfff7a89fe25fea7ec01d34d5255e47936c4</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/3b/eca2a51abbaabff56e6fa90233cd27025b1e8b</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/c4/1d8f4d961f0e62bc86c7cd185733daf0d0a078.1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/alt-java</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/appletviewer</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/clhsdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/extcheck</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/hsdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/idlj</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jar</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jarsigner</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/java</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/java-rmi.cgi</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/javac</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/javadoc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/javah</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/javap</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jcmd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jconsole</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jdeps</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jfr</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jhat</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jinfo</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jjs</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jmap</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jps</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jrunscript</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jsadebugd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jstack</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jstat</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/jstatd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/keytool</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/native2ascii</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/orbd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/pack200</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/policytool</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/rmic</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/rmid</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/rmiregistry</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/schemagen</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/serialver</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/servertool</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/tnameserv</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/unpack200</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/wsgen</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/wsimport</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/bin/xjc</td>
+					<td>/usr/lib/.build-id/21</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/systemtap</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/5f/dd0f36720f7b662ccda1375e32d727d6f2a7c0.1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/9a/1484852cd5fd8561785531c793e93ef8e616d8</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/6a/a1abd8668e847d8d6b45b41a2efac008bb0969</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/b1/52fd6ebc3d0256dc5a0f6d4d43e94d1a2ddab7</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/3a/588546a26e491ccd966d02267d84f0b2730208.1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/7c/b3efadedb77bab13098867de190bb56e62c774</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/fd/45cd0517bf22f83c1e8fc8d7a0be9f61a5c8cb.1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/8e/fc5da9ae0bbed7ff517bf12bc292d025e8b2ca</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/lib/amd64/jli/libjli.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/4c/f387fcb613f6bd4a3d80c7c2474cef6f755c7e</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/1c/2d9853aa4d059cc66c5d0bbf63400fd3ae0fbb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/71/b9433b566c06cee464145461ea5204bfdc9b94</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/36/e38cae94f656ac6539a52914e296e553311861</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/2e/9b52cabc6ef80a96f3e7657da8c7c8eb991ed3</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/b0/50bcf486a91beb0c6d5fe7427bec5e11321ee0.1</td>
+					<td>/usr/lib/.build-id/29</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/lib/amd64</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/lib/ct.sym</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/lib/dt.jar</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/lib/ir.idl</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/lib/jconsole.jar</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/lib/jexec</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/lib/orb.idl</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/lib/sa-jdi.jar</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/lib/tools.jar</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/48/27ea9b30e13d67c1d86ba6195090f38b34e541.1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/41/5699b46940b51274e652e9a641251b89a67aa4.1</td>
+					<td>/usr/lib/.build-id/3d</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/06/782b0f4dd0452de395867a21e6bfeb48f78d8c</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/fc/d917ff65077bbefaaf045e8b0cd2fa17d4903d</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/8d/1b279edac409c9193bc7bb96cfd1c675a08242</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/systemtap/tapset/x86_64/hotspot-1.8.0.282.b08-3.fc34.x86_64-fastdebug.stp</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/systemtap/tapset/x86_64/hotspot_gc-1.8.0.282.b08-3.fc34.x86_64-fastdebug.stp</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/systemtap/tapset/x86_64/hotspot_jni-1.8.0.282.b08-3.fc34.x86_64-fastdebug.stp</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/systemtap/tapset/x86_64/jstack-1.8.0.282.b08-3.fc34.x86_64-fastdebug.stp</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/1b/b54fdd2b18d9f74a18462cb3ef27d4648abac5.1</td>
+					<td>/usr/lib/.build-id/3e</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/lib/amd64/jli</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/lib/amd64/libjawt.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/tapset/hotspot-1.8.0.282.b08-3.fc34.x86_64.stp</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/tapset/hotspot_gc-1.8.0.282.b08-3.fc34.x86_64.stp</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/tapset/hotspot_jni-1.8.0.282.b08-3.fc34.x86_64.stp</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/tapset/jstack-1.8.0.282.b08-3.fc34.x86_64.stp</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/05/c8ccd0990d23092f25f0d679506572519cde32.1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/82/89a1cce2057bea92d2d5676cb8f095acd3f618</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/include/classfile_constants.h</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/include/jawt.h</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/include/jdwpTransport.h</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/include/jni.h</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/include/jvmti.h</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/include/jvmticmlr.h</td>
+					<td>/usr/lib/.build-id/41</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/include/linux</td>
+					<td>/usr/lib/.build-id/4c</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/02</td>
+					<td>/usr/lib/.build-id/60</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/1c</td>
+					<td>/usr/lib/.build-id/8b</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/1e</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/2e</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/43</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/71</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/8d</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/9a</td>
+					<td>/usr/lib/.build-id/8c</td>
 				</tr>
 				
 				<tr scope="row">
@@ -767,222 +213,397 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/ad</td>
+					<td>/usr/lib/.build-id/a2</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/c6</td>
+					<td>/usr/lib/.build-id/f6</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/13/0c3ea851481c156c213ed5ea552b49db93e901</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/7a/86a21de4ab706c53065fcc2c672ddc82da0bf3.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/60/eef710374c11f94df6cb323020ed677a8ff5cb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d7/500192367dadd17dcdff9125ae046b7c931e10</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/92/e7ef5e6e6fe2c3b67494fe05c14582d4a51143</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/29/4108a7f567dc3384ea3be95548be002ee7f925</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/29/c0a8a53cec73f50d34de65cfedfc03ecaee073</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/a3/758160f84f009aa7afeae7a3d2b06b6f4b27ed</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ef/2937378c1e0d586c679176ff2488bcfd23ddc1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/include/classfile_constants.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/include/jawt.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/include/jdwpTransport.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/include/jni.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/include/jvmti.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/include/jvmticmlr.h</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/d8</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/include/linux</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/a2/5685d1da9d94be22121116b6195adde99f883b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/27/dc476c4850f4ab2a0c892f8467a7c5f5055ed0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/b9/1515f4c7212091aa18afbe50d7961142b9f12c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/0d/39ff8aacbdb892a6ade54553150cc7fb14ba31</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/41/731154a5f54e4f0620c9b62f33db97d7bdb347</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/26/505d3a6ca5faf0bfb5437c0ddf41b0cefb13ca</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/0c/66d26ff58645659060b3da8957fe858c9a8b5b.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/0c/ca78f0576b95a348acc121fe89db426a29cdfd.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/8c/b03b539902e83d6f427c9df521bd0666ff09e3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/3e/30d26a15dcf0637eb8611ae85871cd28e31e56</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/0b/5e2794d7efb47902548d2d3db3048b452df60e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/0b/9a9a037ab9e88129bb4bb580ded6e26e832890</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/8b/5ec9b7fd8e58ceb31f281aadb0a58e23d2d1c2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/8b/ea1c99e4c3102560b5a80ae8fb611431314f95</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/3d/d34c32846ff4a6bf9737c20c75e529b6425913</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/57/0f61165a7f5bf6d36dd01425328af6684ae0ec.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/71/fbe4a09d17adbd1f3271411c448e146c82262e.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/6f/255778802f67c02ab7c34241b7fb2c454e72c2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/include/linux/jawt_md.h</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/include/linux/jni_md.h</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/e9</td>
+					<td>/usr/share/systemtap</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/THIRD_PARTY_README</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/fc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/cb/911f9d393956a7c908200b515857ce7fbab6dd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/5c/d19160640fc3a0bfc123f8713b53c9c05ce84c</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/9e/9d35f5b56ff4b1c7fd5138999973395045947a</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/ad/fbd16182fefbcee716322adc363d33f629e066</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/c7/8fcd70068429594835e7373032f0b143149017</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/appletviewer-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/extcheck-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/idlj-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jar-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jarsigner-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/javac-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/javadoc-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/javah-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/javap-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jcmd-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jconsole-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jdb-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jdeps-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jhat-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jinfo-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jmap-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jps-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jrunscript-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jsadebugd-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jstack-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jstat-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/jstatd-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/native2ascii-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/rmic-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/schemagen-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/serialver-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/wsgen-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/wsimport-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/xjc-java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/bf/7d985637bf9cbe3fb08dc5fa151c757af5096f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/share/systemtap/tapset</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/include</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/lib</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/tapset</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/21/6c44052ed36b9906caf14a7f39251c35f27f6f</td>
+					<td>/usr/lib/.build-id/39/030e998e33f155af641915c3375c6e643b312d.1</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/9d/4b6d51c5d0e10c9f5de618a227fd32c8dde353.1</td>
+					<td>/usr/lib/.build-id/21/37a9b7ce6d9446d3007e740a7871fb94054f93</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/a9/6d179f1d03586cd6ff5575640bcc9818cec8c9.1</td>
+					<td>/usr/lib/.build-id/06/787e135e160d2023c731672802db1a8898ba49</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/cc/2c2f27ed842f7bd28ca012c71c3e069c83b3a9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/appletviewer-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/extcheck-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/idlj-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jar-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jarsigner-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/javac-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/javadoc-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/javah-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/javap-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jcmd-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jconsole-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jdb-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jdeps-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jhat-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jinfo-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jmap-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jps-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jrunscript-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jsadebugd-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jstack-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jstat-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/jstatd-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/native2ascii-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/rmic-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/schemagen-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/serialver-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/wsgen-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/wsimport-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/xjc-java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug.1.gz</td>
 				</tr>
 				
 				<tr scope="row">
@@ -992,27 +613,417 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/c6/c84e2c52f3591cd7584f3790fdd382192ed44a</td>
+					<td>/usr/lib/.build-id/9e/0094dfa155bdbf15696bcc4551748bbd0ee745</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/8a/31b2f2ee7f2d1d1a2d8632bc2a2b6dbb6d3e4f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/alt-java</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/include/linux/jawt_md.h</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/appletviewer</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-3.fc34.x86_64-fastdebug/include/linux/jni_md.h</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/clhsdb</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/d8/1e46e44ab18a754a59a0768721cbd26b3a140f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/extcheck</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/hsdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/idlj</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jar</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jarsigner</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/java</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/java-rmi.cgi</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/javac</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/javadoc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/javah</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/javap</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jcmd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jconsole</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jdeps</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jfr</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jhat</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jinfo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jjs</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jmap</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jps</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jrunscript</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jsadebugd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jstack</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jstat</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/jstatd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/keytool</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/native2ascii</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/orbd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/pack200</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/policytool</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/rmic</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/rmid</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/rmiregistry</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/schemagen</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/serialver</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/servertool</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/tnameserv</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/unpack200</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/wsgen</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/wsimport</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/bin/xjc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/lib/amd64</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/lib/ct.sym</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/lib/dt.jar</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/lib/ir.idl</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/lib/jconsole.jar</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/lib/jexec</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/lib/orb.idl</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/lib/sa-jdi.jar</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/lib/tools.jar</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/lib/amd64/jli</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/lib/amd64/libjawt.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/applications/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug-jconsole-fastdebug.desktop</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/systemtap/tapset</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/systemtap/tapset/x86_64/hotspot-1.8.0.292.b10-3.fc35.x86_64-fastdebug.stp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/systemtap/tapset/x86_64/hotspot_gc-1.8.0.292.b10-3.fc35.x86_64-fastdebug.stp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/systemtap/tapset/x86_64/hotspot_jni-1.8.0.292.b10-3.fc35.x86_64-fastdebug.stp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/systemtap/tapset/x86_64/jstack-1.8.0.292.b10-3.fc35.x86_64-fastdebug.stp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/1b/3172a6efc5f6f9c70bcdc176b81235dfd0a954.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/1b/de6e6e4a117d7e862ffb779e5d3d25f02636f4.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ad/86c9955bb918fa80343cdc0959258c0dd38445.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/e1/7c9662524413a00e79232672ee20fb2a1fa5dc.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f8/cb19f6ed82dc86252cddde4779181e6dd82495.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/18/241c958958b6799ff61f473e10b01fa09e5fcb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/4c/ef1f70a842c9b8f2afc027e6292ef19b2d952c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/17/a17bc3e6c324599f248e4fcfa7734d7cb7475d.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/aa/0f67348bd234c10cab29ad107fc683e9a165e9.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/16/c437693df24c22eb3aae188b8e9133052ff67c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/a8/ad9acc60967b67045af74330b54cb6a00842f4.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/48/fbfa72aaaad521fc6bd887ee152b408eaeeb6c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/tapset/hotspot-1.8.0.292.b10-3.fc35.x86_64.stp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/tapset/hotspot_gc-1.8.0.292.b10-3.fc35.x86_64.stp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/tapset/hotspot_jni-1.8.0.292.b10-3.fc35.x86_64.stp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/tapset/jstack-1.8.0.292.b10-3.fc35.x86_64.stp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/dc/0255e52cfc4d5f001417dcc680548992dfabd9.1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f6/807f43c859925d3336b6c8915a388e1bf4c452</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.292.b10-3.fc35.x86_64-fastdebug/lib/amd64/jli/libjli.so</td>
 				</tr>
 				
 				<tbody>

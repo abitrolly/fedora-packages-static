@@ -49,6 +49,98 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-04-06</td>
+					<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-15</td>
+					<td>- General:
+  * Do not use %exclude for unpackaged files (RPM 4.17 compatibility)
+- Python:
+  * Stop using %pyproject_buildrequires, since it is difficult to fit the
+    pyproject-rpm-macros build and install macros into this package, and Miro
+    Hrončok has advised that “mixing %pyproject_buildrequires with
+    %py3_build/%py3_install is generally not a supported way of building
+    Python packages.”</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-25</td>
+					<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-14</td>
+					<td>- General:
+  * Improved googletest source URL (better tarball name)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-23</td>
+					<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-13</td>
+					<td>- General:
+  * Replace * with • in descriptions
+  * Use cmake() dependencies first, and pkgconfig() dependencies second, where
+    available
+  * Drop explicit pkgconfig BR
+  * Fix the directory in which CMake installs pkgconfig files
+  * Improved CMake options
+  * Build the Doxygen reference manuals
+- C (core) and C++ (cpp):
+  * Let the -devel package require cmake-filesystem
+  * Allow building tests with our own copy of gtest/gmock, which will become
+    mandatory when we depend on abseil-cpp and switch to C++17
+  * Fix a link error in the core tests when using CMake
+  * Manually install grpc_cli (CMake)
+  * Add CMake files to the files list for the -devel package
+  * Start running some of the core tests in %check
+- Python:
+  * Add several patches required for the tests
+  * BR gevent for gevent_tests
+  * Fix build; in particular, add missing preprocess and build_package_protos
+    steps, without which the packages were missing generated proto modules and
+    were not
+    usable!
+  * Add %py_provides for Fedora 32
+  * Drop python3dist(setuptools) BR, redundant with %pyproject_buildrequires
+  * Start running most of the Python tests in %check
+  * Merge the python-grpcio-doc subpackage into grpc-doc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-16</td>
+					<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-12</td>
+					<td>- C (core) and C++ (cpp):
+  * Add CMake build support but do not enable it yet; there is still a problem
+    where grpc_cli is only built with the tests, and a linking problem when
+    building the tests</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-02</td>
+					<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-11</td>
+					<td>- General:
+  * Update summaries and descriptions
+  * Update License fields to include licenses from bundled components
+  * Fix failure to respect Fedora build flags
+  * Use the system shared certificate bundle instead of shipping our own
+- CLI:
+  * No longer set rpath $ORIGIN
+- C (core) and C++ (cpp):
+  * Add c_so_version/cpp_so_version macros
+  * Split out C++ bindings and shared data into subpackages
+  * Drop obsolete ldconfig_scriptlets macro
+  * Stop stripping debugging symbols
+- Python:
+  * Use generated BR’s
+  * Build and package Python binding documentation
+  * Disable accommodations for older libc’s
+  * Patch out -std=gnu99 flag, which is inappropriate for C++
+  * Build additional Python packages grpcio_tools, gprcio_channelz,
+    grpcio_health_checking, grpcio_reflection, grpcio_status, and
+    grpcio_testing</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-26</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.26.0-10</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2021-01-14</td>
 					<td>Adrian Reber <adrian at lisas dot de> - 1.26.0-9</td>
 					<td>- Rebuilt for protobuf 3.14</td>
@@ -72,42 +164,6 @@
 					<td>- Patches for https://github.com/grpc/grpc/pull/21669</td>
 				</tr>
 				
-				<tr scope="row">
-					<td>2020-07-28</td>
-					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.26.0-5</td>
-					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-06-14</td>
-					<td>Adrian Reber <adrian at lisas dot de> - 1.26.0-4</td>
-					<td>- Rebuilt for protobuf 3.12</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-05-26</td>
-					<td>Miro Hrončok <mhroncok at redhat dot com> - 1.26.0-3</td>
-					<td>- Rebuilt for Python 3.9</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-01-29</td>
-					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.26.0-2</td>
-					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-01-15</td>
-					<td>Sergey Avseyev <sergey dot avseyev at gmail dot com> - 1.26.0-1</td>
-					<td>- Update to 1.26.0</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2019-12-19</td>
-					<td>Orion Poplawski <orion at nwra dot com> - 1.20.1-5</td>
-					<td>- Rebuild for protobuf 3.11</td>
-				</tr>
-				
 				<tbody>
 				</tbody>
 			</table>
@@ -124,12 +180,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/_cython/_credentials/roots.pem</td>
+					<td>/usr/lib/.build-id/c1/4427a96f1cced8f4063299d121d7ef9b1a49b5</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/fa</td>
+					<td>/usr/lib/.build-id/c1</td>
 				</tr>
 				
 				<tr scope="row">
@@ -240,6 +296,11 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/lib64/python3.9/site-packages/grpc/framework/foundation/__pycache__/stream_util.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/_cython/_credentials/roots.pem</td>
 				</tr>
 				
 				<tr scope="row">
@@ -360,6 +421,11 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/licenses/python3-grpcio/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/python3-grpcio/NOTICE.txt</td>
 				</tr>
 				
 				<tr scope="row">
@@ -589,6 +655,36 @@
 				
 				<tr scope="row">
 					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__/__init__.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__/__init__.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__/cardinality.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__/cardinality.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__/style.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__/style.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
 					<td>/usr/lib64/python3.9/site-packages/grpc/framework/foundation/__init__.py</td>
 				</tr>
 				
@@ -629,36 +725,6 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__/__init__.cpython-39.opt-1.pyc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__/__init__.cpython-39.pyc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__/cardinality.cpython-39.opt-1.pyc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__/cardinality.cpython-39.pyc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__/style.cpython-39.opt-1.pyc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__/style.cpython-39.pyc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/lib64/python3.9/site-packages/grpc/framework/__pycache__/__init__.cpython-39.opt-1.pyc</td>
 				</tr>
 				
@@ -690,6 +756,26 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/lib64/python3.9/site-packages/grpcio-1.26.0-py3.9.egg-info/top_level.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/cardinality.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/style.py</td>
 				</tr>
 				
 				<tr scope="row">
@@ -799,11 +885,6 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/fa/3720d4159950955a6238a575b866c3bb9d75f2</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/lib64/python3.9/site-packages/grpc/_cython/_cygrpc/__init__.py</td>
 				</tr>
 				
@@ -845,61 +926,6 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/lib64/python3.9/site-packages/grpc/framework/interfaces/base/__pycache__/utilities.cpython-39.pyc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__init__.py</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/__pycache__</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/cardinality.py</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/framework/common/style.py</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/_cython/_cygrpc/__pycache__/__init__.cpython-39.opt-1.pyc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/_cython/_cygrpc/__pycache__/__init__.cpython-39.pyc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/experimental/aio/__init__.py</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/experimental/aio/__pycache__</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/experimental/aio/_call.py</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/experimental/aio/_channel.py</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/python3.9/site-packages/grpc/experimental/aio/_server.py</td>
 				</tr>
 				
 				<tr scope="row">
@@ -970,6 +996,41 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/lib64/python3.9/site-packages/grpc/beta/__pycache__/utilities.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/_cython/_cygrpc/__pycache__/__init__.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/_cython/_cygrpc/__pycache__/__init__.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/experimental/aio/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/experimental/aio/__pycache__</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/experimental/aio/_call.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/experimental/aio/_channel.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/python3.9/site-packages/grpc/experimental/aio/_server.py</td>
 				</tr>
 				
 				<tbody>

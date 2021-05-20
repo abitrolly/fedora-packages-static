@@ -49,6 +49,99 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-04-19</td>
+					<td>Ian Kent <ikent at redhat dot com> - 1:5.1.7-12</td>
+					<td>- Coverity fixes.
+    - add missing free in handle_mounts().
+    - remove redundant if check.
+    - fix possible memory leak in master_parse().
+    - fix possible memory leak in mnts_add_amdmount().
+    - fix double unlock in parse_mount().
+    - add length check in umount_subtree_mounts().
+    - fix flags check in umount_multi().
+    - dont try umount after stat() ENOENT fail.
+    - remove redundant assignment in master_add_amd_mount_section_mounts().
+    - fix dead code in mnts_add_mount().
+    - fix arg not used in error print.
+    - fix missing lock release in mount_subtree().
+    - fix double free in parse_mapent().
+    - refactor lookup_prune_one_cache() a bit.
+    - cater for empty mounts list in mnts_get_expire_list().
+    - add ext_mount_hash_mutex lock helpers.
+  - fix amd section mounts map reload.
+  - fix dandling symlink creation if nis support is not available.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-16</td>
+					<td>Ian Kent <ikent at redhat dot com> - 1:5.1.7-10</td>
+					<td>- add xdr_exports().
+  - remove mount.x and rpcgen dependencies.
+  - dont use realloc in host exports list processing.
+  - use sprintf() when constructing hosts mapent.
+  - fix mnts_remove_amdmount() uses wrong list.
+  - Fix option for master read wait.
+  - eliminate cache_lookup_offset() usage.
+  - fix is mounted check on non existent path.
+  - simplify cache_get_parent().
+  - set offset parent in update_offset_entry().
+  - remove redundant variables from mount_autofs_offset().
+  - remove unused parameter form do_mount_autofs_offset().
+  - refactor umount_multi_triggers().
+  - eliminate clean_stale_multi_triggers().
+  - simplify mount_subtree() mount check.
+  - fix mnts_get_expire_list() expire list construction.
+  - fix inconsistent locking in umount_subtree_mounts().
+  - fix return from umount_subtree_mounts() on offset list delete.
+  - pass mapent_cache to update_offset_entry().
+  - fix inconsistent locking in parse_mount().
+  - remove unused mount offset list lock functions.
+  - eliminate count_mounts() from expire_proc_indirect().
+  - eliminate some strlen calls in offset handling.
+  - don't add offset mounts to mounted mounts table.
+  - reduce umount EBUSY check delay.
+  - cleanup cache_delete() a little.
+  - rename path to m_offset in update_offset_entry().
+  - don't pass root to do_mount_autofs_offset().
+  - rename tree implementation functions.
+  - add some multi-mount macros.
+  - remove unused functions cache_dump_multi() and cache_dump_cache().
+  - add a len field to struct autofs_point.
+  - make tree implementation data independent.
+  - add mapent tree implementation.
+  - add tree_mapent_add_node().
+  - add tree_mapent_delete_offsets().
+  - add tree_mapent_traverse_subtree().
+  - fix mount_fullpath().
+  - add tree_mapent_cleanup_offsets().
+  - add set_offset_tree_catatonic().
+  - add mount and umount offsets functions.
+  - switch to use tree implementation for offsets.
+  - remove obsolete functions.
+  - remove redundant local var from sun_mount().
+  - use mount_fullpath() in one spot in parse_mount().
+  - pass root length to mount_fullpath().
+  - remove unused function master_submount_li.st_empty().
+  - move amd mounts removal into lib/mounts.c.
+  - check for offset with no mount location.
+  - remove mounts_mutex.
+  - remove unused variable from get_exports().</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-02</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 1:5.1.7-3</td>
+					<td>- Rebuilt for updated systemd-rpm-macros
+  See https://pagure.io/fesco/issue/2583.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-26</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:5.1.7-2</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2021-01-25</td>
 					<td>Ian Kent <ikent at redhat dot com> - 1:5.1.7-1</td>
 					<td>- Update to upstream release 5.1.7.</td>
@@ -89,41 +182,6 @@
 - fix autofs mount options construction.</td>
 				</tr>
 				
-				<tr scope="row">
-					<td>2020-06-01</td>
-					<td>Ian Kent <ikent at redhat dot com> - 1:5.1.6-4</td>
-					<td>- fix changelog message.
-- actually commit the patches referred to in the commit.
-- adjust revision to allow fixing f32 revision on update.</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-06-01</td>
-					<td>Ian Kent <ikent at redhat dot com> - 1:5.1.6-3</td>
-					<td>- make bind mounts propagation slave by default.
-- update ldap READMEs and schema definitions.
-- fix program map multi-mount lookup after mount fail.
-- fix browse dir not re-created on symlink expire.
-- fix a regression with map instance lookup.
-- correct fsf address.
-- fix Makefile targets' directory dependencies.
-- remove intr hosts map mount option.
-- fix trailing dollar sun entry expansion.
-- fix double quoting in auto.smb.</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-01-28</td>
-					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:5.1.6-2</td>
-					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2019-10-07</td>
-					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:5.1.6-1</td>
-					<td>- update to upstream 5.1.6 release.</td>
-				</tr>
-				
 				<tbody>
 				</tbody>
 			</table>
@@ -140,37 +198,37 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/d9/7543383506875caf45d6ed6127e85b5d42bdbd</td>
+					<td>/usr/share/man/man5/auto.master.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/autofs.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/autofs.conf.5.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man5/autofs_ldap_auth.conf.5.gz</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/02</td>
+					<td>/usr/lib/.build-id/1c</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/0b</td>
+					<td>/usr/lib/.build-id/23</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/15</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/1f</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/38</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/3d</td>
+					<td>/usr/lib/.build-id/44</td>
 				</tr>
 				
 				<tr scope="row">
@@ -180,37 +238,62 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/46</td>
+					<td>/usr/lib/.build-id/50</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/52</td>
+					<td>/usr/lib/.build-id/66</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/57</td>
+					<td>/usr/lib/.build-id/75</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/7c</td>
+					<td>/usr/lib/.build-id/76</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/ac</td>
+					<td>/usr/lib/.build-id/84</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/b2</td>
+					<td>/usr/lib/.build-id/87</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/c3</td>
+					<td>/usr/lib/.build-id/8e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/9c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/a9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/ae</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/b0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/c7</td>
 				</tr>
 				
 				<tr scope="row">
@@ -220,12 +303,12 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/d9</td>
+					<td>/usr/lib/.build-id/ca</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/da</td>
+					<td>/usr/lib/.build-id/cf</td>
 				</tr>
 				
 				<tr scope="row">
@@ -235,92 +318,12 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/eb</td>
+					<td>/usr/lib/.build-id/e2</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/f1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/fb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/fc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/fd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/da/38cbf71c0810e5dd4d9cbb455086f7f415530b</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/46/51c7e0a95ff9b2c42821aec66f5c7dbddfc859</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/45/aefbf4e134c305e163ce40dab02841ae7952bc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/auto.master</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/etc/auto.master.d</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/auto.misc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/auto.net</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/auto.smb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/autofs.conf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/autofs_ldap_auth.conf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/f1/fe70c04414628db84cd343a2377b756f335a83</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib64/autofs</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/libautofs.so</td>
+					<td>/usr/lib/.build-id/ee</td>
 				</tr>
 				
 				<tr scope="row">
@@ -450,7 +453,82 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/eb/01cf01f978185ee46166cd87acd70f61c0e4d1</td>
+					<td>/usr/lib/.build-id/45/b012049081e5086faf9179327fa2b54bd19932</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/auto.master</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/auto.master.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/auto.misc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/auto.net</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/auto.smb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/autofs.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/autofs_ldap_auth.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/44/ff9b78b4c14a6966b6a4a5585dfa1e1c8c6bdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/76/13667ec2ddfae2984bdecaff797023eae7e7e3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/76/555b6ee589296686bce3b665cd569ab0e21a0c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ee/78cd3fe8cf50abbf9c475b791f0033ddf98ecc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/75/4c540347fe2a5699c01ac6268c96e1f99e01d8</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/8e/1a3722b9a2f52104a03681a7fd428a099dbc09</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib64/autofs</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libautofs.so</td>
 				</tr>
 				
 				<tr scope="row">
@@ -460,17 +538,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/57/70add6b355f087c8039470ed6572c530b52cd4</td>
+					<td>/usr/lib/.build-id/cf/1bfb674cd7c534f30c72396ea44786bc65af9a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/3d/9be82358eb575ca290a157544bf84ea4eadbf6</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/0b/faf5214b60c73484d548b47588f1bdfce6dd5e</td>
+					<td>/usr/lib/.build-id/23/45aa82ec606223db5e1c6b73623c11316b0978</td>
 				</tr>
 				
 				<tr scope="row">
@@ -495,22 +568,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
+					<td>/usr/lib/.build-id/87/7ac0fbdca016174fd4cc852ed672587eb4ab5b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
 					<td>/usr/lib/systemd/system/autofs.service</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/1f/46b0587b7008dcbe8ff19bbbb6bf61e50fc54a</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/38/0738c57e221db1f5497d37dd5b21c31aedc0a4</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/b2/4073465856613ec8aae4a839a8ae0f913c55dd</td>
 				</tr>
 				
 				<tr scope="row">
@@ -525,22 +588,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/52/dea98b9dd873194528b8b6194dc75c2e215bbd</td>
+					<td>/usr/lib/.build-id/ca/c3fc4e9baf54147892fab07e7e00d93f750092</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/fd/eed792104a88db680d402251850fd04088f4a4</td>
+					<td>/usr/lib/.build-id/c8/10596bab5dd72f42b4602faa498960ab9609bb</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/c8/c199d542957966f989f4506f5f2d697ae046dc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/fc/5e013c99d7a8c91e1efa674b7ef75e0039b270</td>
+					<td>/usr/lib/.build-id/b0/1dcf4148bacd9b358ea855d9ffdf3199620567</td>
 				</tr>
 				
 				<tr scope="row">
@@ -670,37 +728,32 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man5/auto.master.5.gz</td>
+					<td>/usr/lib/.build-id/c7/373fe18f6f9e7493e3763b94689cd674caa703</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man5/autofs.5.gz</td>
+					<td>/usr/lib/.build-id/e2/d067de1fcb5a1f6eeccc94c42a31cb665d0eb3</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man5/autofs.conf.5.gz</td>
+					<td>/usr/lib/.build-id/1c/ca94bd9dfb719f8554fb607c13f4142b78f6a6</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/man/man5/autofs_ldap_auth.conf.5.gz</td>
+					<td>/usr/lib/.build-id/9c/89ff6659bcf8fd4eea70395a16adaac3cca367</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/02/090d7d3190e75e509036e3a8e5e29c7b4f58a2</td>
+					<td>/usr/lib/.build-id/66/6a3c71759afb2b33b934df7b0ee31fe6b637d9</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/fb/94d79a8d3816b3c5fb59823dfa4d6cfe43c1c1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/ac/a6767821d247b1bebfd3f09b3acfd541b1e484</td>
+					<td>/usr/lib/.build-id/84/c564371497517673b2fbb35e3dfe4e8093c271</td>
 				</tr>
 				
 				<tr scope="row">
@@ -710,22 +763,22 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/c3/ea74a231fed332181a240b20ad6362b3019d47</td>
+					<td>/usr/lib/.build-id/a9/d4c889fc6cfe0587223b80e6d83fc7bad09510</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/7c/e68d6da04f6414614b1182e30add98896a9cbc</td>
+					<td>/usr/lib/.build-id/50/e74993473b65504c4074876feb35f9dd2204f9</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/15/35b5dc3b41c229a768c790dad9628800886a52</td>
+					<td>/usr/lib/.build-id/ae/90002a3800f80722e4c599491b4e91167d5947</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/db/50f7cd336d1537defa289b70a292c85f346685</td>
+					<td>/usr/lib/.build-id/db/a35bdd0c60641d3b4dcf36d716fdeadef9d25e</td>
 				</tr>
 				
 				<tbody>

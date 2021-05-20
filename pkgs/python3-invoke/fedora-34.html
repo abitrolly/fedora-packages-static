@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>python3-invoke - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				python3-invoke
+				<small class="text-muted"> in fedora-34</small>
+			</h1>
+			<p>
+			This page displays detail informations of the python3-invoke package. You might
+			want go back to <a href=".">the main page of python3-invoke</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2021-01-27</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.5.0-2</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-31</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.5.0-1</td>
+					<td>- Update to 1.5.0
+  - Allow any string-compatible object to be passed to 'Context.cd', enabling
+    use of (for example) 'pathlib.Path' instances (GH#454, GH#577, GH#583,
+    GH#607, GH#681)
+  - Don't silently discard help text for task arguments whose names happen to
+    contain underscores (GH#409, GH#580, GH#611)
+  - Don't silently ignore task help specifiers that don't actually map to the
+    decorated task's arguments (e.g. '@task(help={"foo": "help for foo"})'
+    wrapping a task without a 'foo' argument) (GH#398, GH#580, GH#611)
+  - Allow subcollections to act as the default 'tasks' of their parent
+    collections (via the new 'default' kwarg to
+    '~invoke.collection.Collection.add_collection'); this means that
+    non-trivial task trees can specify, e.g. "use my test subcollection's
+    default task as the global default task" and similar (GH#197)
+  - Enhanced test coverage in a handful of modules whose coverage was under 90%
+  - '~invoke.context.MockContext' now populates its 'NotImplementedError'
+    exception instances (typically raised when a command is executed that had
+    no pre-prepared result) with the command string that triggered them; this
+    makes it much easier to tell what exactly in a test caused the error
+  - '~invoke.context.MockContext' now accepts a few quality-of-life shortcuts
+    as keys and values in its 'run'/'sudo' arguments:
+    - Keys may be compiled regular expression objects, as well as strings, and
+      will match any calls whose commands match the regex
+    - Values may be 'True' or 'False' as shorthand for otherwise empty
+      '~invoke.runners.Result' objects with exit codes of '0' or '1'
+      respectively
+    - Values may also be strings, as shorthand for otherwise empty
+      '~invoke.runners.Result' objects with those strings given as the 'stdout'
+      argument
+  - Add a new 'repeat' kwarg to '~invoke.context.MockContext' which, when True
+    (default: False) causes stored results for its methods to be yielded
+    repeatedly instead of consumed (GH#441)
+  - Immutable iterable result values handed to '~invoke.context.MockContext'
+    would yield errors (due to the use of 'pop()'); the offending logic has
+    been retooled to be more iterator-focused and now works for tuples and etc.
+  - Update the testing documentation a bit: cleaned up existing examples and
+    added new sections for the other updates in the 1.5 release
+  - Automatically populate the 'command' attribute of '~invoke.runners.Result'
+    objects returned by '~invoke.context.MockContext' methods, with the command
+    string triggering that result; previously, users had to do this by hand or
+    otherwise suffered inaccurate result objects (GH#700)
+  - Upgrade '~invoke.context.MockContext' to wrap its methods in 'Mock' objects
+    if the '(unittest.)mock' library is importable; this makes testing
+    Invoke-using codebases even easier</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-30</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.4.1-4</td>
+					<td>- Use new-style dependencies, fixes FTBFS due to conflicting pytest requirements</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-29</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.4.1-3</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-05-24</td>
+					<td>Miro Hrončok <mhroncok at redhat dot com> - 1.4.1-2</td>
+					<td>- Rebuilt for Python 3.9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-01-30</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.4.1-1</td>
+					<td>- Update to 1.4.1 (#1796269)
+  - Explicitly strip out '__pycache__' (and for good measure, '.py[co]', which
+    previously we only stripped from the 'tests/' folder) in our 'MANIFEST.in',
+    since at least some earlier releases erroneously included such (GH#586)
+  - Fix an issue with '~invoke.run' and friends having intermittent problems at
+    exit time (symptom was typically about the exit code value being 'None'
+    instead of an integer; often with an exception trace) (GH#660)
+  - Close pseudoterminals opened by the '~invoke.runners.Local' class during
+    'run(..., pty=True)'; previously, these were only closed incidentally at
+    process shutdown, causing file descriptor leakage in long-running processes
+    (GH#518)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-01-05</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.4.0-1</td>
+					<td>- Update to 1.4.0 (#1787868)
+  - A corner case in #~invoke.context.Context.run# caused overridden streams to
+    be unused if those streams were also set to be hidden, e.g.
+    'run(command, hide=True, out_stream=StringIO())' would result in no writes
+    to the 'StringIO' object (GH#637); this has been fixed - hiding for a given
+    stream is now ignored if that stream has been set to some non-'None' (and
+    in the case of 'in_stream', non-'False') value.
+  - As part of feature work on GH#682, we noticed that the
+    '~invoke.runners.Result' return value from '~invoke.context.Context.run'
+    was inconsistent between dry-run and regular modes; for example, the
+    dry-run version of the object lacked updated values for 'hide', 'encoding'
+    and 'env' - this has been fixed
+  - Add asynchronous behavior to '~invoke.runners.Runner.run' (GH#194, GH#682):
+    - Basic asynchronicity, where the method returns as soon as the subprocess
+      has started running, and that return value is an object with methods
+      allowing access to the final result
+    - "Disowning" subprocesses entirely, which not only returns immediately but
+      also omits background threading, allowing the subprocesses to outlive
+      Invoke's own process
+    See the updated API docs for the '~invoke.runners.Runner' for details on
+    the new 'asynchronous' and 'disown' kwargs enabling this behavior
+  - Never accompanied the top-level singleton '~invoke.run' (which simply wraps
+    an anonymous '~invoke.context.Context's 'run' method) with its logical
+    sibling, '~invoke.sudo' - this has been remedied</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-12-12</td>
+					<td>Paul Howarth <paul at city dash fan dot org> - 1.3.0-2</td>
+					<td>- Run (most of) the test suite
+- Cosmetic spec changes</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-10-07</td>
+					<td>Othman Madjoudj <athmane at fedoraproject dot org> - 1.3.0-1</td>
+					<td>- Update to 1.3.0 (rhbz #1742597)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2019-09-24</td>
+					<td>Miro Hrončok <mhroncok at redhat dot com> - 1.2.0-5</td>
+					<td>- Drop python2-invoke (#1741008)</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/completion/__pycache__/__init__.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/completion/__pycache__/__init__.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/completion/__pycache__/complete.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/completion/__pycache__/complete.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/python3-invoke/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/doc/python3-invoke</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser/__pycache__/__init__.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser/__pycache__/__init__.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser/__pycache__/argument.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser/__pycache__/argument.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser/__pycache__/context.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser/__pycache__/context.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser/__pycache__/parser.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser/__pycache__/parser.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.9/site-packages/invoke</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.9/site-packages/invoke-1.5.0-py3.9.egg-info</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser/__pycache__</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser/argument.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser/context.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser/parser.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/inv</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/inv3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/invoke</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/bin/invoke3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke-1.5.0-py3.9.egg-info/PKG-INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke-1.5.0-py3.9.egg-info/SOURCES.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke-1.5.0-py3.9.egg-info/dependency_links.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke-1.5.0-py3.9.egg-info/entry_points.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke-1.5.0-py3.9.egg-info/top_level.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/completion/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/completion/__pycache__</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/completion/bash.completion</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/completion/complete.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/completion/fish.completion</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/completion/zsh.completion</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/doc/python3-invoke/README.rst</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/python3-invoke</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__init__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__main__.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/_version.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/collection.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/completion</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/config.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/context.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/env.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/exceptions.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/executor.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/loader.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/main.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/parser</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/program.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/runners.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/tasks.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/terminals.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/util.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/watchers.py</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/__init__.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/__init__.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/__main__.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/__main__.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/_version.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/_version.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/collection.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/collection.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/config.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/config.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/context.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/context.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/env.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/env.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/exceptions.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/exceptions.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/executor.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/executor.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/loader.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/loader.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/main.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/main.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/program.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/program.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/runners.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/runners.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/tasks.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/tasks.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/terminals.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/terminals.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/util.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/util.cpython-39.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/watchers.cpython-39.opt-1.pyc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/python3.9/site-packages/invoke/__pycache__/watchers.cpython-39.pyc</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

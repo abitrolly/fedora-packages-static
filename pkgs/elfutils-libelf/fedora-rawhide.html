@@ -49,83 +49,86 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-05-16</td>
+					<td>Frank Ch. Eigler <fche at redhat dot com> - 0.184-5</td>
+					<td>- Fix 404-latch problem on reused debuginfod_client. (PR27859)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-05-12</td>
+					<td>Frank Ch. Eigler <fche at redhat dot com> - 0.184-4</td>
+					<td>- Ship new profile.d files. (1956952)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-05-12</td>
+					<td>Frank Ch. Eigler <fche at redhat dot com> - 0.184-3</td>
+					<td>- Don't nuke the new profile.d files. (1956952)</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-05-11</td>
+					<td>Frank Ch. Eigler <fche at redhat dot com> - 0.184-2</td>
+					<td>- Activate debuginfod client by default (1956952) to the fedora server.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-05-10</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.184-1</td>
+					<td>- Upgrade to upstream 0.184
+  - debuginfod: Use libarchive's bsdtar as the .deb-family file unpacker.
+  - debuginfod-client: Client caches negative results. If a query for a
+                       file failed with 404, an empty 000 permission
+                       file is created in the cache. This will prevent
+                       requesting the same file for the next 10 minutes.
+                       Client objects now carry long-lived curl handles
+                       for outgoing connections.  This makes it more
+                       efficient for multiple sequential queries, because
+                       the TCP connections and/or TLS state info are kept
+                       around awhile, avoiding O(100ms) setup latencies.
+  - libdw: handle DW_FORM_indirect when reading attributes
+  - translations: Update Polish translation.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-19</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.183-3</td>
+					<td>- Introduce CI gating setup</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-02</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 0.183-2</td>
+					<td>- Rebuilt for updated systemd-rpm-macros
+  See https://pagure.io/fesco/issue/2583.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-08</td>
+					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.183-1</td>
+					<td>- Upgrade to upstream 0.183
+  - debuginfod: New thread-busy metric and more detailed error metrics.
+    New --fdcache-mintmp and tracking of filesystem freespace.
+  - debuginfod-client: DEBUGINFOD_SONAME macro added to debuginfod.h can
+    be used to dlopen the libdebuginfod.so library.
+    New function debuginfod_set_verbose_fd and DEBUGINFOD_VERBOSE
+    environment variable.
+  - config: profile.sh and profile.csh won't export DEBUGINFOD_URLS
+    unless configured --enable-debuginfod-urls[=URLS]
+  - elflint, readelf: Recognize SHF_GNU_RETAIN.
+    Handle SHT_X86_64_UNWIND as valid relocation target type.</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-26</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 0.182-3</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2020-12-17</td>
 					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.182-2</td>
 					<td>- Add elfutils-0.182-s390-pid_memory_read.patch</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-10-31</td>
-					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.182-1</td>
-					<td>- Upgrade to upstream 0.182
-  - backends: Support for tilegx has been removed.
-  - config: New /etc/profile.d files to provide default $DEBUGINFOD_URLS.
-  - debuginfod: More efficient package traversal, tolerate various
-    errors during scanning, grooming progress is more visible and
-    interruptible, more prometheus metrics.
-  - debuginfod-client: Now supports compressed (kernel) ELF images.
-  - libdwfl: Add ZSTD compression support.</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-10-19</td>
-					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.181-3</td>
-					<td>- Add elfutils-0.181-array-param.patch.</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-09-18</td>
-					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.181-2</td>
-					<td>- Add ZSTD support elfutils-0.181-zstd.patch.</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-09-08</td>
-					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.181-1</td>
-					<td>- Upgrade to upstream 0.181
-  - libelf: elf_update now compensates (fixes up) a bad sh_addralign
-    for SHF_COMPRESSED sections.
-  - libdebuginfod: configure now takes --enable-libdebuginfod=dummy or
-    --disable-libdebuginfod for bootstrapping.
-    DEBUGINFOD_URLS now accepts "scheme-free" urls
-    (guessing at what the user meant, either http:// or file://)
-  - readelf, elflint: Handle aarch64 bti, pac bits in dynamic table and
-    gnu property notes.
-  - libdw, readelf: Recognize DW_CFA_AARCH64_negate_ra_state. Allows
-    unwinding on arm64 for code that is compiled for PAC
-    (Pointer Authentication Code) as long as it isn't enabled.</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-25</td>
-					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.180-7</td>
-					<td>- Add elfutils-0.180-shf-compressed.patch</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-07-27</td>
-					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 0.180-6</td>
-					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-07-22</td>
-					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.180-5</td>
-					<td>- Remove elfutils-libelf-devel-static and elfutils-devel-static subpackages.
-- Remove duplicate listing of sysconfig/debuginfod (config) file.</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-07-13</td>
-					<td>Tom Stellard <tstellar at redhat dot com> - 0.180-4</td>
-					<td>- Use make macros
-- https://fedoraproject.org/wiki/Changes/UseMakeBuildInstallMacro</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-07-03</td>
-					<td>Mark Wielaard <mjw at fedoraproject dot org> - 0.180-3</td>
-					<td>- Add elfutils-0.180-mhd-result.patch</td>
 				</tr>
 				
 				<tbody>
@@ -144,7 +147,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib64/libelf-0.182.so</td>
+					<td>/usr/lib64/libelf-0.184.so</td>
 				</tr>
 				
 				<tr scope="row">
@@ -154,7 +157,7 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/62</td>
+					<td>/usr/lib/.build-id/1b</td>
 				</tr>
 				
 				<tr scope="row">
@@ -164,7 +167,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/62/4c9b22b9b1c3623a100bebf45021a5276c1012</td>
+					<td>/usr/lib/.build-id/1b/766d31a344845c280b1a4e75ca722d6855217e</td>
 				</tr>
 				
 				<tr scope="row">
@@ -199,17 +202,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/de/LC_MESSAGES/elfutils.mo</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/share/licenses/elfutils-libelf/COPYING-GPLV2</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/licenses/elfutils-libelf/COPYING-LGPLV3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/de/LC_MESSAGES/elfutils.mo</td>
 				</tr>
 				
 				<tr scope="row">

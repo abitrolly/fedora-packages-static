@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>selinux-policy - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				selinux-policy
+				<small class="text-muted"> in fedora-34</small>
+			</h1>
+			<p>
+			This page displays detail informations of the selinux-policy package. You might
+			want go back to <a href=".">the main page of selinux-policy</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2021-05-13</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.7-1</td>
+					<td>- Allow tgtd read and write infiniband devices
+- Add a comment on virt_sandbox booleans with empty content
+- Deprecate duplicate dev_write_generic_sock_files() interface
+- Allow vnstatd_t map vnstatd_var_lib_t files
+- Allow privoxy execmem
+- Allow pmdakvm read information from the debug filesystem
+- Add lockdown integrity into kernel_read_debugfs() and kernel_manage_debugfs()
+- Add permissions to delete lnk_files into gnome_delete_home_config()
+- Remove rules for inotifyfs
+- Remove rules for anon_inodefs
+- Allow systemd nnp_transition to login_userdomain
+- Allow unconfined_t write other processes perf_event records
+- Allow sysadm_t dbus chat with tuned
+- Allow tuned write profile files with file transition
+- Allow tuned manage perf_events
+- Make domains use kernel_write_perf_event() and kernel_manage_perf_event()</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-05-07</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.6-1</td>
+					<td>- Make domains use kernel_write_perf_event() and kernel_manage_perf_event()
+- Add kernel_write_perf_event() and kernel_manage_perf_event()
+- Allow syslogd_t watch root and var directories
+- Allow unconfined_t read other processes perf_event records
+- Allow login_userdomain read and map /var/lib/systemd files
+- Allow NetworkManager watch its config dir
+- Allow NetworkManager read and write z90crypt device
+- Allow tgtd create and use rdma socket
+- Allow aide connect to init with a unix socket</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-05-04</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.5-1</td>
+					<td>- Grant execmem to varnishlog_t
+- We no longer need signull for varnishlog_t
+- Add map permission to varnishd_read_lib_files
+- Allow systemd-sleep tlp_filetrans_named_content()
+- Allow systemd-sleep execute generic programs
+- Allow systemd-sleep execute shell
+- Allow to sendmail read/write kerberos host rcache files
+- Allow freshclam get attributes of cgroup filesystems
+- Fix context of /run/systemd/timesync
+- Allow udev create /run/gdm with proper type
+- Allow chronyc socket file transition in user temp directory
+- Allow virtlogd_t to create virt_var_lockd_t dir
+- Allow pluto IKEv2 / ESP over TCP</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-27</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.4-1</td>
+					<td>- Allow domain create anonymous inodes
+- Add anon_inode class to the policy
+- Allow systemd-coredump getattr nsfs files and net_admin capability
+- Allow systemd-sleep transition to sysstat_t
+- Allow systemd-sleep transition to tlp_t
+- Allow systemd-sleep transition to unconfined_service_t on bin_t executables
+- Allow systemd-timedated watch runtime dir and its parent
+- Allow system dbusd read /var/lib symlinks
+- Allow unconfined_service_t confidentiality and integrity lockdown
+- Label /var/lib/brltty with brltty_var_lib_t
+- Allow domain and unconfined_domain_type watch /proc/PID dirs
+- Additional permission for confined users loging into graphic session
+- Make for screen fsetid/setuid/setgid permission conditional
+- Allow for confined users acces to wtmp and run utempter</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-09</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.3-1</td>
+					<td>- Label /etc/redis as redis_conf_t
+- Add brltty new permissions required by new upstream version
+- Allow cups-lpd read its private runtime socket files
+- Dontaudit daemon open and read init_t file
+- Add file context specification for /var/tmp/tmp-inst
+- Allow brltty create and use bluetooth_socket
+- Allow usbmuxd get attributes of cgroup filesystems</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-06</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.2-1</td>
+					<td>- Allow usbmuxd get attributes of cgroup filesystems
+- Allow accounts-daemon get attributes of cgroup filesystems
+- Allow pool-geoclue get attributes of cgroup filesystems
+- allow systemd-sleep to set timer for suspend-then-hibernate
+- Allow aide connect to systemd-userdbd with a unix socket
+- Add new interfaces with watch_mount and watch_with_perm permissions
+- Add file context specification for /usr/libexec/realmd
+- Allow /tmp file transition for dbus-daemon also for sock_file
+- Allow login_userdomain create cgroup files
+- Allow plymouthd_t exec generic program in bin directories</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-01</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 34.1-1</td>
+					<td>- Change the package versioning</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-01</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-30</td>
+					<td>- Allow plymouthd_t exec generic program in bin directories
+- Allow dhcpc_t domain transition to chronyc_t
+- Allow login_userdomain bind xmsg port
+- Allow ibacm the net_raw and sys_rawio capabilities
+- Allow nsswitch_domain read cgroup files
+- Allow systemd-sleep create hardware state information files</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-29</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-29</td>
+					<td>- Add watch_with_perm_dirs_pattern file pattern</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-26</td>
+					<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-28</td>
+					<td>- Allow arpwatch_t create netlink generic socket
+- Allow postgrey read network state
+- Add watch_mount_dirs_pattern file pattern
+- Allow bluetooth_t dbus chat with fwupd_t
+- Allow xdm_t watch accountsd lib directories
+- Add additional interfaces for watching /boot
+- Allow sssd_t get attributes of tmpfs filesystems
+- Allow local_login_t get attributes of tmpfs filesystems</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/selinux-policy/COPYING</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/rpm/macros.d/macros.selinux-policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/tmpfiles.d/selinux-policy.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/sysconfig/selinux</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/selinux</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/selinux/config</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/selinux-policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/selinux/packages</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>

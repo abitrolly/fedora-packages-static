@@ -49,6 +49,101 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-04-14</td>
+					<td>Andrew Thurman <ajtbecool at gmail dot com> 1.5.9-2</td>
+					<td>- Backport https://github.com/fwupd/fwupd/pull/3144 to fix https://bugzilla.redhat.com/show_bug.cgi?id=1949491</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-13</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.5.9-1</td>
+					<td>- New upstream release
+- Avoid runtime warning in dfu-tool
+- Detect address overflow when parsing invalid Intel HEX files
+- Do not timeout when bluez fails to start
+- Fix a crash when checking if the dbx update is safe to apply
+- Fix a possible crash if the user set WacomI2cFlashBlockSize manually
+- Fix array access when using fwupmgr verify-update
+- Include crt0 for arm and aarch64 that add a SBAT section
+- Retry the request to fix enumeration failure of Synaptics CXAudio
+- Set device activation requirement correctly in all cases
+- Set dual-bank property on more Lenovo display hardware
+- Tweak the SBAT output for a vendor string</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-24</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.5.8-1</td>
+					<td>- New upstream release
+- Add D501 Baklava device support
+- Allow enabling plugins only matching a specific HwId
+- Check pixart firmware compatibility with hardware before flashing
+- Correct a thunderbolt assertion if kernel failed FW read
+- Correctly erase STM32 devices when transfer size is less than sector size
+- Detect SREC overflow to avoid adding ~4GB of 0xFF padding
+- Do not show a critical error when flashing footer-less binary files
+- Don't allow device updates while needing activation
+- Fix a regression in the elantp defined IAP start address
+- Fix a regression where activate stopped working
+- Fix firmware update of pointing device on Lenovo ThinkPad Nano
+- Fix the HSI plugin 'Disabled' state
+- Fix the quirk key name for the Lenovo HDMI with power
+- Fix writing to the GD32VF103 bootloader
+- Only call elantp->detach() when writing a firmware blob
+- Prompt for unlock keypress if reset command is blocked
+- Remove the Hughski public key
+- Show a warning when parsing invalid quirk files
+- Support for GATT characteristic signals/notifications
+- Support more than one protocol for a given device
+- Updated StarLabs GUIDs
+- Wait a few ms for the Logitech hardware to settle after detach</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-23</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.5.7-1</td>
+					<td>- New upstream release
+- Add initial support for Bluez bluetooth devices
+- Add more supported pixart devices
+- Add support for the RTD21xx HDMI converter
+- Convert MBR types to GPT GUIDs to help find the ESP
+- Drop unused heap pages after startup has completed
+- Ensure SBAT metadata is added correctly
+- Only allow verify-update for plugins that support CAN_VERIFY</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-16</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.5.6-1</td>
+					<td>- New upstream release
+- Add SBAT metadata to the fwupd EFI binary
+- Add support for GD32VF103 as found in the Longan Nano
+- Add support for RMI PS2 devices
+- Add support for the Starlabs LabTop L4
+- Add support for the System76 Keyboard
+- Allow downloading firmware from IPFS
+- Be more paranoid when parsing ASCII buffers and devices
+- Check if the fwupd BootXXXX entry exists on failure
+- Do not allow flashing using flashrom if BLE is enabled
+- Do not allow Lenovo hardware to install multiple capsules
+- Do not show Unknown [***] for every client connection
+- Fix dnload wBlockNum wraparound for ST devices
+- Fix OOM when using large ArchiveSizeMax values
+- Fix several crashes spotted by AddressSanitizer
+- Fix several places where the Goodix MOC plugin could crash
+- Include the PCR0 to the report metadata
+- Install the UX data into an optional subpacakge
+- Report the lockdown status from UEFI and SuperIO plugins
+- Show a console warning if the system clock is not set</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-26</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.5.5-2</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2021-01-11</td>
 					<td>Richard Hughes <richard at hughsie dot com> 1.5.5-1</td>
 					<td>- New upstream release
@@ -117,88 +212,6 @@
 - Switch from libsoup to libcurl for downloading data</td>
 				</tr>
 				
-				<tr scope="row">
-					<td>2020-11-20</td>
-					<td>Adam Williamson <awilliam at redhat dot com> - 1.5.1-2</td>
-					<td>- Backport #2605 for #2600, seems to help RHBZ #1896540</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-11-01</td>
-					<td>Richard Hughes <richard at hughsie dot com> 1.5.1-1</td>
-					<td>- New upstream release
-- Delete unused EFI variables when deploying firmware
-- Fix probe warning for the Logitech Unifying device
-- Include the amount of NVRAM size in use in the LVFS failure report
-- Make bcm57xx hotplug more reliable
-- Recognize authorized thunderbolt value of 2
-- Remove the duplicate parent-child data in FwupdDevice and FuDevice
-- Show a less scary fwupdate output for devices without info
-- Use a different Device ID for the OptionROM devices
-- Use UDisks to find out if swap devices are encrypted</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-10-26</td>
-					<td>Richard Hughes <richard at hughsie dot com> 1.5.0-1</td>
-					<td>- New upstream release
-- Add async versions of the library for GUI tools
-- Add commands for interacting with the ESP to fwupdtool
-- Add plugin for Goodix fingerprint sensors
-- Add plugin that can update the BCM5719 network adapter
-- Add plugin to update Elan Touchpads using HID
-- Add support for ChromeOS Quiche and Gingerbread
-- Add support for the Host Security ID
-- Add support for ThunderBolt retimers
-- Add switch-branch command to fwupdtool and fwupdmgr
-- Allow blocking specific firmware releases by checksum
-- Allow constructing a firmware with multiple images
-- Allow firmware to require specific features from front-end clients
-- Fix setting BootNext correctly when multiple updates are scheduled
-- Fix the topology of the audio device on the Lenovo TR dock
-- Include the HSI results and attributes in the uploaded report
-- Make return code different for get-updates with no updates
-- Make specific authorizations also imply others
-- Parse the HEX version before comparing for equality
-- Prevent dell-dock updates to occur via synaptics-mst plugin
-- Record the UEFI failure in more cases
-- Support loading DMI data from DT systems
-- Support LVFS::UpdateImage for GUI clients
-- Use pkttyagent to request user passwords if running without GUI</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-09-07</td>
-					<td>Richard Hughes <richard at hughsie dot com> 1.4.6-1</td>
-					<td>- New upstream release
-- Add a re-implementation of the rhboot dbxtool
-- Add missing Synaptics Prometheus GUIDs for ConfigId
-- Add support for the LabTop Mk IV
-- Add support for the Realtek RTD21XX I²C protocol
-- Allow blocking specific firmware releases by checksum
-- Allow DFU device to attach to runtime without a bus reset
-- Allow plugins to set remove delay only on the child
-- Cancel the file monitor before disposal to avoid a potential deadlock
-- Correctly label the vebdor for more NVMe devices
-- Specify a remove delay for Poly USB Cameras
-- Support download of large DFU firmware
-- Support polling the status from device in dfuManifest state
-- Use newer libxmlb features to properly display more AppStream markup</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-18</td>
-					<td>Richard Hughes <richard at hughsie dot com> 1.4.5-4</td>
-					<td>- Rebuild for the libxmlb API bump.</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-03</td>
-					<td>Peter Jones <pjones at redhat dot com> - 1.4.5-3</td>
-					<td>- Make dual signing happen.
-  Related: CVE-2020-10713</td>
-				</tr>
-				
 				<tbody>
 				</tbody>
 			</table>
@@ -230,47 +243,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+					<td>/usr/share/locale/sr/LC_MESSAGES/fwupd.mo</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fi/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/6d/64e48f78eef8eb729d3f40d49bcb91c8f4950d</td>
+					<td>/usr/lib/.build-id/6d/fed2968d2a582003cd3d53d235efb7159cd8a9</td>
 				</tr>
 				
 				<tr scope="row">
@@ -280,102 +258,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/gl/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/bb/823c917649c012d4f525df37cc4d4530050b2b</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hu/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sr/LC_MESSAGES/fwupd.mo</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/lib/systemd/system-shutdown/fwupd.shutdown</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/f1/a90cba4367e48a73d92e0c7f4af2b512326df2</td>
 				</tr>
 				
 				<tr scope="row">
@@ -390,17 +273,27 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/9f/7b93ecc5ad76ea9bdb277b08d01838a253976d</td>
+					<td>/usr/lib/.build-id/9f/435c3317336cdf04a28ea1b98499000f1bd6c6</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/31/6d88a12653e2f0784887d9f6ef3c468e06b1ca</td>
+					<td>/usr/lib/.build-id/31/38aeebca0def69519f2377fe6a9107675931b1</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/af/f3b9d0820f9b656e5f080fc77aab7a141f52ed</td>
+					<td>/usr/lib/.build-id/31/d1565fdc6d670a4ad7852328a795422e3af1c4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/af/1f9d9517a48591f523c427cf55e161c18fd0e0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/af/c938e3f058d93acce473c607af3af11036cba3</td>
 				</tr>
 				
 				<tr scope="row">
@@ -420,37 +313,27 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/78/ff469842789e22ac2ff725357e07d3a3c6384f</td>
+					<td>/usr/lib/.build-id/59/87bbfeacea2cb3fc4f088851b0efa6503f4384</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/97/688feb6b8645dd9d0471369f3482d4004b4e22</td>
+					<td>/usr/lib/systemd/system-preset/fwupd-refresh.preset</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/a7/f1064cfd2e013ddde02b324f5b3044dff14e05</td>
+					<td>/usr/lib/.build-id/2d/30f62482da549f385fc57e0db1cb5b80d36cee</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/6b/068bb517b30b798d5d7fc1e77b664c1565939d</td>
+					<td>/usr/lib/.build-id/6b/e2e909f9b6e9c591a4f61e917640bcc964be99</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/6b/2ab2eddcd136ef77d17aea92e2042f28c869b0</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/8a/44ee59c3b2884928caffc1c959aa513f316d00</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/e5/1a71141330f075b27cee99c843637a021b06ed</td>
+					<td>/usr/lib/.build-id/8a/c2a307d5d4f50998411c6bb14d1fc6a26e718c</td>
 				</tr>
 				
 				<tr scope="row">
@@ -464,8 +347,8 @@
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/44/c15fdf4684eb1c800d0313ecd84d32e6b30cce</td>
+					<td>d</td>
+					<td>/usr/share/doc/fwupd</td>
 				</tr>
 				
 				<tr scope="row">
@@ -480,167 +363,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/de/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+					<td>/usr/share/metainfo/org.freedesktop.fwupd.metainfo.xml</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/de/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/de/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/de/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/de/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/de/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/de/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/de/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pl/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/en/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/en/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/en/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/en/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/en/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/en/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/en/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/en/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ru/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/systemd/system-preset/fwupd-refresh.preset</td>
+					<td>/usr/lib/.build-id/d0/1734433949a8db21857525d9a01499251aa425</td>
 				</tr>
 				
 				<tr scope="row">
@@ -655,62 +383,22 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/5f/5ad8a355903dfd52155d102197cae2c24ffbe8</td>
+					<td>/usr/lib/.build-id/10/3cab075059e565e4ce9ec63903cd1a4e5fb551</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+					<td>/usr/lib/.build-id/10/de8e2b9d7b45adf5757ac3ab0cd8e0afe77fd2</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+					<td>/usr/lib/.build-id/38/c46a6dd1658c93942ed8d32b3d89a6b19cf1a1</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/tr/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/ad/8ab279b1ba66fa913cbe0efad8e96ac45fdfa8</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/ad/ac956c65c1b0dd132770a3e1f9420522d45c3c</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/doc/fwupd</td>
+					<td>/usr/lib/.build-id/57/ad4b79e14ba63ea33ad6c4d9e8c8fffd9a7cee</td>
 				</tr>
 				
 				<tr scope="row">
@@ -720,12 +408,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/0c/8d624d59b44da1159635498f0466900dc46fb7</td>
+					<td>/usr/lib/.build-id/76/c164d7a020c076ef63ed09c456cecd0a0b001a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/2b/2a67d5e1521c4c91a81d31a08a847caf1f3cbd</td>
+					<td>/usr/lib/.build-id/2b/bae7311758ca3a39dde33213d528b8d103e4e9</td>
 				</tr>
 				
 				<tr scope="row">
@@ -735,7 +423,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/e3/5cedd76757d4d3eeefee10bb3bf57b81c17284</td>
+					<td>/usr/share/locale/pl/LC_MESSAGES/fwupd.mo</td>
 				</tr>
 				
 				<tr scope="row">
@@ -755,52 +443,22 @@
 				
 				<tr scope="row">
 					<td>f</td>
+					<td>/usr/lib/.build-id/23/c9fc08dbfafbf9c27b6d947cbe8ea0a463a6d1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/42/764bb431c237a93858326c5f45b6590b77b0aa</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/42/91ceb52b5eed8fa463594ec587bd3954a73575</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
 					<td>/usr/share/locale/ky/LC_MESSAGES/fwupd.mo</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/lt/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/df/44472d5c072b56bbe8089c1264395c45b45027</td>
 				</tr>
 				
 				<tr scope="row">
@@ -850,22 +508,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_coreboot.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_cpu.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_cros_ec.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_csr.so</td>
 				</tr>
 				
 				<tr scope="row">
@@ -886,6 +534,11 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_dfu.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_dfu_csr.so</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1060,7 +713,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_system76_launch.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
 					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_test.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/fwupd-plugins-3/libfu_plugin_test_ble.so</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1140,12 +803,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/b8/8868beae001f3085a64222159555302e3e3111</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pl/LC_MESSAGES/fwupd.mo</td>
+					<td>/usr/lib/.build-id/d7/72344e080511435158f9963101084f65e332f4</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1155,112 +813,32 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/f6/1403a4d9321c4fdf97a735e7ccd36f28d0c767</td>
+					<td>/usr/lib/.build-id/9b/42d8d039bac344aad79467779e73c56c37a997</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/f6/2be531bc69ddf9f6e0331907f3bab44633f1cd</td>
+					<td>/usr/lib/.build-id/9b/9def7c435bef0adef91633af6146efaeb80dea</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+					<td>/usr/lib/.build-id/ca/203c6e2ade77d49c8230f949978eebfb639cd5</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+					<td>/usr/lib/.build-id/ca/ea164426dec62c0564cca1bca285314092e386</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
+					<td>/usr/lib/.build-id/36/adf16667003b77e819f632e289c2be8e50c8fc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ca/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/ca/d1026e55259c06ff353e127ed3411b75f8e1c4</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/cs/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/36/1f2e87c2e613075117598db1620ae57ea72bb8</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/55/4ce42687c4b166024a4bb2cbb2b86e72695f0c</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/17/a7e79514d857d89808ab32abde2806a1c95c3b</td>
+					<td>/usr/lib/.build-id/36/b4f4036f14dc1e835ee415d3ba2986fb8088c1</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1280,7 +858,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/0a/5bc323b2d9da631c8c543149e372352b4fd747</td>
+					<td>/usr/share/icons/hicolor/scalable/apps/org.freedesktop.fwupd.svg</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1320,11 +898,6 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/fwupd/quirks.d/coreboot.quirk</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/share/fwupd/quirks.d/cpu.quirk</td>
 				</tr>
 				
@@ -1335,17 +908,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/fwupd/quirks.d/csr-aiaiai.quirk</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/share/fwupd/quirks.d/dell-dock.quirk</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/fwupd/quirks.d/dell.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/dfu-csr.quirk</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1450,6 +1023,11 @@
 				
 				<tr scope="row">
 					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/pixart-rf.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
 					<td>/usr/share/fwupd/quirks.d/rts54hid.quirk</td>
 				</tr>
 				
@@ -1491,6 +1069,16 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/fwupd/quirks.d/synaptics-rmi.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/system76-launch.quirk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/fwupd/quirks.d/test-ble.quirk</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1550,31 +1138,6 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/systemd/system/fwupd-offline-update.service</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/systemd/system/fwupd-refresh.service</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/systemd/system/fwupd-refresh.timer</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/systemd/system/fwupd.service</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/systemd/system/system-update.target.wants</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/bin/dbxtool</td>
 				</tr>
 				
@@ -1610,52 +1173,57 @@
 				
 				<tr scope="row">
 					<td>d</td>
+					<td>/usr/lib/.build-id/00</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/02</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
 					<td>/usr/lib/.build-id/07</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/0a</td>
+					<td>/usr/lib/.build-id/0b</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/0c</td>
+					<td>/usr/lib/.build-id/10</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/0d</td>
+					<td>/usr/lib/.build-id/13</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/0f</td>
+					<td>/usr/lib/.build-id/14</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/11</td>
+					<td>/usr/lib/.build-id/15</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/17</td>
+					<td>/usr/lib/.build-id/18</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/1c</td>
+					<td>/usr/lib/.build-id/22</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/1e</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/28</td>
+					<td>/usr/lib/.build-id/23</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1665,17 +1233,32 @@
 				
 				<tr scope="row">
 					<td>d</td>
+					<td>/usr/lib/.build-id/2d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/2e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/30</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
 					<td>/usr/lib/.build-id/31</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/34</td>
+					<td>/usr/lib/.build-id/32</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/35</td>
+					<td>/usr/lib/.build-id/33</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1685,17 +1268,17 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/3b</td>
+					<td>/usr/lib/.build-id/38</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/3d</td>
+					<td>/usr/lib/.build-id/42</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/44</td>
+					<td>/usr/lib/.build-id/43</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1705,37 +1288,22 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/51</td>
+					<td>/usr/lib/.build-id/4b</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/53</td>
+					<td>/usr/lib/.build-id/57</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/54</td>
+					<td>/usr/lib/.build-id/58</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/55</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/56</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/5c</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/5f</td>
+					<td>/usr/lib/.build-id/59</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1750,12 +1318,12 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/6b</td>
+					<td>/usr/lib/.build-id/6a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/6c</td>
+					<td>/usr/lib/.build-id/6b</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1765,27 +1333,17 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/6e</td>
+					<td>/usr/lib/.build-id/73</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/75</td>
+					<td>/usr/lib/.build-id/76</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/78</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/85</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/88</td>
+					<td>/usr/lib/.build-id/81</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1800,17 +1358,17 @@
 				
 				<tr scope="row">
 					<td>d</td>
+					<td>/usr/lib/.build-id/91</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
 					<td>/usr/lib/.build-id/94</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/97</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/9a</td>
+					<td>/usr/lib/.build-id/9b</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1825,27 +1383,7 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/a4</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
 					<td>/usr/lib/.build-id/a6</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/a7</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/aa</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/ad</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1865,22 +1403,17 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/b6</td>
+					<td>/usr/lib/.build-id/b2</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/b8</td>
+					<td>/usr/lib/.build-id/ba</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/bb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/bf</td>
+					<td>/usr/lib/.build-id/c9</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1890,12 +1423,7 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/d3</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/d4</td>
+					<td>/usr/lib/.build-id/d0</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1905,47 +1433,107 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/df</td>
+					<td>/usr/lib/.build-id/d6</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/e3</td>
+					<td>/usr/lib/.build-id/d7</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/e5</td>
+					<td>/usr/lib/.build-id/d8</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/f0</td>
+					<td>/usr/lib/.build-id/dc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/f1</td>
+					<td>/usr/lib/.build-id/e4</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/f4</td>
+					<td>/usr/lib/.build-id/e6</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/f6</td>
+					<td>/usr/lib/.build-id/e8</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/f9</td>
+					<td>/usr/lib/.build-id/ec</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/fd</td>
+					<td>/usr/lib/.build-id/ee</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/ef</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f5</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f7</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/fb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/02/1354d17b50dc484367dcc5ecaa9a60a0f15081</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/02/df449792a87b44347e5353c787b69cfd0f571b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/fwupd-offline-update.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/fwupd-refresh.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/fwupd-refresh.timer</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/fwupd.service</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/systemd/system/system-update.target.wants</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1955,132 +1543,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/pt_BR/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/icons/hicolor/scalable/apps/org.freedesktop.fwupd.svg</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/uk/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/share/locale/eu/LC_MESSAGES/fwupd.mo</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/id/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/id/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/id/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/id/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/id/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/id/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/id/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/id/LC_IMAGES/fwupd-800-600.bmp.gz</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2090,17 +1553,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/af/LC_MESSAGES/fwupd.mo</td>
+					<td>/usr/share/locale/de/LC_MESSAGES/fwupd.mo</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/b6/65889d999af86f20281a72a0f89e35300cb136</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/f4/9fc4c64ff369c5a22c64322596ac1b34fb88a5</td>
+					<td>/usr/lib/.build-id/d5/1082fc7545be62288d82336e0237269c4c8243</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2130,17 +1588,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/d5/413c1c62fede6984fc225be04d027dbc0ebb45</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/d5/805fb36cb359de253393575ab3d7e713e17858</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/de/LC_MESSAGES/fwupd.mo</td>
+					<td>/usr/share/locale/af/LC_MESSAGES/fwupd.mo</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2175,27 +1623,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/34/5a0d80f583ce0f72cabad8d1000694dfe2bfd0</td>
+					<td>/usr/lib/.build-id/15/00dc6b3919bd8c5b68e27b53aea3995258bda2</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/53/997cdd322d3942c3bd06cb3495e3a67839e52a</td>
+					<td>/usr/lib/.build-id/91/e29c51b0167b1e8e236c00dc454d24e3feabe5</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/53/add650be395dce5bd5a41e2123d22bde7aa2ee</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/53/e581dbd39106e979cc3c401a0c5363e6bc83d1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/a1/42348cfd2c3056ca086f4797e03309d0607803</td>
+					<td>/usr/lib/.build-id/a1/76b37f8366bdc3f594553f38e64f1bed21c970</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2215,67 +1653,22 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/metainfo/org.freedesktop.fwupd.metainfo.xml</td>
+					<td>/usr/lib/.build-id/c9/70f0d954d2c4973534c82a207a3466e452020e</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/6e/2938f4a8a7a2eb0f11111fcbec54318415e3c2</td>
+					<td>/usr/lib/.build-id/e8/fdefa404a5569a3713e3dc5ccb16b228ec7d23</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+					<td>/usr/lib/.build-id/00/c59c1b5dc686a66599d95f053a86da743b9f44</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/zh_TW/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/28/8ed611a64af60fad363ed4f8d8274fe07d0cef</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/47/858908d75c346c21ec71584a6655123ca5dfb5</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/85/57cc01aded33e07d173054116a66aecd55394e</td>
+					<td>/usr/lib/.build-id/47/150384797e8b6b8d058827dad1f856d5f1ac5c</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2290,47 +1683,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/d3/b2ddbe6602aab39aa126fc05881a12dce57419</td>
+					<td>/usr/lib/.build-id/13/6a8d639d83e079a338a0877f19790dffad089d</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sv/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+					<td>/usr/lib/.build-id/32/4a28cafa9f8bd40a885d63d604d0e85e4291c7</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2360,52 +1718,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/51/4b006547fbe6a7632319efbfc8e9013015256e</td>
+					<td>/usr/lib/.build-id/ee/b6853a8d4de74114e12b7ae8eaa5659859ba7a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/hr/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/0f/65c2bad3447414cfe6a45f7c21bc394223b477</td>
+					<td>/usr/lib/.build-id/2e/adab9c3f44ee532fde4e7df21177bd12f6a298</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2415,57 +1733,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/6c/87d9b77416487259363077a40e0b23c56bda47</td>
+					<td>/usr/lib/.build-id/e6/4e2cadfe80cb48bd32edd6ab8e6dad804c7b10</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+					<td>/usr/lib/.build-id/ba/f3021129227d4e32aa7ba703bd6ced336f4862</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/ko/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/dbus-1/system.d/org.freedesktop.fwupd.conf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/07/1b4ca2114c257ca113b54643296d1e7df8867b</td>
+					<td>/usr/lib/.build-id/07/768800d58f97d1813b691031516d6ac86ede56</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2495,12 +1773,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
+					<td>/usr/share/dbus-1/system.d/org.freedesktop.fwupd.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
 					<td>/usr/share/locale/sv/LC_MESSAGES/fwupd.mo</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/f0/7b6c1c5d8588a24443707b9d750d7ab76f2750</td>
+					<td>/usr/lib/.build-id/b2/e4e08ac456d38f26766b780a3c4ccf9080e7bd</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2510,22 +1793,22 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/11/8bb2dbe39518a9e8cb46f9dfefb5e277c714ab</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/f9/84a470a9d6dab7f2131acd73bfc4c2bf77adaf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/ae/148bdf6ef96b7579bfb75c01d46519c97aa32f</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/share/locale/tr/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/30/56f74262fbf76f0d0a0a92f3edffb74f820399</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ae/8fca37a9351422210c948625ff7f67b2a9a496</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ec/dbc97d5d6821f6de11965b64cc1883fab5df2e</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2535,62 +1818,32 @@
 				
 				<tr scope="row">
 					<td>f</td>
+					<td>/usr/lib/.build-id/58/41ab48426c8c56aa456ea2d19b925d182fda46</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
 					<td>/usr/share/locale/ca/LC_MESSAGES/fwupd.mo</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/0d/aa42ea85a9faee0f661fa31a421112d4896e7e</td>
+					<td>/usr/lib/.build-id/a6/1f6acfe7b47a151971485fe426fdb54231cf8a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/a6/f366fd2afa80f13569e86aac010159a8488f83</td>
+					<td>/usr/lib/.build-id/4b/2e0358be50fde7f4a292deb43a3b24fce2f24d</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/var/lib/fwupd/builder/README.md</td>
+					<td>/usr/lib/.build-id/e4/a986a57ebe80bbdeb1da52c3d7a8db3c449e1a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/sr/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+					<td>/usr/lib/.build-id/6a/b3fe81fc5c5a90d4c70b46ebfb6433325392cb</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2600,52 +1853,27 @@
 				
 				<tr scope="row">
 					<td>f</td>
+					<td>/var/lib/fwupd/builder/README.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/43/345d381671619f28ae9573fee51dffcd2cc912</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/81/eea7ac0b210e81dc4826b9c14b03f97baad57d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
 					<td>/usr/share/polkit-1/rules.d/org.freedesktop.fwupd.rules</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/b0/026918e0f7daa3c04bb57ec045bbea50cfa5ec</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/it/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/it/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/it/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/it/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/it/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/it/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/it/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/it/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+					<td>/usr/lib/.build-id/b0/0c7ad2977120c4aa6d51e8c2303c6785b96c4d</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2655,62 +1883,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
+					<td>/usr/lib/.build-id/d8/76eccd720fe9cdd84968e3ecd66079064b6b2b</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
+					<td>/usr/lib/.build-id/f7/899e87642f9f6055d31bc4ece80f6a8eb40beb</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/zh_CN/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/56/1725e0320b11dc073c1bb12a9b686cfea7fc53</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/75/6d06309e994c239ef3b56b05f47b79ff336b5a</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/94/ec23ad015a98b248490cdd4f359f544828b572</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/a4/beecc6d2485b34197c160db5ca4bdf8487ad0e</td>
+					<td>/usr/lib/.build-id/18/00d569a3b793d8bf9533fd7ec79022fe0660a5</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2720,12 +1903,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/ast/LC_MESSAGES/fwupd.mo</td>
+					<td>/usr/lib/.build-id/0b/c9539c9498f27c8b56218d959afb98407d7627</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/da/LC_MESSAGES/fwupd.mo</td>
+					<td>/usr/lib/.build-id/94/96d3db741bd0afa4efde28e51406096f635ffe</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/locale/ast/LC_MESSAGES/fwupd.mo</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2735,12 +1923,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/60/3af2c9f7320d30e6f65744dfd306104576bc8f</td>
+					<td>/usr/lib/.build-id/22/61aab02db50801644e1183be1ebca306a97f35</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/bf/7aef0ae9dbcb170fc2c546f64ebc52428caa13</td>
+					<td>/usr/share/locale/da/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/60/d3f25754f1b36d2d24281798c14885a9760ecb</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2755,62 +1948,22 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/88/0ad69d073e65030c9cdfccccc7c6645e94e5d6</td>
+					<td>/usr/share/fish/vendor_completions.d/fwupdmgr.fish</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/1e/ef3418f909b9f43862ebebdcbf2f9a46b611e6</td>
+					<td>/usr/lib/.build-id/d6/934140cf921a7a801d36b5b45885d3319e8057</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/3d/c6578897824e315a5ddbcb1e25597412639c54</td>
+					<td>/usr/lib/.build-id/f5/2ab71803241bf35abf4d22bba378e6514b058b</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/da/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/da/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/da/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/da/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/da/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/da/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/da/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/da/LC_IMAGES/fwupd-800-600.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/pki/fwupd/GPG-KEY-Hughski-Limited</td>
+					<td>/usr/lib/.build-id/f5/7248596b990bdac205e99b9f5759c421a3d2b3</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2830,41 +1983,6 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/9a/17c464e3a0ae6c7e548a4a2de99a1b6493c0da</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/aa/163835ba488497c9b85f11a461bf3be080787e</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/fd/55029035a3c495afb479524ce8f9f163709478</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/35/8f10eca3fa065f0cbbdae9893fa4ce816dfdfa</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/54/7deeb28feadbc8912f24a1327165277bdb7bbe</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/fish/vendor_completions.d/fwupdmgr.fish</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/5c/aad2d0c7c3980fe91de3fe04a38fbd60b30f6f</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/etc/pki/fwupd-metadata/GPG-KEY-Linux-Foundation-Metadata</td>
 				</tr>
 				
@@ -2880,12 +1998,22 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/lt/LC_MESSAGES/fwupd.mo</td>
+					<td>/usr/lib64/girepository-1.0/Fwupd-2.0.typelib</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/zh_TW/LC_MESSAGES/fwupd.mo</td>
+					<td>/usr/lib64/girepository-1.0/FwupdPlugin-1.0.typelib</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/73/de29a0aa41211835b03fa2834d2716d98fd4f1</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/73/e1a371185a470085d360a66c0af844a96b43fb</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2925,17 +2053,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib64/girepository-1.0/Fwupd-2.0.typelib</td>
+					<td>/usr/share/locale/lt/LC_MESSAGES/fwupd.mo</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib64/girepository-1.0/FwupdPlugin-1.0.typelib</td>
+					<td>/usr/share/locale/zh_TW/LC_MESSAGES/fwupd.mo</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/8e/a70306ac11f3fd497bd1e467f2ea000e653b66</td>
+					<td>d</td>
+					<td>/var/cache/fwupd</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2944,8 +2072,18 @@
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/var/cache/fwupd</td>
+					<td>f</td>
+					<td>/usr/lib/.build-id/8e/df5b1fc1d1a3133040da75cf0a41ff16f0cc95</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/dc/e15f4e01170a977c39c6a4e0e1dc28365b4998</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/fb/fcd6a8bbca4064aece76e0765f657b7bfa6f85</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2955,32 +2093,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/67/bbcb3b7d6b557392c6756f07819bccea65bd83</td>
+					<td>/usr/lib/.build-id/67/5dd0ed1144f77a3db9872263fe52fe2fdb63c6</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/67/f0e9a1e5045d30360597c7afda9f82d99bbc0c</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/1c/f52ee5195c6fe0f7b611d05f8faf05c8d09b83</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/3b/045713389aa6e04383ff9853f88e8381653513</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/3b/adcdf9e69443cfce7570338f513b5879049ded</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/d4/27e98c528b64e77cca5555c24b42749192db8a</td>
+					<td>/usr/lib/.build-id/f3/d739e590a770e0fa8e6802f9af127a423b67fd</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2990,7 +2108,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/locale/nl/LC_MESSAGES/fwupd.mo</td>
+					<td>/usr/lib/.build-id/14/f440d6a3bad70c3dd8ba7916948475dc7d0de4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/33/e0e414a3781dfc979c4a732a188c911fe13f77</td>
 				</tr>
 				
 				<tr scope="row">
@@ -2999,8 +2122,18 @@
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/var/lib/fwupd/gnupg</td>
+					<td>f</td>
+					<td>/usr/share/locale/nl/LC_MESSAGES/fwupd.mo</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ef/cab3abef1137bac46e00f455d2ecfb035b3f74</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/ef/f5563c104e74abadf496803dcc8eee8cf4107a</td>
 				</tr>
 				
 				<tr scope="row">
@@ -3009,43 +2142,8 @@
 				</tr>
 				
 				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-1024-768.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-1920-1080.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-3840-2160.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-5120-2880.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-5688-3200.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-640-480.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-7680-4320.bmp.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/locale/fur/LC_IMAGES/fwupd-800-600.bmp.gz</td>
+					<td>d</td>
+					<td>/var/lib/fwupd/gnupg</td>
 				</tr>
 				
 				<tbody>

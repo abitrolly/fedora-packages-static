@@ -49,89 +49,79 @@
 				</thead>
 				
 				<tr scope="row">
-					<td>2020-12-16</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247.2-1</td>
-					<td>- Minor stable release
-- Fixes #1908071.</td>
+					<td>2021-05-15</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.3-1</td>
+					<td>- A fix for resolved crashes (#1946386, #1960227, #1950241)
+- Some minor fixes for documentation, systemd-networkd, systemd-run, bootctl.</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-08</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247.1-3</td>
-					<td>- Rebuild with fallback hostname change reverted.</td>
+					<td>2021-05-07</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.2-1</td>
+					<td>- Pull in some more patches from upstream (#1944646, #1885090, #1941340)
+- Adjust modes of some %ghost files (#1956059)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-04</td>
-					<td>Bastien Nocera <bnocera at redhat dot com> - 247.1-2</td>
-					<td>- Unset fallback-hostname as plenty of applications expected localhost
-  to mean "default hostname" without ever standardising it (#1892235)</td>
+					<td>2021-05-06</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.1-1</td>
+					<td>- Latest stable version: a long list of minor correctness fixes all around
+  (#1955475, #911766, #1958167, #1952919)
+- Enable tpm2-tss dependency (#1949505)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-12-01</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247.1-1</td>
-					<td>- Latest stable release
-- Fixes #1902819.
-- Files to configure networking with systemd-networkd in a VM or container are
-  moved to systemd-networkd subpackage. (They were previously in the -container
-  subpackage, which is for container/VM management.)</td>
+					<td>2021-04-06</td>
+					<td>Adam Williamson <awilliam at redhat dot com> - 248-2</td>
+					<td>- Re-enable resolved caching, we hope all major bugs are resolved now</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-11-26</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247-1</td>
-					<td>- Update to the latest version
-- #1900878 should be fixed</td>
+					<td>2021-03-31</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248-1</td>
+					<td>- Latest upstream release, see
+  https://github.com/systemd/systemd/blob/v248/NEWS.
+- The changes since -rc4 are rather small, various fixes all over the place.
+  A fix to how systemd-oomd selects a candidate to kill, and more debug logging
+  to make this more transparent.</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-10-20</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 247~rc2</td>
-					<td>- New upstream pre-release. See
-  https://github.com/systemd/systemd/blob/v247-rc1/NEWS.
-  Many smaller and bigger improvements and features are introduced.
-  (#1885101, #1890632, #1879216)
-
-  A backwards-incompatible change affects PCI network devices which
-  are connected through a bridge which is itself associated with a
-  slot. When more than one device was associated with the same slot,
-  one of the devices would pseudo-randomly get named after the slot.
-  That name is now not generated at all. This changed behaviour is
-  causes the net naming scheme to be changed to "v247". To restore
-  previous behaviour, specify net.naming-scheme=v245.
-
-  systemd-oomd is built, but should not be considered "production
-  ready" at this point. Testing and bug reports are welcome.</td>
+					<td>2021-03-30</td>
+					<td>Anita Zhang <the dot anitazha at gmail dot com> - 248~rc4-6</td>
+					<td>- Increase oomd user memory pressure limit to 50% (#1941170)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-09-30</td>
-					<td>Dusty Mabe <dusty at dustymabe dot com> - 246.6-3</td>
-					<td>- Try to make files in subpackages (especially the networkd subpackage)
-  more appropriate.</td>
+					<td>2021-03-26</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-5</td>
+					<td>- Do not preset systemd-networkd.service and systemd-networkd-wait-online.service
+  on upgrades from before systemd-networkd was split out (#1943263)
+- In nsswitch.conf, move nss-myhostname to the front, before nss-mdns4 (#1943199)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-09-24</td>
-					<td>Filipe Brandenburger <filbranden at gmail dot com> - 246.6-2</td>
-					<td>- Build a package with standalone binaries for non-systemd systems.
-  For now, only systemd-sysusers is included.</td>
+					<td>2021-03-24</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-4</td>
+					<td>- Revert patch that seems to cause problems with dns resolution
+  (see comments on https://bodhi.fedoraproject.org/updates/FEDORA-2021-1c1a870ceb)</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-09-24</td>
-					<td>Christian Glombek <lorbus at fedoraproject dot org> - 246.6-2</td>
-					<td>- Split out networkd sub-package and add to main package as recommended dependency</td>
+					<td>2021-03-22</td>
+					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-3</td>
+					<td>- Fix hang when processing timers during DST switch in Europe/Dublin timezone (#1941335)
+- Fix returning combined IPv4/IPv6 responses from systemd-resolved cache (#1940715)
+  (But note that the disablement of caching added previously is
+  retained until we can do more testing.)
+- Minor fix to interface naming by udev
+- Fix for systemd-repart --size</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>2020-09-20</td>
-					<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 246.6-1</td>
-					<td>- Update to latest stable release (various minor fixes: manager,
-  networking, bootct, kernel-install, systemd-dissect, systemd-homed,
-  fstab-generator, documentation) (#1876905)
-- Do not fail in test because of kernel bug (#1803070)</td>
+					<td>2021-03-19</td>
+					<td>Adam Williamson <awilliam at redhat dot com> - 248~rc4-2</td>
+					<td>- Disable resolved cache via config snippet (#1940715)</td>
 				</tr>
 				
 				<tbody>
@@ -155,17 +145,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/db/0b6d1727de8bb0c63c0be8126e77eead5ca0bd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/02/80d2e4640852372869a208ce597cc9d446c432</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/44/021a0a1e53a24c8c654f7704deb5f1ec842bdf</td>
+					<td>/usr/lib/.build-id/39/0557db923c085f48bdf377df4e205e060c95da</td>
 				</tr>
 				
 				<tr scope="row">
@@ -195,7 +175,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/c5/8a3ddbb0b728947fe2e363511fde401930396a</td>
+					<td>/usr/lib/.build-id/14/d1bfc1db8c2f9237d58ab4a00281a09c7f87c1</td>
 				</tr>
 				
 				<tr scope="row">
@@ -205,17 +185,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/4e/66eabd17cfbec041486921117f2d810005ddd3</td>
+					<td>/usr/lib/.build-id/c5/912324fea9fe75a67e5144c1f922de07977034</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/d0/31249d998c6f56ec7b490a2db681c698ee0a18</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/a7/970c367cc18b68d62d6cf5123b75d3178a672e</td>
+					<td>/usr/lib/.build-id/26/5554b90ab69aa514fb78fb489ad5bb4600f3bc</td>
 				</tr>
 				
 				<tr scope="row">
@@ -319,13 +294,23 @@
 				</tr>
 				
 				<tr scope="row">
+					<td>d</td>
+					<td>/etc/kernel/install.d</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>f</td>
 					<td>/usr/lib/systemd/system/initrd-root-fs.target.wants/systemd-repart.service</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/etc/kernel/install.d</td>
+					<td>f</td>
+					<td>/usr/lib/.build-id/01/442384b6cd94e420e8e31922ad09f401866c34</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/01/c609e6cdf874174a0337af7330f9f8f3b9a035</td>
 				</tr>
 				
 				<tr scope="row">
@@ -385,11 +370,6 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/97/cc9d960263cc326077ccabb3babf3ecb521d8a</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/lib/kernel/install.d/00-entry-directory.install</td>
 				</tr>
 				
@@ -410,17 +390,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/8f/23b9b063349ec91f29dbc463ab2c4173546361</td>
+					<td>/usr/lib/.build-id/8f/77a443c75264b71bf84a4618f1c5019f8fffe4</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/d6/f7c26294fbaca2f7e7e62d4bdab70fa4705aa9</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/67/50f100a90931973a794d64d5e44fcb6e6aa5ea</td>
+					<td>/usr/lib/.build-id/60/3e7930cff4714c4b15ad294c327eb6832a3363</td>
 				</tr>
 				
 				<tr scope="row">
@@ -470,12 +445,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/e1/af9ef8d3316936f07a1cf6ee47cf112c49e29f</td>
+					<td>/usr/lib/.build-id/30/8a03182ac6c44030e903e4fa65470a8a13e684</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/e1/fb2370de8a9107ebcc57d22d97511396a5762f</td>
+					<td>/usr/lib/.build-id/37/ec05ff096669c518e5b415c3358e5ca5b7ebcc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/e8/b04b295ed6b6e276ead869a7112dc5c8245692</td>
 				</tr>
 				
 				<tr scope="row">
@@ -485,12 +465,32 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/4c/29372ce95038dc1e8fb20e4d097045e21c0d6c</td>
+					<td>/usr/lib/.build-id/f3/204a1ff770cda60147c0b3925b171ae8899860</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f3/750e55f86106d9146885393900d81374507b16</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/54/6eb3c192a62308a310d00d37ba8613b5b7e1b3</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/dbus-1/system.d/org.freedesktop.timesync1.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/cd/792412b6fb73ff7813ae9e9e10a7366cc58656</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/5e/0a59e49828b70e763002d2eb4b9016428a57bf</td>
 				</tr>
 				
 				<tr scope="row">
@@ -511,11 +511,6 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/lib/systemd/system-generators/systemd-hibernate-resume-generator</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/e7/d5d428dc674fe84d696235b81488bd811b3b5e</td>
 				</tr>
 				
 				<tr scope="row">
@@ -615,6 +610,11 @@
 				
 				<tr scope="row">
 					<td>f</td>
+					<td>/usr/lib/udev/rules.d/70-memory.rules</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
 					<td>/usr/lib/udev/rules.d/70-mouse.rules</td>
 				</tr>
 				
@@ -680,12 +680,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/2e/12a09ca8dad8cf8700932c6e7420cdcf9d968b</td>
+					<td>/usr/lib/udev/rules.d/README</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/41/1f2d96ff036f2f39810eb7ad05ffbcb9c0678d</td>
+					<td>/usr/lib/.build-id/df/a663487afea4b92792587993e77eca547a435f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/06/09eecafb6636970ffda8e0f18b2a479a28cc63</td>
 				</tr>
 				
 				<tr scope="row">
@@ -695,7 +700,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/af/1eb50c53b516d5c4598a4d1d37548fae312039</td>
+					<td>/usr/lib/.build-id/ea/40cbcaadd9eaf0a8dd761e3ff98d5d7f9f1924</td>
 				</tr>
 				
 				<tr scope="row">
@@ -721,6 +726,171 @@
 				<tr scope="row">
 					<td>d</td>
 					<td>/usr/lib/udev</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-OUI.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-acpi-vendor.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-bluetooth-vendor-product.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-dmi-id.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-net-ifname.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-pci-classes.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-pci-vendor-model.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-sdio-classes.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-sdio-vendor-model.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-usb-classes.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-usb-vendor-model.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/20-vmbus-class.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-autosuspend-chromiumos.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-autosuspend-fingerprint-reader.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-autosuspend.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-evdev.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-input-id.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-keyboard.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/60-sensor.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/70-joystick.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/70-mouse.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/70-pointingstick.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/70-touchpad.hwdb</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/hwdb.d/README</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/kernel</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/modules-load.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/udev</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/etc/vconsole.conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/8d/ef13a7b18a3ab8867b0922e8c170535f4dec0d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sockets.target.wants/systemd-udevd-control.socket</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/systemd/system/sockets.target.wants/systemd-udevd-kernel.socket</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d4/bfed5fdbbed4f04a785a8602d21f4b521c7fee</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/1b/052014dd051d95c5bcfd6dfbb67d613ac5452e</td>
 				</tr>
 				
 				<tr scope="row">
@@ -929,151 +1099,6 @@
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/etc/kernel</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/etc/modules-load.d</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/etc/udev</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>g</td>
-					<td>/etc/vconsole.conf</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/8d/d6e15a4e852cd01dd200dd8880a56c6ba99d34</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/systemd/system/sockets.target.wants/systemd-udevd-control.socket</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/systemd/system/sockets.target.wants/systemd-udevd-kernel.socket</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/1b/928eee939e60a66830aa899128c3ac27d9fcb2</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/20-OUI.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/20-acpi-vendor.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/20-bluetooth-vendor-product.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/20-net-ifname.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/20-pci-classes.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/20-pci-vendor-model.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/20-sdio-classes.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/20-sdio-vendor-model.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/20-usb-classes.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/20-usb-vendor-model.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/20-vmbus-class.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/60-autosuspend-chromiumos.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/60-autosuspend.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/60-evdev.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/60-input-id.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/60-keyboard.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/60-sensor.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/70-joystick.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/70-mouse.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/70-pointingstick.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/hwdb.d/70-touchpad.hwdb</td>
-				</tr>
-				
-				<tr scope="row">
 					<td>f</td>
 					<td>/etc/systemd/pstore.conf</td>
 				</tr>
@@ -1090,52 +1115,67 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/2d/ff0a963ea302b10cfc963d22fb1d9b52c9ee95</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/lib/systemd/system/systemd-udev-trigger.service.d/systemd-udev-trigger-no-reload.conf</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/8c/ba4f649e497ae524ed284d274a189cd846d878</td>
+					<td>/usr/lib/.build-id/fb/3e264d8686dbaa1a1035473e2f72c127dfa722</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/02</td>
+					<td>/usr/lib/.build-id/01</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/1b</td>
+					<td>/usr/lib/.build-id/06</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/2c</td>
+					<td>/usr/lib/.build-id/14</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/2d</td>
+					<td>/usr/lib/.build-id/26</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/2e</td>
+					<td>/usr/lib/.build-id/37</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/3d</td>
+					<td>/usr/lib/.build-id/39</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/4e</td>
+					<td>/usr/lib/.build-id/54</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/57</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/5e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/60</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/8d</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1145,17 +1185,7 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/97</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/99</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/af</td>
+					<td>/usr/lib/.build-id/93</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1165,47 +1195,42 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/ca</td>
+					<td>/usr/lib/.build-id/cd</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/cb</td>
+					<td>/usr/lib/.build-id/d4</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/d3</td>
+					<td>/usr/lib/.build-id/dd</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/d6</td>
+					<td>/usr/lib/.build-id/df</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/d8</td>
+					<td>/usr/lib/.build-id/ea</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/db</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/e7</td>
+					<td>/usr/lib/.build-id/fb</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/d3/5ed26f703f1c75a38ef8c19e9c6d90e14999f5</td>
+					<td>/usr/lib/.build-id/a3/81cda0ea9c38bd9f968f66abbb498e3cd38794</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/cb/71f128792b22a02fa896eb764e416f5fcb1c3e</td>
+					<td>/usr/lib/modprobe.d/README</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1215,22 +1240,12 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/bash-completion/completions/bootctl</td>
+					<td>/usr/lib/systemd/system/initrd-root-device.target.wants/remote-cryptsetup.target</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/bash-completion/completions/kernel-install</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/bash-completion/completions/udevadm</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/2c/d0cd08c3a5ed7478629d88ff2a0415042ef0f5</td>
+					<td>/usr/lib/.build-id/dd/edc2c29c03c66870741ff6d94b7024c11e1de1</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1285,7 +1300,27 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/systemd/system/initrd-root-device.target.wants/remote-cryptsetup.target</td>
+					<td>/usr/lib/.build-id/f7/11c07e7555ce579c5590117d38a801c419fa81</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f7/95e451f2abe2575a48a634a4eb5e8a50dd6782</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/bash-completion/completions/bootctl</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/bash-completion/completions/kernel-install</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/bash-completion/completions/udevadm</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1295,12 +1330,17 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/93/91d84fdd0e3848118d58bf02809c5c5db307ff</td>
+					<td>/usr/lib/.build-id/93/76d487fe744b2c31e600cecb82b92c0965ab0a</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/dbus-1/system-services/org.freedesktop.timesync1.service</td>
+					<td>/usr/sbin/udevadm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/0e/1a9e2164730a43efbe3dcd692c4a9d0d81eda3</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1315,87 +1355,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/ca/e7bac1729dce96e537bc48ea3041da74aa3099</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/sbin/udevadm</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/2b/f0b12164f919525876bd4b777101e331042ec1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/3d/df0fd8b311159a434320ed4038f31316129b2b</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man7/hwdb.7.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man7/sd-boot.7.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man7/systemd-boot.7.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man7/udev.7.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/ata_id</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/cdrom_id</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/fido_id</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/udev/hwdb.d</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/mtd_probe</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/udev/rules.d</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/scsi_id</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/udev/v4l_id</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/99/c5578b7f84474206a5e957f392f41ba7ed3797</td>
+					<td>/usr/share/dbus-1/system-services/org.freedesktop.timesync1.service</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1680,7 +1640,57 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/d8/52f65bfef5ae39fe86c9d5828cfee56c9f735c</td>
+					<td>/usr/lib/.build-id/57/a81611882ccca0626395746790d708b21f3c1c</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/57/beb4202beb35c276190a36b2dded13fa8c42e2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/ata_id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/cdrom_id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/dmi_memory_id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/fido_id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/udev/hwdb.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/mtd_probe</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/udev/rules.d</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/scsi_id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/udev/v4l_id</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1696,6 +1706,31 @@
 				<tr scope="row">
 					<td>f</td>
 					<td>/usr/share/zsh/site-functions/_udevadm</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man7/hwdb.7.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man7/sd-boot.7.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man7/systemd-boot.7.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man7/udev.7.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/27/20980897ef18cf49da9724b2270b610783c165</td>
 				</tr>
 				
 				<tbody>

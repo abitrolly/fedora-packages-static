@@ -49,6 +49,101 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-04-14</td>
+					<td>Andrew Thurman <ajtbecool at gmail dot com> 1.5.9-2</td>
+					<td>- Backport https://github.com/fwupd/fwupd/pull/3144 to fix https://bugzilla.redhat.com/show_bug.cgi?id=1949491</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-13</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.5.9-1</td>
+					<td>- New upstream release
+- Avoid runtime warning in dfu-tool
+- Detect address overflow when parsing invalid Intel HEX files
+- Do not timeout when bluez fails to start
+- Fix a crash when checking if the dbx update is safe to apply
+- Fix a possible crash if the user set WacomI2cFlashBlockSize manually
+- Fix array access when using fwupmgr verify-update
+- Include crt0 for arm and aarch64 that add a SBAT section
+- Retry the request to fix enumeration failure of Synaptics CXAudio
+- Set device activation requirement correctly in all cases
+- Set dual-bank property on more Lenovo display hardware
+- Tweak the SBAT output for a vendor string</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-24</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.5.8-1</td>
+					<td>- New upstream release
+- Add D501 Baklava device support
+- Allow enabling plugins only matching a specific HwId
+- Check pixart firmware compatibility with hardware before flashing
+- Correct a thunderbolt assertion if kernel failed FW read
+- Correctly erase STM32 devices when transfer size is less than sector size
+- Detect SREC overflow to avoid adding ~4GB of 0xFF padding
+- Do not show a critical error when flashing footer-less binary files
+- Don't allow device updates while needing activation
+- Fix a regression in the elantp defined IAP start address
+- Fix a regression where activate stopped working
+- Fix firmware update of pointing device on Lenovo ThinkPad Nano
+- Fix the HSI plugin 'Disabled' state
+- Fix the quirk key name for the Lenovo HDMI with power
+- Fix writing to the GD32VF103 bootloader
+- Only call elantp->detach() when writing a firmware blob
+- Prompt for unlock keypress if reset command is blocked
+- Remove the Hughski public key
+- Show a warning when parsing invalid quirk files
+- Support for GATT characteristic signals/notifications
+- Support more than one protocol for a given device
+- Updated StarLabs GUIDs
+- Wait a few ms for the Logitech hardware to settle after detach</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-23</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.5.7-1</td>
+					<td>- New upstream release
+- Add initial support for Bluez bluetooth devices
+- Add more supported pixart devices
+- Add support for the RTD21xx HDMI converter
+- Convert MBR types to GPT GUIDs to help find the ESP
+- Drop unused heap pages after startup has completed
+- Ensure SBAT metadata is added correctly
+- Only allow verify-update for plugins that support CAN_VERIFY</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-16</td>
+					<td>Richard Hughes <richard at hughsie dot com> 1.5.6-1</td>
+					<td>- New upstream release
+- Add SBAT metadata to the fwupd EFI binary
+- Add support for GD32VF103 as found in the Longan Nano
+- Add support for RMI PS2 devices
+- Add support for the Starlabs LabTop L4
+- Add support for the System76 Keyboard
+- Allow downloading firmware from IPFS
+- Be more paranoid when parsing ASCII buffers and devices
+- Check if the fwupd BootXXXX entry exists on failure
+- Do not allow flashing using flashrom if BLE is enabled
+- Do not allow Lenovo hardware to install multiple capsules
+- Do not show Unknown [***] for every client connection
+- Fix dnload wBlockNum wraparound for ST devices
+- Fix OOM when using large ArchiveSizeMax values
+- Fix several crashes spotted by AddressSanitizer
+- Fix several places where the Goodix MOC plugin could crash
+- Include the PCR0 to the report metadata
+- Install the UX data into an optional subpacakge
+- Report the lockdown status from UEFI and SuperIO plugins
+- Show a console warning if the system clock is not set</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-26</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.5.5-2</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2021-01-11</td>
 					<td>Richard Hughes <richard at hughsie dot com> 1.5.5-1</td>
 					<td>- New upstream release
@@ -117,88 +212,6 @@
 - Switch from libsoup to libcurl for downloading data</td>
 				</tr>
 				
-				<tr scope="row">
-					<td>2020-11-20</td>
-					<td>Adam Williamson <awilliam at redhat dot com> - 1.5.1-2</td>
-					<td>- Backport #2605 for #2600, seems to help RHBZ #1896540</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-11-01</td>
-					<td>Richard Hughes <richard at hughsie dot com> 1.5.1-1</td>
-					<td>- New upstream release
-- Delete unused EFI variables when deploying firmware
-- Fix probe warning for the Logitech Unifying device
-- Include the amount of NVRAM size in use in the LVFS failure report
-- Make bcm57xx hotplug more reliable
-- Recognize authorized thunderbolt value of 2
-- Remove the duplicate parent-child data in FwupdDevice and FuDevice
-- Show a less scary fwupdate output for devices without info
-- Use a different Device ID for the OptionROM devices
-- Use UDisks to find out if swap devices are encrypted</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-10-26</td>
-					<td>Richard Hughes <richard at hughsie dot com> 1.5.0-1</td>
-					<td>- New upstream release
-- Add async versions of the library for GUI tools
-- Add commands for interacting with the ESP to fwupdtool
-- Add plugin for Goodix fingerprint sensors
-- Add plugin that can update the BCM5719 network adapter
-- Add plugin to update Elan Touchpads using HID
-- Add support for ChromeOS Quiche and Gingerbread
-- Add support for the Host Security ID
-- Add support for ThunderBolt retimers
-- Add switch-branch command to fwupdtool and fwupdmgr
-- Allow blocking specific firmware releases by checksum
-- Allow constructing a firmware with multiple images
-- Allow firmware to require specific features from front-end clients
-- Fix setting BootNext correctly when multiple updates are scheduled
-- Fix the topology of the audio device on the Lenovo TR dock
-- Include the HSI results and attributes in the uploaded report
-- Make return code different for get-updates with no updates
-- Make specific authorizations also imply others
-- Parse the HEX version before comparing for equality
-- Prevent dell-dock updates to occur via synaptics-mst plugin
-- Record the UEFI failure in more cases
-- Support loading DMI data from DT systems
-- Support LVFS::UpdateImage for GUI clients
-- Use pkttyagent to request user passwords if running without GUI</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-09-07</td>
-					<td>Richard Hughes <richard at hughsie dot com> 1.4.6-1</td>
-					<td>- New upstream release
-- Add a re-implementation of the rhboot dbxtool
-- Add missing Synaptics Prometheus GUIDs for ConfigId
-- Add support for the LabTop Mk IV
-- Add support for the Realtek RTD21XX I²C protocol
-- Allow blocking specific firmware releases by checksum
-- Allow DFU device to attach to runtime without a bus reset
-- Allow plugins to set remove delay only on the child
-- Cancel the file monitor before disposal to avoid a potential deadlock
-- Correctly label the vebdor for more NVMe devices
-- Specify a remove delay for Poly USB Cameras
-- Support download of large DFU firmware
-- Support polling the status from device in dfuManifest state
-- Use newer libxmlb features to properly display more AppStream markup</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-18</td>
-					<td>Richard Hughes <richard at hughsie dot com> 1.4.5-4</td>
-					<td>- Rebuild for the libxmlb API bump.</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-08-03</td>
-					<td>Peter Jones <pjones at redhat dot com> - 1.4.5-3</td>
-					<td>- Make dual signing happen.
-  Related: CVE-2020-10713</td>
-				</tr>
-				
 				<tbody>
 				</tbody>
 			</table>
@@ -215,7 +228,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/b0/f250655e76e0e184fb1658598d46a5cf69d4f6</td>
+					<td>/usr/lib/.build-id/32/470598fc8ee323983a94d932c936eda70ebd7d</td>
 				</tr>
 				
 				<tr scope="row">

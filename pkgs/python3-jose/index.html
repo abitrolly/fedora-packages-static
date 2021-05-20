@@ -37,7 +37,7 @@
 				<small class="text-muted">Subpackage of <a href="../python-jose">python-jose</a></small>
 				
 			</h1>
-			<p class="text-muted">JOSE implementation in Python</p>
+			<p class="text-muted">A JOSE implementation in Python</p>
 			<ul class="list-group list-group-horizontal-lg">
 				<li class="list-group-item max-width">
 					<a href="https://bodhi.fedoraproject.org/updates/python-jose">
@@ -70,16 +70,60 @@
 					</a>
 				</li>
 			</ul>
-			<p class="yacy-index">A JOSE implementation in Python
-
-The JavaScript Object Signing and Encryption (JOSE) technologies - JSON Web
+			<p class="yacy-index">The JavaScript Object Signing and Encryption (JOSE) technologies - JSON Web
 Signature (JWS), JSON Web Encryption (JWE), JSON Web Key (JWK), and JSON Web
 Algorithms (JWA) - collectively can be used to encrypt and/or sign content
 using a variety of algorithms. While the full set of permutations is extremely
 large, and might be daunting to some, it is expected that most applications
 will only use a small set of algorithms to meet their needs.
 
-Documentation: https://python-jose.readthedocs.org/en/latest/</p>
+As of 3.1.0, python-jose implements four different cryptographic backends. The
+backend must be selected as an extra when installing python-jose. If you do not
+select a backend, the native-python backend will be installed.
+
+Unless otherwise noted, all backends support all operations.
+
+Due to complexities with setuptools, the native-python backend is always
+installed, even if you select a different backend on install.
+
+  1. cryptography
+       * This backend uses pyca/cryptography for all cryptographic operations.
+         This is the recommended backend and is selected over all other
+         backends if any others are present.
+       * Installation: dnf install python3-jose+cryptography
+       * Unused dependencies:
+           - rsa
+           - ecdsa
+           - pyasn1
+
+  2. pycryptodome
+       * This backend uses pycryptodome for all cryptographic operations.
+       * Installation: not available because pycryptodome (which, unlike
+                       pycryptodomex, conflicts with pycrypto) is not packaged
+       * Unused dependencies:
+           - rsa
+
+  3. native-python
+       * This backend uses python-rsa and python-ecdsa for all cryptographic
+         operations. This backend is always installed but any other backend
+         will take precedence if one is installed.
+       * Installation: dnf install python3-jose
+
+     Note
+
+     The native-python backend cannot process certificates.
+
+  4. pycrypto
+       * This backend uses pycrypto for all cryptographic operations.
+       * Installation: dnf install python3-jose+pycrypto
+       * Unused dependencies:
+           - rsa
+
+     Warning
+
+     The pycrypto project has not been maintained since 2013. This backend is
+     maintained for legacy compatibility purposes only. Do not use this backend
+     unless you cannot use any of the others.</p>
 			<div id="vue">
 				<hr />
 				<div class="row">
@@ -99,7 +143,7 @@ Documentation: https://python-jose.readthedocs.org/en/latest/</p>
 									<td>fedora-rawhide</td>
 									<td>
 									
-									<a href="fedora-rawhide.html">3.2.0-1.fc34</a>
+									<a href="fedora-rawhide.html">3.2.0-6.fc35</a>
 									
 									</td>
 
@@ -111,10 +155,25 @@ Documentation: https://python-jose.readthedocs.org/en/latest/</p>
 								</tr>
 								
 								<tr scope="row">
+									<td>fedora-34</td>
+									<td>
+									
+									<a href="fedora-34.html">3.2.0-4.fc34</a>
+									
+									</td>
+
+									<td>
+									
+									<a href="fedora-34-updates-testing.html">3.2.0-4.fc34</a>
+									
+									</td>
+								</tr>
+								
+								<tr scope="row">
 									<td>fedora-33</td>
 									<td>
 									
-									<a href="fedora-33-updates.html">3.2.0-1.fc33</a>
+									<a href="fedora-33-updates.html">3.2.0-3.fc33</a>
 									
 									</td>
 
@@ -129,7 +188,7 @@ Documentation: https://python-jose.readthedocs.org/en/latest/</p>
 									<td>fedora-32</td>
 									<td>
 									
-									<a href="fedora-32-updates.html">3.2.0-1.fc32</a>
+									<a href="fedora-32-updates.html">3.2.0-3.fc32</a>
 									
 									</td>
 
@@ -147,7 +206,7 @@ Documentation: https://python-jose.readthedocs.org/en/latest/</p>
 					<div class="col-md-4">
 						<b>Package Info</b>
 						<ul>
-							<li>Upstream: <a href="http://github.com/mpdavis/python-jose">http://github.com/mpdavis/python-jose</a></li>
+							<li>Upstream: <a href="https://github.com/mpdavis/python-jose">https://github.com/mpdavis/python-jose</a></li>
 							<li>License(s): MIT</li>
 							
 							<li>Maintainers:</li>

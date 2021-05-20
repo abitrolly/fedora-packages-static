@@ -49,6 +49,68 @@
 				</thead>
 				
 				<tr scope="row">
+					<td>2021-05-07</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> -1:16.0.1.0.9-3.rolling</td>
+					<td>- removed cjc backward comaptiblity, to fix when both rpm 4.16 and 4.17 are in transaction</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-29</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> -  1:16.0.1.0.9-2.rolling</td>
+					<td>- adapted to newst cjc to fix issue with rpm 4.17
+- Disable copy-jdk-configs for Flatpak builds</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-04-25</td>
+					<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:16.0.1.0.9-1.rolling</td>
+					<td>- update to 16.0.1+9 april cpu tag
+- dropped jdk8259949-allow_cf-protection_on_x86.patch</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-11</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:16.0.0.0.36-2.rolling</td>
+					<td>- Perform static library build on a separate source tree with bundled image libraries
+- Make static library build optional
+- Based on initial work by Severin Gehwolf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-03-09</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:16.0.0.0.36-1.rolling</td>
+					<td>- fixed suggests of wrong pcsc-lite-devel(x86-64) to correct pcsc-lite-libs(x86-64)
+- bumped buildjdkver to build by itself - 16</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-19</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:16.0.0.0.36-0.rolling</td>
+					<td>- Update to jdk-16.0.0.0+36
+- Update tarball generation script to use git following OpenJDK's move to github
+- Update tarball generation script to use PR3823 which handles JDK-8235710 changes
+- Use upstream default for version-pre rather than setting it to "ea" or ""
+- Drop libsunec.so which is no longer generated, thanks to JDK-8235710
+- Drop unnecessary compiler flags, dating back to work on GCC 6 & 10
+- Adapt RH1750419 alt-java patch to still apply after some variable re-naming in the makefiles
+- Update filever to remove any trailing zeros, as in the OpenJDK build, and use for source filename
+- Use system harfbuzz now this is supported.
+- Pass SOURCE_DATE_EPOCH to build for reproducible builds</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-19</td>
+					<td>Stephan Bergmann <sbergman at redhat dot com> - 1:15.0.2.0.7-1.rolling</td>
+					<td>- Hardcode /usr/sbin/alternatives for Flatpak builds</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-26</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:15.0.2.0.7-0.rolling.1</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
 					<td>2021-01-22</td>
 					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.2.0.7-0.rolling</td>
 					<td>- Update to jdk-15.0.2.0+7
@@ -63,67 +125,6 @@
 					<td>2021-01-19</td>
 					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.1.9-10.rolling</td>
 					<td>- Use -march=i686 for x86 builds if -fcf-protection is detected (needs CMOV)</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-12-22</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-9.rolling</td>
-					<td>- fixed missing condition for fastdebug packages being counted as debug ones</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-12-19</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-8.rolling</td>
-					<td>- removed lib-style provides for fastdebug_suffix_unquoted</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-12-19</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-6.rolling</td>
-					<td>- many cosmetic changes taken from more maintained jdk11
-- introduced debug_arches, bootstrap_arches, systemtap_arches, fastdebug_arches, sa_arches, share_arches, shenandoah_arches, zgc_arches 
-  instead of various hardcoded ifarches
-- updated systemtap
-- added requires excludes for debug pkgs
-- removed redundant logic around jsa files
-- added runtime requires of lksctp-tools and libXcomposite%
-- added and used Source15 TestSecurityProperties.java, but is made always positive as jdk15 now does not honor system policies
-- s390x excluded form fastdebug build</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-12-17</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.1.9-5.rolling</td>
-					<td>- introduced nm based check to verify alt-java on x86_64 is patched, and no other alt-java or java is patched
-- patch600 rh1750419-redhat_alt_java.patch amended to die, if it is used wrongly
-- introduced ssbd_arches with currently only valid arch of x86_64 to separate real alt-java architectures</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-12-09</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-4.rolling</td>
-					<td>- moved wrongly placed licenses to accompany other ones
-- this bad placement was killng parallel-installability and thus having bad impact to leapp if used</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-12-01</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-3.rolling</td>
-					<td>- added patch600, rh1750419-redhat_alt_java.patch, suprassing removed patch
-- no longer copying of java->alt-java as it is created by  patch600</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-11-23</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-2.rolling</td>
-					<td>- Create a copy of java as alt-java with alternatives and man pages
-- java-11-openjdk doesn't have a JRE tree, so don't try and copy alt-java there...</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-10-25</td>
-					<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:15.0.1.9-1.rolling</td>
-					<td>- updated to October CPU 2020 sources</td>
 				</tr>
 				
 				<tbody>
@@ -142,352 +143,502 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jdeps/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.datatransfer/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jdeps/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.datatransfer/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jdeps/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.datatransfer/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.sql/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.nio.mapmode/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.sql/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.nio.mapmode/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.sql/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.nio.mapmode/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/8c/3adfc324f48b3d47b89877daff4d8fba5fd25a</td>
+					<td>/usr/lib/.build-id/e7/c6ca358e6d617ece69ab8b3a6bbfb6f78e6f37</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.management/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.incubator.vector/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.management/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.incubator.vector/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.management/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.incubator.vector/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/27/c750cc909094ba16b72c1a96a30262eed21946</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.desktop/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jfr/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.desktop/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jfr/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.desktop/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jfr/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.desktop/colorimaging.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jdwp.agent/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.desktop/mesa3d.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jdwp.agent/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.desktop/xwd.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jdwp.agent/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.opt/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.opt/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.opt/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.opt/jopt-simple.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/d2/19438516bd78210a8a69abde80af6efa079cc7</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/f1/58e7b86fd4376fe9ccc9d0c5d2cf8643c66775</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/f1/88a74be10f3594b4496748b404ca1ba0f21314</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.httpserver/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.httpserver/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.httpserver/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.naming.rmi/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.naming.rmi/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.naming.rmi/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.se/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.se/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.se/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.aot/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.aot/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.aot/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.crypto.ec/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.crypto.ec/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.crypto.ec/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.crypto.ec/ecc.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/59/fe3af9960e1e9e0886ddcc9f3367439fd3bf29</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/security/policy/limited/default_US_export.policy</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/security/policy/limited/default_local.policy</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/security/policy/limited/exempt_local.policy</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.hotspot.agent/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.hotspot.agent/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.hotspot.agent/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.zipfs/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.zipfs/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.zipfs/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.unsupported/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.unsupported/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.unsupported/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/82/8e9394cc46d9d679e7c64572383efa82ae0cc9</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/logging.properties</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/management</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/net.properties</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/sdp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/security</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.transaction.xa/ADDITIONAL_LICENSE_INFO</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/sound.properties</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.transaction.xa/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml.crypto/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.transaction.xa/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml.crypto/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.naming/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml.crypto/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.naming/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml.crypto/santuario.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.naming/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.net/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.security.jgss/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.net/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.security.jgss/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.net/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.security.jgss/LICENSE</td>
+					<td>/usr/lib/.build-id/65/36a6a25c83740f662c72ef304efcab42554874</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.security.sasl/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/.build-id/84/1f9c2f167c375347ec4ec93947647f08a46bc4</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.security.sasl/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/.build-id/84/1f9c2f167c375347ec4ec93947647f08a46bc4.1</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.security.sasl/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.naming.dns/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/76/0af64fa2f8c37a21c7637aff88f918d772697c</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.naming.dns/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/2b/5b0d481907d22526bbd77f94f551c9eeb314a1</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.naming.dns/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.incubator.foreign/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.incubator.foreign/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.incubator.foreign/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.opt/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.opt/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.opt/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.opt/jopt-simple.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f1/50cd6105d75ee32f87a892f18cfe327cd6ff26</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.vm.compiler/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.vm.compiler/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.vm.compiler/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/security</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.accessibility/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.accessibility/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.accessibility/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.security.auth/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.security.auth/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.security.auth/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.management/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.management/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.management/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.unsupported.desktop/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.unsupported.desktop/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.unsupported.desktop/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/0e/d3d9aebdf67cae8d2e306a637bac64d41bd5de</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.security.jgss/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.security.jgss/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.security.jgss/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.editpad/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.editpad/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.editpad/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.security.sasl/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.security.sasl/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.security.sasl/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/security/blacklisted.certs</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/security/cacerts</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/security/default.policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/security/public_suffix_list.dat</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jshell/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jshell/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jshell/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jfr/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jfr/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jfr/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/b1/4003b36fdeec4c2d6efc038abe13b781910b12</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.instrument/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.instrument/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.instrument/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.scripting/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.scripting/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.scripting/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.vm.ci/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.vm.ci/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.vm.ci/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/eb/2ae28bce0b56d271364e2159924000acfb4092</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.crypto.cryptoki/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.crypto.cryptoki/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.crypto.cryptoki/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.crypto.cryptoki/pkcs11cryptotoken.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.crypto.cryptoki/pkcs11wrapper.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.aot/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.aot/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.aot/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
@@ -497,92 +648,92 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.le/ADDITIONAL_LICENSE_INFO</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/security/java.policy</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.le/ASSEMBLY_EXCEPTION</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/security/java.security</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.le/LICENSE</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/security/nss.cfg</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/security/policy</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.le/jline.md</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/sdp/sdp.conf.template</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/23/793bc89ddf3b1b4ce1157eafeb1a1b981c59b4</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>g</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/server/classes.jsa</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.attach/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/server/classes_nocoops.jsa</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.attach/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/server/libjsig.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.attach/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/server/libjvm.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.hotspot.agent/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jcmd/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.hotspot.agent/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jcmd/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.hotspot.agent/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jcmd/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.jvmstat/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.vm.ci/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.jvmstat/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.vm.ci/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.jvmstat/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.vm.ci/LICENSE</td>
+					<td>/usr/lib/.build-id/80/1e7173de1fb324038e2491ed293f30e5560a04</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.naming.dns/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jstatd/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.naming.dns/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jstatd/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.naming.dns/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jstatd/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
@@ -592,112 +743,182 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/89/8509842cd15fb65691ada4ba1a2e46291823f1</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jcmd/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/b8/b8c6163fbc1f80eb42371f9f6f3daa52ab249a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jcmd/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.javadoc/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jcmd/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.javadoc/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.ed/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.javadoc/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.ed/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.javadoc/jquery.md</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.ed/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.javadoc/jqueryUI.md</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/74/e40a7b9c0ace1a57a578761fb4567f152cfa9b</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/93/3033510be1954f9af4970b514de62eead3986a</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/c2/39e802d2a9d12e7ff02bfb874850785d3f90b2</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml/bcel.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.editpad/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml/dom.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.editpad/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml/jcup.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.editpad/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml/xalan.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml/xerces.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/9b/0e5289081ee8aec135d9bc502223f6906fed69</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/9b/1ac1a8b27372aa24734c07896db7a285174517</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/9b/7e9a7767bfaa49ec7826b860e5475bcfef81c2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.compiler/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.compiler/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.compiler/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>g</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/server/classes.jsa</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/server/classes_nocoops.jsa</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/server/libjsig.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/server/libjvm.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jconsole/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jconsole/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jconsole/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.compiler/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.compiler/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.compiler/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/0b</td>
+					<td>/usr/lib/.build-id/02</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/22</td>
+					<td>/usr/lib/.build-id/05</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/23</td>
+					<td>/usr/lib/.build-id/0e</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/27</td>
+					<td>/usr/lib/.build-id/39</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/2b</td>
+					<td>/usr/lib/.build-id/3c</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/2c</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/3a</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/3d</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/48</td>
+					<td>/usr/lib/.build-id/47</td>
 				</tr>
 				
 				<tr scope="row">
@@ -707,47 +928,32 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/4d</td>
+					<td>/usr/lib/.build-id/4f</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/59</td>
+					<td>/usr/lib/.build-id/51</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/5a</td>
+					<td>/usr/lib/.build-id/5e</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/69</td>
+					<td>/usr/lib/.build-id/65</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/6f</td>
+					<td>/usr/lib/.build-id/68</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/73</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/74</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/75</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/76</td>
+					<td>/usr/lib/.build-id/70</td>
 				</tr>
 				
 				<tr scope="row">
@@ -757,72 +963,87 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/7d</td>
+					<td>/usr/lib/.build-id/80</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/82</td>
+					<td>/usr/lib/.build-id/81</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/88</td>
+					<td>/usr/lib/.build-id/83</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/89</td>
+					<td>/usr/lib/.build-id/84</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/8c</td>
+					<td>/usr/lib/.build-id/8d</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/93</td>
+					<td>/usr/lib/.build-id/94</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/a6</td>
+					<td>/usr/lib/.build-id/9b</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/b4</td>
+					<td>/usr/lib/.build-id/a0</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/b8</td>
+					<td>/usr/lib/.build-id/a2</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/c2</td>
+					<td>/usr/lib/.build-id/a4</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/c9</td>
+					<td>/usr/lib/.build-id/aa</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/cf</td>
+					<td>/usr/lib/.build-id/b1</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/d2</td>
+					<td>/usr/lib/.build-id/bc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/e9</td>
+					<td>/usr/lib/.build-id/bf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/db</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/e7</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/eb</td>
 				</tr>
 				
 				<tr scope="row">
@@ -832,542 +1053,142 @@
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/f4</td>
+					<td>/usr/lib/.build-id/f2</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.base</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.compiler</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.datatransfer</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.desktop</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.instrument</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.logging</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.management</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.management.rmi</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.naming</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.net.http</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.prefs</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.rmi</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.scripting</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.se</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.security.jgss</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.security.sasl</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.smartcardio</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.sql</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.sql.rowset</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.transaction.xa</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml.crypto</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.accessibility</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.aot</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.attach</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.charsets</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.compiler</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.crypto.cryptoki</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.crypto.ec</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.dynalink</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.editpad</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.hotspot.agent</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.httpserver</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.incubator.foreign</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.incubator.jpackage</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.ed</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.jvmstat</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.le</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.opt</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.vm.ci</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.vm.compiler</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.vm.compiler.management</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jartool</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.javadoc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jcmd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jconsole</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jdeps</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jdi</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jdwp.agent</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jfr</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jlink</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jshell</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jsobject</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jstatd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.localedata</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.management</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.management.agent</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.management.jfr</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.naming.dns</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.naming.rmi</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.net</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.nio.mapmode</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.sctp</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.security.auth</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.security.jgss</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.unsupported</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.unsupported.desktop</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.xml.dom</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.zipfs</td>
+					<td>/usr/lib/.build-id/fa</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.jvmstat/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/.build-id/02/de5005bd034199b7e508c11c6c611233efe822</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.jvmstat/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/.build-id/49/052812df59d225cd7f052f5c8ddfceb4eae897</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.jvmstat/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.rmi/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.xml.dom/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.rmi/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.xml.dom/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.rmi/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.xml.dom/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.transaction.xa/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/49/d85649661b296f2b68cb89488e28c12f2a3865</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.transaction.xa/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.sctp/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.transaction.xa/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.sctp/ASSEMBLY_EXCEPTION</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/security/policy/README.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/security/policy/limited</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/security/policy/unlimited</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.sctp/LICENSE</td>
+					<td>/usr/lib/.build-id/3c/2a0b461de2189d722a75bed5e3f141052e98f5</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.desktop/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.dynalink/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.desktop/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.dynalink/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.desktop/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.dynalink/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.desktop/colorimaging.md</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.dynalink/dynalink.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.desktop/harfbuzz.md</td>
+					<td>/usr/lib/.build-id/68/905dd10e50709206850daf2f8cdf3a0e5346cb</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.desktop/mesa3d.md</td>
+					<td>/usr/share/doc/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/NEWS</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.desktop/xwd.md</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.sctp/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/f4/aa159c0ac7441c6a32b7c60db6f665d70acf61</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.sctp/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/f4/acf96b6e8f612b2fde2958a5e51271545efeea</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.sctp/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.net.http/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.management/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.net.http/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.management/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.net.http/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.management/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.scripting/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/jfr/default.jfc</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.scripting/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.scripting/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.attach/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.attach/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.attach/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.base/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.base/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.base/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.base/aes.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.base/asm.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.base/c-libutl.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.base/cldr.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.base/icu.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.base/public_suffix.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.base/unicode.md</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/jfr/profile.jfc</td>
 				</tr>
 				
 				<tr scope="row">
@@ -1377,1182 +1198,1352 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jartool/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.management.rmi/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jartool/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.management.rmi/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jartool/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.management.rmi/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml.crypto/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.crypto.ec/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml.crypto/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.crypto.ec/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml.crypto/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.crypto.ec/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml.crypto/santuario.md</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.sql.rowset/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.vm.compiler/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.sql.rowset/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.vm.compiler/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.sql.rowset/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.vm.compiler/LICENSE</td>
+					<td>/usr/lib/.build-id/4f/4f2cc457ac558e4ee27ca3fb16be72e7e6e7a8</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/c9/8fbec9ff198aa35bc3e753027204918d6dda2d</td>
+					<td>/usr/lib/.build-id/8d/c0f37552a96ec753c9bf1cbb805ec27591cb2e</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/c9/f1006c9e9ca1eb02802238d6487feb79ab882e</td>
+					<td>/usr/lib/.build-id/bc/7dd62d67c1dd2e86363ff0a097b90b3ff40d7e</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/sdp/sdp.conf.template</td>
+					<td>/usr/lib/.build-id/db/d52f96f29c7c5aefd40aaa8494bd780f2180b7</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/3a/cbe3ef6e898678689fb6c8ba67aecd92712c77</td>
+					<td>/usr/lib/.build-id/fa/a934c4232a56b7373dab8344bba65e66961b92</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/b4/3c8ab56734f1f700abccdc6ca663c43247160f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jsobject/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.smartcardio/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jsobject/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.smartcardio/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jsobject/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.smartcardio/LICENSE</td>
+					<td>/usr/lib/.build-id/47/0ad1f81c7d855932edc925f0bf7020de94f504</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.smartcardio/pcsclite.md</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.base/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.management.agent/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.base/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.management.agent/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.base/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.management.agent/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.base/aes.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.crypto.cryptoki/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.base/asm.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.crypto.cryptoki/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.base/c-libutl.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.crypto.cryptoki/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.base/cldr.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.crypto.cryptoki/pkcs11cryptotoken.md</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.base/icu.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.crypto.cryptoki/pkcs11wrapper.md</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.base/public_suffix.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/cf/011c31bef44f8dd655488dae76ffed9748eaf3</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.base/unicode.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/security/policy/unlimited/default_US_export.policy</td>
+					<td>/usr/lib/.build-id/f2/7879863fa3243b5e71b1a8cc6e4521fce1cb44</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/security/policy/unlimited/default_local.policy</td>
+					<td>/usr/lib/.build-id/f2/e6300992a676a4542bd4cdfb33ed470f0fe8fa</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/4d/5ce002822adc4219c2d562a9699a5ba7586cd3</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.smartcardio/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jdi/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.smartcardio/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jdi/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.smartcardio/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jdi/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.smartcardio/pcsclite.md</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/share/doc/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/NEWS</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/classlist</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.management.jfr/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.management.jfr/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.management.jfr/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.instrument/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.instrument/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.instrument/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/management/jmxremote.access</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/management/jmxremote.password.template</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/management/management.properties</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/classlist</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/jexec</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/jexec</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/jfr</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/jfr</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/jrt-fs.jar</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/jrt-fs.jar</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/jspawnhelper</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/jspawnhelper</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/jvm.cfg</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/jvm.cfg</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libattach.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libattach.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libawt.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libawt.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libawt_headless.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libawt_headless.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libdt_socket.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libdt_socket.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libextnet.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libextnet.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libfontmanager.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libfontmanager.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libinstrument.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libinstrument.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libj2gss.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libj2gss.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libj2pcsc.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libj2pcsc.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libj2pkcs11.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libj2pkcs11.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libjaas.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libjaas.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libjava.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libjava.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libjavajpeg.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libjavajpeg.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libjdwp.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libjdwp.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libjimage.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libjimage.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libjli.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libjli.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libjsig.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libjsig.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libjsound.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libjsound.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/liblcms.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/liblcms.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libmanagement.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libmanagement.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libmanagement_agent.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libmanagement_agent.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libmanagement_ext.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libmanagement_ext.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libmlib_image.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libmlib_image.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libnet.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libnet.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libnio.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libnio.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libprefs.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libprefs.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/librmi.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/librmi.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libsaproc.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libsaproc.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libsctp.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libsctp.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libsunec.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libverify.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libverify.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/libzip.so</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/libzip.so</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/modules</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/modules</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/psfont.properties.ja</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/psfont.properties.ja</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/psfontj2d.properties</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/psfontj2d.properties</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/security</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/security</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/server</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/server</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/tzdb.dat</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib/tzdb.dat</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.prefs/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.charsets/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.prefs/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.charsets/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.prefs/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.charsets/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/security/policy/README.txt</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/security/policy/limited</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/security/policy/unlimited</td>
+					<td>/usr/lib/.build-id/51/07851cd1278835c4fa846f596dc25b1171ab29</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.management/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/.build-id/70/f6508252464f3f941b9609c54fcbb1a3b25949</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.management/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.management.jfr/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.management/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.management.jfr/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.unsupported.desktop/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.management.jfr/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.unsupported.desktop/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.sql/ADDITIONAL_LICENSE_INFO</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.unsupported.desktop/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.sql/ASSEMBLY_EXCEPTION</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/logging.properties</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/management</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.sql/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/net.properties</td>
+					<td>/usr/lib/.build-id/2e/192a51351ea0c175e57360dbc563d0e26d131d</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/sdp</td>
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.zipfs/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.zipfs/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.zipfs/LICENSE</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/security</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/sound.properties</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/jfr/default.jfc</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/jfr/profile.jfc</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.base</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/a6/25145edaaba2aef48ff95b7806d522b29e66ac</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.compiler/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.compiler/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.compiler/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/bin/alt-java</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/bin/java</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/bin/keytool</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/bin/rmid</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/bin/rmiregistry</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/2c/d058a95373d814441b66c2013680993cbc781f</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jconsole/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jconsole/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jconsole/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.management.rmi/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.management.rmi/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.management.rmi/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/security/blacklisted.certs</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/security/cacerts</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/security/default.policy</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/security/public_suffix_list.dat</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.incubator.foreign/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.incubator.foreign/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.incubator.foreign/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.ed/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.ed/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.ed/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.vm.compiler.management/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.vm.compiler.management/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.internal.vm.compiler.management/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/7d/98a1a65ba5530bf2e1c07401ade0b2117790f5</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/18/0f2f2f9cc267b05c977f653c6defacf491f338</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/18/0f2f2f9cc267b05c977f653c6defacf491f338.1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.dynalink/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.dynalink/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.dynalink/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.dynalink/dynalink.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jlink/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jlink/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jlink/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/0b/ce8e9e4de90e1e24394e5b41c5118a620f5729</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/75/196a6c104b5aeb12204e9d4fe5311a8b6bffae</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml/bcel.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml/dom.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml/jcup.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml/xalan.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.xml/xerces.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/22/e9c54609acda07be4346315b2dd1d7dad45ef3</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/security/java.policy</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/security/java.security</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/security/nss.cfg</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.compiler</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf/security/policy</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.datatransfer</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/jre-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/69/75b2a3fdb63bf3d0a13b52e4d5433c24c98ab3</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/88/93c3e8b6b1150f5cdc7a505ee2e97c44d00452</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jshell/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jshell/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jshell/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/3d/829518e7d14cd6a505aaa0c5b777e2190b64a7</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.rmi/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.rmi/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.rmi/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/7b/271286b7e8b604333aecafbda6a7677bd3136c</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jsobject/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jsobject/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jsobject/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.incubator.jpackage/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.incubator.jpackage/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.incubator.jpackage/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.security.jgss/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.security.jgss/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.security.jgss/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/73/5249e3b7dc390e98e9c814f8be2f150784da31</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.sql.rowset/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.sql.rowset/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.sql.rowset/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/alt-java-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/java-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/keytool-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/rmid-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/rmiregistry-java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64.1.gz</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.datatransfer/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.datatransfer/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.datatransfer/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.desktop</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib/security</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.charsets/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.charsets/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.charsets/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/e9/e68dccdb4ecddb5b37bbd2f1650168362726c2</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/6f/0d932ec876767faa15ec27efa499483f5177c1</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.net/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.net/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.net/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.localedata/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.localedata/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.localedata/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.localedata/cldr.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.localedata/thaidict.md</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/48/592c824d9fc8b40659e88c3cebe88987008fda</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.nio.mapmode/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.nio.mapmode/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.nio.mapmode/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/5a/66e412fb687fd331add12e2513ec29c59db579</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.security.auth/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.security.auth/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.security.auth/LICENSE</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jstatd/ADDITIONAL_LICENSE_INFO</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jstatd/ASSEMBLY_EXCEPTION</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.jstatd/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.instrument</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/bin</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/conf</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.logging</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.management</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/lib</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/release</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.management.rmi</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/etc/java/java-15-openjdk</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.naming</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.net.http</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.prefs</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.rmi</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.scripting</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.se</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.security.jgss</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.security.sasl</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.smartcardio</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.sql</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.sql.rowset</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.transaction.xa</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.xml.crypto</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.accessibility</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.aot</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.attach</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.charsets</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.compiler</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.crypto.cryptoki</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.crypto.ec</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.dynalink</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.editpad</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.hotspot.agent</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.httpserver</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.incubator.foreign</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.incubator.vector</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.ed</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.jvmstat</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.le</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.opt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.vm.ci</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.vm.compiler</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.vm.compiler.management</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jartool</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.javadoc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jcmd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jconsole</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jdeps</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jdi</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jdwp.agent</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jfr</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jlink</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jpackage</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jshell</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jsobject</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jstatd</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.localedata</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.management</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.management.agent</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.management.jfr</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.naming.dns</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.naming.rmi</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.net</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.nio.mapmode</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.sctp</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.security.auth</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.security.jgss</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.unsupported</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.unsupported.desktop</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.xml.dom</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.zipfs</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.compiler/ADDITIONAL_LICENSE_INFO</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/security/policy/limited/default_US_export.policy</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.compiler/ASSEMBLY_EXCEPTION</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/security/policy/limited/default_local.policy</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.compiler/LICENSE</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/security/policy/limited/exempt_local.policy</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.accessibility/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/bin/alt-java</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.accessibility/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/bin/java</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/jdk.accessibility/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/bin/keytool</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.logging/ADDITIONAL_LICENSE_INFO</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/bin/rmid</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.logging/ASSEMBLY_EXCEPTION</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/bin/rmiregistry</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-15-openjdk-15.0.2.0.7-0.rolling.fc34.x86_64/legal/java.logging/LICENSE</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.javadoc/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.javadoc/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.javadoc/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.javadoc/jquery.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.javadoc/jqueryUI.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/83/9abda02a77b46f44cb0d94d2e3d266a8ef0754</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/security/policy/unlimited/default_US_export.policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/security/policy/unlimited/default_local.policy</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.logging/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.logging/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.logging/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/39/ce00dcd1fc2bfb0e7d48e7b26a80564ddf1f0b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.xml.dom/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.xml.dom/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.xml.dom/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jdi/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jdi/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jdi/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/05/b87c2ee48b9e1fd3eea2b3d102ea2f9e745428</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.localedata/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.localedata/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.localedata/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.localedata/cldr.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.localedata/thaidict.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/81/7260df0a90d7e3a7918c9b0afc24c2cf464883</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.unsupported/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.unsupported/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.unsupported/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jlink/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jlink/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jlink/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jartool/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jartool/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jartool/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.se/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.se/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.se/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/5e/69888e7fd589f1a3f70b75308e9972ef7a675f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.net.http/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.net.http/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.net.http/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/94/4396d3bf79c091e802dd0bb331c1314d13577f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/94/fbdc4f8a11a7f9befec06a538e9f02e470a02a</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/a4/536c64f21ff8547f840811029ed5d7571482d2</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/bin</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/lib</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/release</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.le/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.le/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.le/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.le/jline.md</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/bf/f2bd6f0c600672d18b9337221db2af8104ab77</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jdwp.agent/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jdwp.agent/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jdwp.agent/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/jre-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/management/jmxremote.access</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/management/jmxremote.password.template</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/etc/java/java-16-openjdk/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/conf/management/management.properties</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.httpserver/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.httpserver/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.httpserver/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/7b/a0d3e3fdfe642649b7bffa989454a94b715a9e</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.naming.rmi/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.naming.rmi/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.naming.rmi/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jpackage/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jpackage/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jpackage/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/aa/a1fa072fae720ed68f15aecad4660e8d3a26c9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/alt-java-java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/java-java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/keytool-java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/rmid-java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/man/man1/rmiregistry-java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64.1.gz</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/a2/b74ca75b31858e2e66248431472198078464f8</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.management.agent/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.management.agent/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.management.agent/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.vm.compiler.management/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.vm.compiler.management/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.internal.vm.compiler.management/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.prefs/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.prefs/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.prefs/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/etc/java/java-16-openjdk</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jdeps/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jdeps/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.jdeps/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.naming/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.naming/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/java.naming/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.security.jgss/ADDITIONAL_LICENSE_INFO</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.security.jgss/ASSEMBLY_EXCEPTION</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc35.x86_64/legal/jdk.security.jgss/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/a0/cb01588378ff874d81bdec3fde83014fcd21ef</td>
 				</tr>
 				
 				<tbody>

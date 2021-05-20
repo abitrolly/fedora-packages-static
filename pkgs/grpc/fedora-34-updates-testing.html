@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>grpc - Details</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+	</head>
+	<body>
+		<div class="page-large">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+					</div>
+					<div class="col-md-6">
+						<form action="/search" method="get">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+								</div>
+								<div class="form-group col-md-4">
+									<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				grpc
+				<small class="text-muted"> in fedora-34</small>
+			</h1>
+			<p>
+			This page displays detail informations of the grpc package. You might
+			want go back to <a href=".">the main page of grpc</a>.
+			</p>
+
+			<h2>Changelog</h2>
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Date</th>
+						<th scope="col">Author</th>
+						<th scope="col">Change</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>2021-03-23</td>
+					<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-13</td>
+					<td>- General:
+  * Replace * with • in descriptions
+  * Use cmake() dependencies first, and pkgconfig() dependencies second, where
+    available
+  * Drop explicit pkgconfig BR
+  * Fix the directory in which CMake installs pkgconfig files
+  * Improved CMake options
+  * Build the Doxygen reference manuals
+- C (core) and C++ (cpp):
+  * Let the -devel package require cmake-filesystem
+  * Allow building tests with our own copy of gtest/gmock, which will become
+    mandatory when we depend on abseil-cpp and switch to C++17
+  * Fix a link error in the core tests when using CMake
+  * Manually install grpc_cli (CMake)
+  * Add CMake files to the files list for the -devel package
+  * Start running some of the core tests in %check
+- Python:
+  * Add several patches required for the tests
+  * BR gevent for gevent_tests
+  * Fix build; in particular, add missing preprocess and build_package_protos
+    steps, without which the packages were missing generated proto modules and
+    were not
+    usable!
+  * Add %py_provides for Fedora 32
+  * Drop python3dist(setuptools) BR, redundant with %pyproject_buildrequires
+  * Start running most of the Python tests in %check
+  * Merge the python-grpcio-doc subpackage into grpc-doc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-16</td>
+					<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-12</td>
+					<td>- C (core) and C++ (cpp):
+  * Add CMake build support but do not enable it yet; there is still a problem
+    where grpc_cli is only built with the tests, and a linking problem when
+    building the tests</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-02-02</td>
+					<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-11</td>
+					<td>- General:
+  * Update summaries and descriptions
+  * Update License fields to include licenses from bundled components
+  * Fix failure to respect Fedora build flags
+  * Use the system shared certificate bundle instead of shipping our own
+- CLI:
+  * No longer set rpath $ORIGIN
+- C (core) and C++ (cpp):
+  * Add c_so_version/cpp_so_version macros
+  * Split out C++ bindings and shared data into subpackages
+  * Drop obsolete ldconfig_scriptlets macro
+  * Stop stripping debugging symbols
+- Python:
+  * Use generated BR’s
+  * Build and package Python binding documentation
+  * Disable accommodations for older libc’s
+  * Patch out -std=gnu99 flag, which is inappropriate for C++
+  * Build additional Python packages grpcio_tools, gprcio_channelz,
+    grpcio_health_checking, grpcio_reflection, grpcio_status, and
+    grpcio_testing</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-26</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.26.0-10</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2021-01-14</td>
+					<td>Adrian Reber <adrian at lisas dot de> - 1.26.0-9</td>
+					<td>- Rebuilt for protobuf 3.14</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-11-13</td>
+					<td>Artem Polishchuk <ego dot cordatus at gmail dot com> - 1.26.0-8</td>
+					<td>- build: disable LTO due to rh#1893533</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-09-24</td>
+					<td>Adrian Reber <adrian at lisas dot de> - 1.26.0-7</td>
+					<td>- Rebuilt for protobuf 3.13</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-08-03</td>
+					<td>Gwyn Ciesla <gwync at protonmail dot com> - 1.26.0-6</td>
+					<td>- Patches for https://github.com/grpc/grpc/pull/21669</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-07-28</td>
+					<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.26.0-5</td>
+					<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-06-14</td>
+					<td>Adrian Reber <adrian at lisas dot de> - 1.26.0-4</td>
+					<td>- Rebuilt for protobuf 3.12</td>
+				</tr>
+				
+				<tbody>
+				</tbody>
+			</table>
+
+			<h2>Files</h2>
+
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th scope="col">Type</th>
+						<th scope="col">Path</th>
+					</tr>
+				</thead>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/9b/602853e7ea9c4b4f6fc8006893d3e536267dae</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/1f/7075fa5635db6c296b78b988a31822a3bf7852</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/1f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/9b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/a4</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/d6</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/e3</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/f0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/d6/00696b7e157530013441feaa8c5f18f404752f</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libaddress_sorting.so.9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libaddress_sorting.so.9.0.0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libgpr.so.9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libgpr.so.9.0.0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libgrpc.so.9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libgrpc.so.9.0.0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libgrpc_cronet.so.9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libgrpc_cronet.so.9.0.0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libgrpc_unsecure.so.9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libgrpc_unsecure.so.9.0.0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libupb.so.9</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib64/libupb.so.9.0.0</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/a4/4230da752ee782816cf3d93d9b9697befa321b</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/f0/30df91a661d91f92f6fab9f59e0e2d795e86b6</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/grpc/LICENSE</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/share/licenses/grpc/NOTICE.txt</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/share/licenses/grpc</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/e3/f8f420086586cb0b455063d3f2f1775a782542</td>
+				</tr>
+				
+				<tbody>
+		</div>
+	</body>
+</html>
