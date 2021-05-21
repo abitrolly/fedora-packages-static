@@ -4,14 +4,18 @@
 		<title>java-latest-openjdk-slowdebug - Details</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
-		<div class="page-large">
-			<div class="container">
+		<div class="container">
+			<div>
 				<div class="row">
-					<div class="col-md-6">
-						<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
-					</div>
+					<a href="/" class="col-md-6">
+						<div>
+							<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
+						</div>
+					</a>
 					<div class="col-md-6">
 						<form action="/search" method="get">
 							<div class="form-row">
@@ -31,10 +35,10 @@
 
 			<h1>
 				java-latest-openjdk-slowdebug
-				<small class="text-muted"> in fedora-34</small>
+				<small class="text-muted"> in Fedora 34</small>
 			</h1>
 			<p>
-			This page displays detail informations of the java-latest-openjdk-slowdebug package. You might
+			This page displays detailed information for a specific version of java-latest-openjdk-slowdebug. You might
 			want go back to <a href=".">the main page of java-latest-openjdk-slowdebug</a>.
 			</p>
 
@@ -47,35 +51,6 @@
 						<th scope="col">Change</th>
 					</tr>
 				</thead>
-				
-				<tr scope="row">
-					<td>2021-05-07</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> - 1:16.0.1.0.9-2.rolling</td>
-					<td>- removed cjc backward comaptiblity, to fix when both rpm 4.16 and 4.17 are in transaction</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2021-04-29</td>
-					<td>Jiri Vanek <jvanek at redhat dot com> -  1:16.0.1.0.9-2.rolling</td>
-					<td>- adapted to debug handling  in newer cjc
-- The rest of the "rpm 4.17" patch must NOT be backported, as on rpm 4.16 and down, it would casue double execution
-- Disable copy-jdk-configs for Flatpak builds</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2021-04-25</td>
-					<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:16.0.1.0.9-1.rolling</td>
-					<td>- update to 16.0.1+9 april cpu tag
-- dropped jdk8259949-allow_cf-protection_on_x86.patch</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2021-03-11</td>
-					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:16.0.0.0.36-2.rolling</td>
-					<td>- Perform static library build on a separate source tree with bundled image libraries
-- Make static library build optional
-- Based on initial work by Severin Gehwolf</td>
-				</tr>
 				
 				<tr scope="row">
 					<td>2021-03-09</td>
@@ -128,6 +103,40 @@
 					<td>- Use -march=i686 for x86 builds if -fcf-protection is detected (needs CMOV)</td>
 				</tr>
 				
+				<tr scope="row">
+					<td>2020-12-22</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-9.rolling</td>
+					<td>- fixed missing condition for fastdebug packages being counted as debug ones</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-19</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-8.rolling</td>
+					<td>- removed lib-style provides for fastdebug_suffix_unquoted</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-19</td>
+					<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-6.rolling</td>
+					<td>- many cosmetic changes taken from more maintained jdk11
+- introduced debug_arches, bootstrap_arches, systemtap_arches, fastdebug_arches, sa_arches, share_arches, shenandoah_arches, zgc_arches 
+  instead of various hardcoded ifarches
+- updated systemtap
+- added requires excludes for debug pkgs
+- removed redundant logic around jsa files
+- added runtime requires of lksctp-tools and libXcomposite%
+- added and used Source15 TestSecurityProperties.java, but is made always positive as jdk15 now does not honor system policies
+- s390x excluded form fastdebug build</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>2020-12-17</td>
+					<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.1.9-5.rolling</td>
+					<td>- introduced nm based check to verify alt-java on x86_64 is patched, and no other alt-java or java is patched
+- patch600 rh1750419-redhat_alt_java.patch amended to die, if it is used wrongly
+- introduced ssbd_arches with currently only valid arch of x86_64 to separate real alt-java architectures</td>
+				</tr>
+				
 				<tbody>
 				</tbody>
 			</table>
@@ -144,42 +153,27 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug/lib/libawt_xawt.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug/lib/libjawt.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/jvm/java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug/lib/libsplashscreen.so</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/.build-id/f7/571a19539ee405cf6351e54148ad90eeb44dbd</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>f</td>
 					<td>/usr/share/icons/hicolor/16x16/apps/java-16-openjdk.png</td>
 				</tr>
 				
 				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/.build-id/2b</td>
+					<td>f</td>
+					<td>/usr/lib/.build-id/10/1cc5a0a87aae7a885f10ccd639cc0fb0fb8056</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/df</td>
+					<td>/usr/lib/.build-id/10</td>
 				</tr>
 				
 				<tr scope="row">
 					<td>d</td>
-					<td>/usr/lib/.build-id/f7</td>
+					<td>/usr/lib/.build-id/17</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>d</td>
+					<td>/usr/lib/.build-id/bd</td>
 				</tr>
 				
 				<tr scope="row">
@@ -194,7 +188,22 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/df/89678633cd235d48af4d6879626aee3e1403c2</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.0.0.36-1.rolling.fc34.x86_64-slowdebug/lib/libawt_xawt.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.0.0.36-1.rolling.fc34.x86_64-slowdebug/lib/libjawt.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/jvm/java-16-openjdk-16.0.0.0.36-1.rolling.fc34.x86_64-slowdebug/lib/libsplashscreen.so</td>
+				</tr>
+				
+				<tr scope="row">
+					<td>f</td>
+					<td>/usr/lib/.build-id/17/314a81e20ac824e054825438c6ab327046eb6b</td>
 				</tr>
 				
 				<tr scope="row">
@@ -204,7 +213,7 @@
 				
 				<tr scope="row">
 					<td>f</td>
-					<td>/usr/lib/.build-id/2b/ddc766d5dd27e1d74de3091794fbf825c2a5b5</td>
+					<td>/usr/lib/.build-id/bd/d588fb93788fe864d7241d586eb8c3cbfb8f5c</td>
 				</tr>
 				
 				<tr scope="row">
