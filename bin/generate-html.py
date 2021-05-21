@@ -25,6 +25,7 @@ ASSETS_DIR='assets'
 SCM_MAINTAINER_MAPPING=os.environ.get('MAINTAINER_MAPPING') or "pagure_owner_alias.json"
 PRODUCT_VERSION_MAPPING=os.environ.get('PRODUCT_VERSION_MAPPING') or "product_version_mapping.json"
 SITEMAP_URL = os.environ.get('SITEMAP_URL') or 'https://localhost:8080'
+SEARCH_BACKEND = os.environ.get('SEARCH_BACKEND', False)
 
 class Package:
     def __init__(self, name):
@@ -239,7 +240,8 @@ def main():
     search = env.get_template('search.html.j2')
     search_html = search.render(date=date.today().isoformat(),
                                 package_count=len(packages),
-                                prefix_index=prefix_index)
+                                prefix_index=prefix_index,
+                                search_backend=SEARCH_BACKEND)
     save_to(os.path.join(output_dir, 'index.html'), search_html)
 
     index_tpl = env.get_template('index-prefix.html.j2')
