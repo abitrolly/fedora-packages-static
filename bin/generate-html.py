@@ -246,7 +246,8 @@ def main():
 
     index_tpl = env.get_template('index-prefix.html.j2')
     for prefix, names in prefix_index.items():
-        html = index_tpl.render(prefix=prefix, packages=names)
+        html = index_tpl.render(prefix=prefix, packages=names,
+                                search_backend=SEARCH_BACKEND)
         save_to(os.path.join(output_dir, f'index-{prefix}.html'), html)
 
     # Copy styles and images.
