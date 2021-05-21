@@ -226,19 +226,33 @@ def main():
                 pkg.parent_not_exist = True
 
     print(">>> {} packages have been extracted.".format(len(packages)))
+
     # Generate main user entrypoint.
-    print("Generating generic pages...")
+    pkgs_list = sorted(packages.keys())
+    print("Generating index pages...")
+
+    # {"aa": ["aaargh", ...]}
+    prefix_index = {}
+    for pkg_name in pkgs_list:
+        prefix_index.setdefault(pkg_name[:2].lower(), []).append(pkg_name)
+
     search = env.get_template('search.html.j2')
-    search_html = search.render(date=date.today().isoformat(), package_count=len(packages))
+    search_html = search.render(date=date.today().isoformat(),
+                                package_count=len(packages),
+                                prefix_index=prefix_index)
     save_to(os.path.join(output_dir, 'index.html'), search_html)
 
-    # Import assets.
+    index_tpl = env.get_template('index-prefix.html.j2')
+    for prefix, names in prefix_index.items():
+        html = index_tpl.render(prefix=prefix, packages=names)
+        save_to(os.path.join(output_dir, f'index-{prefix}.html'), html)
+
+    # Copy styles and images.
     assets_output = os.path.join(output_dir, 'assets')
-    if not os.path.exists(assets_output):
-        shutil.copytree(ASSETS_DIR, os.path.join(output_dir, 'assets'))
+    shutil.rmtree(assets_output, ignore_errors=True)
+    shutil.copytree(ASSETS_DIR, assets_output)
 
     # Generate sitemaps
-    pkgs_list = list(packages.keys())
     sitemap_list = []
     sitemap_dir = os.path.join(output_dir, 'sitemaps')
     shutil.rmtree(sitemap_dir, ignore_errors=True)
