@@ -237,7 +237,7 @@ def main():
     for pkg_name in pkgs_list:
         prefix_index.setdefault(pkg_name[:2].lower(), []).append(pkg_name)
 
-    search = env.get_template('search.html.j2')
+    search = env.get_template('index.html.j2')
     search_html = search.render(date=date.today().isoformat(),
                                 package_count=len(packages),
                                 prefix_index=prefix_index,
