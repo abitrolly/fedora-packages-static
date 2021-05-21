@@ -295,7 +295,7 @@ def main():
 
         html_path = os.path.join(pkg_dir, 'index.html')
         html_template = env.get_template('package.html.j2')
-        html_content = html_template.render(pkg=pkg)
+        html_content = html_template.render(pkg=pkg, search_backend=SEARCH_BACKEND)
         save_to(html_path, html_content)
 
         # Simple way to display progress.
@@ -361,7 +361,7 @@ def main():
                         }]
                 html_path = os.path.join(pkg_dir, release_branch + ".html")
                 html_template = env.get_template("package-details.html.j2")
-                html_content = html_template.render(pkg=pkg, release=release, changelog=changelog, files=files)
+                html_content = html_template.render(pkg=pkg, release=release, changelog=changelog, files=files, search_backend=SEARCH_BACKEND)
                 save_to(html_path, html_content)
 
     print("DONE.")
