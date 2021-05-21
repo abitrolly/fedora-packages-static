@@ -171,10 +171,10 @@ def main():
         if (pkg_count % 500 == 0 or pkg_count == max_pkg_count):
             requests.post(f"{SOLR_URL}solr/{SOLR_CORE}/update?commit={str(pkg_count == max_pkg_count).lower()}", data=tostring(pkg_xml), headers={'Content-Type': 'application/xml'})
             pkg_xml.clear()
-            print("Submitted {}/{} packages.".format(pkg_count, max_pkg_count))
+            # print("Submitted {}/{} packages.".format(pkg_count, max_pkg_count))
 
     print("DONE.")
-    print("> {} packages processed.".format(len(packages)))
+    print("> {} packages submitted to solr.".format(len(packages)))
 
 if __name__ == '__main__':
     main()
