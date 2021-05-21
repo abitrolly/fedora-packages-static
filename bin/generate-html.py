@@ -26,6 +26,7 @@ ASSETS_DIR='assets'
 SCM_MAINTAINER_MAPPING=os.environ.get('MAINTAINER_MAPPING') or "pagure_owner_alias.json"
 PRODUCT_VERSION_MAPPING=os.environ.get('PRODUCT_VERSION_MAPPING') or "product_version_mapping.json"
 SITEMAP_URL = os.environ.get('SITEMAP_URL') or 'https://localhost:8080'
+SEARCH_BACKEND = os.environ.get('SEARCH_BACKEND', False)
 
 class Package:
     def __init__(self, name):
@@ -255,12 +256,14 @@ def main():
     search = env.get_template('search.html.j2')
     search_html = search.render(date=date.today().isoformat(),
                                 package_count=len(packages),
-                                prefix_index=prefix_index)
+                                prefix_index=prefix_index,
+                                search_backend=SEARCH_BACKEND)
     save_to(os.path.join(output_dir, 'index.html'), search_html)
 
     index_tpl = env.get_template('index-prefix.html.j2')
     for prefix, names in prefix_index.items():
-        html = index_tpl.render(prefix=prefix, packages=names)
+        html = index_tpl.render(prefix=prefix, packages=names,
+                                search_backend=SEARCH_BACKEND)
         save_to(os.path.join(output_dir, f'index-{prefix}.html'), html)
 
     # Copy styles and images.
@@ -308,7 +311,7 @@ def main():
 
         html_path = os.path.join(pkg_dir, 'index.html')
         html_template = env.get_template('package.html.j2')
-        html_content = html_template.render(pkg=pkg)
+        html_content = html_template.render(pkg=pkg, search_backend=SEARCH_BACKEND)
         save_to(html_path, html_content)
 
         # Simple way to display progress.
@@ -416,7 +419,7 @@ def main():
 
                 html_path = os.path.join(pkg_dir, release_branch + ".html")
                 html_template = env.get_template("package-details.html.j2")
-                html_content = html_template.render(pkg=pkg, release=release, branch=branch, changelog=changelog, files=files, provides=provides, requires=requires)
+                html_content = html_template.render(pkg=pkg, release=release, branch=branch, changelog=changelog, files=files, provides=provides, requires=requires, search_backend=SEARCH_BACKEND)
                 save_to(html_path, html_content)
 
     print("DONE.")
