@@ -5,6 +5,7 @@
 #   * release: fedora-31, epel-7, ...
 #   * branch: base (= none), updates, updates-testing
 #   * release_branch: fedora-31, fedora-31-updates, fedora-31-updates-testing, ...
+import functools
 import os
 import re
 import sys
@@ -15,7 +16,7 @@ import argparse
 import glob
 
 from datetime import date
-from collections import defaultdict
+from collections import OrderedDict
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
@@ -310,7 +311,7 @@ def main():
                             }
 
                 # Generate files page for pkg.
-                files = []
+                files = {}
                 for entry in filelist.execute('SELECT * FROM filelist WHERE pkgKey = ?', (pkg_key,)):
                     filenames = entry["filenames"].split('/')
                     filetype_index = 0
@@ -320,11 +321,17 @@ def main():
                         except Exception:
                             filetype = '?'
 
-                        files += [{
-                            "type": filetype,
-                            "path": os.path.join(entry["dirname"], filename),
-                        }]
+                        current = files
+                        for dir in entry["dirname"].split('/'):
+                            if dir != "":
+                                if dir not in current:
+                                    current[dir] = {}
+                                current = current[dir]
+
+                        current['__PACKAGES_STATIC_META__'] = []
+                        current['__PACKAGES_STATIC_META__'].append((filetype, filename))
                         filetype_index += 1
+                # TODO: sort
 
                 # Generate changelog page for pkg.
                 changelog = []

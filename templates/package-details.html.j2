@@ -13,8 +13,8 @@
 				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
 					<img src="../../assets/images/logo.png">
 				</a>
-				<div class="col-md-6 d-flex align-items-center h-100">
-					<form action="/search" method="get">
+				<div class="col-md-6 d-flex align-items-center">
+					<form class="w-100" action="/search" method="get">
 						<div class="form-row flex-grow-1">
 							<div class="col-md-8">
 								<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
@@ -58,22 +58,40 @@
 				</tbody>
 			</table>
 
+			{% if files|length != 0 %}
+			{% macro gentree(files) -%}
+			<ul>
+				{% for dir in files %}
+				{% if dir != '__PACKAGES_STATIC_META__' %}
+				<li>
+					{% if '__PACKAGES_STATIC_META__' in files[dir] %}
+					<span>{{ dir }}/</span>
+					<ul>
+					{% for file in files[dir]['__PACKAGES_STATIC_META__'] %}
+						{% if file[0] == 'd' %}
+						{% if not file[1] in files[dir] %}
+						<li>{{ file[1] }}/</li>
+						{% endif %}
+						{% else %}
+						<li>{{ file[1] }}</li>
+						{% endif %}
+					{% endfor %}
+					</ul>
+					{% else %}
+					<span>{{ dir }}/</span>
+					{% endif %}
+					{{ gentree(files[dir]) }}
+				</li>
+				{% endif %}
+				{% endfor %}
+			</ul>
+			{%- endmacro %}
 			<h2>Files</h2>
 
-			<table class="table table-striped table-borderless table-responsive">
-				<thead>
-					<tr>
-						<th scope="col">Type</th>
-						<th scope="col">Path</th>
-					</tr>
-				</thead>
-				{% for file in files %}
-				<tr scope="row">
-					<td>{{ file.type }}</td>
-					<td>{{ file.path }}</td>
-				</tr>
-				{% endfor %}
-				<tbody>
+			{{ gentree(files) }}
+			{% endif %}
 		</div>
 	</body>
 </html>
+
+
