@@ -213,7 +213,7 @@ def handle(repo, target_dir):
             continue
 
         # If it has changed, then download it and move it into place.
-        tempargs = dict(prefix='mdapi-', dir='/var/tmp')
+        tempargs = dict(prefix='mdapi-')
         with tempfile.TemporaryDirectory(**tempargs) as working_dir:
             tempdb = os.path.join(working_dir, db)
             archive = os.path.join(working_dir, filename)
