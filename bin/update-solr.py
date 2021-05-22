@@ -16,7 +16,7 @@ import requests
 
 from datetime import date
 from collections import defaultdict
-from xml.etree.ElementTree import Element, tostring
+from defusedxml.ElementTree import Element, tostring
 
 SOLR_URL=os.environ.get('SOLR_URL')
 SOLR_CORE=os.environ.get('SOLR_CORE')

@@ -20,6 +20,7 @@ The scripts contained in this repository depend on:
 * `python3`
 * `python3-requests`
 * `python3-jinja2`
+* `python3-defusedxml`
 
 ## Usage
 

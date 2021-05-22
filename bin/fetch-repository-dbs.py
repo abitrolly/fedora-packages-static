@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import requests
-import xml.etree.ElementTree as ET
+import defusedxml.ElementTree as ET
 import shutil
 import tempfile
 import sqlite3
@@ -88,7 +88,7 @@ def index_db(name, tempdb):
 def gen_db_diff(name, new, old):
     if not os.path.isfile(old) or not new.endswith('primary.sqlite'):
         return
-    
+
     print(f'{name.ljust(padding)} Creating diff for file: {old}')
     conn = sqlite3.connect(new)
     conn.execute(f'ATTACH DATABASE \'{old}\' as old')
@@ -131,7 +131,7 @@ def gen_db_diff(name, new, old):
     # Insert changed packages list to changes table
     conn.execute('''
         INSERT INTO changes (name, arch, change)
-        SELECT name, arch, 'updated' FROM 
+        SELECT name, arch, 'updated' FROM
             (SELECT main.packages.name, main.packages.arch,
                 IIF(main.packages.epoch IS NOT NULL, main.packages.epoch || ':', '') ||
                 main.packages.version || '-' || main.packages.release || '.' || main.packages.arch
