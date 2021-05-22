@@ -328,8 +328,10 @@ def main():
                                     current[dir] = {}
                                 current = current[dir]
 
-                        current['__PACKAGES_STATIC_META__'] = []
-                        current['__PACKAGES_STATIC_META__'].append((filetype, filename))
+                        if filetype == 'd' and not filename in current:
+                            current[filename] = {}
+                        elif filetype != 'd':
+                            current[filename] = filetype
                         filetype_index += 1
                 # TODO: sort
 

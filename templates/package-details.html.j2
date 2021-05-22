@@ -61,28 +61,15 @@
 			{% if files|length != 0 %}
 			{% macro gentree(files) -%}
 			<ul>
-				{% for dir in files %}
-				{% if dir != '__PACKAGES_STATIC_META__' %}
+				{% for dir in files|sort %}
 				<li>
-					{% if '__PACKAGES_STATIC_META__' in files[dir] %}
+					{% if files[dir] is mapping %}
 					<span>{{ dir }}/</span>
-					<ul>
-					{% for file in files[dir]['__PACKAGES_STATIC_META__'] %}
-						{% if file[0] == 'd' %}
-						{% if not file[1] in files[dir] %}
-						<li>{{ file[1] }}/</li>
-						{% endif %}
-						{% else %}
-						<li>{{ file[1] }}</li>
-						{% endif %}
-					{% endfor %}
-					</ul>
-					{% else %}
-					<span>{{ dir }}/</span>
-					{% endif %}
 					{{ gentree(files[dir]) }}
+					{% else %}
+					<span>{{ dir }}</span>
+					{% endif %}
 				</li>
-				{% endif %}
 				{% endfor %}
 			</ul>
 			{%- endmacro %}
