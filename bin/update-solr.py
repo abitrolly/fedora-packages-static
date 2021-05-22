@@ -9,14 +9,15 @@ import os
 import re
 import sys
 import json
-import shutil
 import sqlite3
-import argparse
 import requests
+import defusedxml
 
 from datetime import date
 from collections import defaultdict
-from defusedxml.ElementTree import Element, tostring
+# This is used to encode xml, not parse it. Security warning is irrelevant.
+# defusedxml does not have an Element import and defuse_stdlib() is called anyway for caution's sake.
+from xml.etree.ElementTree import Element, tostring # nosec
 
 SOLR_URL=os.environ.get('SOLR_URL')
 SOLR_CORE=os.environ.get('SOLR_CORE')
@@ -177,4 +178,5 @@ def main():
     print("> {} packages submitted to solr.".format(len(packages)))
 
 if __name__ == '__main__':
+    defusedxml.defuse_stdlib()
     main()
