@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  packages:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - type: bind
+        source: ./public_html
+        target: /srv/packages
+      - type: bind
+        source: ./container_folder
+        target: /etc/packages
+    links:
+      - solr
+    environment:
+      SOLR_URL: "http://solr:8983/"
+  solr:
+    image: solr:8
+    ports:
+      - "8983:8983"
+    volumes:
+      - type: bind
+        source: ./solr
+        target: /opt/solr/server/solr/configsets/packages
+        read_only: true
+      - type: bind
+        source: ./container
+        target: /opt/solr-start
+        read_only: true
+    command: bash /opt/solr-start/solr-start.sh

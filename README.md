@@ -1,26 +1,19 @@
 # fedora-packages-static
 
-This project intends to replace the current Fedora [packages
+This project replaces the former Fedora [packages
 app](https://apps.fedoraproject.org/packages/) which is built atop now dead
 librairies and a pain to maintain. See *[The packages app has a short
 runway](https://lists.fedoraproject.org/archives/list/infrastructure@lists.fedoraproject.org/thread/WWQG4RE5PSR5I2GND5SVWGMZRJNVRRPS/)*
 for context.
 
-The idea here is to generate a static page for every package and index it using
-an independent tool such as [Yacy](https://yacy.net/).
+This project generates a static page for each package, which is then indexed by Solr.
 
 With the exception of the MIT `assets/css/bootstrap.min.css`, the content of
 this repository is licensed under the GPLv3.
 
-## TODO
-
-* Clean code, make pylint and humans happy.
-* Display dependencies in package detail page.
-* Add support for modular and flatpak repositories.
-
 ## Dependencies
 
-The scripts contained in this repository depend
+The scripts contained in this repository depend on:
 
 * `make`
 * `curl`
@@ -38,3 +31,14 @@ The scripts contained in this repository depend
 * All at once: `make all`
 * Help message: `make help`
 * Clean artefacts (generated and downloaded): `make clean`
+
+## Running with Solr
+
+To run fedora-packages-static with functioning search:
+
+```bash
+mkdir container_folder public_html
+docker-compose up
+```
+
+Solr will be availible at http://localhost:8983/ and fedora-packages-static will be at http://localhost:8080/
