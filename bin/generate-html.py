@@ -328,13 +328,14 @@ def main():
                         current = files
                         for dir in entry["dirname"].split('/'):
                             if dir != "":
-                                if dir not in current:
+                                if dir not in current or type(current[dir]) == str:
                                     current[dir] = {}
                                 current = current[dir]
 
                         if filetype == 'd' and not filename in current:
                             current[filename] = {}
                         elif filetype != 'd':
+
                             current[filename] = filetype
                         filetype_index += 1
 
