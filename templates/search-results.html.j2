@@ -34,8 +34,6 @@
 
 		<hr />
 
-		<!-- TODO: total results returned, pagination -->
-
 		{% if results['spellcheck'] and results.spellcheck.collations[1] %}
 		<div>
 			<p>Did you mean <b>
@@ -46,6 +44,10 @@
 		{% elif results.response.numFound == 0 %}
 		<div>
 			<p>No results found!</p>
+		</div>
+		{% elif results.response.numFound > 1 %}
+		<div>
+			<p>{{ results.response.numFound }} results found</p>
 		</div>
 		{% endif %}
 
@@ -58,6 +60,17 @@
 			<p>{{ result.description }}</p>
 		</div>
 		{% endfor %}
+
+		{% if results.response.numFound > 10 %}
+		<div>
+			{% if results['responseHeader']['params']['start']|int >= 10 %}
+			<a class="float-left" href="/search?query={{ results['responseHeader']['params']['q'] }}&start={{ results['responseHeader']['params']['start']|int - 10 }}">&laquo; Previous Page</a>
+			{% endif %}
+			{% if results.response.numFound - results['responseHeader']['params']['start']|int > 10 %}
+			<a class="float-right" href="/search?query={{ results['responseHeader']['params']['q'] }}&start={{ results['responseHeader']['params']['start']|int + 10 }}">Next Page &raquo;</a>
+			{% endif %}
+		</div>
+		{% endif %}
 </body>
 
 </html>

@@ -24,11 +24,18 @@ def application(params, start_response):
         start_response('500 Internal Server Error', [('Content-Type','text/html')])
         return [b'Error: No query string']
     d = parse_qs(query_str)
+
     query = d.get('query', [''])[0]
     query = quote(query)
 
     try:
-        query_res = get(f"{SOLR_URL}solr/{SOLR_CORE}/select?defType=simple&q={query}")
+        start = d.get('start', [''])[0]
+        start = int(start)
+    except:
+        start = 0
+
+    try:
+        query_res = get(f"{SOLR_URL}solr/{SOLR_CORE}/select?defType=simple&start={start}&q={query}")
     except:
         print("Solr request error: ", str(exc_info()[0]))
         start_response('500 Internal Server Error', [('Content-Type','text/html')])
