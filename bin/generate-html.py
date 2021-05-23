@@ -41,7 +41,7 @@ class Package:
         self.subpackages = []
         self.parent_not_exist = False
 
-    def set_release(self, name, pkgKey, branch, revision, human_name=None):
+    def set_release(self, name, pkgKey, branch, arch, revision, human_name=None):
         if name not in self.releases:
             self.releases[name] = {}
 
@@ -53,6 +53,7 @@ class Package:
 
         self.releases[name]['branches'][branch]['revision'] = revision
         self.releases[name]['branches'][branch]['pkg_key'] = pkgKey
+        self.releases[name]['branches'][branch]['arch'] = arch
         self.releases[name]['human_name'] = human_name or name
 
     def get_release(self, name):
@@ -200,7 +201,7 @@ def main():
             if branch == "":
                 branch = "base"
 
-            pkg.set_release(release, raw["pkgKey"], branch, revision, release_mapping.get(release))
+            pkg.set_release(release, raw["pkgKey"], branch, raw["arch"], revision, release_mapping.get(release))
 
         # Get removed packages to determine if folder needs to be deleted later
         if partial_update:
@@ -301,13 +302,16 @@ def main():
                 if release_branch in db_conns:
                     filelist = db_conns[release_branch]["filelist"]
                     other = db_conns[release_branch]["other"]
+                    primary = db_conns[release_branch]["primary"]
                 else:
                     (_, filelist) = open_db(databases[release_branch]["filelists"])
                     (_, other) = open_db(databases[release_branch]["other"])
+                    (_, primary) = open_db(databases[release_branch]["primary"])
 
                     db_conns[release_branch] = {
                             "filelist": filelist,
                             "other": other,
+                            "primary": primary
                             }
 
                 # Generate files page for pkg.
@@ -333,7 +337,6 @@ def main():
                         elif filetype != 'd':
                             current[filename] = filetype
                         filetype_index += 1
-                # TODO: sort
 
                 # Generate changelog page for pkg.
                 changelog = []
@@ -351,9 +354,38 @@ def main():
                         "date": date.fromtimestamp(change["date"]),
                         "change": change["changelog"]
                         }]
+
+                # Generate provides list for pkg.
+                provides = []
+                for provide in primary.execute('SELECT name FROM provides where pkgkey = ? GROUP BY name', (pkg_key,)):
+                    provides.append(provide["name"])
+
+
+                # Generate dependencies for pkg
+                requires = []
+                for require in primary.execute("""
+                    SELECT requires.flags, requires.version, requires.release, packages.name AS provides FROM requires
+                    INNER JOIN provides ON requires.name=provides.name
+                    INNER JOIN packages ON provides.pkgkey=packages.pkgkey
+                    WHERE requires.pkgkey = ?
+                    GROUP BY packages.name
+                    """, (pkg_key,)):
+                    flags = ""
+                    if require["flags"] == "EQ":
+                        flags = "="
+                    elif require["flags"] == "GE":
+                        flags = ">="
+                    elif require["flags"] == "GT":
+                        flags = ">"
+                    elif require["flags"] == "LE":
+                        flags = "<="
+                    elif require["flags"] == "LT":
+                        flags = "<"
+                    requires.append({ "requirement": require["provides"], "flags": flags, "version": require["version"], "release": require["release"], "can_link": bool(packages.get(require["provides"])) })
+
                 html_path = os.path.join(pkg_dir, release_branch + ".html")
                 html_template = env.get_template("package-details.html.j2")
-                html_content = html_template.render(pkg=pkg, release=release, branch=branch, changelog=changelog, files=files)
+                html_content = html_template.render(pkg=pkg, release=release, branch=branch, changelog=changelog, files=files, provides=provides, requires=requires)
                 save_to(html_path, html_content)
 
     print("DONE.")

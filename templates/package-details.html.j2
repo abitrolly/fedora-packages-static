@@ -34,30 +34,86 @@
 				{{ pkg.name }}-{{ pkg.get_release(release)[branch]['revision'] }}<small class="text-muted"> in {{ pkg.releases[release]['human_name'] }}</small>
 			</h1>
 			<p>
-			This page displays detailed information for version {{ pkg.get_release(release)[branch]['revision'] }} of {{ pkg.name }}. You might
-			want go back to <a href=".">the main page of {{ pkg.name }}</a>.
+				<a href=".">Retrun to the main page of {{ pkg.name }} &crarr;</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms={{ pkg.name }}-{{ pkg.get_release(release)[branch]['revision'] }}">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search={{ pkg.name }}-{{ pkg.get_release(release)[branch]['revision'] }}">Search Bodhi</a>
 			</p>
 
-			<h2>Changelog</h2>
+			<p>
+				{% if pkg.get_release(release)[branch]['arch'] != 'noarch' %}
+				<b>Package Info ({{ pkg.get_release(release)[branch]['arch'] }})</b>
+				{% else %}
+				<b>Package Info</b><br>
+				{% endif %}
+				<a href="#changelog">🠗 Changelog</a><br>
+				{% if requires|length != 0 %}
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				{% endif %}
+				{% if provides|length != 0 %}
+				<a href="#provides">🠗 Provides</a><br>
+				{% endif %}
+				{% if files|length != 0 %}
+				<a href="#files">🠗 Files</a><br>
+				{% endif %}
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
 			<div class="table-responsive">
 				<table class="table table-striped table-borderless ">
-				<thead>
-					<tr>
-						<th scope="col">Date</th>
-						<th scope="col">Author</th>
-						<th scope="col">Change</th>
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					{% for entry in changelog|sort(attribute="timestamp", reverse=True) %}
+					<tr scope="row">
+						<td>{{ entry.date }}</td>
+						<td>{{ entry.author }}</td>
+						<td>{{ entry.change }}</td>
 					</tr>
-				</thead>
-				{% for entry in changelog|sort(attribute="timestamp", reverse=True) %}
-				<tr scope="row">
-					<td>{{ entry.date }}</td>
-					<td>{{ entry.author }}</td>
-					<td>{{ entry.change }}</td>
-				</tr>
-				{% endfor %}
-				<tbody>
-				</tbody>
-			</table>
+					{% endfor %}
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				{% if requires|length != 0 %}
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						{% for require in requires %}
+						<li>
+						{% if require.can_link %}
+						<a href="/pkgs/{{ require.requirement }}/{{ release }}.html">
+						{% endif %}
+						{% if require.version and require.release %}
+						{{ require.requirement }} {{ require.flags }}{{ require.version }}-{{ require.release }}
+						{% elif require.version %}
+						{{ require.requirement }} {{ require.flags }}{{ require.version }}
+						{% else %}
+						{{ require.requirement }}
+						{% endif %}
+						{% if require.can_link %}
+						</a>
+						{% endif %}
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+				{% endif %}
+				{% if provides|length != 0 %}
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						{% for provide in provides %}
+						<li>{{ provide }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+				{% endif %}
 			</div>
 
 			{% if files|length != 0 %}
@@ -75,7 +131,7 @@
 				{% endfor %}
 			</ul>
 			{%- endmacro %}
-			<h2>Files</h2>
+			<h2 id="files">Files</h2>
 
 			<div class="tree">
 				{{ gentree(files) }}
