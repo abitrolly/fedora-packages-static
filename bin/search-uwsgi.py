@@ -6,7 +6,7 @@ from urllib.parse import parse_qs
 from jinja2 import Environment, PackageLoader, select_autoescape
 from os import environ
 from sys import exc_info
-from html import escape
+from urllib.parse import quote
 from requests import get
 
 SOLR_URL=environ.get('SOLR_URL')
@@ -25,10 +25,10 @@ def application(params, start_response):
         return [b'Error: No query string']
     d = parse_qs(query_str)
     query = d.get('query', [''])[0]
-    query = escape(query)
+    query = quote(query)
 
     try:
-        query_res = get(f"{SOLR_URL}solr/{SOLR_CORE}/select?q={query}")
+        query_res = get(f"{SOLR_URL}solr/{SOLR_CORE}/select?defType=simple&q={query}")
     except:
         print("Solr request error: ", str(exc_info()[0]))
         start_response('500 Internal Server Error', [('Content-Type','text/html')])
