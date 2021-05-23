@@ -35,6 +35,7 @@ fetch-data:
 html:
 	mkdir -p $(OUTPUT_DIR)/assets
 	cp -r assets/* $(OUTPUT_DIR)/assets
+	cp assets/images/favicon.ico $(OUTPUT_DIR)/
 	bin/generate-html.py --target-dir $(OUTPUT_DIR)
 
 js:
