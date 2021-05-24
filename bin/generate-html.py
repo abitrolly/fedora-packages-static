@@ -85,6 +85,19 @@ def save_to(path, content):
     with open(path, 'w') as fh:
         fh.write(content)
 
+def gen_file_array(dir_representation, data=None):
+    if not data:
+        data = []
+    for dir in sorted(dir_representation):
+        if type(dir_representation[dir]) is str:
+            data.append({ "name": dir, "control": "file" })
+        else:
+            data.append({ "name": dir, "control": "dir" })
+            data = gen_file_array(dir_representation[dir], data)
+
+    data.append({ "control": "exit-list" })
+    return data
+
 def main():
     # Handle command-line arguments.
     parser = argparse.ArgumentParser(
@@ -315,6 +328,7 @@ def main():
                             }
 
                 # Generate files page for pkg.
+                # Create a nested object to represent the file tree
                 files = {}
                 for entry in filelist.execute('SELECT * FROM filelist WHERE pkgKey = ?', (pkg_key,)):
                     filenames = entry["filenames"].split('/')
@@ -338,6 +352,8 @@ def main():
 
                             current[filename] = filetype
                         filetype_index += 1
+                # Flatten and sort the files structure for jinja
+                files = gen_file_array(files)
 
                 # Generate changelog page for pkg.
                 changelog = []

@@ -117,24 +117,19 @@
 			</div>
 
 			{% if files|length != 0 %}
-			{% macro gentree(files) -%}
-			<ul>
-				{% for dir in files|sort %}
-				<li>
-					{% if files[dir] is mapping %}
-					<span>{{ dir }}/</span>
-					{{ gentree(files[dir]) }}
-					{% else %}
-					<span>{{ dir }}</span>
-					{% endif %}
-				</li>
-				{% endfor %}
-			</ul>
-			{%- endmacro %}
 			<h2 id="files">Files</h2>
 
 			<div class="tree">
-				{{ gentree(files) }}
+				<ul>
+				{% for file in files %}
+				{% if file['control'] == 'file' %}
+				<li>{{ file['name'] }}</li>
+				{% elif file['control'] == 'dir' %}
+				<li>{{ file['name'] }}/<ul>
+				{% elif file['control'] == 'exit-list' %}
+				</ul></li>
+				{% endif %}
+				{% endfor %}
 			</div>
 			{% endif %}
 		</div>
