@@ -95,7 +95,8 @@ def gen_file_array(dir_representation, data=None):
             data.append({ "name": dir, "control": "dir" })
             data = gen_file_array(dir_representation[dir], data)
 
-    data.append({ "control": "exit-list" })
+    if len(data) != 0:
+        data.append({ "control": "exit-list" })
     return data
 
 def main():
@@ -349,7 +350,6 @@ def main():
                         if filetype == 'd' and not filename in current:
                             current[filename] = {}
                         elif filetype != 'd':
-
                             current[filename] = filetype
                         filetype_index += 1
                 # Flatten and sort the files structure for jinja
