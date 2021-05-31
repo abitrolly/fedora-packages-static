@@ -139,7 +139,8 @@ def main():
 
         (product, branch, db_type) = db_pattern.findall(db)[0]
         release_branch = "{}-{}".format(product, branch)
-        databases[release_branch][db_type] = db
+        if release_branch in release_mapping:
+            databases[release_branch][db_type] = db
 
     # Build internal package metadata structure / cache.
     packages = {}
@@ -305,6 +306,8 @@ def main():
     db_conns = {}
 
     # Generate package index and version pages
+    print(len(packages.values()))
+    print(len([p for p in packages.values() if pkg.should_update]))
     for pkg in packages.values():
         if pkg.should_update == False:
             continue
