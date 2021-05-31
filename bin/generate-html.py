@@ -16,6 +16,7 @@ import argparse
 import glob
 
 from datetime import date
+from collections import defaultdict
 
 from jinja2 import Environment, PackageLoader
 
@@ -138,7 +139,7 @@ def main():
         release_mapping = json.load(raw)
 
     # Group databases files.
-    databases = {}
+    databases = defaultdict(dict)
     db_pattern = re.compile(
         "^(fedora|epel)-([\w|-]+)_(primary|filelists|other).sqlite$"
     )
@@ -148,10 +149,7 @@ def main():
 
         (product, branch, db_type) = db_pattern.findall(db)[0]
         release_branch = "{}-{}".format(product, branch)
-        if release_branch in databases:
-            databases[release_branch][db_type] = db
-        else:
-            databases[release_branch] = {db_type: db}
+        databases[release_branch][db_type] = db
 
     # Build internal package metadata structure / cache.
     # { "src_pkg": { "subpackage": pkg, ... } }
