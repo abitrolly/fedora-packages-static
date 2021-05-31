@@ -1,433 +1,671 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>copr-rpmbuild - Details</title>
+		<title>copr-rpmbuild-0.40-1.fc33 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
 	</head>
 	<body>
 		<div class="container">
-			<div>
-				<div class="row">
-					<a href="/" class="col-md-6">
-						<div>
-							<img src="../../../assets/images/logo.png" style="margin-top: -30px;">
-						</div>
-					</a>
-					<div class="col-md-6">
-						
-					</div>
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
 				</div>
 			</div>
 
 			<hr />
 
 			<h1>
-				copr-rpmbuild
-				<small class="text-muted"> in Fedora 33</small>
+				copr-rpmbuild-0.40-1.fc33<small class="text-muted"> in Fedora 33</small>
 			</h1>
 			<p>
-			This page displays detailed information for a specific version of copr-rpmbuild. You might
-			want go back to <a href=".">the main page of copr-rpmbuild</a>.
+				<a href=".">&crarr; Retrun to the main page of copr-rpmbuild</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=copr-rpmbuild-0.40-1.fc33">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=copr-rpmbuild-0.40-1.fc33">Search Bodhi</a>
 			</p>
 
-			<h2>Changelog</h2>
-			<table class="table table-striped table-borderless">
-				<thead>
-					<tr>
-						<th scope="col">Date</th>
-						<th scope="col">Author</th>
-						<th scope="col">Change</th>
-					</tr>
-				</thead>
+			<p>
 				
-				<tr scope="row">
-					<td>2020-08-10</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 0.40-1</td>
-					<td>- provide the "dynamic" %buildtag
+				<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2020-08-10</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 0.40-1</td>
+						<td>- provide the "dynamic" %buildtag
 - define config_opts['root'] mock config for make srpm method</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-06-09</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 0.39-1</td>
-					<td>- more work delegate to builder scripts from backend
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-06-09</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 0.39-1</td>
+						<td>- more work delegate to builder scripts from backend
 - don't delete the "old" .rpmnew files
 - fix macro in comment (rpmlint)</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-04-03</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 0.38-1</td>
-					<td>- do not scrub mock caches, to re-use dnf/yum caches
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-04-03</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 0.38-1</td>
+						<td>- do not scrub mock caches, to re-use dnf/yum caches
 - scrub chroot and bootstrap chroot when build is done
 - invent /etc/copr-rpmbuild/mock-config-overrides config dir
 - print human friendly error for nonexisting subdirectory
 - less verbose error output</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-02-19</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 0.37-1</td>
-					<td>- add tests that we properly cleanup tmp directories
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-02-19</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 0.37-1</td>
+						<td>- add tests that we properly cleanup tmp directories
 - mock 2.0: config s/use_bootstrap_container/use_bootstrap/
 - mock 2.0: disable bootstrap chroot for make_srpm method
 - put complete set of mock configs to resultdir, in tarball
 - mock 2.0: use dnf.conf/yum.conf automatically
 - make sure builders have the latest libsolv</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-02-06</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 0.36-1</td>
-					<td>- do not fail if we can not remove temporary we created</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-02-05</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 0.35-1</td>
-					<td>- mock config - module_enable needs to be an array
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-02-06</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 0.36-1</td>
+						<td>- do not fail if we can not remove temporary we created</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-02-05</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 0.35-1</td>
+						<td>- mock config - module_enable needs to be an array
 - catch FileExistsError in python2 compatible manner</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2020-02-05</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 0.34-1</td>
-					<td>- don't create unnecessary tmp directory
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-02-05</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 0.34-1</td>
+						<td>- don't create unnecessary tmp directory
 - prefix the name of all copr-rpmbuild temporary directory
 - properly cleanup after obtaining sources, and build failure
 - add support for mock's module_enable</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2019-12-06</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 0.33-1</td>
-					<td>- rpmbuild: skip_if_unavailable=1 for non-ACR projects</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2019-12-04</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 0.32-1</td>
-					<td>- fix custom method for F31's nspawn (--console=pipe is not default)
+					</tr>
+					
+					<tr scope="row">
+						<td>2019-12-06</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 0.33-1</td>
+						<td>- rpmbuild: skip_if_unavailable=1 for non-ACR projects</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2019-12-04</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 0.32-1</td>
+						<td>- fix custom method for F31's nspawn (--console=pipe is not default)
 - buildrequires: add qemu-user-static for building armhfp
 - module_hotfixes support
 - define %copr_username again on copr builders
 - skip_if_unavailable=False for copr_base</td>
-				</tr>
-				
-				<tr scope="row">
-					<td>2019-07-31</td>
-					<td>Pavel Raiskup <praiskup at redhat dot com> 0.31-1</td>
-					<td>- rpmbuild: make sure librepo/libdnf is always up2date</td>
-				</tr>
-				
-				<tbody>
-				</tbody>
-			</table>
-
-			<h2>Files</h2>
-
-			<table class="table table-striped table-borderless">
-				<thead>
-					<tr>
-						<th scope="col">Type</th>
-						<th scope="col">Path</th>
 					</tr>
-				</thead>
+					
+					<tr scope="row">
+						<td>2019-07-31</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 0.31-1</td>
+						<td>- rpmbuild: make sure librepo/libdnf is always up2date</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/__init__.cpython-39.opt-1.pyc</td>
-				</tr>
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/expect/fedora-33.html">
+						
+						
+						expect
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/git/fedora-33.html">
+						
+						
+						git
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/git-svn/fedora-33.html">
+						
+						
+						git-svn
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/mock/fedora-33.html">
+						
+						
+						mock</a> >= 2.0
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python2.7/fedora-33.html">
+						
+						
+						python2.7</a> = 3.9
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3/fedora-33.html">
+						
+						
+						python3</a> = 3.9
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-jinja2/fedora-33.html">
+						
+						
+						python3-jinja2
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-munch/fedora-33.html">
+						
+						
+						python3-munch
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-requests/fedora-33.html">
+						
+						
+						python3-requests
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-simplejson/fedora-33.html">
+						
+						
+						python3-simplejson
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/qemu-user-static/fedora-33.html">
+						
+						
+						qemu-user-static
+						
+
+						</li>
+						
+					</ul>
+				</div>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/__init__.cpython-39.pyc</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/base.cpython-39.opt-1.pyc</td>
-				</tr>
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>config(copr-rpmbuild)</li>
+						
+						<li>copr-rpmbuild</li>
+						
+						<li>copr-rpmbuild(x86-64)</li>
+						
+						<li>python3.9dist(copr-rpmbuild)</li>
+						
+						<li>python3dist(copr-rpmbuild)</li>
+						
+					</ul>
+				</div>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/base.cpython-39.pyc</td>
-				</tr>
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/custom.cpython-39.opt-1.pyc</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/custom.cpython-39.pyc</td>
-				</tr>
+				<li>etc/<ul>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/pypi.cpython-39.opt-1.pyc</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/pypi.cpython-39.pyc</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/rubygems.cpython-39.opt-1.pyc</td>
-				</tr>
+				<li>copr-rpmbuild/<ul>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/rubygems.cpython-39.pyc</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/scm.cpython-39.opt-1.pyc</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/scm.cpython-39.pyc</td>
-				</tr>
+				<li>main.ini</li>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/spec.cpython-39.opt-1.pyc</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__/spec.cpython-39.pyc</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/licenses/copr-rpmbuild/LICENSE</td>
-				</tr>
+				<li>make_srpm_mock.cfg</li>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild-0.40-py3.9.egg-info/PKG-INFO</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild-0.40-py3.9.egg-info/SOURCES.txt</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild-0.40-py3.9.egg-info/dependency_links.txt</td>
-				</tr>
+				<li>mock.cfg.j2</li>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild-0.40-py3.9.egg-info/top_level.txt</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>d</td>
-					<td>/var/lib/copr-rpmbuild/results</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/__init__.py</td>
-				</tr>
+				<li>rpkg.conf.j2</li>
 				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/__pycache__</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/builders</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/helpers.py</td>
-				</tr>
+				</ul></li>
 				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/copr-rpmbuild/main.ini</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/copr-rpmbuild/make_srpm_mock.cfg</td>
-				</tr>
+				</ul></li>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/copr-rpmbuild/mock.cfg.j2</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/etc/copr-rpmbuild/rpkg.conf.j2</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/bin/copr-rpmbuild</td>
-				</tr>
+				<li>usr/<ul>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/bin/copr-rpmbuild-cancel</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/bin/copr-rpmbuild-log</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/bin/copr-sources-custom</td>
-				</tr>
+				<li>bin/<ul>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__init__.py</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/__pycache__</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/base.py</td>
-				</tr>
+				<li>copr-rpmbuild</li>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/custom.py</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/pypi.py</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/rubygems.py</td>
-				</tr>
+				<li>copr-rpmbuild-cancel</li>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/scm.py</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/providers/spec.py</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild</td>
-				</tr>
+				<li>copr-rpmbuild-log</li>
 				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild-0.40-py3.9.egg-info</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>d</td>
-					<td>/var/lib/copr-rpmbuild</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/builders/__pycache__/__init__.cpython-39.opt-1.pyc</td>
-				</tr>
+				<li>copr-sources-custom</li>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/builders/__pycache__/__init__.cpython-39.pyc</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/builders/__pycache__/mock.cpython-39.opt-1.pyc</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/builders/__pycache__/mock.cpython-39.pyc</td>
-				</tr>
+				</ul></li>
 				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/share/licenses/copr-rpmbuild</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/builders/__init__.py</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>d</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/builders/__pycache__</td>
-				</tr>
+				<li>lib/<ul>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/builders/mock.py</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/share/man/man1/copr-rpmbuild.1.gz</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/__pycache__/__init__.cpython-39.opt-1.pyc</td>
-				</tr>
+				<li>python3.9/<ul>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/__pycache__/__init__.cpython-39.pyc</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/__pycache__/helpers.cpython-39.opt-1.pyc</td>
-				</tr>
 				
-				<tr scope="row">
-					<td>f</td>
-					<td>/usr/lib/python3.9/site-packages/copr_rpmbuild/__pycache__/helpers.cpython-39.pyc</td>
-				</tr>
+				<li>site-packages/<ul>
 				
-				<tr scope="row">
-					<td>d</td>
-					<td>/etc/copr-rpmbuild</td>
-				</tr>
 				
-				<tbody>
+				
+				<li>copr_rpmbuild/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>helpers.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>helpers.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>builders/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>mock.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>mock.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>mock.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>helpers.py</li>
+				
+				
+				
+				<li>providers/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>base.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>base.cpython-39.pyc</li>
+				
+				
+				
+				<li>custom.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>custom.cpython-39.pyc</li>
+				
+				
+				
+				<li>pypi.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>pypi.cpython-39.pyc</li>
+				
+				
+				
+				<li>rubygems.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>rubygems.cpython-39.pyc</li>
+				
+				
+				
+				<li>scm.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>scm.cpython-39.pyc</li>
+				
+				
+				
+				<li>spec.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>spec.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>base.py</li>
+				
+				
+				
+				<li>custom.py</li>
+				
+				
+				
+				<li>pypi.py</li>
+				
+				
+				
+				<li>rubygems.py</li>
+				
+				
+				
+				<li>scm.py</li>
+				
+				
+				
+				<li>spec.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>copr_rpmbuild-0.40-py3.9.egg-info/<ul>
+				
+				
+				
+				<li>PKG-INFO</li>
+				
+				
+				
+				<li>SOURCES.txt</li>
+				
+				
+				
+				<li>dependency_links.txt</li>
+				
+				
+				
+				<li>top_level.txt</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>share/<ul>
+				
+				
+				
+				<li>licenses/<ul>
+				
+				
+				
+				<li>copr-rpmbuild/<ul>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>man/<ul>
+				
+				
+				
+				<li>man1/<ul>
+				
+				
+				
+				<li>copr-rpmbuild.1.gz</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>var/<ul>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>copr-rpmbuild/<ul>
+				
+				
+				
+				<li>results/<ul>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
 		</div>
 	</body>
 </html>
+
