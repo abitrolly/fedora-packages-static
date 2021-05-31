@@ -139,7 +139,8 @@ def main():
 
         (product, branch, db_type) = db_pattern.findall(db)[0]
         release_branch = "{}-{}".format(product, branch)
-        databases[release_branch][db_type] = db
+        if release_branch in release_mapping:
+            databases[release_branch][db_type] = db
 
     # Build internal package metadata structure / cache.
     packages = {}
