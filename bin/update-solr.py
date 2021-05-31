@@ -14,7 +14,6 @@ import requests
 import defusedxml
 
 from datetime import date
-from collections import defaultdict
 # This is used to encode xml, not parse it. Security warning is irrelevant.
 # defusedxml does not have an Element import and defuse_stdlib() is called anyway for caution's sake.
 from xml.etree.ElementTree import Element, tostring # nosec
