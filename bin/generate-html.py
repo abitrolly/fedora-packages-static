@@ -253,6 +253,12 @@ def main():
     for pkg_name in pkgs_list:
         prefix_index.setdefault(pkg_name[:2].lower(), []).append(pkg_name)
 
+    static_index_html = env.get_template('index-static.html.j2').render(
+            date=date.today().isoformat(),
+            package_count=len(packages),
+            prefix_index=prefix_index)
+    save_to(os.path.join(output_dir, 'index-static.html'), static_index_html)
+
     search = env.get_template('index.html.j2')
     search_html = search.render(date=date.today().isoformat(),
                                 package_count=len(packages),
