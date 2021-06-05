@@ -26,6 +26,7 @@ ENV PRODUCT_VERSION_MAPPING /etc/packages/product_version_mapping.json
 ENV SOLR_CORE packages
 ENV SOLR_URL http://127.0.0.1:8983/
 ENV SITEMAP_URL https://localhost:8080
+ENV SEARCH_BACKEND True
 
 COPY . .
 RUN chmod -R o+rx assets
