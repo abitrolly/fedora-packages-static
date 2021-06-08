@@ -107,15 +107,16 @@ def gen_db_diff(name, new, old):
         CREATE TABLE changes (
             name TEXT NOT NULL,
             arch TEXT NOT NULL,
+            rpm_sourcerpm TEXT NOT NULL,
             version TEXT,
             change TEXT NOT NULL,
-            UNIQUE(name, arch) ON CONFLICT IGNORE
+            UNIQUE(name, arch, rpm_sourcerpm) ON CONFLICT IGNORE
         )
         ''')
     # Insert added packages list to changes table
     conn.execute('''
-        INSERT INTO changes (name, arch, version, change)
-        SELECT main.packages.name, main.packages.arch,
+        INSERT INTO changes (name, arch, rpm_sourcerpm, version, change)
+        SELECT main.packages.name, main.packages.arch, main.packages.rpm_sourcerpm,
             IIF(main.packages.epoch IS NOT NULL, main.packages.epoch || ':', '') ||
                 main.packages.version || '-' || main.packages.release || '.' || main.packages.arch,
             'added'
@@ -125,8 +126,8 @@ def gen_db_diff(name, new, old):
         ''')
     # Insert removed packages list to changes table
     conn.execute('''
-        INSERT INTO changes (name, arch, version, change)
-        SELECT old.packages.name, old.packages.arch,
+        INSERT INTO changes (name, arch, rpm_sourcerpm, version, change)
+        SELECT old.packages.name, old.packages.arch, old.packages.rpm_sourcerpm,
             IIF(old.packages.epoch IS NOT NULL, old.packages.epoch || ':', '') ||
                 old.packages.version || '-' || old.packages.release,
             'removed'
@@ -136,14 +137,14 @@ def gen_db_diff(name, new, old):
         ''')
     # Insert changed packages list to changes table
     conn.execute('''
-        INSERT INTO changes (name, arch, change)
+        INSERT INTO changes (name, arch, rpm_sourcerpm, change)
         SELECT name, arch, 'updated' FROM
-            (SELECT main.packages.name, main.packages.arch,
+            (SELECT main.packages.name, main.packages.arch, main.packages.rpm_sourcerpm,
                 IIF(main.packages.epoch IS NOT NULL, main.packages.epoch || ':', '') ||
                 main.packages.version || '-' || main.packages.release || '.' || main.packages.arch
             FROM main.packages
             UNION
-            SELECT old.packages.name, old.packages.arch,
+            SELECT old.packages.name, old.packages.arch, old.packages.rpm_sourcerpm,
                 IIF(old.packages.epoch IS NOT NULL, old.packages.epoch || ':', '') ||
                 old.packages.version || '-' || old.packages.release || '.' || old.packages.arch
             FROM old.packages)

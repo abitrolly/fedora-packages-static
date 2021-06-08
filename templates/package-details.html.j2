@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<title>{{ pkg.name }}-{{ pkg.get_release(release)[branch]['revision'] }} - Fedora Packages</title>
-		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="UTF-8">
@@ -12,7 +12,7 @@
 		<div class="container">
 			<div class="row">
 				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
-					<img src="../../assets/images/logo.png">
+					<img src="../../../assets/images/logo.png">
 				</a>
 				<div class="col-md-6 d-flex align-items-center">
 					{% if search_backend %}
@@ -37,8 +37,8 @@
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of {{ pkg.name }}</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms={{ pkg.subpackage_of or pkg.name }}-{{ pkg.get_release(release)[branch]['revision'] }}">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search={{ pkg.subpackage_of or pkg.name }}-{{ pkg.get_release(release)[branch]['revision'] }}">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms={{ pkg.source }}-{{ pkg.get_release(release)[branch]['revision'] }}">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search={{ pkg.source }}-{{ pkg.get_release(release)[branch]['revision'] }}">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -89,14 +89,14 @@
 						{% for require in requires %}
 						<li>
 						{% if require.can_link %}
-						<a href="/pkgs/{{ require.requirement }}/{{ release }}.html">
+						<a href="/pkgs/{{ require.srpm_name }}/{{ require.requirement }}/{{ release }}.html">
 						{% endif %}
 						{% if require.version and require.release %}
 						{{ require.requirement }}{{ '</a>' if require.can_link }} {{ require.flags }} {{ require.version }}-{{ require.release }}
 						{% elif require.version %}
 						{{ require.requirement }}{{ '</a>' if require.can_link }} {{ require.flags }} {{ require.version }}
 						{% else %}
-						{{ require.requirement }}
+						{{ require.requirement }}{{ '</a>' if require.can_link }}
 						{% endif %}
 
 						</li>

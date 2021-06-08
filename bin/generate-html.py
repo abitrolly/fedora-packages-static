@@ -38,9 +38,7 @@ class Package:
         self.upstream = ""
         self.maintainers = []
         self.releases = {}
-        self.subpackage_of = None
-        self.subpackages = []
-        self.parent_not_exist = False
+        self.source = ""
 
     def set_release(self, name, pkgKey, branch, arch, revision, human_name=None):
         if name not in self.releases:
@@ -59,12 +57,6 @@ class Package:
 
     def get_release(self, name):
         return self.releases[name]['branches']
-
-    def source(self):
-        if self.subpackage_of == None:
-            return self.name
-        else:
-            return self.subpackage_of
 
 def open_db(db):
     conn = sqlite3.connect(os.path.join(DBS_DIR, db))
@@ -99,6 +91,10 @@ def gen_file_array(dir_representation, data=None):
     if len(data) != 0:
         data.append({ "control": "exit-list" })
     return data
+
+def do_regex(pattern, string):
+    (result) = pattern.findall(string)[0]
+    return result
 
 def main():
     # Handle command-line arguments.
@@ -145,6 +141,7 @@ def main():
             databases[release_branch] = { db_type: db }
 
     # Build internal package metadata structure / cache.
+    # { "src_pkg": { "subpackage": pkg, ... } }
     packages = {}
     partial_update = False
     removed_packages = set()
@@ -168,20 +165,32 @@ def main():
 
         partial_update_packages = []
         if partial_update:
-            primary.execute('SELECT name FROM changes')
+            primary.execute('SELECT name, rpm_sourcerpm FROM changes')
             for row in primary.fetchall():
-                partial_update_packages.append(row['name'])
+                srpm_name = do_regex(srpm_pattern, row["rpm_sourcerpm"])
+                partial_update_packages.append((srpm_name, row['name']))
 
         for raw in primary.execute('SELECT * FROM packages'):
-            pkg = packages.get(raw["name"])
+            # Get source rpm name
+            srpm_name = do_regex(srpm_pattern, raw["rpm_sourcerpm"])
+
+            # Check if package is already data structure
+            src_pkg = packages.get(srpm_name)
+            if src_pkg:
+                pkg = src_pkg.get(raw["name"])
+            else:
+                pkg = None
             revision = "{}-{}".format(raw["version"], raw["release"])
             first_pkg_encounter = False
 
             # Register unknown packages.
             if pkg == None:
                 pkg = Package(raw["name"])
-                packages[pkg.name] = pkg
+                if not srpm_name in packages:
+                    packages[srpm_name] = {}
+                packages[srpm_name][pkg.name] = pkg
                 first_pkg_encounter = True
+                pkg.source = srpm_name
 
             # Override package metadata with rawhide (= lastest) values.
             if first_pkg_encounter or release_branch == "rawhide":
@@ -189,10 +198,10 @@ def main():
                 pkg.description = raw["description"]
                 pkg.upstream = raw["url"]
                 pkg.license = raw["rpm_license"]
-                pkg.maintainers = maintainer_mapping["rpms"].get(pkg.name, [])
+                pkg.maintainers = maintainer_mapping["rpms"].get(srpm_name, [])
 
             # Check if package should be updated during a partial update
-            if partial_update and pkg.name in partial_update_packages:
+            if partial_update and (srpm_name, pkg.name) in partial_update_packages:
                 pkg.should_update = True
             elif first_pkg_encounter and partial_update:
                 pkg.should_update = False
@@ -201,11 +210,6 @@ def main():
             # always be updated.
             if not partial_update:
                 pkg.should_update = True
-
-            # Handle subpackage specific case.
-            (srpm_name) = srpm_pattern.findall(raw["rpm_sourcerpm"])[0]
-            if pkg.name != srpm_name:
-                pkg.subpackage_of = srpm_name
 
             # XXX: we do not resolve files and changelog here because storing
             # them in the packages hash would require multiple GBs of RAM
@@ -220,38 +224,34 @@ def main():
 
         # Get removed packages to determine if folder needs to be deleted later
         if partial_update:
-            for removed in primary.execute("SELECT name FROM changes WHERE change = 'removed'"):
-                removed_packages.add(removed["name"])
+            for removed in primary.execute("SELECT name, rpm_sourcerpm FROM changes WHERE change = 'removed'"):
+                srpm_name = do_regex(srpm_pattern, removed["rpm_sourcerpm"])
+                removed_packages.add((srpm_name, removed["name"]))
 
     # If a package was removed and it was not in any repository, attempt to
     # delete the folder from the target directory
     for removed_package in removed_packages:
         if removed_package not in packages:
-            shutil.rmtree(os.path.join(output_dir, 'pkgs', removed_package), True)
-
-    # Set license and maintainers for subpackages. We have to wait for all
-    # packages to have been processed since subpackage might have been
-    # processed before its parent.
-    print(">> Handling subpackages...")
-    for pkg in packages.values():
-        if pkg.subpackage_of != None:
-            parent = packages.get(pkg.subpackage_of)
-            if parent != None:
-                parent.subpackages += [pkg.name]
-                pkg.maintainers = packages[pkg.subpackage_of].maintainers
-            else:
-                pkg.parent_not_exist = True
+            shutil.rmtree(os.path.join(output_dir, 'pkgs', removed_package[0], removed_package[1]), True)
 
     print(">>> {} packages have been extracted.".format(len(packages)))
 
     # Generate main user entrypoint.
-    pkgs_list = sorted(packages.keys())
     print("Generating index pages...")
 
+    pkgs_list = []
     # {"aa": ["aaargh", ...]}
     prefix_index = {}
-    for pkg_name in pkgs_list:
-        prefix_index.setdefault(pkg_name[:2].lower(), []).append(pkg_name)
+
+    for src_pkg in packages:
+        for pkg_name in packages[src_pkg]:
+            tmp_pkg = packages[src_pkg][pkg_name]
+            pkgs_list.append((tmp_pkg.source, tmp_pkg.name))
+            prefix_index.setdefault(tmp_pkg.name[:2].lower(), []).append((tmp_pkg.source, tmp_pkg.name))
+
+    # Sort the indexes
+    for prefix_group in prefix_index:
+        prefix_index[prefix_group] = sorted(prefix_index[prefix_group], key=lambda x : x[1])
 
     static_index_html = env.get_template('index-static.html.j2').render(
             date=date.today().isoformat(),
@@ -267,10 +267,12 @@ def main():
     save_to(os.path.join(output_dir, 'index.html'), search_html)
 
     index_tpl = env.get_template('index-prefix.html.j2')
+    index_dir = os.path.join(output_dir, 'index')
+    os.makedirs(index_dir, exist_ok=True)
     for prefix, names in prefix_index.items():
         html = index_tpl.render(prefix=prefix, packages=names,
                                 search_backend=SEARCH_BACKEND)
-        save_to(os.path.join(output_dir, f'index-{prefix}.html'), html)
+        save_to(os.path.join(index_dir, f'{prefix}.html'), html)
 
     # Copy styles and images.
     assets_output = os.path.join(output_dir, 'assets')
@@ -286,15 +288,14 @@ def main():
     # Number of pkgs in one sitemap. Should not be above 50,000
     # https://www.sitemaps.org/protocol.html#index
     sitemap_amount = 10000
-    while True:
-        sitemap_pkgs = pkgs_list[i * sitemap_amount:(i + 1) * sitemap_amount]
-        if not sitemap_pkgs:
-            break
+    sitemap_pkgs = pkgs_list[i * sitemap_amount:(i + 1) * sitemap_amount]
+    while sitemap_pkgs:
         crawler_sitemap = env.get_template('sitemap.xml.j2')
         crawler_sitemap_xml = crawler_sitemap.render(packages=sitemap_pkgs, url=SITEMAP_URL)
         save_to(os.path.join(sitemap_dir, 'sitemap{}.xml'.format(i)), crawler_sitemap_xml)
         sitemap_list.append('/sitemaps/sitemap{}.xml'.format(i))
         i = i + 1
+        sitemap_pkgs = pkgs_list[i * sitemap_amount:(i + 1) * sitemap_amount]
 
     sitemap_sitemap = env.get_template('sitemap-index.xml.j2')
     sitemap_sitemap_xml = sitemap_sitemap.render(sitemaps=sitemap_list, url=SITEMAP_URL)
@@ -304,129 +305,148 @@ def main():
     print("> Generating package pages...")
 
     page_count = 0
-    max_page_count = len(packages)
+    max_page_count = len(pkgs_list)
     db_conns = {}
 
     # Generate package index and version pages
-    for pkg in packages.values():
-        if pkg.should_update == False:
-            continue
-        pkg_dir = os.path.join(output_dir, 'pkgs', pkg.name)
-        clean_dir(pkg_dir)
-        os.makedirs(pkg_dir, exist_ok=True)
+    for src_pkg in packages:
+        src_dir = os.path.join(output_dir, 'pkgs', src_pkg)
+        related_pkg_list = []
+        should_update_src = False
+        for pkg in packages[src_pkg]:
+            if not should_update_src and packages[src_pkg][pkg].should_update == True:
+                should_update_src = True
+            related_pkg_list.append(packages[src_pkg][pkg].name)
+        related_pkg_list = sorted(related_pkg_list)
 
-        html_path = os.path.join(pkg_dir, 'index.html')
-        html_template = env.get_template('package.html.j2')
-        html_content = html_template.render(pkg=pkg, search_backend=SEARCH_BACKEND)
-        save_to(html_path, html_content)
+        # Generate source pkg index page if needed
+        if should_update_src:
+            os.makedirs(src_dir, exist_ok=True)
 
-        # Simple way to display progress.
-        page_count += 1
-        if (page_count % 100 == 0 or page_count == max_page_count):
-            print("Processed {}/{} package pages.".format(page_count, max_page_count))
+            source_package_index = env.get_template("source-package.html.j2")
+            source_package_index_html = source_package_index.render(name=src_pkg, children=packages[src_pkg])
+            save_to(os.path.join(src_dir, 'index.html'), source_package_index_html)
 
-        for release in pkg.releases.keys():
-            for branch in pkg.get_release(release).keys():
-                if branch == "base":
-                    release_branch = release
-                else:
-                    release_branch = "{}-{}".format(release, branch)
+        # Process subpackages
+        for pkg in packages[src_pkg].values():
+            if pkg.should_update == False:
+                continue
+            pkg_dir = os.path.join(src_dir, pkg.name)
+            clean_dir(pkg_dir)
+            os.makedirs(pkg_dir, exist_ok=True)
 
-                pkg_key = pkg.get_release(release)[branch]['pkg_key']
-                revision = pkg.get_release(release)[branch]['revision']
+            html_path = os.path.join(pkg_dir, 'index.html')
+            html_template = env.get_template('package.html.j2')
+            html_content = html_template.render(pkg=pkg, related_pkgs=related_pkg_list, search_backend=SEARCH_BACKEND)
+            save_to(html_path, html_content)
 
-                # Cache DB connections.
-                if release_branch in db_conns:
-                    filelist = db_conns[release_branch]["filelist"]
-                    other = db_conns[release_branch]["other"]
-                    primary = db_conns[release_branch]["primary"]
-                else:
-                    (_, filelist) = open_db(databases[release_branch]["filelists"])
-                    (_, other) = open_db(databases[release_branch]["other"])
-                    (_, primary) = open_db(databases[release_branch]["primary"])
+            # Simple way to display progress.
+            page_count += 1
+            if (page_count % 100 == 0 or page_count == max_page_count):
+                print("Processed {}/{} package pages.".format(page_count, max_page_count))
 
-                    db_conns[release_branch] = {
-                            "filelist": filelist,
-                            "other": other,
-                            "primary": primary
-                            }
+            for release in pkg.releases.keys():
+                for branch in pkg.get_release(release).keys():
+                    if branch == "base":
+                        release_branch = release
+                    else:
+                        release_branch = "{}-{}".format(release, branch)
 
-                # Generate files page for pkg.
-                # Create a nested object to represent the file tree
-                files = {}
-                for entry in filelist.execute('SELECT * FROM filelist WHERE pkgKey = ?', (pkg_key,)):
-                    filenames = entry["filenames"].split('/')
-                    filetype_index = 0
-                    for filename in filenames:
-                        try:
-                            filetype = entry["filetypes"][filetype_index]
-                        except Exception:
-                            filetype = '?'
+                    pkg_key = pkg.get_release(release)[branch]['pkg_key']
+                    revision = pkg.get_release(release)[branch]['revision']
 
-                        current = files
-                        for dir in entry["dirname"].split('/'):
-                            if dir != "":
-                                if dir not in current or type(current[dir]) == str:
-                                    current[dir] = {}
-                                current = current[dir]
+                    # Cache DB connections.
+                    if release_branch in db_conns:
+                        filelist = db_conns[release_branch]["filelist"]
+                        other = db_conns[release_branch]["other"]
+                        primary = db_conns[release_branch]["primary"]
+                    else:
+                        (_, filelist) = open_db(databases[release_branch]["filelists"])
+                        (_, other) = open_db(databases[release_branch]["other"])
+                        (_, primary) = open_db(databases[release_branch]["primary"])
 
-                        if filetype == 'd' and not filename in current:
-                            current[filename] = {}
-                        elif filetype != 'd':
-                            current[filename] = filetype
-                        filetype_index += 1
-                # Flatten and sort the files structure for jinja
-                files = gen_file_array(files)
+                        db_conns[release_branch] = {
+                                "filelist": filelist,
+                                "other": other,
+                                "primary": primary
+                                }
 
-                # Generate changelog page for pkg.
-                changelog = []
-                for change in other.execute('SELECT * FROM changelog WHERE pkgKey = ?', (pkg_key,)):
-                    # Make addresses less obvious to spot for spam bots.
-                    author = change["author"]
-                    if changelog_mail_pattern.search(change["author"]):
-                        addr = changelog_mail_pattern.findall(change["author"])[0]
-                        obfuscated_addr = addr.replace('@', ' at ').replace('.', ' dot ').replace('-', ' dash ')
-                        author = author.replace(addr, obfuscated_addr)
+                    # Generate files page for pkg.
+                    # Create a nested object to represent the file tree
+                    files = {}
+                    for entry in filelist.execute('SELECT * FROM filelist WHERE pkgKey = ?', (pkg_key,)):
+                        filenames = entry["filenames"].split('/')
+                        filetype_index = 0
+                        for filename in filenames:
+                            try:
+                                filetype = entry["filetypes"][filetype_index]
+                            except Exception:
+                                filetype = '?'
 
-                    changelog += [{
-                        "author": author,
-                        "timestamp": change["date"],
-                        "date": date.fromtimestamp(change["date"]),
-                        "change": change["changelog"]
-                        }]
+                            current = files
+                            for dir in entry["dirname"].split('/'):
+                                if dir != "":
+                                    if dir not in current or type(current[dir]) == str:
+                                        current[dir] = {}
+                                    current = current[dir]
 
-                # Generate provides list for pkg.
-                provides = []
-                for provide in primary.execute('SELECT name FROM provides where pkgkey = ? GROUP BY name', (pkg_key,)):
-                    provides.append(provide["name"])
+                            if filetype == 'd' and not filename in current:
+                                current[filename] = {}
+                            elif filetype != 'd':
+                                current[filename] = filetype
+                            filetype_index += 1
+                    # Flatten and sort the files structure for jinja
+                    files = gen_file_array(files)
 
+                    # Generate changelog page for pkg.
+                    changelog = []
+                    for change in other.execute('SELECT * FROM changelog WHERE pkgKey = ?', (pkg_key,)):
+                        # Make addresses less obvious to spot for spam bots.
+                        author = change["author"]
+                        if changelog_mail_pattern.search(change["author"]):
+                            addr = changelog_mail_pattern.findall(change["author"])[0]
+                            obfuscated_addr = addr.replace('@', ' at ').replace('.', ' dot ').replace('-', ' dash ')
+                            author = author.replace(addr, obfuscated_addr)
 
-                # Generate dependencies for pkg
-                requires = []
-                for require in primary.execute("""
-                    SELECT requires.flags, requires.version, requires.release, packages.name AS provides FROM requires
-                    INNER JOIN provides ON requires.name=provides.name
-                    INNER JOIN packages ON provides.pkgkey=packages.pkgkey
-                    WHERE requires.pkgkey = ?
-                    GROUP BY packages.name
-                    """, (pkg_key,)):
-                    flags = ""
-                    if require["flags"] == "EQ":
-                        flags = "="
-                    elif require["flags"] == "GE":
-                        flags = ">="
-                    elif require["flags"] == "GT":
-                        flags = ">"
-                    elif require["flags"] == "LE":
-                        flags = "<="
-                    elif require["flags"] == "LT":
-                        flags = "<"
-                    requires.append({ "requirement": require["provides"], "flags": flags, "version": require["version"], "release": require["release"], "can_link": bool(packages.get(require["provides"])) })
+                        changelog += [{
+                            "author": author,
+                            "timestamp": change["date"],
+                            "date": date.fromtimestamp(change["date"]),
+                            "change": change["changelog"]
+                            }]
 
-                html_path = os.path.join(pkg_dir, release_branch + ".html")
-                html_template = env.get_template("package-details.html.j2")
-                html_content = html_template.render(pkg=pkg, release=release, branch=branch, changelog=changelog, files=files, provides=provides, requires=requires, search_backend=SEARCH_BACKEND)
-                save_to(html_path, html_content)
+                    # Generate provides list for pkg.
+                    provides = []
+                    for provide in primary.execute('SELECT name FROM provides where pkgkey = ? GROUP BY name', (pkg_key,)):
+                        provides.append(provide["name"])
+
+                    # Generate dependencies for pkg
+                    requires = []
+                    for require in primary.execute("""
+                        SELECT requires.flags, requires.version, requires.release, packages.rpm_sourcerpm, packages.name AS provides FROM requires
+                        INNER JOIN provides ON requires.name=provides.name
+                        INNER JOIN packages ON provides.pkgkey=packages.pkgkey
+                        WHERE requires.pkgkey = ?
+                        GROUP BY packages.name
+                        """, (pkg_key,)):
+                        flags = ""
+                        if require["flags"] == "EQ":
+                            flags = "="
+                        elif require["flags"] == "GE":
+                            flags = ">="
+                        elif require["flags"] == "GT":
+                            flags = ">"
+                        elif require["flags"] == "LE":
+                            flags = "<="
+                        elif require["flags"] == "LT":
+                            flags = "<"
+                        require_srpm_name = do_regex(srpm_pattern, require["rpm_sourcerpm"])
+                        requires.append({ "requirement": require["provides"], "flags": flags, "version": require["version"], "release": require["release"], "can_link": bool(packages[require_srpm_name].get(require["provides"])), "srpm_name": require_srpm_name })
+
+                    html_path = os.path.join(pkg_dir, release_branch + ".html")
+                    html_template = env.get_template("package-details.html.j2")
+                    html_content = html_template.render(pkg=pkg, release=release, branch=branch, changelog=changelog, files=files, provides=provides, requires=requires, search_backend=SEARCH_BACKEND)
+                    save_to(html_path, html_content)
 
     print("DONE.")
     print("> {} packages processed.".format(page_count))
