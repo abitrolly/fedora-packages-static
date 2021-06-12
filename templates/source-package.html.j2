@@ -71,23 +71,19 @@
 			<hr>
 
 			<div>
-				{% if name in children %}
-				<p>
-					<h2><a href="./{{ name }}">Package {{ name }}</a></h2>
-					{{ children[name]['description'] }}
-				</p>
-				{% endif %}
 
-				{% if children|length > 1 %}
+
 				<h2>Subpackages</h2>
 				<ul>
+					{% if name in children %}
+					<li><b><a href="./{{ name }}">{{ name }}</a></b> - {{ children[name]['summary'] }}</li>
+					{% endif %}
 					{% for child in children %}
 					{% if children[child].name != name %}
 					<li><a href="./{{ children[child].name }}">{{ children[child].name }}</a> - {{ children[child].summary }}</li>
 					{% endif %}
 					{% endfor %}
 				</ul>
-				{% endif %}
 			</div>
 		</div>
 	</body>
