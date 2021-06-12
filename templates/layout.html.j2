@@ -1,25 +1,58 @@
 <!DOCTYPE html>
-<title>{% block title %}Fedora Packages{% endblock %}</title>
-<link rel="stylesheet" href="{{ link_prefix }}assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="{{ link_prefix }}assets/css/main.css">
-<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="utf-8">
+<html>
+  <head>
+    <title>{% block title %}Fedora Packages{% endblock %}</title>
+    <link rel="stylesheet" href="{{ link_prefix }}assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ link_prefix }}assets/css/main.css">
+    <link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+  </head>
 
-<div class="container">
-  <div class="p-3 justify-content-center row">
-    <a href="{{ link_prefix }}index.html">
-      <img src="{{ link_prefix }}assets/images/logo.png">
-    </a>
-  </div>
+  <body>
+    <div class="container">
+      {% if not full_header %}
+      <div class="p-3 justify-content-center row">
+        {% if no_link %}
+        <img src="{{ link_prefix }}assets/images/logo.png">
+        {% else %}
+        <a href="{{ link_prefix }}">
+          <img src="{{ link_prefix }}assets/images/logo.png">
+        </a>
+        {% endif %}
+      </div>
+      {% else %}
+      <div class="row">
+				<a href="{{ link_prefix }}" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="{{ link_prefix }}assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					{% if search_backend %}
+					<form class="w-100" action="/search" method="get">
+						<div class="form-row flex-grow-1">
+							<div class="col-md-8">
+								<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
+							</div>
+							<div class="col-md-4">
+								<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
+							</div>
+						</div>
+					</form>
+					{% endif %}
+				</div>
+			</div>
 
-  {% block content %}
-  {% endblock %}
+      <hr />
+      {% endif %}
 
-  <div class="text-muted text-center">
-    {% block footer %}
-    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>.</div>
-    {% endblock %}
-  </div>
-</div>
+      {% block content %}
+      {% endblock %}
 
+      <div class="text-muted text-center">
+        {% block footer %}
+        Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>.</div>
+        {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

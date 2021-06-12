@@ -1,161 +1,133 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>{{ pkg.name }} - Fedora Packages</title>
-		<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../../../assets/css/main.css">
-		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta charset="UTF-8">
-	</head>
-	<body>
-		<div class="container">
-			<div class="row">
-				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
-					<img src="../../../assets/images/logo.png">
-				</a>
-				<div class="col-md-6 d-flex align-items-center">
-					{% if search_backend %}
-					<form class="w-100" action="/search" method="get">
-						<div class="form-row flex-grow-1">
-							<div class="col-md-8">
-								<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
-							</div>
-							<div class="col-md-4">
-								<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
-							</div>
-						</div>
-					</form>
-					{% endif %}
-				</div>
-			</div>
+{% extends "layout.html.j2" %}
+{% set link_prefix = "../../../" %}
+{% set full_header = True %}
 
-			<hr />
+{% block title %}{{ pkg.name }} - Fedora Packages{% endblock %}
 
-			<h1>
-				{{ pkg.name }}
-				{% if pkg.name != pkg.source %}
-				<small class="text-muted">Subpackage of <a href="../">{{ pkg.source }}</a></small>
-				{% endif %}
-			</h1>
-			<p class="text-muted">{{ pkg.summary }}</p>
-			<ul class="list-group list-group-horizontal-lg">
-				<li class="list-group-item w-100">
-					<a href="https://bodhi.fedoraproject.org/updates/?packages={{ pkg.source }}">
-						<img src="../../../assets/images/16_bodhi.png" height="16" width="16">
-						Bodhi
-					</a>
-				</li>
-				<li class="list-group-item w-100">
-					<a href="https://bugzilla.redhat.com/buglist.cgi?component={{ pkg.source }}&query_format=advanced&product=Fedora&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED">
-						<img src="../../../assets/images/16_bugzilla.png" height="16" width="16">
-						Bugzilla
-					</a>
-				</li>
-				<li class="list-group-item w-100">
-					<a href="https://retrace.fedoraproject.org/faf/problems/?component_names={{ pkg.source }}">
-						<img src="../../../assets/images/16_abrt.png" height="16" width="16">
-						FAF
-					</a>
-				</li>
-				<li class="list-group-item w-100">
-					<a href="http://koji.fedoraproject.org/koji/search?match=glob&type=package&terms={{ pkg.source }}">
-						<img src="../../../assets/images/16_koji.png" height="16" width="16">
-						Koji
-					</a>
-				</li>
-				<li class="list-group-item w-100">
-					<a href="https://src.fedoraproject.org/rpms/{{ pkg.source }}">
-						<img src="../../../assets/images/git-logo.png" height="16" width="16">
-						SCM
-					</a>
-				</li>
-			</ul>
-			{% if pkg.description %}
-			<p>{{ pkg.description }}</p>
-			{% endif %}
-			<div id="vue">
-				<hr />
-				<div class="row">
-					<div class="col-md-8">
-						<h3>Releases Overview</h3>
-						<table class="table table-striped table-borderless" id="version-table">
-							<thead>
-								<tr>
-									<th scope="col">Release</th>
-									<th scope="col">Stable</th>
-									<th scope="col">Testing</th>
-								</tr>
-							</thead>
-							<tbody>
-								{% for release in pkg.releases | sort(reverse = True) %}
-								<tr scope="row">
-									<td>{{ pkg.releases[release]["human_name"] }}</td>
-									<td>
-									{% if pkg.get_release(release)["updates"] %}
-									<a href="{{ release }}-updates.html">{{ pkg.get_release(release)["updates"]['revision'] }}</a>
-									{% elif pkg.get_release(release)["base"] %}
-									<a href="{{ release }}.html">{{ pkg.get_release(release)["base"]['revision'] }}</a>
-									{% else %}
-										-
-									{% endif %}
-									</td>
+{% block content %}
+<h1>
+	{{ pkg.name }}
+	{% if pkg.name != pkg.source %}
+	<small class="text-muted">Subpackage of <a href="../">{{ pkg.source }}</a></small>
+	{% endif %}
+</h1>
+<p class="text-muted">{{ pkg.summary }}</p>
+<ul class="list-group list-group-horizontal-lg">
+	<li class="list-group-item w-100">
+		<a href="https://bodhi.fedoraproject.org/updates/?packages={{ pkg.source }}">
+			<img src="{{ link_prefix }}assets/images/16_bodhi.png" height="16" width="16">
+			Bodhi
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="https://bugzilla.redhat.com/buglist.cgi?component={{ pkg.source }}&query_format=advanced&product=Fedora&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED">
+			<img src="{{ link_prefix }}assets/images/16_bugzilla.png" height="16" width="16">
+			Bugzilla
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="https://retrace.fedoraproject.org/faf/problems/?component_names={{ pkg.source }}">
+			<img src="{{ link_prefix }}assets/images/16_abrt.png" height="16" width="16">
+			FAF
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="http://koji.fedoraproject.org/koji/search?match=glob&type=package&terms={{ pkg.source }}">
+			<img src="{{ link_prefix }}assets/images/16_koji.png" height="16" width="16">
+			Koji
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="https://src.fedoraproject.org/rpms/{{ pkg.source }}">
+			<img src="{{ link_prefix }}assets/images/git-logo.png" height="16" width="16">
+			SCM
+		</a>
+	</li>
+</ul>
+{% if pkg.description %}
+<p>{{ pkg.description }}</p>
+{% endif %}
+<div id="vue">
+	<hr />
+	<div class="row">
+		<div class="col-md-8">
+			<h3>Releases Overview</h3>
+			<table class="table table-striped table-borderless" id="version-table">
+				<thead>
+					<tr>
+						<th scope="col">Release</th>
+						<th scope="col">Stable</th>
+						<th scope="col">Testing</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for release in pkg.releases | sort(reverse = True) %}
+					<tr scope="row">
+						<td>{{ pkg.releases[release]["human_name"] }}</td>
+						<td>
+						{% if pkg.get_release(release)["updates"] %}
+						<a href="{{ release }}-updates.html">{{ pkg.get_release(release)["updates"]['revision'] }}</a>
+						{% elif pkg.get_release(release)["base"] %}
+						<a href="{{ release }}.html">{{ pkg.get_release(release)["base"]['revision'] }}</a>
+						{% else %}
+							-
+						{% endif %}
+						</td>
 
-									<td>
-									{% if pkg.get_release(release)["updates-testing"] %}
-									<a href="{{ release }}-updates-testing.html">{{ pkg.get_release(release)["updates-testing"]['revision'] }}</a>
-									{% else %}
-										-
-									{% endif %}
-									</td>
-								</tr>
-								{% endfor %}
-							</tbody>
-						</table>
-						<datagrepper></datagrepper>
-					</div>
-					<div class="col-md-4 order-first order-md-0">
-						<b>Package Info</b>
-						<ul>
-							<li>Upstream: <a href="{{ pkg.upstream }}">{{ pkg.upstream }}</a></li>
-							<li>License(s): {{ pkg.license }}</li>
-							{% if pkg.maintainers | length == 1 %}
-							<li>Maintainer:{% for fas in pkg.maintainers %} {{ fas }}{% endfor %}</li>
-							{% else %}
-							<li>Maintainers:{% for fas in pkg.maintainers %} {{ fas }}{{ "," if not loop.last }}{% endfor %}</li>
-							{% endif %}
-						</ul>
-						{% if related_pkgs | length > 1 %}
-						<hr />
-						<b>Related Packages</b>
-						<ul>
-						{% set count = namespace(value=0) %}
-						{% for related_pkg in related_pkgs %}
-						{% if related_pkg != pkg.name and pkg.source == related_pkg %}
-						<li><b><a href="../{{ related_pkg }}">{{ related_pkg }}</a></b></li>
-						{% set count.value = count.value + 1 %}
+						<td>
+						{% if pkg.get_release(release)["updates-testing"] %}
+						<a href="{{ release }}-updates-testing.html">{{ pkg.get_release(release)["updates-testing"]['revision'] }}</a>
+						{% else %}
+							-
 						{% endif %}
-						{% endfor %}
-						{% for related_pkg in related_pkgs %}
-						{% if related_pkg != pkg.name and count.value < 5 %}
-						<li><a href="../{{ related_pkg }}">{{ related_pkg }}</a></li>
-						{% set count.value = count.value + 1 %}
-						{% elif count.value == 5 %}
-						<li><a href="..">View More &raquo;</a></li>
-						{% set count.value = count.value + 1 %}
-						{% endif %}
-						{% endfor %}
-						</ul>
-						{% endif %}
-						<hr />
-						<p>
-						You can contact the maintainers of this package via email at
-						<code>{{ pkg.source }} dash maintainers at fedoraproject dot org</code>.
-						</p>
-					</div>
-				</div>
-			</div>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<datagrepper></datagrepper>
 		</div>
-	</body>
-	<script src="../../../../assets/js/main.js"></script>
-</html>
+		<div class="col-md-4 order-first order-md-0">
+			<b>Package Info</b>
+			<ul>
+				<li>Upstream: <a href="{{ pkg.upstream }}">{{ pkg.upstream }}</a></li>
+				<li>License(s): {{ pkg.license }}</li>
+				{% if pkg.maintainers | length == 1 %}
+				<li>Maintainer:{% for fas in pkg.maintainers %} {{ fas }}{% endfor %}</li>
+				{% else %}
+				<li>Maintainers:{% for fas in pkg.maintainers %} {{ fas }}{{ "," if not loop.last }}{% endfor %}</li>
+				{% endif %}
+			</ul>
+			{% if related_pkgs | length > 1 %}
+			<hr />
+			<b>Related Packages</b>
+			<ul>
+			{% set count = namespace(value=0) %}
+			{% for related_pkg in related_pkgs %}
+			{% if related_pkg != pkg.name and pkg.source == related_pkg %}
+			<li><b><a href="../{{ related_pkg }}">{{ related_pkg }}</a></b></li>
+			{% set count.value = count.value + 1 %}
+			{% endif %}
+			{% endfor %}
+			{% for related_pkg in related_pkgs %}
+			{% if related_pkg != pkg.name and related_pkg != pkg.source and count.value < 5 %}
+			<li><a href="../{{ related_pkg }}">{{ related_pkg }}</a></li>
+			{% set count.value = count.value + 1 %}
+			{% elif count.value == 5 %}
+			<li><a href="..">View More &raquo;</a></li>
+			{% set count.value = count.value + 1 %}
+			{% endif %}
+			{% endfor %}
+			</ul>
+			{% endif %}
+			<hr />
+			<p>
+			You can contact the maintainers of this package via email at
+			<code>{{ pkg.source }} dash maintainers at fedoraproject dot org</code>.
+			</p>
+		</div>
+	</div>
+</div>
+
+<script src="{{ link_prefix }}assets/js/main.js"></script>
+{% endblock %}

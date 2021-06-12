@@ -1,139 +1,108 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>{{ pkg.name }}-{{ pkg.get_release(release)[branch]['revision'] }} - Fedora Packages</title>
-		<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../../../assets/css/main.css">
-		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta charset="UTF-8">
-	</head>
-	<body>
-		<div class="container">
-			<div class="row">
-				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
-					<img src="../../../assets/images/logo.png">
-				</a>
-				<div class="col-md-6 d-flex align-items-center">
-					{% if search_backend %}
-					<form class="w-100" action="/search" method="get">
-						<div class="form-row flex-grow-1">
-							<div class="col-md-8">
-								<input class="form-control" type="search" placeholder="Search" name="query" aria-label="Search">
-							</div>
-							<div class="col-md-4">
-								<button class="btn btn-primary btn-block" type="submit">Search &raquo;</button>
-							</div>
-						</div>
-					</form>
-					{% endif %}
-				</div>
-			</div>
+{% extends "layout.html.j2" %}
+{% set link_prefix = "../../../" %}
+{% set full_header = True %}
 
-			<hr />
+{% block title %}{{ pkg.name }}-{{ pkg.get_release(release)[branch]['revision'] }} - Fedora Packages{% endblock %}
 
-			<h1>
-				{{ pkg.name }}-{{ pkg.get_release(release)[branch]['revision'] }}<small class="text-muted"> in {{ pkg.releases[release]['human_name'] }}</small>
-			</h1>
-			<p>
-				<a href=".">&crarr; Retrun to the main page of {{ pkg.name }}</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms={{ pkg.source }}-{{ pkg.get_release(release)[branch]['revision'] }}">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search={{ pkg.source }}-{{ pkg.get_release(release)[branch]['revision'] }}">Search Bodhi</a>
-			</p>
+{% block content %}
+<h1>
+	{{ pkg.name }}-{{ pkg.get_release(release)[branch]['revision'] }}<small class="text-muted"> in {{ pkg.releases[release]['human_name'] }}</small>
+</h1>
+<p>
+	<a href=".">&crarr; Retrun to the main page of {{ pkg.name }}</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms={{ pkg.source }}-{{ pkg.get_release(release)[branch]['revision'] }}">View in Koji</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search={{ pkg.source }}-{{ pkg.get_release(release)[branch]['revision'] }}">Search Bodhi</a>
+</p>
 
-			<p>
-				{% if pkg.get_release(release)[branch]['arch'] != 'noarch' %}
-				<b>Package Info <span class="text-muted">(Data from {{ pkg.get_release(release)[branch]['arch'] }} build)</span></b><br>
-				{% else %}
-				<b>Package Info</b><br>
-				{% endif %}
-				<a href="#changelog">🠗 Changelog</a><br>
-				{% if requires|length != 0 %}
-				<a href="#dependencies">🠗 Dependencies</a><br>
-				{% endif %}
-				{% if provides|length != 0 %}
-				<a href="#provides">🠗 Provides</a><br>
-				{% endif %}
-				{% if files|length != 0 %}
-				<a href="#files">🠗 Files</a><br>
-				{% endif %}
-			</p>
+<p>
+	{% if pkg.get_release(release)[branch]['arch'] != 'noarch' %}
+	<b>Package Info <span class="text-muted">(Data from {{ pkg.get_release(release)[branch]['arch'] }} build)</span></b><br>
+	{% else %}
+	<b>Package Info</b><br>
+	{% endif %}
+	<a href="#changelog">🠗 Changelog</a><br>
+	{% if requires|length != 0 %}
+	<a href="#dependencies">🠗 Dependencies</a><br>
+	{% endif %}
+	{% if provides|length != 0 %}
+	<a href="#provides">🠗 Provides</a><br>
+	{% endif %}
+	{% if files|length != 0 %}
+	<a href="#files">🠗 Files</a><br>
+	{% endif %}
+</p>
 
-			<h2 id="changelog">Changelog</h2>
-			<div class="table-responsive">
-				<table class="table table-striped table-borderless ">
-					<thead>
-						<tr>
-							<th scope="col">Date</th>
-							<th scope="col">Author</th>
-							<th scope="col">Change</th>
-						</tr>
-					</thead>
-					{% for entry in changelog|sort(attribute="timestamp", reverse=True) %}
-					<tr scope="row">
-						<td>{{ entry.date }}</td>
-						<td>{{ entry.author }}</td>
-						<td>{{ entry.change }}</td>
-					</tr>
-					{% endfor %}
-					<tbody>
-					</tbody>
-				</table>
-			</div>
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		{% for entry in changelog|sort(attribute="timestamp", reverse=True) %}
+		<tr scope="row">
+			<td>{{ entry.date }}</td>
+			<td>{{ entry.author }}</td>
+			<td>{{ entry.change }}</td>
+		</tr>
+		{% endfor %}
+		<tbody>
+		</tbody>
+	</table>
+</div>
 
-			<div class="row">
-				{% if requires|length != 0 %}
-				<div class="col">
-					<h2 id="dependencies">Dependencies</h2>
-					<ul>
-						{% for require in requires %}
-						<li>
-						{% if require.can_link %}
-						<a href="/pkgs/{{ require.srpm_name }}/{{ require.requirement }}/{{ release }}.html">
-						{% endif %}
-						{% if require.version and require.release %}
-						{{ require.requirement }}{{ '</a>' if require.can_link }} {{ require.flags }} {{ require.version }}-{{ require.release }}
-						{% elif require.version %}
-						{{ require.requirement }}{{ '</a>' if require.can_link }} {{ require.flags }} {{ require.version }}
-						{% else %}
-						{{ require.requirement }}{{ '</a>' if require.can_link }}
-						{% endif %}
-
-						</li>
-						{% endfor %}
-					</ul>
-				</div>
-				{% endif %}
-				{% if provides|length != 0 %}
-				<div class="col">
-					<h2 id="provides">Provides</h2>
-					<ul>
-						{% for provide in provides %}
-						<li>{{ provide }}</li>
-						{% endfor %}
-					</ul>
-				</div>
-				{% endif %}
-			</div>
-
-			{% if files|length != 0 %}
-			<h2 id="files">Files</h2>
-
-			<div class="tree">
-				<ul>
-				{% for file in files %}
-				{% if file['control'] == 'file' %}
-				<li>{{ file['name'] }}</li>
-				{% elif file['control'] == 'dir' %}
-				<li>{{ file['name'] }}/<ul>
-				{% elif file['control'] == 'exit-list' %}
-				</ul></li>
-				{% endif %}
-				{% endfor %}
-			</div>
+<div class="row">
+	{% if requires|length != 0 %}
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			{% for require in requires %}
+			<li>
+			{% if require.can_link %}
+			<a href="/pkgs/{{ require.srpm_name }}/{{ require.requirement }}/{{ release }}.html">
 			{% endif %}
-		</div>
-	</body>
-</html>
+			{% if require.version and require.release %}
+			{{ require.requirement }}{{ '</a>' if require.can_link }} {{ require.flags }} {{ require.version }}-{{ require.release }}
+			{% elif require.version %}
+			{{ require.requirement }}{{ '</a>' if require.can_link }} {{ require.flags }} {{ require.version }}
+			{% else %}
+			{{ require.requirement }}{{ '</a>' if require.can_link }}
+			{% endif %}
 
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+	{% if provides|length != 0 %}
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			{% for provide in provides %}
+			<li>{{ provide }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+</div>
 
+{% if files|length != 0 %}
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	{% for file in files %}
+	{% if file['control'] == 'file' %}
+	<li>{{ file['name'] }}</li>
+	{% elif file['control'] == 'dir' %}
+	<li>{{ file['name'] }}/<ul>
+	{% elif file['control'] == 'exit-list' %}
+	</ul></li>
+	{% endif %}
+	{% endfor %}
+</div>
+{% endif %}
+{% endblock %}
