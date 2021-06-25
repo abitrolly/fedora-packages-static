@@ -15,7 +15,7 @@
     </analyzer>
     <analyzer type="query">
       <tokenizer class="solr.WhitespaceTokenizerFactory"/>
-      <filter class="solr.WordDelimiterGraphFilterFactory" />
+      <filter class="solr.WordDelimiterGraphFilterFactory" preserveOriginal="1" />
       <filter class="solr.LowerCaseFilterFactory"/>
     </analyzer>
   </fieldType>
@@ -46,11 +46,15 @@
   <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
   <fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
 
-  <field name="id" type="string" indexed="true" stored="true" multiValued="false" required="true"/>
-  <field name="name" type="nameText" indexed="true" stored="true" required="true" multiValued="false"/>
-
+  <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" />   
   <uniqueKey>id</uniqueKey>
-  <copyField source="id" dest="name"/>
 
-  <field name="description" type="string" indexed="false" stored="true" />
+  <!-- Package name-->
+  <field name="name" type="nameText" indexed="true" stored="true" multiValued="false" required="true"/>
+  <!-- source package name-->
+  <field name="srcName" type="string" indexed="true" stored="true" multiValued="false" required="true"/>
+  <!-- Package summary -->
+  <field name="summary" type="string" indexed="false" stored="true" multiValued="false" />
+  <!-- Releases package is in -->
+  <field name="releases" type="string" indexed="false" stored="true" multiValued="true" />
 </schema>
