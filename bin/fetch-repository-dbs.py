@@ -91,8 +91,12 @@ def index_db(name, tempdb):
 
 # Adds a table named 'changes' listing if certian packages were changed,
 #  added, or deleted.
-def gen_db_diff(name, new, old):
+def gen_db_diff(name, new, old, regen_all):
     if not os.path.isfile(old) or not new.endswith('primary.sqlite'):
+        return
+
+    # If we want to regen all, then just don't make changes tables
+    if regen_all:
         return
 
     print(f'{name.ljust(padding)} Creating diff for file: {old}')
@@ -166,7 +170,7 @@ def install_db(name, src, dest):
     print(f'{name.ljust(padding)} Installing {src} to {dest}.')
     shutil.move(src, dest)
 
-def handle(repo, target_dir):
+def handle(repo, target_dir, db_removed):
     url, name = repo
     repomd_url = f'{url}/repomd.xml'
     response = requests.get(repomd_url, verify=DL_VERIFY)
@@ -228,7 +232,7 @@ def handle(repo, target_dir):
             download_db(name, repomd_url, archive)
             decompress_db(name, archive, tempdb)
             index_db(name, tempdb)
-            gen_db_diff(name, tempdb, destfile)
+            gen_db_diff(name, tempdb, destfile, db_removed)
             install_db(name, tempdb, destfile)
 
 def get_repository_urls_for(product, version):
@@ -282,9 +286,23 @@ def main():
 
     print("Found: " + str(list(map(lambda p: p[1], repositories))))
 
+    # Delete db files for inactive releases. If a db is deleted, all pages will be regenerated.
+    db_removed = False
+    for filename in os.listdir(args.target_dir):
+        file_from_active_release = False
+        for repo in repositories:
+            if filename.find(repo[1]) != -1:
+                file_from_active_release = True
+                break
+        
+        if not file_from_active_release:
+            os.remove(os.path.join(args.target_dir, filename))
+            # this will trigger a full regen
+            db_removed = True
+
     # Fetch repository databases.
     for repo in repositories:
-        handle(repo, args.target_dir)
+        handle(repo, args.target_dir, db_removed)
 
 if __name__ == '__main__':
     main()
