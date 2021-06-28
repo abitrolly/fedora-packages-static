@@ -40,6 +40,7 @@ To run fedora-packages-static with functioning search:
 
 ```bash
 mkdir container_folder public_html
+docker-compose build
 docker-compose up
 ```
 
