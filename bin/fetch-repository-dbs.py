@@ -10,6 +10,8 @@ import argparse
 import hashlib
 import sys
 import tqdm
+from dnf.subject import Subject
+import hawkey
 
 repomd_xml_namespace = {
     'repo': 'http://linux.duke.edu/metadata/repo',
@@ -85,7 +87,15 @@ def index_db(name, tempdb):
 
     if tempdb.endswith('primary.sqlite'):
         conn = sqlite3.connect(tempdb)
+        conn.row_factory = sqlite3.Row
         conn.execute('CREATE INDEX packageSource ON packages (rpm_sourcerpm)')
+        conn.commit()
+        # Insert source package name field for diff creation
+        conn.execute('ALTER TABLE packages ADD rpm_sourcerpm_name TEXT')
+        for package_info in conn.execute('SELECT * FROM packages'):
+            subject = Subject(package_info["rpm_sourcerpm"])
+            nevra = subject.get_nevra_possibilities(forms=hawkey.FORM_NEVRA)
+            conn.execute("UPDATE packages SET rpm_sourcerpm_name = ? WHERE pkgKey = ?", [nevra[0].name, package_info["pkgKey"]])
         conn.commit()
         conn.close()
 
@@ -111,48 +121,48 @@ def gen_db_diff(name, new, old, regen_all):
         CREATE TABLE changes (
             name TEXT NOT NULL,
             arch TEXT NOT NULL,
-            rpm_sourcerpm TEXT NOT NULL,
+            rpm_sourcerpm_name TEXT NOT NULL,
             version TEXT,
             change TEXT NOT NULL,
-            UNIQUE(name, arch, rpm_sourcerpm) ON CONFLICT IGNORE
+            UNIQUE(name, arch, rpm_sourcerpm_name) ON CONFLICT IGNORE
         )
         ''')
     # Insert added packages list to changes table
     conn.execute('''
-        INSERT INTO changes (name, arch, rpm_sourcerpm, version, change)
-        SELECT main.packages.name, main.packages.arch, main.packages.rpm_sourcerpm,
+        INSERT INTO changes (name, arch, rpm_sourcerpm_name, version, change)
+        SELECT main.packages.name, main.packages.arch, main.packages.rpm_sourcerpm_name,
             IIF(main.packages.epoch IS NOT NULL, main.packages.epoch || ':', '') ||
                 main.packages.version || '-' || main.packages.release || '.' || main.packages.arch,
             'added'
         FROM main.packages LEFT JOIN old.packages ON main.packages.name = old.packages.name
-            AND main.packages.arch = old.packages.arch
+            AND main.packages.arch = old.packages.arch AND main.packages.rpm_sourcerpm_name = old.packages.rpm_sourcerpm_name
         WHERE old.packages.name IS NULL
         ''')
     # Insert removed packages list to changes table
     conn.execute('''
-        INSERT INTO changes (name, arch, rpm_sourcerpm, version, change)
-        SELECT old.packages.name, old.packages.arch, old.packages.rpm_sourcerpm,
+        INSERT INTO changes (name, arch, rpm_sourcerpm_name, version, change)
+        SELECT old.packages.name, old.packages.arch, old.packages.rpm_sourcerpm_name,
             IIF(old.packages.epoch IS NOT NULL, old.packages.epoch || ':', '') ||
                 old.packages.version || '-' || old.packages.release,
             'removed'
         FROM old.packages LEFT JOIN main.packages ON main.packages.name = old.packages.name
-            AND main.packages.arch = old.packages.arch
+            AND main.packages.arch = old.packages.arch AND main.packages.rpm_sourcerpm_name = old.packages.rpm_sourcerpm_name
         WHERE main.packages.name IS NULL
         ''')
     # Insert changed packages list to changes table
     conn.execute('''
-        INSERT INTO changes (name, arch, rpm_sourcerpm, change)
-        SELECT name, arch, 'updated' FROM
-            (SELECT main.packages.name, main.packages.arch, main.packages.rpm_sourcerpm,
+        INSERT INTO changes (name, arch, rpm_sourcerpm_name, change)
+        SELECT name, arch, rpm_sourcerpm_name, 'updated' FROM
+            (SELECT main.packages.name, main.packages.arch, main.packages.rpm_sourcerpm_name,
                 IIF(main.packages.epoch IS NOT NULL, main.packages.epoch || ':', '') ||
                 main.packages.version || '-' || main.packages.release || '.' || main.packages.arch
             FROM main.packages
             UNION
-            SELECT old.packages.name, old.packages.arch, old.packages.rpm_sourcerpm,
+            SELECT old.packages.name, old.packages.arch, old.packages.rpm_sourcerpm_name,
                 IIF(old.packages.epoch IS NOT NULL, old.packages.epoch || ':', '') ||
                 old.packages.version || '-' || old.packages.release || '.' || old.packages.arch
             FROM old.packages)
-        GROUP BY name, arch
+        GROUP BY name, arch, rpm_sourcerpm_name
         HAVING COUNT(*) > 1
         ''')
     conn.commit()
@@ -294,7 +304,7 @@ def main():
             if filename.find(repo[1]) != -1:
                 file_from_active_release = True
                 break
-        
+
         if not file_from_active_release:
             os.remove(os.path.join(args.target_dir, filename))
             # this will trigger a full regen
