@@ -193,7 +193,7 @@ def main():
                 pkg.source = srpm_name
 
             # Override package metadata with rawhide (= lastest) values.
-            if first_pkg_encounter or release_branch == "rawhide":
+            if first_pkg_encounter or release_branch == "fedora-rawhide":
                 pkg.summary = raw["summary"]
                 pkg.description = raw["description"]
                 pkg.upstream = raw["url"]
