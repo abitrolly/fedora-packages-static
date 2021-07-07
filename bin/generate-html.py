@@ -145,7 +145,6 @@ def main():
     packages = {}
     partial_update = False
     removed_packages = set()
-    srpm_pattern = re.compile("^(.+)-.+-.+.src.rpm$")
     changelog_mail_pattern = re.compile("<(.+@.+)>")
     release_branch_pattern = re.compile("^([fedora|epel]+-[\w|\d]+)-?([a-z|-]+)?$")
     for release_branch in databases.keys():
@@ -165,14 +164,13 @@ def main():
 
         partial_update_packages = []
         if partial_update:
-            primary.execute('SELECT name, rpm_sourcerpm FROM changes')
+            primary.execute('SELECT name, rpm_sourcerpm_name FROM changes')
             for row in primary.fetchall():
-                srpm_name = do_regex(srpm_pattern, row["rpm_sourcerpm"])
-                partial_update_packages.append((srpm_name, row['name']))
+                partial_update_packages.append((row["rpm_sourcerpm_name"], row['name']))
 
         for raw in primary.execute('SELECT * FROM packages'):
             # Get source rpm name
-            srpm_name = do_regex(srpm_pattern, raw["rpm_sourcerpm"])
+            srpm_name = raw["rpm_sourcerpm_name"]
 
             # Check if package is already data structure
             src_pkg = packages.get(srpm_name)
@@ -224,9 +222,8 @@ def main():
 
         # Get removed packages to determine if folder needs to be deleted later
         if partial_update:
-            for removed in primary.execute("SELECT name, rpm_sourcerpm FROM changes WHERE change = 'removed'"):
-                srpm_name = do_regex(srpm_pattern, removed["rpm_sourcerpm"])
-                removed_packages.add((srpm_name, removed["name"]))
+            for removed in primary.execute("SELECT name, rpm_sourcerpm_name FROM changes WHERE change = 'removed'"):
+                removed_packages.add((removed["rpm_sourcerpm_name"], removed["name"]))
 
     # If a package was removed and it was not in any repository, attempt to
     # delete the folder from the target directory
@@ -423,7 +420,7 @@ def main():
                     # Generate dependencies for pkg
                     requires = []
                     for require in primary.execute("""
-                        SELECT requires.flags, requires.version, requires.release, packages.rpm_sourcerpm, packages.name AS provides FROM requires
+                        SELECT requires.flags, requires.version, requires.release, packages.rpm_sourcerpm_name, packages.name AS provides FROM requires
                         INNER JOIN provides ON requires.name=provides.name
                         INNER JOIN packages ON provides.pkgkey=packages.pkgkey
                         WHERE requires.pkgkey = ?
@@ -440,7 +437,7 @@ def main():
                             flags = "<="
                         elif require["flags"] == "LT":
                             flags = "<"
-                        require_srpm_name = do_regex(srpm_pattern, require["rpm_sourcerpm"])
+                        require_srpm_name = require["rpm_sourcerpm_name"]
                         requires.append({ "requirement": require["provides"], "flags": flags, "version": require["version"], "release": require["release"], "can_link": bool(packages[require_srpm_name].get(require["provides"])), "srpm_name": require_srpm_name })
 
                     html_path = os.path.join(pkg_dir, release_branch + ".html")
