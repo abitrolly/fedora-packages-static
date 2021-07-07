@@ -37,7 +37,7 @@
 		{% if results['spellcheck'] and results.spellcheck.collations[1] %}
 		<div>
 			<p>Did you mean <b>
-				<a href="/search?query={{results.spellcheck.collations[1]}}">
+				<a href="/search?{{ modify_query(qdict, query=results.spellcheck.collations[1]) }}">
 					{{results.spellcheck.collations[1]}}</a></b>?
 			</p>
 		</div>
@@ -51,23 +51,40 @@
 		</div>
 		{% endif %}
 
-		{% for result in results.response.docs %}
-		<div class="position-relative">
-			<a class="stretched-link"
-				href="/pkgs/{{ result.name }}">
-				<h3>{{ result.name }}</h3>
-			</a>
-			<p>{{ result.description }}</p>
+		<div class="row">
+			<div class="col-md-8">
+				{% for result in results.response.docs %}
+				<div class="position-relative h5">
+				<a class="stretched-link"
+					href="/pkgs/{{ result.srcName }}/{{ result.name }}">
+					<span>{{ result.name }}</span></a> - {{ result.summary }}
+				</div>
+				{% endfor %}
+			</div>
+			<div class="col-md-4 order-first order-md-0">
+				<b>Filter</b>
+				<ul>
+					{% for release in results["facet_counts"]["facet_fields"]["releases"] %}
+					{% if loop.index % 2 == 1 %}
+					<li>
+						<a href="/search?{{ modify_query(qdict, releases=release, start=0) }}">
+							<input class="form-check-input" type="checkbox" {{ "checked" if release in qdict["releases"] }}>
+							<span class="form-check-label" for="check-{{ loop.index }}">{{ release }} ({{ loop.nextitem }})</span>
+						</a>
+					</li>
+					{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
 		</div>
-		{% endfor %}
 
-		{% if results.response.numFound > 10 %}
+		{% if results.response.numFound > 20 %}
 		<div>
-			{% if results['responseHeader']['params']['start']|int >= 10 %}
-			<a class="float-left" href="/search?query={{ results['responseHeader']['params']['q'] }}&start={{ results['responseHeader']['params']['start']|int - 10 }}">&laquo; Previous Page</a>
+			{% if results['responseHeader']['params']['start']|int >= 20 %}
+			<a class="float-left" href="/search?{{ modify_query(qdict, start=(results['responseHeader']['params']['start']|int - 20)) }}">&laquo; Previous Page</a>
 			{% endif %}
-			{% if results.response.numFound - results['responseHeader']['params']['start']|int > 10 %}
-			<a class="float-right" href="/search?query={{ results['responseHeader']['params']['q'] }}&start={{ results['responseHeader']['params']['start']|int + 10 }}">Next Page &raquo;</a>
+			{% if results.response.numFound - results['responseHeader']['params']['start']|int > 20 %}
+			<a class="float-right" href="/search?{{ modify_query(qdict, start=(results['responseHeader']['params']['start']|int + 20)) }}">Next Page &raquo;</a>
 			{% endif %}
 		</div>
 		{% endif %}

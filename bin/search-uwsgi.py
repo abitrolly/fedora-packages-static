@@ -2,12 +2,12 @@
 # uwsgi script to show search results
 
 # from wsgiref.simple_server import make_server
-from urllib.parse import parse_qs
+from urllib.parse import parse_qs, urlencode, quote
 from jinja2 import Environment, PackageLoader, select_autoescape
 from os import environ
 from sys import exc_info
-from urllib.parse import quote
 from requests import get
+from copy import deepcopy
 
 SOLR_URL=environ.get('SOLR_URL')
 SOLR_CORE=environ.get('SOLR_CORE')
@@ -29,22 +29,53 @@ def application(params, start_response):
     query = quote(query)
 
     try:
-        start = d.get('start', [''])[0]
+        start = d.get('start', [0])[0]
         start = int(start)
     except:
         start = 0
 
     try:
-        query_res = get(f"{SOLR_URL}solr/{SOLR_CORE}/select?defType=simple&start={start}&q={query}")
+        query = {
+            "defType": "simple",
+            "facet": "true",
+            "facet.field": "releases",
+            "rows": 20,
+            "start": start,
+            "q": query,
+            "fq": []
+        }
+
+        for release in d.get('releases', []):
+            query["fq"].append(f"releases:\"{release}\"")
+
+        query_res = get(f"{SOLR_URL}solr/{SOLR_CORE}/select?{urlencode(query, True)}")
     except:
         print("Solr request error: ", str(exc_info()[0]))
         start_response('500 Internal Server Error', [('Content-Type','text/html')])
         return [b'Error communicating with Solr']
 
     if query_res.ok:
-        results_html = search_results.render(results=query_res.json())
+        results_html = search_results.render(results=query_res.json(), qdict=d, modify_query=modify_query)
         start_response('200 OK', [('Content-Type','text/html')])
         return [bytes(results_html, 'utf-8')]
     else:
         start_response('500 Internal Server Error', [('Content-Type','text/html')])
         return [b'Solr query error']
+
+def modify_query(qdict, **new_values):
+    finaldict = deepcopy(qdict)
+    for key, value in new_values.items():
+        # if faceting, remove if found otherwise add
+        if key == "releases":
+            if key not in finaldict:
+                finaldict[key] = []
+
+            try:
+                index = finaldict[key].index(value)
+                finaldict[key].pop(index)
+            except ValueError:
+                finaldict[key].append(value)
+        else:
+            finaldict[key] = value
+
+    return urlencode(finaldict, True)
