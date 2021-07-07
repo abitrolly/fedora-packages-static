@@ -14,9 +14,9 @@ help:
 	@echo "update-solr: update solr index. must have SOLR_CORE and SOLR_URL defined"
 
 ifneq (,$(wildcard vue/node_modules))
-all: sync-repositories fetch-data html js
+all: sync-repositories fetch-data js html
 else
-all: sync-repositories fetch-data html setup-js js
+all: sync-repositories fetch-data setup-js js html
 endif
 
 html-only: sync-repositories fetch-data html
@@ -39,12 +39,12 @@ html:
 	bin/generate-html.py --target-dir $(OUTPUT_DIR)
 
 js:
-	cd vue && npm run prod
+	cd vue && npm run prod && cd ..
 	mkdir -p $(OUTPUT_DIR)/assets/js
 	cp vue/dist/* $(OUTPUT_DIR)/assets/js
 
 js-dev:
-	cd vue && npm run build
+	cd vue && npm run build && cd ..
 	mkdir -p $(OUTPUT_DIR)/assets/js
 	cp vue/dist/* $(OUTPUT_DIR)/assets/js
 
