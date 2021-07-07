@@ -7,7 +7,8 @@ export class DgConnector {
         this.endpoint = dgEndpoint;
     }
 
-    async getMessages(packageName: string, opts?: { page?: number }) {
+    async getMessages(packageName: string, opts?: { page?: number, delta?: number; end?: number; start?: number }):
+        Promise<string | { messages: Messages[]; pages: number; page: number; count: number; }> {
         const queryURL = new URL(this.endpoint);
         queryURL.pathname += "/raw";
         queryURL.searchParams.append("package", packageName);
@@ -20,8 +21,18 @@ export class DgConnector {
         queryURL.searchParams.append("not_topic", "org.fedoraproject.prod.buildsys.tag");
         queryURL.searchParams.append("not_topic", "org.fedoraproject.prod.buildsys.untag");
         queryURL.searchParams.append("not_topic", "org.fedoraproject.prod.buildsys.package.list.change");
+        queryURL.searchParams.append("not_topic", "org.release-monitoring.prod.anitya.project.version.update.v2");
         if (opts?.page) {
             queryURL.searchParams.append("page", String(opts.page));
+        }
+        if (opts?.delta) {
+            queryURL.searchParams.append("delta", String(opts.delta));
+        }
+        if (opts?.end) {
+            queryURL.searchParams.append("end", String(opts.end));
+        }
+        if (opts?.start) {
+            queryURL.searchParams.append("start", String(opts.start));
         }
 
         try {
@@ -32,15 +43,16 @@ export class DgConnector {
             }
             const response = await request.json() as DatagrepperResult;
 
-            let messages = [] as Messages[];
+            const messages = [] as Messages[];
             for (const msg of response.raw_messages) {
                 messages.push({...msg.meta, id: msg.msg_id});
             }
-            
+
             return {
                 messages,
                 pages: response.pages,
                 page: response.arguments.page,
+                count: response.count
             }
         } catch (e) {
             return String(e);
@@ -50,4 +62,4 @@ export class DgConnector {
 
 export interface Messages extends Meta {
     id: string;
-} 
+}
