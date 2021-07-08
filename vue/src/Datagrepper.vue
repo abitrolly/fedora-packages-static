@@ -31,7 +31,6 @@ enum State {
   loading,
   idle,
   error,
-  pageUnloading,
   requestLoadMore
 }
 
@@ -59,9 +58,6 @@ export default Vue.extend({
       firstLoad: true
     };
   },
-  created() {
-    document.addEventListener('beforeunload', this.unloadHandler)
-  },
   mounted() {
     this.loadPage();
     this.setupObserver();
@@ -79,7 +75,12 @@ export default Vue.extend({
         dgParamaters
       );
       if (typeof dgData !== "object") {
-        if (this.state != State.pageUnloading) {
+        // There really isn't a good way to stop a request on page unload...
+        const ignoredErrors = [
+          "TypeError: NetworkError when attempting to fetch resource."
+        ];
+        console.log(dgData)
+        if (!ignoredErrors.includes(dgData)) {
           this.errMsg = dgData;
           this.state = State.error;
         }
@@ -154,9 +155,6 @@ export default Vue.extend({
       }
 
       await this.loadPage();
-    },
-    unloadHandler() {
-      this.state = State.pageUnloading
     },
     setDeltaToYear() {
       this.delta = Time.year;
