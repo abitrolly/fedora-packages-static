@@ -271,11 +271,6 @@ def main():
                                 search_backend=SEARCH_BACKEND)
         save_to(os.path.join(index_dir, f'{prefix}.html'), html)
 
-    # Copy styles and images.
-    assets_output = os.path.join(output_dir, 'assets')
-    shutil.rmtree(assets_output, ignore_errors=True)
-    shutil.copytree(ASSETS_DIR, assets_output)
-
     # Generate sitemaps
     sitemap_list = []
     sitemap_dir = os.path.join(output_dir, 'sitemaps')
