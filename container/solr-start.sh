@@ -16,6 +16,7 @@ fi
 # Manually arrange config files into directory structure solr needs because openshift just won't let this be simple
 mkdir -p /var/solr/data/configsets/packages
 cp /opt/solr/server/solr/configsets/packages/schema.xml /var/solr/data/configsets/packages
+cp /opt/solr/server/solr/configsets/packages/stopwords_en.txt /var/solr/data/configsets/packages
 
 mkdir -p /var/solr/data/configsets/packages/conf
 cp /opt/solr/server/solr/configsets/packages/solrconfig.xml /var/solr/data/configsets/packages/conf

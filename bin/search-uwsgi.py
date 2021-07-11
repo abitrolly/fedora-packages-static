@@ -36,12 +36,13 @@ def application(params, start_response):
 
     try:
         query = {
-            "defType": "simple",
+            "defType": "dismax",
             "facet": "true",
             "facet.field": "releases",
             "rows": 20,
             "start": start,
             "q": query,
+            "qf": "name^2 srcName^1.5 summary^0.75",
             "fq": []
         }
 
