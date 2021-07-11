@@ -6,7 +6,7 @@
       <table class="table">
         <tbody>
           <tr v-for="message in messages" :key="message.id">
-            <td><a :href="message.link"><img :src="message.icon" height="30" width="30"></a></td>
+            <td><a :href="message.link"><img :alt="message.title" :src="message.icon" height="30" width="30"></a></td>
             <td>{{ message.subtitle }} <span class="text-muted">{{ message.date }}</span></td>
           </tr>
         </tbody>

@@ -12,6 +12,7 @@ export class DgConnector {
         const queryURL = new URL(this.endpoint);
         queryURL.pathname += "/raw";
         queryURL.searchParams.append("package", packageName);
+        queryURL.searchParams.append("meta", "title");
         queryURL.searchParams.append("meta", "subtitle");
         queryURL.searchParams.append("meta", "link");
         queryURL.searchParams.append("meta", "icon");
