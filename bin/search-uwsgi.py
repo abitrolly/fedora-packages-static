@@ -46,6 +46,9 @@ def application(params, start_response):
             "fq": []
         }
 
+        if not d.get("show_related", False):
+            query["fq"].append("{!collapse field=srcName_string}")
+
         for release in d.get('releases', []):
             query["fq"].append(f"releases:\"{release}\"")
 
@@ -76,6 +79,11 @@ def modify_query(qdict, **new_values):
                 finaldict[key].pop(index)
             except ValueError:
                 finaldict[key].append(value)
+        elif key == "show_related":
+            try:
+                finaldict.pop(key)
+            except KeyError:
+                finaldict[key] = value
         else:
             finaldict[key] = value
 
