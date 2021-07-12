@@ -112,7 +112,7 @@ def main():
     # Initialize templating system.
     env = Environment(
             loader=PackageLoader('generate-html', TEMPLATE_DIR),
-            autoescape=select_autoescape(['html'])
+            autoescape=True
             )
 
     # Load maintainer mapping (imported from dist-git).

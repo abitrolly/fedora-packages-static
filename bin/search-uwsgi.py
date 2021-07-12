@@ -2,7 +2,7 @@
 # uwsgi script to show search results
 
 # from wsgiref.simple_server import make_server
-from urllib.parse import parse_qs, urlencode, quote
+from urllib.parse import parse_qs, urlencode
 from jinja2 import Environment, PackageLoader, select_autoescape
 from os import environ
 from sys import exc_info
@@ -15,7 +15,7 @@ TEMPLATE_DIR='../templates'
 
 env = Environment(
             loader=PackageLoader('search-uwsgi', TEMPLATE_DIR),
-            autoescape=select_autoescape(['html']))
+            autoescape=True)
 search_results = env.get_template('search-results.html.j2')
 
 def application(params, start_response):
@@ -26,7 +26,6 @@ def application(params, start_response):
     d = parse_qs(query_str)
 
     query = d.get('query', [''])[0]
-    query = quote(query)
 
     try:
         start = d.get('start', [0])[0]
@@ -35,7 +34,7 @@ def application(params, start_response):
         start = 0
 
     try:
-        query = {
+        query_params = {
             "defType": "dismax",
             "facet": "true",
             "facet.field": "releases",
@@ -47,12 +46,12 @@ def application(params, start_response):
         }
 
         if not d.get("show_related", False):
-            query["fq"].append("{!collapse field=srcName_string}")
+            query_params["fq"].append("{!collapse field=srcName_string}")
 
         for release in d.get('releases', []):
-            query["fq"].append(f"releases:\"{release}\"")
+            query_params["fq"].append(f"releases:\"{release}\"")
 
-        query_res = get(f"{SOLR_URL}solr/{SOLR_CORE}/select?{urlencode(query, True)}")
+        query_res = get(f"{SOLR_URL}solr/{SOLR_CORE}/select?{urlencode(query_params, True)}")
     except:
         print("Solr request error: ", str(exc_info()[0]))
         start_response('500 Internal Server Error', [('Content-Type','text/html')])
