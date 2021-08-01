@@ -9,6 +9,7 @@ import os
 import argparse
 import hashlib
 import sys
+from requests.models import HTTPError
 import tqdm
 from dnf.subject import Subject
 import hawkey
@@ -239,7 +240,12 @@ def handle(repo, target_dir, db_removed):
             tempdb = os.path.join(working_dir, db)
             archive = os.path.join(working_dir, filename)
 
-            download_db(name, repomd_url, archive)
+            try:
+                download_db(name, repomd_url, archive)
+            except HTTPError as err:
+                print(f'{name.ljust(padding)} ERROR Downloading DB file: {err}')
+                print(f'{name.ljust(padding)} will be skipped.')
+                continue
             decompress_db(name, archive, tempdb)
             index_db(name, tempdb)
             gen_db_diff(name, tempdb, destfile, db_removed)
