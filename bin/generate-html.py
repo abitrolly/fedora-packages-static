@@ -413,8 +413,14 @@ def main():
 
                     # Generate provides list for pkg.
                     provides = []
-                    for provide in primary.execute('SELECT name FROM provides where pkgkey = ? GROUP BY name', (pkg_key,)):
-                        provides.append(provide["name"])
+                    try:
+                        for provide in primary.execute('SELECT name FROM provides where pkgkey = ? GROUP BY name', (pkg_key,)):
+                            provides.append(provide["name"])
+                    except Exception as e:
+                        print(e)
+                        print(databases[release_branch]["primary"])
+                        shutil.copy(databases[release_branch]["primary"], os.path.join(output_dir, "err-db.sqlite"))
+                        sys.exit(1)
 
                     # Generate dependencies for pkg
                     requires = []
