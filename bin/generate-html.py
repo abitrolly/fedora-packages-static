@@ -154,9 +154,9 @@ def main():
             if db_type not in databases[release_branch]:
                 sys.exit("No {} database for {}.".format(db_type, release_branch))
 
-        (_, primary) = open_db(databases[release_branch]["primary"])
-        (_, filelist) = open_db(databases[release_branch]["filelists"])
-        (_, other) = open_db(databases[release_branch]["other"])
+        (primary_conn, primary) = open_db(databases[release_branch]["primary"])
+        (filelist_conn, filelist) = open_db(databases[release_branch]["filelists"])
+        (other_conn, other) = open_db(databases[release_branch]["other"])
 
         # Check if this db has a changes table
         primary.execute("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'changes'")
@@ -224,6 +224,10 @@ def main():
         if partial_update:
             for removed in primary.execute("SELECT name, rpm_sourcerpm_name FROM changes WHERE change = 'removed'"):
                 removed_packages.add((removed["rpm_sourcerpm_name"], removed["name"]))
+
+        primary_conn.close()
+        filelist_conn.close()
+        other_conn.close()
 
     # If a package was removed and it was not in any repository, attempt to
     # delete the folder from the target directory
@@ -353,9 +357,9 @@ def main():
                         other = db_conns[release_branch]["other"]
                         primary = db_conns[release_branch]["primary"]
                     else:
+                        (_, primary) = open_db(databases[release_branch]["primary"])
                         (_, filelist) = open_db(databases[release_branch]["filelists"])
                         (_, other) = open_db(databases[release_branch]["other"])
-                        (_, primary) = open_db(databases[release_branch]["primary"])
 
                         db_conns[release_branch] = {
                                 "filelist": filelist,
