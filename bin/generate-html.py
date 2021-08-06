@@ -142,6 +142,7 @@ def main():
 
     # Build internal package metadata structure / cache.
     # { "src_pkg": { "subpackage": pkg, ... } }
+    db_conns = {}
     packages = {}
     partial_update = False
     removed_packages = set()
@@ -154,9 +155,15 @@ def main():
             if db_type not in databases[release_branch]:
                 sys.exit("No {} database for {}.".format(db_type, release_branch))
 
-        (primary_conn, primary) = open_db(databases[release_branch]["primary"])
-        (filelist_conn, filelist) = open_db(databases[release_branch]["filelists"])
-        (other_conn, other) = open_db(databases[release_branch]["other"])
+        (_, primary) = open_db(databases[release_branch]["primary"])
+        (_, filelist) = open_db(databases[release_branch]["filelists"])
+        (_, other) = open_db(databases[release_branch]["other"])
+
+        db_conns[release_branch] = {
+            "filelist": filelist,
+            "other": other,
+            "primary": primary
+        }
 
         # Check if this db has a changes table
         primary.execute("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'changes'")
@@ -224,10 +231,6 @@ def main():
         if partial_update:
             for removed in primary.execute("SELECT name, rpm_sourcerpm_name FROM changes WHERE change = 'removed'"):
                 removed_packages.add((removed["rpm_sourcerpm_name"], removed["name"]))
-
-        primary_conn.close()
-        filelist_conn.close()
-        other_conn.close()
 
     # If a package was removed and it was not in any repository, attempt to
     # delete the folder from the target directory
@@ -302,7 +305,6 @@ def main():
 
     page_count = 0
     max_page_count = len(pkgs_list)
-    db_conns = {}
 
     # Generate package index and version pages
     for src_pkg in packages:
@@ -351,21 +353,9 @@ def main():
                     pkg_key = pkg.get_release(release)[branch]['pkg_key']
                     revision = pkg.get_release(release)[branch]['revision']
 
-                    # Cache DB connections.
-                    if release_branch in db_conns:
-                        filelist = db_conns[release_branch]["filelist"]
-                        other = db_conns[release_branch]["other"]
-                        primary = db_conns[release_branch]["primary"]
-                    else:
-                        (_, primary) = open_db(databases[release_branch]["primary"])
-                        (_, filelist) = open_db(databases[release_branch]["filelists"])
-                        (_, other) = open_db(databases[release_branch]["other"])
-
-                        db_conns[release_branch] = {
-                                "filelist": filelist,
-                                "other": other,
-                                "primary": primary
-                                }
+                    filelist = db_conns[release_branch]["filelist"]
+                    other = db_conns[release_branch]["other"]
+                    primary = db_conns[release_branch]["primary"]
 
                     # Generate files page for pkg.
                     # Create a nested object to represent the file tree
@@ -419,7 +409,15 @@ def main():
                     except Exception as e:
                         print(e)
                         print(databases[release_branch]["primary"])
-                        shutil.copy(databases[release_branch]["primary"], os.path.join(output_dir, "err-db.sqlite"))
+
+                        primary.execute("PRAGMA database_list")
+                        rows = primary.fetchall()
+
+                        for row in rows:
+                            print(row[0], row[1], row[2])
+
+                        primary.execute("SELECT name FROM sqlite_master WHERE type='table';")
+                        print(primary.fetchall())
                         sys.exit(1)
 
                     # Generate dependencies for pkg
