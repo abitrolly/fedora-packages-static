@@ -8,7 +8,11 @@ if [[ ! -f "$INIT_FILE" ]]; then
   sleep 3600
 fi
 while true; do
-    make html-only
-    make update-solr
+    if [ ! -f /etc/packages/no_update ]; then
+        make html-only
+        make update-solr
+    else
+        echo "Update script paused by /etc/packages/no_update file."
+    fi
     sleep 3600
 done
