@@ -322,7 +322,7 @@ def main():
             os.makedirs(src_dir, exist_ok=True)
 
             source_package_index = env.get_template("source-package.html.j2")
-            source_package_index_html = source_package_index.render(name=src_pkg, children=packages[src_pkg])
+            source_package_index_html = source_package_index.render(name=src_pkg, children=packages[src_pkg], search_backend=SEARCH_BACKEND)
             save_to(os.path.join(src_dir, 'index.html'), source_package_index_html)
 
         # Process subpackages
