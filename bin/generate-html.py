@@ -253,19 +253,21 @@ def main():
             pkgs_list.append((tmp_pkg.source, tmp_pkg.name))
             prefix_index.setdefault(tmp_pkg.name[:2].lower(), []).append((tmp_pkg.source, tmp_pkg.name))
 
+    max_page_count = len(pkgs_list)
+
     # Sort the indexes
     for prefix_group in prefix_index:
         prefix_index[prefix_group] = sorted(prefix_index[prefix_group], key=lambda x : x[1])
 
     static_index_html = env.get_template('index-static.html.j2').render(
             date=date.today().isoformat(),
-            package_count=len(packages),
+            package_count=max_page_count,
             prefix_index=prefix_index)
     save_to(os.path.join(output_dir, 'index-static.html'), static_index_html)
 
     search = env.get_template('index.html.j2')
     search_html = search.render(date=date.today().isoformat(),
-                                package_count=len(packages),
+                                package_count=max_page_count,
                                 prefix_index=prefix_index,
                                 search_backend=SEARCH_BACKEND)
     save_to(os.path.join(output_dir, 'index.html'), search_html)
@@ -304,7 +306,6 @@ def main():
     print("> Generating package pages...")
 
     page_count = 0
-    max_page_count = len(pkgs_list)
 
     # Generate package index and version pages
     for src_pkg in packages:
