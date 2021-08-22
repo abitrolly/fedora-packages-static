@@ -16,9 +16,8 @@ import argparse
 import glob
 
 from datetime import date
-from collections import OrderedDict
 
-from jinja2 import Environment, PackageLoader, select_autoescape
+from jinja2 import Environment, PackageLoader
 
 TEMPLATE_DIR='../templates'
 DBS_DIR=os.environ.get('DB_DIR') or "repositories"
@@ -235,8 +234,16 @@ def main():
     # If a package was removed and it was not in any repository, attempt to
     # delete the folder from the target directory
     for removed_package in removed_packages:
-        if removed_package not in packages:
+        # If the source package is gone, delete all data
+        if removed_package[0] not in packages:
+            shutil.rmtree(os.path.join(output_dir, 'pkgs', removed_package[0]), True)
+        # If only a subpackage of the source package is gone, then just delete that.
+        elif removed_package[0] in packages and removed_package[1] not in packages[removed_package[0]]:
             shutil.rmtree(os.path.join(output_dir, 'pkgs', removed_package[0], removed_package[1]), True)
+        # Otherwise, a branch was removed but it's still in others so just update the package.
+        # This isn't caught by above logic because release with changed data will not process a package that doesn't exist.
+        elif packages[removed_package[0]][removed_package[1]].should_update == False:
+            packages[removed_package[0]][removed_package[1]].should_update = True
 
     print(">>> {} packages have been extracted.".format(len(packages)))
 
