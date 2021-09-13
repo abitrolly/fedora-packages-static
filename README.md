@@ -2,7 +2,7 @@
 
 This project replaces the former Fedora [packages
 app](https://apps.fedoraproject.org/packages/) which is built atop now dead
-librairies and a pain to maintain. See *[The packages app has a short
+libraries and a pain to maintain. See *[The packages app has a short
 runway](https://lists.fedoraproject.org/archives/list/infrastructure@lists.fedoraproject.org/thread/WWQG4RE5PSR5I2GND5SVWGMZRJNVRRPS/)*
 for context.
 
@@ -44,4 +44,4 @@ docker-compose build
 docker-compose up
 ```
 
-Solr will be availible at http://localhost:8983/ and fedora-packages-static will be at http://localhost:8080/
+Solr will be available at http://localhost:8983/ and fedora-packages-static will be at http://localhost:8080/
