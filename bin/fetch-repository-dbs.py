@@ -288,11 +288,24 @@ def get_repository_urls_for(product, version):
         if version == "rawhide":
             return [(f"{KOJI_REPO}/rawhide/latest/x86_64/repodata", release)]
 
+        # Check if package database is in a development location
+        db_location = (
+            "{}/pub/fedora/linux/releases/{}/Everything/x86_64/os/repodata".format(
+                MIRROR, version
+            )
+        )
+        db_check = requests.head(db_location)
+        if db_check.status_code == 404:
+            develop_db_location = "{}/pub/fedora/linux/development/{}/Everything/x86_64/os/repodata".format(
+                MIRROR, version
+            )
+            db_check = requests.head(develop_db_location)
+            if db_check.status_code != 404:
+                db_location = develop_db_location
+
         return [
             (
-                "{}/pub/fedora/linux/releases/{}/Everything/x86_64/os/repodata".format(
-                    MIRROR, version
-                ),
+                db_location,
                 release,
             ),
             (
