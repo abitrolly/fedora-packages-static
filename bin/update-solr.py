@@ -16,14 +16,19 @@ import time
 
 # This is used to encode xml, not parse it. Security warning is irrelevant.
 # defusedxml does not have an Element import and defuse_stdlib() is called anyway for caution's sake.
-from xml.etree.ElementTree import Element, tostring # nosec
+from xml.etree.ElementTree import Element, tostring  # nosec
 
-SOLR_URL=os.environ.get('SOLR_URL')
-SOLR_CORE=os.environ.get('SOLR_CORE')
-SOLR_CONF_SET="packages"
-DBS_DIR=os.environ.get('DB_DIR') or "repositories"
-SCM_MAINTAINER_MAPPING=os.environ.get('MAINTAINER_MAPPING') or "pagure_owner_alias.json"
-PRODUCT_VERSION_MAPPING=os.environ.get('PRODUCT_VERSION_MAPPING') or "product_version_mapping.json"
+SOLR_URL = os.environ.get("SOLR_URL")
+SOLR_CORE = os.environ.get("SOLR_CORE")
+SOLR_CONF_SET = "packages"
+DBS_DIR = os.environ.get("DB_DIR") or "repositories"
+SCM_MAINTAINER_MAPPING = (
+    os.environ.get("MAINTAINER_MAPPING") or "pagure_owner_alias.json"
+)
+PRODUCT_VERSION_MAPPING = (
+    os.environ.get("PRODUCT_VERSION_MAPPING") or "product_version_mapping.json"
+)
+
 
 class Package:
     def __init__(self, name):
@@ -41,19 +46,20 @@ class Package:
         if name not in self.releases:
             self.releases[name] = {}
 
-        if 'branches' not in self.releases[name]:
-            self.releases[name]['branches'] = {}
+        if "branches" not in self.releases[name]:
+            self.releases[name]["branches"] = {}
 
         if branch not in self.releases[name]:
-            self.releases[name]['branches'][branch] = {}
+            self.releases[name]["branches"][branch] = {}
 
-        self.releases[name]['branches'][branch]['revision'] = revision
-        self.releases[name]['branches'][branch]['pkg_key'] = pkgKey
-        self.releases[name]['branches'][branch]['arch'] = arch
-        self.releases[name]['human_name'] = human_name or name
+        self.releases[name]["branches"][branch]["revision"] = revision
+        self.releases[name]["branches"][branch]["pkg_key"] = pkgKey
+        self.releases[name]["branches"][branch]["arch"] = arch
+        self.releases[name]["human_name"] = human_name or name
 
     def get_release(self, name):
-        return self.releases[name]['branches']
+        return self.releases[name]["branches"]
+
 
 def open_db(db):
     conn = sqlite3.connect(os.path.join(DBS_DIR, db))
@@ -62,9 +68,11 @@ def open_db(db):
 
     return (conn, c)
 
+
 def do_regex(pattern, string):
     (result) = pattern.findall(string)[0]
     return result
+
 
 def main():
     # Load maintainer mapping (imported from dist-git).
@@ -80,9 +88,11 @@ def main():
 
     # Group databases files.
     databases = {}
-    db_pattern = re.compile('^(fedora|epel)-([\w|-]+)_(primary|filelists|other).sqlite$')
+    db_pattern = re.compile(
+        "^(fedora|epel)-([\w|-]+)_(primary|filelists|other).sqlite$"
+    )
     for db in os.listdir(DBS_DIR):
-        if (not db_pattern.match(db)):
+        if not db_pattern.match(db):
             sys.exit("Invalid object in {}: {}".format(DBS_DIR, db))
 
         (product, branch, db_type) = db_pattern.findall(db)[0]
@@ -90,7 +100,7 @@ def main():
         if release_branch in databases:
             databases[release_branch][db_type] = db
         else:
-            databases[release_branch] = { db_type: db }
+            databases[release_branch] = {db_type: db}
 
     # Build internal package metadata structure / cache.
     # { "src_pkg": { "subpackage": pkg, ... } }
@@ -110,7 +120,7 @@ def main():
         (_, filelist) = open_db(databases[release_branch]["filelists"])
         (_, other) = open_db(databases[release_branch]["other"])
 
-        for raw in primary.execute('SELECT * FROM packages'):
+        for raw in primary.execute("SELECT * FROM packages"):
             # Get source rpm name
             srpm_name = do_regex(srpm_pattern, raw["rpm_sourcerpm"])
 
@@ -150,7 +160,14 @@ def main():
             if branch == "":
                 branch = "base"
 
-            pkg.set_release(release, raw["pkgKey"], branch, raw["arch"], revision, release_mapping.get(release))
+            pkg.set_release(
+                release,
+                raw["pkgKey"],
+                branch,
+                raw["arch"],
+                revision,
+                release_mapping.get(release),
+            )
 
     print(">>> {} packages have been extracted.".format(packages_count))
 
@@ -158,62 +175,75 @@ def main():
 
     # Create a tmp solr index
     tmp_idx = f"solr_{int(time.time())}"
-    req = requests.get(f"{SOLR_URL}solr/admin/cores?action=CREATE&name={tmp_idx}&instanceDir=/var/solr/data/{tmp_idx}&configSet={SOLR_CONF_SET}")
+    req = requests.get(
+        f"{SOLR_URL}solr/admin/cores?action=CREATE&name={tmp_idx}&instanceDir=/var/solr/data/{tmp_idx}&configSet={SOLR_CONF_SET}"
+    )
     req.raise_for_status()
 
     # Start submitting to the index
-    pkg_xml = Element('add')
+    pkg_xml = Element("add")
     pkg_count = 0
     max_pkg_count = packages_count
 
     for src_pkg in packages.values():
         for pkg in src_pkg.values():
             # Submit packages to Solr index, 500 at a time.
-            pkg_el = Element('doc')
+            pkg_el = Element("doc")
 
-            pkg_el_id = Element('field', { "name": "name" })
+            pkg_el_id = Element("field", {"name": "name"})
             pkg_el_id.text = pkg.name
             pkg_el.append(pkg_el_id)
 
-            pkg_el_src_name = Element('field', { "name": "srcName" })
+            pkg_el_src_name = Element("field", {"name": "srcName"})
             pkg_el_src_name.text = pkg.source
             pkg_el.append(pkg_el_src_name)
 
-            pkg_el_summary = Element('field', { "name": "summary" })
+            pkg_el_summary = Element("field", {"name": "summary"})
             pkg_el_summary.text = pkg.summary
             pkg_el.append(pkg_el_summary)
 
             for release in pkg.releases.values():
-                pkg_el_release = Element('field', { "name": "releases" })
-                pkg_el_release.text = release['human_name']
+                pkg_el_release = Element("field", {"name": "releases"})
+                pkg_el_release.text = release["human_name"]
                 pkg_el.append(pkg_el_release)
 
             pkg_xml.append(pkg_el)
 
             pkg_count += 1
-            if (pkg_count % 500 == 0 or pkg_count == max_pkg_count):
-                req = requests.post(f"{SOLR_URL}solr/{tmp_idx}/update?commit={str(pkg_count == max_pkg_count).lower()}&update.chain=uuid", data=tostring(pkg_xml), headers={'Content-Type': 'application/xml'})
+            if pkg_count % 500 == 0 or pkg_count == max_pkg_count:
+                req = requests.post(
+                    f"{SOLR_URL}solr/{tmp_idx}/update?commit={str(pkg_count == max_pkg_count).lower()}&update.chain=uuid",
+                    data=tostring(pkg_xml),
+                    headers={"Content-Type": "application/xml"},
+                )
                 req.raise_for_status()
                 pkg_xml.clear()
                 # print("Submitted {}/{} packages.".format(pkg_count, max_pkg_count))
-    
+
     # Create default core if it does not exist
     req = requests.get(f"{SOLR_URL}solr/admin/cores?action=STATUS&core={SOLR_CORE}")
     status = req.json()
     if len(status["status"]["packages"]) == 0:
-        requests.get(f"{SOLR_URL}solr/admin/cores?action=CREATE&name={SOLR_CORE}&instanceDir=/var/solr/data/{SOLR_CORE}&configSet={SOLR_CONF_SET}")
+        requests.get(
+            f"{SOLR_URL}solr/admin/cores?action=CREATE&name={SOLR_CORE}&instanceDir=/var/solr/data/{SOLR_CORE}&configSet={SOLR_CONF_SET}"
+        )
 
     # Swap production core with our temporary core
-    req = requests.get(f"{SOLR_URL}solr/admin/cores?action=SWAP&core={tmp_idx}&other={SOLR_CORE}")
+    req = requests.get(
+        f"{SOLR_URL}solr/admin/cores?action=SWAP&core={tmp_idx}&other={SOLR_CORE}"
+    )
     req.raise_for_status()
 
     # Delete the old core that was swapped out
-    req = requests.get(f"{SOLR_URL}solr/admin/cores?action=UNLOAD&core={tmp_idx}&deleteInstanceDir=true&deleteDataDir=true&deleteIndex=true")
+    req = requests.get(
+        f"{SOLR_URL}solr/admin/cores?action=UNLOAD&core={tmp_idx}&deleteInstanceDir=true&deleteDataDir=true&deleteIndex=true"
+    )
     req.raise_for_status()
 
     print("DONE.")
     print("> {} packages submitted to solr.".format(packages_count))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     defusedxml.defuse_stdlib()
     main()
