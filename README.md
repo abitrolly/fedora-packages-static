@@ -1,4 +1,4 @@
-# fedora-packages-static
+# fedora-packages-static [![Azure CI Status](https://dev.azure.com/fedora-packages/Fedora%20Packages%20Static%20CI/_apis/build/status/Fedora%20Packages%20Static%20CI)](https://dev.azure.com/fedora-packages/Fedora%20Packages%20Static%20CI/_build?definitionId=1)
 
 This project replaces the former Fedora [packages
 app](https://apps.fedoraproject.org/packages/) which is built atop now dead
