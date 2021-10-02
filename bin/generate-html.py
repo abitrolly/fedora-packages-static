@@ -263,6 +263,7 @@ def main():
     max_page_count = len(pkgs_list)
 
     # Sort the indexes
+    prefix_index = dict(sorted(prefix_index.items()))
     for prefix_group in prefix_index:
         prefix_index[prefix_group] = sorted(prefix_index[prefix_group], key=lambda x : x[1])
 
@@ -275,7 +276,6 @@ def main():
     search = env.get_template('index.html.j2')
     search_html = search.render(date=date.today().isoformat(),
                                 package_count=max_page_count,
-                                prefix_index=prefix_index,
                                 search_backend=SEARCH_BACKEND)
     save_to(os.path.join(output_dir, 'index.html'), search_html)
 
