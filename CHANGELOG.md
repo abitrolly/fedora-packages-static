@@ -1,7 +1,10 @@
 # Releases
 
-## Unreleased Changes
+## v2.0.4
 
+- Redirect any specific version page that does not exist back to the package page.
+- Pull package data for releases that the mirror considers to be development releases.
+- Fix static index alphabetization
 - Fix typos (#24, @didiksupriadi41)
 
 ## v2.0.3
