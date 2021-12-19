@@ -40,7 +40,7 @@ def application(params, start_response):
             "rows": 20,
             "start": start,
             "q": query,
-            "qf": "name^2 srcName^1.5 summary^0.75",
+            "qf": "name^2 nameLower^2 srcName^1.5 srcNameLower^1.5 summary^0.75",
             "fq": [],
         }
 

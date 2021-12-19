@@ -19,6 +19,20 @@
       <filter class="solr.LowerCaseFilterFactory"/>
     </analyzer>
   </fieldType>
+  <!-- Need this for https://pagure.io/fedora-packages-static/issue/29 -->
+  <fieldType name="lowerFirstNameText" class="solr.TextField">
+    <analyzer type="index">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.WordDelimiterGraphFilterFactory" preserveOriginal="1" />
+      <filter class="solr.FlattenGraphFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.WordDelimiterGraphFilterFactory" preserveOriginal="1" />
+    </analyzer>
+  </fieldType>
   <fieldType name="descText" class="solr.SortableTextField" positionIncrementGap="100" uninvertible="false">
     <analyzer type="index">
       <tokenizer class="solr.StandardTokenizerFactory"/>
@@ -45,9 +59,13 @@
 
   <!-- Package name-->
   <field name="name" type="nameText" indexed="true" stored="true" multiValued="false" required="true"/>
+  <field name="nameLower" type="lowerFirstNameText" indexed="true" stored="false" multiValued="false" required="true"/>
+  <copyField source="name" dest="nameLower" />
   <!-- source package name-->
   <field name="srcName" type="nameText" indexed="true" stored="true" multiValued="false" required="true"/>
+  <field name="srcNameLower" type="lowerFirstNameText" indexed="true" stored="false" multiValued="false" required="true"/>
   <field name="srcName_string" type="string" indexed="false" stored="false" multiValued="false" docValues="true" required="true"/>
+  <copyField source="srcName" dest="srcNameLower" />
   <copyField source="srcName" dest="srcName_string" />
   <!-- Package summary -->
   <field name="summary" type="descText" indexed="true" stored="true" multiValued="false" />
