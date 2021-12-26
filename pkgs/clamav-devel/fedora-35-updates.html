@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>clamav-devel-0.103.4-1.fc35 - Fedora Packages</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				clamav-devel-0.103.4-1.fc35<small class="text-muted"> in Fedora 35</small>
+			</h1>
+			<p>
+				<a href=".">&crarr; Retrun to the main page of clamav-devel</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=clamav-0.103.4-1.fc35">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=clamav-0.103.4-1.fc35">Search Bodhi</a>
+			</p>
+
+			<p>
+				
+				<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2021-11-07</td>
+						<td>Sérgio Basto <sergio at serjux dot com> - 0.103.4-1</td>
+						<td>- Update to 0.103.4</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-03</td>
+						<td>Sérgio Basto <sergio at serjux dot com> - 0.103.3-9</td>
+						<td>- Get rid of pkgdatadir variable %{_datadir}/%{name} is more informative
+- Get rid og milterlog variable %{_var}/log/clamav-milter.log is more readable
+- we can remove %{_var}/log/clamav-milter.log because journalctl -u clamav-milter
+  supersede it
+- Fix substitution of /var/run/clamd/clamd.socket on file clamav-milter.conf
+- Get rid of scanstatedir and milterstatedir variables
+- smartsubst deleted since we notice does not replace anything
+- more cleanups
+- $RPM_BUILD_ROOT  + /builddir/build/BUILDROOT/clamav-0.103.4-1.fc35.x86_64
+- all variavels with {}
+- BR _chmod and chown only in oldfreshclam
+- clean rpath clean</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-02</td>
+						<td>Sérgio Basto <sergio at serjux dot com> - 0.103.3-8</td>
+						<td>- (#2006490) second try to fix epel7, revert previous commit and add on
+  initial installation (not in updates) run /bin/systemd-tmpfiles --create (...)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-22</td>
+						<td>Sérgio Basto <sergio at serjux dot com> - 0.103.3-7</td>
+						<td>- (#2006490) follow the Fedora Packaging Guidelines by adding %dir
+  %attr(0710,%scanuser,virusgroup) to %files section, it is needed on epel7 on
+  initial installation without reboot.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-14</td>
+						<td>Sahana Prasad <sahana at redhat dot com> - 0.103.3-6</td>
+						<td>- Rebuilt with OpenSSL 3.0.0</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-26</td>
+						<td>Sérgio Basto <sergio at serjux dot com> - 0.103.3-5</td>
+						<td>- Update clamav-data (#1998252)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-14</td>
+						<td>Sérgio Basto <sergio at serjux dot com> - 0.103.3-4</td>
+						<td>- Rearrange tmpfiles following packaging guidelines
+  https://docs.fedoraproject.org/en-US/packaging-guidelines/Tmpfiles.d/
+  not running systemd-tmpfiles on post
+- Drop build without tmpfiles because we don't have Systemd without tmpfiles
+- not ghost .socket files they are tmptifles
+- Rearrange some files of milter package
+- Move to old_freshclam files /etc/logrotate.d/* and /var/log/freshclam.log
+- Drop ConditionPathExists doesn't work as we expect</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-21</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 0.103.3-3</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-10</td>
+						<td>Björn Esser <besser82 at fedoraproject dot org> - 0.103.3-2</td>
+						<td>- Rebuild for versioned symbols in json-c</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-22</td>
+						<td>Sérgio Basto <sergio at serjux dot com> - 0.103.3-1</td>
+						<td>- Update to 0.103.3 (#1974601)</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/clamav-filesystem/fedora-35.html">
+						
+						
+						clamav-filesystem</a> = 0.103.4-1.fc35
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/clamav-lib/fedora-35.html">
+						
+						
+						clamav-lib</a> = 0.103.4-1.fc35
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/clamav-update/fedora-35.html">
+						
+						
+						clamav-update
+						
+
+						</li>
+						
+					</ul>
+				</div>
+				
+				
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>clamav-devel</li>
+						
+						<li>clamav-devel(x86-64)</li>
+						
+						<li>pkgconfig(libclamav)</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
+				
+				
+				<li>usr/<ul>
+				
+				
+				
+				<li>bin/<ul>
+				
+				
+				
+				<li>clamav-config</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>include/<ul>
+				
+				
+				
+				<li>clamav-types.h</li>
+				
+				
+				
+				<li>clamav-version.h</li>
+				
+				
+				
+				<li>clamav.h</li>
+				
+				
+				
+				<li>libfreshclam.h</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>lib64/<ul>
+				
+				
+				
+				<li>libclamav.so</li>
+				
+				
+				
+				<li>libclammspack.so</li>
+				
+				
+				
+				<li>libfreshclam.so</li>
+				
+				
+				
+				<li>pkgconfig/<ul>
+				
+				
+				
+				<li>libclamav.pc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
+

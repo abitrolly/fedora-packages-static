@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>copr-backend-1.148-1.fc34 - Fedora Packages</title>
+		<title>copr-backend-1.152-1.fc34 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				copr-backend-1.148-1.fc34<small class="text-muted"> in Fedora 34</small>
+				copr-backend-1.152-1.fc34<small class="text-muted"> in Fedora 34</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of copr-backend</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=copr-backend-1.148-1.fc34">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=copr-backend-1.148-1.fc34">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=copr-backend-1.152-1.fc34">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=copr-backend-1.152-1.fc34">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -56,6 +56,42 @@
 							<th scope="col">Change</th>
 						</tr>
 					</thead>
+					
+					<tr scope="row">
+						<td>2021-11-10</td>
+						<td>Silvie Chlupova <schlupov at redhat dot com> 1.152-1</td>
+						<td>- Fixup ACR handling
+- Drop the unused pid file from the specfile</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-30</td>
+						<td>Silvie Chlupova 1.151-1</td>
+						<td>- backend: use lock(timeout=5) to work-around fair-locks</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-25</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 1.150-1</td>
+						<td>- request arch_noarch resalloc tag for source RPM builds
+- re-try /bin/sign call upon connection timeout
+- drop 'check_consecutive_build_fails' script</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-15</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 1.149-1</td>
+						<td>- new weekly cron-job for analyzing storage use (graphs, statistics)
+- added some convenience globals into copr_backend.setup module
+- keep the max batch size really on the MAX_IN_BATCH limit
+- require up2date rpmbuild version
+- new action for removing CoprDirs (triggered by cron on frontend)
+- fix the CompsUpdate action
+- users now can disable appstream metadata generation themselves (without admins asistance)
+- handle results.json given by builder, and provide it to frontend (served as APIv3 later)
+- pruner: allow pruning also the finalized chroots on demand
+- invent FE-BE API version, so backend politely waits for an updated copr-frontend version</td>
+					</tr>
 					
 					<tr scope="row">
 						<td>2021-05-13</td>
@@ -110,39 +146,6 @@
 - backend: test walk_limited function from helpers</td>
 					</tr>
 					
-					<tr scope="row">
-						<td>2021-03-16</td>
-						<td>Pavel Raiskup <praiskup at redhat dot com> 1.142-1</td>
-						<td>- prepare for the centos-stream-8 rename
-- add script to prune srpm-build directories
-- pruner: correctly deliver the final prunerepo stamp to frontend
-- pruner: logging through RedisLogHandler
-- pruner: better parallelization
-- pruner: re-try be-fe communication upon failures
-- require up2date modulemd-tools</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-01-20</td>
-						<td>Pavel Raiskup <praiskup at redhat dot com> 1.141-1</td>
-						<td>- run prunerepo in parallel
-- add one-shot copr_find_wrong_chroot_artifacts.py script
-- support modulemd v2</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-12-01</td>
-						<td>Pavel Raiskup <praiskup at redhat dot com> 1.140-1</td>
-						<td>- fix frontend-client post arguments</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-11-30</td>
-						<td>Pavel Raiskup <praiskup at redhat dot com> 1.139-1</td>
-						<td>- require appropriate common version
-- use common for repeatedly sends requests to frontend</td>
-					</tr>
-					
 					<tbody>
 					</tbody>
 				</table>
@@ -176,6 +179,16 @@
 						
 						<li>
 						
+						<a href="/pkgs/lighttpd/fedora-34.html">
+						
+						
+						lighttpd
+						
+
+						</li>
+						
+						<li>
+						
 						<a href="/pkgs/mock/fedora-34.html">
 						
 						
@@ -190,6 +203,16 @@
 						
 						
 						modulemd-tools</a> >= 0.6
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/openssh-clients/fedora-34.html">
+						
+						
+						openssh-clients
 						
 
 						</li>
@@ -236,6 +259,46 @@
 						
 						<li>
 						
+						<a href="/pkgs/python3-copr-common/fedora-34.html">
+						
+						
+						python3-copr-common</a> >= 0.11.1.dev
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-pytz/fedora-34.html">
+						
+						
+						python3-pytz
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-resalloc/fedora-34.html">
+						
+						
+						python3-resalloc</a> >= 3.0
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-tabulate/fedora-34.html">
+						
+						
+						python3-tabulate
+						
+
+						</li>
+						
+						<li>
+						
 						<a href="/pkgs/redis/fedora-34.html">
 						
 						
@@ -250,6 +313,16 @@
 						
 						
 						systemd
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/zstd/fedora-34.html">
+						
+						
+						zstd
 						
 
 						</li>
@@ -310,6 +383,18 @@
 				
 				
 				
+				<li>cron.weekly/<ul>
+				
+				
+				
+				<li>copr-backend</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
 				<li>logrotate.d/<ul>
 				
 				
@@ -346,11 +431,15 @@
 				
 				
 				
-				<li>check_consecutive_build_fails.py</li>
-				
-				
-				
 				<li>copr-assure-permissions</li>
+				
+				
+				
+				<li>copr-backend-analyze-results</li>
+				
+				
+				
+				<li>copr-backend-generate-graphs</li>
 				
 				
 				
@@ -470,6 +559,14 @@
 				
 				
 				
+				<li>app.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>app.cpython-39.pyc</li>
+				
+				
+				
 				<li>background_worker.cpython-39.opt-1.pyc</li>
 				
 				
@@ -566,6 +663,14 @@
 				
 				
 				
+				<li>setup.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>setup.cpython-39.pyc</li>
+				
+				
+				
 				<li>sign.cpython-39.opt-1.pyc</li>
 				
 				
@@ -607,6 +712,10 @@
 				
 				
 				<li>ans_utils.py</li>
+				
+				
+				
+				<li>app.py</li>
 				
 				
 				
@@ -722,11 +831,63 @@
 				
 				
 				
+				<li>setup.py</li>
+				
+				
+				
 				<li>sign.py</li>
 				
 				
 				
 				<li>sshcmd.py</li>
+				
+				
+				
+				<li>stats_templates/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>arches.html.j2</li>
+				
+				
+				
+				<li>chroots.html.j2</li>
+				
+				
+				
+				<li>distro.html.j2</li>
+				
+				
+				
+				<li>index.html.j2</li>
+				
+				
+				
+				<li>topmost.html.j2</li>
+				
+				
+				
+				</ul></li>
 				
 				
 				
@@ -742,7 +903,7 @@
 				
 				
 				
-				<li>copr_backend-1.148-py3.9.egg-info/<ul>
+				<li>copr_backend-1.152-py3.9.egg-info/<ul>
 				
 				
 				
@@ -1095,10 +1256,6 @@
 				
 				
 				<li>copr-backend/<ul>
-				
-				
-				
-				<li>copr-be.pid</li>
 				
 				
 				

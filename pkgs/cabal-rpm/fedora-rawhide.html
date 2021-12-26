@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>cabal-rpm-2.0.8-1.fc35 - Fedora Packages</title>
+		<title>cabal-rpm-2.0.10-1.fc36 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				cabal-rpm-2.0.8-1.fc35<small class="text-muted"> in Fedora Rawhide</small>
+				cabal-rpm-2.0.10-1.fc36<small class="text-muted"> in Fedora Rawhide</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of cabal-rpm</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=cabal-rpm-2.0.8-1.fc35">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=cabal-rpm-2.0.8-1.fc35">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=cabal-rpm-2.0.10-1.fc36">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=cabal-rpm-2.0.10-1.fc36">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -58,9 +58,46 @@
 					</thead>
 					
 					<tr scope="row">
+						<td>2021-08-14</td>
+						<td>Jens Petersen <petersen at redhat dot com> - 2.0.10-1</td>
+						<td>- Spec: drop ghc_fix_rpath for subpkgs
+- Stackage: bump to LTS 18
+- update: only output old version if upgrading
+- pkgSpecPkgData: try allowing versioned dir</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-06</td>
+						<td>Jens Petersen <petersen at redhat dot com> - 2.0.9-3</td>
+						<td>- rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-21</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 2.0.9-2</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-09</td>
+						<td>Jens Petersen <petersen at redhat dot com> - 2.0.9-1</td>
+						<td>- spec: doc requires ghc-filesystem
+- spec: make cabal_test conditional explicit
+- refresh: fix installation of cabal-rpm-version with cabal install
+- spec: tweak conditions for standalone sandbox (ie rhel8)</td>
+					</tr>
+					
+					<tr scope="row">
 						<td>2021-03-27</td>
 						<td>Jens Petersen <petersen at redhat dot com> - 2.0.8-1</td>
-						<td>- update to 2.0.8</td>
+						<td>- update: make sure krb ticket exists before uploading source
+- spec: executable doc files now handled by ghc-rpm-macros
+- move dos2unix for revised DOS .cabal from download to spec build time
+- spec: do not enable testsuite for standalone package
+- spec: also bash-completion for simple-cmd-args
+- spec: for bash-completions use default not filenames
+- Stackage: use lts-17
+- pkgInstallMissing: also install ghc-rpm-macros</td>
 					</tr>
 					
 					<tr scope="row">
@@ -91,61 +128,6 @@
 						<td>2020-07-27</td>
 						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 2.0.6-2</td>
 						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-07-16</td>
-						<td>Jens Petersen <petersen at redhat dot com> - 2.0.6-1</td>
-						<td>- spec: use packager's name in %changelog
-- spec: default package versions to Stackage LTS 16
-- spec now also leaves newly prepped source tree around
-- spec: handle testsuite tool deps separately
-- spec,refresh,update: more care about whether to revise or not
-- diff: ignore release field
-- prep: be quiet
-- spec: add a comment for missing testsuite deps
-- only allow specifying major Stackage LTS versions (not minor):
-  for more progressive updating logic (lts-n -> lts-(n+1) -> nightly -> Hackage)
-- spec: take specified stream into account for subpackaging
-- update: finally run prep to check update okay
-- prep/srpm --verbose and local --quiet options
-- spec: move chmod for docs to %prep
-- spec: check existing .spec file for detecting dropped deps and executable deps
-- update: also commit revised .cabal file when no update
-- fix copying of cached tarballs (longstanding defect)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-06-19</td>
-						<td>Jens Petersen <petersen at redhat dot com> - 2.0.5.1-1</td>
-						<td>- refresh and update now leave newly prepped source tree around
-- spec: dropped deprecated %post and %postun scriptlets</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-02-27</td>
-						<td>Jens Petersen <petersen at redhat dot com> - 2.0.4-1</td>
-						<td>- drop %_devel compat macro
-- default stream is now lts-14
-- spec: detect local revised .cabal file
-- sort deps of subpackages
-- metapkgs don't have prof or doc
-- fix generation of subpackages for a new package
-- update: logic reworked to reduce redundant downloads
-- quote macros in commented fields
-- read --subpackage from spec header
-- generate BRs for subpackages</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-02-20</td>
-						<td>Jens Petersen <petersen at redhat dot com> - 2.0.0-3</td>
-						<td>- drop %_devel compat macro
-- default stream is now lts-14
-- sort deps of subpackages
-- metapkgs don't have prof or doc
-- fix generation of subpackages for a new package
-- update: logic reworked to reduce redundant downloads</td>
 					</tr>
 					
 					<tbody>
@@ -313,11 +295,11 @@
 				
 				
 				
-				<li>ba/<ul>
+				<li>6d/<ul>
 				
 				
 				
-				<li>b2c03dd819be4e2d20ce77a2ffbee9843c22f5</li>
+				<li>852f8db5f74cf1f64feb9ba14b995883373f4e</li>
 				
 				
 				

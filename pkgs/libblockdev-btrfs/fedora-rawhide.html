@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>libblockdev-btrfs-2.25-2.fc34 - Fedora Packages</title>
+		<title>libblockdev-btrfs-2.26-1.fc35 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				libblockdev-btrfs-2.25-2.fc34<small class="text-muted"> in Fedora Rawhide</small>
+				libblockdev-btrfs-2.26-1.fc35<small class="text-muted"> in Fedora Rawhide</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of libblockdev-btrfs</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=libblockdev-2.25-2.fc34">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=libblockdev-2.25-2.fc34">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=libblockdev-2.26-1.fc35">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=libblockdev-2.26-1.fc35">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -56,6 +56,53 @@
 							<th scope="col">Change</th>
 						</tr>
 					</thead>
+					
+					<tr scope="row">
+						<td>2021-07-28</td>
+						<td>Vojtech Trefny <vtrefny at redhat dot com> - 2.26-1</td>
+						<td>- Add missing plugins to the default config (vtrefny)
+- remove unused variable and fix build with LLVM/clang (tpgxyz)
+- exec: Fix deprecated glib function call Glib will rename "g_spawn_check_exit_status()" to "g_spawn_check_wait_status()" in version 2.69. (manuel.wassermann97)
+- tests: Tag LvmPVVGLVcachePoolCreateRemoveTestCase as unstable (vtrefny)
+- tests: Force remove LVM VG /dev/ entry not removed by vgremove (vtrefny)
+- tests: Do not try to remove VG before removing the VDO pool (vtrefny)
+- crypto: Let cryptsetup autodect encryption sector size when not specified (vtrefny)
+- Fix skipping tests on Debian testing (vtrefny)
+- tests: Temporarily skip test_snapshotcreate_lvorigin_snapshotmerge (vtrefny)
+- tests: Do not check that XFS shrink fails with xfsprogs >= 5.12 (vtrefny)
+- tests: Make sure the test temp mount is always unmounted (vtrefny)
+- swap: Fix memory leak (vtrefny)
+- mdraid: Fix memory leak (vtrefny)
+- lvm-dbus: Fix memory leak (vtrefny)
+- kbd: Fix memory leak (vtrefny)
+- fs: Fix memory leak (vtrefny)
+- dm: Fix memory leak in the DM plugin and DM logging redirect function (vtrefny)
+- crypto: Fix memory leak (vtrefny)
+- kbd: Fix memory leak (vtrefny)
+- tests: Call fs_vfat_mkfs with "--mbr=n" extra option in tests (vtrefny)
+- fs: Allow using empty label for vfat with newest dosfstools (vtrefny)
+- vdo: Do not use g_memdup in bd_vdo_stats_copy (vtrefny)
+- crypto: Fix default key size for non XTS ciphers (vtrefny)
+- NEWS.rts: Fix markup (vtrefny)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-22</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 2.25-5</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-19</td>
+						<td>Vojtech Trefny <vtrefny at redhat dot com> - 2.25-4</td>
+						<td>- crypto: Let cryptsetup autodect encryption sector size</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-03</td>
+						<td>Python Maint <python dash maint at redhat dot com> - 2.25-3</td>
+						<td>- Rebuilt for Python 3.10</td>
+					</tr>
 					
 					<tr scope="row">
 						<td>2021-01-26</td>
@@ -106,84 +153,6 @@
 						<td>2020-08-19</td>
 						<td>Jeff Law <law at redhat dot com> - 2.24-4</td>
 						<td>- Work around gcc-11 false positive warning</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-07-27</td>
-						<td>Hans de Goede <hdegoede at redhat dot com> - 2.24-3</td>
-						<td>- Change -mpath subpackage Requires: device-mapper-multipath into Recommends
-- Related: rhbz#1857393</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-05-23</td>
-						<td>Miro Hrončok <mhroncok at redhat dot com> - 2.24-2</td>
-						<td>- Rebuilt for Python 3.9</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-05-22</td>
-						<td>Vojtech Trefny <vtrefny at redhat dot com> - 2.24-1</td>
-						<td>- Mark VDO plugin as deprecated since 2.24 (vtrefny)
-- Fix multiple uninitialized values discovered by coverity (vtrefny)
-- fs: Fix potential NULL pointer dereference in mount.c (vtrefny)
-- utils: Remove deadcode in exec.c (vtrefny)
-- Do not check VDO saving percent value in LVM DBus tests (vtrefny)
-- Use libblkid to get label and UUID for XFS filesystems (vtrefny)
-- Do not open devices as read-write for read-only fs operations (vtrefny)
-- Create a common function to get label and uuid of a filesystem (vtrefny)
-- lvm: Fix getting cache stats for cache thinpools (vtrefny)
-- Do not skip LVM VDO tests when the kvdo module is already loaded (vtrefny)
-- tests: Skip LVM VDO tests if kvdo module cannot be loaded (vtrefny)
-- lvm-dbus: Add LVM VDO pools to bd_lvm_lvs (vtrefny)
-- lvm: Add a function to get VDO pool name for a VDO LV (vtrefny)
-- lvm-dbus: Get data LV name for LVM VDO pools too (vtrefny)
-- Add functions to get VDO stats for LVM VDO volumes (vtrefny)
-- Move VDO statistics code to a separate file (vtrefny)
-- Fix copy-paste bug in lvm.api (vtrefny)
-- exec: Disable encoding when reading data from stdout/stderr (vtrefny)
-- Add function to get LVM VDO write policy from a string (vtrefny)
-- Add extra parameters for creating LVM VDO volumes (vtrefny)
-- Allow calling LVM functions without locking global_config_lock (vtrefny)
-- Fix getting VDO data in the LVM DBus plugin (vtrefny)
-- Fix getting string representation of unknown VDO state index (vtrefny)
-- Add write policy and index size to LVM VDO data (vtrefny)
-- Fix converting to VDO pool without name for the VDO LV (vtrefny)
-- Add some helper functions to get LVM VDO mode and state strings (vtrefny)
-- Add support for creating and managing VDO LVs with LVM (vtrefny)
-- Fix LVM plugin so names in tests (vtrefny)
-- Do not hardcode pylint executable name in Makefile (vtrefny)
-- Add a function to check if a tool supports given feature (vtrefny)
-- configure.ac: Avoid more bashisms (gentoo)
-- mount: Fix a memleak (tbzatek)
-- exec: Fix a memleak (tbzatek)
-- vdo: Fix a memleak (tbzatek)
-- configure.ac: Avoid bashisms (polynomial-c)
-- tests: Specify loader for yaml.load in VDO tests (vtrefny)
-- lvm-dbus: Fix memory leak in bd_lvm_thlvpoolname (vtrefny)
-- lvm-dbus: Do not activate LVs during pvscan --cache (vtrefny)
-- vdo: Run "vdo create" with "--force" (vtrefny)
-- Fix typo in (un)mount error messages (vtrefny)
-- utils: Add functions to get and check current linux kernel version (tbzatek)
-- ext: Return empty string instead of "<none>" for empty UUID (vtrefny)
-- Add support for BitLocker encrypted devices using cryptsetup (vtrefny)
-- Add a helper function for closing an active crypto device (vtrefny)
-- Manually remove symlinks not removed by udev in tests (vtrefny)
-- Fix memory leak in LVM DBus plugin (vtrefny)
-- Fix expected cache pool name with newest LVM (vtrefny)
-- fs: Fix checking for UID/GID == 0 (vtrefny)
-- Fixed a number of memory leaks in lvm-dbus plugin (mthompson)
-- exec.c: Fix reading outputs with null bytes (vtrefny)
-- Fix linking against utils on Debian (vtrefny)
-- Add new function 'bd_fs_wipe_force' to control force wipe (vtrefny)
-- Use 'explicit_bzero' to erase passphrases from key files (vtrefny)
-- Sync spec with downstream (vtrefny)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-01-29</td>
-						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 2.23-2</td>
-						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild</td>
 					</tr>
 					
 					<tbody>
@@ -305,11 +274,11 @@
 				
 				
 				
-				<li>ed/<ul>
+				<li>5a/<ul>
 				
 				
 				
-				<li>d7fe4d7d9be0544f074c7c4c8523ec690a6ac7</li>
+				<li>51329ecafc8162b3ae04de558e785b8e30e5e6</li>
 				
 				
 				

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>java-1.8.0-openjdk-1.8.0.292.b10-3.fc34 - Fedora Packages</title>
+		<title>java-1.8.0-openjdk-1.8.0.312.b07-2.fc34 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				java-1.8.0-openjdk-1.8.0.292.b10-3.fc34<small class="text-muted"> in Fedora 34</small>
+				java-1.8.0-openjdk-1.8.0.312.b07-2.fc34<small class="text-muted"> in Fedora 34</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of java-1.8.0-openjdk</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-1.8.0-openjdk-1.8.0.292.b10-3.fc34">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=java-1.8.0-openjdk-1.8.0.292.b10-3.fc34">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-1.8.0-openjdk-1.8.0.312.b07-2.fc34">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=java-1.8.0-openjdk-1.8.0.312.b07-2.fc34">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -58,9 +58,91 @@
 					</thead>
 					
 					<tr scope="row">
-						<td>2021-04-29</td>
-						<td>Jiri Vanek <jvanek at redhat dot com> - 1:1.8.0.292.b10-3</td>
-						<td>- removed cjc backward comaptiblity, to fix when both rpm 4.16 and 4.17 are in transaction</td>
+						<td>2021-11-03</td>
+						<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:1.8.0.312.b07-2</td>
+						<td>- Use 'sql:' prefix in nss.fips.cfg as F35+ no longer ship the legacy
+  secmod.db file as part of nss</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-15</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.312.b07-1</td>
+						<td>- Update to aarch64-shenandoah-jdk8u312-b07 (GA)
+- Update release notes for 8u312-b07.
+- Remove "-clean" suffix as no 8u312 builds are unclean.
+- Port FIPS system detection support to OpenJDK 8u
+- Minor code cleanups on FIPS detection patch and check for SECMOD_GetSystemFIPSEnabled in configure.
+- Remove unneeded Requires on NSS as it will now be dynamically linked and detected by RPM.
+- Allow plain key import to be disabled with -Dcom.redhat.fips.plainKeySupport=false
+- Reduce disk footprint by removing build artifacts by default.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-07</td>
+						<td>Martin Balao <mbalao at redhat dot com> - 1:1.8.0.312.b07-1</td>
+						<td>- Detect FIPS using SECMOD_GetSystemFIPSEnabled in the new libsystemconf JDK library.
+- Add patch to login to the NSS software token when in FIPS mode.
+- Add patch to allow plain key import.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-30</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:1.8.0.302.b08-2</td>
+						<td>- alternatives creation moved to posttrans
+- Thus fixing the old reisntall issue:
+- https://bugzilla.redhat.com/show_bug.cgi?id=1200302
+- https://bugzilla.redhat.com/show_bug.cgi?id=1976053</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-08</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.302.b08-1</td>
+						<td>- Remove non-Free test and demo files from source tarball.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-22</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:1.8.0.302.b08-0.1</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-16</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.302.b08-0</td>
+						<td>- Update to aarch64-shenandoah-jdk8u302-b08 (EA)
+- Update release notes for 8u302-b08.
+- Switch to GA mode for final release.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-08</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.302.b07-0.0.ea</td>
+						<td>- Update to aarch64-shenandoah-jdk8u302-b07 (EA)
+- Update release notes for 8u302-b07.
+- Switch to EA mode.
+- Use the "reverse" build loop (debug first) as the main and only build loop to get more diagnostics.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-07</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:1.8.0.302.b03-0.1.ea</td>
+						<td>- Backport FIPS mode patch (RH1655466) to java-1.8.0-openjdk, simplifying provider removal.
+- nss.fips.cfg needs to be moved to %{etcjavadir} and symlinked into the JDK, like nss.cfg
+- SunPKCS11 runtime provider name is a concatenation of "SunPKCS11-" and the name in the config file.
+- Change nss.fips.cfg config name to "NSS-FIPS" to avoid confusion with nss.cfg.
+- Disable FIPS mode support unless com.redhat.fips is set to "true".
+- Add JDK-8195607/PR3776 to support NSS SQLite databases.
+- Enable alignment with FIPS crypto policy by default (-Dcom.redhat.fips=false to disable).
+- Move setup of JavaSecuritySystemConfiguratorAccess to Security class so it always occurs (RH1906862)
+- Add explicit runtime dependency on NSS for the PKCS11 provider in FIPS mode</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-07</td>
+						<td>Martin Balao <mbalao at redhat dot com> - 1:1.8.0.302.b03-0.1.ea</td>
+						<td>- Support the FIPS mode crypto policy on RHEL 8 (RH1655466)
+- Use appropriate keystore types when in FIPS mode (RH1760838)
+- Disable TLSv1.3 when using the NSS-FIPS provider (RH1860986)</td>
 					</tr>
 					
 					<tbody>
@@ -73,6 +155,26 @@
 				<div class="col">
 					<h2 id="dependencies">Dependencies</h2>
 					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/alsa-lib/fedora-34.html">
+						
+						
+						alsa-lib
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/fontconfig/fedora-34.html">
+						
+						
+						fontconfig
+						
+
+						</li>
 						
 						<li>
 						
@@ -89,7 +191,27 @@
 						<a href="/pkgs/java-1.8.0-openjdk-headless/fedora-34.html">
 						
 						
-						java-1.8.0-openjdk-headless</a> = 1.8.0.292.b10-3.fc34
+						java-1.8.0-openjdk-headless</a> = 1.8.0.312.b07-2.fc34
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/libX11/fedora-34.html">
+						
+						
+						libX11
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/libjpeg-turbo/fedora-34.html">
+						
+						
+						libjpeg-turbo
 						
 
 						</li>
@@ -114,7 +236,7 @@
 						
 						<li>application()</li>
 						
-						<li>application(java-1.8.0-openjdk-1.8.0.292.b10-3.fc34.x86_64-policytool.desktop)</li>
+						<li>application(java-1.8.0-openjdk-1.8.0.312.b07-2.fc34.x86_64-policytool.desktop)</li>
 						
 						<li>java-1.8.0</li>
 						
@@ -150,23 +272,11 @@
 				
 				
 				
-				<li>14/<ul>
+				<li>2d/<ul>
 				
 				
 				
-				<li>ee0e0fad6c9fc571c2fa09af3c763b7ae3f6d6</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>56/<ul>
-				
-				
-				
-				<li>767314841c4778600b1c317f4837aae5881517</li>
+				<li>e5628b39e0f0682bf43da5f8ff122bff653c8c</li>
 				
 				
 				
@@ -174,23 +284,11 @@
 				
 				
 				
-				<li>80/<ul>
+				<li>47/<ul>
 				
 				
 				
-				<li>67b870962437fb4cab35fc4f86a3fbc5724a22</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>c8/<ul>
-				
-				
-				
-				<li>c793dd0511579f27e94af9ebcf3b5691beb77f</li>
+				<li>67fea95f58ca3c77afe0fb6b3a31b2e6289c9e</li>
 				
 				
 				
@@ -198,11 +296,35 @@
 				
 				
 				
-				<li>ff/<ul>
+				<li>8f/<ul>
 				
 				
 				
-				<li>2abc37d14c2f8be425240014956026e5e468a4</li>
+				<li>822209ef0d04ee1831cd12bb6f69c8ee6a3f5b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>bc/<ul>
+				
+				
+				
+				<li>d7bf599c6990f27c83785135ae2389819a2a05</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ed/<ul>
+				
+				
+				
+				<li>a521bd3ec6ddf346d482863c2255f23acb82e4</li>
 				
 				
 				
@@ -218,7 +340,7 @@
 				
 				
 				
-				<li>java-1.8.0-openjdk-1.8.0.292.b10-3.fc34.x86_64/<ul>
+				<li>java-1.8.0-openjdk-1.8.0.312.b07-2.fc34.x86_64/<ul>
 				
 				
 				
@@ -294,7 +416,7 @@
 				
 				
 				
-				<li>java-1.8.0-openjdk-1.8.0.292.b10-3.fc34.x86_64-policytool.desktop</li>
+				<li>java-1.8.0-openjdk-1.8.0.312.b07-2.fc34.x86_64-policytool.desktop</li>
 				
 				
 				

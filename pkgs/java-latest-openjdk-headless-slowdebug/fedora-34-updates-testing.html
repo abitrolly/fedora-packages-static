@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>java-latest-openjdk-headless-slowdebug-16.0.0.0.36-1.rolling.fc34 - Fedora Packages</title>
+		<title>java-latest-openjdk-headless-slowdebug-17.0.1.0.12-13.rolling.fc34 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				java-latest-openjdk-headless-slowdebug-16.0.0.0.36-1.rolling.fc34<small class="text-muted"> in Fedora 34</small>
+				java-latest-openjdk-headless-slowdebug-17.0.1.0.12-13.rolling.fc34<small class="text-muted"> in Fedora 34</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of java-latest-openjdk-headless-slowdebug</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-16.0.0.0.36-1.rolling.fc34">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-16.0.0.0.36-1.rolling.fc34">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-17.0.1.0.12-13.rolling.fc34">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-17.0.1.0.12-13.rolling.fc34">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -58,88 +58,35 @@
 					</thead>
 					
 					<tr scope="row">
-						<td>2021-03-09</td>
-						<td>Jiri Vanek <jvanek at redhat dot com> - 1:16.0.0.0.36-1.rolling</td>
-						<td>- fixed suggests of wrong pcsc-lite-devel(x86-64) to correct pcsc-lite-libs(x86-64)
-- bumped buildjdkver to build by itself - 16</td>
+						<td>2021-12-09</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:17.0.1.0.12-12.rolling</td>
+						<td>- Storing and restoring alterntives during update manually
+- Fixing Bug 2001567 - update of JDK/JRE is removing its manually selected alterantives and select (as auto) system JDK/JRE
+-- The move of alternatives creation to posttrans to fix:
+-- Bug 1200302 - dnf reinstall breaks alternatives
+-- Had caused the alternatives to be removed, and then created again,
+-- instead of being added, and then removing the old, and thus persisting
+-- the selection in family
+-- Thus this fix, is storing the family of manually selected master, and if
+-- stored, then it is restoring the family of the master</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-02-19</td>
-						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:16.0.0.0.36-0.rolling</td>
-						<td>- Update to jdk-16.0.0.0+36
-- Update tarball generation script to use git following OpenJDK's move to github
-- Update tarball generation script to use PR3823 which handles JDK-8235710 changes
-- Use upstream default for version-pre rather than setting it to "ea" or ""
-- Drop libsunec.so which is no longer generated, thanks to JDK-8235710
-- Drop unnecessary compiler flags, dating back to work on GCC 6 & 10
-- Adapt RH1750419 alt-java patch to still apply after some variable re-naming in the makefiles
-- Update filever to remove any trailing zeros, as in the OpenJDK build, and use for source filename
-- Use system harfbuzz now this is supported.
-- Pass SOURCE_DATE_EPOCH to build for reproducible builds</td>
+						<td>2021-12-09</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:17.0.1.0.12-12.rolling</td>
+						<td>- Family extracted to globals</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-02-19</td>
-						<td>Stephan Bergmann <sbergman at redhat dot com> - 1:15.0.2.0.7-1.rolling</td>
-						<td>- Hardcode /usr/sbin/alternatives for Flatpak builds</td>
+						<td>2021-12-09</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:17.0.1.0.12-11.rolling</td>
+						<td>- javadoc-zip got its own provides next to plain javadoc ones</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-01-26</td>
-						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:15.0.2.0.7-0.rolling.1</td>
-						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-01-22</td>
-						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.2.0.7-0.rolling</td>
-						<td>- Update to jdk-15.0.2.0+7
-- Add release notes for 15.0.1.0 & 15.0.2.0
-- Use JEP-322 Time-Based Versioning so we can handle a future 11.0.9.1-like release correctly.
-- Still use 15.0.x rather than 15.0.x.0 for file naming, as the trailing zero is omitted from tags.
-- Cleanup debug package descriptions and version number placement.
-- Remove unused patch files.</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-01-19</td>
-						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.1.9-10.rolling</td>
-						<td>- Use -march=i686 for x86 builds if -fcf-protection is detected (needs CMOV)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-12-22</td>
-						<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-9.rolling</td>
-						<td>- fixed missing condition for fastdebug packages being counted as debug ones</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-12-19</td>
-						<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-8.rolling</td>
-						<td>- removed lib-style provides for fastdebug_suffix_unquoted</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-12-19</td>
-						<td>Jiri Vanek <jvanek at redhat dot com> - 1:15.0.1.9-6.rolling</td>
-						<td>- many cosmetic changes taken from more maintained jdk11
-- introduced debug_arches, bootstrap_arches, systemtap_arches, fastdebug_arches, sa_arches, share_arches, shenandoah_arches, zgc_arches 
-  instead of various hardcoded ifarches
-- updated systemtap
-- added requires excludes for debug pkgs
-- removed redundant logic around jsa files
-- added runtime requires of lksctp-tools and libXcomposite%
-- added and used Source15 TestSecurityProperties.java, but is made always positive as jdk15 now does not honor system policies
-- s390x excluded form fastdebug build</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-12-17</td>
-						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.1.9-5.rolling</td>
-						<td>- introduced nm based check to verify alt-java on x86_64 is patched, and no other alt-java or java is patched
-- patch600 rh1750419-redhat_alt_java.patch amended to die, if it is used wrongly
-- introduced ssbd_arches with currently only valid arch of x86_64 to separate real alt-java architectures</td>
+						<td>2021-12-09</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:17.0.1.0.12-10.rolling</td>
+						<td>- replaced tabs by sets of spaces to make rpmlint happy</td>
 					</tr>
 					
 					<tbody>
@@ -155,20 +102,20 @@
 						
 						<li>
 						
-						<a href="/pkgs/cups-libs/fedora-34.html">
+						<a href="/pkgs/alsa-lib/fedora-34.html">
 						
 						
-						cups-libs
+						alsa-lib
 						
 
 						</li>
 						
 						<li>
 						
-						<a href="/pkgs/glibc/fedora-34.html">
+						<a href="/pkgs/ca-certificates/fedora-34.html">
 						
 						
-						glibc
+						ca-certificates
 						
 
 						</li>
@@ -179,16 +126,6 @@
 						
 						
 						libgcc
-						
-
-						</li>
-						
-						<li>
-						
-						<a href="/pkgs/libjpeg-turbo/fedora-34.html">
-						
-						
-						libjpeg-turbo
 						
 
 						</li>
@@ -223,17 +160,21 @@
 						
 						<li>config(java-latest-openjdk-headless-slowdebug)</li>
 						
-						<li>java-16-headless-slowdebug</li>
+						<li>java-17-headless-slowdebug</li>
 						
-						<li>java-16-openjdk-headless-slowdebug</li>
+						<li>java-17-openjdk-headless-slowdebug</li>
 						
 						<li>java-latest-openjdk-headless-slowdebug</li>
 						
 						<li>java-latest-openjdk-headless-slowdebug(x86-64)</li>
 						
-						<li>jre-16-headless-slowdebug</li>
+						<li>jre-17-headless-slowdebug</li>
 						
-						<li>jre-16-openjdk-headless-slowdebug</li>
+						<li>jre-17-openjdk-headless-slowdebug</li>
+						
+						<li>libsvml.so()(64bit)</li>
+						
+						<li>libsyslookup.so()(64bit)</li>
 						
 					</ul>
 				</div>
@@ -271,11 +212,11 @@
 				
 				
 				
-				<li>java-16-openjdk/<ul>
+				<li>java-17-openjdk/<ul>
 				
 				
 				
-				<li>java-16-openjdk-16.0.0.0.36-1.rolling.fc34.x86_64-slowdebug/<ul>
+				<li>java-17-openjdk-17.0.1.0.12-13.rolling.fc34.x86_64-slowdebug/<ul>
 				
 				
 				
@@ -336,6 +277,10 @@
 				
 				
 				<li>nss.cfg</li>
+				
+				
+				
+				<li>nss.fips.cfg</li>
 				
 				
 				
@@ -407,7 +352,7 @@
 				
 				
 				
-				<li>blacklisted.certs</li>
+				<li>blocked.certs</li>
 				
 				
 				
@@ -459,23 +404,11 @@
 				
 				
 				
-				<li>0b/<ul>
+				<li>07/<ul>
 				
 				
 				
-				<li>30e1e9c42b82ae7f0784010ae274764273cac4</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>20/<ul>
-				
-				
-				
-				<li>55b61797f2cca17c3277d7b9a7c5795ee96407</li>
+				<li>0a6aedc41ed29ccb55562bb9c0d7a5b6e17555</li>
 				
 				
 				
@@ -483,23 +416,15 @@
 				
 				
 				
-				<li>21/<ul>
+				<li>0e/<ul>
 				
 				
 				
-				<li>8747e00a702da9620ee0dc3501947862018bef</li>
+				<li>6febcd72a6d56ac708dddbcf9f50771856b74d</li>
 				
 				
 				
-				</ul></li>
-				
-				
-				
-				<li>22/<ul>
-				
-				
-				
-				<li>f2092ff7b44dbb8857956f9e1405ebe9483ad9</li>
+				<li>6febcd72a6d56ac708dddbcf9f50771856b74d.1</li>
 				
 				
 				
@@ -507,11 +432,11 @@
 				
 				
 				
-				<li>31/<ul>
+				<li>16/<ul>
 				
 				
 				
-				<li>b251d6833628b1e7055368d9be24d3a9ca044d</li>
+				<li>898bd6535f5dc9ac6c898a3988b1a1b7fcbeae</li>
 				
 				
 				
@@ -519,11 +444,71 @@
 				
 				
 				
-				<li>39/<ul>
+				<li>19/<ul>
 				
 				
 				
-				<li>a844b55f6e6557a1e2a9ef09e31fdada797434</li>
+				<li>5ad1e4f1451d2d06590e783154425b760126d0</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>24/<ul>
+				
+				
+				
+				<li>05ac5788a4c178a42a944b74ac216cd9d08596</li>
+				
+				
+				
+				<li>0b4bc3f643bed191cacdb8608098783d1e7631</li>
+				
+				
+				
+				<li>ed6d96c67142f3967d4b2dd3e63af3608268f3</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>29/<ul>
+				
+				
+				
+				<li>ab4db9b519c26a782ba172493bcdd0b50723ab</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>2c/<ul>
+				
+				
+				
+				<li>045cfd9b807ef3ba7f3d8e0d6a7829dfd5849b</li>
+				
+				
+				
+				<li>2b362da65607cdb955ca2d865f992e1b54eded</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>37/<ul>
+				
+				
+				
+				<li>a11926925ec833d05f3e619fd04479a436c38b</li>
 				
 				
 				
@@ -535,7 +520,7 @@
 				
 				
 				
-				<li>ed925b18b1f5c77c3dfa1d7c5250526ef4175b</li>
+				<li>63354b41395470f1ffa4fc47a1aede61fa0bf0</li>
 				
 				
 				
@@ -543,23 +528,11 @@
 				
 				
 				
-				<li>41/<ul>
+				<li>66/<ul>
 				
 				
 				
-				<li>eb3eaf8807b27de5512f26dbb183a687766039</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>42/<ul>
-				
-				
-				
-				<li>fccce446fece3a884d1da52988c9a71f9ce808</li>
+				<li>65053d0979461ddb25d1e82d91c18cbda8338a</li>
 				
 				
 				
@@ -567,23 +540,11 @@
 				
 				
 				
-				<li>48/<ul>
+				<li>69/<ul>
 				
 				
 				
-				<li>d9566b68329121a855860e3df9196600cc10e3</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>51/<ul>
-				
-				
-				
-				<li>4973c509588423821fb65bb32e3b0402b128f0</li>
+				<li>2587f34416d7e44abf86988db5afb4a61543e3</li>
 				
 				
 				
@@ -591,23 +552,11 @@
 				
 				
 				
-				<li>52/<ul>
+				<li>6e/<ul>
 				
 				
 				
-				<li>8948dfdbb2400647c33d542cc94af318eb3c1b</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>58/<ul>
-				
-				
-				
-				<li>8709676fbffec57ae81b076144ad586054adb9</li>
+				<li>74fb4566bdbf5ba7b187a8651baf2aaaded67c</li>
 				
 				
 				
@@ -615,23 +564,11 @@
 				
 				
 				
-				<li>65/<ul>
+				<li>70/<ul>
 				
 				
 				
-				<li>e1b2e31c449c46b5fbb002398ed0d90c90e831</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>6c/<ul>
-				
-				
-				
-				<li>97868f2c70459d2fac44c12fe7178bbd433122</li>
+				<li>2f50f38a27c468de82091b131bad8827b0f841</li>
 				
 				
 				
@@ -639,11 +576,11 @@
 				
 				
 				
-				<li>6d/<ul>
+				<li>76/<ul>
 				
 				
 				
-				<li>7c40c738032bb35fd4921d1a57f0017bd636d5</li>
+				<li>4c0e43ee44738862491f3ce75d6fd45fabcaa2</li>
 				
 				
 				
@@ -655,7 +592,7 @@
 				
 				
 				
-				<li>ab82856a65e0fe350e5a95f2ff184bf913df87</li>
+				<li>01c780d14473e1c4a13d1739aff5f7bd7ac81f</li>
 				
 				
 				
@@ -667,7 +604,7 @@
 				
 				
 				
-				<li>a5fd5385b6d53ef00e9daa7076e4f973076b0e</li>
+				<li>2be3e5f27754e54c03de464607206db108042a</li>
 				
 				
 				
@@ -675,23 +612,11 @@
 				
 				
 				
-				<li>81/<ul>
+				<li>86/<ul>
 				
 				
 				
-				<li>a7c52ad3c2c2e6de99027effe6e93bebaa8c80</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>89/<ul>
-				
-				
-				
-				<li>9fa7da9f0e2f7b7999ec565a65e139c5434265</li>
+				<li>962197b9948fed9208dc05adfebe92348191d5</li>
 				
 				
 				
@@ -699,27 +624,11 @@
 				
 				
 				
-				<li>8d/<ul>
+				<li>8e/<ul>
 				
 				
 				
-				<li>6e9ed49600aa9a6f2cae0114673f20372c5eca</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>97/<ul>
-				
-				
-				
-				<li>754aafd2f253d5d73644a2194d77cc8aba73bc</li>
-				
-				
-				
-				<li>ff5a486bf80af76e9224cb24127e21414aef24</li>
+				<li>7ffb19bd5eb80e4135ded53ecc85df54977158</li>
 				
 				
 				
@@ -727,23 +636,11 @@
 				
 				
 				
-				<li>b1/<ul>
+				<li>91/<ul>
 				
 				
 				
-				<li>6e5699b5d3fa90d536c5b5554aa03c174b84a8</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>bc/<ul>
-				
-				
-				
-				<li>6103f1a4619bbbd03097dd20c53bdb2a50bbbc</li>
+				<li>3e8f780dba65075252986e4844adc942c54684</li>
 				
 				
 				
@@ -751,11 +648,11 @@
 				
 				
 				
-				<li>c8/<ul>
+				<li>9c/<ul>
 				
 				
 				
-				<li>409603a9bd8d862edbccf51c6dac423db5015a</li>
+				<li>a5de12f3150d59222f8632c9ba350e71f4cf4c</li>
 				
 				
 				
@@ -763,11 +660,127 @@
 				
 				
 				
-				<li>d4/<ul>
+				<li>a5/<ul>
 				
 				
 				
-				<li>df58616116e2628b4687d7fe678e93c107ce6a</li>
+				<li>321948a8ed748a29e4404624a2d1c3bc3aa047</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a6/<ul>
+				
+				
+				
+				<li>4a64001f5ebba82afcae02ebe9a39c8d9156b9</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>b6/<ul>
+				
+				
+				
+				<li>a5e801539f97fef1054aabc2150a00cb8241ea</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>b7/<ul>
+				
+				
+				
+				<li>38106093b2df04ccafd528822478720e0769d6</li>
+				
+				
+				
+				<li>5e984f4e055a7e29c74ea6e699f93f994bc315</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>b8/<ul>
+				
+				
+				
+				<li>d6103460b07e8c86a81626468b15f536f1d64c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>c2/<ul>
+				
+				
+				
+				<li>31c98ec602bdac80c137da91507b718239270e</li>
+				
+				
+				
+				<li>c598a23adee3d504c608403bf3aaac51627519</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>c3/<ul>
+				
+				
+				
+				<li>e77c1b6bf57618180d44b33ea6570b21f8b97b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>d3/<ul>
+				
+				
+				
+				<li>68d6b5a157faa1f9a814e2201c6a5b6403640b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>d8/<ul>
+				
+				
+				
+				<li>66e3bf91837f55c686a66adece80099f647daa</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e6/<ul>
+				
+				
+				
+				<li>874faaff5bcf818bc9db16b56f35f5ba0660e9</li>
 				
 				
 				
@@ -779,7 +792,7 @@
 				
 				
 				
-				<li>063df93906af0f8ccc594fb0fa5348f46d5758</li>
+				<li>ff5a2158e8ce5bfd1ab99b66e99d5b01c255c9</li>
 				
 				
 				
@@ -787,39 +800,11 @@
 				
 				
 				
-				<li>e8/<ul>
+				<li>f3/<ul>
 				
 				
 				
-				<li>e1af0ec317e7307ed510097118f4b27099cc8c</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>ef/<ul>
-				
-				
-				
-				<li>9322fd0907b84a6f3d4cb5b84df498f692e089</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>f1/<ul>
-				
-				
-				
-				<li>738cb19103d2b90d9a401b63063f3eb58e18bd</li>
-				
-				
-				
-				<li>738cb19103d2b90d9a401b63063f3eb58e18bd.1</li>
+				<li>9df67963bbcc8c9545da8ead8717d2311fc710</li>
 				
 				
 				
@@ -831,7 +816,7 @@
 				
 				
 				
-				<li>d3b6c855f2fc0503b33fe78cf0baab22b3be74</li>
+				<li>60a1dfc5aed5dac8bc765913b76a4749f30ee7</li>
 				
 				
 				
@@ -839,31 +824,15 @@
 				
 				
 				
-				<li>f5/<ul>
+				<li>fb/<ul>
 				
 				
 				
-				<li>d5ba343b4fc49393c5e0d1d88b393e1cd84cce</li>
+				<li>886b17d334f7faddfb2056388312f9864fdfe9</li>
 				
 				
 				
-				</ul></li>
-				
-				
-				
-				<li>f7/<ul>
-				
-				
-				
-				<li>693062cb6a14dff289aba98a0c90b0de578511</li>
-				
-				
-				
-				<li>d4247b825b4298a1250dea78703d0f32dae277</li>
-				
-				
-				
-				<li>de00df771e6d198237c3f47b24bc9521a84f62</li>
+				<li>b2a131538b82df9790a219e79871815f7db17e</li>
 				
 				
 				
@@ -871,35 +840,11 @@
 				
 				
 				
-				<li>f8/<ul>
+				<li>ff/<ul>
 				
 				
 				
-				<li>1481f17f7529bcf88b31f7b98fa42259abbe68</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>f9/<ul>
-				
-				
-				
-				<li>4816a9f9eaef723098b0ca5d0b61ff27f25183</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>fe/<ul>
-				
-				
-				
-				<li>81bf9e1a7c863b25d2592d154405ca7e86dce8</li>
+				<li>602f5a4a01750a350a0bf877c45b655ed33654</li>
 				
 				
 				
@@ -915,7 +860,7 @@
 				
 				
 				
-				<li>java-16-openjdk-16.0.0.0.36-1.rolling.fc34.x86_64-slowdebug/<ul>
+				<li>java-17-openjdk-17.0.1.0.12-13.rolling.fc34.x86_64-slowdebug/<ul>
 				
 				
 				
@@ -935,10 +880,6 @@
 				
 				
 				
-				<li>rmid</li>
-				
-				
-				
 				<li>rmiregistry</li>
 				
 				
@@ -948,6 +889,10 @@
 				
 				
 				<li>conf</li>
+				
+				
+				
+				<li>conf.rpmmoved</li>
 				
 				
 				
@@ -1464,26 +1409,6 @@
 				
 				
 				<li>jdk.accessibility/<ul>
-				
-				
-				
-				<li>ADDITIONAL_LICENSE_INFO</li>
-				
-				
-				
-				<li>ASSEMBLY_EXCEPTION</li>
-				
-				
-				
-				<li>LICENSE</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>jdk.aot/<ul>
 				
 				
 				
@@ -2319,6 +2244,26 @@
 				
 				
 				
+				<li>jdk.random/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
 				<li>jdk.sctp/<ul>
 				
 				
@@ -2619,6 +2564,18 @@
 				
 				
 				
+				<li>libsvml.so</li>
+				
+				
+				
+				<li>libsyslookup.so</li>
+				
+				
+				
+				<li>libsystemconf.so</li>
+				
+				
+				
 				<li>libverify.so</li>
 				
 				
@@ -2640,6 +2597,10 @@
 				
 				
 				<li>security</li>
+				
+				
+				
+				<li>security.rpmmoved</li>
 				
 				
 				
@@ -2683,7 +2644,7 @@
 				
 				
 				
-				<li>jre-16-openjdk-16.0.0.0.36-1.rolling.fc34.x86_64-slowdebug</li>
+				<li>jre-17-openjdk-17.0.1.0.12-13.rolling.fc34.x86_64-slowdebug</li>
 				
 				
 				
@@ -2703,7 +2664,7 @@
 				
 				
 				
-				<li>java-16-openjdk-16.0.0.0.36-1.rolling.fc34.x86_64-slowdebug/<ul>
+				<li>java-17-openjdk-17.0.1.0.12-13.rolling.fc34.x86_64-slowdebug/<ul>
 				
 				
 				
@@ -2727,23 +2688,19 @@
 				
 				
 				
-				<li>alt-java-java-16-openjdk-16.0.0.0.36-1.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>alt-java-java-17-openjdk-17.0.1.0.12-13.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>java-java-16-openjdk-16.0.0.0.36-1.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>java-java-17-openjdk-17.0.1.0.12-13.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>keytool-java-16-openjdk-16.0.0.0.36-1.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>keytool-java-17-openjdk-17.0.1.0.12-13.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>rmid-java-16-openjdk-16.0.0.0.36-1.rolling.fc34.x86_64-slowdebug.1.gz</li>
-				
-				
-				
-				<li>rmiregistry-java-16-openjdk-16.0.0.0.36-1.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>rmiregistry-java-17-openjdk-17.0.1.0.12-13.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				

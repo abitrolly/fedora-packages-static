@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>java-latest-openjdk-jmods-fastdebug-17.0.0.0.35-1.rolling.fc35 - Fedora Packages</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				java-latest-openjdk-jmods-fastdebug-17.0.0.0.35-1.rolling.fc35<small class="text-muted"> in Fedora 35</small>
+			</h1>
+			<p>
+				<a href=".">&crarr; Retrun to the main page of java-latest-openjdk-jmods-fastdebug</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-17.0.0.0.35-1.rolling.fc35">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-17.0.0.0.35-1.rolling.fc35">Search Bodhi</a>
+			</p>
+
+			<p>
+				
+				<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2021-09-14</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.35-1.rolling</td>
+						<td>- Update to jdk-17+35, also known as jdk-17-ga.
+- Switch to GA mode.
+- Update RH1655466 FIPS patch with changes in OpenJDK 8 version.
+- SunPKCS11 runtime provider name is a concatenation of "SunPKCS11-" and the name in the config file.
+- Change nss.fips.cfg config name to "NSS-FIPS" to avoid confusion with nss.cfg.
+- No need to substitute path to nss.fips.cfg as java.security file supports a java.home variable.
+- Disable FIPS mode support unless com.redhat.fips is set to "true".
+- Enable alignment with FIPS crypto policy by default (-Dcom.redhat.fips=false to disable).
+- Add explicit runtime dependency on NSS for the PKCS11 provider in FIPS mode
+- Move setup of JavaSecuritySystemConfiguratorAccess to Security class so it always occurs (RH1915071)
+- Minor code cleanups on FIPS detection patch and check for SECMOD_GetSystemFIPSEnabled in configure.
+- Remove unneeded Requires on NSS as it will now be dynamically linked and detected by RPM.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-14</td>
+						<td>Martin Balao <mbalao at redhat dot com> - 1:17.0.0.0.35-1.rolling</td>
+						<td>- Support the FIPS mode crypto policy (RH1655466)
+- Use appropriate keystore types when in FIPS mode (RH1818909)
+- Disable TLSv1.3 when the FIPS crypto policy and the NSS-FIPS provider are in use (RH1860986)
+- Detect FIPS using SECMOD_GetSystemFIPSEnabled in the new libsystemconf JDK library.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-30</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:17.0.0.0.33-0.1.ea.rolling</td>
+						<td>- alternatives creation moved to posttrans
+- Thus fixing the old reisntall issue:
+- https://bugzilla.redhat.com/show_bug.cgi?id=1200302
+- https://bugzilla.redhat.com/show_bug.cgi?id=1976053</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-30</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.33-0.0.ea.rolling</td>
+						<td>- Update to jdk-17+33, including JDWP fix and July 2021 CPU
+- Resolves: rhbz#1972529</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-22</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:17.0.0.0.26-0.4.ea.rolling.1</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-02</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.26-0.4.ea.rolling</td>
+						<td>- Use the "reverse" build loop (debug first) as the main and only build loop to get more diagnostics.
+- Remove restriction on disabling product build, as debug packages no longer have javadoc packages.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-28</td>
+						<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:17.0.0.0.26-0.3.ea.rolling</td>
+						<td>- fix patch rh1648249-add_commented_out_nss_cfg_provider_to_java_security.patch which made the SunPKCS provider show up again
+- Resolves: rhbz#1971120</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-24</td>
+						<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:17.0.0.0.26-0.2.ea.rolling</td>
+						<td>- Re-enable TestSecurityProperties after inclusion of PR3695</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-24</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.26-0.2.ea.rolling</td>
+						<td>- Add PR3695 to allow the system crypto policy to be turned off</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-24</td>
+						<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:17.0.0.0.26-0.1.ea.rolling</td>
+						<td>- Update buildjdkver to 17 so as to build with itself</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/java-latest-openjdk-devel-fastdebug/fedora-35.html">
+						
+						
+						java-latest-openjdk-devel-fastdebug</a> = 17.0.0.0.35-1.rolling.fc35
+						
+
+						</li>
+						
+					</ul>
+				</div>
+				
+				
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>java-17-jmods-fastdebug</li>
+						
+						<li>java-17-openjdk-jmods-fastdebug</li>
+						
+						<li>java-latest-openjdk-jmods-fastdebug</li>
+						
+						<li>java-latest-openjdk-jmods-fastdebug(x86-64)</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
+				
+				
+				<li>usr/<ul>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>jvm/<ul>
+				
+				
+				
+				<li>java-17-openjdk-17.0.0.0.35-1.rolling.fc35.x86_64-fastdebug/<ul>
+				
+				
+				
+				<li>jmods/<ul>
+				
+				
+				
+				<li>java.base.jmod</li>
+				
+				
+				
+				<li>java.compiler.jmod</li>
+				
+				
+				
+				<li>java.datatransfer.jmod</li>
+				
+				
+				
+				<li>java.desktop.jmod</li>
+				
+				
+				
+				<li>java.instrument.jmod</li>
+				
+				
+				
+				<li>java.logging.jmod</li>
+				
+				
+				
+				<li>java.management.jmod</li>
+				
+				
+				
+				<li>java.management.rmi.jmod</li>
+				
+				
+				
+				<li>java.naming.jmod</li>
+				
+				
+				
+				<li>java.net.http.jmod</li>
+				
+				
+				
+				<li>java.prefs.jmod</li>
+				
+				
+				
+				<li>java.rmi.jmod</li>
+				
+				
+				
+				<li>java.scripting.jmod</li>
+				
+				
+				
+				<li>java.se.jmod</li>
+				
+				
+				
+				<li>java.security.jgss.jmod</li>
+				
+				
+				
+				<li>java.security.sasl.jmod</li>
+				
+				
+				
+				<li>java.smartcardio.jmod</li>
+				
+				
+				
+				<li>java.sql.jmod</li>
+				
+				
+				
+				<li>java.sql.rowset.jmod</li>
+				
+				
+				
+				<li>java.transaction.xa.jmod</li>
+				
+				
+				
+				<li>java.xml.crypto.jmod</li>
+				
+				
+				
+				<li>java.xml.jmod</li>
+				
+				
+				
+				<li>jdk.accessibility.jmod</li>
+				
+				
+				
+				<li>jdk.attach.jmod</li>
+				
+				
+				
+				<li>jdk.charsets.jmod</li>
+				
+				
+				
+				<li>jdk.compiler.jmod</li>
+				
+				
+				
+				<li>jdk.crypto.cryptoki.jmod</li>
+				
+				
+				
+				<li>jdk.crypto.ec.jmod</li>
+				
+				
+				
+				<li>jdk.dynalink.jmod</li>
+				
+				
+				
+				<li>jdk.editpad.jmod</li>
+				
+				
+				
+				<li>jdk.hotspot.agent.jmod</li>
+				
+				
+				
+				<li>jdk.httpserver.jmod</li>
+				
+				
+				
+				<li>jdk.incubator.foreign.jmod</li>
+				
+				
+				
+				<li>jdk.incubator.vector.jmod</li>
+				
+				
+				
+				<li>jdk.internal.ed.jmod</li>
+				
+				
+				
+				<li>jdk.internal.jvmstat.jmod</li>
+				
+				
+				
+				<li>jdk.internal.le.jmod</li>
+				
+				
+				
+				<li>jdk.internal.opt.jmod</li>
+				
+				
+				
+				<li>jdk.internal.vm.ci.jmod</li>
+				
+				
+				
+				<li>jdk.internal.vm.compiler.jmod</li>
+				
+				
+				
+				<li>jdk.internal.vm.compiler.management.jmod</li>
+				
+				
+				
+				<li>jdk.jartool.jmod</li>
+				
+				
+				
+				<li>jdk.javadoc.jmod</li>
+				
+				
+				
+				<li>jdk.jcmd.jmod</li>
+				
+				
+				
+				<li>jdk.jconsole.jmod</li>
+				
+				
+				
+				<li>jdk.jdeps.jmod</li>
+				
+				
+				
+				<li>jdk.jdi.jmod</li>
+				
+				
+				
+				<li>jdk.jdwp.agent.jmod</li>
+				
+				
+				
+				<li>jdk.jfr.jmod</li>
+				
+				
+				
+				<li>jdk.jlink.jmod</li>
+				
+				
+				
+				<li>jdk.jpackage.jmod</li>
+				
+				
+				
+				<li>jdk.jshell.jmod</li>
+				
+				
+				
+				<li>jdk.jsobject.jmod</li>
+				
+				
+				
+				<li>jdk.jstatd.jmod</li>
+				
+				
+				
+				<li>jdk.localedata.jmod</li>
+				
+				
+				
+				<li>jdk.management.agent.jmod</li>
+				
+				
+				
+				<li>jdk.management.jfr.jmod</li>
+				
+				
+				
+				<li>jdk.management.jmod</li>
+				
+				
+				
+				<li>jdk.naming.dns.jmod</li>
+				
+				
+				
+				<li>jdk.naming.rmi.jmod</li>
+				
+				
+				
+				<li>jdk.net.jmod</li>
+				
+				
+				
+				<li>jdk.nio.mapmode.jmod</li>
+				
+				
+				
+				<li>jdk.random.jmod</li>
+				
+				
+				
+				<li>jdk.sctp.jmod</li>
+				
+				
+				
+				<li>jdk.security.auth.jmod</li>
+				
+				
+				
+				<li>jdk.security.jgss.jmod</li>
+				
+				
+				
+				<li>jdk.unsupported.desktop.jmod</li>
+				
+				
+				
+				<li>jdk.unsupported.jmod</li>
+				
+				
+				
+				<li>jdk.xml.dom.jmod</li>
+				
+				
+				
+				<li>jdk.zipfs.jmod</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
+

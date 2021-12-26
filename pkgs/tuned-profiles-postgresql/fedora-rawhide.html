@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>tuned-profiles-postgresql-2.15.0-2.fc34 - Fedora Packages</title>
+		<title>tuned-profiles-postgresql-2.16.0-1.fc35 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				tuned-profiles-postgresql-2.15.0-2.fc34<small class="text-muted"> in Fedora Rawhide</small>
+				tuned-profiles-postgresql-2.16.0-1.fc35<small class="text-muted"> in Fedora Rawhide</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of tuned-profiles-postgresql</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=tuned-2.15.0-2.fc34">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=tuned-2.15.0-2.fc34">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=tuned-2.16.0-1.fc35">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=tuned-2.16.0-1.fc35">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -56,6 +56,70 @@
 							<th scope="col">Change</th>
 						</tr>
 					</thead>
+					
+					<tr scope="row">
+						<td>2021-07-21</td>
+						<td>Jaroslav Škarvada <jskarvad at redhat dot com> - 2.16.0-1</td>
+						<td>- new release
+  - rebased tuned to latest upstream
+    related: rhbz#1936426</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-07</td>
+						<td>Jaroslav Škarvada <jskarvad at redhat dot com> - 2.16.0-0.1.rc1</td>
+						<td>- new release
+  - rebased tuned to latest upstream
+    resolves: rhbz#1936426
+  - realtime: "isolate_managed_irq=Y" should be mentioned in
+    "/etc/tuned/realtime-virtual-*-variables.conf"
+    resolves: rhbz#1817827
+  - realtime: changed tuned default to "isolcpus=domain,managed_irq,X-Y"
+    resolves: rhbz#1820626
+  - applying a profile with multiple inheritance where parents include a common
+    ancestor fails
+    resolves: rhbz#1825882
+  - failure in moving i40e IRQ threads to housekeeping CPUs from isolated CPUs
+    resolves: rhbz#1933069
+  - sort network devices before matching by regex
+    resolves: rhbz#1939970
+  - net: fixed traceback while adjusting the netdev queue count
+    resolves: rhbz#1943291
+  - net: fixed traceback if the first listed device returns netlink error
+    resolves: rhbz#1944686
+  - realtime: improve verification
+    resolves: rhbz#1947858
+  - bootloader: add support for the rpm-ostree
+    resolves: rhbz#1950164
+  - net: fixed traceback if a device channel contains n/a
+    resolves: rhbz#1974071
+  - mssql: updated the profile
+    resolves: rhbz#1942733
+  - realtime: disabled kvm.nx_huge_page kernel module option in
+    realtime-virtual-host profile
+    resolves: rhbz#1976825
+  - realtime: explicitly set 'irqaffinity=~<isolated_cpu_mask>' in kernel
+    command line
+    resolves: rhbz#1974820
+  - scheduler: added abstraction for the sched_* and numa_* variables which
+    were previously accessible through the sysctl
+    resolves: rhbz#1952687
+  - recommend: fixed wrong profile on ppc64le bare metal servers
+    resolves: rhbz#1959889</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-04</td>
+						<td>Python Maint <python dash maint at redhat dot com> - 2.15.0-4</td>
+						<td>- Rebuilt for Python 3.10</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-03-02</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 2.15.0-3</td>
+						<td>- Rebuilt for updated systemd-rpm-macros
+  See https://pagure.io/fesco/issue/2583.</td>
+					</tr>
 					
 					<tr scope="row">
 						<td>2021-01-27</td>
@@ -114,50 +178,6 @@
     related: rhbz#1792264</td>
 					</tr>
 					
-					<tr scope="row">
-						<td>2020-06-08</td>
-						<td>Jaroslav Škarvada <jskarvad at redhat dot com> - 2.14.0-0.1.rc1</td>
-						<td>- new release
-  - rebased tuned to latest upstream
-    resolves: rhbz#1792264
-  - oracle: turned off NUMA balancing
-    resolves: rhbz#1782233
-  - man: documented the possibility to apply multiple profiles
-    resolves: rhbz#1794337
-  - cpu-partitioning: disabled kernel.timer_migration
-    resolves: rhbz#1797629
-  - profiles: new profile optimize-serial-console
-    resolves: rhbz#1840689
-  - added support for a post-loaded profile
-    resolves: rhbz#1798183
-  - plugins: new irqbalance plugin
-    resolves: rhbz#1784645
-  - throughput-performance: added architecture specific tuning for Marvell ThunderX
-    resolves: rhbz#1746961
-  - throughput-performance: added architecture specific tuning for AMD
-    resolves: rhbz#1746957
-  - scheduler: added support for cgroups
-    resolves: rhbz#1784648</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-05-26</td>
-						<td>Miro Hrončok <mhroncok at redhat dot com> - 2.13.0-4</td>
-						<td>- Rebuilt for Python 3.9</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-04-06</td>
-						<td>Miro Hrončok <mhroncok at redhat dot com> - 2.13.0-3</td>
-						<td>- Build without unittest2</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-01-31</td>
-						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 2.13.0-2</td>
-						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild</td>
-					</tr>
-					
 					<tbody>
 					</tbody>
 				</table>
@@ -174,7 +194,7 @@
 						<a href="/pkgs/tuned/fedora-rawhide.html">
 						
 						
-						tuned</a> = 2.15.0
+						tuned</a> = 2.16.0
 						
 
 						</li>

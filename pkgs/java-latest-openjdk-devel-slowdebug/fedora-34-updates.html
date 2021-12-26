@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>java-latest-openjdk-devel-slowdebug-16.0.1.0.9-3.rolling.fc34 - Fedora Packages</title>
+		<title>java-latest-openjdk-devel-slowdebug-17.0.1.0.12-2.rolling.fc34 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				java-latest-openjdk-devel-slowdebug-16.0.1.0.9-3.rolling.fc34<small class="text-muted"> in Fedora 34</small>
+				java-latest-openjdk-devel-slowdebug-17.0.1.0.12-2.rolling.fc34<small class="text-muted"> in Fedora 34</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of java-latest-openjdk-devel-slowdebug</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-16.0.1.0.9-3.rolling.fc34">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-16.0.1.0.9-3.rolling.fc34">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-17.0.1.0.12-2.rolling.fc34">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-17.0.1.0.12-2.rolling.fc34">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -58,83 +58,88 @@
 					</thead>
 					
 					<tr scope="row">
-						<td>2021-05-07</td>
-						<td>Jiri Vanek <jvanek at redhat dot com> - 1:16.0.1.0.9-2.rolling</td>
-						<td>- removed cjc backward comaptiblity, to fix when both rpm 4.16 and 4.17 are in transaction</td>
+						<td>2021-11-03</td>
+						<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:17.0.1.0.12-2.rolling</td>
+						<td>- Use 'sql:' prefix in nss.fips.cfg as F35+ no longer ship the legacy
+  secmod.db file as part of nss</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-04-29</td>
-						<td>Jiri Vanek <jvanek at redhat dot com> -  1:16.0.1.0.9-2.rolling</td>
-						<td>- adapted to debug handling  in newer cjc
-- The rest of the "rpm 4.17" patch must NOT be backported, as on rpm 4.16 and down, it would casue double execution
-- Disable copy-jdk-configs for Flatpak builds</td>
+						<td>2021-10-20</td>
+						<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:17.0.1.0.12-1.rolling</td>
+						<td>- October CPU update to jdk 17.0.1+12
+- dropped commented-out source line
+- bump buildjdkver to 17</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-04-25</td>
-						<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:16.0.1.0.9-1.rolling</td>
-						<td>- update to 16.0.1+9 april cpu tag
-- dropped jdk8259949-allow_cf-protection_on_x86.patch</td>
+						<td>2021-10-11</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.35-3.rolling</td>
+						<td>- Update release notes to document the major changes between OpenJDK 11 & 17.</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-03-11</td>
-						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:16.0.0.0.36-2.rolling</td>
-						<td>- Perform static library build on a separate source tree with bundled image libraries
-- Make static library build optional
-- Based on initial work by Severin Gehwolf</td>
+						<td>2021-10-10</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.35-2.rolling</td>
+						<td>- Fix unused function compiler warning found in systemconf.c
+- Extend the default security policy to accomodate PKCS11 accessing jdk.internal.access.
+- Allow plain key import to be disabled with -Dcom.redhat.fips.plainKeySupport=false</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-03-09</td>
-						<td>Jiri Vanek <jvanek at redhat dot com> - 1:16.0.0.0.36-1.rolling</td>
-						<td>- fixed suggests of wrong pcsc-lite-devel(x86-64) to correct pcsc-lite-libs(x86-64)
-- bumped buildjdkver to build by itself - 16</td>
+						<td>2021-10-10</td>
+						<td>Martin Balao <mbalao at redhat dot com> - 1:17.0.0.0.35-2.rolling</td>
+						<td>- Add patch to disable non-FIPS crypto in the SUN and SunEC security providers.
+- Add patch to login to the NSS software token when in FIPS mode.
+- Add patch to allow plain key import.</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-02-19</td>
-						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:16.0.0.0.36-0.rolling</td>
-						<td>- Update to jdk-16.0.0.0+36
-- Update tarball generation script to use git following OpenJDK's move to github
-- Update tarball generation script to use PR3823 which handles JDK-8235710 changes
-- Use upstream default for version-pre rather than setting it to "ea" or ""
-- Drop libsunec.so which is no longer generated, thanks to JDK-8235710
-- Drop unnecessary compiler flags, dating back to work on GCC 6 & 10
-- Adapt RH1750419 alt-java patch to still apply after some variable re-naming in the makefiles
-- Update filever to remove any trailing zeros, as in the OpenJDK build, and use for source filename
-- Use system harfbuzz now this is supported.
-- Pass SOURCE_DATE_EPOCH to build for reproducible builds</td>
+						<td>2021-09-14</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.35-1.rolling</td>
+						<td>- Update to jdk-17+35, also known as jdk-17-ga.
+- Switch to GA mode.
+- Update RH1655466 FIPS patch with changes in OpenJDK 8 version.
+- SunPKCS11 runtime provider name is a concatenation of "SunPKCS11-" and the name in the config file.
+- Change nss.fips.cfg config name to "NSS-FIPS" to avoid confusion with nss.cfg.
+- No need to substitute path to nss.fips.cfg as java.security file supports a java.home variable.
+- Disable FIPS mode support unless com.redhat.fips is set to "true".
+- Enable alignment with FIPS crypto policy by default (-Dcom.redhat.fips=false to disable).
+- Add explicit runtime dependency on NSS for the PKCS11 provider in FIPS mode
+- Move setup of JavaSecuritySystemConfiguratorAccess to Security class so it always occurs (RH1915071)
+- Minor code cleanups on FIPS detection patch and check for SECMOD_GetSystemFIPSEnabled in configure.
+- Remove unneeded Requires on NSS as it will now be dynamically linked and detected by RPM.</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-02-19</td>
-						<td>Stephan Bergmann <sbergman at redhat dot com> - 1:15.0.2.0.7-1.rolling</td>
-						<td>- Hardcode /usr/sbin/alternatives for Flatpak builds</td>
+						<td>2021-09-14</td>
+						<td>Martin Balao <mbalao at redhat dot com> - 1:17.0.0.0.35-1.rolling</td>
+						<td>- Support the FIPS mode crypto policy (RH1655466)
+- Use appropriate keystore types when in FIPS mode (RH1818909)
+- Disable TLSv1.3 when the FIPS crypto policy and the NSS-FIPS provider are in use (RH1860986)
+- Detect FIPS using SECMOD_GetSystemFIPSEnabled in the new libsystemconf JDK library.</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-01-26</td>
-						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:15.0.2.0.7-0.rolling.1</td>
-						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+						<td>2021-08-30</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:17.0.0.0.33-0.1.ea.rolling</td>
+						<td>- alternatives creation moved to posttrans
+- Thus fixing the old reisntall issue:
+- https://bugzilla.redhat.com/show_bug.cgi?id=1200302
+- https://bugzilla.redhat.com/show_bug.cgi?id=1976053</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-01-22</td>
-						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.2.0.7-0.rolling</td>
-						<td>- Update to jdk-15.0.2.0+7
-- Add release notes for 15.0.1.0 & 15.0.2.0
-- Use JEP-322 Time-Based Versioning so we can handle a future 11.0.9.1-like release correctly.
-- Still use 15.0.x rather than 15.0.x.0 for file naming, as the trailing zero is omitted from tags.
-- Cleanup debug package descriptions and version number placement.
-- Remove unused patch files.</td>
+						<td>2021-07-30</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.33-0.0.ea.rolling</td>
+						<td>- Update to jdk-17+33, including JDWP fix and July 2021 CPU
+- Resolves: rhbz#1972529</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-01-19</td>
-						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:15.0.1.9-10.rolling</td>
-						<td>- Use -march=i686 for x86 builds if -fcf-protection is detected (needs CMOV)</td>
+						<td>2021-07-22</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:17.0.0.0.26-0.4.ea.rolling.1</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
 					</tr>
 					
 					<tbody>
@@ -163,7 +168,7 @@
 						<a href="/pkgs/java-latest-openjdk-slowdebug/fedora-34.html">
 						
 						
-						java-latest-openjdk-slowdebug</a> = 16.0.1.0.9-3.rolling.fc34
+						java-latest-openjdk-slowdebug</a> = 17.0.1.0.12-2.rolling.fc34
 						
 
 						</li>
@@ -178,19 +183,19 @@
 						
 						<li>application()</li>
 						
-						<li>application(java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug-jconsole-slowdebug.desktop)</li>
+						<li>application(java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug-jconsole-slowdebug.desktop)</li>
 						
-						<li>java-16-devel-slowdebug</li>
+						<li>java-17-devel-slowdebug</li>
 						
-						<li>java-16-openjdk-devel-slowdebug</li>
+						<li>java-17-openjdk-devel-slowdebug</li>
 						
 						<li>java-latest-openjdk-devel-slowdebug</li>
 						
 						<li>java-latest-openjdk-devel-slowdebug(x86-64)</li>
 						
-						<li>java-sdk-16-openjdk-slowdebug</li>
+						<li>java-sdk-17-openjdk-slowdebug</li>
 						
-						<li>java-sdk-16-slowdebug</li>
+						<li>java-sdk-17-slowdebug</li>
 						
 					</ul>
 				</div>
@@ -216,23 +221,11 @@
 				
 				
 				
-				<li>06/<ul>
+				<li>00/<ul>
 				
 				
 				
-				<li>7fb121aff11d72f02ac7fc6985915157f4b43a</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>0c/<ul>
-				
-				
-				
-				<li>c5346e84f33450d75dd395f84d0e86e06646f9</li>
+				<li>522d5fa26147a91a9ad235d99612e2c2e54079</li>
 				
 				
 				
@@ -240,23 +233,11 @@
 				
 				
 				
-				<li>11/<ul>
+				<li>20/<ul>
 				
 				
 				
-				<li>576af7500293486fb562d9c4d60a8694504a85</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>44/<ul>
-				
-				
-				
-				<li>a918c8e923c1adc03530398f981df49235c675</li>
+				<li>7688bc69b183883c7938e09d0da191308c4027</li>
 				
 				
 				
@@ -264,11 +245,107 @@
 				
 				
 				
-				<li>52/<ul>
+				<li>25/<ul>
 				
 				
 				
-				<li>f37932c01dd511a592496147195ea0adfa58b9</li>
+				<li>3e140542e8c013a1e7c0772c7cef0b52cdcec4</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>2a/<ul>
+				
+				
+				
+				<li>ebb7a2a672aeb9d2d9bfeb81207f3f687d1e92</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>46/<ul>
+				
+				
+				
+				<li>b993ca8729952cd2529e3495c40664ea8b7ef0</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>4b/<ul>
+				
+				
+				
+				<li>66da540eb5c5dc127f3ce98b29115fba81a3c8</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>4c/<ul>
+				
+				
+				
+				<li>a26cd2cfb84fc9fb5ca683b93571eeec66f80b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>4f/<ul>
+				
+				
+				
+				<li>0b4eecf19a1c3966feb6105335e21038b3b29b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>54/<ul>
+				
+				
+				
+				<li>38707bc857bf12fc32acb47ad0bf56934a7497</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>5c/<ul>
+				
+				
+				
+				<li>6bb47716b726c4f261cdfe51b22b9515255046</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>66/<ul>
+				
+				
+				
+				<li>3631dd25c1589de43826d48a4fa40441350a11</li>
 				
 				
 				
@@ -280,7 +357,7 @@
 				
 				
 				
-				<li>105959103e3a58400586fe9fb1cc6c1591d141</li>
+				<li>666840a345c5adcfbc2921c85006ca52779c9d</li>
 				
 				
 				
@@ -288,23 +365,11 @@
 				
 				
 				
-				<li>6c/<ul>
+				<li>84/<ul>
 				
 				
 				
-				<li>e0ab78fcfdf172d481d055604b2dba6c531935</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>70/<ul>
-				
-				
-				
-				<li>d175978297102b8cce9ef6c93f0ae89d3be584</li>
+				<li>a586bb985f5394f8f1f7496569adeeea3130bd</li>
 				
 				
 				
@@ -312,23 +377,11 @@
 				
 				
 				
-				<li>7b/<ul>
+				<li>87/<ul>
 				
 				
 				
-				<li>06d8e5612dd45755c28df09373dd9716129bd7</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>80/<ul>
-				
-				
-				
-				<li>62b1a23d7908f2a8484d6d3659e89293b3d5df</li>
+				<li>2b869fa183b9534bc6225b60a297b2889e35ea</li>
 				
 				
 				
@@ -336,23 +389,11 @@
 				
 				
 				
-				<li>89/<ul>
+				<li>99/<ul>
 				
 				
 				
-				<li>2d92188ffddeaa2ed3ec8f9e0c1a1405515daf</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>a8/<ul>
-				
-				
-				
-				<li>b7f1cec49576740536d73dbb2b2d8cbb65fb07</li>
+				<li>23126891adfea6dec7de38da2eeaa9cd8c1d75</li>
 				
 				
 				
@@ -360,47 +401,11 @@
 				
 				
 				
-				<li>ac/<ul>
+				<li>a3/<ul>
 				
 				
 				
-				<li>85b0d7b74506771f29f6f38ae001bcdc501088</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>b2/<ul>
-				
-				
-				
-				<li>0d9da7f358894cd16c0fb333bfdef3c25d0765</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>b6/<ul>
-				
-				
-				
-				<li>4c2dd38abb4f94d717801ee4f85881b5a49296</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>b8/<ul>
-				
-				
-				
-				<li>7979c9ea5e247b445d79b93f900384aa7eab57</li>
+				<li>362b62c0efe3ed8061ead488a38e926b0290a5</li>
 				
 				
 				
@@ -412,11 +417,7 @@
 				
 				
 				
-				<li>69f2bc7e48aa727bb5e5185ac18e5c7b407feb</li>
-				
-				
-				
-				<li>c18222f874f4390422993c09a52b73a639b754</li>
+				<li>2ccfac6802850e3bbce522d4e8a36bfd233cce</li>
 				
 				
 				
@@ -424,11 +425,11 @@
 				
 				
 				
-				<li>bf/<ul>
+				<li>c5/<ul>
 				
 				
 				
-				<li>b4f386733b670968e3e33db9cdae9e62b55d58</li>
+				<li>843274b2b275aeb5122abd4f16086a6c7032bc</li>
 				
 				
 				
@@ -440,7 +441,7 @@
 				
 				
 				
-				<li>62229d90700b41f7b8a3b71fe1bc834b7ecd16</li>
+				<li>f6ef575ccf19d5e2ab8860ee9d66b69ec227e7</li>
 				
 				
 				
@@ -448,23 +449,11 @@
 				
 				
 				
-				<li>d6/<ul>
+				<li>cc/<ul>
 				
 				
 				
-				<li>587272fc109fa14aa0c34dfebf58df1bf5e529</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>dc/<ul>
-				
-				
-				
-				<li>0c81dcc7535b94bd545871e2b2b1067c796035</li>
+				<li>c2becc2ce86b504f2c634661346c3b3366950b</li>
 				
 				
 				
@@ -472,15 +461,11 @@
 				
 				
 				
-				<li>de/<ul>
+				<li>e5/<ul>
 				
 				
 				
-				<li>c3be202bb58c6bae1cd7e3e892e1f51a26c5ac</li>
-				
-				
-				
-				<li>e14babf9bce8fe67043490292cbc5e03e5761a</li>
+				<li>0e205c45f82bb81b533a67f1ab7e71a167ca5c</li>
 				
 				
 				
@@ -488,11 +473,23 @@
 				
 				
 				
-				<li>e1/<ul>
+				<li>e7/<ul>
 				
 				
 				
-				<li>1d130428e1f9b4771d219d5bc665b558faba31</li>
+				<li>3c92fa1f233e02cc44b0ea98ea5c3dc7f0ef3c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ef/<ul>
+				
+				
+				
+				<li>52e64c525aceb51f6eea9df95eb3461f0f3b47</li>
 				
 				
 				
@@ -504,7 +501,19 @@
 				
 				
 				
-				<li>3530d681fd675d5c4c29f9c111e243b2e3a443</li>
+				<li>844ebab34eefa74d7afa75771ab1aeee29ccc8</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>fc/<ul>
+				
+				
+				
+				<li>146d05d1bc5594846412dce8ee90238cf9e779</li>
 				
 				
 				
@@ -520,15 +529,11 @@
 				
 				
 				
-				<li>java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug/<ul>
+				<li>java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug/<ul>
 				
 				
 				
 				<li>bin/<ul>
-				
-				
-				
-				<li>jaotc</li>
 				
 				
 				
@@ -700,19 +705,19 @@
 				
 				
 				
-				<li>hotspot16.0.1.0.9-3.rolling.fc34.x86_64.stp</li>
+				<li>hotspot17.0.1.0.12-2.rolling.fc34.x86_64.stp</li>
 				
 				
 				
-				<li>hotspot_gc16.0.1.0.9-3.rolling.fc34.x86_64.stp</li>
+				<li>hotspot_gc17.0.1.0.12-2.rolling.fc34.x86_64.stp</li>
 				
 				
 				
-				<li>hotspot_jni16.0.1.0.9-3.rolling.fc34.x86_64.stp</li>
+				<li>hotspot_jni17.0.1.0.12-2.rolling.fc34.x86_64.stp</li>
 				
 				
 				
-				<li>jstack16.0.1.0.9-3.rolling.fc34.x86_64.stp</li>
+				<li>jstack17.0.1.0.12-2.rolling.fc34.x86_64.stp</li>
 				
 				
 				
@@ -740,7 +745,7 @@
 				
 				
 				
-				<li>java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug-jconsole-slowdebug.desktop</li>
+				<li>java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug-jconsole-slowdebug.desktop</li>
 				
 				
 				
@@ -756,103 +761,99 @@
 				
 				
 				
-				<li>jaotc-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jar-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jar-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jarsigner-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jarsigner-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>javac-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>javac-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>javadoc-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>javadoc-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>javap-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>javap-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jcmd-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jcmd-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jconsole-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jconsole-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jdb-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jdb-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jdeprscan-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jdeprscan-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jdeps-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jdeps-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jfr-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jfr-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jhsdb-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jhsdb-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jinfo-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jinfo-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jlink-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jlink-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jmap-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jmap-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jmod-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jmod-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jpackage-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jpackage-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jps-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jps-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jrunscript-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jrunscript-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jshell-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jshell-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jstack-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jstack-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jstat-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jstat-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>jstatd-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
-				<li>jstatd-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
-				
-				
-				
-				<li>serialver-java-16-openjdk-16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.1.gz</li>
+				<li>serialver-java-17-openjdk-17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.1.gz</li>
 				
 				
 				
@@ -876,19 +877,19 @@
 				
 				
 				
-				<li>hotspot16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.stp</li>
+				<li>hotspot17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.stp</li>
 				
 				
 				
-				<li>hotspot_gc16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.stp</li>
+				<li>hotspot_gc17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.stp</li>
 				
 				
 				
-				<li>hotspot_jni16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.stp</li>
+				<li>hotspot_jni17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.stp</li>
 				
 				
 				
-				<li>jstack16.0.1.0.9-3.rolling.fc34.x86_64-slowdebug.stp</li>
+				<li>jstack17.0.1.0.12-2.rolling.fc34.x86_64-slowdebug.stp</li>
 				
 				
 				

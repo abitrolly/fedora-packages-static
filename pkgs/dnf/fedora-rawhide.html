@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>dnf-4.6.1-1.fc35 - Fedora Packages</title>
+		<title>dnf-4.10.0-1.fc36 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				dnf-4.6.1-1.fc35<small class="text-muted"> in Fedora Rawhide</small>
+				dnf-4.10.0-1.fc36<small class="text-muted"> in Fedora Rawhide</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of dnf</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=dnf-4.6.1-1.fc35">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=dnf-4.6.1-1.fc35">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=dnf-4.10.0-1.fc36">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=dnf-4.10.0-1.fc36">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -56,6 +56,76 @@
 							<th scope="col">Change</th>
 						</tr>
 					</thead>
+					
+					<tr scope="row">
+						<td>2021-10-21</td>
+						<td>Pavla Kratochvilova <pkratoch at redhat dot com> - 4.10.0-1</td>
+						<td>- Update to 4.10.0
+- Add support for autodetecting packages to be excluded from being installed as weak dependencies (RhBug:1699672)
+- Add support for excluding packages to be installed as weak dependencies (RhBug:1699672)
+- Add fail_fast parameter to download_payloads methods for use in reposync
+- Acquire all relevant locks during "dnf clean"
+- API: Raise CompsError when group/env not found in install_group and install_environment (RhBug:1947958)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-23</td>
+						<td>Pavla Kratochvilova <pkratoch at redhat dot com> - 4.9.0-1</td>
+						<td>- Update to 4.9.0
+- [API] Add method "set_or_append_opt_value" to BaseConfig (RhBug:1967925)
+- Add aliases for commands: info, updateinfo, provides (RhBug:1938333)
+- Add report about demodularized rpms into module info (RhBug:1805260)
+- Remove DNSSEC errors on COPR group email keys
+- Documentation inprovements - bugs: 1938352, 1993899, 1963704</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-21</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 4.8.0-2</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-15</td>
+						<td>Pavla Kratochvilova <pkratoch at redhat dot com> - 4.8.0-1</td>
+						<td>- Update to 4.8.0
+- Do not assume that a remote rpm is complete if present
+- Use positive percentage for "Failed delta RPMs" message
+- Remove redundant new line in Groups output
+- Format empty group names outputs to <name-unset>
+- [doc] Document default colors
+- Use rpmkeys alone to verify signature
+- Add dnf.error message to explain rpm.error traceback when package not found after resolving a transaction (RhBug:1815327,1887293,1909845)
+- Bugs fixed (RhBug:1946975,1955309)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-03</td>
+						<td>Python Maint <python dash maint at redhat dot com> - 4.7.0-2</td>
+						<td>- Rebuilt for Python 3.10</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-04-15</td>
+						<td>Nicola Sella <nsella at redhat dot com> - 4.7.0-1</td>
+						<td>- Improve repo config path ordering to fix a comps merging issue (RhBug:1928181)
+- Keep reason when package is removed (RhBug:1921063)
+- Improve mechanism for application of security filters (RhBug:1918475)
+- [doc] Add description for new API
+- [API] Add new method for reset of security filters
+- [doc] Improve documentation for Hotfix repositories
+- [doc] fix: "makecache" command downloads only enabled repositories
+- Use libdnf.utils.checksum_{check,value}
+- [doc] Add info that maximum parallel downloads is 20
+- Increase loglevel in case of invalid config options
+- [doc] installonly_limit documentation follows behavior
+- Prevent traceback (catch ValueError) if pkg is from cmdline
+- Add documentation for config option sslverifystatus (RhBug:1814383)
+- Check for specific key string when verifing signatures (RhBug:1915990)
+- Use rpmkeys binary to verify package signature (RhBug:1915990)
+- Bugs fixed (RhBug:1916783)
+- Preserve file mode during log rotation (RhBug:1910084)</td>
+					</tr>
 					
 					<tr scope="row">
 						<td>2021-03-02</td>
@@ -115,79 +185,6 @@
 - Change behaviour of Package().from_repo</td>
 					</tr>
 					
-					<tr scope="row">
-						<td>2020-12-02</td>
-						<td>Nicola Sella <nsella at redhat dot com> - 4.5.1-1</td>
-						<td>- Add a get_current() method to SwdbInterface
-- Add `from_repo` attribute for Package class (RhBug:1898968,1879168)
-- Correct description of Package().reponane attribute
-- Add unittest for new API
-- Make rotated log file (mode, owner, group) match previous log settings (RhBug:1894344)
-- [doc] Improve description of modular filtering
-- [doc] add documentation for from_repo
-- [doc] deprecated alias for dnf repoquery --deplist <deplist_option-label>
-- New config option module_allow_stream_switch allows switching enabled streams</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-11-23</td>
-						<td>Nicola Sella <nsella at redhat dot com> - 4.4.2-1</td>
-						<td>- Update to 4.4.2
-- spec: Fix building with new cmake macros (backport from downstream)
-- Warn about key retrieval over http:
-- Fix --setopt=cachedir writing outside of installroot
-- Add vendor to dnf API (RhBug:1876561)
-- Add allow_vendor_change option (RhBug:1788371) (RhBug:1788371)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-10-29</td>
-						<td>Adam Williamson <awilliam at redhat dot com> - 4.4.0-3</td>
-						<td>- Rebuild to keep NVR ahead of Fedora 32</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-10-13</td>
-						<td>Ales Matej <amatej at redhat dot com> - 4.4.0-2</td>
-						<td>- Increase required libdnf (hawkey) version</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-10-07</td>
-						<td>Nicola Sella <nsella at redhat dot com> - 4.4.0-1</td>
-						<td>- Update to 4.4.0
-- Handle empty comps group name (RhBug:1826198)
-- Remove dead history info code (RhBug:1845800)
-- Improve command emmitter in dnf-automatic
-- Enhance --querytags and --qf help output
-- [history] add option --reverse to history list (RhBug:1846692)
-- Add logfilelevel configuration (RhBug:1802074)
-- Don't turn off stdout/stderr logging longer than necessary (RhBug:1843280)
-- Mention the date/time that updates were applied
-- [dnf-automatic] Wait for internet connection (RhBug:1816308)
-- [doc] Enhance repo variables documentation (RhBug:1848161,1848615)
-- Add librepo logger for handling messages from librepo (RhBug:1816573)
-- [doc] Add package-name-spec to the list of possible specs
-- [doc] Do not use <package-nevr-spec>
-- [doc] Add section to explain -n, -na and -nevra suffixes
-- Add alias 'ls' for list command
-- README: Reference Fedora Weblate instead of Zanata
-- remove log_lock.pid after reboot(Rhbug:1863006)
-- comps: Raise CompsError when removing a non-existent group
-- Add methods for working with comps to RPMTransactionItemWrapper
-- Implement storing and replaying a transaction
-- Log failure to access last makecache time as warning
-- [doc] Document Substitutions class
-- Dont document removed attribute ``reports`` for get_best_selector
-- Change the debug log timestamps from UTC to local time</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-07-27</td>
-						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 4.2.23-2</td>
-						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
-					</tr>
-					
 					<tbody>
 					</tbody>
 				</table>
@@ -214,7 +211,7 @@
 						<a href="/pkgs/python3-dnf/fedora-rawhide.html">
 						
 						
-						python3-dnf</a> = 4.6.1-1.fc35
+						python3-dnf</a> = 4.10.0-1.fc36
 						
 
 						</li>
@@ -1164,6 +1161,26 @@
 				
 				
 				<li>ru/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>dnf.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>si/<ul>
 				
 				
 				

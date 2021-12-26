@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>grpc-cpp-1.26.0-14.fc34 - Fedora Packages</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				grpc-cpp-1.26.0-14.fc34<small class="text-muted"> in Fedora 34</small>
+			</h1>
+			<p>
+				<a href=".">&crarr; Retrun to the main page of grpc-cpp</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=grpc-1.26.0-14.fc34">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=grpc-1.26.0-14.fc34">Search Bodhi</a>
+			</p>
+
+			<p>
+				
+				<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2021-09-29</td>
+						<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-14</td>
+						<td>- Drop HTML documentation</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-03-23</td>
+						<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-13</td>
+						<td>- General:
+  * Replace * with • in descriptions
+  * Use cmake() dependencies first, and pkgconfig() dependencies second, where
+    available
+  * Drop explicit pkgconfig BR
+  * Fix the directory in which CMake installs pkgconfig files
+  * Improved CMake options
+  * Build the Doxygen reference manuals
+- C (core) and C++ (cpp):
+  * Let the -devel package require cmake-filesystem
+  * Allow building tests with our own copy of gtest/gmock, which will become
+    mandatory when we depend on abseil-cpp and switch to C++17
+  * Fix a link error in the core tests when using CMake
+  * Manually install grpc_cli (CMake)
+  * Add CMake files to the files list for the -devel package
+  * Start running some of the core tests in %check
+- Python:
+  * Add several patches required for the tests
+  * BR gevent for gevent_tests
+  * Fix build; in particular, add missing preprocess and build_package_protos
+    steps, without which the packages were missing generated proto modules and
+    were not
+    usable!
+  * Add %py_provides for Fedora 32
+  * Drop python3dist(setuptools) BR, redundant with %pyproject_buildrequires
+  * Start running most of the Python tests in %check
+  * Merge the python-grpcio-doc subpackage into grpc-doc</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-02-16</td>
+						<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-12</td>
+						<td>- C (core) and C++ (cpp):
+  * Add CMake build support but do not enable it yet; there is still a problem
+    where grpc_cli is only built with the tests, and a linking problem when
+    building the tests</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-02-02</td>
+						<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-11</td>
+						<td>- General:
+  * Update summaries and descriptions
+  * Update License fields to include licenses from bundled components
+  * Fix failure to respect Fedora build flags
+  * Use the system shared certificate bundle instead of shipping our own
+- CLI:
+  * No longer set rpath $ORIGIN
+- C (core) and C++ (cpp):
+  * Add c_so_version/cpp_so_version macros
+  * Split out C++ bindings and shared data into subpackages
+  * Drop obsolete ldconfig_scriptlets macro
+  * Stop stripping debugging symbols
+- Python:
+  * Use generated BR’s
+  * Build and package Python binding documentation
+  * Disable accommodations for older libc’s
+  * Patch out -std=gnu99 flag, which is inappropriate for C++
+  * Build additional Python packages grpcio_tools, gprcio_channelz,
+    grpcio_health_checking, grpcio_reflection, grpcio_status, and
+    grpcio_testing</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-01-26</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.26.0-10</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-01-14</td>
+						<td>Adrian Reber <adrian at lisas dot de> - 1.26.0-9</td>
+						<td>- Rebuilt for protobuf 3.14</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-11-13</td>
+						<td>Artem Polishchuk <ego dot cordatus at gmail dot com> - 1.26.0-8</td>
+						<td>- build: disable LTO due to rh#1893533</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-09-24</td>
+						<td>Adrian Reber <adrian at lisas dot de> - 1.26.0-7</td>
+						<td>- Rebuilt for protobuf 3.13</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-08-03</td>
+						<td>Gwyn Ciesla <gwync at protonmail dot com> - 1.26.0-6</td>
+						<td>- Patches for https://github.com/grpc/grpc/pull/21669</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-07-28</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.26.0-5</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/glibc/fedora-34.html">
+						
+						
+						glibc
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/grpc/fedora-34.html">
+						
+						
+						grpc</a> = 1.26.0-14.fc34
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/libgcc/fedora-34.html">
+						
+						
+						libgcc
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/libstdc++/fedora-34.html">
+						
+						
+						libstdc++
+						
+
+						</li>
+						
+					</ul>
+				</div>
+				
+				
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>grpc-cpp</li>
+						
+						<li>grpc-cpp(x86-64)</li>
+						
+						<li>libgrpc++.so.1()(64bit)</li>
+						
+						<li>libgrpc++_error_details.so.1()(64bit)</li>
+						
+						<li>libgrpc++_reflection.so.1()(64bit)</li>
+						
+						<li>libgrpc++_unsecure.so.1()(64bit)</li>
+						
+						<li>libgrpcpp_channelz.so.1()(64bit)</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
+				
+				
+				<li>usr/<ul>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>.build-id/<ul>
+				
+				
+				
+				<li>0a/<ul>
+				
+				
+				
+				<li>4f1f7e1a2c230a5f3da078f6d9d3361e7dce2d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>2d/<ul>
+				
+				
+				
+				<li>a75ae9b0b3525c83168e702d3bf205f7b86a65</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e2/<ul>
+				
+				
+				
+				<li>8e7d0f1ec2bf5b379ebff65e43a9b9c498a555</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e5/<ul>
+				
+				
+				
+				<li>e95561769869f7fce8a12e84a259665fd37096</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ed/<ul>
+				
+				
+				
+				<li>ffdbbd335c874fd14c8b5ff9874f91240c8c63</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>lib64/<ul>
+				
+				
+				
+				<li>libgrpc++.so.1</li>
+				
+				
+				
+				<li>libgrpc++.so.1.26.0</li>
+				
+				
+				
+				<li>libgrpc++_error_details.so.1</li>
+				
+				
+				
+				<li>libgrpc++_error_details.so.1.26.0</li>
+				
+				
+				
+				<li>libgrpc++_reflection.so.1</li>
+				
+				
+				
+				<li>libgrpc++_reflection.so.1.26.0</li>
+				
+				
+				
+				<li>libgrpc++_unsecure.so.1</li>
+				
+				
+				
+				<li>libgrpc++_unsecure.so.1.26.0</li>
+				
+				
+				
+				<li>libgrpcpp_channelz.so.1</li>
+				
+				
+				
+				<li>libgrpcpp_channelz.so.1.26.0</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
+

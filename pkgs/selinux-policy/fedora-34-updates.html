@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>selinux-policy-34.9-1.fc34 - Fedora Packages</title>
+		<title>selinux-policy-34.22-1.fc34 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				selinux-policy-34.9-1.fc34<small class="text-muted"> in Fedora 34</small>
+				selinux-policy-34.22-1.fc34<small class="text-muted"> in Fedora 34</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of selinux-policy</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=selinux-policy-34.9-1.fc34">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=selinux-policy-34.9-1.fc34">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=selinux-policy-34.22-1.fc34">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=selinux-policy-34.22-1.fc34">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -58,156 +58,168 @@
 					</thead>
 					
 					<tr scope="row">
-						<td>2021-05-27</td>
-						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.9-1</td>
-						<td>- Add kerberos object filetrans for nsswitchdomain
-- Allow fail2ban watch various log files
-- Add logging_watch_audit_log_files() and logging_watch_audit_log_dirs()
-- Remove further modules recently removed from refpolicy
-- Remove modules not shipped and not present in refpolicy
-- Revert "Add permission open to files_read_inherited_tmp_files() interface"
-- Revert "Allow pcp_pmlogger_t to use setrlimit BZ(1708951)"
-- Revert "Dontaudit logrotate to setrlimit itself. rhbz#1309604"
-- Revert "Allow cockpit_ws_t domain to set limits BZ(1701703)"
-- Dontaudit setrlimit for domains that exec systemctl
-- Allow kdump_t net_admin capability
-- Allow nsswitch_domain read init pid lnk_files
-- Label /dev/trng with random_device_t
-- Label /run/systemd/default-hostname with hostname_etc_t
-- Add default file context specification for dnf log files
-- Label /dev/zram[0-9]+ block device files with fixed_disk_device_t
-- Label /dev/udmabuf character device with dma_device_t
-- Label /dev/dma_heap/* char devices with dma_device_t
-- Label /dev/acpi_thermal_rel char device with acpi_device_t</td>
+						<td>2021-10-18</td>
+						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.22-1</td>
+						<td>- Add write permisson to userfaultfd_anon_inode_perms
+- Allow unconfined_t transition to mozilla_plugin_t with NoNewPrivileges
+- Add default file context for /run/gssproxy.default.sock
+- Allow xdm_t watch fonts directories
+- Allow xdm_t watch generic directories in /lib
+- Allow xdm_t watch generic pid directories</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-05-20</td>
-						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.8-1</td>
-						<td>- Allow local_login_t nnp_transition to login_userdomain
-- Allow asterisk watch localization symlinks
-- Allow NetworkManager_t to watch /etc
-- Label /var/lib/kdump with kdump_var_lib_t
-- Allow amanda get attributes of cgroup filesystems
-- Allow sysadm_t nnp_domtrans to systemd_tmpfiles_t
-- Allow install_t nnp_domtrans to setfiles_mac_t
-- Allow fcoemon create sysfs files</td>
+						<td>2021-09-23</td>
+						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.21-1</td>
+						<td>- Add bluetooth-related permissions into a tunable block
+- Allow gnome at-spi processes create and use stream sockets
+- Allow usbmuxd get attributes of tmpfs_t filesystems
+- Allow fprintd install a sleep delay inhibitor
+- Allow collectd get attributes of infiniband devices
+- Allow collectd create and user netlink rdma socket
+- Allow collectd map packet_socket
+- Allow snort create and use blootooth socket
+- Allow systemd watch and watch_reads console devices
+- Allow snort create and use generic netlink socket
+- Allow NetworkManager dbus chat with fwupd
+- Allow unconfined domains read/write domain perf_events
+- Allow scripts to enter LUKS password
+- Update mount_manage_pid_files() to use manage_files_pattern
+- Support hitless reloads feature in haproxy
+- Allow haproxy list the sysfs directories content
+- Allow gnome at-spi processes get attributes of tmpfs filesystems
+- Allow unbound connectto unix_stream_socket
+- Allow rhsmcertd_t dbus chat with anaconda install_t</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-05-13</td>
-						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.7-1</td>
-						<td>- Allow tgtd read and write infiniband devices
-- Add a comment on virt_sandbox booleans with empty content
-- Deprecate duplicate dev_write_generic_sock_files() interface
-- Allow vnstatd_t map vnstatd_var_lib_t files
-- Allow privoxy execmem
-- Allow pmdakvm read information from the debug filesystem
-- Add lockdown integrity into kernel_read_debugfs() and kernel_manage_debugfs()
-- Add permissions to delete lnk_files into gnome_delete_home_config()
-- Remove rules for inotifyfs
-- Remove rules for anon_inodefs
-- Allow systemd nnp_transition to login_userdomain
-- Allow unconfined_t write other processes perf_event records
-- Allow sysadm_t dbus chat with tuned
-- Allow tuned write profile files with file transition
-- Allow tuned manage perf_events
-- Make domains use kernel_write_perf_event() and kernel_manage_perf_event()</td>
+						<td>2021-09-16</td>
+						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.20-1</td>
+						<td>- cleanup unused codes
+- Fix typo in the gnome_exec_atspi() interface summary
+- Allow xdm execute gnome-atspi services
+- Allow gnome at-spi processes execute dbus-daemon in caller domain
+- Allow xdm watch dbus configuration
+- Allow xdm execute dbus-daemon in the caller domain
+- Revert "Allow xdm_t transition to system_dbusd_t"
+- Allow at-spi-bus-launcher read and map xdm pid files
+- Allow dhcpcd set its resource limits
+- Allow systemd-sleep get removable devices attributes
+- Allow usbmuxd get attributes of fs_t filesystems</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-05-07</td>
-						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.6-1</td>
-						<td>- Make domains use kernel_write_perf_event() and kernel_manage_perf_event()
-- Add kernel_write_perf_event() and kernel_manage_perf_event()
-- Allow syslogd_t watch root and var directories
-- Allow unconfined_t read other processes perf_event records
-- Allow login_userdomain read and map /var/lib/systemd files
-- Allow NetworkManager watch its config dir
-- Allow NetworkManager read and write z90crypt device
-- Allow tgtd create and use rdma socket
-- Allow aide connect to init with a unix socket</td>
+						<td>2021-09-09</td>
+						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.19-1</td>
+						<td>- Update the dhcp client local policy
+- Allow firewalld load kernel modules
+- Allow postfix_domain to sendto unix dgram sockets.
+- Allow systemd watch unallocated ttys</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-05-04</td>
-						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.5-1</td>
-						<td>- Grant execmem to varnishlog_t
-- We no longer need signull for varnishlog_t
-- Add map permission to varnishd_read_lib_files
-- Allow systemd-sleep tlp_filetrans_named_content()
-- Allow systemd-sleep execute generic programs
-- Allow systemd-sleep execute shell
-- Allow to sendmail read/write kerberos host rcache files
-- Allow freshclam get attributes of cgroup filesystems
-- Fix context of /run/systemd/timesync
-- Allow udev create /run/gdm with proper type
-- Allow chronyc socket file transition in user temp directory
-- Allow virtlogd_t to create virt_var_lockd_t dir
-- Allow pluto IKEv2 / ESP over TCP</td>
+						<td>2021-09-07</td>
+						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.18-1</td>
+						<td>- Allow ModemManager create a qipcrtr socket
+- Allow ModemManager request to load a kernel module
+- Label /usr/sbin/virtproxyd as virtd_exec_t
+- Allow communication between at-spi and gdm processes
+- Update ica_filetrans_named_content() with create_file_perms
+- Fix the gnome_atspi_domtrans() interface summary</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-04-27</td>
-						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.4-1</td>
-						<td>- Allow domain create anonymous inodes
-- Add anon_inode class to the policy
-- Allow systemd-coredump getattr nsfs files and net_admin capability
-- Allow systemd-sleep transition to sysstat_t
-- Allow systemd-sleep transition to tlp_t
-- Allow systemd-sleep transition to unconfined_service_t on bin_t executables
-- Allow systemd-timedated watch runtime dir and its parent
-- Allow system dbusd read /var/lib symlinks
-- Allow unconfined_service_t confidentiality and integrity lockdown
-- Label /var/lib/brltty with brltty_var_lib_t
-- Allow domain and unconfined_domain_type watch /proc/PID dirs
-- Additional permission for confined users loging into graphic session
-- Make for screen fsetid/setuid/setgid permission conditional
-- Allow for confined users acces to wtmp and run utempter</td>
+						<td>2021-08-27</td>
+						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.17-2</td>
+						<td>- Relabel /var/lib/rpm explicitly
+- Revert "Relabel /dev/dma_heap explicitly"
+- Add ica module to modules-targeted-contrib.conf</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-04-09</td>
-						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.3-1</td>
-						<td>- Label /etc/redis as redis_conf_t
-- Add brltty new permissions required by new upstream version
-- Allow cups-lpd read its private runtime socket files
-- Dontaudit daemon open and read init_t file
-- Add file context specification for /var/tmp/tmp-inst
-- Allow brltty create and use bluetooth_socket
-- Allow usbmuxd get attributes of cgroup filesystems</td>
+						<td>2021-08-27</td>
+						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.17-1</td>
+						<td>- Add support for at-spi
+- Add permissions for system dbus processes
+- Allow various domains work with ICA crypto accelerator
+- Add ica module
+- Revert "Support using ICA crypto accelerator on s390x arch"
+- Allow systemd to delete fwupd var cache files
+- Allow vmtools_unconfined_t domain transition to rpm_script_t
+- Allow dirsrv read slapd tmpfs files
+- Revert "Label /dev/shm/dirsrv/ with dirsrv_tmpfs_t label"
+- Rename samba_exec() to samba_exec_net()
+- Support using ICA crypto accelerator on s390x arch
+- Allow systemd delete /run/systemd/default-hostname
+- Allow tcpdump read system state information in /proc
+- Allow rhsmcertd to create cache file in /var/cache/cloud-what
+- Allow D-bus communication between avahi and sosreport
+- Label /usr/libexec/gdm-runtime-config with xdm_exec_t
+- Allow lldpad send to kdumpctl over a unix dgram socket
+- Revert "Allow lldpad send to kdump over a unix dgram socket"
+- Allow chronyc respond to a user chronyd instance
+- Allow ptp4l respond to pmc
+- Allow lldpad send to unconfined_t over a unix dgram socket
+- Allow sssd to set samba setting</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-04-06</td>
-						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.2-1</td>
-						<td>- Allow usbmuxd get attributes of cgroup filesystems
-- Allow accounts-daemon get attributes of cgroup filesystems
-- Allow pool-geoclue get attributes of cgroup filesystems
-- allow systemd-sleep to set timer for suspend-then-hibernate
-- Allow aide connect to systemd-userdbd with a unix socket
-- Add new interfaces with watch_mount and watch_with_perm permissions
-- Add file context specification for /usr/libexec/realmd
-- Allow /tmp file transition for dbus-daemon also for sock_file
-- Allow login_userdomain create cgroup files
-- Allow plymouthd_t exec generic program in bin directories</td>
+						<td>2021-08-12</td>
+						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.16-1</td>
+						<td>- Allow systemd-timesyncd watch system dbus pid socket files
+- Allow firewalld drop capabilities
+- Allow rhsmcertd execute gpg
+- Allow lldpad send to kdump over a unix dgram socket
+- Allow systemd-gpt-auto-generator read udev pid files
+- Set default file context for /sys/firmware/efi/efivars
+- Allow tcpdump run as a systemd service
+- Allow nmap create and use netlink generic socket
+- Allow nscd watch system db files in /var/db
+- Allow cockpit_ws_t get attributes of fs_t filesystems
+- Allow sysadm acces to kernel module resources
+- Allow sysadm to read/write scsi files and manage shadow
+- Allow sysadm access to files_unconfined and bind rpc ports
+- Allow sysadm read and view kernel keyrings
+- Allow journal mmap and read var lib files
+- Allow tuned to read rhsmcertd config files
+- Allow bootloader to read tuned etc files
+- Label /usr/bin/qemu-storage-daemon with virtd_exec_t</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-04-01</td>
-						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.1-1</td>
-						<td>- Change the package versioning</td>
+						<td>2021-08-06</td>
+						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.15-1</td>
+						<td>- Disable seccomp on CI containers
+- Allow systemd-machined stop generic service units
+- Allow virtlogd_t read process state of user domains
+- Add "/" at the beginning of dev/shm/var\.lib\.opencryptoki.* regexp
+- Label /dev/crypto/nx-gzip with accelerator_device_t
+- Update the policy for systemd-journal-upload
+- Allow unconfined domains to bpf all other domains
+- Confine rhsm service and rhsm-facts service as rhsmcertd_t
+- Allow fcoemon talk with unconfined user over unix domain datagram socket
+- Allow abrt_domain read and write z90crypt device
+- Allow mdadm read iscsi pid files
+- Change dev_getattr_infiniband_dev() to use getattr_chr_files_pattern()
+- Label /usr/lib/pcs/pcs_snmp_agent with cluster_exec_t
+- Allow hostapd bind UDP sockets to the dhcpd port
+- Unconfined domains should not be confined</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-04-01</td>
-						<td>Zdenek Pytela <zpytela at redhat dot com> - 3.14.7-30</td>
-						<td>- Allow plymouthd_t exec generic program in bin directories
-- Allow dhcpc_t domain transition to chronyc_t
-- Allow login_userdomain bind xmsg port
-- Allow ibacm the net_raw and sys_rawio capabilities
-- Allow nsswitch_domain read cgroup files
-- Allow systemd-sleep create hardware state information files</td>
+						<td>2021-07-14</td>
+						<td>Zdenek Pytela <zpytela at redhat dot com> - 34.14-1</td>
+						<td>- Revert "update libs_filetrans_named_content() to have support for /usr/lib/debug directory"
+- Remove references to init_watch_path_type attribute
+- Remove all redundant watch permissions for systemd
+- Allow systemd watch non_security_file_type dirs, files, lnk_files
+- Removed adding to attribute unpriv_userdomain from userdom_unpriv_type template
+- Allow bacula get attributes of cgroup filesystems
+- Allow systemd-journal-upload watch logs and journal
+- Create a policy for systemd-journal-upload
+- Allow tcpdump and nmap get attributes of infiniband_device_t
+- Allow arpwatch get attributes of infiniband_device_t devices
+- Label /dev/wmi/dell-smbios as acpi_device_t</td>
 					</tr>
 					
 					<tbody>
@@ -226,7 +238,7 @@
 						<a href="/pkgs/selinux-policy-minimum/fedora-34.html">
 						
 						
-						selinux-policy-minimum</a> = 34.9-1.fc34
+						selinux-policy-minimum</a> = 34.22-1.fc34
 						
 
 						</li>
@@ -236,7 +248,7 @@
 						<a href="/pkgs/selinux-policy-mls/fedora-34.html">
 						
 						
-						selinux-policy-mls</a> = 34.9-1.fc34
+						selinux-policy-mls</a> = 34.22-1.fc34
 						
 
 						</li>
@@ -246,7 +258,7 @@
 						<a href="/pkgs/selinux-policy-targeted/fedora-34.html">
 						
 						
-						selinux-policy-targeted</a> = 34.9-1.fc34
+						selinux-policy-targeted</a> = 34.22-1.fc34
 						
 
 						</li>
@@ -326,6 +338,26 @@
 				
 				
 				<li>macros.selinux-policy</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>systemd/<ul>
+				
+				
+				
+				<li>system/<ul>
+				
+				
+				
+				<li>selinux-check-proper-disable.service</li>
 				
 				
 				

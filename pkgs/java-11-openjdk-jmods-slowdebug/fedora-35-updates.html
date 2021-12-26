@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>java-11-openjdk-jmods-slowdebug-11.0.13.0.8-2.fc35 - Fedora Packages</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				java-11-openjdk-jmods-slowdebug-11.0.13.0.8-2.fc35<small class="text-muted"> in Fedora 35</small>
+			</h1>
+			<p>
+				<a href=".">&crarr; Retrun to the main page of java-11-openjdk-jmods-slowdebug</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-11-openjdk-11.0.13.0.8-2.fc35">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=java-11-openjdk-11.0.13.0.8-2.fc35">Search Bodhi</a>
+			</p>
+
+			<p>
+				
+				<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2021-11-08</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:11.0.13.0.8-2</td>
+						<td>- Reduce disk footprint by removing build artifacts by default.
+- Turn off bootstrapping for slow debug builds, which are particularly slow on ppc64le.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-04</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:11.0.13.0.8-2</td>
+						<td>- Use featurever variable in boot and install paths rather than a hardcoded value
+- Fix comment to refer to all debug builds, not just slowdebug.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-03</td>
+						<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:11.0.13.0.8-2</td>
+						<td>- Use 'sql:' prefix in nss.fips.cfg as F35+ no longer ship the legacy
+  secmod.db file as part of nss
+- Resolves: rhbz#2019555</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-13</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:11.0.13.0.8-1</td>
+						<td>- Update to jdk-11.0.12.0+8
+- Update release notes to 11.0.12.0+8
+- Update tarball generation script to use git following OpenJDK 11u's move to github
+- Remove "-clean" suffix as no 11.0.13 builds are unclean.
+- Drop JDK-8269668 patch which is now applied upstream.
+- Extend the default security policy to accomodate PKCS11 accessing jdk.internal.misc.
+- Allow plain key import to be disabled with -Dcom.redhat.fips.plainKeySupport=false
+- Restructure the build so a minimal initial build is then used for the final build (with docs)
+- This reduces pressure on the system JDK and ensures the JDK being built can do a full build</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-05</td>
+						<td>Martin Balao <mbalao at redhat dot com> - 1:11.0.13.0.8-1</td>
+						<td>- Add patch to login to the NSS software token when in FIPS mode.
+- Add patch to allow plain key import.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-02</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:11.0.13.0.8-1</td>
+						<td>- Added posttrans hook which persist sanity of dir->symlink change in case of update from ancient versions
+- Minor cosmetic improvements to make spec more comparable between variants</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-31</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:11.0.12.0.7-3</td>
+						<td>- alternatives creation moved to posttrans
+- Thus fixing the old reisntall issue:
+- https://bugzilla.redhat.com/show_bug.cgi?id=1200302
+- https://bugzilla.redhat.com/show_bug.cgi?id=1976053</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-09</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:11.0.12.0.7-2</td>
+						<td>- Remove non-Free test from source tarball.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-28</td>
+						<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:11.0.12.0.7-1</td>
+						<td>- Add patch in order to fix java.library.path issue on aarch64 (JDK-8269668)
+- Resolves: rhbz#1977671</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-22</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:11.0.12.0.7-0.1</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/java-11-openjdk-devel-slowdebug/fedora-35.html">
+						
+						
+						java-11-openjdk-devel-slowdebug</a> = 11.0.13.0.8-2.fc35
+						
+
+						</li>
+						
+					</ul>
+				</div>
+				
+				
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>java-11-jmods-slowdebug</li>
+						
+						<li>java-11-openjdk-jmods-slowdebug</li>
+						
+						<li>java-11-openjdk-jmods-slowdebug(x86-64)</li>
+						
+						<li>java-jmods-slowdebug</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
+				
+				
+				<li>usr/<ul>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>jvm/<ul>
+				
+				
+				
+				<li>java-11-openjdk-11.0.13.0.8-2.fc35.x86_64-slowdebug/<ul>
+				
+				
+				
+				<li>jmods/<ul>
+				
+				
+				
+				<li>java.base.jmod</li>
+				
+				
+				
+				<li>java.compiler.jmod</li>
+				
+				
+				
+				<li>java.datatransfer.jmod</li>
+				
+				
+				
+				<li>java.desktop.jmod</li>
+				
+				
+				
+				<li>java.instrument.jmod</li>
+				
+				
+				
+				<li>java.logging.jmod</li>
+				
+				
+				
+				<li>java.management.jmod</li>
+				
+				
+				
+				<li>java.management.rmi.jmod</li>
+				
+				
+				
+				<li>java.naming.jmod</li>
+				
+				
+				
+				<li>java.net.http.jmod</li>
+				
+				
+				
+				<li>java.prefs.jmod</li>
+				
+				
+				
+				<li>java.rmi.jmod</li>
+				
+				
+				
+				<li>java.scripting.jmod</li>
+				
+				
+				
+				<li>java.se.jmod</li>
+				
+				
+				
+				<li>java.security.jgss.jmod</li>
+				
+				
+				
+				<li>java.security.sasl.jmod</li>
+				
+				
+				
+				<li>java.smartcardio.jmod</li>
+				
+				
+				
+				<li>java.sql.jmod</li>
+				
+				
+				
+				<li>java.sql.rowset.jmod</li>
+				
+				
+				
+				<li>java.transaction.xa.jmod</li>
+				
+				
+				
+				<li>java.xml.crypto.jmod</li>
+				
+				
+				
+				<li>java.xml.jmod</li>
+				
+				
+				
+				<li>jdk.accessibility.jmod</li>
+				
+				
+				
+				<li>jdk.aot.jmod</li>
+				
+				
+				
+				<li>jdk.attach.jmod</li>
+				
+				
+				
+				<li>jdk.charsets.jmod</li>
+				
+				
+				
+				<li>jdk.compiler.jmod</li>
+				
+				
+				
+				<li>jdk.crypto.cryptoki.jmod</li>
+				
+				
+				
+				<li>jdk.crypto.ec.jmod</li>
+				
+				
+				
+				<li>jdk.dynalink.jmod</li>
+				
+				
+				
+				<li>jdk.editpad.jmod</li>
+				
+				
+				
+				<li>jdk.hotspot.agent.jmod</li>
+				
+				
+				
+				<li>jdk.httpserver.jmod</li>
+				
+				
+				
+				<li>jdk.internal.ed.jmod</li>
+				
+				
+				
+				<li>jdk.internal.jvmstat.jmod</li>
+				
+				
+				
+				<li>jdk.internal.le.jmod</li>
+				
+				
+				
+				<li>jdk.internal.opt.jmod</li>
+				
+				
+				
+				<li>jdk.internal.vm.ci.jmod</li>
+				
+				
+				
+				<li>jdk.internal.vm.compiler.jmod</li>
+				
+				
+				
+				<li>jdk.internal.vm.compiler.management.jmod</li>
+				
+				
+				
+				<li>jdk.jartool.jmod</li>
+				
+				
+				
+				<li>jdk.javadoc.jmod</li>
+				
+				
+				
+				<li>jdk.jcmd.jmod</li>
+				
+				
+				
+				<li>jdk.jconsole.jmod</li>
+				
+				
+				
+				<li>jdk.jdeps.jmod</li>
+				
+				
+				
+				<li>jdk.jdi.jmod</li>
+				
+				
+				
+				<li>jdk.jdwp.agent.jmod</li>
+				
+				
+				
+				<li>jdk.jfr.jmod</li>
+				
+				
+				
+				<li>jdk.jlink.jmod</li>
+				
+				
+				
+				<li>jdk.jshell.jmod</li>
+				
+				
+				
+				<li>jdk.jsobject.jmod</li>
+				
+				
+				
+				<li>jdk.jstatd.jmod</li>
+				
+				
+				
+				<li>jdk.localedata.jmod</li>
+				
+				
+				
+				<li>jdk.management.agent.jmod</li>
+				
+				
+				
+				<li>jdk.management.jfr.jmod</li>
+				
+				
+				
+				<li>jdk.management.jmod</li>
+				
+				
+				
+				<li>jdk.naming.dns.jmod</li>
+				
+				
+				
+				<li>jdk.naming.ldap.jmod</li>
+				
+				
+				
+				<li>jdk.naming.rmi.jmod</li>
+				
+				
+				
+				<li>jdk.net.jmod</li>
+				
+				
+				
+				<li>jdk.pack.jmod</li>
+				
+				
+				
+				<li>jdk.rmic.jmod</li>
+				
+				
+				
+				<li>jdk.scripting.nashorn.jmod</li>
+				
+				
+				
+				<li>jdk.scripting.nashorn.shell.jmod</li>
+				
+				
+				
+				<li>jdk.sctp.jmod</li>
+				
+				
+				
+				<li>jdk.security.auth.jmod</li>
+				
+				
+				
+				<li>jdk.security.jgss.jmod</li>
+				
+				
+				
+				<li>jdk.unsupported.desktop.jmod</li>
+				
+				
+				
+				<li>jdk.unsupported.jmod</li>
+				
+				
+				
+				<li>jdk.xml.dom.jmod</li>
+				
+				
+				
+				<li>jdk.zipfs.jmod</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
+

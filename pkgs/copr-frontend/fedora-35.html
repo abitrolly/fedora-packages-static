@@ -1,0 +1,4593 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>copr-frontend-1.180-1.fc35 - Fedora Packages</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				copr-frontend-1.180-1.fc35<small class="text-muted"> in Fedora 35</small>
+			</h1>
+			<p>
+				<a href=".">&crarr; Retrun to the main page of copr-frontend</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=copr-frontend-1.180-1.fc35">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=copr-frontend-1.180-1.fc35">Search Bodhi</a>
+			</p>
+
+			<p>
+				
+				<b>Package Info</b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2021-08-25</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 1.180-1</td>
+						<td>- use the same repofile for all Fedora versions including Rawhide
+- don't traceback for "module exists" error
+- fixup logging of info messages
+- don't depend on python-six, drop __future__ imports
+- move package non-denylisted chroots to general information
+- show more of general package information on package detail page
+- update main.ini and rpkg.conf.j2 for rpkg 3.0 compatibility
+- make template caching configurable
+- log basic request information for each traceback
+- do not cache last build badge
+- drop user proxy concept, we don't use it
+- generate webhook secrets using APIv3</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-15</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 1.179-1</td>
+						<td>- add support for optional namespaces in DistGit instances
+- add a "storage statistics" link to footer
+- fix the copr logo so it contains updated "fedora" font
+- index the CoprChroot.deleted field to speedup API/UI
+- a new admin command for prolonging unnoticed chroots
+- properly notify all not-deleted chroots
+- storage waste - drop upload temporary directories even upon source failure
+- automatically request PR CoprDirs removal using a new action type
+- colorize CoprDir-buttons on builds page, notifying users which of them will be removed soon
+- fix build-listing for copr-dirs, show all builds by default again
+- forked source builds now have forked source_status, too
+- fixed the comps file hyperlink in web-UI form
+- packaging - don't install test files (not used at runtime)
+- allow user to disable generating appstream metadata (admin action is no longer needed)
+- provide ENVRA build results via APIv3 (for particular build ID)
+- review.txt link is now shown only for proper chroots
+- add a logo for the OpenMandriva chroots
+- the default value for MockChroot.comment should be none
+- pruner: allow pruning also the finalized chroots
+- invent a new FE-BE API version constant, guarding against incompatible FE/BE installations
+- a new knob for turning a profiler on (devel setup)
+- newly we show two latest blog post articles</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-04-30</td>
+						<td>Jakub Kadlcik <frostyx at email dot cz> 1.178-1</td>
+						<td>- frontend: oops, forgot to change these two instances
+- frontend: show deletion tooltip in project overview</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-04-30</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 1.177-1</td>
+						<td>- fix chroot disabling in project settings
+- not display EOL warning for per-project disabled chroots</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-04-27</td>
+						<td>Jakub Kadlcik <frostyx at email dot cz> 1.176-1</td>
+						<td>- frontend: fix tests that fail in Fedora Rawhide chroots
+- frontend: create project for Fedora Review
+- frontend: memory_analyzer route module
+- frontend: fix unrelated pylint warnings
+- frontend: use correct auto_prune default when creating via API
+- frontend: better test the branch-fedora command
+- frontend: print forking stats for rawhide-to-release
+- frontend: rawhide-to-release fix for deactivated chroots
+- frontend: clone all CoprChroot attributes when forking
+- frontend: simplified Build.state logic, and better log
+- frontend: avoid NULLed source_status
+- frontend: don't create builds if there are no active chroots
+- frontend: hide deactivated chroots in the project overview
+- frontend: traceback for outdated-chroots flash message
+- frontend: make the [modified] chroot clickable
+- frontend: fix Jinja traceback on nulled buildroot_pkgs
+- frontend: catch tracebacks when rendering invalid modules
+- frontend: update FAS links to use the new site
+- frontend: fix unrelated pylint warnings
+- frontend: introduce ChrootDeletionStatus
+- frontend: delete data for unclicked chroots after few days
+- frontend: assure unique Copr name for group/user in DB
+- frontend: test that we can set these options via API
+- frontend: drop an unused pagure_events.py knob
+- GitLab moved their webhook settings to a different page.
+- frontend: fix createrepo scope for chroot enable
+- frontend: fix already defined method name
+- frontend: add base form for creating and modifying projects
+- frontend: move tests to proper class
+- frontend: explain what actions are
+- frontend: use Builds instead of Tasks in stats/
+- backend, frontend, keygen, distgit: keep cca 3 months of logs
+- frontend: test API for 'copr modify'
+- fronted: stats - sort chroots by name</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-03-16</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 1.175-1</td>
+						<td>- preparations for the centos-stream-8 rename
+- support per-build --enable-net
+- a lot of caching implemented to support flawless build-batches
+- fix: don't schedule blocked BuildChroots
+- bettter preloaded /pending-jobs/ queries
+- the /backend/pending-tasks/ json minimized
+- better identify the build submitter from pagure events
+- stop deleting unclicked CoprChroots
+- exchange xstatitc-jquery-ui-common for js-jquery-ui
+- rhbz#1937217, filter HTML tags from description and instructions
+- allow underscore in blacklisting chroot regexp
+- optionally run fedora-review after build
+- respect DELETE_EOL_CHROOTS_AFTER constant
+- don't show repo files expired chroots
+- add --comment option for 'copr-frontend create-chroot' command
+- chroot fields in forms reworked</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-01-21</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 1.174-1</td>
+						<td>- fix error 500 during build resubmit in Web-UI</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-01-20</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 1.173-1</td>
+						<td>- temporarily revert one patch breaking 'copr modify' command</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-01-20</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 1.172-1</td>
+						<td>- reworked chroots fields in copr/build forms
+- do not fork EOLed/disabled chroots
+- allow disabling modules in the buildroot
+- rename button from Update to Request in permission form
+- allow excluding chroots when submitting builds
+- delete ReviewedOutdatedChroot rows on cascade
+- disable gpgcheck for external runtime dependencies
+- generate build_chroots for resubmitted SRPM-upload builds
+- drop dependencies on orphaned and useless javascript packages
+- allow setting isolation option per chroot
+- depend on python3-email-validator
+- allow project admins to edit chroots
+- allow overriding the api token instructions downstream
+- drop delete_after tag for re-activated EOLed chroot
+- sync delete_after_timestamp for all EOLed copr_chroots
+- support modulemd v2
+- keep showing the link to EOLed repo files in copr project
+- allow enabling not-yet-deleted but only eoled chroots</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-11-30</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 1.171-1</td>
+						<td>- re-process killed SRPM tasks
+- backward compat APIv3 build-chroot fix
+- copr homepage/contact empty string converted to None
+- use URL path parameter (if there is such) instead of failing
+- fix custom webhook for binary payload
+- added new mock --isolation option in Copr
+- don't allow prolonging already expired chroots
+- try-except block for github webhook without clone_url
+- deduplicate APIv3 build-chroot parameters
+- don't traceback when the build ID larger than integer
+- allow searching builds by build ID
+- fix email recipient for permissions update</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/bash/fedora-35.html">
+						
+						
+						bash
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/copr-frontend-fedora/fedora-35.html">
+						
+						
+						copr-frontend-fedora</a> = 4
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/crontabs/fedora-35.html">
+						
+						
+						crontabs
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/curl/fedora-35.html">
+						
+						
+						curl
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/curl-minimal/fedora-35.html">
+						
+						
+						curl-minimal
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/fedora-messaging/fedora-35.html">
+						
+						
+						fedora-messaging
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/httpd/fedora-35.html">
+						
+						
+						httpd
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/js-jquery/fedora-35.html">
+						
+						
+						js-jquery
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/js-jquery-ui/fedora-35.html">
+						
+						
+						js-jquery-ui
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/modulemd-tools/fedora-35.html">
+						
+						
+						modulemd-tools</a> >= 0.6
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-CommonMark/fedora-35.html">
+						
+						
+						python3-CommonMark
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-alembic/fedora-35.html">
+						
+						
+						python3-alembic
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-anytree/fedora-35.html">
+						
+						
+						python3-anytree
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-blinker/fedora-35.html">
+						
+						
+						python3-blinker
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-click/fedora-35.html">
+						
+						
+						python3-click
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-copr-common/fedora-35.html">
+						
+						
+						python3-copr-common</a> >= 0.11.1.dev
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-dateutil/fedora-35.html">
+						
+						
+						python3-dateutil
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-email-validator/fedora-35.html">
+						
+						
+						python3-email-validator
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-flask/fedora-35.html">
+						
+						
+						python3-flask
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-flask-caching/fedora-35.html">
+						
+						
+						python3-flask-caching
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-flask-openid/fedora-35.html">
+						
+						
+						python3-flask-openid
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-flask-restful/fedora-35.html">
+						
+						
+						python3-flask-restful
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-flask-sqlalchemy/fedora-35.html">
+						
+						
+						python3-flask-sqlalchemy
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-flask-whooshee/fedora-35.html">
+						
+						
+						python3-flask-whooshee
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-flask-wtf/fedora-35.html">
+						
+						
+						python3-flask-wtf
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-gobject/fedora-35.html">
+						
+						
+						python3-gobject
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-html2text/fedora-35.html">
+						
+						
+						python3-html2text
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-html5-parser/fedora-35.html">
+						
+						
+						python3-html5-parser
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-humanize/fedora-35.html">
+						
+						
+						python3-humanize
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-libmodulemd1/fedora-35.html">
+						
+						
+						python3-libmodulemd1</a> >= 1.7.0
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-lxml/fedora-35.html">
+						
+						
+						python3-lxml
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-markdown/fedora-35.html">
+						
+						
+						python3-markdown
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-marshmallow/fedora-35.html">
+						
+						
+						python3-marshmallow
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-mod_wsgi/fedora-35.html">
+						
+						
+						python3-mod_wsgi
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-munch/fedora-35.html">
+						
+						
+						python3-munch
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-netaddr/fedora-35.html">
+						
+						
+						python3-netaddr
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-openid-teams/fedora-35.html">
+						
+						
+						python3-openid-teams
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-psycopg2/fedora-35.html">
+						
+						
+						python3-psycopg2
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-pygments/fedora-35.html">
+						
+						
+						python3-pygments
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-pylibravatar/fedora-35.html">
+						
+						
+						python3-pylibravatar
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-pytz/fedora-35.html">
+						
+						
+						python3-pytz
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-redis/fedora-35.html">
+						
+						
+						python3-redis
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-requests/fedora-35.html">
+						
+						
+						python3-requests
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-wtforms/fedora-35.html">
+						
+						
+						python3-wtforms</a> >= 2.2.1
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-zmq/fedora-35.html">
+						
+						
+						python3-zmq
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/redis/fedora-35.html">
+						
+						
+						redis
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/xstatic-bootstrap-scss-common/fedora-35.html">
+						
+						
+						xstatic-bootstrap-scss-common
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/xstatic-datatables-common/fedora-35.html">
+						
+						
+						xstatic-datatables-common
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/xstatic-patternfly-common/fedora-35.html">
+						
+						
+						xstatic-patternfly-common
+						
+
+						</li>
+						
+					</ul>
+				</div>
+				
+				
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>bundled(bootstrap-combobox)</li>
+						
+						<li>bundled(bootstrap-select)</li>
+						
+						<li>bundled(bootstrap-treeview)</li>
+						
+						<li>bundled(c3)</li>
+						
+						<li>bundled(d3)</li>
+						
+						<li>bundled(datatables-colreorder)</li>
+						
+						<li>bundled(datatables-colvis)</li>
+						
+						<li>bundled(font-awesome)</li>
+						
+						<li>bundled(google-code-prettify)</li>
+						
+						<li>config(copr-frontend)</li>
+						
+						<li>copr-frontend</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
+				
+				
+				<li>etc/<ul>
+				
+				
+				
+				<li>copr/<ul>
+				
+				
+				
+				<li>copr.conf</li>
+				
+				
+				
+				<li>copr_devel.conf</li>
+				
+				
+				
+				<li>copr_unit_test.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cron.daily/<ul>
+				
+				
+				
+				<li>copr-frontend</li>
+				
+				
+				
+				<li>copr-frontend-optional</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cron.hourly/<ul>
+				
+				
+				
+				<li>copr-frontend</li>
+				
+				
+				
+				<li>copr-frontend-optional</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>logrotate.d/<ul>
+				
+				
+				
+				<li>copr-frontend</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>usr/<ul>
+				
+				
+				
+				<li>bin/<ul>
+				
+				
+				
+				<li>copr-frontend</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>libexec/<ul>
+				
+				
+				
+				<li>copr_dump_db.sh</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>share/<ul>
+				
+				
+				
+				<li>copr/<ul>
+				
+				
+				
+				<li>coprs_frontend/<ul>
+				
+				
+				
+				<li>alembic/<ul>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>env.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>env.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>env.py</li>
+				
+				
+				
+				<li>script.py.mako</li>
+				
+				
+				
+				<li>versions/<ul>
+				
+				
+				
+				<li>0dbdd06fb850_multilib_knob_on_copr_public.py</li>
+				
+				
+				
+				<li>10029c92dd0d_add_with_without_columns_for_copr_chroot.py</li>
+				
+				
+				
+				<li>12abab545d7a_added_index_for_main_in_copr_dir.py</li>
+				
+				
+				
+				<li>1c67bc715d78_add_fedora_review_column_for_projects.py</li>
+				
+				
+				
+				<li>1f4e04bb3618_add_build_submitted_by_field.py</li>
+				
+				
+				
+				<li>1f94b22f70a1_change_module_version_to_bigint.py</li>
+				
+				
+				
+				<li>227f6bf8f10b_add_build_requires_to_build_chroot.py</li>
+				
+				
+				
+				<li>2318cc31444e_add_column_appstream.py</li>
+				
+				
+				
+				<li>24e9054d4155_fix_results_paths.py</li>
+				
+				
+				
+				<li>2561c13a3556_add_dist_git_instance_table.py</li>
+				
+				
+				
+				<li>26bf5b9a4dd0_indeces_for_faster_build_selection.py</li>
+				
+				
+				
+				<li>29c352bde564_separate_private_stuff_into_private_.py</li>
+				
+				
+				
+				<li>2d8b4722918b_remove_unused_module_md_name_and_module_.py</li>
+				
+				
+				
+				<li>2db1d0557b06_fill_ended_on_column_in_action_table.py</li>
+				
+				
+				
+				<li>3576fc77fb31_added_source_status_to_build.py</li>
+				
+				
+				
+				<li>3637b9daf7e4_generate_main_copr_dirs.py</li>
+				
+				
+				
+				<li>38ea34def9a_add_proxy_column_to_user_table.py</li>
+				
+				
+				
+				<li>3b0851cb25fc_add_build_to_module_relation.py</li>
+				
+				
+				
+				<li>3b67c52f5277_add_repos_to_copr_chroot.py</li>
+				
+				
+				
+				<li>3cba3ffe2836_on_delete_cascade_for_table_build.py</li>
+				
+				
+				
+				<li>3d89a66848c5_follow_fedora_branching.py</li>
+				
+				
+				
+				<li>45d0515bdc3f_drop_proxy_column.py</li>
+				
+				
+				
+				<li>465202bfb9ce_update_db_functions.py</li>
+				
+				
+				
+				<li>484a1d4dd424_add_cancel_requests_table.py</li>
+				
+				
+				
+				<li>4af9d157c4ea_add_unique_constraint_for_mock_chroots.py</li>
+				
+				
+				
+				<li>4d06318043d3_add_buildchroot_id_and_coprchroot_id.py</li>
+				
+				
+				
+				<li>4ed794df3bbb_add_module_hotfixes_column_for_copr_.py</li>
+				
+				
+				
+				<li>4edb1ca2a13f_remove_priority_columns.py</li>
+				
+				
+				
+				<li>512ff2b9eb6c_unify_scm_source_types_for_packages.py</li>
+				
+				
+				
+				<li>51716ab39d37_package_chroot_blacklist.py</li>
+				
+				
+				
+				<li>55a07cb7bd68_add_table_for_pinnedcoprs.py</li>
+				
+				
+				
+				<li>58eab04e5afc_add_priority_column_for_actions.py</li>
+				
+				
+				
+				<li>63db6872060f_add_bootstrap_config_columns.py</li>
+				
+				
+				
+				<li>669ba46bf357_add_srpm_url_to_build_table.py</li>
+				
+				
+				
+				<li>67ba91dda3e3_add_module_toggle_to_copr_chroot.py</li>
+				
+				
+				
+				<li>6800e08934eb_add_comment_to_mock_chroot_table.py</li>
+				
+				
+				
+				<li>6866cd91c3c6_add_deleted_column_for_coprchroot.py</li>
+				
+				
+				
+				<li>69c5f19841a5_add_delete_after_and_delete_notify_.py</li>
+				
+				
+				
+				<li>6b48324e9264_disallow_dash_in_os_release.py</li>
+				
+				
+				
+				<li>6d0a02dc7de4_sync_desynced_migrations_with_models.py</li>
+				
+				
+				
+				<li>6f83ea2ba416_add_runtime_dependencies_to_copr.py</li>
+				
+				
+				
+				<li>6fed8655d074_remove_build_results_column.py</li>
+				
+				
+				
+				<li>745250baedaf_new_column_resubmitted_from_id.py</li>
+				
+				
+				
+				<li>7723d580c625_copy_private_data_to_private_tables.py</li>
+				
+				
+				
+				<li>7bb0c7762df0_make_new_prio_columns.py</li>
+				
+				
+				
+				<li>808912fe46d3_unique_name_in_copr.py</li>
+				
+				
+				
+				<li>878d9d5311b7_add_use_bootstrap_container_to_copr.py</li>
+				
+				
+				
+				<li>887cbbd6575e_scm_integration.py</li>
+				
+				
+				
+				<li>8ae65946df53_add_blocked_by_column_for_batch.py</li>
+				
+				
+				
+				<li>8bf844cc7135_add_index_for_delete_after_a_delete_.py</li>
+				
+				
+				
+				<li>8ea94673d6ee_index_coprchroot_deleted.py</li>
+				
+				
+				
+				<li>8fd7c4714189_isolation_option_for_chroot.py</li>
+				
+				
+				
+				<li>9b7211be5017_add_reviewed_outdated_chroot_table.py</li>
+				
+				
+				
+				<li>9bc8681ed275_max_package_builds_per_copr_dir.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>0dbdd06fb850_multilib_knob_on_copr_public.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>0dbdd06fb850_multilib_knob_on_copr_public.cpython-310.pyc</li>
+				
+				
+				
+				<li>10029c92dd0d_add_with_without_columns_for_copr_chroot.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>10029c92dd0d_add_with_without_columns_for_copr_chroot.cpython-310.pyc</li>
+				
+				
+				
+				<li>12abab545d7a_added_index_for_main_in_copr_dir.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>12abab545d7a_added_index_for_main_in_copr_dir.cpython-310.pyc</li>
+				
+				
+				
+				<li>1c67bc715d78_add_fedora_review_column_for_projects.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>1c67bc715d78_add_fedora_review_column_for_projects.cpython-310.pyc</li>
+				
+				
+				
+				<li>1f4e04bb3618_add_build_submitted_by_field.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>1f4e04bb3618_add_build_submitted_by_field.cpython-310.pyc</li>
+				
+				
+				
+				<li>1f94b22f70a1_change_module_version_to_bigint.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>1f94b22f70a1_change_module_version_to_bigint.cpython-310.pyc</li>
+				
+				
+				
+				<li>227f6bf8f10b_add_build_requires_to_build_chroot.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>227f6bf8f10b_add_build_requires_to_build_chroot.cpython-310.pyc</li>
+				
+				
+				
+				<li>2318cc31444e_add_column_appstream.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>2318cc31444e_add_column_appstream.cpython-310.pyc</li>
+				
+				
+				
+				<li>24e9054d4155_fix_results_paths.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>24e9054d4155_fix_results_paths.cpython-310.pyc</li>
+				
+				
+				
+				<li>2561c13a3556_add_dist_git_instance_table.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>2561c13a3556_add_dist_git_instance_table.cpython-310.pyc</li>
+				
+				
+				
+				<li>26bf5b9a4dd0_indeces_for_faster_build_selection.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>26bf5b9a4dd0_indeces_for_faster_build_selection.cpython-310.pyc</li>
+				
+				
+				
+				<li>29c352bde564_separate_private_stuff_into_private_.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>29c352bde564_separate_private_stuff_into_private_.cpython-310.pyc</li>
+				
+				
+				
+				<li>2d8b4722918b_remove_unused_module_md_name_and_module_.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>2d8b4722918b_remove_unused_module_md_name_and_module_.cpython-310.pyc</li>
+				
+				
+				
+				<li>2db1d0557b06_fill_ended_on_column_in_action_table.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>2db1d0557b06_fill_ended_on_column_in_action_table.cpython-310.pyc</li>
+				
+				
+				
+				<li>3576fc77fb31_added_source_status_to_build.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>3576fc77fb31_added_source_status_to_build.cpython-310.pyc</li>
+				
+				
+				
+				<li>3637b9daf7e4_generate_main_copr_dirs.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>3637b9daf7e4_generate_main_copr_dirs.cpython-310.pyc</li>
+				
+				
+				
+				<li>38ea34def9a_add_proxy_column_to_user_table.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>38ea34def9a_add_proxy_column_to_user_table.cpython-310.pyc</li>
+				
+				
+				
+				<li>3b0851cb25fc_add_build_to_module_relation.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>3b0851cb25fc_add_build_to_module_relation.cpython-310.pyc</li>
+				
+				
+				
+				<li>3b67c52f5277_add_repos_to_copr_chroot.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>3b67c52f5277_add_repos_to_copr_chroot.cpython-310.pyc</li>
+				
+				
+				
+				<li>3cba3ffe2836_on_delete_cascade_for_table_build.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>3cba3ffe2836_on_delete_cascade_for_table_build.cpython-310.pyc</li>
+				
+				
+				
+				<li>3d89a66848c5_follow_fedora_branching.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>3d89a66848c5_follow_fedora_branching.cpython-310.pyc</li>
+				
+				
+				
+				<li>45d0515bdc3f_drop_proxy_column.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>45d0515bdc3f_drop_proxy_column.cpython-310.pyc</li>
+				
+				
+				
+				<li>465202bfb9ce_update_db_functions.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>465202bfb9ce_update_db_functions.cpython-310.pyc</li>
+				
+				
+				
+				<li>484a1d4dd424_add_cancel_requests_table.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>484a1d4dd424_add_cancel_requests_table.cpython-310.pyc</li>
+				
+				
+				
+				<li>4af9d157c4ea_add_unique_constraint_for_mock_chroots.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>4af9d157c4ea_add_unique_constraint_for_mock_chroots.cpython-310.pyc</li>
+				
+				
+				
+				<li>4d06318043d3_add_buildchroot_id_and_coprchroot_id.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>4d06318043d3_add_buildchroot_id_and_coprchroot_id.cpython-310.pyc</li>
+				
+				
+				
+				<li>4ed794df3bbb_add_module_hotfixes_column_for_copr_.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>4ed794df3bbb_add_module_hotfixes_column_for_copr_.cpython-310.pyc</li>
+				
+				
+				
+				<li>4edb1ca2a13f_remove_priority_columns.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>4edb1ca2a13f_remove_priority_columns.cpython-310.pyc</li>
+				
+				
+				
+				<li>512ff2b9eb6c_unify_scm_source_types_for_packages.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>512ff2b9eb6c_unify_scm_source_types_for_packages.cpython-310.pyc</li>
+				
+				
+				
+				<li>51716ab39d37_package_chroot_blacklist.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>51716ab39d37_package_chroot_blacklist.cpython-310.pyc</li>
+				
+				
+				
+				<li>55a07cb7bd68_add_table_for_pinnedcoprs.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>55a07cb7bd68_add_table_for_pinnedcoprs.cpython-310.pyc</li>
+				
+				
+				
+				<li>58eab04e5afc_add_priority_column_for_actions.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>58eab04e5afc_add_priority_column_for_actions.cpython-310.pyc</li>
+				
+				
+				
+				<li>63db6872060f_add_bootstrap_config_columns.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>63db6872060f_add_bootstrap_config_columns.cpython-310.pyc</li>
+				
+				
+				
+				<li>669ba46bf357_add_srpm_url_to_build_table.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>669ba46bf357_add_srpm_url_to_build_table.cpython-310.pyc</li>
+				
+				
+				
+				<li>67ba91dda3e3_add_module_toggle_to_copr_chroot.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>67ba91dda3e3_add_module_toggle_to_copr_chroot.cpython-310.pyc</li>
+				
+				
+				
+				<li>6800e08934eb_add_comment_to_mock_chroot_table.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>6800e08934eb_add_comment_to_mock_chroot_table.cpython-310.pyc</li>
+				
+				
+				
+				<li>6866cd91c3c6_add_deleted_column_for_coprchroot.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>6866cd91c3c6_add_deleted_column_for_coprchroot.cpython-310.pyc</li>
+				
+				
+				
+				<li>69c5f19841a5_add_delete_after_and_delete_notify_.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>69c5f19841a5_add_delete_after_and_delete_notify_.cpython-310.pyc</li>
+				
+				
+				
+				<li>6b48324e9264_disallow_dash_in_os_release.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>6b48324e9264_disallow_dash_in_os_release.cpython-310.pyc</li>
+				
+				
+				
+				<li>6d0a02dc7de4_sync_desynced_migrations_with_models.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>6d0a02dc7de4_sync_desynced_migrations_with_models.cpython-310.pyc</li>
+				
+				
+				
+				<li>6f83ea2ba416_add_runtime_dependencies_to_copr.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>6f83ea2ba416_add_runtime_dependencies_to_copr.cpython-310.pyc</li>
+				
+				
+				
+				<li>6fed8655d074_remove_build_results_column.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>6fed8655d074_remove_build_results_column.cpython-310.pyc</li>
+				
+				
+				
+				<li>745250baedaf_new_column_resubmitted_from_id.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>745250baedaf_new_column_resubmitted_from_id.cpython-310.pyc</li>
+				
+				
+				
+				<li>7723d580c625_copy_private_data_to_private_tables.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>7723d580c625_copy_private_data_to_private_tables.cpython-310.pyc</li>
+				
+				
+				
+				<li>7bb0c7762df0_make_new_prio_columns.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>7bb0c7762df0_make_new_prio_columns.cpython-310.pyc</li>
+				
+				
+				
+				<li>808912fe46d3_unique_name_in_copr.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>808912fe46d3_unique_name_in_copr.cpython-310.pyc</li>
+				
+				
+				
+				<li>878d9d5311b7_add_use_bootstrap_container_to_copr.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>878d9d5311b7_add_use_bootstrap_container_to_copr.cpython-310.pyc</li>
+				
+				
+				
+				<li>887cbbd6575e_scm_integration.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>887cbbd6575e_scm_integration.cpython-310.pyc</li>
+				
+				
+				
+				<li>8ae65946df53_add_blocked_by_column_for_batch.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>8ae65946df53_add_blocked_by_column_for_batch.cpython-310.pyc</li>
+				
+				
+				
+				<li>8bf844cc7135_add_index_for_delete_after_a_delete_.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>8bf844cc7135_add_index_for_delete_after_a_delete_.cpython-310.pyc</li>
+				
+				
+				
+				<li>8ea94673d6ee_index_coprchroot_deleted.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>8ea94673d6ee_index_coprchroot_deleted.cpython-310.pyc</li>
+				
+				
+				
+				<li>8fd7c4714189_isolation_option_for_chroot.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>8fd7c4714189_isolation_option_for_chroot.cpython-310.pyc</li>
+				
+				
+				
+				<li>9b7211be5017_add_reviewed_outdated_chroot_table.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>9b7211be5017_add_reviewed_outdated_chroot_table.cpython-310.pyc</li>
+				
+				
+				
+				<li>9bc8681ed275_max_package_builds_per_copr_dir.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>9bc8681ed275_max_package_builds_per_copr_dir.cpython-310.pyc</li>
+				
+				
+				
+				<li>a8654abcec65_unify_scm_source_types.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>a8654abcec65_unify_scm_source_types.cpython-310.pyc</li>
+				
+				
+				
+				<li>a8ef299dcac8_add_indexes_to_actions.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>a8ef299dcac8_add_indexes_to_actions.cpython-310.pyc</li>
+				
+				
+				
+				<li>ac5917e5c4fe_make_copr_dirs_unique_by_ownername.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>ac5917e5c4fe_make_copr_dirs_unique_by_ownername.cpython-310.pyc</li>
+				
+				
+				
+				<li>acac8d3ae868_add_table_for_graph_statistics.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>acac8d3ae868_add_table_for_graph_statistics.cpython-310.pyc</li>
+				
+				
+				
+				<li>b0fd99505e37_fixup_unassigned_copr_chroots.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>b0fd99505e37_fixup_unassigned_copr_chroots.cpython-310.pyc</li>
+				
+				
+				
+				<li>b14b27e4a795_adding_isolation_option.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>b14b27e4a795_adding_isolation_option.cpython-310.pyc</li>
+				
+				
+				
+				<li>b64659389c54_add_column_final_prunerepo_done_to_mock_.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>b64659389c54_add_column_final_prunerepo_done_to_mock_.cpython-310.pyc</li>
+				
+				
+				
+				<li>b828274ddebf_temporary_project.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>b828274ddebf_temporary_project.cpython-310.pyc</li>
+				
+				
+				
+				<li>b8a8a1345ed9_remove_now_private_columns_from_user_and_copr.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>b8a8a1345ed9_remove_now_private_columns_from_user_and_copr.cpython-310.pyc</li>
+				
+				
+				
+				<li>bf4b5dc74740_map_mock_croots_to_dits_git_branch.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>bf4b5dc74740_map_mock_croots_to_dits_git_branch.cpython-310.pyc</li>
+				
+				
+				
+				<li>c28451aaed50_fix_defaults.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>c28451aaed50_fix_defaults.cpython-310.pyc</li>
+				
+				
+				
+				<li>ca76b7902c2f_remove_old_status_column.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>ca76b7902c2f_remove_old_status_column.cpython-310.pyc</li>
+				
+				
+				
+				<li>cab566cc7dfb_add_batch_build_table.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>cab566cc7dfb_add_batch_build_table.cpython-310.pyc</li>
+				
+				
+				
+				<li>cb928c34d36c_add_actionsstatistics_table.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>cb928c34d36c_add_actionsstatistics_table.cpython-310.pyc</li>
+				
+				
+				
+				<li>code4beaf000_add_indexes3.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>code4beaf000_add_indexes3.cpython-310.pyc</li>
+				
+				
+				
+				<li>d230af5e05d8_drop_unused_pg_only_db_functions.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>d230af5e05d8_drop_unused_pg_only_db_functions.cpython-310.pyc</li>
+				
+				
+				
+				<li>d2fbc2ab630d_drop_fedora_alembic_config.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>d2fbc2ab630d_drop_fedora_alembic_config.cpython-310.pyc</li>
+				
+				
+				
+				<li>d6cbf6cd74da_prefer_none_over_empty_string_in_email_.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>d6cbf6cd74da_prefer_none_over_empty_string_in_email_.cpython-310.pyc</li>
+				
+				
+				
+				<li>d8a1062ee4cf_fixup_source_state.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>d8a1062ee4cf_fixup_source_state.cpython-310.pyc</li>
+				
+				
+				
+				<li>dabab11132c1_initial_db_setup.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>dabab11132c1_initial_db_setup.cpython-310.pyc</li>
+				
+				
+				
+				<li>de903581465c_create_table_for_upvoting_and_.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>de903581465c_create_table_for_upvoting_and_.cpython-310.pyc</li>
+				
+				
+				
+				<li>deadbeafc0de_add_indexes2.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>deadbeafc0de_add_indexes2.cpython-310.pyc</li>
+				
+				
+				
+				<li>deaddeadc0de_add_indexes.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>deaddeadc0de_add_indexes.cpython-310.pyc</li>
+				
+				
+				
+				<li>e183e12563ee_add_index_to_module_id.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>e183e12563ee_add_index_to_module_id.cpython-310.pyc</li>
+				
+				
+				
+				<li>e2b1cb42e6b7_add_namespace_for_fedora_distgit.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>e2b1cb42e6b7_add_namespace_for_fedora_distgit.cpython-310.pyc</li>
+				
+				
+				
+				<li>efec6b1aa9a2_add_buildchrootresults.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>efec6b1aa9a2_add_buildchrootresults.cpython-310.pyc</li>
+				
+				
+				
+				<li>f61a5c930abf_unique_constraint_on_modules.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>f61a5c930abf_unique_constraint_on_modules.cpython-310.pyc</li>
+				
+				
+				
+				<li>fdec9947f8a1_add_web_hook_source_type_index.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>fdec9947f8a1_add_web_hook_source_type_index.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a8654abcec65_unify_scm_source_types.py</li>
+				
+				
+				
+				<li>a8ef299dcac8_add_indexes_to_actions.py</li>
+				
+				
+				
+				<li>ac5917e5c4fe_make_copr_dirs_unique_by_ownername.py</li>
+				
+				
+				
+				<li>acac8d3ae868_add_table_for_graph_statistics.py</li>
+				
+				
+				
+				<li>b0fd99505e37_fixup_unassigned_copr_chroots.py</li>
+				
+				
+				
+				<li>b14b27e4a795_adding_isolation_option.py</li>
+				
+				
+				
+				<li>b64659389c54_add_column_final_prunerepo_done_to_mock_.py</li>
+				
+				
+				
+				<li>b828274ddebf_temporary_project.py</li>
+				
+				
+				
+				<li>b8a8a1345ed9_remove_now_private_columns_from_user_and_copr.py</li>
+				
+				
+				
+				<li>bf4b5dc74740_map_mock_croots_to_dits_git_branch.py</li>
+				
+				
+				
+				<li>c28451aaed50_fix_defaults.py</li>
+				
+				
+				
+				<li>ca76b7902c2f_remove_old_status_column.py</li>
+				
+				
+				
+				<li>cab566cc7dfb_add_batch_build_table.py</li>
+				
+				
+				
+				<li>cb928c34d36c_add_actionsstatistics_table.py</li>
+				
+				
+				
+				<li>code4beaf000_add_indexes3.py</li>
+				
+				
+				
+				<li>d230af5e05d8_drop_unused_pg_only_db_functions.py</li>
+				
+				
+				
+				<li>d2fbc2ab630d_drop_fedora_alembic_config.py</li>
+				
+				
+				
+				<li>d6cbf6cd74da_prefer_none_over_empty_string_in_email_.py</li>
+				
+				
+				
+				<li>d8a1062ee4cf_fixup_source_state.py</li>
+				
+				
+				
+				<li>dabab11132c1_initial_db_setup.py</li>
+				
+				
+				
+				<li>de903581465c_create_table_for_upvoting_and_.py</li>
+				
+				
+				
+				<li>deadbeafc0de_add_indexes2.py</li>
+				
+				
+				
+				<li>deaddeadc0de_add_indexes.py</li>
+				
+				
+				
+				<li>e183e12563ee_add_index_to_module_id.py</li>
+				
+				
+				
+				<li>e2b1cb42e6b7_add_namespace_for_fedora_distgit.py</li>
+				
+				
+				
+				<li>efec6b1aa9a2_add_buildchrootresults.py</li>
+				
+				
+				
+				<li>f61a5c930abf_unique_constraint_on_modules.py</li>
+				
+				
+				
+				<li>fdec9947f8a1_add_web_hook_source_type_index.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>alembic.ini</li>
+				
+				
+				
+				<li>application</li>
+				
+				
+				
+				<li>commands/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>add_user.py</li>
+				
+				
+				
+				<li>alter_chroot.py</li>
+				
+				
+				
+				<li>alter_user.py</li>
+				
+				
+				
+				<li>branch_fedora.py</li>
+				
+				
+				
+				<li>clean_expired_projects.py</li>
+				
+				
+				
+				<li>clean_old_builds.py</li>
+				
+				
+				
+				<li>comment_chroot.py</li>
+				
+				
+				
+				<li>create_chroot.py</li>
+				
+				
+				
+				<li>create_db.py</li>
+				
+				
+				
+				<li>create_sqlite_file.py</li>
+				
+				
+				
+				<li>delete_dirs.py</li>
+				
+				
+				
+				<li>delete_orphans.py</li>
+				
+				
+				
+				<li>delete_outdated_chroots.py</li>
+				
+				
+				
+				<li>display_chroots.py</li>
+				
+				
+				
+				<li>drop_chroot.py</li>
+				
+				
+				
+				<li>drop_db.py</li>
+				
+				
+				
+				<li>dump_user.py</li>
+				
+				
+				
+				<li>fail_build.py</li>
+				
+				
+				
+				<li>fixup_unnoticed_chroots.py</li>
+				
+				
+				
+				<li>flask3_wrapper.py</li>
+				
+				
+				
+				<li>get_admins.py</li>
+				
+				
+				
+				<li>notify_outdated_chroots.py</li>
+				
+				
+				
+				<li>rawhide_to_release.py</li>
+				
+				
+				
+				<li>test.py</li>
+				
+				
+				
+				<li>update_graphs.py</li>
+				
+				
+				
+				<li>update_indexes.py</li>
+				
+				
+				
+				<li>update_indexes_quick.py</li>
+				
+				
+				
+				<li>update_indexes_required.py</li>
+				
+				
+				
+				<li>vacuum_graphs.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>config/<ul>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>coprs/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>config.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>config.cpython-310.pyc</li>
+				
+				
+				
+				<li>context_processors.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>context_processors.cpython-310.pyc</li>
+				
+				
+				
+				<li>error_handlers.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>error_handlers.cpython-310.pyc</li>
+				
+				
+				
+				<li>exceptions.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>exceptions.cpython-310.pyc</li>
+				
+				
+				
+				<li>filters.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>filters.cpython-310.pyc</li>
+				
+				
+				
+				<li>forms.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>forms.cpython-310.pyc</li>
+				
+				
+				
+				<li>helpers.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>helpers.cpython-310.pyc</li>
+				
+				
+				
+				<li>log.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>log.cpython-310.pyc</li>
+				
+				
+				
+				<li>mail.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>mail.cpython-310.pyc</li>
+				
+				
+				
+				<li>models.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>models.cpython-310.pyc</li>
+				
+				
+				
+				<li>redis_session.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>redis_session.cpython-310.pyc</li>
+				
+				
+				
+				<li>rmodels.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>rmodels.cpython-310.pyc</li>
+				
+				
+				
+				<li>whoosheers.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>whoosheers.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>config.py</li>
+				
+				
+				
+				<li>context_processors.py</li>
+				
+				
+				
+				<li>error_handlers.py</li>
+				
+				
+				
+				<li>exceptions.py</li>
+				
+				
+				
+				<li>filters.py</li>
+				
+				
+				
+				<li>forms.py</li>
+				
+				
+				
+				<li>helpers.py</li>
+				
+				
+				
+				<li>log.py</li>
+				
+				
+				
+				<li>logic/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>actions_logic.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>actions_logic.cpython-310.pyc</li>
+				
+				
+				
+				<li>api_logic.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>api_logic.cpython-310.pyc</li>
+				
+				
+				
+				<li>backend_logic.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>backend_logic.cpython-310.pyc</li>
+				
+				
+				
+				<li>batches_logic.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>batches_logic.cpython-310.pyc</li>
+				
+				
+				
+				<li>builds_logic.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>builds_logic.cpython-310.pyc</li>
+				
+				
+				
+				<li>complex_logic.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>complex_logic.cpython-310.pyc</li>
+				
+				
+				
+				<li>coprs_logic.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>coprs_logic.cpython-310.pyc</li>
+				
+				
+				
+				<li>dist_git_logic.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>dist_git_logic.cpython-310.pyc</li>
+				
+				
+				
+				<li>helpers.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>helpers.cpython-310.pyc</li>
+				
+				
+				
+				<li>modules_logic.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>modules_logic.cpython-310.pyc</li>
+				
+				
+				
+				<li>outdated_chroots_logic.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>outdated_chroots_logic.cpython-310.pyc</li>
+				
+				
+				
+				<li>packages_logic.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>packages_logic.cpython-310.pyc</li>
+				
+				
+				
+				<li>stat_logic.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>stat_logic.cpython-310.pyc</li>
+				
+				
+				
+				<li>users_logic.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>users_logic.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>actions_logic.py</li>
+				
+				
+				
+				<li>api_logic.py</li>
+				
+				
+				
+				<li>backend_logic.py</li>
+				
+				
+				
+				<li>batches_logic.py</li>
+				
+				
+				
+				<li>builds_logic.py</li>
+				
+				
+				
+				<li>complex_logic.py</li>
+				
+				
+				
+				<li>coprs_logic.py</li>
+				
+				
+				
+				<li>dist_git_logic.py</li>
+				
+				
+				
+				<li>helpers.py</li>
+				
+				
+				
+				<li>modules_logic.py</li>
+				
+				
+				
+				<li>outdated_chroots_logic.py</li>
+				
+				
+				
+				<li>packages_logic.py</li>
+				
+				
+				
+				<li>stat_logic.py</li>
+				
+				
+				
+				<li>users_logic.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>mail.py</li>
+				
+				
+				
+				<li>models.py</li>
+				
+				
+				
+				<li>redis_session.py</li>
+				
+				
+				
+				<li>rest_api/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>common.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>common.cpython-310.pyc</li>
+				
+				
+				
+				<li>exceptions.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>exceptions.cpython-310.pyc</li>
+				
+				
+				
+				<li>schemas.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>schemas.cpython-310.pyc</li>
+				
+				
+				
+				<li>util.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>util.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>common.py</li>
+				
+				
+				
+				<li>exceptions.py</li>
+				
+				
+				
+				<li>resources/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>build.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>build.cpython-310.pyc</li>
+				
+				
+				
+				<li>build_task.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>build_task.cpython-310.pyc</li>
+				
+				
+				
+				<li>mock_chroot.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>mock_chroot.cpython-310.pyc</li>
+				
+				
+				
+				<li>project.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>project.cpython-310.pyc</li>
+				
+				
+				
+				<li>project_chroot.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>project_chroot.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>build.py</li>
+				
+				
+				
+				<li>build_task.py</li>
+				
+				
+				
+				<li>mock_chroot.py</li>
+				
+				
+				
+				<li>project.py</li>
+				
+				
+				
+				<li>project_chroot.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>schemas.py</li>
+				
+				
+				
+				<li>util.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>rmodels.py</li>
+				
+				
+				
+				<li>static/<ul>
+				
+				
+				
+				<li>.bowerrc</li>
+				
+				
+				
+				<li>README</li>
+				
+				
+				
+				<li>cauldron_logo.png</li>
+				
+				
+				
+				<li>centos_logo.png</li>
+				
+				
+				
+				<li>chroot_logodir/<ul>
+				
+				
+				
+				<li>centos-stream.png</li>
+				
+				
+				
+				<li>centos.png</li>
+				
+				
+				
+				<li>epel.png</li>
+				
+				
+				
+				<li>fedora.png</li>
+				
+				
+				
+				<li>mageia.png</li>
+				
+				
+				
+				<li>openmandriva.png</li>
+				
+				
+				
+				<li>opensuse-leap.png</li>
+				
+				
+				
+				<li>opensuse.png</li>
+				
+				
+				
+				<li>rhel.png</li>
+				
+				
+				
+				<li>rhelbeta-8.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>components/<ul>
+				
+				
+				
+				<li>c3/<ul>
+				
+				
+				
+				<li>.bower.json</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>bower.json</li>
+				
+				
+				
+				<li>c3.css</li>
+				
+				
+				
+				<li>c3.js</li>
+				
+				
+				
+				<li>c3.min.css</li>
+				
+				
+				
+				<li>c3.min.js</li>
+				
+				
+				
+				<li>extensions/<ul>
+				
+				
+				
+				<li>exporter/<ul>
+				
+				
+				
+				<li>config.json</li>
+				
+				
+				
+				<li>phantom-exporter.js</li>
+				
+				
+				
+				<li>test.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>js/<ul>
+				
+				
+				
+				<li>c3ext.js</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>d3/<ul>
+				
+				
+				
+				<li>.bower.json</li>
+				
+				
+				
+				<li>CONTRIBUTING.md</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>bower.json</li>
+				
+				
+				
+				<li>d3.js</li>
+				
+				
+				
+				<li>d3.min.js</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>copr-old.css</li>
+				
+				
+				
+				<li>copr.css</li>
+				
+				
+				
+				<li>copr.js</li>
+				
+				
+				
+				<li>css/<ul>
+				
+				
+				
+				<li>bootstrap-theme.css</li>
+				
+				
+				
+				<li>bootstrap-theme.min.css</li>
+				
+				
+				
+				<li>bootstrap.css</li>
+				
+				
+				
+				<li>bootstrap.min.css</li>
+				
+				
+				
+				<li>custom-styles.css</li>
+				
+				
+				
+				<li>pygments-autumn.css</li>
+				
+				
+				
+				<li>style-overwrite.css</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>default_user.png</li>
+				
+				
+				
+				<li>fedora_logo.png</li>
+				
+				
+				
+				<li>fonts/<ul>
+				
+				
+				
+				<li>OpenSans-Bold-webfont.eot</li>
+				
+				
+				
+				<li>OpenSans-Bold-webfont.svg</li>
+				
+				
+				
+				<li>OpenSans-Bold-webfont.ttf</li>
+				
+				
+				
+				<li>OpenSans-Bold-webfont.woff</li>
+				
+				
+				
+				<li>OpenSans-BoldItalic-webfont.eot</li>
+				
+				
+				
+				<li>OpenSans-BoldItalic-webfont.svg</li>
+				
+				
+				
+				<li>OpenSans-BoldItalic-webfont.ttf</li>
+				
+				
+				
+				<li>OpenSans-BoldItalic-webfont.woff</li>
+				
+				
+				
+				<li>OpenSans-ExtraBold-webfont.eot</li>
+				
+				
+				
+				<li>OpenSans-ExtraBold-webfont.svg</li>
+				
+				
+				
+				<li>OpenSans-ExtraBold-webfont.ttf</li>
+				
+				
+				
+				<li>OpenSans-ExtraBold-webfont.woff</li>
+				
+				
+				
+				<li>OpenSans-ExtraBoldItalic-webfont.eot</li>
+				
+				
+				
+				<li>OpenSans-ExtraBoldItalic-webfont.svg</li>
+				
+				
+				
+				<li>OpenSans-ExtraBoldItalic-webfont.ttf</li>
+				
+				
+				
+				<li>OpenSans-ExtraBoldItalic-webfont.woff</li>
+				
+				
+				
+				<li>OpenSans-Italic-webfont.eot</li>
+				
+				
+				
+				<li>OpenSans-Italic-webfont.svg</li>
+				
+				
+				
+				<li>OpenSans-Italic-webfont.ttf</li>
+				
+				
+				
+				<li>OpenSans-Italic-webfont.woff</li>
+				
+				
+				
+				<li>OpenSans-Light-webfont.eot</li>
+				
+				
+				
+				<li>OpenSans-Light-webfont.svg</li>
+				
+				
+				
+				<li>OpenSans-Light-webfont.ttf</li>
+				
+				
+				
+				<li>OpenSans-Light-webfont.woff</li>
+				
+				
+				
+				<li>OpenSans-LightItalic-webfont.eot</li>
+				
+				
+				
+				<li>OpenSans-LightItalic-webfont.svg</li>
+				
+				
+				
+				<li>OpenSans-LightItalic-webfont.ttf</li>
+				
+				
+				
+				<li>OpenSans-LightItalic-webfont.woff</li>
+				
+				
+				
+				<li>OpenSans-Regular-webfont.eot</li>
+				
+				
+				
+				<li>OpenSans-Regular-webfont.svg</li>
+				
+				
+				
+				<li>OpenSans-Regular-webfont.ttf</li>
+				
+				
+				
+				<li>OpenSans-Regular-webfont.woff</li>
+				
+				
+				
+				<li>OpenSans-Semibold-webfont.eot</li>
+				
+				
+				
+				<li>OpenSans-Semibold-webfont.svg</li>
+				
+				
+				
+				<li>OpenSans-Semibold-webfont.ttf</li>
+				
+				
+				
+				<li>OpenSans-Semibold-webfont.woff</li>
+				
+				
+				
+				<li>OpenSans-SemiboldItalic-webfont.eot</li>
+				
+				
+				
+				<li>OpenSans-SemiboldItalic-webfont.svg</li>
+				
+				
+				
+				<li>OpenSans-SemiboldItalic-webfont.ttf</li>
+				
+				
+				
+				<li>OpenSans-SemiboldItalic-webfont.woff</li>
+				
+				
+				
+				<li>PatternFlyIcons-webfont.eot</li>
+				
+				
+				
+				<li>PatternFlyIcons-webfont.svg</li>
+				
+				
+				
+				<li>PatternFlyIcons-webfont.ttf</li>
+				
+				
+				
+				<li>PatternFlyIcons-webfont.woff</li>
+				
+				
+				
+				<li>glyphicons-halflings-regular.eot</li>
+				
+				
+				
+				<li>glyphicons-halflings-regular.svg</li>
+				
+				
+				
+				<li>glyphicons-halflings-regular.ttf</li>
+				
+				
+				
+				<li>glyphicons-halflings-regular.woff</li>
+				
+				
+				
+				<li>glyphicons-halflings-regular.woff2</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>geeko_logo.png</li>
+				
+				
+				
+				<li>img/<ul>
+				
+				
+				
+				<li>apple-touch-icon-114-precomposed.png</li>
+				
+				
+				
+				<li>apple-touch-icon-144-precomposed.png</li>
+				
+				
+				
+				<li>apple-touch-icon-57-precomposed.png</li>
+				
+				
+				
+				<li>apple-touch-icon-72-precomposed.png</li>
+				
+				
+				
+				<li>bg-login.jpg</li>
+				
+				
+				
+				<li>brand-lg.png</li>
+				
+				
+				
+				<li>brand.png</li>
+				
+				
+				
+				<li>brand.svg</li>
+				
+				
+				
+				<li>favicon.ico</li>
+				
+				
+				
+				<li>logo.png</li>
+				
+				
+				
+				<li>logo.svg</li>
+				
+				
+				
+				<li>spinner-lg.gif</li>
+				
+				
+				
+				<li>spinner-sm.gif</li>
+				
+				
+				
+				<li>spinner-xs.gif</li>
+				
+				
+				
+				<li>spinner.gif</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>js/<ul>
+				
+				
+				
+				<li>blog.js</li>
+				
+				
+				
+				<li>graphs.js</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>old_copr_logo.png</li>
+				
+				
+				
+				<li>openmandriva_logo.png</li>
+				
+				
+				
+				<li>pink_arrow.png</li>
+				
+				
+				
+				<li>rhel_logo.png</li>
+				
+				
+				
+				<li>status_images/<ul>
+				
+				
+				
+				<li>bad_url.png</li>
+				
+				
+				
+				<li>failed.png</li>
+				
+				
+				
+				<li>in_progress.png</li>
+				
+				
+				
+				<li>succeeded.png</li>
+				
+				
+				
+				<li>unknown.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>templates/<ul>
+				
+				
+				
+				<li>403.html</li>
+				
+				
+				
+				<li>404.html</li>
+				
+				
+				
+				<li>_error.html</li>
+				
+				
+				
+				<li>_helpers.html</li>
+				
+				
+				
+				<li>admin/<ul>
+				
+				
+				
+				<li>_admin_forms.html</li>
+				
+				
+				
+				<li>index.html</li>
+				
+				
+				
+				<li>layout.html</li>
+				
+				
+				
+				<li>legal-flag.html</li>
+				
+				
+				
+				<li>playground.html</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>api.html</li>
+				
+				
+				
+				<li>batches/<ul>
+				
+				
+				
+				<li>detail.html</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>coprs/<ul>
+				
+				
+				
+				<li>_coprs_forms.html</li>
+				
+				
+				
+				<li>add.html</li>
+				
+				
+				
+				<li>add_fedora_review.html</li>
+				
+				
+				
+				<li>copr-modules.cfg</li>
+				
+				
+				
+				<li>copr-repo-package.spec</li>
+				
+				
+				
+				<li>copr_dir.repo</li>
+				
+				
+				
+				<li>create_module.html</li>
+				
+				
+				
+				<li>detail/<ul>
+				
+				
+				
+				<li>_build_states.html</li>
+				
+				
+				
+				<li>_builds_forms.html</li>
+				
+				
+				
+				<li>_builds_table.html</li>
+				
+				
+				
+				<li>_describe_failure.html</li>
+				
+				
+				
+				<li>_describe_source.html</li>
+				
+				
+				
+				<li>_method_forms.html</li>
+				
+				
+				
+				<li>_module_states.html</li>
+				
+				
+				
+				<li>_modules_table.html</li>
+				
+				
+				
+				<li>_package_forms.html</li>
+				
+				
+				
+				<li>_package_helpers.html</li>
+				
+				
+				
+				<li>_package_table.html</li>
+				
+				
+				
+				<li>_packages_table.html</li>
+				
+				
+				
+				<li>_permissions_table.html</li>
+				
+				
+				
+				<li>add_build/<ul>
+				
+				
+				
+				<li>custom.html</li>
+				
+				
+				
+				<li>distgit.html</li>
+				
+				
+				
+				<li>pypi.html</li>
+				
+				
+				
+				<li>rebuild.html</li>
+				
+				
+				
+				<li>rubygems.html</li>
+				
+				
+				
+				<li>scm.html</li>
+				
+				
+				
+				<li>upload.html</li>
+				
+				
+				
+				<li>url.html</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>add_build.html</li>
+				
+				
+				
+				<li>add_package.html</li>
+				
+				
+				
+				<li>build.html</li>
+				
+				
+				
+				<li>builds.html</li>
+				
+				
+				
+				<li>edit_chroot.html</li>
+				
+				
+				
+				<li>edit_package.html</li>
+				
+				
+				
+				<li>forks.html</li>
+				
+				
+				
+				<li>module.html</li>
+				
+				
+				
+				<li>modules.html</li>
+				
+				
+				
+				<li>monitor/<ul>
+				
+				
+				
+				<li>detailed.html</li>
+				
+				
+				
+				<li>simple.html</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>monitor.html</li>
+				
+				
+				
+				<li>overview.html</li>
+				
+				
+				
+				<li>package.html</li>
+				
+				
+				
+				<li>packages.html</li>
+				
+				
+				
+				<li>packages_rebuild_all.html</li>
+				
+				
+				
+				<li>settings/<ul>
+				
+				
+				
+				<li>delete.html</li>
+				
+				
+				
+				<li>edit.html</li>
+				
+				
+				
+				<li>integrations.html</li>
+				
+				
+				
+				<li>permissions.html</li>
+				
+				
+				
+				<li>repositories.html</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>settings.html</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>detail.html</li>
+				
+				
+				
+				<li>external_dependency.repo</li>
+				
+				
+				
+				<li>fork.html</li>
+				
+				
+				
+				<li>group_add.html</li>
+				
+				
+				
+				<li>group_show.html</li>
+				
+				
+				
+				<li>report_abuse.html</li>
+				
+				
+				
+				<li>show/<ul>
+				
+				
+				
+				<li>all.html</li>
+				
+				
+				
+				<li>fulltext.html</li>
+				
+				
+				
+				<li>group.html</li>
+				
+				
+				
+				<li>user.html</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>show.html</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>groups/<ul>
+				
+				
+				
+				<li>activate_fas_group.html</li>
+				
+				
+				
+				<li>user_fas_groups.html</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>layout.html</li>
+				
+				
+				
+				<li>login.html</li>
+				
+				
+				
+				<li>pinned.html</li>
+				
+				
+				
+				<li>recent/<ul>
+				
+				
+				
+				<li>all.html</li>
+				
+				
+				
+				<li>my.html</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>recent.html</li>
+				
+				
+				
+				<li>repositories.html</li>
+				
+				
+				
+				<li>rss/<ul>
+				
+				
+				
+				<li>rss.xml</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>status/<ul>
+				
+				
+				
+				<li>batch_list.html</li>
+				
+				
+				
+				<li>stats.html</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>status.html</li>
+				
+				
+				
+				<li>user_info.html</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>views/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>memory_analyzer.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>memory_analyzer.cpython-310.pyc</li>
+				
+				
+				
+				<li>misc.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>misc.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>admin_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>admin_general.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>admin_general.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>admin_general.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>api_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>api_general.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>api_general.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>api_general.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>apiv3_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>apiv3_build_chroots.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>apiv3_build_chroots.cpython-310.pyc</li>
+				
+				
+				
+				<li>apiv3_builds.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>apiv3_builds.cpython-310.pyc</li>
+				
+				
+				
+				<li>apiv3_general.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>apiv3_general.cpython-310.pyc</li>
+				
+				
+				
+				<li>apiv3_mock_chroots.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>apiv3_mock_chroots.cpython-310.pyc</li>
+				
+				
+				
+				<li>apiv3_modules.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>apiv3_modules.cpython-310.pyc</li>
+				
+				
+				
+				<li>apiv3_packages.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>apiv3_packages.cpython-310.pyc</li>
+				
+				
+				
+				<li>apiv3_permissions.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>apiv3_permissions.cpython-310.pyc</li>
+				
+				
+				
+				<li>apiv3_project_chroots.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>apiv3_project_chroots.cpython-310.pyc</li>
+				
+				
+				
+				<li>apiv3_projects.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>apiv3_projects.cpython-310.pyc</li>
+				
+				
+				
+				<li>apiv3_webhooks.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>apiv3_webhooks.cpython-310.pyc</li>
+				
+				
+				
+				<li>json2form.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>json2form.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>apiv3_build_chroots.py</li>
+				
+				
+				
+				<li>apiv3_builds.py</li>
+				
+				
+				
+				<li>apiv3_general.py</li>
+				
+				
+				
+				<li>apiv3_mock_chroots.py</li>
+				
+				
+				
+				<li>apiv3_modules.py</li>
+				
+				
+				
+				<li>apiv3_packages.py</li>
+				
+				
+				
+				<li>apiv3_permissions.py</li>
+				
+				
+				
+				<li>apiv3_project_chroots.py</li>
+				
+				
+				
+				<li>apiv3_projects.py</li>
+				
+				
+				
+				<li>apiv3_webhooks.py</li>
+				
+				
+				
+				<li>json2form.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>backend_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>backend_general.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>backend_general.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>backend_general.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>batches_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>coprs_batches.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>coprs_batches.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>coprs_batches.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>coprs_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>coprs_builds.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>coprs_builds.cpython-310.pyc</li>
+				
+				
+				
+				<li>coprs_chroots.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>coprs_chroots.cpython-310.pyc</li>
+				
+				
+				
+				<li>coprs_general.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>coprs_general.cpython-310.pyc</li>
+				
+				
+				
+				<li>coprs_packages.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>coprs_packages.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>coprs_builds.py</li>
+				
+				
+				
+				<li>coprs_chroots.py</li>
+				
+				
+				
+				<li>coprs_general.py</li>
+				
+				
+				
+				<li>coprs_packages.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>groups_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>groups_general.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>groups_general.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>groups_general.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>memory_analyzer.py</li>
+				
+				
+				
+				<li>misc.py</li>
+				
+				
+				
+				<li>recent_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>recent_general.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>recent_general.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>recent_general.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>rss_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>rss_general.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>rss_general.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>rss_general.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>stats_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>stats_receiver.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>stats_receiver.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>stats_receiver.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>status_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>status_general.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>status_general.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>status_general.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>tmp_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>tmp_general.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>tmp_general.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>tmp_general.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>user_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>user_general.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>user_general.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>user_general.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>webhooks_ns/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-310.pyc</li>
+				
+				
+				
+				<li>webhooks_general.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>webhooks_general.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>webhooks_general.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>whoosheers.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>manage.py</li>
+				
+				
+				
+				<li>pagure_events.py</li>
+				
+				
+				
+				<li>run/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>check_for_anitya_version_updates.py</li>
+				
+				
+				
+				<li>copr-gdpr-sar.sh</li>
+				
+				
+				
+				<li>copr_dump_db.sh</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>doc/<ul>
+				
+				
+				
+				<li>copr-frontend/<ul>
+				
+				
+				
+				<li>coprs.conf.example</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>licenses/<ul>
+				
+				
+				
+				<li>copr-frontend/<ul>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>var/<ul>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>copr/<ul>
+				
+				
+				
+				<li>data/<ul>
+				
+				
+				
+				<li>copr.db</li>
+				
+				
+				
+				<li>openid_store/<ul>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>srpm_storage/<ul>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>whooshee/<ul>
+				
+				
+				
+				<li>copr_user_whoosheer/<ul>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>log/<ul>
+				
+				
+				
+				<li>copr-frontend/<ul>
+				
+				
+				
+				<li>frontend.log</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
+

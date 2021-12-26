@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>systemd-248.3-1.fc34 - Fedora Packages</title>
+		<title>systemd-248.9-1.fc34 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				systemd-248.3-1.fc34<small class="text-muted"> in Fedora 34</small>
+				systemd-248.9-1.fc34<small class="text-muted"> in Fedora 34</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of systemd</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=systemd-248.3-1.fc34">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=systemd-248.3-1.fc34">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=systemd-248.9-1.fc34">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=systemd-248.9-1.fc34">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -58,6 +58,61 @@
 					</thead>
 					
 					<tr scope="row">
+						<td>2021-10-12</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.9-1</td>
+						<td>- Rebuild of 248.8 with one patch removed (causing #2013386) and one patch
+  added (for #1998488).</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-12</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.8-1</td>
+						<td>- Latest bugfix release: fix for systemctl enable, documentation,
+  systemd-networkd, -coredump, -timesyncd, -udev, -nspawn, -oomd,
+  -repart, -resolved, systemd itself, seccomp filters, bootctl,
+  journalctl, TPM2, sd-event, sd-journal, nss-systemd, compatibility
+  with the latest kernels.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-06</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.7-1</td>
+						<td>- Latest bugfix release: improved compatibility with latest glibc,
+  various small documentation fixes, and fixes for systemd-networkd bridging,
+  other minor fixes.
+- systemctl set-property accepts glob patterns now (#1986258)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-22</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.6-1</td>
+						<td>- Create 'sgx' group (and also use soft-static uids for input and render,
+  see https://pagure.io/setup/c/df3194a7295c2ca3cfa923981b046f4bd2754825
+  and https://pagure.io/packaging-committee/issue/1078 (#1965815)
+- Various bugfixes (#1963428, #1975564)
+- Fix for a regression introduced in the previous release with
+  sd-event abort (#1984651)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-20</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.5-1</td>
+						<td>- Various minor documentation and correctness fixes.
+- CVE-2021-33910, #1984020: an unchecked stack allocation could be used to
+  crash systemd and cause the system to reboot by creating a very long
+  fuse mountpoint path.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-12</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.4-1</td>
+						<td>- Assorted fixes (some systemd-resolved crashes, invalid
+  systemd-tmpfiles assertion, etc.)
+- systemd-networkd workaround for TALOS-2020-1142, CVE-2020-13529.
+- A big update of hardware descriptions.</td>
+					</tr>
+					
+					<tr scope="row">
 						<td>2021-05-15</td>
 						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.3-1</td>
 						<td>- A fix for resolved crashes (#1946386, #1960227, #1950241)
@@ -85,54 +140,6 @@
 						<td>- Re-enable resolved caching, we hope all major bugs are resolved now</td>
 					</tr>
 					
-					<tr scope="row">
-						<td>2021-03-31</td>
-						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248-1</td>
-						<td>- Latest upstream release, see
-  https://github.com/systemd/systemd/blob/v248/NEWS.
-- The changes since -rc4 are rather small, various fixes all over the place.
-  A fix to how systemd-oomd selects a candidate to kill, and more debug logging
-  to make this more transparent.</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-03-30</td>
-						<td>Anita Zhang <the dot anitazha at gmail dot com> - 248~rc4-6</td>
-						<td>- Increase oomd user memory pressure limit to 50% (#1941170)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-03-26</td>
-						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-5</td>
-						<td>- Do not preset systemd-networkd.service and systemd-networkd-wait-online.service
-  on upgrades from before systemd-networkd was split out (#1943263)
-- In nsswitch.conf, move nss-myhostname to the front, before nss-mdns4 (#1943199)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-03-24</td>
-						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-4</td>
-						<td>- Revert patch that seems to cause problems with dns resolution
-  (see comments on https://bodhi.fedoraproject.org/updates/FEDORA-2021-1c1a870ceb)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-03-22</td>
-						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-3</td>
-						<td>- Fix hang when processing timers during DST switch in Europe/Dublin timezone (#1941335)
-- Fix returning combined IPv4/IPv6 responses from systemd-resolved cache (#1940715)
-  (But note that the disablement of caching added previously is
-  retained until we can do more testing.)
-- Minor fix to interface naming by udev
-- Fix for systemd-repart --size</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-03-19</td>
-						<td>Adam Williamson <awilliam at redhat dot com> - 248~rc4-2</td>
-						<td>- Disable resolved cache via config snippet (#1940715)</td>
-					</tr>
-					
 					<tbody>
 					</tbody>
 				</table>
@@ -143,6 +150,16 @@
 				<div class="col">
 					<h2 id="dependencies">Dependencies</h2>
 					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/audit-libs/fedora-34.html">
+						
+						
+						audit-libs
+						
+
+						</li>
 						
 						<li>
 						
@@ -206,6 +223,16 @@
 						
 						<li>
 						
+						<a href="/pkgs/gnutls/fedora-34.html">
+						
+						
+						gnutls
+						
+
+						</li>
+						
+						<li>
+						
 						<a href="/pkgs/iptables-legacy-libs/fedora-34.html">
 						
 						
@@ -246,6 +273,16 @@
 						
 						<li>
 						
+						<a href="/pkgs/libseccomp/fedora-34.html">
+						
+						
+						libseccomp
+						
+
+						</li>
+						
+						<li>
+						
 						<a href="/pkgs/libxcrypt/fedora-34.html">
 						
 						
@@ -266,10 +303,30 @@
 						
 						<li>
 						
+						<a href="/pkgs/openssl-libs/fedora-34.html">
+						
+						
+						openssl-libs
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/pam/fedora-34.html">
+						
+						
+						pam
+						
+
+						</li>
+						
+						<li>
+						
 						<a href="/pkgs/systemd-libs/fedora-34.html">
 						
 						
-						systemd-libs</a> = 248.3-1.fc34
+						systemd-libs</a> = 248.9-1.fc34
 						
 
 						</li>
@@ -279,7 +336,7 @@
 						<a href="/pkgs/systemd-pam/fedora-34.html">
 						
 						
-						systemd-pam</a> = 248.3-1.fc34
+						systemd-pam</a> = 248.9-1.fc34
 						
 
 						</li>
@@ -289,7 +346,7 @@
 						<a href="/pkgs/systemd-rpm-macros/fedora-34.html">
 						
 						
-						systemd-rpm-macros</a> = 248.3-1.fc34
+						systemd-rpm-macros</a> = 248.9-1.fc34
 						
 
 						</li>
@@ -958,27 +1015,11 @@
 				
 				
 				
-				<li>01/<ul>
+				<li>00/<ul>
 				
 				
 				
-				<li>2026e8c7324fa6c33fa367ca25815c02cef2df</li>
-				
-				
-				
-				<li>e313b648b024dd45ba78d0a64343356d456546</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>03/<ul>
-				
-				
-				
-				<li>b9b41e7ff03b626bf7ae009f2ea19a9794d309</li>
+				<li>4bbd396ba66999307a9a1dde247b7ed15241b8</li>
 				
 				
 				
@@ -990,11 +1031,7 @@
 				
 				
 				
-				<li>6d1b6c7726cf60f299e30c6fd6560a35f8265d</li>
-				
-				
-				
-				<li>6f4e744c3024327e8ef66271328c8ea8457d38</li>
+				<li>70e2420667cce2c8f1ca0d90f1d75a9eb9daf7</li>
 				
 				
 				
@@ -1006,7 +1043,11 @@
 				
 				
 				
-				<li>399db975be8468eef9ec26bf55619b229b88a4</li>
+				<li>9baf30f6c231e78ac2262749a054fc00a5ac9f</li>
+				
+				
+				
+				<li>cb30fdc137a1769e80da92339c8c91dfadff40</li>
 				
 				
 				
@@ -1018,7 +1059,19 @@
 				
 				
 				
-				<li>9d0c7f0727bb9d6f2d9494c2a48e0b9a1095c4</li>
+				<li>52ea64c020e06ef309f0475588eedefd103596</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>0e/<ul>
+				
+				
+				
+				<li>d8ee74a75b3c4b9a4bc0e57896fadf37b657d3</li>
 				
 				
 				
@@ -1030,7 +1083,79 @@
 				
 				
 				
-				<li>172c374d25b267cbaacecf825e007f0f4d955d</li>
+				<li>9417b3826a0d5b4529238dfcce66b98ae388ef</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>12/<ul>
+				
+				
+				
+				<li>cff7921bdce83afab719c2268a1b6d2fee69e8</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>15/<ul>
+				
+				
+				
+				<li>7e4b4c935eaf82ffac05598c14c46a19826f56</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>16/<ul>
+				
+				
+				
+				<li>b11021a5658b70311c1bf8a815e09a72cd19a1</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>18/<ul>
+				
+				
+				
+				<li>efc19f3ed981fe068cb38b33e8c5382b4263a0</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>1a/<ul>
+				
+				
+				
+				<li>31079727ca70b8075216d113c212f1cf58d5a9</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>1b/<ul>
+				
+				
+				
+				<li>bde49d75b7f7a315319b997aa8396872049b2f</li>
 				
 				
 				
@@ -1042,7 +1167,19 @@
 				
 				
 				
-				<li>23bdd3925dd7bf8fe6ced7c7025c2550b08b54</li>
+				<li>22bf92b1650cf58beb0fc851651380953e53d9</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>1f/<ul>
+				
+				
+				
+				<li>03e1dee0f14cd43c54857a1762dbb7fb9c0763</li>
 				
 				
 				
@@ -1054,23 +1191,7 @@
 				
 				
 				
-				<li>ca7caf83c9ae1e92446530ce1031872866e991</li>
-				
-				
-				
-				<li>d8665eb787b13c50994604dd9f5335730bbcce</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>21/<ul>
-				
-				
-				
-				<li>0269159cafb4eef07d332d7012c2f2958da9ff</li>
+				<li>0aea07d28cd51f7bd279520b35b0dcda32ec90</li>
 				
 				
 				
@@ -1082,19 +1203,7 @@
 				
 				
 				
-				<li>ac4c147b693e4ea4eca65f8a258365dffbc520</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>24/<ul>
-				
-				
-				
-				<li>7e98222bca3dea3abeff96d2eb580f8b77b43e</li>
+				<li>fb41007404473dd1bac3b3ff624f3cf2228d77</li>
 				
 				
 				
@@ -1106,7 +1215,7 @@
 				
 				
 				
-				<li>7248dbb5239881a4036742a819a375c34ea3e3</li>
+				<li>62ceb31f8178ff31e27595cc78d366dcab6757</li>
 				
 				
 				
@@ -1114,11 +1223,15 @@
 				
 				
 				
-				<li>29/<ul>
+				<li>2e/<ul>
 				
 				
 				
-				<li>1cc28991c802cb89ed605b16cbe2eb3383d5d1</li>
+				<li>851ea2dfa7f647006d9b0dc3fa3f97096f78da</li>
+				
+				
+				
+				<li>b76579a41436dee75f4266945cf894acafe12f</li>
 				
 				
 				
@@ -1126,15 +1239,11 @@
 				
 				
 				
-				<li>2d/<ul>
+				<li>2f/<ul>
 				
 				
 				
-				<li>0521cfd5538ab746aec8a7ce7cd16ee92a4740</li>
-				
-				
-				
-				<li>3748787a4492730f23c3a2a28f68205659569e</li>
+				<li>11610f3f4d923b1fa464a4accedf834449e3ec</li>
 				
 				
 				
@@ -1146,7 +1255,47 @@
 				
 				
 				
-				<li>e43ca794549866ee98d035d54bd760bdd797d8</li>
+				<li>15867a660630fa69aa68f4c3f969cbcc922894</li>
+				
+				
+				
+				<li>5eae2ec7dd0083311524d11b8ac69853fda961</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>33/<ul>
+				
+				
+				
+				<li>2ede233b4c459b48cf8cc2452681d35d9eb044</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>36/<ul>
+				
+				
+				
+				<li>709ec1fe3acb9f549167cc441b5182f7338e48</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>37/<ul>
+				
+				
+				
+				<li>b60b1714c79121c6accf2d1dbe768944d965bb</li>
 				
 				
 				
@@ -1158,7 +1307,7 @@
 				
 				
 				
-				<li>9487e49b927e4bb1800487a4212c6b44d4fa39</li>
+				<li>42a0fb1c5d0f41034dc7add9058b0984ccbd04</li>
 				
 				
 				
@@ -1170,7 +1319,7 @@
 				
 				
 				
-				<li>9d2c73f0a6f308e87976424d088ac3f982fe3e</li>
+				<li>a94f6fbfa16a16a93c9b85e9fe2af38af35193</li>
 				
 				
 				
@@ -1178,23 +1327,11 @@
 				
 				
 				
-				<li>40/<ul>
+				<li>3f/<ul>
 				
 				
 				
-				<li>85a7680266ea2c2c95e571698750f6c60c96cc</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>47/<ul>
-				
-				
-				
-				<li>f9ffe6fa344d46c55f4472927c7f1d953a8b8a</li>
+				<li>e286f1eb48c9e930769904e9248591c36bb93d</li>
 				
 				
 				
@@ -1202,23 +1339,11 @@
 				
 				
 				
-				<li>49/<ul>
+				<li>4a/<ul>
 				
 				
 				
-				<li>f154bb1bf192f4fdbd1ccbab7715dd4698e7ca</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>4d/<ul>
-				
-				
-				
-				<li>0bdf2d211405fbed191f96bbf1425ce02b5466</li>
+				<li>3a2d4157071da1df8d95f886623e420c553d15</li>
 				
 				
 				
@@ -1226,35 +1351,11 @@
 				
 				
 				
-				<li>4f/<ul>
+				<li>52/<ul>
 				
 				
 				
-				<li>df679d44d80839260e8939cf6fb3255950eca1</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>53/<ul>
-				
-				
-				
-				<li>8886dbe84f32bd0fb4c1d43f7b3ab27b6399b9</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>58/<ul>
-				
-				
-				
-				<li>b8d09d28705e691e041e25bb7fd6ab65c51abc</li>
+				<li>ffbcf3c97e9dc77931ea244a6d513ae19c6beb</li>
 				
 				
 				
@@ -1266,31 +1367,7 @@
 				
 				
 				
-				<li>a599a91d27015d9864b6d63c8f25029d4451bd</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>5b/<ul>
-				
-				
-				
-				<li>7f9e5d12a07088730f0ea56c2bc645b544b09d</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>5c/<ul>
-				
-				
-				
-				<li>0a74552f1ff32c6036aaddae8e3283eaf4cb01</li>
+				<li>9d8d81f17e1a264acd835f5748570d20bb0426</li>
 				
 				
 				
@@ -1302,7 +1379,7 @@
 				
 				
 				
-				<li>15ab82efcb353adf62d64d60ea0b584ce638c1</li>
+				<li>fd98e60a3e0bd64fd05713e91354cf7783d4a5</li>
 				
 				
 				
@@ -1310,11 +1387,27 @@
 				
 				
 				
-				<li>61/<ul>
+				<li>5f/<ul>
 				
 				
 				
-				<li>c0998221b2ab393a314f00f01967ef27209232</li>
+				<li>05b819b0ca3a24e8dc8b271e8c2e0e08961c7d</li>
+				
+				
+				
+				<li>466ff27a84c48e51cf22e67fd0098e58ad7e44</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>60/<ul>
+				
+				
+				
+				<li>ab069c216ecf10d6c35ba21a7c41ba4ab2ebe6</li>
 				
 				
 				
@@ -1326,7 +1419,11 @@
 				
 				
 				
-				<li>c6d8d5d949c3d3b8545ba6185028728e5e6e80</li>
+				<li>1b7ba3b0a97af41cbdc61a3c82c0db9aa24c27</li>
+				
+				
+				
+				<li>81ee1c31402ed3edcee258157163a02cbcde3d</li>
 				
 				
 				
@@ -1334,23 +1431,11 @@
 				
 				
 				
-				<li>67/<ul>
+				<li>63/<ul>
 				
 				
 				
-				<li>c0cb65475b29243e70dc1f6269965ad6b1c409</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>71/<ul>
-				
-				
-				
-				<li>b6e2d38c8c4f714b1370b65373d68f41d72ba3</li>
+				<li>85a05c2da87ab3544b6249194063bc9449e697</li>
 				
 				
 				
@@ -1358,11 +1443,19 @@
 				
 				
 				
-				<li>7c/<ul>
+				<li>70/<ul>
 				
 				
 				
-				<li>1a29a40e0b700c86da8699036f5a09c0c2da57</li>
+				<li>0e8509e122c9c3d51fd2f42fbbe4d7fb65b3ce</li>
+				
+				
+				
+				<li>9d3c7785c78fabe0f4f72afdf833689e920bb0</li>
+				
+				
+				
+				<li>b3eb4a476476474089253e5e722a86863fcea4</li>
 				
 				
 				
@@ -1370,11 +1463,11 @@
 				
 				
 				
-				<li>7f/<ul>
+				<li>75/<ul>
 				
 				
 				
-				<li>9b34b51c3b4a505d949f14251564c2709000db</li>
+				<li>f82b63ab5fc587c488dc95eb5cfb8edb0f92c6</li>
 				
 				
 				
@@ -1386,7 +1479,7 @@
 				
 				
 				
-				<li>2fdb364ea769abdb4bca35f7f8534cb284b78d</li>
+				<li>a452b679e88fbfd0e58fd7bc89b7a1328929c1</li>
 				
 				
 				
@@ -1394,23 +1487,11 @@
 				
 				
 				
-				<li>85/<ul>
+				<li>83/<ul>
 				
 				
 				
-				<li>5d258d1ab3aae25efdd0fd643d41a48a69f105</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>87/<ul>
-				
-				
-				
-				<li>e6af6e8d4055a17e77d74ed4189fece07c268d</li>
+				<li>1e0625daf95204d005cd6eb69af5c470c65aaa</li>
 				
 				
 				
@@ -1418,11 +1499,35 @@
 				
 				
 				
-				<li>89/<ul>
+				<li>86/<ul>
 				
 				
 				
-				<li>ac8944a514b31c904efda72673174fcca30b45</li>
+				<li>6d758ba2941d7d43417119fac2131a1dbc45e2</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>8a/<ul>
+				
+				
+				
+				<li>3e6186588cffaee33de62d8ffe8f0428ae1f1a</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>8b/<ul>
+				
+				
+				
+				<li>327ec0849e74afa517bc86b95e51cf00874ea0</li>
 				
 				
 				
@@ -1434,7 +1539,11 @@
 				
 				
 				
-				<li>dd57a3d92cf7edec5712787bee2de7d0399ef6</li>
+				<li>d4af293b645c93d31148af68493c7759f3e2db</li>
+				
+				
+				
+				<li>f52427941d33e53ddb7a6e61bd6dd914e3ce96</li>
 				
 				
 				
@@ -1442,23 +1551,15 @@
 				
 				
 				
-				<li>94/<ul>
+				<li>8f/<ul>
 				
 				
 				
-				<li>834c61241c67953840d353b60bdfd4e835d948</li>
+				<li>b25c349e4b9c16a4861842a23a02a06991658c</li>
 				
 				
 				
-				</ul></li>
-				
-				
-				
-				<li>95/<ul>
-				
-				
-				
-				<li>5e9049193a661db9b399ec346dd2a214e93ee1</li>
+				<li>b91e614119e87f87417e6e2d629dd6b9d513aa</li>
 				
 				
 				
@@ -1466,15 +1567,11 @@
 				
 				
 				
-				<li>9a/<ul>
+				<li>91/<ul>
 				
 				
 				
-				<li>72642588bf79b317dca7ac410366db2ef8d0bb</li>
-				
-				
-				
-				<li>c8d84c15dad4831acf4a5478b70769825c7c54</li>
+				<li>d81260bdedd494e4765fb77c1b9e08cc967a3c</li>
 				
 				
 				
@@ -1486,7 +1583,7 @@
 				
 				
 				
-				<li>f68c31bf7ab81f369154a328022367025aef68</li>
+				<li>baa513dd7b9814c1c3491ceea8a11d583c6af8</li>
 				
 				
 				
@@ -1494,11 +1591,11 @@
 				
 				
 				
-				<li>9f/<ul>
+				<li>a0/<ul>
 				
 				
 				
-				<li>a482d37dac1baab6d06daf3f8ae90ff9669abb</li>
+				<li>87ac52b4e982136c03d85c26dabb8f3352c0ff</li>
 				
 				
 				
@@ -1510,7 +1607,7 @@
 				
 				
 				
-				<li>236380ab1bd34a94b89a5612fa90334185e7b0</li>
+				<li>76c1e8a9f8190556483c9eb5eb5376dfcb1e75</li>
 				
 				
 				
@@ -1518,11 +1615,39 @@
 				
 				
 				
-				<li>a9/<ul>
+				<li>a4/<ul>
 				
 				
 				
-				<li>677bd34d8bd2a729f17a5cb171513acd83a66d</li>
+				<li>917a8704c86deb6d380f587da1a02beb0d9c7b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a8/<ul>
+				
+				
+				
+				<li>e91abc30d09cab30fd7334d5233e48480d4986</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>aa/<ul>
+				
+				
+				
+				<li>1fef479c3b56c00dfa402c39da7c5e17605af1</li>
+				
+				
+				
+				<li>b77c69311f1d7ab99d10e7f10fc04a11d68352</li>
 				
 				
 				
@@ -1534,7 +1659,19 @@
 				
 				
 				
-				<li>0741cde2c3db4cea70aee3b1cd93273112373f</li>
+				<li>1b57b0c72a3a4b8e89cae2a220647460891064</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ac/<ul>
+				
+				
+				
+				<li>9839fccb9b80f50b1d68da0fe492c764ba550d</li>
 				
 				
 				
@@ -1546,7 +1683,11 @@
 				
 				
 				
-				<li>b8b138e5378630cac9e933cabbe06e8efba038</li>
+				<li>44aa652a0dfa6a71eddffb5c3229ff33e5524c</li>
+				
+				
+				
+				<li>7cd5655c519cb6416b376856e8507fd605e0f6</li>
 				
 				
 				
@@ -1554,47 +1695,11 @@
 				
 				
 				
-				<li>b0/<ul>
+				<li>b4/<ul>
 				
 				
 				
-				<li>541ac32dbd3106d285d934dd11be9a566417d3</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>b3/<ul>
-				
-				
-				
-				<li>e952d200405e6d270c5ff7c25e74707709639a</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>b5/<ul>
-				
-				
-				
-				<li>212c0706af795c9a1e961120d5534382433e80</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>b7/<ul>
-				
-				
-				
-				<li>2c99f3ecc2921d3b1f0b57d36b7df9b1f52183</li>
+				<li>8e4137bc8fde78825dfd7574f68f6472db625c</li>
 				
 				
 				
@@ -1606,7 +1711,7 @@
 				
 				
 				
-				<li>fbba8ce63dd077cd85308d134cd4722fd39d3a</li>
+				<li>348711028eaa0a33757cc1b87b75a9b982ad83</li>
 				
 				
 				
@@ -1614,63 +1719,11 @@
 				
 				
 				
-				<li>be/<ul>
+				<li>bb/<ul>
 				
 				
 				
-				<li>153d8d4c8ee80cbaabb3cd59c9538d21694a73</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>bf/<ul>
-				
-				
-				
-				<li>0647051882bbc76a846744bcf684523ef820fd</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>c1/<ul>
-				
-				
-				
-				<li>453e46935aa635b8be533f29b1b9a9bf751112</li>
-				
-				
-				
-				<li>6238cb4d87b14365b0d670f80ad3619a7773a1</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>c2/<ul>
-				
-				
-				
-				<li>adf1f01eca1041feefed0ecc8b65a9bd51c604</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>c4/<ul>
-				
-				
-				
-				<li>d0f08c8171a9042e5358e5fd7f3af938e02844</li>
+				<li>870a339b90ea040433d70caa90c1c395062d56</li>
 				
 				
 				
@@ -1682,7 +1735,19 @@
 				
 				
 				
-				<li>9f4559f48f7bbf088150d2ac0c3fb97ab26571</li>
+				<li>9e2b62cb1fcda4ad106bec7559ee5c5e9ae5f7</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>c6/<ul>
+				
+				
+				
+				<li>3a4caf4a18c461f9a14a2515cd6ad78145d61e</li>
 				
 				
 				
@@ -1694,31 +1759,7 @@
 				
 				
 				
-				<li>c5cf380690597dc1de4fa304bb5a79015a9f2b</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>cd/<ul>
-				
-				
-				
-				<li>4a5ff0ca2be48f608d548f0884fa4ec98635de</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>d0/<ul>
-				
-				
-				
-				<li>924995898954e345f2e871dd14b7357d5e9425</li>
+				<li>9f4355a2e369b31fbbd24fdcb018cca8a0d5cd</li>
 				
 				
 				
@@ -1730,7 +1771,7 @@
 				
 				
 				
-				<li>a03e6d41c54c6e80ce9abbe140889ba56293b9</li>
+				<li>791ec3d2c48a6b75875173c372da560cdea976</li>
 				
 				
 				
@@ -1738,23 +1779,11 @@
 				
 				
 				
-				<li>d2/<ul>
+				<li>db/<ul>
 				
 				
 				
-				<li>fc854aa6ed4226724d8757d449cc81cb9181bb</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>d4/<ul>
-				
-				
-				
-				<li>ce91735828cc83063ad61b3ddd387b92c92300</li>
+				<li>13df2807d7fbcbf9553217269148eb7689eace</li>
 				
 				
 				
@@ -1762,23 +1791,11 @@
 				
 				
 				
-				<li>d7/<ul>
+				<li>dc/<ul>
 				
 				
 				
-				<li>52b0e93fd0f94e8321a054a7e22ff9a41912fb</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>e9/<ul>
-				
-				
-				
-				<li>0f18a9e3a60f43fc17766ecaf680b3d1cf8c8a</li>
+				<li>f9d6a7a7cc29ae3fdb2ee8ad5967359b3b535a</li>
 				
 				
 				
@@ -1786,23 +1803,11 @@
 				
 				
 				
-				<li>ef/<ul>
+				<li>e2/<ul>
 				
 				
 				
-				<li>636298aee2283aa77e8f553d381dc534815bc0</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>f0/<ul>
-				
-				
-				
-				<li>c95391550f1e73fc354960f2f5e008d15c557a</li>
+				<li>5b02cbda6c6ab6c00c8b61693c56295a455f34</li>
 				
 				
 				
@@ -1810,23 +1815,11 @@
 				
 				
 				
-				<li>f1/<ul>
+				<li>e3/<ul>
 				
 				
 				
-				<li>424907c256bdbfc28ca870475ed42724b87291</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>f2/<ul>
-				
-				
-				
-				<li>bba0cd09df9a29b066fe7e28f5f27a7cf0659e</li>
+				<li>41a7d01a7633a49a4712ef35f255fa7dcfea02</li>
 				
 				
 				
@@ -1834,23 +1827,11 @@
 				
 				
 				
-				<li>f5/<ul>
+				<li>ea/<ul>
 				
 				
 				
-				<li>98055b5556443ee2eaa3e03f3d971291f5da6e</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>fa/<ul>
-				
-				
-				
-				<li>ee0b8134a5b150dfb05eb0547f8f0a6b3107d7</li>
+				<li>706e078eebc1e2bc8fab116915dffdcc46d775</li>
 				
 				
 				
@@ -1858,11 +1839,11 @@
 				
 				
 				
-				<li>fc/<ul>
+				<li>eb/<ul>
 				
 				
 				
-				<li>78acb0bbe18b97a77772fea9bb140af86553f9</li>
+				<li>d58f4efb4aabadc2d1c10545053ac2d960a272</li>
 				
 				
 				
@@ -1870,11 +1851,47 @@
 				
 				
 				
-				<li>fe/<ul>
+				<li>f4/<ul>
 				
 				
 				
-				<li>84c11a9ffdce80a4a9774c232d46c665da6f40</li>
+				<li>c80a3b56717ba8c92acb249273a6d1ff8449ce</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>f9/<ul>
+				
+				
+				
+				<li>22371cbed4cbcc0b32741fb1452e4e53abde24</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>fb/<ul>
+				
+				
+				
+				<li>79af372d1db7c9f283f5a5f16d95d0406863ec</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ff/<ul>
+				
+				
+				
+				<li>1cc8e66f8d3ad61e421a740a62fca741504ab3</li>
 				
 				
 				

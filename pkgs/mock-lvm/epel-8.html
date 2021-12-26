@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>mock-lvm-2.10-1.el8 - Fedora Packages</title>
+		<title>mock-lvm-2.15-1.el8 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				mock-lvm-2.10-1.el8<small class="text-muted"> in EPEL 8</small>
+				mock-lvm-2.15-1.el8<small class="text-muted"> in EPEL 8</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of mock-lvm</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=mock-2.10-1.el8">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=mock-2.10-1.el8">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=mock-2.15-1.el8">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=mock-2.15-1.el8">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -56,6 +56,55 @@
 							<th scope="col">Change</th>
 						</tr>
 					</thead>
+					
+					<tr scope="row">
+						<td>2021-11-18</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 2.15-1</td>
+						<td>- argparse: handle old-style commands *before* ignoring "--" (awilliam@redhat.com)
+- Update mock.1 (cheese@nosuchhost.net)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-04</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 2.14-1</td>
+						<td>- fixed broken --enablerepo/--disablerepo options</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-01</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 2.13-1</td>
+						<td>- local repositories to use gpgcheck=0 by default
+- A new option --additional-package (for --rebuild)
+- external-deps: install pip packages to /usr
+- Install external deps into build chroot, not bootstrap
+- Migrate from optparse to argparse
+- mock: don't specify SOURCE when remounting bind-mounts
+- mock: add option --debug-config-expanded (sergio@serjux.com)
+- Fix use of deprecated function (xfgusta@gmail.com)
+- lvm_root: fix copy/paste error in a warning message (kdudka@redhat.com)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-19</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 2.12-1</td>
+						<td>- don't set --cwd for --shell when we know it will fail (el7)
+- explicitly convert macro values to str (logans@cottsay.net)
+- disable versionlock DNF plugin by default (igor.raits@gmail.com)
+- move Requires of shadow-utils from mock-core-configs to mock-filesystem
+  (msuchy@redhat.com)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-08</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 2.11-1</td>
+						<td>- mock: fix broken --help output
+- compress_logs: compress also after repo failures
+- move to libera.chat (msuchy@redhat.com)
+- Define _platform_multiplier macro (msuchy@redhat.com)
+- allow to --install external:* (msuchy@redhat.com)
+- move installation of external:* to separate function (msuchy@redhat.com)
+- honor --cwd for --shell (msuchy@redhat.com)</td>
+					</tr>
 					
 					<tr scope="row">
 						<td>2021-04-27</td>
@@ -117,83 +166,6 @@
 - raise PkgError when the source RPM can not be installed</td>
 					</tr>
 					
-					<tr scope="row">
-						<td>2020-09-03</td>
-						<td>Pavel Raiskup <praiskup at redhat dot com> 2.5-2</td>
-						<td>- because of the mock-filesystem change, we need to enforce upgrade
-  of the old mock-core-configs package</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-09-03</td>
-						<td>Pavel Raiskup <praiskup at redhat dot com> 2.5-1</td>
-						<td>- set the DNF user_agent in dnf.conf (msuchy@redhat.com)
-- introduce mock-filesystem subpackage (msuchy@redhat.com)
-- add showrc plugin to record the output of rpm --showrc (riehecky@fnal.gov)
-- document which packages we need in buildroot (msuchy@redhat.com)
-- macros without leading '%' like config_opts['macros']['macroname'] work
-  fine again (issue#605)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-07-21</td>
-						<td>Miroslav Suchý <msuchy at redhat dot com> 2.4-1</td>
-						<td>- mockbuild/buildroot: Make btrfs-control available if host supports it
-  (ngompa13@gmail.com)
-- Add `module_setup_commands` configuration option (praiskup@redhat.com)
-- Use a different .rpmmacros for install/build time (praiskup@redhat.com)
-- lvm: don't recall set_current_snapshot unnecessarily (praiskup@redhat.com)
-- mock: copy source CA certificates (kdreyer@redhat.com)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-05-22</td>
-						<td>Pavel Raiskup <praiskup at redhat dot com> 2.3-1</td>
-						<td>- bindmount resultdir to bootstrap chroot so we can --postinstall from
-  bootstrap (issue #564)
-- fix mount.py plugin configuration (issue #578)
-- better error for dynamic_buildrequires %prep failure (issue #570)
-- mock: pre-create directory for file bind-mounts (rhbz#1816696)
-- fix doChroot() traceback for getresuid() (issue #571)
-- fix --rootdir option with bootstrap (issue #560)
-- avoid using host rpm _show_installed_packages() (pmatilai@redhat.com, PR#568)
-- expand braced dnf variables in repo url (dmarshall@gmail.com, PR#577)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-04-01</td>
-						<td>Pavel Raiskup <praiskup at redhat dot com> 2.2-1</td>
-						<td>- depend on mock-configs, not mock-core-configs so users can pick an alternative
-  package with configuration
-- bind-mounting stuff below /tmp into bootstrap is fixed with nspawn (GH#502)
-- don't do util.getAddtlReqs when 'more_buildreqs' not specified
-- implement doOutChroot() abstraction which runs commands either in bootstrap
-  or on host, depending on isolation={nspawn|simple}
-- use doOutChroot() for package_state plugin (GH#525)
-- fix for "mock --chroot -- cmd arg1 arg2" use-case
-- site-defaults.cfg moved from /etc to %doc, and the config file is now
-  provided by mock-core-configs (GH#555)
-- bootstrap: expand dnf vars in local repo bind-mounts (rhbz#1815703)
-- bootstrap: bindmount local metalink/mirrorlist (rhbz#1816696)
-- config_opts['isolation'] option invented, replaces 'use_nspawn'
-- 'isolation' is now set to 'auto' (means 'nspawn' with fallback to 'simple',
-  (GH#337, otaylor@fishsoup.net)
-- Fedora Toolbox && bootstrap - don't re-bind-mount dev files, and fix
-  installation of filesystem.rpm from bootstrap to normal chroot (GH#550)
-- re-define %python3_pkgversion on el7 (GH#545)
-- docker use-case: use getpass.getuser() instead of os.getlogin() (GH#551)
-- set LANG to C.UTF-8 by default, even if host has different value (GH#451)
-- bootstrap: use configured yum commands (GH#518, paul@city-fan.org)
-- fixup doubled-logs by predictable bootstrap resultdir (GH#539, rhbz#1805631)
-- fix --chain --isolation=simple with external URLs (GH#542)
-- option --orphanskill fixed for --isolation=simple --bootstrap-chroot
-- orphan processes are now also killed "postyum", right after the installation
-  trasactions are executed to also kill daemons started from scriptlets (GH#183)
-- EL7 fix - use 'private' mount option for <bootsrap_root>/<root>, not 'rprivate'
-- ceanup rpmdb before checking installed packages (fixes builds against target
-  chroots that have different rpmdb backend, e.g. SQLite on F33+)</td>
-					</tr>
-					
 					<tbody>
 					</tbody>
 				</table>
@@ -210,7 +182,7 @@
 						<a href="/pkgs/mock/epel-8.html">
 						
 						
-						mock</a> = 2.10-1.el8
+						mock</a> = 2.15-1.el8
 						
 
 						</li>

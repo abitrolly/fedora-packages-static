@@ -1,0 +1,3232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>grpc-doc-1.26.0-14.fc34 - Fedora Packages</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				grpc-doc-1.26.0-14.fc34<small class="text-muted"> in Fedora 34</small>
+			</h1>
+			<p>
+				<a href=".">&crarr; Retrun to the main page of grpc-doc</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=grpc-1.26.0-14.fc34">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=grpc-1.26.0-14.fc34">Search Bodhi</a>
+			</p>
+
+			<p>
+				
+				<b>Package Info</b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2021-09-29</td>
+						<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-14</td>
+						<td>- Drop HTML documentation</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-03-23</td>
+						<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-13</td>
+						<td>- General:
+  * Replace * with • in descriptions
+  * Use cmake() dependencies first, and pkgconfig() dependencies second, where
+    available
+  * Drop explicit pkgconfig BR
+  * Fix the directory in which CMake installs pkgconfig files
+  * Improved CMake options
+  * Build the Doxygen reference manuals
+- C (core) and C++ (cpp):
+  * Let the -devel package require cmake-filesystem
+  * Allow building tests with our own copy of gtest/gmock, which will become
+    mandatory when we depend on abseil-cpp and switch to C++17
+  * Fix a link error in the core tests when using CMake
+  * Manually install grpc_cli (CMake)
+  * Add CMake files to the files list for the -devel package
+  * Start running some of the core tests in %check
+- Python:
+  * Add several patches required for the tests
+  * BR gevent for gevent_tests
+  * Fix build; in particular, add missing preprocess and build_package_protos
+    steps, without which the packages were missing generated proto modules and
+    were not
+    usable!
+  * Add %py_provides for Fedora 32
+  * Drop python3dist(setuptools) BR, redundant with %pyproject_buildrequires
+  * Start running most of the Python tests in %check
+  * Merge the python-grpcio-doc subpackage into grpc-doc</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-02-16</td>
+						<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-12</td>
+						<td>- C (core) and C++ (cpp):
+  * Add CMake build support but do not enable it yet; there is still a problem
+    where grpc_cli is only built with the tests, and a linking problem when
+    building the tests</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-02-02</td>
+						<td>Benjamin A. Beasley <code at musicinmybrain dot net> - 1.26.0-11</td>
+						<td>- General:
+  * Update summaries and descriptions
+  * Update License fields to include licenses from bundled components
+  * Fix failure to respect Fedora build flags
+  * Use the system shared certificate bundle instead of shipping our own
+- CLI:
+  * No longer set rpath $ORIGIN
+- C (core) and C++ (cpp):
+  * Add c_so_version/cpp_so_version macros
+  * Split out C++ bindings and shared data into subpackages
+  * Drop obsolete ldconfig_scriptlets macro
+  * Stop stripping debugging symbols
+- Python:
+  * Use generated BR’s
+  * Build and package Python binding documentation
+  * Disable accommodations for older libc’s
+  * Patch out -std=gnu99 flag, which is inappropriate for C++
+  * Build additional Python packages grpcio_tools, gprcio_channelz,
+    grpcio_health_checking, grpcio_reflection, grpcio_status, and
+    grpcio_testing</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-01-26</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.26.0-10</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-01-14</td>
+						<td>Adrian Reber <adrian at lisas dot de> - 1.26.0-9</td>
+						<td>- Rebuilt for protobuf 3.14</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-11-13</td>
+						<td>Artem Polishchuk <ego dot cordatus at gmail dot com> - 1.26.0-8</td>
+						<td>- build: disable LTO due to rh#1893533</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-09-24</td>
+						<td>Adrian Reber <adrian at lisas dot de> - 1.26.0-7</td>
+						<td>- Rebuilt for protobuf 3.13</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-08-03</td>
+						<td>Gwyn Ciesla <gwync at protonmail dot com> - 1.26.0-6</td>
+						<td>- Patches for https://github.com/grpc/grpc/pull/21669</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-07-28</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.26.0-5</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				
+				
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>grpc-doc</li>
+						
+						<li>python-grpcio-channelz-doc</li>
+						
+						<li>python-grpcio-doc</li>
+						
+						<li>python-grpcio-health-checking-doc</li>
+						
+						<li>python-grpcio-reflection-doc</li>
+						
+						<li>python-grpcio-status-doc</li>
+						
+						<li>python-grpcio-testing-doc</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
+				
+				
+				<li>usr/<ul>
+				
+				
+				
+				<li>share/<ul>
+				
+				
+				
+				<li>doc/<ul>
+				
+				
+				
+				<li>grpc/<ul>
+				
+				
+				
+				<li>AUTHORS</li>
+				
+				
+				
+				<li>BUILDING.md</li>
+				
+				
+				
+				<li>CODE-OF-CONDUCT.md</li>
+				
+				
+				
+				<li>CONCEPTS.md</li>
+				
+				
+				
+				<li>CONTRIBUTING.md</li>
+				
+				
+				
+				<li>GOVERNANCE.md</li>
+				
+				
+				
+				<li>MAINTAINERS.md</li>
+				
+				
+				
+				<li>MANIFEST.md</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>TROUBLESHOOTING.md</li>
+				
+				
+				
+				<li>doc/<ul>
+				
+				
+				
+				<li>PROTOCOL-HTTP2.md</li>
+				
+				
+				
+				<li>PROTOCOL-WEB.md</li>
+				
+				
+				
+				<li>binary-logging.md</li>
+				
+				
+				
+				<li>c-style-guide.md</li>
+				
+				
+				
+				<li>command_line_tool.md</li>
+				
+				
+				
+				<li>compression.md</li>
+				
+				
+				
+				<li>compression_cookbook.md</li>
+				
+				
+				
+				<li>connection-backoff-interop-test-description.md</li>
+				
+				
+				
+				<li>connection-backoff.md</li>
+				
+				
+				
+				<li>connectivity-semantics-and-api.md</li>
+				
+				
+				
+				<li>core/<ul>
+				
+				
+				
+				<li>combiner-explainer.md</li>
+				
+				
+				
+				<li>epoll-polling-engine.md</li>
+				
+				
+				
+				<li>grpc-client-server-polling-engine-usage.md</li>
+				
+				
+				
+				<li>grpc-cq.md</li>
+				
+				
+				
+				<li>grpc-error.md</li>
+				
+				
+				
+				<li>grpc-polling-engines.md</li>
+				
+				
+				
+				<li>images/<ul>
+				
+				
+				
+				<li>new_epoll_impl.png</li>
+				
+				
+				
+				<li>old_epoll_impl.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>moving-to-c++.md</li>
+				
+				
+				
+				<li>pending_api_cleanups.md</li>
+				
+				
+				
+				<li>transport_explainer.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cpp/<ul>
+				
+				
+				
+				<li>pending_api_cleanups.md</li>
+				
+				
+				
+				<li>perf_notes.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cpp-style-guide.md</li>
+				
+				
+				
+				<li>csharp/<ul>
+				
+				
+				
+				<li>server_reflection.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>environment_variables.md</li>
+				
+				
+				
+				<li>fail_fast.md</li>
+				
+				
+				
+				<li>fork_support.md</li>
+				
+				
+				
+				<li>g_stands_for.md</li>
+				
+				
+				
+				<li>grpc_release_schedule.md</li>
+				
+				
+				
+				<li>grpc_security_audit.pdf</li>
+				
+				
+				
+				<li>health-checking.md</li>
+				
+				
+				
+				<li>http-grpc-status-mapping.md</li>
+				
+				
+				
+				<li>http2-interop-test-descriptions.md</li>
+				
+				
+				
+				<li>images/<ul>
+				
+				
+				
+				<li>compression_cookbook_incoming.png</li>
+				
+				
+				
+				<li>compression_cookbook_outgoing.png</li>
+				
+				
+				
+				<li>grpc-call-channel-cq.png</li>
+				
+				
+				
+				<li>grpc-client-lb-pss.png</li>
+				
+				
+				
+				<li>grpc-cq.png</li>
+				
+				
+				
+				<li>grpc-epoll1.png</li>
+				
+				
+				
+				<li>grpc-epollex.png</li>
+				
+				
+				
+				<li>grpc-ps-pss-fd.png</li>
+				
+				
+				
+				<li>grpc-pss.png</li>
+				
+				
+				
+				<li>grpc-server-cq-fds.png</li>
+				
+				
+				
+				<li>load-balancing.png</li>
+				
+				
+				
+				<li>load-balancing.svg</li>
+				
+				
+				
+				<li>stress_test_framework.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>internationalization.md</li>
+				
+				
+				
+				<li>interop-test-descriptions.md</li>
+				
+				
+				
+				<li>keepalive.md</li>
+				
+				
+				
+				<li>load-balancing.md</li>
+				
+				
+				
+				<li>naming.md</li>
+				
+				
+				
+				<li>python/<ul>
+				
+				
+				
+				<li>server_reflection.md</li>
+				
+				
+				
+				<li>sphinx/<ul>
+				
+				
+				
+				<li>conf.py</li>
+				
+				
+				
+				<li>glossary.rst</li>
+				
+				
+				
+				<li>grpc.rst</li>
+				
+				
+				
+				<li>grpc_channelz.rst</li>
+				
+				
+				
+				<li>grpc_health_checking.rst</li>
+				
+				
+				
+				<li>grpc_reflection.rst</li>
+				
+				
+				
+				<li>grpc_status.rst</li>
+				
+				
+				
+				<li>grpc_testing.rst</li>
+				
+				
+				
+				<li>index.rst</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>security_audit.md</li>
+				
+				
+				
+				<li>server-reflection.md</li>
+				
+				
+				
+				<li>server_reflection_tutorial.md</li>
+				
+				
+				
+				<li>server_side_auth.md</li>
+				
+				
+				
+				<li>service_config.md</li>
+				
+				
+				
+				<li>ssl-performance.md</li>
+				
+				
+				
+				<li>status_ordering.md</li>
+				
+				
+				
+				<li>statuscodes.md</li>
+				
+				
+				
+				<li>unit_testing.md</li>
+				
+				
+				
+				<li>versioning.md</li>
+				
+				
+				
+				<li>wait-for-ready.md</li>
+				
+				
+				
+				<li>workarounds.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>examples/<ul>
+				
+				
+				
+				<li>BUILD</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>cpp/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>compression/<ul>
+				
+				
+				
+				<li>Makefile</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>greeter_client.cc</li>
+				
+				
+				
+				<li>greeter_server.cc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cpptutorial.md</li>
+				
+				
+				
+				<li>helloworld/<ul>
+				
+				
+				
+				<li>CMakeLists.txt</li>
+				
+				
+				
+				<li>Makefile</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>cmake_externalproject/<ul>
+				
+				
+				
+				<li>CMakeLists.txt</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cocoapods/<ul>
+				
+				
+				
+				<li>HelloWorldCpp/<ul>
+				
+				
+				
+				<li>AppDelegate.h</li>
+				
+				
+				
+				<li>AppDelegate.mm</li>
+				
+				
+				
+				<li>Assets.xcassets/<ul>
+				
+				
+				
+				<li>AppIcon.appiconset/<ul>
+				
+				
+				
+				<li>Contents.json</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Base.lproj/<ul>
+				
+				
+				
+				<li>LaunchScreen.storyboard</li>
+				
+				
+				
+				<li>Main.storyboard</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Info.plist</li>
+				
+				
+				
+				<li>ViewController.h</li>
+				
+				
+				
+				<li>ViewController.mm</li>
+				
+				
+				
+				<li>main.m</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>HelloWorldCpp.xcodeproj/<ul>
+				
+				
+				
+				<li>project.pbxproj</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Podfile</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>greeter_async_client.cc</li>
+				
+				
+				
+				<li>greeter_async_client2.cc</li>
+				
+				
+				
+				<li>greeter_async_server.cc</li>
+				
+				
+				
+				<li>greeter_client.cc</li>
+				
+				
+				
+				<li>greeter_server.cc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>keyvaluestore/<ul>
+				
+				
+				
+				<li>caching_interceptor.h</li>
+				
+				
+				
+				<li>client.cc</li>
+				
+				
+				
+				<li>server.cc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>load_balancing/<ul>
+				
+				
+				
+				<li>Makefile</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>greeter_client.cc</li>
+				
+				
+				
+				<li>greeter_server.cc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>metadata/<ul>
+				
+				
+				
+				<li>Makefile</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>greeter_client.cc</li>
+				
+				
+				
+				<li>greeter_server.cc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>route_guide/<ul>
+				
+				
+				
+				<li>Makefile</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>helper.cc</li>
+				
+				
+				
+				<li>helper.h</li>
+				
+				
+				
+				<li>route_guide_client.cc</li>
+				
+				
+				
+				<li>route_guide_db.json</li>
+				
+				
+				
+				<li>route_guide_server.cc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>csharp/<ul>
+				
+				
+				
+				<li>Helloworld/<ul>
+				
+				
+				
+				<li>Greeter/<ul>
+				
+				
+				
+				<li>Greeter.csproj</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Greeter.sln</li>
+				
+				
+				
+				<li>GreeterClient/<ul>
+				
+				
+				
+				<li>GreeterClient.csproj</li>
+				
+				
+				
+				<li>Program.cs</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>GreeterServer/<ul>
+				
+				
+				
+				<li>GreeterServer.csproj</li>
+				
+				
+				
+				<li>Program.cs</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>HelloworldLegacyCsproj/<ul>
+				
+				
+				
+				<li>Greeter/<ul>
+				
+				
+				
+				<li>Greeter.csproj</li>
+				
+				
+				
+				<li>Properties/<ul>
+				
+				
+				
+				<li>AssemblyInfo.cs</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>packages.config</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Greeter.sln</li>
+				
+				
+				
+				<li>GreeterClient/<ul>
+				
+				
+				
+				<li>GreeterClient.csproj</li>
+				
+				
+				
+				<li>Program.cs</li>
+				
+				
+				
+				<li>Properties/<ul>
+				
+				
+				
+				<li>AssemblyInfo.cs</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>packages.config</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>GreeterServer/<ul>
+				
+				
+				
+				<li>GreeterServer.csproj</li>
+				
+				
+				
+				<li>Program.cs</li>
+				
+				
+				
+				<li>Properties/<ul>
+				
+				
+				
+				<li>AssemblyInfo.cs</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>packages.config</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>HelloworldUnity/<ul>
+				
+				
+				
+				<li>Assets/<ul>
+				
+				
+				
+				<li>Plugins.meta</li>
+				
+				
+				
+				<li>Scenes/<ul>
+				
+				
+				
+				<li>SampleScene.unity</li>
+				
+				
+				
+				<li>SampleScene.unity.meta</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Scenes.meta</li>
+				
+				
+				
+				<li>Scripts/<ul>
+				
+				
+				
+				<li>HelloWorldScript.cs</li>
+				
+				
+				
+				<li>HelloWorldScript.cs.meta</li>
+				
+				
+				
+				<li>HelloWorldTest.cs</li>
+				
+				
+				
+				<li>HelloWorldTest.cs.meta</li>
+				
+				
+				
+				<li>Helloworld.cs</li>
+				
+				
+				
+				<li>Helloworld.cs.meta</li>
+				
+				
+				
+				<li>HelloworldGrpc.cs</li>
+				
+				
+				
+				<li>HelloworldGrpc.cs.meta</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Scripts.meta</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ProjectSettings/<ul>
+				
+				
+				
+				<li>AudioManager.asset</li>
+				
+				
+				
+				<li>ClusterInputManager.asset</li>
+				
+				
+				
+				<li>DynamicsManager.asset</li>
+				
+				
+				
+				<li>EditorBuildSettings.asset</li>
+				
+				
+				
+				<li>EditorSettings.asset</li>
+				
+				
+				
+				<li>GraphicsSettings.asset</li>
+				
+				
+				
+				<li>InputManager.asset</li>
+				
+				
+				
+				<li>NavMeshAreas.asset</li>
+				
+				
+				
+				<li>NetworkManager.asset</li>
+				
+				
+				
+				<li>Physics2DSettings.asset</li>
+				
+				
+				
+				<li>PresetManager.asset</li>
+				
+				
+				
+				<li>ProjectSettings.asset</li>
+				
+				
+				
+				<li>ProjectVersion.txt</li>
+				
+				
+				
+				<li>QualitySettings.asset</li>
+				
+				
+				
+				<li>TagManager.asset</li>
+				
+				
+				
+				<li>TimeManager.asset</li>
+				
+				
+				
+				<li>UnityConnectSettings.asset</li>
+				
+				
+				
+				<li>VFXManager.asset</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>UIElementsSchema/<ul>
+				
+				
+				
+				<li>UIElements.xsd</li>
+				
+				
+				
+				<li>UnityEditor.Experimental.UIElements.xsd</li>
+				
+				
+				
+				<li>UnityEditor.PackageManager.UI.xsd</li>
+				
+				
+				
+				<li>UnityEngine.Experimental.UIElements.xsd</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>HelloworldXamarin/<ul>
+				
+				
+				
+				<li>Droid/<ul>
+				
+				
+				
+				<li>Assets/<ul>
+				
+				
+				
+				<li>AboutAssets.txt</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>HelloworldXamarin.Droid.csproj</li>
+				
+				
+				
+				<li>MainActivity.cs</li>
+				
+				
+				
+				<li>Properties/<ul>
+				
+				
+				
+				<li>AndroidManifest.xml</li>
+				
+				
+				
+				<li>AssemblyInfo.cs</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Resources/<ul>
+				
+				
+				
+				<li>AboutResources.txt</li>
+				
+				
+				
+				<li>Resource.designer.cs</li>
+				
+				
+				
+				<li>layout/<ul>
+				
+				
+				
+				<li>Main.axml</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>mipmap-hdpi/<ul>
+				
+				
+				
+				<li>Icon.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>mipmap-mdpi/<ul>
+				
+				
+				
+				<li>Icon.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>mipmap-xhdpi/<ul>
+				
+				
+				
+				<li>Icon.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>mipmap-xxhdpi/<ul>
+				
+				
+				
+				<li>Icon.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>mipmap-xxxhdpi/<ul>
+				
+				
+				
+				<li>Icon.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>values/<ul>
+				
+				
+				
+				<li>Strings.xml</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>packages.config</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>HelloworldXamarin/<ul>
+				
+				
+				
+				<li>Helloworld.cs</li>
+				
+				
+				
+				<li>HelloworldGrpc.cs</li>
+				
+				
+				
+				<li>HelloworldXamarin.projitems</li>
+				
+				
+				
+				<li>HelloworldXamarin.shproj</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>HelloworldXamarin.sln</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>iOS/<ul>
+				
+				
+				
+				<li>AppDelegate.cs</li>
+				
+				
+				
+				<li>Assets.xcassets/<ul>
+				
+				
+				
+				<li>AppIcon.appiconset/<ul>
+				
+				
+				
+				<li>Contents.json</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Contents.json</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Entitlements.plist</li>
+				
+				
+				
+				<li>HelloworldXamarin.iOS.csproj</li>
+				
+				
+				
+				<li>Info.plist</li>
+				
+				
+				
+				<li>LaunchScreen.storyboard</li>
+				
+				
+				
+				<li>Main.cs</li>
+				
+				
+				
+				<li>Main.storyboard</li>
+				
+				
+				
+				<li>ViewController.cs</li>
+				
+				
+				
+				<li>ViewController.designer.cs</li>
+				
+				
+				
+				<li>packages.config</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>RouteGuide/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>RouteGuide/<ul>
+				
+				
+				
+				<li>RouteGuide.csproj</li>
+				
+				
+				
+				<li>RouteGuideUtil.cs</li>
+				
+				
+				
+				<li>route_guide_db.json</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>RouteGuide.sln</li>
+				
+				
+				
+				<li>RouteGuideClient/<ul>
+				
+				
+				
+				<li>Program.cs</li>
+				
+				
+				
+				<li>RouteGuideClient.csproj</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>RouteGuideServer/<ul>
+				
+				
+				
+				<li>Program.cs</li>
+				
+				
+				
+				<li>RouteGuideImpl.cs</li>
+				
+				
+				
+				<li>RouteGuideServer.csproj</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>node/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>dynamic_codegen/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>greeter_client.js</li>
+				
+				
+				
+				<li>greeter_server.js</li>
+				
+				
+				
+				<li>route_guide/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>route_guide_client.js</li>
+				
+				
+				
+				<li>route_guide_db.json</li>
+				
+				
+				
+				<li>route_guide_server.js</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>package.json</li>
+				
+				
+				
+				<li>static_codegen/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>greeter_client.js</li>
+				
+				
+				
+				<li>greeter_server.js</li>
+				
+				
+				
+				<li>helloworld_grpc_pb.js</li>
+				
+				
+				
+				<li>helloworld_pb.js</li>
+				
+				
+				
+				<li>route_guide/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>route_guide_client.js</li>
+				
+				
+				
+				<li>route_guide_db.json</li>
+				
+				
+				
+				<li>route_guide_grpc_pb.js</li>
+				
+				
+				
+				<li>route_guide_pb.js</li>
+				
+				
+				
+				<li>route_guide_server.js</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>objective-c/<ul>
+				
+				
+				
+				<li>BUILD</li>
+				
+				
+				
+				<li>auth_sample/<ul>
+				
+				
+				
+				<li>AuthSample.xcodeproj/<ul>
+				
+				
+				
+				<li>project.pbxproj</li>
+				
+				
+				
+				<li>project.xcworkspace/<ul>
+				
+				
+				
+				<li>contents.xcworkspacedata</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>xcshareddata/<ul>
+				
+				
+				
+				<li>xcschemes/<ul>
+				
+				
+				
+				<li>AuthSample.xcscheme</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>AuthTestService.podspec</li>
+				
+				
+				
+				<li>MakeRPCViewController.h</li>
+				
+				
+				
+				<li>MakeRPCViewController.m</li>
+				
+				
+				
+				<li>Misc/<ul>
+				
+				
+				
+				<li>AppDelegate.h</li>
+				
+				
+				
+				<li>AppDelegate.m</li>
+				
+				
+				
+				<li>Base.lproj/<ul>
+				
+				
+				
+				<li>Main.storyboard</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>GoogleService-Info.plist</li>
+				
+				
+				
+				<li>Images.xcassets/<ul>
+				
+				
+				
+				<li>AppIcon.appiconset/<ul>
+				
+				
+				
+				<li>Contents.json</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>first.imageset/<ul>
+				
+				
+				
+				<li>Contents.json</li>
+				
+				
+				
+				<li>first.pdf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>second.imageset/<ul>
+				
+				
+				
+				<li>Contents.json</li>
+				
+				
+				
+				<li>second.pdf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Info.plist</li>
+				
+				
+				
+				<li>main.m</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Podfile</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>SelectUserViewController.h</li>
+				
+				
+				
+				<li>SelectUserViewController.m</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>helloworld/<ul>
+				
+				
+				
+				<li>HelloWorld/<ul>
+				
+				
+				
+				<li>AppDelegate.h</li>
+				
+				
+				
+				<li>AppDelegate.m</li>
+				
+				
+				
+				<li>Base.lproj/<ul>
+				
+				
+				
+				<li>Main.storyboard</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Images.xcassets/<ul>
+				
+				
+				
+				<li>AppIcon.appiconset/<ul>
+				
+				
+				
+				<li>Contents.json</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Info.plist</li>
+				
+				
+				
+				<li>ViewController.m</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>HelloWorld.podspec</li>
+				
+				
+				
+				<li>HelloWorld.xcodeproj/<ul>
+				
+				
+				
+				<li>project.pbxproj</li>
+				
+				
+				
+				<li>project.xcworkspace/<ul>
+				
+				
+				
+				<li>contents.xcworkspacedata</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>xcshareddata/<ul>
+				
+				
+				
+				<li>xcschemes/<ul>
+				
+				
+				
+				<li>HelloWorld.xcscheme</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Podfile</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>main.m</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>helloworld_macos/<ul>
+				
+				
+				
+				<li>HelloWorld/<ul>
+				
+				
+				
+				<li>AppDelegate.h</li>
+				
+				
+				
+				<li>AppDelegate.m</li>
+				
+				
+				
+				<li>Assets.xcassets/<ul>
+				
+				
+				
+				<li>AppIcon.appiconset/<ul>
+				
+				
+				
+				<li>Contents.json</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Contents.json</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Base.lproj/<ul>
+				
+				
+				
+				<li>Main.storyboard</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>HelloWorld.entitlements</li>
+				
+				
+				
+				<li>Info.plist</li>
+				
+				
+				
+				<li>ViewController.h</li>
+				
+				
+				
+				<li>ViewController.m</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>HelloWorld.podspec</li>
+				
+				
+				
+				<li>HelloWorld.xcodeproj/<ul>
+				
+				
+				
+				<li>project.pbxproj</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Podfile</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>main.m</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>route_guide/<ul>
+				
+				
+				
+				<li>Misc/<ul>
+				
+				
+				
+				<li>AppDelegate.h</li>
+				
+				
+				
+				<li>AppDelegate.m</li>
+				
+				
+				
+				<li>Base.lproj/<ul>
+				
+				
+				
+				<li>Main.storyboard</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Images.xcassets/<ul>
+				
+				
+				
+				<li>AppIcon.appiconset/<ul>
+				
+				
+				
+				<li>Contents.json</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>first.imageset/<ul>
+				
+				
+				
+				<li>Contents.json</li>
+				
+				
+				
+				<li>first.pdf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>second.imageset/<ul>
+				
+				
+				
+				<li>Contents.json</li>
+				
+				
+				
+				<li>second.pdf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Info.plist</li>
+				
+				
+				
+				<li>main.m</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>Podfile</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>RouteGuide.podspec</li>
+				
+				
+				
+				<li>RouteGuideClient.xcodeproj/<ul>
+				
+				
+				
+				<li>project.pbxproj</li>
+				
+				
+				
+				<li>project.xcworkspace/<ul>
+				
+				
+				
+				<li>contents.xcworkspacedata</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>xcshareddata/<ul>
+				
+				
+				
+				<li>xcschemes/<ul>
+				
+				
+				
+				<li>RouteGuideClient.xcscheme</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ViewControllers.m</li>
+				
+				
+				
+				<li>route_guide_db.json</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>php/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>composer.json</li>
+				
+				
+				
+				<li>echo/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>apache.Dockerfile</li>
+				
+				
+				
+				<li>base.Dockerfile</li>
+				
+				
+				
+				<li>cli.Dockerfile</li>
+				
+				
+				
+				<li>client.php</li>
+				
+				
+				
+				<li>composer.json</li>
+				
+				
+				
+				<li>echo.proto</li>
+				
+				
+				
+				<li>fpm.Dockerfile</li>
+				
+				
+				
+				<li>nginx.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>greeter_client.php</li>
+				
+				
+				
+				<li>greeter_proto_gen.sh</li>
+				
+				
+				
+				<li>route_guide/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>route_guide_client.php</li>
+				
+				
+				
+				<li>route_guide_proto_gen.sh</li>
+				
+				
+				
+				<li>run_route_guide_client.sh</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>run_greeter_client.sh</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>protos/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>auth_sample.proto</li>
+				
+				
+				
+				<li>hellostreamingworld.proto</li>
+				
+				
+				
+				<li>helloworld.proto</li>
+				
+				
+				
+				<li>keyvaluestore.proto</li>
+				
+				
+				
+				<li>route_guide.proto</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>python/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>auth/<ul>
+				
+				
+				
+				<li>BUILD.bazel</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>_credentials.py</li>
+				
+				
+				
+				<li>credentials/<ul>
+				
+				
+				
+				<li>localhost.crt</li>
+				
+				
+				
+				<li>localhost.key</li>
+				
+				
+				
+				<li>root.crt</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>customized_auth_client.py</li>
+				
+				
+				
+				<li>customized_auth_server.py</li>
+				
+				
+				
+				<li>test/<ul>
+				
+				
+				
+				<li>_auth_example_test.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cancellation/<ul>
+				
+				
+				
+				<li>BUILD.bazel</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>client.py</li>
+				
+				
+				
+				<li>hash_name.proto</li>
+				
+				
+				
+				<li>search.py</li>
+				
+				
+				
+				<li>server.py</li>
+				
+				
+				
+				<li>test/<ul>
+				
+				
+				
+				<li>_cancellation_example_test.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>compression/<ul>
+				
+				
+				
+				<li>BUILD.bazel</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>client.py</li>
+				
+				
+				
+				<li>server.py</li>
+				
+				
+				
+				<li>test/<ul>
+				
+				
+				
+				<li>compression_example_test.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>data_transmission/<ul>
+				
+				
+				
+				<li>README.cn.md</li>
+				
+				
+				
+				<li>README.en.md</li>
+				
+				
+				
+				<li>client.py</li>
+				
+				
+				
+				<li>demo.proto</li>
+				
+				
+				
+				<li>demo_pb2.py</li>
+				
+				
+				
+				<li>demo_pb2_grpc.py</li>
+				
+				
+				
+				<li>server.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>debug/<ul>
+				
+				
+				
+				<li>BUILD.bazel</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>debug_server.py</li>
+				
+				
+				
+				<li>get_stats.py</li>
+				
+				
+				
+				<li>send_message.py</li>
+				
+				
+				
+				<li>test/<ul>
+				
+				
+				
+				<li>_debug_example_test.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>errors/<ul>
+				
+				
+				
+				<li>BUILD.bazel</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>client.py</li>
+				
+				
+				
+				<li>server.py</li>
+				
+				
+				
+				<li>test/<ul>
+				
+				
+				
+				<li>_error_handling_example_test.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>helloworld/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>greeter_client.py</li>
+				
+				
+				
+				<li>greeter_client_with_options.py</li>
+				
+				
+				
+				<li>greeter_server.py</li>
+				
+				
+				
+				<li>greeter_server_with_reflection.py</li>
+				
+				
+				
+				<li>helloworld_pb2.py</li>
+				
+				
+				
+				<li>helloworld_pb2_grpc.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>interceptors/<ul>
+				
+				
+				
+				<li>default_value/<ul>
+				
+				
+				
+				<li>default_value_client_interceptor.py</li>
+				
+				
+				
+				<li>greeter_client.py</li>
+				
+				
+				
+				<li>helloworld_pb2.py</li>
+				
+				
+				
+				<li>helloworld_pb2_grpc.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>headers/<ul>
+				
+				
+				
+				<li>generic_client_interceptor.py</li>
+				
+				
+				
+				<li>greeter_client.py</li>
+				
+				
+				
+				<li>greeter_server.py</li>
+				
+				
+				
+				<li>header_manipulator_client_interceptor.py</li>
+				
+				
+				
+				<li>helloworld_pb2.py</li>
+				
+				
+				
+				<li>helloworld_pb2_grpc.py</li>
+				
+				
+				
+				<li>request_header_validator_interceptor.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>metadata/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>helloworld_pb2.py</li>
+				
+				
+				
+				<li>helloworld_pb2_grpc.py</li>
+				
+				
+				
+				<li>metadata_client.py</li>
+				
+				
+				
+				<li>metadata_server.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>multiplex/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>helloworld_pb2.py</li>
+				
+				
+				
+				<li>helloworld_pb2_grpc.py</li>
+				
+				
+				
+				<li>multiplex_client.py</li>
+				
+				
+				
+				<li>multiplex_server.py</li>
+				
+				
+				
+				<li>route_guide_db.json</li>
+				
+				
+				
+				<li>route_guide_pb2.py</li>
+				
+				
+				
+				<li>route_guide_pb2_grpc.py</li>
+				
+				
+				
+				<li>route_guide_resources.py</li>
+				
+				
+				
+				<li>run_codegen.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>multiprocessing/<ul>
+				
+				
+				
+				<li>BUILD</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>client.py</li>
+				
+				
+				
+				<li>prime.proto</li>
+				
+				
+				
+				<li>server.py</li>
+				
+				
+				
+				<li>test/<ul>
+				
+				
+				
+				<li>_multiprocessing_example_test.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>route_guide/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>route_guide_client.py</li>
+				
+				
+				
+				<li>route_guide_db.json</li>
+				
+				
+				
+				<li>route_guide_pb2.py</li>
+				
+				
+				
+				<li>route_guide_pb2_grpc.py</li>
+				
+				
+				
+				<li>route_guide_resources.py</li>
+				
+				
+				
+				<li>route_guide_server.py</li>
+				
+				
+				
+				<li>run_codegen.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>wait_for_ready/<ul>
+				
+				
+				
+				<li>BUILD.bazel</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>test/<ul>
+				
+				
+				
+				<li>_wait_for_ready_example_test.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>wait_for_ready_example.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ruby/<ul>
+				
+				
+				
+				<li>Gemfile</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>errors_and_cancellation/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>error_examples_client.rb</li>
+				
+				
+				
+				<li>error_examples_server.rb</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>greeter_client.rb</li>
+				
+				
+				
+				<li>greeter_server.rb</li>
+				
+				
+				
+				<li>grpc-demo.gemspec</li>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>helloworld_pb.rb</li>
+				
+				
+				
+				<li>helloworld_services_pb.rb</li>
+				
+				
+				
+				<li>route_guide_pb.rb</li>
+				
+				
+				
+				<li>route_guide_services_pb.rb</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>pubsub/<ul>
+				
+				
+				
+				<li>Gemfile</li>
+				
+				
+				
+				<li>google/<ul>
+				
+				
+				
+				<li>protobuf/<ul>
+				
+				
+				
+				<li>empty.rb</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>pubsub_demo.rb</li>
+				
+				
+				
+				<li>tech/<ul>
+				
+				
+				
+				<li>pubsub/<ul>
+				
+				
+				
+				<li>proto/<ul>
+				
+				
+				
+				<li>pubsub.rb</li>
+				
+				
+				
+				<li>pubsub_services.rb</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>route_guide/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>route_guide_client.rb</li>
+				
+				
+				
+				<li>route_guide_server.rb</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>without_protobuf/<ul>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				<li>echo_client.rb</li>
+				
+				
+				
+				<li>echo_server.rb</li>
+				
+				
+				
+				<li>echo_services_noprotobuf.rb</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>licenses/<ul>
+				
+				
+				
+				<li>grpc-doc/<ul>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>NOTICE.txt</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
+

@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ibus-typing-booster-2.15.11-1.fc35 - Fedora Packages</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				ibus-typing-booster-2.15.11-1.fc35<small class="text-muted"> in Fedora 35</small>
+			</h1>
+			<p>
+				<a href=".">&crarr; Retrun to the main page of ibus-typing-booster</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=ibus-typing-booster-2.15.11-1.fc35">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=ibus-typing-booster-2.15.11-1.fc35">Search Bodhi</a>
+			</p>
+
+			<p>
+				
+				<b>Package Info</b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2021-11-23</td>
+						<td>Mike FABIAN <mfabian at redhat dot com> - 2.15.11-1</td>
+						<td>- Update to 2.15.11
+- Use @functools.lru_cache(maxsize=None) decorator for remove_accents()
+  (Makes everything 30% faster)
+- Add sorting option to tabstatistics
+- add enchant2 and enchant2-aspell to BuildRequires:</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-23</td>
+						<td>Mike FABIAN <mfabian at redhat dot com> - 2.15.7-1</td>
+						<td>- Update to 2.15.7
+- Convert user database context to lower case and accents removed
+  while reading training data
+- Make the context in the database case insensitive and accent insensitive
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/256)
+- Test cases for the sqlite database
+- Allow cleanup_database() to cleanup an in memory database when doing unit tests
+- Allow only lower case user shortcuts
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/255)
+- Add function to return number of rows in the database for debugging and testing
+- Allow to read training data from file when database is empty,
+  allow reading from .gz files</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-19</td>
+						<td>Mike FABIAN <mfabian at redhat dot com> - 2.15.3-1</td>
+						<td>- Update to 2.15.3
+- Title case all candidates if input_phrase is in title case
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/253)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-16</td>
+						<td>Mike FABIAN <mfabian at redhat dot com> - 2.15.0-1</td>
+						<td>- Update to 2.15.0
+- Make matching in the database case insensitive
+  (https://github.com/mike-fabian/ibus-typing-booster/issues/251)
+- Remove accents for “input_phrase” when learning from a text file
+  (https://github.com/mike-fabian/ibus-typing-booster/issues/252)
+- Make matching in dictionaries case insensitive
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/251)
+- Cleanup user database when Typing Booster starts
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/239)
+  Also use the sqlite3 “VACUUM” command to rebuild the database
+  file, repacking it into a minimal amount of disk space
+- Add tabstatistics.py, command line tool to display some information
+  about the database contents
+- Use python3-pycountry as a fallback to langtable
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/250)
+- Add “Recommends: python3-regex” to use better regexpressions if available</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-29</td>
+						<td>Mike FABIAN <mfabian at redhat dot com> - 2.14.13-1</td>
+						<td>- Update to 2.14.13
+- Skip emoji tests which rely on the enchant results if enchants results change
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/244)
+- Make it possible to remove unwanted compose sequences by using
+  an empty replacement text
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/245)
+- The 🏴‍☠️ “pirate flag” needs a U+FE0F after the final character to be fully qualified
+- Update data files for Unicode 14.0.0</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-14</td>
+						<td>Mike FABIAN <mfabian at redhat dot com> - 2.14.12-1</td>
+						<td>- Update to 2.14.12
+- Add some extra logging for the emoji tests
+- Add 'G-_' to 'G- ' as exceptions which must not trigger commits but
+  insert into the preedit
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/243)
+- Resolves: rhbz#2002199
+- Update emoji annotations from CLDR</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-02</td>
+						<td>Mike FABIAN <mfabian at redhat dot com> - 2.14.10-1</td>
+						<td>- Update to 2.14.10
+- Fix “Inconsistency when typing digits in Compose”
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/238)
+- Fix “Toggling input mode on/off does not work when a compose sequence is in progress”
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/237)
+- Toggling input mode off should not throw away the current input
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/236)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-30</td>
+						<td>Mike FABIAN <mfabian at redhat dot com> - 2.14.8-1</td>
+						<td>- Update to 2.14.8
+- Translation update from Weblate (ca, es, it updated)
+- Update emoji annotations from CLDR
+- Add IBus.KEY_KP_Decimal and IBus.KEY_period as a normal/keypad equivalence pair
+- get_string_from_lookup_table_cursor_pos() should return the string in NFC
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/234)
+- If an exception happens when trying to play a sound, catch it.
+- Change default input method for pa from “pa-inscript2” to “pa-inscript2-guru”
+- Make appearance tab narrower if possible (helps especially for the French translations)
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/230)
+- Spellchecking the preëdit should only spellcheck the part of the preedit which is a word
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/229)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-22</td>
+						<td>Mike FABIAN <mfabian at redhat dot com> - 2.14.4-1</td>
+						<td>- Update to 2.14.4
+- Translation update from Weblate (de, nl, sv, tr, uk updated to 100%)
+- Update emoji annotations from CLDR
+- Treat typing space within a preedit similar to typing Return within a preedit
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/223)
+- When a key triggers a commit while no candidate is selected, the cursor
+  should **always** be corrected leftwards
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/227)
+- When committing with Return inside a preedit, database recording and
+  pushed context is wrong
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/226)
+- Fix a typo which caused “\n” to be committed where “\t” should have been committed.
+- Remove spaces in lookup representation of compose completions
+- If a keypad key makes compose sequence invalid, try sequence with
+  regular keys instead (And the other way round)
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/224)
+- Make typing Return or KP_Enter inside a preedit more reliable
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/222)
+- Show input method icons in the setup tool if an icon is available
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/213)
+- Rename option “Arrow keys can reopen a preedit” to “Enable reopening preedits”
+  (Resolves: https://github.com/mike-fabian/ibus-typing-booster/issues/212)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-12</td>
+						<td>Mike FABIAN <mfabian at redhat dot com> - 2.14.0-2</td>
+						<td>- Add “ExcludeArch: ppc64 s390x” for koji to the .spec file</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/cldr-emoji-annotation/fedora-35.html">
+						
+						
+						cldr-emoji-annotation
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/ibus/fedora-35.html">
+						
+						
+						ibus</a> >= 1.5.3
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-enchant/fedora-35.html">
+						
+						
+						python3-enchant
+						
+
+						</li>
+						
+					</ul>
+				</div>
+				
+				
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>application()</li>
+						
+						<li>application(ibus-setup-typing-booster.desktop)</li>
+						
+						<li>ibus-typing-booster</li>
+						
+						<li>metainfo()</li>
+						
+						<li>metainfo(typing-booster.appdata.xml)</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
+				
+				
+				<li>usr/<ul>
+				
+				
+				
+				<li>libexec/<ul>
+				
+				
+				
+				<li>ibus-engine-typing-booster</li>
+				
+				
+				
+				<li>ibus-setup-typing-booster</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>share/<ul>
+				
+				
+				
+				<li>applications/<ul>
+				
+				
+				
+				<li>ibus-setup-typing-booster.desktop</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>doc/<ul>
+				
+				
+				
+				<li>ibus-typing-booster/<ul>
+				
+				
+				
+				<li>AUTHORS</li>
+				
+				
+				
+				<li>COPYING</li>
+				
+				
+				
+				<li>README</li>
+				
+				
+				
+				<li>README.html</li>
+				
+				
+				
+				<li>README.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>glib-2.0/<ul>
+				
+				
+				
+				<li>schemas/<ul>
+				
+				
+				
+				<li>org.freedesktop.ibus.engine.typing-booster.gschema.xml</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ibus/<ul>
+				
+				
+				
+				<li>component/<ul>
+				
+				
+				
+				<li>typing-booster.xml</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ibus-typing-booster/<ul>
+				
+				
+				
+				<li>data/<ul>
+				
+				
+				
+				<li>annotations/<ul>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>annotationsDerived/<ul>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>coin9.wav</li>
+				
+				
+				
+				<li>emoji-data.txt.gz</li>
+				
+				
+				
+				<li>emoji-sequences.txt.gz</li>
+				
+				
+				
+				<li>emoji-test.txt.gz</li>
+				
+				
+				
+				<li>emoji-variation-sequences.txt.gz</li>
+				
+				
+				
+				<li>emoji-zwj-sequences.txt.gz</li>
+				
+				
+				
+				<li>emojione.json.gz</li>
+				
+				
+				
+				<li>fi_FI.dic</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>engine/<ul>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>emoji_picker.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>emoji_picker.cpython-310.pyc</li>
+				
+				
+				
+				<li>factory.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>factory.cpython-310.pyc</li>
+				
+				
+				
+				<li>hunspell_suggest.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>hunspell_suggest.cpython-310.pyc</li>
+				
+				
+				
+				<li>hunspell_table.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>hunspell_table.cpython-310.pyc</li>
+				
+				
+				
+				<li>itb_emoji.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>itb_emoji.cpython-310.pyc</li>
+				
+				
+				
+				<li>itb_nltk.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>itb_nltk.cpython-310.pyc</li>
+				
+				
+				
+				<li>itb_pango.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>itb_pango.cpython-310.pyc</li>
+				
+				
+				
+				<li>itb_util.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>itb_util.cpython-310.pyc</li>
+				
+				
+				
+				<li>itb_version.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>itb_version.cpython-310.pyc</li>
+				
+				
+				
+				<li>m17n_translit.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>m17n_translit.cpython-310.pyc</li>
+				
+				
+				
+				<li>main.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>main.cpython-310.pyc</li>
+				
+				
+				
+				<li>tabsqlitedb.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>tabsqlitedb.cpython-310.pyc</li>
+				
+				
+				
+				<li>tabstatistics.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>tabstatistics.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>emoji_picker.py</li>
+				
+				
+				
+				<li>factory.py</li>
+				
+				
+				
+				<li>hunspell_suggest.py</li>
+				
+				
+				
+				<li>hunspell_table.py</li>
+				
+				
+				
+				<li>itb_emoji.py</li>
+				
+				
+				
+				<li>itb_nltk.py</li>
+				
+				
+				
+				<li>itb_pango.py</li>
+				
+				
+				
+				<li>itb_util.py</li>
+				
+				
+				
+				<li>itb_version.py</li>
+				
+				
+				
+				<li>m17n_translit.py</li>
+				
+				
+				
+				<li>main.py</li>
+				
+				
+				
+				<li>tabsqlitedb.py</li>
+				
+				
+				
+				<li>tabstatistics.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>icons/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.svg</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>setup/<ul>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>i18n.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>i18n.cpython-310.pyc</li>
+				
+				
+				
+				<li>itb_version.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>itb_version.cpython-310.pyc</li>
+				
+				
+				
+				<li>main.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>main.cpython-310.pyc</li>
+				
+				
+				
+				<li>pkginstall.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>pkginstall.cpython-310.pyc</li>
+				
+				
+				
+				<li>test_input_purpose.cpython-310.opt-1.pyc</li>
+				
+				
+				
+				<li>test_input_purpose.cpython-310.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>i18n.py</li>
+				
+				
+				
+				<li>itb_version.py</li>
+				
+				
+				
+				<li>main.py</li>
+				
+				
+				
+				<li>pkginstall.py</li>
+				
+				
+				
+				<li>test_input_purpose.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>icons/<ul>
+				
+				
+				
+				<li>hicolor/<ul>
+				
+				
+				
+				<li>128x128/<ul>
+				
+				
+				
+				<li>apps/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>16x16/<ul>
+				
+				
+				
+				<li>apps/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>22x22/<ul>
+				
+				
+				
+				<li>apps/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>256x256/<ul>
+				
+				
+				
+				<li>apps/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>32x32/<ul>
+				
+				
+				
+				<li>apps/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>48x48/<ul>
+				
+				
+				
+				<li>apps/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>64x64/<ul>
+				
+				
+				
+				<li>apps/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.png</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>scalable/<ul>
+				
+				
+				
+				<li>apps/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.svg</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>locale/<ul>
+				
+				
+				
+				<li>ar/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ca/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cs/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>de/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>es/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>fa/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>fr/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>he/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>hu/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>it/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ja/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>nl/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>or/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>pl/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>pt/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>pt_BR/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>si/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>sv/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>sw/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>tr/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>uk/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>zh_CN/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>zh_TW/<ul>
+				
+				
+				
+				<li>LC_MESSAGES/<ul>
+				
+				
+				
+				<li>ibus-typing-booster.mo</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>metainfo/<ul>
+				
+				
+				
+				<li>typing-booster.appdata.xml</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
+

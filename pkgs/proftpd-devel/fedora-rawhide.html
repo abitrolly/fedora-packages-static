@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>proftpd-devel-1.3.7a-6.fc34 - Fedora Packages</title>
+		<title>proftpd-devel-1.3.7c-3.fc36 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				proftpd-devel-1.3.7a-6.fc34<small class="text-muted"> in Fedora Rawhide</small>
+				proftpd-devel-1.3.7c-3.fc36<small class="text-muted"> in Fedora Rawhide</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of proftpd-devel</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=proftpd-1.3.7a-6.fc34">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=proftpd-1.3.7a-6.fc34">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=proftpd-1.3.7c-3.fc36">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=proftpd-1.3.7c-3.fc36">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -58,9 +58,64 @@
 					</thead>
 					
 					<tr scope="row">
+						<td>2021-09-14</td>
+						<td>Sahana Prasad <sahana at redhat dot com> - 1.3.7c-3</td>
+						<td>- Rebuilt with OpenSSL 3.0.0</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-05</td>
+						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.7c-2</td>
+						<td>- Update to mod_vroot 0.9.9</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-31</td>
+						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.7c-1</td>
+						<td>- Update to 1.3.7c
+  - Improve mod_tls log messages for unsupported older TLS protocol requests
+    (GH#1273)
+  - Fix memory disclosure to RADIUS servers by mod_radius (GH#1284)
+  - Properly handle <VirtualHost> sections that use interface/device names
+    (GH#1282)
+  - PCRE expressions with capture groups are not being handled properly
+    (GH#1300)
+  - AuthUserFile permissions check fails during SIGHUP, causing ProFTPD to
+    stop (GH#1307)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-23</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.3.7b-3</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-22</td>
+						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.7b-2</td>
+						<td>- BR: glibc-gconv-extra for API tests from Fedora 35 onwards</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-14</td>
+						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.7b-1</td>
+						<td>- Update to 1.3.7b
+  - Fixed occasional segfaults with FTPS data transfers using TLSv1.3, when
+    session tickets could not be decrypted (GH#1063)
+  - Passive transfers failed unexpectedly due to use of SO_REUSEPORT socket
+    option (GH#1171)
+  - Implemented support for Redis 6.x AUTH semantics (GH#1070)
+  - Fixed memory use-after-free issue in mod_sftp, which could cause unexpected
+    login/authentication issues
+  - Fixed SQL syntax regression for some generated SQL statements (GH#1149)
+  - Fixed "Corrupted MAC on input" errors when SFTP uses the
+    umac-64@openssh.com digest (GH#1111)</td>
+					</tr>
+					
+					<tr scope="row">
 						<td>2021-02-08</td>
 						<td>Pavel Raiskup <praiskup at redhat dot com> - 1.3.7a-6</td>
-						<td>- rebuild for libpq ABI fix rhbz#1908268</td>
+						<td>- Rebuild for libpq ABI fix rhbz#1908268</td>
 					</tr>
 					
 					<tr scope="row">
@@ -82,70 +137,6 @@
   (see https://bugzilla.redhat.com/show_bug.cgi?id=1850198)
 - Work around getaddrinfo() returning EAGAIN in netaddr api test
   (https://github.com/proftpd/proftpd/pull/1075)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-07-28</td>
-						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.3.7a-2</td>
-						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-07-22</td>
-						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.7a-1</td>
-						<td>- Update to 1.3.7a
-  - Fix build-time regression when using the --localstatedir configure option
-    (https://github.com/proftpd/proftpd/issues/1055)
-- Modernize spec using %{make_build} and %{make_install}</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-07-21</td>
-						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.7-1</td>
-						<td>- Update to 1.3.7 (see RELEASE_NOTES for details)
-- Fix regression in configure script
-  https://github.com/proftpd/proftpd/issues/1055
-  https://github.com/proftpd/proftpd/pull/1056</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-07-21</td>
-						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6e-1</td>
-						<td>- Update to 1.3.6e
-  - Fixed null pointer dereference in mod_sftp when using SCP incorrectly
-    (https://github.com/proftpd/proftpd/issues/1043)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-05-31</td>
-						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6d-1</td>
-						<td>- Update to 1.3.6d
-  - Fixed issue with FTPS uploads of large files using TLSv1.3
-    (https://github.com/proftpd/proftpd/issues/959)
-  - Fixed regression in the handling of '%{env:...}' configuration variables
-    when the environment variable is not present
-    (https://github.com/proftpd/proftpd/issues/857)
-  - Second LIST of the same symlink shows different results
-    (https://github.com/proftpd/proftpd/issues/940)
-  - mod_sftp sends broken response when CREATETIME attribute is requested
-    (https://github.com/proftpd/proftpd/issues/980)
-  - Handle zero-length SFTP WRITE requests without error
-    (http://bugs.proftpd.org/show_bug.cgi?id=4398)
-  - PidFile should not be world-writable
-    (https://github.com/proftpd/proftpd/issues/1018)
-  - TLSv1.3 handshake fails due to missing session ticket key on some systems
-    (https://github.com/proftpd/proftpd/issues/1014)
-  - Lowercased FTP commands not properly identified
-    (https://github.com/proftpd/proftpd/issues/1023)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-05-09</td>
-						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6c-3</td>
-						<td>- Avoid duplicate hostname and timestamps in syslog (#1808989)
-  http://bugs.proftpd.org/show_bug.cgi?id=4185
-  https://github.com/proftpd/proftpd/issues/1002
-  https://github.com/proftpd/proftpd/pull/1009</td>
 					</tr>
 					
 					<tbody>
@@ -191,10 +182,10 @@
 						
 						<li>
 						
-						<a href="/pkgs/libmemcached-devel/fedora-rawhide.html">
+						<a href="/pkgs/libmemcached-awesome-devel/fedora-rawhide.html">
 						
 						
-						libmemcached-devel</a> >= 0.41
+						libmemcached-awesome-devel</a> >= 0.41
 						
 
 						</li>
@@ -324,7 +315,7 @@
 						<a href="/pkgs/proftpd/fedora-rawhide.html">
 						
 						
-						proftpd</a> = 1.3.7a-6.fc34
+						proftpd</a> = 1.3.7c-3.fc36
 						
 
 						</li>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>python3-rpm-macros-3.9-38.fc35 - Fedora Packages</title>
+		<title>python3-rpm-macros-3.10-14.fc36 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				python3-rpm-macros-3.9-38.fc35<small class="text-muted"> in Fedora Rawhide</small>
+				python3-rpm-macros-3.10-14.fc36<small class="text-muted"> in Fedora Rawhide</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of python3-rpm-macros</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=python-rpm-macros-3.9-38.fc35">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=python-rpm-macros-3.9-38.fc35">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=python-rpm-macros-3.10-14.fc36">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=python-rpm-macros-3.10-14.fc36">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -58,69 +58,76 @@
 					</thead>
 					
 					<tr scope="row">
-						<td>2021-04-27</td>
-						<td>Miro Hrončok <mhroncok at redhat dot com> - 3.9-38</td>
-						<td>- Escape % symbols in macro files comments
-- Fixes: rhbz#1953910</td>
+						<td>2021-12-08</td>
+						<td>Miro Hrončok <mhroncok at redhat dot com> - 3.10-14</td>
+						<td>- Set %__python3 value according to %python3_pkgversion
+  I.e. when %python3_pkgversion is 3.12, %__python3 is /usr/bin/python3.12</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-04-07</td>
-						<td>Karolina Surma <ksurma at redhat dot com> - 3.9-37</td>
-						<td>- Use sysconfig.get_path() to get %python3_sitelib and %python3_sitearch
-- Fixes: rhbz#1946972</td>
+						<td>2021-11-01</td>
+						<td>Karolina Surma <ksurma at redhat dot com> - 3.10-13</td>
+						<td>- Fix multiline arguments processing for %py_check_import
+Resolves: rhbz#2018809
+- Fix %py_shebang_flags handling within %py_check_import
+Resolves: rhbz#2018615
+- Process .pth files in buildroot's sitedirs in %py_check_import
+Resolves: rhbz#2018551
+- Move import_all_modules.py from python-srpm-macros to python-rpm-macros</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-03-29</td>
-						<td>Miro Hrončok <mhroncok at redhat dot com> - 3.9-36</td>
-						<td>- Allow commas as argument separator for extras names in %python_extras_subpkg
-- Fixes: rhbz#1936486</td>
+						<td>2021-10-25</td>
+						<td>Karolina Surma <ksurma at redhat dot com> - 3.10-12</td>
+						<td>- Introduce -f (read from file) option to %py{3}_check_import
+- Introduce -t (filter top-level modules) option to %py{3}_check_import
+- Introduce -e (exclude module globs) option to %py{3}_check_import</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-02-20</td>
-						<td>Miro Hrončok <mhroncok at redhat dot com> - 3.9-35</td>
-						<td>- Fix %python_extras_subpkg with underscores in extras names</td>
+						<td>2021-10-20</td>
+						<td>Tomas Orsava <torsava at redhat dot com> - 3.10-11</td>
+						<td>- Define a new macros %python_wheel_dir and %python_wheel_pkg_prefix</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-02-08</td>
-						<td>Miro Hrončok <mhroncok at redhat dot com> - 3.9-34</td>
-						<td>- Remove python2-rpm-macros
-- https://fedoraproject.org/wiki/Changes/Disable_Python_2_Dist_RPM_Generators_and_Freeze_Python_2_Macros</td>
+						<td>2021-10-12</td>
+						<td>Lumír Balhar <lbalhar at redhat dot com> - 3.10-10</td>
+						<td>- Non-existing path in py_reproducible_pyc_path causes build to fail
+Resolves: rhbz#2011056</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-02-05</td>
-						<td>Miro Hrončok <mhroncok at redhat dot com> - 3.9-13</td>
-						<td>- Automatically word-wrap the description of extras subpackages
-- Fixes: rhbz#1922442</td>
+						<td>2021-09-09</td>
+						<td>Miro Hrončok <mhroncok at redhat dot com> - 3.10-9</td>
+						<td>- Set $RPM_BUILD_ROOT in %{python3_...} macros
+  to allow selecting alternate sysconfig install scheme based on that variable</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-01-27</td>
-						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 3.9-12</td>
-						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+						<td>2021-09-09</td>
+						<td>Petr Viktorin <pviktori at redhat dot com> - 3.10-8</td>
+						<td>- Use --hardlink-dupes in %py_byte_compile and brp-python-bytecompile
+  (for Python 3)
+- Resolves: rhbz#1977895</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2020-12-08</td>
-						<td>Miro Hrončok <mhroncok at redhat dot com> - 3.9-11</td>
-						<td>- Support defining %py3_shebang_flags to %nil</td>
+						<td>2021-07-23</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 3.9-7</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2020-09-14</td>
-						<td>Miro Hrončok <mhroncok at redhat dot com> - 3.9-10</td>
-						<td>- Add %python3_platform_triplet and %python3_ext_suffix
-- https://fedoraproject.org/wiki/Changes/Python_Upstream_Architecture_Names</td>
+						<td>2021-07-07</td>
+						<td>Miro Hrončok <mhroncok at redhat dot com> - 3.10-6</td>
+						<td>- Move Python related BuildRoot Policy scripts from redhat-rpm-config to python-srpm-macros</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2020-07-24</td>
-						<td>Lumír Balhar <lbalhar at redhat dot com> - 3.9-9</td>
-						<td>- Adapt %py[3]_shebang_fix to use versioned pathfixX.Y.py</td>
+						<td>2021-07-07</td>
+						<td>Miro Hrončok <mhroncok at redhat dot com> - 3.10-5</td>
+						<td>- Introduce %py3_check_import</td>
 					</tr>
 					
 					<tbody>
@@ -139,7 +146,7 @@
 						<a href="/pkgs/python-rpm-macros/fedora-rawhide.html">
 						
 						
-						python-rpm-macros</a> = 3.9-38.fc35
+						python-rpm-macros</a> = 3.10-14.fc36
 						
 
 						</li>
@@ -149,7 +156,7 @@
 						<a href="/pkgs/python-srpm-macros/fedora-rawhide.html">
 						
 						
-						python-srpm-macros</a> = 3.9-38.fc35
+						python-srpm-macros</a> = 3.10-14.fc36
 						
 
 						</li>

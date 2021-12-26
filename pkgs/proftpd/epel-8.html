@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>proftpd-1.3.6e-2.el8 - Fedora Packages</title>
+		<title>proftpd-1.3.6e-4.el8 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				proftpd-1.3.6e-2.el8<small class="text-muted"> in EPEL 8</small>
+				proftpd-1.3.6e-4.el8<small class="text-muted"> in EPEL 8</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of proftpd</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=proftpd-1.3.6e-2.el8">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=proftpd-1.3.6e-2.el8">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=proftpd-1.3.6e-4.el8">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=proftpd-1.3.6e-4.el8">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -54,6 +54,23 @@
 							<th scope="col">Change</th>
 						</tr>
 					</thead>
+					
+					<tr scope="row">
+						<td>2021-09-07</td>
+						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6e-4</td>
+						<td>- Fix memory disclosure to RADIUS servers by mod_radius (#2001690)
+  https://github.com/proftpd/proftpd/issues/1284
+  https://github.com/proftpd/proftpd/pull/1285</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-29</td>
+						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6e-3</td>
+						<td>- Avoid segfaults with TLSv1.3
+  https://github.com/proftpd/proftpd/issues/1063
+  https://github.com/proftpd/proftpd/commit/adf43dd4ddaab0332e74abc86bbcef9cf27ee54a
+- Use %license unconditionally</td>
+					</tr>
 					
 					<tr scope="row">
 						<td>2020-11-24</td>
@@ -160,86 +177,6 @@
 						<td>- Fix handling of CRL lookups by properly using issuer for lookups, and
   guarding against null pointers (GH#859, GH#861, CVE-2019-19269,
   CVE-2019-19270)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2019-10-20</td>
-						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6b-1</td>
-						<td>- Update to 1.3.6b
-  - Fixed pre-authentication remote denial-of-service issue
-    (CVE-2019-18217, https://github.com/proftpd/proftpd/issues/846)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2019-10-13</td>
-						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.6a-1</td>
-						<td>- Update to 1.3.6a
-  - Configure script wrongly detected AIX lastlog functions
-    (http://bugs.proftpd.org/show_bug.cgi?id=4304)
-  - AllowChrootSymlinks off could cause login failures depending on filesystem
-    permissions (http://bugs.proftpd.org/show_bug.cgi?id=4306)
-  - mod_ctrls: error: unable to bind to local socket: Address already in use
-    (https://github.com/proftpd/proftpd/issues/501)
-  - Failed to handle multiple %{env:...} variables in single word in
-    configuration (https://github.com/proftpd/proftpd/issues/507)
-  - mod_sftp failed to check shadow password information when publickey
-    authentication used (http://bugs.proftpd.org/show_bug.cgi?id=4308)
-  - Use of "AllowEmptyPasswords off" broke SFTP/SCP logins
-    (http://bugs.proftpd.org/show_bug.cgi?id=4309)
-  - Use of mod_facl as static module caused ProFTPD to die on SIGHUP/restart
-    (http://bugs.proftpd.org/show_bug.cgi?id=4310)
-  - Use of curve25519-sha256@libssh.org SSH2 key exchange sometimes failed
-    (https://github.com/proftpd/proftpd/issues/556)
-  - Close extra file descriptors at startup
-    (http://bugs.proftpd.org/show_bug.cgi?id=4312)
-  - <Anonymous> with AuthAliasOnly in effect did not work as expected
-    (http://bugs.proftpd.org/show_bug.cgi?id=4314)
-  - CreateHome NoRootPrivs only worked partially
-    (https://github.com/proftpd/proftpd/issues/568)
-  - SFTP OPEN response included attribute flags that are not actually provided
-    (https://github.com/proftpd/proftpd/issues/578)
-  - Truncation of file while being downloaded with sendfile enabled caused
-    timeouts due to infinite loop (http://bugs.proftpd.org/show_bug.cgi?id=4318)
-  - FTP uploads frequently broke due to "Interrupted system call" error
-    (http://bugs.proftpd.org/show_bug.cgi?id=4319)
-  - Site-to-site transfers over TLS failed
-    (https://github.com/proftpd/proftpd/issues/618)
-  - Can't see symlinks using any FTP client when using MLSD
-    (http://bugs.proftpd.org/show_bug.cgi?id=4322)
-  - mod_tls 1.3.6 failed to compile using OpenSSL 0.9.8e
-    (http://bugs.proftpd.org/show_bug.cgi?id=4325)
-  - Using MaxClientsPerHost 1 in <Anonymous> section denied logins
-    (http://bugs.proftpd.org/show_bug.cgi?id=4326)
-  - SQLNamedConnectInfo with different backend database did not work properly
-    (https://github.com/proftpd/proftpd/issues/642)
-  - Segfault with mod_sftp+mod_sftp_pam after successful authentication using
-    keyboard-interactive method (https://github.com/proftpd/proftpd/issues/656)
-  - autoconf always failed to detect support for FIPS
-    (https://github.com/proftpd/proftpd/issues/660)
-  - SFTP connections failed when using "arcfour256" cipher
-    (https://github.com/proftpd/proftpd/issues/663)
-  - mod_auth_otp failed to build with OpenSSL 1.1.x
-    (http://bugs.proftpd.org/show_bug.cgi?id=4335)
-  - scp broken on FreeBSD 11 (http://bugs.proftpd.org/show_bug.cgi?id=4341)
-  - Update mod_sftp to handle changed APIs in OpenSSL 1.1.x releases
-    (https://github.com/proftpd/proftpd/issues/674)
-  - Infinite loop possible in mod_sftp's set_sftphostkey() function
-    (http://bugs.proftpd.org/show_bug.cgi?id=4356)
-  - Some ASCII text files corrupted when downloading
-    (http://bugs.proftpd.org/show_bug.cgi?id=4352)
-  - Properly use the --includedir, --libdir configure variables in the
-    generated proftpd.pc pkgconfig file
-    (https://github.com/proftpd/proftpd/issues/797)
-  - Reading invalid SSH key from database resulted in unexpected/unlogged
-    disconnect failures (http://bugs.proftpd.org/show_bug.cgi?id=4350)
-  - Symlink navigation broken after 1.3.6 update
-    (http://bugs.proftpd.org/show_bug.cgi?id=4332)
-  - Unable to connect to ProFTPD using TLSSessionTickets and TLSv1.3
-    (https://github.com/proftpd/proftpd/issues/795)
-  - SITE CPFR/CPTO did not honor <Limit> configurations
-    (http://bugs.proftpd.org/show_bug.cgi?id=4372)
-  - Using "TLSProtocol SSLv23" did not enable all protocol versions
-    (https://github.com/proftpd/proftpd/issues/807)</td>
 					</tr>
 					
 					<tbody>
@@ -410,23 +347,11 @@
 				
 				
 				
-				<li>02/<ul>
+				<li>08/<ul>
 				
 				
 				
-				<li>0fad7387af13b5562ae0a9a964feabf14395a6</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>0f/<ul>
-				
-				
-				
-				<li>cd2afe4d95fc9dcf96634048f6549edadf0562</li>
+				<li>382bbdf3f224d5644b0c5452f5ab61d591d9c8</li>
 				
 				
 				
@@ -434,11 +359,39 @@
 				
 				
 				
-				<li>1d/<ul>
+				<li>0c/<ul>
 				
 				
 				
-				<li>db4afc1a56febd485a48cd480cf02a12148466</li>
+				<li>44a5fe01828072ea3c114dc0f67a495454647b</li>
+				
+				
+				
+				<li>61f4f0b7e2516f53c2b620117c5ab98dfee791</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>12/<ul>
+				
+				
+				
+				<li>6641fa44909a3b0e6c6cdaedec0e685832789e</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>16/<ul>
+				
+				
+				
+				<li>6107bd29501f018f2e93a4fd6d07b82fbe908c</li>
 				
 				
 				
@@ -450,23 +403,11 @@
 				
 				
 				
-				<li>3414f1d15d44b9e8093a7d2a23bcda01bc032c</li>
+				<li>9b18a5495ff1a92fc751a787e1dffd981dc0d1</li>
 				
 				
 				
-				<li>b0b592bb04f846d3a0b894c3922710d9aee9e6</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>24/<ul>
-				
-				
-				
-				<li>5ad9a1467b7078c31bd79e13ff0bb72bb6d054</li>
+				<li>c6bc01e69a3eb11bb0d6a6a176c8dfa358aaba</li>
 				
 				
 				
@@ -474,23 +415,11 @@
 				
 				
 				
-				<li>35/<ul>
+				<li>26/<ul>
 				
 				
 				
-				<li>76c23111aa44c71da22121a702c94750d7648b</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>3d/<ul>
-				
-				
-				
-				<li>035156014681efdf5e85ace7300b393b62a446</li>
+				<li>2d81c4c9c628479497704e2f4ad5519155475a</li>
 				
 				
 				
@@ -498,23 +427,11 @@
 				
 				
 				
-				<li>5d/<ul>
+				<li>27/<ul>
 				
 				
 				
-				<li>c17157b3977185cca69266586c1b14f7178356</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>61/<ul>
-				
-				
-				
-				<li>24153e60e8f892c7ccf3975d959e38104536cc</li>
+				<li>26414a30d9d1441e85c64e1750800ba32700be</li>
 				
 				
 				
@@ -522,11 +439,11 @@
 				
 				
 				
-				<li>62/<ul>
+				<li>36/<ul>
 				
 				
 				
-				<li>f11b9f2a74af07a96e48a786fd9c1a1ada0a17</li>
+				<li>0ace79ef384437b11527e47cff9ba2309f1c40</li>
 				
 				
 				
@@ -534,11 +451,79 @@
 				
 				
 				
-				<li>69/<ul>
+				<li>37/<ul>
 				
 				
 				
-				<li>ccdec4017b980a0a2a5e6d2740427046844c20</li>
+				<li>f979fb6ebdc7f672499253e9e6f8ab38bd7a25</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>3c/<ul>
+				
+				
+				
+				<li>a00127afe1973ca50265aa3bd7e2b34fc4351e</li>
+				
+				
+				
+				<li>f2d27f5e4831dde90c68304dbfaf16d36c1a6d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>51/<ul>
+				
+				
+				
+				<li>ea151c10b7d907a230da723a57623c8f82d3b4</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>52/<ul>
+				
+				
+				
+				<li>791fc141e4dd4b4e4e9cb5cb41dbe4b7d250ee</li>
+				
+				
+				
+				<li>c6fb864133a7b268558d490690f44de0b23151</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>5c/<ul>
+				
+				
+				
+				<li>3237235e8e20f8d14a8da954db6c4d2553afe3</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>6d/<ul>
+				
+				
+				
+				<li>a7ef19c8534fb0cce8ce8a44f717dd191fdf24</li>
 				
 				
 				
@@ -550,7 +535,7 @@
 				
 				
 				
-				<li>7dbd02561517c5039678378896aa824370528e</li>
+				<li>7e57c5d7cbfd2e7e1ed0ef335339623fa45653</li>
 				
 				
 				
@@ -558,23 +543,11 @@
 				
 				
 				
-				<li>7a/<ul>
+				<li>73/<ul>
 				
 				
 				
-				<li>f7482b0f932867a93412fe97e1d74b9d3f5fb1</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>80/<ul>
-				
-				
-				
-				<li>617c37622d8067567838039c3db83012ecb359</li>
+				<li>6cdc4f4a236f8238321f21104b7baa48a0e1b3</li>
 				
 				
 				
@@ -582,23 +555,11 @@
 				
 				
 				
-				<li>81/<ul>
+				<li>8a/<ul>
 				
 				
 				
-				<li>26177ca70ad7645fd2ccd9e7c1ead762b6bc30</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>82/<ul>
-				
-				
-				
-				<li>0dd0f3f30161db18a2976ce7f41e735a990351</li>
+				<li>f76a73a4ec59d271807ed979e6248a0887314c</li>
 				
 				
 				
@@ -606,23 +567,11 @@
 				
 				
 				
-				<li>8e/<ul>
+				<li>99/<ul>
 				
 				
 				
-				<li>82799fbb379a4273739a9fb6998092462676d9</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>95/<ul>
-				
-				
-				
-				<li>60fb73fd058079902757382ee28b6f31f786fe</li>
+				<li>fc363ab5badeb9cbdd229cd3f49cb20727e7b6</li>
 				
 				
 				
@@ -630,15 +579,11 @@
 				
 				
 				
-				<li>98/<ul>
+				<li>aa/<ul>
 				
 				
 				
-				<li>1aa2cef679f93c62e243251e356641e5f164f5</li>
-				
-				
-				
-				<li>1fb4b2c36601a2a495123cb78dff84753f24a9</li>
+				<li>0ae8c1fd55126236ce0f6f63a17bf5e9e0f8e7</li>
 				
 				
 				
@@ -646,23 +591,11 @@
 				
 				
 				
-				<li>a2/<ul>
+				<li>b6/<ul>
 				
 				
 				
-				<li>df03b28a580d10d334ce187de4947d06b9d1fc</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>a3/<ul>
-				
-				
-				
-				<li>6c83e34935d39272034f2bf8f72e1f0045fad0</li>
+				<li>0e6bfe7bd7b275d3cca108ae76ad684b7461bf</li>
 				
 				
 				
@@ -670,23 +603,11 @@
 				
 				
 				
-				<li>ac/<ul>
+				<li>d8/<ul>
 				
 				
 				
-				<li>5b13d252ad3e9007ab24e19f83835493464354</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>ae/<ul>
-				
-				
-				
-				<li>36eb08b8a50d2c3c7fbabdcae6ae0c67ee3903</li>
+				<li>cf5f429e85ec73db37fab3cee91173659fa4d5</li>
 				
 				
 				
@@ -694,27 +615,15 @@
 				
 				
 				
-				<li>b9/<ul>
+				<li>dc/<ul>
 				
 				
 				
-				<li>adf3c7da71d7e8c5b3e2ef10d13b32c49f89f9</li>
+				<li>29308881647ad140cb386f3c05e8f41c256fc5</li>
 				
 				
 				
-				</ul></li>
-				
-				
-				
-				<li>ce/<ul>
-				
-				
-				
-				<li>2b6cb38b546f716cc9e592e8d5354fafef4961</li>
-				
-				
-				
-				<li>906f973c9ec35f2339bb66ebd5ca9cd4f86aaa</li>
+				<li>eb6c44e782a9be05b6e4692a1a95315fdb57e6</li>
 				
 				
 				
@@ -722,15 +631,11 @@
 				
 				
 				
-				<li>d5/<ul>
+				<li>dd/<ul>
 				
 				
 				
-				<li>589dde6ab15116a6bf8dd17369335ecb97e6cc</li>
-				
-				
-				
-				<li>acac03a1f6a2e1e11718128f6d8fc4bd185baf</li>
+				<li>ebb339871f33da4ebf3805674f03e20c892fbf</li>
 				
 				
 				
@@ -738,23 +643,11 @@
 				
 				
 				
-				<li>e2/<ul>
+				<li>df/<ul>
 				
 				
 				
-				<li>022fdc192864e3eb803d17c1d9fc5d0f4a099c</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>e6/<ul>
-				
-				
-				
-				<li>b9c7ef02b5fae11239f9f83cfb4a255136d217</li>
+				<li>33e2e2c7f9273dcb54191bae387b9ab1f12edd</li>
 				
 				
 				
@@ -762,23 +655,11 @@
 				
 				
 				
-				<li>ec/<ul>
+				<li>e4/<ul>
 				
 				
 				
-				<li>7d80ad84518d5d555fe94811170e869f853b04</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>f0/<ul>
-				
-				
-				
-				<li>f74767bf8a8b232839c07292407ab411b3b01d</li>
+				<li>6febe3fa8570585da095a7237f839e498c6391</li>
 				
 				
 				
@@ -786,11 +667,59 @@
 				
 				
 				
-				<li>fa/<ul>
+				<li>e7/<ul>
 				
 				
 				
-				<li>f959f567bbff6edfb46c7fded77b4211dd8548</li>
+				<li>fd3d628b430daddc74831a3e357af723876df1</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>f5/<ul>
+				
+				
+				
+				<li>d698af0745aa2ded86d80a99be1be5dace5970</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>f6/<ul>
+				
+				
+				
+				<li>97c7baee76b6f3154a332b36ca64c13ca36aaa</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>f7/<ul>
+				
+				
+				
+				<li>af35ae03136c06e6dbc7d04c5d4a15f2d583a2</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>fc/<ul>
+				
+				
+				
+				<li>f77aa1c33247d0a38c42c6c9e5201d20731559</li>
 				
 				
 				

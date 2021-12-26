@@ -1,0 +1,2366 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>tuned-2.16.0-1.fc34 - Fedora Packages</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				tuned-2.16.0-1.fc34<small class="text-muted"> in Fedora 34</small>
+			</h1>
+			<p>
+				<a href=".">&crarr; Retrun to the main page of tuned</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=tuned-2.16.0-1.fc34">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=tuned-2.16.0-1.fc34">Search Bodhi</a>
+			</p>
+
+			<p>
+				
+				<b>Package Info</b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2021-07-21</td>
+						<td>Jaroslav Škarvada <jskarvad at redhat dot com> - 2.16.0-1</td>
+						<td>- new release
+  - rebased tuned to latest upstream
+    related: rhbz#1936426</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-07</td>
+						<td>Jaroslav Škarvada <jskarvad at redhat dot com> - 2.16.0-0.1.rc1</td>
+						<td>- new release
+  - rebased tuned to latest upstream
+    resolves: rhbz#1936426
+  - realtime: "isolate_managed_irq=Y" should be mentioned in
+    "/etc/tuned/realtime-virtual-*-variables.conf"
+    resolves: rhbz#1817827
+  - realtime: changed tuned default to "isolcpus=domain,managed_irq,X-Y"
+    resolves: rhbz#1820626
+  - applying a profile with multiple inheritance where parents include a common
+    ancestor fails
+    resolves: rhbz#1825882
+  - failure in moving i40e IRQ threads to housekeeping CPUs from isolated CPUs
+    resolves: rhbz#1933069
+  - sort network devices before matching by regex
+    resolves: rhbz#1939970
+  - net: fixed traceback while adjusting the netdev queue count
+    resolves: rhbz#1943291
+  - net: fixed traceback if the first listed device returns netlink error
+    resolves: rhbz#1944686
+  - realtime: improve verification
+    resolves: rhbz#1947858
+  - bootloader: add support for the rpm-ostree
+    resolves: rhbz#1950164
+  - net: fixed traceback if a device channel contains n/a
+    resolves: rhbz#1974071
+  - mssql: updated the profile
+    resolves: rhbz#1942733
+  - realtime: disabled kvm.nx_huge_page kernel module option in
+    realtime-virtual-host profile
+    resolves: rhbz#1976825
+  - realtime: explicitly set 'irqaffinity=~<isolated_cpu_mask>' in kernel
+    command line
+    resolves: rhbz#1974820
+  - scheduler: added abstraction for the sched_* and numa_* variables which
+    were previously accessible through the sysctl
+    resolves: rhbz#1952687
+  - recommend: fixed wrong profile on ppc64le bare metal servers
+    resolves: rhbz#1959889</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-04</td>
+						<td>Python Maint <python dash maint at redhat dot com> - 2.15.0-4</td>
+						<td>- Rebuilt for Python 3.10</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-03-02</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 2.15.0-3</td>
+						<td>- Rebuilt for updated systemd-rpm-macros
+  See https://pagure.io/fesco/issue/2583.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-01-27</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 2.15.0-2</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-12-17</td>
+						<td>Jaroslav Škarvada <jskarvad at redhat dot com> - 2.15.0-1</td>
+						<td>- new release
+  - rebased tuned to latest upstream
+    related: rhbz#1874052</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-12-01</td>
+						<td>Jaroslav Škarvada <jskarvad at redhat dot com> - 2.15.0-0.1.rc1</td>
+						<td>- new release
+  - rebased tuned to latest upstream
+    resolves: rhbz#1874052
+  - added plugin service for linux services control
+    resolves: rhbz#1869991
+  - scheduler: added default_irq_smp_affinity option
+    resolves: rhbz#1896348
+  - bootloader: skip boom managed BLS snippets
+    resolves: rhbz#1901532
+  - scheduler: added perf_process_fork option to enable processing of fork
+    resolves: rhbz#1894610
+  - scheduler: added perf_mmap_pages option to set perf buffer size
+    resolves: rhbz#1890219
+  - bootloader: fixed cmdline duplication with BLS and grub2-mkconfig
+    resolves: rhbz#1777874</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-07-29</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 2.14.0-3</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-07-03</td>
+						<td>Jaroslav Škarvada <jskarvad at redhat dot com> - 2.14.0-2</td>
+						<td>- scheduler: fixed isolated_cores to work with cgroups
+  related: rhbz#1784648
+- throughput-performance: fix performance regression on AMD platforms
+  related: rhbz#1746957</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2020-06-22</td>
+						<td>Jaroslav Škarvada <jskarvad at redhat dot com> - 2.14.0-1</td>
+						<td>- new release
+  - rebased tuned to latest upstream
+    related: rhbz#1792264</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/ethtool/fedora-34.html">
+						
+						
+						ethtool
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/polkit/fedora-34.html">
+						
+						
+						polkit
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python2.7/fedora-34.html">
+						
+						
+						python2.7</a> = 3.9
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3/fedora-34.html">
+						
+						
+						python3</a> = 3.9
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-dbus/fedora-34.html">
+						
+						
+						python3-dbus
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-linux-procfs/fedora-34.html">
+						
+						
+						python3-linux-procfs
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-perf/fedora-34.html">
+						
+						
+						python3-perf
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/systemd/fedora-34.html">
+						
+						
+						systemd
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/virt-what/fedora-34.html">
+						
+						
+						virt-what
+						
+
+						</li>
+						
+					</ul>
+				</div>
+				
+				
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>config(tuned)</li>
+						
+						<li>tuned</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
+				
+				
+				<li>etc/<ul>
+				
+				
+				
+				<li>dbus-1/<ul>
+				
+				
+				
+				<li>system.d/<ul>
+				
+				
+				
+				<li>com.redhat.tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>modprobe.d/<ul>
+				
+				
+				
+				<li>kvm.rt.tuned.conf</li>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>tuned/<ul>
+				
+				
+				
+				<li>active_profile</li>
+				
+				
+				
+				<li>bootcmdline</li>
+				
+				
+				
+				<li>post_loaded_profile</li>
+				
+				
+				
+				<li>profile_mode</li>
+				
+				
+				
+				<li>recommend.d/<ul>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>tuned-main.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>run/<ul>
+				
+				
+				
+				<li>tuned/<ul>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>usr/<ul>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>kernel/<ul>
+				
+				
+				
+				<li>install.d/<ul>
+				
+				
+				
+				<li>92-tuned.install</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>python3.9/<ul>
+				
+				
+				
+				<li>site-packages/<ul>
+				
+				
+				
+				<li>tuned/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>consts.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>consts.cpython-39.pyc</li>
+				
+				
+				
+				<li>exceptions.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>exceptions.cpython-39.pyc</li>
+				
+				
+				
+				<li>logs.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>logs.cpython-39.pyc</li>
+				
+				
+				
+				<li>patterns.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>patterns.cpython-39.pyc</li>
+				
+				
+				
+				<li>version.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>version.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>admin/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>admin.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>admin.cpython-39.pyc</li>
+				
+				
+				
+				<li>dbus_controller.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>dbus_controller.cpython-39.pyc</li>
+				
+				
+				
+				<li>exceptions.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>exceptions.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>admin.py</li>
+				
+				
+				
+				<li>dbus_controller.py</li>
+				
+				
+				
+				<li>exceptions.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>consts.py</li>
+				
+				
+				
+				<li>daemon/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>application.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>application.cpython-39.pyc</li>
+				
+				
+				
+				<li>controller.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>controller.cpython-39.pyc</li>
+				
+				
+				
+				<li>daemon.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>daemon.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>application.py</li>
+				
+				
+				
+				<li>controller.py</li>
+				
+				
+				
+				<li>daemon.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>exceptions.py</li>
+				
+				
+				
+				<li>exports/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>controller.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>controller.cpython-39.pyc</li>
+				
+				
+				
+				<li>dbus_exporter.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>dbus_exporter.cpython-39.pyc</li>
+				
+				
+				
+				<li>interfaces.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>interfaces.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>controller.py</li>
+				
+				
+				
+				<li>dbus_exporter.py</li>
+				
+				
+				
+				<li>interfaces.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>hardware/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>device_matcher.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>device_matcher.cpython-39.pyc</li>
+				
+				
+				
+				<li>device_matcher_udev.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>device_matcher_udev.cpython-39.pyc</li>
+				
+				
+				
+				<li>inventory.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>inventory.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>device_matcher.py</li>
+				
+				
+				
+				<li>device_matcher_udev.py</li>
+				
+				
+				
+				<li>inventory.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>logs.py</li>
+				
+				
+				
+				<li>monitors/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>base.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>base.cpython-39.pyc</li>
+				
+				
+				
+				<li>monitor_disk.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>monitor_disk.cpython-39.pyc</li>
+				
+				
+				
+				<li>monitor_load.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>monitor_load.cpython-39.pyc</li>
+				
+				
+				
+				<li>monitor_net.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>monitor_net.cpython-39.pyc</li>
+				
+				
+				
+				<li>repository.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>repository.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>base.py</li>
+				
+				
+				
+				<li>monitor_disk.py</li>
+				
+				
+				
+				<li>monitor_load.py</li>
+				
+				
+				
+				<li>monitor_net.py</li>
+				
+				
+				
+				<li>repository.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>patterns.py</li>
+				
+				
+				
+				<li>plugins/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>base.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>base.cpython-39.pyc</li>
+				
+				
+				
+				<li>decorators.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>decorators.cpython-39.pyc</li>
+				
+				
+				
+				<li>exceptions.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>exceptions.cpython-39.pyc</li>
+				
+				
+				
+				<li>hotplug.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>hotplug.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_audio.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_audio.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_bootloader.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_bootloader.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_cpu.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_cpu.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_disk.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_disk.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_eeepc_she.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_eeepc_she.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_irqbalance.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_irqbalance.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_modules.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_modules.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_mounts.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_mounts.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_net.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_net.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_rtentsk.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_rtentsk.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_scheduler.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_scheduler.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_script.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_script.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_scsi_host.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_scsi_host.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_selinux.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_selinux.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_service.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_service.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_sysctl.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_sysctl.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_sysfs.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_sysfs.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_systemd.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_systemd.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_usb.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_usb.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_video.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_video.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_vm.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_vm.cpython-39.pyc</li>
+				
+				
+				
+				<li>repository.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>repository.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>base.py</li>
+				
+				
+				
+				<li>decorators.py</li>
+				
+				
+				
+				<li>exceptions.py</li>
+				
+				
+				
+				<li>hotplug.py</li>
+				
+				
+				
+				<li>instance/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>factory.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>factory.cpython-39.pyc</li>
+				
+				
+				
+				<li>instance.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>instance.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>factory.py</li>
+				
+				
+				
+				<li>instance.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>plugin_audio.py</li>
+				
+				
+				
+				<li>plugin_bootloader.py</li>
+				
+				
+				
+				<li>plugin_cpu.py</li>
+				
+				
+				
+				<li>plugin_disk.py</li>
+				
+				
+				
+				<li>plugin_eeepc_she.py</li>
+				
+				
+				
+				<li>plugin_irqbalance.py</li>
+				
+				
+				
+				<li>plugin_modules.py</li>
+				
+				
+				
+				<li>plugin_mounts.py</li>
+				
+				
+				
+				<li>plugin_net.py</li>
+				
+				
+				
+				<li>plugin_rtentsk.py</li>
+				
+				
+				
+				<li>plugin_scheduler.py</li>
+				
+				
+				
+				<li>plugin_script.py</li>
+				
+				
+				
+				<li>plugin_scsi_host.py</li>
+				
+				
+				
+				<li>plugin_selinux.py</li>
+				
+				
+				
+				<li>plugin_service.py</li>
+				
+				
+				
+				<li>plugin_sysctl.py</li>
+				
+				
+				
+				<li>plugin_sysfs.py</li>
+				
+				
+				
+				<li>plugin_systemd.py</li>
+				
+				
+				
+				<li>plugin_usb.py</li>
+				
+				
+				
+				<li>plugin_video.py</li>
+				
+				
+				
+				<li>plugin_vm.py</li>
+				
+				
+				
+				<li>repository.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>profiles/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>exceptions.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>exceptions.cpython-39.pyc</li>
+				
+				
+				
+				<li>factory.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>factory.cpython-39.pyc</li>
+				
+				
+				
+				<li>loader.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>loader.cpython-39.pyc</li>
+				
+				
+				
+				<li>locator.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>locator.cpython-39.pyc</li>
+				
+				
+				
+				<li>merger.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>merger.cpython-39.pyc</li>
+				
+				
+				
+				<li>profile.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>profile.cpython-39.pyc</li>
+				
+				
+				
+				<li>unit.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>unit.cpython-39.pyc</li>
+				
+				
+				
+				<li>variables.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>variables.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>exceptions.py</li>
+				
+				
+				
+				<li>factory.py</li>
+				
+				
+				
+				<li>functions/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>base.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>base.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_assertion.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_assertion.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_assertion_non_equal.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_assertion_non_equal.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_check_net_queue_count.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_check_net_queue_count.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_cpuinfo_check.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_cpuinfo_check.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_cpulist2hex.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_cpulist2hex.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_cpulist2hex_invert.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_cpulist2hex_invert.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_cpulist_invert.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_cpulist_invert.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_cpulist_online.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_cpulist_online.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_cpulist_pack.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_cpulist_pack.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_cpulist_present.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_cpulist_present.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_cpulist_unpack.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_cpulist_unpack.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_exec.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_exec.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_hex2cpulist.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_hex2cpulist.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_kb2s.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_kb2s.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_regex_search_ternary.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_regex_search_ternary.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_s2kb.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_s2kb.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_strip.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_strip.cpython-39.pyc</li>
+				
+				
+				
+				<li>function_virt_check.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>function_virt_check.cpython-39.pyc</li>
+				
+				
+				
+				<li>functions.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>functions.cpython-39.pyc</li>
+				
+				
+				
+				<li>repository.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>repository.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>base.py</li>
+				
+				
+				
+				<li>function_assertion.py</li>
+				
+				
+				
+				<li>function_assertion_non_equal.py</li>
+				
+				
+				
+				<li>function_check_net_queue_count.py</li>
+				
+				
+				
+				<li>function_cpuinfo_check.py</li>
+				
+				
+				
+				<li>function_cpulist2hex.py</li>
+				
+				
+				
+				<li>function_cpulist2hex_invert.py</li>
+				
+				
+				
+				<li>function_cpulist_invert.py</li>
+				
+				
+				
+				<li>function_cpulist_online.py</li>
+				
+				
+				
+				<li>function_cpulist_pack.py</li>
+				
+				
+				
+				<li>function_cpulist_present.py</li>
+				
+				
+				
+				<li>function_cpulist_unpack.py</li>
+				
+				
+				
+				<li>function_exec.py</li>
+				
+				
+				
+				<li>function_hex2cpulist.py</li>
+				
+				
+				
+				<li>function_kb2s.py</li>
+				
+				
+				
+				<li>function_regex_search_ternary.py</li>
+				
+				
+				
+				<li>function_s2kb.py</li>
+				
+				
+				
+				<li>function_strip.py</li>
+				
+				
+				
+				<li>function_virt_check.py</li>
+				
+				
+				
+				<li>functions.py</li>
+				
+				
+				
+				<li>repository.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>loader.py</li>
+				
+				
+				
+				<li>locator.py</li>
+				
+				
+				
+				<li>merger.py</li>
+				
+				
+				
+				<li>profile.py</li>
+				
+				
+				
+				<li>unit.py</li>
+				
+				
+				
+				<li>variables.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>storage/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>factory.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>factory.cpython-39.pyc</li>
+				
+				
+				
+				<li>interfaces.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>interfaces.cpython-39.pyc</li>
+				
+				
+				
+				<li>pickle_provider.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>pickle_provider.cpython-39.pyc</li>
+				
+				
+				
+				<li>storage.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>storage.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>factory.py</li>
+				
+				
+				
+				<li>interfaces.py</li>
+				
+				
+				
+				<li>pickle_provider.py</li>
+				
+				
+				
+				<li>storage.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>units/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>manager.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>manager.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>manager.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>utils/<ul>
+				
+				
+				
+				<li>__init__.py</li>
+				
+				
+				
+				<li>__pycache__/<ul>
+				
+				
+				
+				<li>__init__.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>__init__.cpython-39.pyc</li>
+				
+				
+				
+				<li>commands.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>commands.cpython-39.pyc</li>
+				
+				
+				
+				<li>global_config.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>global_config.cpython-39.pyc</li>
+				
+				
+				
+				<li>nettool.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>nettool.cpython-39.pyc</li>
+				
+				
+				
+				<li>plugin_loader.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>plugin_loader.cpython-39.pyc</li>
+				
+				
+				
+				<li>polkit.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>polkit.cpython-39.pyc</li>
+				
+				
+				
+				<li>profile_recommender.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>profile_recommender.cpython-39.pyc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>commands.py</li>
+				
+				
+				
+				<li>global_config.py</li>
+				
+				
+				
+				<li>nettool.py</li>
+				
+				
+				
+				<li>plugin_loader.py</li>
+				
+				
+				
+				<li>polkit.py</li>
+				
+				
+				
+				<li>profile_recommender.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>version.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>systemd/<ul>
+				
+				
+				
+				<li>system/<ul>
+				
+				
+				
+				<li>tuned.service</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>tmpfiles.d/<ul>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>tuned/<ul>
+				
+				
+				
+				<li>accelerator-performance/<ul>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>balanced/<ul>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>desktop/<ul>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>functions</li>
+				
+				
+				
+				<li>hpc-compute/<ul>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>intel-sst/<ul>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>latency-performance/<ul>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>network-latency/<ul>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>network-throughput/<ul>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>optimize-serial-console/<ul>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>powersave/<ul>
+				
+				
+				
+				<li>script.sh</li>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>recommend.d/<ul>
+				
+				
+				
+				<li>50-tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>throughput-performance/<ul>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>virtual-guest/<ul>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>virtual-host/<ul>
+				
+				
+				
+				<li>tuned.conf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>libexec/<ul>
+				
+				
+				
+				<li>tuned/<ul>
+				
+				
+				
+				<li>defirqaffinity.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>sbin/<ul>
+				
+				
+				
+				<li>tuned</li>
+				
+				
+				
+				<li>tuned-adm</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>share/<ul>
+				
+				
+				
+				<li>bash-completion/<ul>
+				
+				
+				
+				<li>completions/<ul>
+				
+				
+				
+				<li>tuned-adm</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>doc/<ul>
+				
+				
+				
+				<li>tuned/<ul>
+				
+				
+				
+				<li>AUTHORS</li>
+				
+				
+				
+				<li>COPYING</li>
+				
+				
+				
+				<li>README</li>
+				
+				
+				
+				<li>TIPS.txt</li>
+				
+				
+				
+				<li>manual/<ul>
+				
+				
+				
+				<li>index.html</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>man/<ul>
+				
+				
+				
+				<li>man5/<ul>
+				
+				
+				
+				<li>tuned-main.conf.5.gz</li>
+				
+				
+				
+				<li>tuned.conf.5.gz</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>man7/<ul>
+				
+				
+				
+				<li>tuned-profiles.7.gz</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>man8/<ul>
+				
+				
+				
+				<li>tuned-adm.8.gz</li>
+				
+				
+				
+				<li>tuned-gui.8.gz</li>
+				
+				
+				
+				<li>tuned.8.gz</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>polkit-1/<ul>
+				
+				
+				
+				<li>actions/<ul>
+				
+				
+				
+				<li>com.redhat.tuned.policy</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>tuned/<ul>
+				
+				
+				
+				<li>grub2/<ul>
+				
+				
+				
+				<li>00_tuned</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>var/<ul>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>tuned/<ul>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>log/<ul>
+				
+				
+				
+				<li>tuned/<ul>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
+

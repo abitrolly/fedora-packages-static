@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>java-11-openjdk-devel-11.0.13.0.8-2.fc35 - Fedora Packages</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				java-11-openjdk-devel-11.0.13.0.8-2.fc35<small class="text-muted"> in Fedora 35</small>
+			</h1>
+			<p>
+				<a href=".">&crarr; Retrun to the main page of java-11-openjdk-devel</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-11-openjdk-11.0.13.0.8-2.fc35">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=java-11-openjdk-11.0.13.0.8-2.fc35">Search Bodhi</a>
+			</p>
+
+			<p>
+				
+				<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2021-11-08</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:11.0.13.0.8-2</td>
+						<td>- Reduce disk footprint by removing build artifacts by default.
+- Turn off bootstrapping for slow debug builds, which are particularly slow on ppc64le.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-04</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:11.0.13.0.8-2</td>
+						<td>- Use featurever variable in boot and install paths rather than a hardcoded value
+- Fix comment to refer to all debug builds, not just slowdebug.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-03</td>
+						<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:11.0.13.0.8-2</td>
+						<td>- Use 'sql:' prefix in nss.fips.cfg as F35+ no longer ship the legacy
+  secmod.db file as part of nss
+- Resolves: rhbz#2019555</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-13</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:11.0.13.0.8-1</td>
+						<td>- Update to jdk-11.0.12.0+8
+- Update release notes to 11.0.12.0+8
+- Update tarball generation script to use git following OpenJDK 11u's move to github
+- Remove "-clean" suffix as no 11.0.13 builds are unclean.
+- Drop JDK-8269668 patch which is now applied upstream.
+- Extend the default security policy to accomodate PKCS11 accessing jdk.internal.misc.
+- Allow plain key import to be disabled with -Dcom.redhat.fips.plainKeySupport=false
+- Restructure the build so a minimal initial build is then used for the final build (with docs)
+- This reduces pressure on the system JDK and ensures the JDK being built can do a full build</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-05</td>
+						<td>Martin Balao <mbalao at redhat dot com> - 1:11.0.13.0.8-1</td>
+						<td>- Add patch to login to the NSS software token when in FIPS mode.
+- Add patch to allow plain key import.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-02</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:11.0.13.0.8-1</td>
+						<td>- Added posttrans hook which persist sanity of dir->symlink change in case of update from ancient versions
+- Minor cosmetic improvements to make spec more comparable between variants</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-31</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:11.0.12.0.7-3</td>
+						<td>- alternatives creation moved to posttrans
+- Thus fixing the old reisntall issue:
+- https://bugzilla.redhat.com/show_bug.cgi?id=1200302
+- https://bugzilla.redhat.com/show_bug.cgi?id=1976053</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-09</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:11.0.12.0.7-2</td>
+						<td>- Remove non-Free test from source tarball.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-28</td>
+						<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:11.0.12.0.7-1</td>
+						<td>- Add patch in order to fix java.library.path issue on aarch64 (JDK-8269668)
+- Resolves: rhbz#1977671</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-22</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:11.0.12.0.7-0.1</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/glibc/fedora-35.html">
+						
+						
+						glibc
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/java-11-openjdk/fedora-35.html">
+						
+						
+						java-11-openjdk</a> = 11.0.13.0.8-2.fc35
+						
+
+						</li>
+						
+					</ul>
+				</div>
+				
+				
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>application()</li>
+						
+						<li>application(java-11-openjdk-11.0.13.0.8-2.fc35.x86_64-jconsole.desktop)</li>
+						
+						<li>java-11-devel</li>
+						
+						<li>java-11-openjdk-devel</li>
+						
+						<li>java-11-openjdk-devel(x86-64)</li>
+						
+						<li>java-devel</li>
+						
+						<li>java-devel-openjdk</li>
+						
+						<li>java-sdk</li>
+						
+						<li>java-sdk-11</li>
+						
+						<li>java-sdk-11-openjdk</li>
+						
+						<li>java-sdk-openjdk</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
+				
+				
+				<li>usr/<ul>
+				
+				
+				
+				<li>bin/<ul>
+				
+				
+				
+				<li>jaotc</li>
+				
+				
+				
+				<li>jar</li>
+				
+				
+				
+				<li>jarsigner</li>
+				
+				
+				
+				<li>javac</li>
+				
+				
+				
+				<li>javadoc</li>
+				
+				
+				
+				<li>javap</li>
+				
+				
+				
+				<li>jcmd</li>
+				
+				
+				
+				<li>jconsole</li>
+				
+				
+				
+				<li>jdb</li>
+				
+				
+				
+				<li>jdeprscan</li>
+				
+				
+				
+				<li>jdeps</li>
+				
+				
+				
+				<li>jhsdb</li>
+				
+				
+				
+				<li>jimage</li>
+				
+				
+				
+				<li>jinfo</li>
+				
+				
+				
+				<li>jlink</li>
+				
+				
+				
+				<li>jmap</li>
+				
+				
+				
+				<li>jmod</li>
+				
+				
+				
+				<li>jps</li>
+				
+				
+				
+				<li>jrunscript</li>
+				
+				
+				
+				<li>jshell</li>
+				
+				
+				
+				<li>jstack</li>
+				
+				
+				
+				<li>jstat</li>
+				
+				
+				
+				<li>jstatd</li>
+				
+				
+				
+				<li>rmic</li>
+				
+				
+				
+				<li>serialver</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>.build-id/<ul>
+				
+				
+				
+				<li>0b/<ul>
+				
+				
+				
+				<li>1a972f4ec45703798fe56b2f94d25f4410df03</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>22/<ul>
+				
+				
+				
+				<li>5da686214abb700daf1265d2fef5d21864fa12</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>24/<ul>
+				
+				
+				
+				<li>0006c3f64b359697d34fd9ab6eaf2b32fbfa42</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>36/<ul>
+				
+				
+				
+				<li>97dccf3ea0fe4f2c545584b249eab988f9479e</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>3a/<ul>
+				
+				
+				
+				<li>82110c5e76e1856bc9dfb8d7b36a8c68de45ab</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>3f/<ul>
+				
+				
+				
+				<li>181cdc474259130280010881e4b613a547bcf3</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>54/<ul>
+				
+				
+				
+				<li>1c9930ef2713657a926b338cf0e418ee725ca0</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>57/<ul>
+				
+				
+				
+				<li>77793ab1a5740f55877adbca123e53a29e279f</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>70/<ul>
+				
+				
+				
+				<li>031b7ca550868d7fff8a3be9438afbcbb7fd53</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>7c/<ul>
+				
+				
+				
+				<li>6bbc491b2fd1fa2b11f34f989612e3c7bf9c0d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>85/<ul>
+				
+				
+				
+				<li>0baecefc52ef06c9594216b12b25a05048c19a</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>99/<ul>
+				
+				
+				
+				<li>2f58f05bbab210c6ba52dd74a201bb23e160f0</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>9e/<ul>
+				
+				
+				
+				<li>c6d36a4a68931faf19ab34f733f68a4e769e9d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a2/<ul>
+				
+				
+				
+				<li>8cd07b8c0cb7fa27f83ebfd126cf8fb0c6d781</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a5/<ul>
+				
+				
+				
+				<li>5e8a7d61a5dc942ddb7777d0021343d3474549</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>c7/<ul>
+				
+				
+				
+				<li>3994a775532d1b6c61e977db6b558de5b4ccab</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>c8/<ul>
+				
+				
+				
+				<li>ce3f5a14bd9992633d297e966cb79b36fedbdb</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ca/<ul>
+				
+				
+				
+				<li>644c8b48f9d73caef064b5622ec81a8efeeac3</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cd/<ul>
+				
+				
+				
+				<li>b7a379335b5e96dfad1a87ce776d1ac6f4c9e1</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ce/<ul>
+				
+				
+				
+				<li>29e3d0678fbc497fa32d42feacd73a5bd66f90</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>de/<ul>
+				
+				
+				
+				<li>d373bda74f49394a5cad84dbf730fe23868ac2</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e5/<ul>
+				
+				
+				
+				<li>a1ef008d84ba2055920fcd6f94dba615907d85</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ec/<ul>
+				
+				
+				
+				<li>db2fc2cf2dc91730c7bc2a0228475bbd1eec9d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ed/<ul>
+				
+				
+				
+				<li>95fff54da3f6bea004bc78a414937a354bd99f</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>f8/<ul>
+				
+				
+				
+				<li>09890eb281cc8bb5987032e842a28e53aa35de</li>
+				
+				
+				
+				<li>60605a25a9ec78d0032cbdfd6ae5e0e8fce332</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jvm/<ul>
+				
+				
+				
+				<li>alt-java</li>
+				
+				
+				
+				<li>java</li>
+				
+				
+				
+				<li>java-11</li>
+				
+				
+				
+				<li>java-11-openjdk</li>
+				
+				
+				
+				<li>java-11-openjdk-11.0.13.0.8-2.fc35.x86_64/<ul>
+				
+				
+				
+				<li>bin/<ul>
+				
+				
+				
+				<li>jaotc</li>
+				
+				
+				
+				<li>jar</li>
+				
+				
+				
+				<li>jarsigner</li>
+				
+				
+				
+				<li>javac</li>
+				
+				
+				
+				<li>javadoc</li>
+				
+				
+				
+				<li>javap</li>
+				
+				
+				
+				<li>jcmd</li>
+				
+				
+				
+				<li>jconsole</li>
+				
+				
+				
+				<li>jdb</li>
+				
+				
+				
+				<li>jdeprscan</li>
+				
+				
+				
+				<li>jdeps</li>
+				
+				
+				
+				<li>jfr</li>
+				
+				
+				
+				<li>jhsdb</li>
+				
+				
+				
+				<li>jimage</li>
+				
+				
+				
+				<li>jinfo</li>
+				
+				
+				
+				<li>jlink</li>
+				
+				
+				
+				<li>jmap</li>
+				
+				
+				
+				<li>jmod</li>
+				
+				
+				
+				<li>jps</li>
+				
+				
+				
+				<li>jrunscript</li>
+				
+				
+				
+				<li>jshell</li>
+				
+				
+				
+				<li>jstack</li>
+				
+				
+				
+				<li>jstat</li>
+				
+				
+				
+				<li>jstatd</li>
+				
+				
+				
+				<li>rmic</li>
+				
+				
+				
+				<li>serialver</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>include/<ul>
+				
+				
+				
+				<li>classfile_constants.h</li>
+				
+				
+				
+				<li>jawt.h</li>
+				
+				
+				
+				<li>jdwpTransport.h</li>
+				
+				
+				
+				<li>jni.h</li>
+				
+				
+				
+				<li>jvmti.h</li>
+				
+				
+				
+				<li>jvmticmlr.h</li>
+				
+				
+				
+				<li>linux/<ul>
+				
+				
+				
+				<li>jawt_md.h</li>
+				
+				
+				
+				<li>jni_md.h</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>ct.sym</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>tapset/<ul>
+				
+				
+				
+				<li>hotspot-11.0.13.0.8-2.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>hotspot_gc-11.0.13.0.8-2.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>hotspot_jni-11.0.13.0.8-2.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>jstack-11.0.13.0.8-2.fc35.x86_64.stp</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java-openjdk</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>share/<ul>
+				
+				
+				
+				<li>applications/<ul>
+				
+				
+				
+				<li>java-11-openjdk-11.0.13.0.8-2.fc35.x86_64-jconsole.desktop</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>man/<ul>
+				
+				
+				
+				<li>man1/<ul>
+				
+				
+				
+				<li>jar-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jarsigner-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>javac-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>javadoc-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>javap-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jcmd-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jconsole-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jdb-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jdeps-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jinfo-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jmap-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jps-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jrunscript-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jstack-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jstat-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jstatd-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>rmic-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>serialver-java-11-openjdk-11.0.13.0.8-2.fc35.x86_64.1.gz</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>systemtap/<ul>
+				
+				
+				
+				<li>tapset/<ul>
+				
+				
+				
+				<li>x86_64/<ul>
+				
+				
+				
+				<li>hotspot-11.0.13.0.8-2.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>hotspot_gc-11.0.13.0.8-2.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>hotspot_jni-11.0.13.0.8-2.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>jstack-11.0.13.0.8-2.fc35.x86_64.stp</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
+

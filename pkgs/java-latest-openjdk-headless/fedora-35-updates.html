@@ -1,0 +1,2837 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>java-latest-openjdk-headless-17.0.1.0.12-2.rolling.fc35 - Fedora Packages</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				java-latest-openjdk-headless-17.0.1.0.12-2.rolling.fc35<small class="text-muted"> in Fedora 35</small>
+			</h1>
+			<p>
+				<a href=".">&crarr; Retrun to the main page of java-latest-openjdk-headless</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-17.0.1.0.12-2.rolling.fc35">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-17.0.1.0.12-2.rolling.fc35">Search Bodhi</a>
+			</p>
+
+			<p>
+				
+				<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2021-11-03</td>
+						<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:17.0.1.0.12-2.rolling</td>
+						<td>- Use 'sql:' prefix in nss.fips.cfg as F35+ no longer ship the legacy
+  secmod.db file as part of nss</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-20</td>
+						<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:17.0.1.0.12-1.rolling</td>
+						<td>- October CPU update to jdk 17.0.1+12
+- dropped commented-out source line</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-11</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.35-3.rolling</td>
+						<td>- Update release notes to document the major changes between OpenJDK 11 & 17.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-10</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.35-2.rolling</td>
+						<td>- Fix unused function compiler warning found in systemconf.c
+- Extend the default security policy to accomodate PKCS11 accessing jdk.internal.access.
+- Allow plain key import to be disabled with -Dcom.redhat.fips.plainKeySupport=false</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-10</td>
+						<td>Martin Balao <mbalao at redhat dot com> - 1:17.0.0.0.35-2.rolling</td>
+						<td>- Add patch to disable non-FIPS crypto in the SUN and SunEC security providers.
+- Add patch to login to the NSS software token when in FIPS mode.
+- Add patch to allow plain key import.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-14</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.35-1.rolling</td>
+						<td>- Update to jdk-17+35, also known as jdk-17-ga.
+- Switch to GA mode.
+- Update RH1655466 FIPS patch with changes in OpenJDK 8 version.
+- SunPKCS11 runtime provider name is a concatenation of "SunPKCS11-" and the name in the config file.
+- Change nss.fips.cfg config name to "NSS-FIPS" to avoid confusion with nss.cfg.
+- No need to substitute path to nss.fips.cfg as java.security file supports a java.home variable.
+- Disable FIPS mode support unless com.redhat.fips is set to "true".
+- Enable alignment with FIPS crypto policy by default (-Dcom.redhat.fips=false to disable).
+- Add explicit runtime dependency on NSS for the PKCS11 provider in FIPS mode
+- Move setup of JavaSecuritySystemConfiguratorAccess to Security class so it always occurs (RH1915071)
+- Minor code cleanups on FIPS detection patch and check for SECMOD_GetSystemFIPSEnabled in configure.
+- Remove unneeded Requires on NSS as it will now be dynamically linked and detected by RPM.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-14</td>
+						<td>Martin Balao <mbalao at redhat dot com> - 1:17.0.0.0.35-1.rolling</td>
+						<td>- Support the FIPS mode crypto policy (RH1655466)
+- Use appropriate keystore types when in FIPS mode (RH1818909)
+- Disable TLSv1.3 when the FIPS crypto policy and the NSS-FIPS provider are in use (RH1860986)
+- Detect FIPS using SECMOD_GetSystemFIPSEnabled in the new libsystemconf JDK library.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-30</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:17.0.0.0.33-0.1.ea.rolling</td>
+						<td>- alternatives creation moved to posttrans
+- Thus fixing the old reisntall issue:
+- https://bugzilla.redhat.com/show_bug.cgi?id=1200302
+- https://bugzilla.redhat.com/show_bug.cgi?id=1976053</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-30</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.33-0.0.ea.rolling</td>
+						<td>- Update to jdk-17+33, including JDWP fix and July 2021 CPU
+- Resolves: rhbz#1972529</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-22</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:17.0.0.0.26-0.4.ea.rolling.1</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/alsa-lib/fedora-35.html">
+						
+						
+						alsa-lib
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/ca-certificates/fedora-35.html">
+						
+						
+						ca-certificates
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/cups-libs/fedora-35.html">
+						
+						
+						cups-libs
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/glibc/fedora-35.html">
+						
+						
+						glibc
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/libgcc/fedora-35.html">
+						
+						
+						libgcc
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/libstdc++/fedora-35.html">
+						
+						
+						libstdc++
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/nss/fedora-35.html">
+						
+						
+						nss
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/tzdata-java/fedora-35.html">
+						
+						
+						tzdata-java</a> >= 2015d
+						
+
+						</li>
+						
+					</ul>
+				</div>
+				
+				
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>config(java-latest-openjdk-headless)</li>
+						
+						<li>java-17-headless</li>
+						
+						<li>java-17-openjdk-headless</li>
+						
+						<li>java-latest-openjdk-headless</li>
+						
+						<li>java-latest-openjdk-headless(x86-64)</li>
+						
+						<li>jre-17-headless</li>
+						
+						<li>jre-17-openjdk-headless</li>
+						
+						<li>libsvml.so()(64bit)</li>
+						
+						<li>libsyslookup.so()(64bit)</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
+				
+				
+				<li>etc/<ul>
+				
+				
+				
+				<li>.java/<ul>
+				
+				
+				
+				<li>.systemPrefs/<ul>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java/<ul>
+				
+				
+				
+				<li>java-17-openjdk/<ul>
+				
+				
+				
+				<li>java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64/<ul>
+				
+				
+				
+				<li>conf/<ul>
+				
+				
+				
+				<li>logging.properties</li>
+				
+				
+				
+				<li>management/<ul>
+				
+				
+				
+				<li>jmxremote.access</li>
+				
+				
+				
+				<li>jmxremote.password.template</li>
+				
+				
+				
+				<li>management.properties</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>net.properties</li>
+				
+				
+				
+				<li>sdp/<ul>
+				
+				
+				
+				<li>sdp.conf.template</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>security/<ul>
+				
+				
+				
+				<li>java.policy</li>
+				
+				
+				
+				<li>java.security</li>
+				
+				
+				
+				<li>nss.cfg</li>
+				
+				
+				
+				<li>nss.fips.cfg</li>
+				
+				
+				
+				<li>policy/<ul>
+				
+				
+				
+				<li>README.txt</li>
+				
+				
+				
+				<li>limited/<ul>
+				
+				
+				
+				<li>default_US_export.policy</li>
+				
+				
+				
+				<li>default_local.policy</li>
+				
+				
+				
+				<li>exempt_local.policy</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>unlimited/<ul>
+				
+				
+				
+				<li>default_US_export.policy</li>
+				
+				
+				
+				<li>default_local.policy</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>sound.properties</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>security/<ul>
+				
+				
+				
+				<li>blocked.certs</li>
+				
+				
+				
+				<li>cacerts</li>
+				
+				
+				
+				<li>default.policy</li>
+				
+				
+				
+				<li>public_suffix_list.dat</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>usr/<ul>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>.build-id/<ul>
+				
+				
+				
+				<li>07/<ul>
+				
+				
+				
+				<li>5b5fc378ec0f26f94f8a29d758c0a06c90a500</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>12/<ul>
+				
+				
+				
+				<li>7512ee2d52668985be0163fe2c663a7fe2fd4e</li>
+				
+				
+				
+				<li>decd9d580cea6f9d65d9134b756debdb122616</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>15/<ul>
+				
+				
+				
+				<li>4bed339277b1033b66496e5066be9b053f9164</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>17/<ul>
+				
+				
+				
+				<li>76c14ad1f758e197712889a82079748e5d9394</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>2f/<ul>
+				
+				
+				
+				<li>9c5f4de6a0e0ca84b28b2a6fb8bad2bbf87901</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>31/<ul>
+				
+				
+				
+				<li>4a31a3be79cf5c3108b345af83bfbb42b0daec</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>3c/<ul>
+				
+				
+				
+				<li>5701f296c86717be67f76bba2eaee2a0e855e4</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>46/<ul>
+				
+				
+				
+				<li>b93d5d6f1f9727556f57abfee92b8fb3b3ff0e</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>54/<ul>
+				
+				
+				
+				<li>68d422eca49d2ea2c19a0cbad8217d632b10b7</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>61/<ul>
+				
+				
+				
+				<li>a2169b7ecc35e3b69f17bf801b17778ba38163</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>6b/<ul>
+				
+				
+				
+				<li>41313d969a34c31f6de5c46e25bc9a0c753010</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>6c/<ul>
+				
+				
+				
+				<li>3dec15dca1e4378dfb54744d7aafa5d81b51bd</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>79/<ul>
+				
+				
+				
+				<li>006ccb3487622cbac1225a893aefdd29fdc10f</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>84/<ul>
+				
+				
+				
+				<li>726cafbc7816f45a5b90d3c913f7f847c11b18</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>85/<ul>
+				
+				
+				
+				<li>47ddfc5f00b6ef125255fe09727c6912c41b02</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>86/<ul>
+				
+				
+				
+				<li>3e89b0950cc3f1d7e6dd5c45136467e4eee929</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>89/<ul>
+				
+				
+				
+				<li>14483b4e15ac9357d0184b551d8832cc23c8bd</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>8c/<ul>
+				
+				
+				
+				<li>7c8e37ee5923dc48d0e230cf3a673a97fa8177</li>
+				
+				
+				
+				<li>7c8e37ee5923dc48d0e230cf3a673a97fa8177.1</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>8d/<ul>
+				
+				
+				
+				<li>190558b17704958114c2f0b862931d034345ce</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>99/<ul>
+				
+				
+				
+				<li>8162cdfbbbb9bad2e6069812be612c0c3428df</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>9a/<ul>
+				
+				
+				
+				<li>a80297f214c99e4e9a1fdf63862749aebd4887</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>9b/<ul>
+				
+				
+				
+				<li>32ac63fe32e7b432bb58b68d57629c8a62e344</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a3/<ul>
+				
+				
+				
+				<li>80a7a4c1aa7b88124d137aa1b530cc6246a16b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a8/<ul>
+				
+				
+				
+				<li>884f28be6561200cb73db488219ec3e363ce7c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>aa/<ul>
+				
+				
+				
+				<li>a5e0639829187c161e8ddabf75c223b94e7216</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>b6/<ul>
+				
+				
+				
+				<li>63c2075cf2874841f69e423abb0cb114134854</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>c0/<ul>
+				
+				
+				
+				<li>58d69f63234af81d8de6f075d5bcadc1c9b279</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>c3/<ul>
+				
+				
+				
+				<li>665c6d7c4974f002ec53457534e0548367f8b9</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ca/<ul>
+				
+				
+				
+				<li>de53933a9bea5b60ea2099b9f9bba9dd4c1cbf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cc/<ul>
+				
+				
+				
+				<li>1342638e75f2e39e880f4f3c7991aa615bff83</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cd/<ul>
+				
+				
+				
+				<li>ad837c49ee13d006546283610ee37a8ac2c1c0</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>d1/<ul>
+				
+				
+				
+				<li>1064de996dd1cd8096f4cf6148729c978fc9a8</li>
+				
+				
+				
+				<li>558fe2397d1bb63377fbdd254326e86d3fca90</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>d3/<ul>
+				
+				
+				
+				<li>17fe06eda8a390240b5b062faa858c01f2583d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>d8/<ul>
+				
+				
+				
+				<li>ec61457a3497ef60c9d19c60453ab664e0dc4d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>dd/<ul>
+				
+				
+				
+				<li>a2bd800df0e4c1d0ef45069483fe0a99c53fc7</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e0/<ul>
+				
+				
+				
+				<li>b019dd509d689b51808b16aae1c06d5cb43c18</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>f5/<ul>
+				
+				
+				
+				<li>300a7fe6b325683bde7d5905de9c152fa6082c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>f7/<ul>
+				
+				
+				
+				<li>e4152db8b205c950496539dc6760fc20994453</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>fd/<ul>
+				
+				
+				
+				<li>90b9905fb24a5a815fdcb6f0c199dde4276029</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jvm/<ul>
+				
+				
+				
+				<li>java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64/<ul>
+				
+				
+				
+				<li>bin/<ul>
+				
+				
+				
+				<li>alt-java</li>
+				
+				
+				
+				<li>java</li>
+				
+				
+				
+				<li>keytool</li>
+				
+				
+				
+				<li>rmiregistry</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>conf</li>
+				
+				
+				
+				<li>legal/<ul>
+				
+				
+				
+				<li>java.base/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>aes.md</li>
+				
+				
+				
+				<li>asm.md</li>
+				
+				
+				
+				<li>c-libutl.md</li>
+				
+				
+				
+				<li>cldr.md</li>
+				
+				
+				
+				<li>icu.md</li>
+				
+				
+				
+				<li>public_suffix.md</li>
+				
+				
+				
+				<li>unicode.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.compiler/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.datatransfer/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.desktop/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>colorimaging.md</li>
+				
+				
+				
+				<li>mesa3d.md</li>
+				
+				
+				
+				<li>xwd.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.instrument/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.logging/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.management/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.management.rmi/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.naming/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.net.http/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.prefs/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.rmi/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.scripting/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.se/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.security.jgss/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.security.sasl/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.smartcardio/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>pcsclite.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.sql/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.sql.rowset/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.transaction.xa/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.xml/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>bcel.md</li>
+				
+				
+				
+				<li>dom.md</li>
+				
+				
+				
+				<li>jcup.md</li>
+				
+				
+				
+				<li>xalan.md</li>
+				
+				
+				
+				<li>xerces.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>java.xml.crypto/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>santuario.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.accessibility/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.attach/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.charsets/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.compiler/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.crypto.cryptoki/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>pkcs11cryptotoken.md</li>
+				
+				
+				
+				<li>pkcs11wrapper.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.crypto.ec/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.dynalink/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>dynalink.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.editpad/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.hotspot.agent/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.httpserver/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.incubator.foreign/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.incubator.vector/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.internal.ed/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.internal.jvmstat/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.internal.le/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>jline.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.internal.opt/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>jopt-simple.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.internal.vm.ci/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.internal.vm.compiler/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.internal.vm.compiler.management/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.jartool/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.javadoc/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>jquery.md</li>
+				
+				
+				
+				<li>jqueryUI.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.jcmd/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.jconsole/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.jdeps/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.jdi/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.jdwp.agent/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.jfr/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.jlink/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.jpackage/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.jshell/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.jsobject/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.jstatd/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.localedata/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				<li>cldr.md</li>
+				
+				
+				
+				<li>thaidict.md</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.management/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.management.agent/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.management.jfr/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.naming.dns/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.naming.rmi/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.net/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.nio.mapmode/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.random/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.sctp/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.security.auth/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.security.jgss/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.unsupported/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.unsupported.desktop/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.xml.dom/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jdk.zipfs/<ul>
+				
+				
+				
+				<li>ADDITIONAL_LICENSE_INFO</li>
+				
+				
+				
+				<li>ASSEMBLY_EXCEPTION</li>
+				
+				
+				
+				<li>LICENSE</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>classlist</li>
+				
+				
+				
+				<li>jexec</li>
+				
+				
+				
+				<li>jfr/<ul>
+				
+				
+				
+				<li>default.jfc</li>
+				
+				
+				
+				<li>profile.jfc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jrt-fs.jar</li>
+				
+				
+				
+				<li>jspawnhelper</li>
+				
+				
+				
+				<li>jvm.cfg</li>
+				
+				
+				
+				<li>libattach.so</li>
+				
+				
+				
+				<li>libawt.so</li>
+				
+				
+				
+				<li>libawt_headless.so</li>
+				
+				
+				
+				<li>libdt_socket.so</li>
+				
+				
+				
+				<li>libextnet.so</li>
+				
+				
+				
+				<li>libfontmanager.so</li>
+				
+				
+				
+				<li>libinstrument.so</li>
+				
+				
+				
+				<li>libj2gss.so</li>
+				
+				
+				
+				<li>libj2pcsc.so</li>
+				
+				
+				
+				<li>libj2pkcs11.so</li>
+				
+				
+				
+				<li>libjaas.so</li>
+				
+				
+				
+				<li>libjava.so</li>
+				
+				
+				
+				<li>libjavajpeg.so</li>
+				
+				
+				
+				<li>libjdwp.so</li>
+				
+				
+				
+				<li>libjimage.so</li>
+				
+				
+				
+				<li>libjli.so</li>
+				
+				
+				
+				<li>libjsig.so</li>
+				
+				
+				
+				<li>libjsound.so</li>
+				
+				
+				
+				<li>liblcms.so</li>
+				
+				
+				
+				<li>libmanagement.so</li>
+				
+				
+				
+				<li>libmanagement_agent.so</li>
+				
+				
+				
+				<li>libmanagement_ext.so</li>
+				
+				
+				
+				<li>libmlib_image.so</li>
+				
+				
+				
+				<li>libnet.so</li>
+				
+				
+				
+				<li>libnio.so</li>
+				
+				
+				
+				<li>libprefs.so</li>
+				
+				
+				
+				<li>librmi.so</li>
+				
+				
+				
+				<li>libsaproc.so</li>
+				
+				
+				
+				<li>libsctp.so</li>
+				
+				
+				
+				<li>libsvml.so</li>
+				
+				
+				
+				<li>libsyslookup.so</li>
+				
+				
+				
+				<li>libsystemconf.so</li>
+				
+				
+				
+				<li>libverify.so</li>
+				
+				
+				
+				<li>libzip.so</li>
+				
+				
+				
+				<li>modules</li>
+				
+				
+				
+				<li>psfont.properties.ja</li>
+				
+				
+				
+				<li>psfontj2d.properties</li>
+				
+				
+				
+				<li>security</li>
+				
+				
+				
+				<li>server/<ul>
+				
+				
+				
+				<li>classes.jsa</li>
+				
+				
+				
+				<li>classes_nocoops.jsa</li>
+				
+				
+				
+				<li>libjsig.so</li>
+				
+				
+				
+				<li>libjvm.so</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>tzdb.dat</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>release</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jre-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>share/<ul>
+				
+				
+				
+				<li>doc/<ul>
+				
+				
+				
+				<li>java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64/<ul>
+				
+				
+				
+				<li>NEWS</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>man/<ul>
+				
+				
+				
+				<li>man1/<ul>
+				
+				
+				
+				<li>alt-java-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>java-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>keytool-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>rmiregistry-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
+

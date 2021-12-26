@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>java-latest-openjdk-devel-17.0.1.0.12-2.rolling.fc35 - Fedora Packages</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				java-latest-openjdk-devel-17.0.1.0.12-2.rolling.fc35<small class="text-muted"> in Fedora 35</small>
+			</h1>
+			<p>
+				<a href=".">&crarr; Retrun to the main page of java-latest-openjdk-devel</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-17.0.1.0.12-2.rolling.fc35">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-17.0.1.0.12-2.rolling.fc35">Search Bodhi</a>
+			</p>
+
+			<p>
+				
+				<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2021-11-03</td>
+						<td>Severin Gehwolf <sgehwolf at redhat dot com> - 1:17.0.1.0.12-2.rolling</td>
+						<td>- Use 'sql:' prefix in nss.fips.cfg as F35+ no longer ship the legacy
+  secmod.db file as part of nss</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-20</td>
+						<td>Petra Alice Mikova <pmikova at redhat dot com> - 1:17.0.1.0.12-1.rolling</td>
+						<td>- October CPU update to jdk 17.0.1+12
+- dropped commented-out source line</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-11</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.35-3.rolling</td>
+						<td>- Update release notes to document the major changes between OpenJDK 11 & 17.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-10</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.35-2.rolling</td>
+						<td>- Fix unused function compiler warning found in systemconf.c
+- Extend the default security policy to accomodate PKCS11 accessing jdk.internal.access.
+- Allow plain key import to be disabled with -Dcom.redhat.fips.plainKeySupport=false</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-10</td>
+						<td>Martin Balao <mbalao at redhat dot com> - 1:17.0.0.0.35-2.rolling</td>
+						<td>- Add patch to disable non-FIPS crypto in the SUN and SunEC security providers.
+- Add patch to login to the NSS software token when in FIPS mode.
+- Add patch to allow plain key import.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-14</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.35-1.rolling</td>
+						<td>- Update to jdk-17+35, also known as jdk-17-ga.
+- Switch to GA mode.
+- Update RH1655466 FIPS patch with changes in OpenJDK 8 version.
+- SunPKCS11 runtime provider name is a concatenation of "SunPKCS11-" and the name in the config file.
+- Change nss.fips.cfg config name to "NSS-FIPS" to avoid confusion with nss.cfg.
+- No need to substitute path to nss.fips.cfg as java.security file supports a java.home variable.
+- Disable FIPS mode support unless com.redhat.fips is set to "true".
+- Enable alignment with FIPS crypto policy by default (-Dcom.redhat.fips=false to disable).
+- Add explicit runtime dependency on NSS for the PKCS11 provider in FIPS mode
+- Move setup of JavaSecuritySystemConfiguratorAccess to Security class so it always occurs (RH1915071)
+- Minor code cleanups on FIPS detection patch and check for SECMOD_GetSystemFIPSEnabled in configure.
+- Remove unneeded Requires on NSS as it will now be dynamically linked and detected by RPM.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-14</td>
+						<td>Martin Balao <mbalao at redhat dot com> - 1:17.0.0.0.35-1.rolling</td>
+						<td>- Support the FIPS mode crypto policy (RH1655466)
+- Use appropriate keystore types when in FIPS mode (RH1818909)
+- Disable TLSv1.3 when the FIPS crypto policy and the NSS-FIPS provider are in use (RH1860986)
+- Detect FIPS using SECMOD_GetSystemFIPSEnabled in the new libsystemconf JDK library.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-30</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:17.0.0.0.33-0.1.ea.rolling</td>
+						<td>- alternatives creation moved to posttrans
+- Thus fixing the old reisntall issue:
+- https://bugzilla.redhat.com/show_bug.cgi?id=1200302
+- https://bugzilla.redhat.com/show_bug.cgi?id=1976053</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-30</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.0.0.33-0.0.ea.rolling</td>
+						<td>- Update to jdk-17+33, including JDWP fix and July 2021 CPU
+- Resolves: rhbz#1972529</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-22</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1:17.0.0.0.26-0.4.ea.rolling.1</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/glibc/fedora-35.html">
+						
+						
+						glibc
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/java-latest-openjdk/fedora-35.html">
+						
+						
+						java-latest-openjdk</a> = 17.0.1.0.12-2.rolling.fc35
+						
+
+						</li>
+						
+					</ul>
+				</div>
+				
+				
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>application()</li>
+						
+						<li>application(java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64-jconsole.desktop)</li>
+						
+						<li>java-17-devel</li>
+						
+						<li>java-17-openjdk-devel</li>
+						
+						<li>java-latest-openjdk-devel</li>
+						
+						<li>java-latest-openjdk-devel(x86-64)</li>
+						
+						<li>java-sdk-17</li>
+						
+						<li>java-sdk-17-openjdk</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
+				
+				
+				<li>usr/<ul>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>.build-id/<ul>
+				
+				
+				
+				<li>04/<ul>
+				
+				
+				
+				<li>b80cf24a36bd939e22869d85049e4c32f3f74c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>09/<ul>
+				
+				
+				
+				<li>6b451cdb7b232ad8de6bda80dbff20ce40fa20</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>0b/<ul>
+				
+				
+				
+				<li>50a1681162360d909dc2322db2fe82c05d358a</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>2b/<ul>
+				
+				
+				
+				<li>c26c69997894a68f882d1e1a8261f450fef487</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>33/<ul>
+				
+				
+				
+				<li>8acd333720d994b67a24f9bbd99a617a3e5863</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>4d/<ul>
+				
+				
+				
+				<li>1a400cec9deb333162003a50ebf5aa0d1c8242</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>51/<ul>
+				
+				
+				
+				<li>1a5dfc42d43c2fbe5fed9209af27e3004a496e</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>73/<ul>
+				
+				
+				
+				<li>cadcd6690f87f60ee2654309110992efd907eb</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>81/<ul>
+				
+				
+				
+				<li>b7d0c946083ec00b11a5819b94675dd42bdc0c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>85/<ul>
+				
+				
+				
+				<li>ed940c118837cb21ac46f00b509c746b190485</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>87/<ul>
+				
+				
+				
+				<li>ff200319eb2f939acc7eec11861581e136d334</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>88/<ul>
+				
+				
+				
+				<li>fa62da99e61d91ef771cddd3681c4bec320b1a</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>98/<ul>
+				
+				
+				
+				<li>021cc50b37defddbec82dde9adffaa5f51a05a</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>9a/<ul>
+				
+				
+				
+				<li>3dca276d92288aa60e186ce798be53aa60af7b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a4/<ul>
+				
+				
+				
+				<li>1007b6c0b0d51d1eee57cf543d97a9afac3a58</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a9/<ul>
+				
+				
+				
+				<li>b7786bb2ed9075a5b3f4a8a563a7b152c54604</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ac/<ul>
+				
+				
+				
+				<li>4d16e780e9418c0527fa8ed10262ef7b468a1a</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ae/<ul>
+				
+				
+				
+				<li>1a089a211e3f5f535defedd44dd09ddee55bcc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>d1/<ul>
+				
+				
+				
+				<li>f44dd4b01a2ff7bdf71eb62885b6e5de230741</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>da/<ul>
+				
+				
+				
+				<li>91c5ae5cc3aefe41b84f3924f67569d8768ad3</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>dd/<ul>
+				
+				
+				
+				<li>1aa16cf1d10f3e0058fca7c7c310aa620dc15e</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e0/<ul>
+				
+				
+				
+				<li>370e48317bd321a5874633de07d403d3687c26</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e4/<ul>
+				
+				
+				
+				<li>e27cb193fc7b5b0e05fe90e33095e580c72d0b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e5/<ul>
+				
+				
+				
+				<li>00ae04fbab8086b4829ee6b5a1cd025a2430a0</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>fa/<ul>
+				
+				
+				
+				<li>a3e5941844ea2e4edaeb1fe5042f4ad02d912b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jvm/<ul>
+				
+				
+				
+				<li>java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64/<ul>
+				
+				
+				
+				<li>bin/<ul>
+				
+				
+				
+				<li>jar</li>
+				
+				
+				
+				<li>jarsigner</li>
+				
+				
+				
+				<li>javac</li>
+				
+				
+				
+				<li>javadoc</li>
+				
+				
+				
+				<li>javap</li>
+				
+				
+				
+				<li>jcmd</li>
+				
+				
+				
+				<li>jconsole</li>
+				
+				
+				
+				<li>jdb</li>
+				
+				
+				
+				<li>jdeprscan</li>
+				
+				
+				
+				<li>jdeps</li>
+				
+				
+				
+				<li>jfr</li>
+				
+				
+				
+				<li>jhsdb</li>
+				
+				
+				
+				<li>jimage</li>
+				
+				
+				
+				<li>jinfo</li>
+				
+				
+				
+				<li>jlink</li>
+				
+				
+				
+				<li>jmap</li>
+				
+				
+				
+				<li>jmod</li>
+				
+				
+				
+				<li>jpackage</li>
+				
+				
+				
+				<li>jps</li>
+				
+				
+				
+				<li>jrunscript</li>
+				
+				
+				
+				<li>jshell</li>
+				
+				
+				
+				<li>jstack</li>
+				
+				
+				
+				<li>jstat</li>
+				
+				
+				
+				<li>jstatd</li>
+				
+				
+				
+				<li>serialver</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>include/<ul>
+				
+				
+				
+				<li>classfile_constants.h</li>
+				
+				
+				
+				<li>jawt.h</li>
+				
+				
+				
+				<li>jdwpTransport.h</li>
+				
+				
+				
+				<li>jni.h</li>
+				
+				
+				
+				<li>jvmti.h</li>
+				
+				
+				
+				<li>jvmticmlr.h</li>
+				
+				
+				
+				<li>linux/<ul>
+				
+				
+				
+				<li>jawt_md.h</li>
+				
+				
+				
+				<li>jni_md.h</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>ct.sym</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>tapset/<ul>
+				
+				
+				
+				<li>hotspot17.0.1.0.12-2.rolling.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>hotspot_gc17.0.1.0.12-2.rolling.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>hotspot_jni17.0.1.0.12-2.rolling.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>jstack17.0.1.0.12-2.rolling.fc35.x86_64.stp</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>share/<ul>
+				
+				
+				
+				<li>applications/<ul>
+				
+				
+				
+				<li>java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64-jconsole.desktop</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>man/<ul>
+				
+				
+				
+				<li>man1/<ul>
+				
+				
+				
+				<li>jar-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jarsigner-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>javac-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>javadoc-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>javap-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jcmd-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jconsole-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jdb-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jdeprscan-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jdeps-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jfr-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jhsdb-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jinfo-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jlink-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jmap-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jmod-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jpackage-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jps-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jrunscript-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jshell-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jstack-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jstat-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>jstatd-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				<li>serialver-java-17-openjdk-17.0.1.0.12-2.rolling.fc35.x86_64.1.gz</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>systemtap/<ul>
+				
+				
+				
+				<li>tapset/<ul>
+				
+				
+				
+				<li>x86_64/<ul>
+				
+				
+				
+				<li>hotspot17.0.1.0.12-2.rolling.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>hotspot_gc17.0.1.0.12-2.rolling.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>hotspot_jni17.0.1.0.12-2.rolling.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>jstack17.0.1.0.12-2.rolling.fc35.x86_64.stp</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
+

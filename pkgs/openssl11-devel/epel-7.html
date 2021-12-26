@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>openssl11-devel-1.1.1g-3.el7 - Fedora Packages</title>
+		<title>openssl11-devel-1.1.1k-2.el7 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				openssl11-devel-1.1.1g-3.el7<small class="text-muted"> in EPEL 7</small>
+				openssl11-devel-1.1.1k-2.el7<small class="text-muted"> in EPEL 7</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of openssl11-devel</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=openssl11-1.1.1g-3.el7">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=openssl11-1.1.1g-3.el7">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=openssl11-1.1.1k-2.el7">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=openssl11-1.1.1k-2.el7">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -56,6 +56,34 @@
 							<th scope="col">Change</th>
 						</tr>
 					</thead>
+					
+					<tr scope="row">
+						<td>2021-11-17</td>
+						<td>Robert Scheck <robert at fedoraproject dot org> 1.1.1k-2</td>
+						<td>- backport from 1.1.1k-5: CVE-2021-3712 openssl: Read buffer overruns processing ASN.1 strings.
+  Resolves: rhbz#2005400</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-09</td>
+						<td>Robert Scheck <robert at fedoraproject dot org> 1.1.1k-1</td>
+						<td>- backport from 1.1.1k-4: Fixes bugs in s390x AES code
+- backport from 1.1.1k-4: Uses the first detected address family if IPv6 is not available
+- backport from 1.1.1k-4: Reverts the changes in https://github.com/openssl/openssl/pull/13305
+  as it introduces a regression if server has a DSA key pair, the handshake fails
+  when the protocol is not explicitly set to TLS 1.2. However, if the patch is reverted,
+  it has an effect on the "ssl_reject_handshake" feature in nginx. Although, this feature
+  will continue to work, TLS 1.3 protocol becomes unavailable/disabled. This is already
+  known - https://trac.nginx.org/nginx/ticket/2071#comment:1
+  As per https://github.com/openssl/openssl/issues/16075#issuecomment-879939938, nginx could
+  early callback instead of servername callback. Resolves: rhbz#197821, related: rhbz#1934534
+- backport from 1.1.1k-3: Cleansup the peer point formats on renegotiation. Resolves rhbz#1965362
+- backport from 1.1.1k-2: Fixes FIPS_selftest to work in FIPS mode. Resolves: rhbz#1940085
+- backport from 1.1.1k-2: Using safe primes for FIPS DH self-test
+- backport from 1.1.1k-1: Update to version 1.1.1k
+- backport from 1.1.1g-16: Use AI_ADDRCONFIG only when explicit host name is given
+- backport from 1.1.1g-16: Allow only curves defined in RFC 8446 in TLS 1.3</td>
+					</tr>
 					
 					<tr scope="row">
 						<td>2021-03-29</td>
@@ -136,18 +164,6 @@
 						<td>Tomáš Mráz <tmraz at redhat dot com> 1.1.1b-6</td>
 						<td>- adjust the default cert pbe algorithm for pkcs12 -export
   in the FIPS mode</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2019-05-10</td>
-						<td>Tomáš Mráz <tmraz at redhat dot com> 1.1.1b-5</td>
-						<td>- Fix small regressions related to the rebase</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2019-05-07</td>
-						<td>Tomáš Mráz <tmraz at redhat dot com> 1.1.1b-3</td>
-						<td>- FIPS compliance fixes</td>
 					</tr>
 					
 					<tbody>
@@ -719,7 +735,7 @@
 				
 				
 				
-				<li>openssl11-devel-1.1.1g/<ul>
+				<li>openssl11-devel-1.1.1k/<ul>
 				
 				
 				
@@ -3292,6 +3308,10 @@
 				
 				
 				<li>DH_compute_key.3ssl11.gz</li>
+				
+				
+				
+				<li>DH_compute_key_padded.3ssl11.gz</li>
 				
 				
 				
@@ -7784,6 +7804,10 @@
 				
 				
 				<li>OCSP_REQ_CTX_free.3ssl11.gz</li>
+				
+				
+				
+				<li>OCSP_REQ_CTX_i2d.3ssl11.gz</li>
 				
 				
 				
@@ -12855,6 +12879,10 @@
 				
 				
 				
+				<li>X509_ALGOR_copy.3ssl11.gz</li>
+				
+				
+				
 				<li>X509_ALGOR_dup.3ssl11.gz</li>
 				
 				
@@ -13484,6 +13512,14 @@
 				
 				
 				<li>X509_REQ_new.3ssl11.gz</li>
+				
+				
+				
+				<li>X509_REQ_set0_signature.3ssl11.gz</li>
+				
+				
+				
+				<li>X509_REQ_set1_signature_algo.3ssl11.gz</li>
 				
 				
 				

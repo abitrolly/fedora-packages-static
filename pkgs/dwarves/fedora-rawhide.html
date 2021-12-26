@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>dwarves-1.21-2.fc35 - Fedora Packages</title>
+		<title>dwarves-1.23-1.fc36 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				dwarves-1.21-2.fc35<small class="text-muted"> in Fedora Rawhide</small>
+				dwarves-1.23-1.fc36<small class="text-muted"> in Fedora Rawhide</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of dwarves</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=dwarves-1.21-2.fc35">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=dwarves-1.21-2.fc35">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=dwarves-1.23-1.fc36">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=dwarves-1.23-1.fc36">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -56,6 +56,48 @@
 							<th scope="col">Change</th>
 						</tr>
 					</thead>
+					
+					<tr scope="row">
+						<td>2021-12-08</td>
+						<td>Arnaldo Carvalho de Melo <acme at redhat dot com> - 1.23-1</td>
+						<td>- New release: v1.23
+- Process DW_TAG_LLVM_annotation tags.
+- Initial support for DW_TAG_skeleton_unit.
+- Encode BTF_KIND_TYPE_TAG and BTF_KIND_DECL_TAG
+- Fix handling of percpu symbols on s390.
+- Use cacheline size to infer struct member alignment from BTF.
+- Add --skip_missing to not stop when not finding one of -C arguments.
+- Fix __attribute__((__aligned__(N)) printing alignment for struct members.
+- Fix nested __attribute__(__aligned__(N)) struct printing order.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-23</td>
+						<td>Arnaldo Carvalho de Melo <acme at redhat dot com> - 1.22-1</td>
+						<td>- New release: v1.22
+- Introduce -j/--jobs option to specify the number of threads to use.
+- Multithreaded DWARF loading, requires elfutils >= 0.178.
+- Preparatory work for multithreaded BTF encoding, the focus for 1.23.
+- Allow encoding BTF to a separate file.
+- Show all different types with the same name, not just the first one found.
+- Stop assuming that reading from stdin means pretty, add --prettify.
+- Improve type resolution for the --header command line option.
+- Do not consider the ftrace filter when encoding BTF for kernel functions.
+- Lock calls to non-thread safe elfutils' dwarf_decl_file() and dwarf_decl_line().
+- Change hash table size to one that performs better with current typical vmlinux files.
+- Allow tweaking the hash table size from the command line.
+- Add --kabi_prefix to avoid deduplication woes when using _RH_KABI_REPLACE().
+- Add --with_flexible_array to show just types with flexible arrays.
+- Support btfdiff with a detached BTF file.
+- Introduce sorted type output (--sort).
+- Disable incomplete CTF encoder.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-21</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.21-3</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
 					
 					<tr scope="row">
 						<td>2021-05-10</td>
@@ -143,46 +185,6 @@
 						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.17-3</td>
 						<td>- Second attempt - Rebuilt for
   https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-07-27</td>
-						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.17-2</td>
-						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-03-13</td>
-						<td>Arnaldo Carvalho de Melo <acme at redhat dot com> - 1.17-1</td>
-						<td>- New release: 1.17
-- Support raw BTF as available in /sys/kernel/btf/vmlinux.
-- When the sole argument passed isn't a file, take it as a class name:
-- Do not require a class name to operate without a file name.
-- Make --find_pointers_to consider unions:
-- Make --contains and --find_pointers_to honour --unions
-- Add support for finding pointers to void:
-- Make --contains and --find_pointers_to to work with base types:
-- Make --contains look for more than just unions, structs:
-- Consider unions when looking for classes containing some class:
-- Introduce --unions to consider just unions:
-- Fix -m/--nr_methods - Number of functions operating on a type pointer</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-02-12</td>
-						<td>Arnaldo Carvalho de Melo <acme at redhat dot com> - 1.16-1</td>
-						<td>- New release: 1.16
-- BTF encoder: Preserve and encode exported functions as BTF_KIND_FUNC.
-- BTF loader: Add support for BTF_KIND_FUNC
-- Pretty printer: Account inline type __aligned__ member types for spacing
-- Pretty printer: Fix alignment of class members that are structs/enums/unions
-- Pretty printer: Avoid infinite loop trying to determine type with static data member of its own type.
-- RPM spec file:  Add dwarves dependency on libdwarves1.
-- pfunct: type->type == 0 is void, fix --compile for that
-- pdwtags: Print DW_TAG_subroutine_type as well
-- core: Fix ptr_table__add_with_id() handling of pt->nr_entries
-- pglobal: Allow passing the format path specifier, to use with BTF
-- Tree wide: Fixup issues pointed out by various coverity reports.</td>
 					</tr>
 					
 					<tbody>
@@ -322,23 +324,11 @@
 				
 				
 				
-				<li>0a/<ul>
+				<li>05/<ul>
 				
 				
 				
-				<li>59d5de69a6e1b691b04799f7ed82efd56920f0</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>22/<ul>
-				
-				
-				
-				<li>e379a00f8df33923eba856a41f97a55159617d</li>
+				<li>33e145b110d6397914b6c4a8baec89551019bf</li>
 				
 				
 				
@@ -346,23 +336,11 @@
 				
 				
 				
-				<li>31/<ul>
+				<li>23/<ul>
 				
 				
 				
-				<li>87858dfa1b929583e1af0e37ce8b475b6c7d27</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>32/<ul>
-				
-				
-				
-				<li>fda68b4a343c99dc5b6567aa9071a75ac4c029</li>
+				<li>120376d059822a6abec75bcfd72a7507cd6556</li>
 				
 				
 				
@@ -370,23 +348,11 @@
 				
 				
 				
-				<li>3c/<ul>
+				<li>45/<ul>
 				
 				
 				
-				<li>e89bc2d550b0b890546df7c86b095fba119a7b</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>70/<ul>
-				
-				
-				
-				<li>be478735c3e054d6edb3ddc16e3ca18c50d979</li>
+				<li>a7daec9b7b3b1ea838c0a7353f9bd714ed33e0</li>
 				
 				
 				
@@ -394,23 +360,11 @@
 				
 				
 				
-				<li>7a/<ul>
+				<li>6b/<ul>
 				
 				
 				
-				<li>8e4ff1f8c0225ebc080e8aa68d47762913db6a</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>89/<ul>
-				
-				
-				
-				<li>5066809bd7755cc56a647fa173e488b8b0450e</li>
+				<li>ed4fc5450a44f61930af926ab665a5ca3f2075</li>
 				
 				
 				
@@ -418,11 +372,11 @@
 				
 				
 				
-				<li>da/<ul>
+				<li>6d/<ul>
 				
 				
 				
-				<li>6561b611594bcd28e18da657239422699e7cb7</li>
+				<li>0df89c04cbc49b890067ef0650c65b9819fcb1</li>
 				
 				
 				
@@ -430,11 +384,59 @@
 				
 				
 				
-				<li>fc/<ul>
+				<li>72/<ul>
 				
 				
 				
-				<li>8dc5e07c424ce9d89041dabee0388ae7545d8e</li>
+				<li>1504f26b10f4e3d13b2c45db0a4de5fb6f6ca7</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>88/<ul>
+				
+				
+				
+				<li>b15870b831b40b865c07ffa8bb9d877029989c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a7/<ul>
+				
+				
+				
+				<li>734373793530411245aa91d3e7a03b61ab33a0</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a8/<ul>
+				
+				
+				
+				<li>4622857033fb8933cb05db5d5ab80c96e4bd68</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>f7/<ul>
+				
+				
+				
+				<li>effb7aeaf62e84c2439d359f70cfa428571e57</li>
 				
 				
 				
@@ -474,7 +476,7 @@
 				
 				
 				
-				<li>changes-v1.21</li>
+				<li>changes-v1.23</li>
 				
 				
 				

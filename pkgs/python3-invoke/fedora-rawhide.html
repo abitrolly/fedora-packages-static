@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>python3-invoke-1.5.0-2.fc34 - Fedora Packages</title>
+		<title>python3-invoke-1.6.0-1.fc36 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				python3-invoke-1.5.0-2.fc34<small class="text-muted"> in Fedora Rawhide</small>
+				python3-invoke-1.6.0-1.fc36<small class="text-muted"> in Fedora Rawhide</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of python3-invoke</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=python-invoke-1.5.0-2.fc34">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=python-invoke-1.5.0-2.fc34">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=python-invoke-1.6.0-1.fc36">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=python-invoke-1.6.0-1.fc36">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -56,6 +56,31 @@
 							<th scope="col">Change</th>
 						</tr>
 					</thead>
+					
+					<tr scope="row">
+						<td>2021-09-21</td>
+						<td>Jiri Kucera <jkucera at redhat dot com> - 1.6.0-1</td>
+						<td>- Update to 1.6.0
+- Do not run tests for now due to missing package which is even broken</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-23</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.5.0-5</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-04</td>
+						<td>Python Maint <python dash maint at redhat dot com> - 1.5.0-4</td>
+						<td>- Rebuilt for Python 3.10</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-04</td>
+						<td>Python Maint <python dash maint at redhat dot com> - 1.5.0-3</td>
+						<td>- Bootstrap for Python 3.10</td>
+					</tr>
 					
 					<tr scope="row">
 						<td>2021-01-27</td>
@@ -146,54 +171,6 @@
     (GH#518)</td>
 					</tr>
 					
-					<tr scope="row">
-						<td>2020-01-05</td>
-						<td>Paul Howarth <paul at city dash fan dot org> - 1.4.0-1</td>
-						<td>- Update to 1.4.0 (#1787868)
-  - A corner case in #~invoke.context.Context.run# caused overridden streams to
-    be unused if those streams were also set to be hidden, e.g.
-    'run(command, hide=True, out_stream=StringIO())' would result in no writes
-    to the 'StringIO' object (GH#637); this has been fixed - hiding for a given
-    stream is now ignored if that stream has been set to some non-'None' (and
-    in the case of 'in_stream', non-'False') value.
-  - As part of feature work on GH#682, we noticed that the
-    '~invoke.runners.Result' return value from '~invoke.context.Context.run'
-    was inconsistent between dry-run and regular modes; for example, the
-    dry-run version of the object lacked updated values for 'hide', 'encoding'
-    and 'env' - this has been fixed
-  - Add asynchronous behavior to '~invoke.runners.Runner.run' (GH#194, GH#682):
-    - Basic asynchronicity, where the method returns as soon as the subprocess
-      has started running, and that return value is an object with methods
-      allowing access to the final result
-    - "Disowning" subprocesses entirely, which not only returns immediately but
-      also omits background threading, allowing the subprocesses to outlive
-      Invoke's own process
-    See the updated API docs for the '~invoke.runners.Runner' for details on
-    the new 'asynchronous' and 'disown' kwargs enabling this behavior
-  - Never accompanied the top-level singleton '~invoke.run' (which simply wraps
-    an anonymous '~invoke.context.Context's 'run' method) with its logical
-    sibling, '~invoke.sudo' - this has been remedied</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2019-12-12</td>
-						<td>Paul Howarth <paul at city dash fan dot org> - 1.3.0-2</td>
-						<td>- Run (most of) the test suite
-- Cosmetic spec changes</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2019-10-07</td>
-						<td>Othman Madjoudj <athmane at fedoraproject dot org> - 1.3.0-1</td>
-						<td>- Update to 1.3.0 (rhbz #1742597)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2019-09-24</td>
-						<td>Miro Hrončok <mhroncok at redhat dot com> - 1.2.0-5</td>
-						<td>- Drop python2-invoke (#1741008)</td>
-					</tr>
-					
 					<tbody>
 					</tbody>
 				</table>
@@ -210,7 +187,7 @@
 						<a href="/pkgs/python2.7/fedora-rawhide.html">
 						
 						
-						python2.7</a> = 3.9
+						python2.7</a> = 3.10
 						
 
 						</li>
@@ -220,7 +197,7 @@
 						<a href="/pkgs/python3/fedora-rawhide.html">
 						
 						
-						python3</a> = 3.9
+						python3</a> = 3.10
 						
 
 						</li>
@@ -257,16 +234,6 @@
 						
 						<li>
 						
-						<a href="/pkgs/python3-setuptools/fedora-rawhide.html">
-						
-						
-						python3-setuptools
-						
-
-						</li>
-						
-						<li>
-						
 						<a href="/pkgs/python3-six/fedora-rawhide.html">
 						
 						
@@ -287,9 +254,9 @@
 						
 						<li>python3-invoke</li>
 						
-						<li>python3.9-invoke</li>
+						<li>python3.10-invoke</li>
 						
-						<li>python3.9dist(invoke)</li>
+						<li>python3.10dist(invoke)</li>
 						
 						<li>python3dist(invoke)</li>
 						
@@ -337,7 +304,7 @@
 				
 				
 				
-				<li>python3.9/<ul>
+				<li>python3.10/<ul>
 				
 				
 				
@@ -361,139 +328,139 @@
 				
 				
 				
-				<li>__init__.cpython-39.opt-1.pyc</li>
+				<li>__init__.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>__init__.cpython-39.pyc</li>
+				<li>__init__.cpython-310.pyc</li>
 				
 				
 				
-				<li>__main__.cpython-39.opt-1.pyc</li>
+				<li>__main__.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>__main__.cpython-39.pyc</li>
+				<li>__main__.cpython-310.pyc</li>
 				
 				
 				
-				<li>_version.cpython-39.opt-1.pyc</li>
+				<li>_version.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>_version.cpython-39.pyc</li>
+				<li>_version.cpython-310.pyc</li>
 				
 				
 				
-				<li>collection.cpython-39.opt-1.pyc</li>
+				<li>collection.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>collection.cpython-39.pyc</li>
+				<li>collection.cpython-310.pyc</li>
 				
 				
 				
-				<li>config.cpython-39.opt-1.pyc</li>
+				<li>config.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>config.cpython-39.pyc</li>
+				<li>config.cpython-310.pyc</li>
 				
 				
 				
-				<li>context.cpython-39.opt-1.pyc</li>
+				<li>context.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>context.cpython-39.pyc</li>
+				<li>context.cpython-310.pyc</li>
 				
 				
 				
-				<li>env.cpython-39.opt-1.pyc</li>
+				<li>env.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>env.cpython-39.pyc</li>
+				<li>env.cpython-310.pyc</li>
 				
 				
 				
-				<li>exceptions.cpython-39.opt-1.pyc</li>
+				<li>exceptions.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>exceptions.cpython-39.pyc</li>
+				<li>exceptions.cpython-310.pyc</li>
 				
 				
 				
-				<li>executor.cpython-39.opt-1.pyc</li>
+				<li>executor.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>executor.cpython-39.pyc</li>
+				<li>executor.cpython-310.pyc</li>
 				
 				
 				
-				<li>loader.cpython-39.opt-1.pyc</li>
+				<li>loader.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>loader.cpython-39.pyc</li>
+				<li>loader.cpython-310.pyc</li>
 				
 				
 				
-				<li>main.cpython-39.opt-1.pyc</li>
+				<li>main.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>main.cpython-39.pyc</li>
+				<li>main.cpython-310.pyc</li>
 				
 				
 				
-				<li>program.cpython-39.opt-1.pyc</li>
+				<li>program.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>program.cpython-39.pyc</li>
+				<li>program.cpython-310.pyc</li>
 				
 				
 				
-				<li>runners.cpython-39.opt-1.pyc</li>
+				<li>runners.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>runners.cpython-39.pyc</li>
+				<li>runners.cpython-310.pyc</li>
 				
 				
 				
-				<li>tasks.cpython-39.opt-1.pyc</li>
+				<li>tasks.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>tasks.cpython-39.pyc</li>
+				<li>tasks.cpython-310.pyc</li>
 				
 				
 				
-				<li>terminals.cpython-39.opt-1.pyc</li>
+				<li>terminals.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>terminals.cpython-39.pyc</li>
+				<li>terminals.cpython-310.pyc</li>
 				
 				
 				
-				<li>util.cpython-39.opt-1.pyc</li>
+				<li>util.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>util.cpython-39.pyc</li>
+				<li>util.cpython-310.pyc</li>
 				
 				
 				
-				<li>watchers.cpython-39.opt-1.pyc</li>
+				<li>watchers.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>watchers.cpython-39.pyc</li>
+				<li>watchers.cpython-310.pyc</li>
 				
 				
 				
@@ -521,19 +488,19 @@
 				
 				
 				
-				<li>__init__.cpython-39.opt-1.pyc</li>
+				<li>__init__.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>__init__.cpython-39.pyc</li>
+				<li>__init__.cpython-310.pyc</li>
 				
 				
 				
-				<li>complete.cpython-39.opt-1.pyc</li>
+				<li>complete.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>complete.cpython-39.pyc</li>
+				<li>complete.cpython-310.pyc</li>
 				
 				
 				
@@ -601,35 +568,35 @@
 				
 				
 				
-				<li>__init__.cpython-39.opt-1.pyc</li>
+				<li>__init__.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>__init__.cpython-39.pyc</li>
+				<li>__init__.cpython-310.pyc</li>
 				
 				
 				
-				<li>argument.cpython-39.opt-1.pyc</li>
+				<li>argument.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>argument.cpython-39.pyc</li>
+				<li>argument.cpython-310.pyc</li>
 				
 				
 				
-				<li>context.cpython-39.opt-1.pyc</li>
+				<li>context.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>context.cpython-39.pyc</li>
+				<li>context.cpython-310.pyc</li>
 				
 				
 				
-				<li>parser.cpython-39.opt-1.pyc</li>
+				<li>parser.cpython-310.opt-1.pyc</li>
 				
 				
 				
-				<li>parser.cpython-39.pyc</li>
+				<li>parser.cpython-310.pyc</li>
 				
 				
 				
@@ -681,7 +648,7 @@
 				
 				
 				
-				<li>invoke-1.5.0-py3.9.egg-info/<ul>
+				<li>invoke-1.6.0-py3.10.egg-info/<ul>
 				
 				
 				

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>testcloud-0.5.0-1.el8 - Fedora Packages</title>
+		<title>testcloud-0.6.3-1.el8 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				testcloud-0.5.0-1.el8<small class="text-muted"> in EPEL 8</small>
+				testcloud-0.6.3-1.el8<small class="text-muted"> in EPEL 8</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of testcloud</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=testcloud-0.5.0-1.el8">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=testcloud-0.5.0-1.el8">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=testcloud-0.6.3-1.el8">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=testcloud-0.6.3-1.el8">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -56,6 +56,93 @@
 							<th scope="col">Change</th>
 						</tr>
 					</thead>
+					
+					<tr scope="row">
+						<td>2021-12-01</td>
+						<td>Frantisek Zatloukal <fzatlouk at redhat dot com> - 0.6.3-1</td>
+						<td>- Drop Atomic Host
+- Simplify cli codepath, use cloud-user by default
+- cli: allow to spearate OS version by "-"
+- CentOS misc: improve error output on missing version
+- Disable UseDNS, GSSAPI for faster SSH, allow ssh for root
+- CentOS: Fix el7 based systems
+- CentOS: update 7 build, add CentOS Stream 9</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-27</td>
+						<td>Frantisek Zatloukal <fzatlouk at redhat dot com> - 0.6.2-1</td>
+						<td>- Workaround EL8 bug - waiting for sshd restart with user sessions
+- Add a basic integration test and plan for tmt
+- Fixes around backingstore cleanups
+- get_fedora_image_url: Proper support for branched, cleanups
+- get_fedora_image_url: Add info when user asks for wrong version
+- Don't use hammer solution to all Vagrant boxes, force-install cloud-init to known broken images
+- non-x86_64 support preparations and downloader code
+- Don't rely on working qemu://system</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-23</td>
+						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 0.6.1-2</td>
+						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-21</td>
+						<td>Frantisek Zatloukal <fzatlouk at redhat dot com> - 0.6.1-1</td>
+						<td>- Add wait and retry around dom.create()
+- lazy_refcounts=on and cache=unsafe
+- Bash completion (by lbrabec)
+- Let's have also short t7d binary
+- Add long project description for pypi
+- Style: Let's not have lines with hundreds of characters...
+- API: Add reboot function
+- FileLock: Make sure we don't overwrite config_data.DATA_DIR
+- Fix systems using systemd-networkd in user session mode</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-09</td>
+						<td>Frantisek Zatloukal <fzatlouk at redhat dot com> - 0.6.0-1</td>
+						<td>- SPEC: Use pytest macro
+- Merge downstream spec changes
+- README: Let's believe in testcloud a bit more 😎
+- Simplify cli warning wording a bit
+- Remove forced reboot from cli for CentOS user sessions
+- API: Allow to specify pci network device
+- README: improve a tiny bit
+- Make url mandatory, cleanup cli instance create a bit
+- Allow to specify number of CPU cores to be assigned
+- Change cli layout for instance create a bit (A LOT 😱 )
+- get_debian_image_url: return None on fail
+- Add a way to shutdown vms in a graceful way
+- use if hasattr insteadd of try/except AttributeError
+- Use virtio-net-pci instead of e1000 for hostfwd in qemu user sessions
+- implement synchronization using file lock for user sessions
+- Don't directly alter config_object, use a copy of it
+- Fixup CentOS short handle
+- Support Ubuntu and Debian images
+- Update url for oraculum
+- Bunch of code shuffling
+- Bunch of improvements for get_fedora_image_url
+- Fixup traceback for unknown distributions on un-defined variable
+- Fixups around system x session instances handling
+- Dont blow out traceback on image download 404, fixup connection tooltip for CentOS
+- Support fetching the latest Fedora Rawhide iso as fedora:rawhide url
+- Support CentOS and CentOS Stream versions (hardcoded urls)
+- Support operating with Vagrant images
+- check whether the instance existing before do the prepare work
+- Make the code more robust
+- Make list and clean functions more robust to handle both system and user sessions
+- add coreos test function</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-04</td>
+						<td>Python Maint <python dash maint at redhat dot com> - 0.5.0-2</td>
+						<td>- Rebuilt for Python 3.10</td>
+					</tr>
 					
 					<tr scope="row">
 						<td>2021-03-22</td>
@@ -95,43 +182,6 @@
 						<td>- Improve user experience when testcloud fails because of missing group</td>
 					</tr>
 					
-					<tr scope="row">
-						<td>2020-08-27</td>
-						<td>Frantisek Zatloukal <fzatlouk at redhat dot com> - 0.3.5-4</td>
-						<td>- ExclusiveArch to prevent koji from trying to build this on i686</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-07-29</td>
-						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 0.3.5-3</td>
-						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-05-26</td>
-						<td>Miro Hrončok <mhroncok at redhat dot com> - 0.3.5-2</td>
-						<td>- Rebuilt for Python 3.9</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-05-22</td>
-						<td>Frantisek Zatloukal <fzatlouk at redhat dot com> - 0.3.5-1</td>
-						<td>- Typo fix in RHEL 8 qemu-kvm naming workaround</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-05-21</td>
-						<td>Frantisek Zatloukal <fzatlouk at redhat dot com> - 0.3.4-1</td>
-						<td>- Ugly hotfix for tmt</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-05-20</td>
-						<td>Frantisek Zatloukal <fzatlouk at redhat dot com> - 0.3.3-1</td>
-						<td>- Support RHEL 8 hosts (different qemu-kvm path)
-- Move most of the deps into python3-testcloud</td>
-					</tr>
-					
 					<tbody>
 					</tbody>
 				</table>
@@ -148,7 +198,7 @@
 						<a href="/pkgs/python3-testcloud/epel-8.html">
 						
 						
-						python3-testcloud</a> = 0.5.0-1.el8
+						python3-testcloud</a> = 0.6.3-1.el8
 						
 
 						</li>
@@ -225,6 +275,10 @@
 				
 				
 				
+				<li>t7d</li>
+				
+				
+				
 				<li>testcloud</li>
 				
 				
@@ -234,6 +288,26 @@
 				
 				
 				<li>share/<ul>
+				
+				
+				
+				<li>bash-completion/<ul>
+				
+				
+				
+				<li>completions/<ul>
+				
+				
+				
+				<li>testcloud</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
 				
 				
 				
@@ -322,6 +396,10 @@
 				
 				
 				</ul></li>
+				
+				
+				
+				<li>domain-coreos-template.jinja</li>
 				
 				
 				

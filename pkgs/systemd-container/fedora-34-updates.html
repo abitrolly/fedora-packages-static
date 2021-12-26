@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>systemd-container-248.3-1.fc34 - Fedora Packages</title>
+		<title>systemd-container-248.9-1.fc34 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				systemd-container-248.3-1.fc34<small class="text-muted"> in Fedora 34</small>
+				systemd-container-248.9-1.fc34<small class="text-muted"> in Fedora 34</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of systemd-container</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=systemd-248.3-1.fc34">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=systemd-248.3-1.fc34">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=systemd-248.9-1.fc34">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=systemd-248.9-1.fc34">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -58,6 +58,61 @@
 					</thead>
 					
 					<tr scope="row">
+						<td>2021-10-12</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.9-1</td>
+						<td>- Rebuild of 248.8 with one patch removed (causing #2013386) and one patch
+  added (for #1998488).</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-12</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.8-1</td>
+						<td>- Latest bugfix release: fix for systemctl enable, documentation,
+  systemd-networkd, -coredump, -timesyncd, -udev, -nspawn, -oomd,
+  -repart, -resolved, systemd itself, seccomp filters, bootctl,
+  journalctl, TPM2, sd-event, sd-journal, nss-systemd, compatibility
+  with the latest kernels.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-06</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.7-1</td>
+						<td>- Latest bugfix release: improved compatibility with latest glibc,
+  various small documentation fixes, and fixes for systemd-networkd bridging,
+  other minor fixes.
+- systemctl set-property accepts glob patterns now (#1986258)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-22</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.6-1</td>
+						<td>- Create 'sgx' group (and also use soft-static uids for input and render,
+  see https://pagure.io/setup/c/df3194a7295c2ca3cfa923981b046f4bd2754825
+  and https://pagure.io/packaging-committee/issue/1078 (#1965815)
+- Various bugfixes (#1963428, #1975564)
+- Fix for a regression introduced in the previous release with
+  sd-event abort (#1984651)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-20</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.5-1</td>
+						<td>- Various minor documentation and correctness fixes.
+- CVE-2021-33910, #1984020: an unchecked stack allocation could be used to
+  crash systemd and cause the system to reboot by creating a very long
+  fuse mountpoint path.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-07-12</td>
+						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.4-1</td>
+						<td>- Assorted fixes (some systemd-resolved crashes, invalid
+  systemd-tmpfiles assertion, etc.)
+- systemd-networkd workaround for TALOS-2020-1142, CVE-2020-13529.
+- A big update of hardware descriptions.</td>
+					</tr>
+					
+					<tr scope="row">
 						<td>2021-05-15</td>
 						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248.3-1</td>
 						<td>- A fix for resolved crashes (#1946386, #1960227, #1950241)
@@ -83,54 +138,6 @@
 						<td>2021-04-06</td>
 						<td>Adam Williamson <awilliam at redhat dot com> - 248-2</td>
 						<td>- Re-enable resolved caching, we hope all major bugs are resolved now</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-03-31</td>
-						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248-1</td>
-						<td>- Latest upstream release, see
-  https://github.com/systemd/systemd/blob/v248/NEWS.
-- The changes since -rc4 are rather small, various fixes all over the place.
-  A fix to how systemd-oomd selects a candidate to kill, and more debug logging
-  to make this more transparent.</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-03-30</td>
-						<td>Anita Zhang <the dot anitazha at gmail dot com> - 248~rc4-6</td>
-						<td>- Increase oomd user memory pressure limit to 50% (#1941170)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-03-26</td>
-						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-5</td>
-						<td>- Do not preset systemd-networkd.service and systemd-networkd-wait-online.service
-  on upgrades from before systemd-networkd was split out (#1943263)
-- In nsswitch.conf, move nss-myhostname to the front, before nss-mdns4 (#1943199)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-03-24</td>
-						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-4</td>
-						<td>- Revert patch that seems to cause problems with dns resolution
-  (see comments on https://bodhi.fedoraproject.org/updates/FEDORA-2021-1c1a870ceb)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-03-22</td>
-						<td>Zbigniew Jędrzejewski-Szmek <zbyszek at in dot waw dot pl> - 248~rc4-3</td>
-						<td>- Fix hang when processing timers during DST switch in Europe/Dublin timezone (#1941335)
-- Fix returning combined IPv4/IPv6 responses from systemd-resolved cache (#1940715)
-  (But note that the disablement of caching added previously is
-  retained until we can do more testing.)
-- Minor fix to interface naming by udev
-- Fix for systemd-repart --size</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-03-19</td>
-						<td>Adam Williamson <awilliam at redhat dot com> - 248~rc4-2</td>
-						<td>- Disable resolved cache via config snippet (#1940715)</td>
 					</tr>
 					
 					<tbody>
@@ -190,6 +197,16 @@
 						
 						
 						libgcrypt
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/libseccomp/fedora-34.html">
+						
+						
+						libseccomp
 						
 
 						</li>
@@ -258,23 +275,11 @@
 				
 				
 				
-				<li>20/<ul>
+				<li>29/<ul>
 				
 				
 				
-				<li>de8f856808d628035db6b6ab8eac30646a9849</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>2b/<ul>
-				
-				
-				
-				<li>d126b051d436025838ea2737cb69cfc659f9d4</li>
+				<li>07694844cfa367000e375daf8535a2adeeae9d</li>
 				
 				
 				
@@ -282,23 +287,11 @@
 				
 				
 				
-				<li>2f/<ul>
+				<li>34/<ul>
 				
 				
 				
-				<li>1ab3f970d393942ca8c6c416479c74b591e924</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>4f/<ul>
-				
-				
-				
-				<li>e8933504f64ab3f2d56844c63a6b62ac1701b2</li>
+				<li>5d2e64cedf08ecfa969ac134778de6d3809eeb</li>
 				
 				
 				
@@ -306,23 +299,11 @@
 				
 				
 				
-				<li>6a/<ul>
+				<li>46/<ul>
 				
 				
 				
-				<li>74db9a7f2f12f48b85f03404436004bfb1581e</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>9f/<ul>
-				
-				
-				
-				<li>8ea28bec98d959fba0151dc2663b66511cc9ff</li>
+				<li>24477933a8dd05c692a737b28d851a68056c15</li>
 				
 				
 				
@@ -330,11 +311,11 @@
 				
 				
 				
-				<li>db/<ul>
+				<li>61/<ul>
 				
 				
 				
-				<li>1ee75257271c4ffd0e09a92609237181c6d603</li>
+				<li>fccdf98208bf0114f39af87113997e98487e37</li>
 				
 				
 				
@@ -342,11 +323,47 @@
 				
 				
 				
-				<li>df/<ul>
+				<li>75/<ul>
 				
 				
 				
-				<li>dd21fd6095739d6b72986fcc7a817512323991</li>
+				<li>fe47cb187aff025d18c3a2589c25cf1c1d9a7c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>88/<ul>
+				
+				
+				
+				<li>492f175ed95088ec0d32ae2d44ccbb9a03690b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>b5/<ul>
+				
+				
+				
+				<li>3a072df224f6c6bb0b74edc7000cbbe3208bff</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>f3/<ul>
+				
+				
+				
+				<li>4405b97b223461d7ad916ddd7fcd26a9ee1c32</li>
 				
 				
 				

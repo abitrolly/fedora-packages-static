@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>glibc-benchtests-2.34-11.fc35 - Fedora Packages</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				glibc-benchtests-2.34-11.fc35<small class="text-muted"> in Fedora 35</small>
+			</h1>
+			<p>
+				<a href=".">&crarr; Retrun to the main page of glibc-benchtests</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=glibc-2.34-11.fc35">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=glibc-2.34-11.fc35">Search Bodhi</a>
+			</p>
+
+			<p>
+				
+				<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2021-12-07</td>
+						<td>Florian Weimer <fweimer at redhat dot com> - 2.34-11</td>
+						<td>- backtrace function crashes without vDSO on ppc64le (#2027789)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-12-03</td>
+						<td>Florian Weimer <fweimer at redhat dot com> - 2.34-10</td>
+						<td>- Sync with upstream branch release/2.34/master,
+  commit 387bff63dc2dccd62b09aa26dccf8cdc5f3c985c:
+- powerpc64[le]: Fix CFI and LR save address for asm syscalls [BZ #28532]
+- linux: Use /proc/stat fallback for __get_nprocs_conf (BZ #28624)
+- nptl: Do not set signal mask on second setjmp return [BZ #28607]
+- s390: Use long branches across object boundaries (jgh instead of jh)
+- elf: Earlier missing dynamic segment check in _dl_map_object_from_fd
+- gconv: Do not emit spurious NUL character in ISO-2022-JP-3 (bug 28524)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-16</td>
+						<td>Arjun Shankar <arjun at redhat dot com> - 2.34-9</td>
+						<td>- Create /{bin,lib,lib64,sbin} as symbolic links in test-container</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-03</td>
+						<td>Florian Weimer <fweimer at redhat dot com> - 2.34-8</td>
+						<td>- Sync with upstream branch release/2.34/master,
+  commit 6548a9bdba95b3e1fcdbd85445342467e4b0cd4f:
+- Avoid warning: overriding recipe for .../tst-ro-dynamic-mod.so
+- ld.so: Initialize bootstrap_map.l_ld_readonly [BZ #28340]
+- ld.so: Replace DL_RO_DYN_SECTION with dl_relocate_ld [BZ #28340]
+- Handle NULL input to malloc_usable_size [BZ #28506]
+- elf: Avoid deadlock between pthread_create and ctors [BZ #28357]
+- timex: Use 64-bit fields on 32-bit TIMESIZE=64 systems (BZ #28469)
+- y2038: Use a common definition for stat for sparc32
+- elf: Replace nsid with args.nsid [BZ #27609]
+- S390: Add PCI_MIO and SIE HWCAPs
+- support: Also return fd when it is 0</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-01</td>
+						<td>Florian Weimer <fweimer at redhat dot com> - 2.34-7</td>
+						<td>- Drop glibc-rh1992702-*.patch, applied upstream.  (#1992702)
+- Sync with upstream branch release/2.34/master,
+  commit a996d13b8a2e101bedbb1bdaa7ffcfea3b959bb2:
+- Add missing braces to bsearch inline implementation [BZ #28400]
+- Suppress -Wcast-qual warnings in bsearch
+- linux: Revert the use of sched_getaffinity on get_nproc (BZ #28310)
+- linux: Simplify get_nprocs
+- misc: Add __get_nprocs_sched
+- nptl: pthread_kill must send signals to a specific thread [BZ #28407]
+- support: Add check for TID zero in support_wait_for_thread_exit</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-23</td>
+						<td>Florian Weimer <fweimer at redhat dot com> - 2.34-6</td>
+						<td>- Sync with upstream branch release/2.34/master,
+  commit 33adeaa3e2b9143c38884bc5aa65ded222ed274e:
+- nptl: Avoid setxid deadlock with blocked signals in thread exit [BZ #28361]
+- Use support_open_dev_null_range io/tst-closefrom, misc/tst-close_range, and
+  posix/tst-spawn5 (BZ #28260)
+- support: Add support_open_dev_null_range
+- nptl: Fix type of pthread_mutexattr_getrobust_np,
+  pthread_mutexattr_setrobust_np (bug 28036)
+- nptl: pthread_kill needs to return ESRCH for old programs (bug 19193)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-15</td>
+						<td>Florian Weimer <fweimer at redhat dot com> - 2.34-5</td>
+						<td>- Use system CPU count for sysconf(_SC_NPROCESSORS_*) (#1992702)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-15</td>
+						<td>Florian Weimer <fweimer at redhat dot com> - 2.34-4</td>
+						<td>- Sync with upstream branch release/2.34/master,
+  commit 4ed990e5b97a61f29f929bdeb36c5b2abb547a64:
+- Add MADV_POPULATE_READ and MADV_POPULATE_WRITE from Linux 5.14 to
+  bits/mman-linux.h
+- Update kernel version to 5.14 in tst-mman-consts.py
+- Update syscall lists for Linux 5.14
+- Use Linux 5.14 in build-many-glibcs.py
+- Fix failing nss/tst-nss-files-hosts-long with local resolver
+- iconvconfig: Fix behaviour with --prefix [BZ #28199]
+- nptl: Fix race between pthread_kill and thread exit (swbz#12889, #1994068)
+- nptl: pthread_kill, pthread_cancel should not fail after exit
+  (swbz#19193, #1994068)
+- support: Add support_wait_for_thread_exit
+- MIPS: Setup errno for {f,l,}xstat
+- x86-64: Use testl to check __x86_string_control
+- elf: Fix missing colon in LD_SHOW_AUXV output (swbz#28253, #1995648)
+- librt: add test (swbz#28213, #1994264)
+- CVE-2021-38604: fix NULL pointer dereference in mq_notify
+  (swbz#28213, #1994264)
+- Linux: Fix fcntl, ioctl, prctl redirects for _TIME_BITS=64 (bug 28182)
+- iconv_charmap: Close output file when done
+- copy_and_spawn_sgid: Avoid double calls to close()
+- gaiconf_init: Avoid double-free in label and precedence lists
+- gconv_parseconfdir: Fix memory leak
+- ldconfig: avoid leak on empty paths in config file</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-15</td>
+						<td>Florian Weimer <fweimer at redhat dot com> - 2.34-3</td>
+						<td>- Switch to upstream version of C.UTF-8 (#1997589)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-25</td>
+						<td>Siddhesh Poyarekar <siddhesh at redhat dot com> - 2.34-2</td>
+						<td>- Disable dependencies and linking for libc_malloc_debug.so (#1985048).</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/glibc/fedora-35.html">
+						
+						
+						glibc
+						
+
+						</li>
+						
+					</ul>
+				</div>
+				
+				
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>glibc-benchtests</li>
+						
+						<li>glibc-benchtests(x86-64)</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
+				
+				
+				<li>usr/<ul>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>.build-id/<ul>
+				
+				
+				
+				<li>03/<ul>
+				
+				
+				
+				<li>05565c038b16bec033cd7f747889b5b200b8b9</li>
+				
+				
+				
+				<li>41c7ad1e4bb7a74593548976285b5ba5f5ef0b</li>
+				
+				
+				
+				<li>7f0eeef229a9a0a5f94f30d5d4f9ff809adb6d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>04/<ul>
+				
+				
+				
+				<li>2197f09d3d5725ff36a8c0caec33a4cc2b7fce</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>05/<ul>
+				
+				
+				
+				<li>e684ee951429ea5844ea9500b894773ba7c8d4</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>06/<ul>
+				
+				
+				
+				<li>16c6adf627e2b06ea50f03a09088c850f8d76e</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>07/<ul>
+				
+				
+				
+				<li>07a17cd11c0e1720db518b883edabe4c8405db</li>
+				
+				
+				
+				<li>c89d99465f03643134cf596d78892ea0415c54</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>0a/<ul>
+				
+				
+				
+				<li>0461d1eb24acbf53aad6599d74049be1daba8e</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>0f/<ul>
+				
+				
+				
+				<li>71c8637ba2255ad8359d32a931697da6a06d98</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>15/<ul>
+				
+				
+				
+				<li>5e46cb3fa9d12dbe1617ed88a421d8b8bc7e48</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>18/<ul>
+				
+				
+				
+				<li>820b8e79fc3523d9a5db3d36b44980b759ab0e</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>19/<ul>
+				
+				
+				
+				<li>eddb70ea74700b7bba73283c27327e8a719614</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>1c/<ul>
+				
+				
+				
+				<li>f02c4b037c7e316caaaf01ade5dc0150ede0f1</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>1d/<ul>
+				
+				
+				
+				<li>6c6ce6c9e45afde7032209d3302e0a6153cf81</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>22/<ul>
+				
+				
+				
+				<li>95b9de6a4ae69e4ca05e4f7b2586fb0a45e5d2</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>23/<ul>
+				
+				
+				
+				<li>8ece5aeff85c76bafcc55f688acf318faaba98</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>2a/<ul>
+				
+				
+				
+				<li>2114b28edaaba889be8b44b3a1d85513ca787f</li>
+				
+				
+				
+				<li>e98ea549b843351029c755f0af5ea027c6f9f2</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>2b/<ul>
+				
+				
+				
+				<li>6027672cdbf16afa9f382f3eb70d70718a6807</li>
+				
+				
+				
+				<li>d2b00c3e61071e4890c687bb6f4ec734d6f8a1</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>2e/<ul>
+				
+				
+				
+				<li>7821c4112645d6c34bdb1dcc21efa23ab81fe9</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>30/<ul>
+				
+				
+				
+				<li>82b51b4f6edf78041595d7ec2614a17c04e188</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>33/<ul>
+				
+				
+				
+				<li>bcf60c20a88985ff433b6c8d6051ac452bbd9b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>35/<ul>
+				
+				
+				
+				<li>cf89fe97f9d17db0407329d7ec4c6b9ecf7515</li>
+				
+				
+				
+				<li>ec76f194b5f71d3656ad4605a1df3a0b0e9d97</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>36/<ul>
+				
+				
+				
+				<li>5e807a9d230c2c9f7d58adfd77c34e4e17b6b8</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>38/<ul>
+				
+				
+				
+				<li>27122fc1ffbbcefef9e909c8481b97846c3b9b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>39/<ul>
+				
+				
+				
+				<li>b91d07614c4b76c6af85dc806f8a3966c07467</li>
+				
+				
+				
+				<li>e0d88bf6f733d3bb10ed9aa50c5b618e9cb4f2</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>3a/<ul>
+				
+				
+				
+				<li>3810695e395ef613db2499dcbbd20f4e6ee6e3</li>
+				
+				
+				
+				<li>8f19b645678a3cfb33c6a6260e760157052b13</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>40/<ul>
+				
+				
+				
+				<li>6cbb2332bdd853d6a7b8ac7fe6b3c8ec2a0fef</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>45/<ul>
+				
+				
+				
+				<li>8a42c29ea76ebc54365759f79f27141c7f0269</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>48/<ul>
+				
+				
+				
+				<li>521b00c6d7c6ae6057de20af16d88230790352</li>
+				
+				
+				
+				<li>e8408f02ba9781e8800e451cdfb8a82a0c9dca</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>4b/<ul>
+				
+				
+				
+				<li>005a1ca7e62ca1f5c869f5771e2fe4931e25a9</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>4d/<ul>
+				
+				
+				
+				<li>3dbd67f32447498e61d494198f6c6025358763</li>
+				
+				
+				
+				<li>72055f064dee28c7c279a301907ee104767d4d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>4e/<ul>
+				
+				
+				
+				<li>25a0bcf708467caee5ad4b8e1ffa4b650c8361</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>52/<ul>
+				
+				
+				
+				<li>143953cdaad0636b75603c6f539a8ed6e7ebd3</li>
+				
+				
+				
+				<li>8e149599d455fcbcc6fee15ba78074df19c1c8</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>54/<ul>
+				
+				
+				
+				<li>46208b55f0a9ee1dc21e0e9617c65441e7d6e9</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>55/<ul>
+				
+				
+				
+				<li>14c2605d8bcb4d9918f4a5b2036282d5735392</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>56/<ul>
+				
+				
+				
+				<li>824e064838d281b138b032ab5b7b86a9142c35</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>58/<ul>
+				
+				
+				
+				<li>c9c2a3c09457f3876c1c005bc4836320382c29</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>5b/<ul>
+				
+				
+				
+				<li>48067ca2bf1bdc0eaf0d114093e1bffe80edc7</li>
+				
+				
+				
+				<li>d33c2f4ae35b944dedcafb05ed67d61b23e8dc</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>5c/<ul>
+				
+				
+				
+				<li>73386a369ae3b5f84fe0dec503724a7f71a0cf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>5f/<ul>
+				
+				
+				
+				<li>df300fcf5e907706472c7b19c7d037f4895db3</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>61/<ul>
+				
+				
+				
+				<li>a9dbfd764975c7af56cd7e464900a907230304</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>63/<ul>
+				
+				
+				
+				<li>1d39194f72b065bc542be1c7595ab8817985f1</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>68/<ul>
+				
+				
+				
+				<li>d9b56cc55e743f6c40a9b43fd1dc77aa44f21b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>6a/<ul>
+				
+				
+				
+				<li>05735fa43a20908570fb354152e4182b261ac1</li>
+				
+				
+				
+				<li>28b812874c9a493724674693be20483420feee</li>
+				
+				
+				
+				<li>67645170856032953ec592f0da1572b76f0c6b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>6b/<ul>
+				
+				
+				
+				<li>7a6e0bc008e3689498db753b2ee77b45604ac9</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>6d/<ul>
+				
+				
+				
+				<li>f2d1cb0def8a1c1e2aeb549a7097465915c528</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>6e/<ul>
+				
+				
+				
+				<li>16aaa84ecc48df4ff2be974fd1fc9b2d4a16a6</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>72/<ul>
+				
+				
+				
+				<li>69b539c69fd99436a43dd48be0c6a4e0b2b83d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>74/<ul>
+				
+				
+				
+				<li>8b2bc2e4626ec7e0e1802e953ae906c48719d3</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>75/<ul>
+				
+				
+				
+				<li>811b46e800a0fb52bb132ed342bce78fffaf89</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>76/<ul>
+				
+				
+				
+				<li>0abd51badf72da6ce3e07bfbe0ddbee7d0a4d5</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>78/<ul>
+				
+				
+				
+				<li>4693612a4f3e9d9f6b7724dc9d342fad013d36</li>
+				
+				
+				
+				<li>96e7cb103d64137af24eba8850b6cce2b7b383</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>7a/<ul>
+				
+				
+				
+				<li>18744d7465c4be589cf55bd7cfb48c45e6197e</li>
+				
+				
+				
+				<li>2aff14788e4ce383baf42496a95c13f7df7f82</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>7d/<ul>
+				
+				
+				
+				<li>0f148987803b5f82c1325d118942a408fa3e11</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>7f/<ul>
+				
+				
+				
+				<li>6af0fff39dcc980a0921ce96ea9942361cf9d8</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>87/<ul>
+				
+				
+				
+				<li>cb2b9f14fd0a464433941c61eedf419c105896</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>8a/<ul>
+				
+				
+				
+				<li>2cd7630c0b2d509042e92931579302ff12e6e8</li>
+				
+				
+				
+				<li>3b3b526bd38da00beb60b48e16f7d822f6017a</li>
+				
+				
+				
+				<li>e5e41d252aeee536f7dd1a0fc46b7b3d841973</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>8b/<ul>
+				
+				
+				
+				<li>48a49e50b887eaa951b6f0ecf17c0ce7636ae6</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>8d/<ul>
+				
+				
+				
+				<li>54a223563a55bfcd89fdcded8956f4dd50f721</li>
+				
+				
+				
+				<li>aba15ffd3a2dc965a935651beda8445c36fb30</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>8e/<ul>
+				
+				
+				
+				<li>a18f85bae0eb38318c1e376fab9dde8f63086a</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>90/<ul>
+				
+				
+				
+				<li>34a8eda8fb38f9ef7720889f4c155d6556fd3f</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>91/<ul>
+				
+				
+				
+				<li>50bcfac426b9b4c5964ad5f33def3acdfaa2b5</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>94/<ul>
+				
+				
+				
+				<li>f15ead10ebb2297e37c5e9fb38583ead4fed20</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>95/<ul>
+				
+				
+				
+				<li>98a8a4a4aefb8c98100442a567c3c1f2a4f1fb</li>
+				
+				
+				
+				<li>af8e79b4504924ebd97d33e67f9b33f4a7438e</li>
+				
+				
+				
+				<li>c98aa667c12957b67ebf7e9aa76361b50b3f06</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>97/<ul>
+				
+				
+				
+				<li>74177e937114f47032c8dcb7baa586ecee6879</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>99/<ul>
+				
+				
+				
+				<li>7317620f1b9e1c3ff50d8192639bc6ac1774e7</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>9a/<ul>
+				
+				
+				
+				<li>6cc171d94d58114970c35487842dd63ec7a15a</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>9d/<ul>
+				
+				
+				
+				<li>0c4d29407a0bd19e0478585a3059b626eb0578</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>9e/<ul>
+				
+				
+				
+				<li>98f321a7fef26b6a123e0aedf2e2867acff508</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a0/<ul>
+				
+				
+				
+				<li>4e42720b1621bb9dac4c462ac2685465c87165</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a1/<ul>
+				
+				
+				
+				<li>30c914a7a324e89836a1899b8958b4b3f5fbc2</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a2/<ul>
+				
+				
+				
+				<li>0b9a41cb531be7a057cc80938a099e6f5e5c64</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a6/<ul>
+				
+				
+				
+				<li>bcde6739838419f52884f1095020e6259d0be4</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a7/<ul>
+				
+				
+				
+				<li>7bdcb90eb060791f8e449bb23c2009ca5ae8ea</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a9/<ul>
+				
+				
+				
+				<li>1be8d26fa366dee1868a76466727939cad8c57</li>
+				
+				
+				
+				<li>66d39e387a4937ee3855f2286ecf29682dabc2</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>b2/<ul>
+				
+				
+				
+				<li>04fc06db6beb5fc7beca1eaf9b6ca0b077bdc1</li>
+				
+				
+				
+				<li>3fce36fb25452db1b1dbcb7df4e32b5fa2c1f1</li>
+				
+				
+				
+				<li>a75eaca22287729e8aa897e3320bfb572e6ee7</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>b3/<ul>
+				
+				
+				
+				<li>92a153918f8a83d1e4b092855c6b6ea4b4e971</li>
+				
+				
+				
+				<li>92af1cc36d7998ff56615b8149dc6bf5228856</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>b6/<ul>
+				
+				
+				
+				<li>8675591df234c8b091900a3bf32638e53b82bb</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>b7/<ul>
+				
+				
+				
+				<li>514b51b12cd577e3c5e914aa4f7ecf54f064d2</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ba/<ul>
+				
+				
+				
+				<li>899917693d81bd2b4a183bc29a6dd0e8b1af25</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>bb/<ul>
+				
+				
+				
+				<li>ead68f8240b3d63dcb1cca21b44b85a731026b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>bf/<ul>
+				
+				
+				
+				<li>b673d736dd832a07a04129cdd9e2780b3dc48a</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>c1/<ul>
+				
+				
+				
+				<li>2338037cd3e0980cb59089cf68bd97b548956d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>c2/<ul>
+				
+				
+				
+				<li>10e74aad64a089574541d3d38635716a4cc265</li>
+				
+				
+				
+				<li>a76495433ee4778bdb7f64827717a9966131df</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>c3/<ul>
+				
+				
+				
+				<li>b5b0050419b5d026ad7b98b033ca2b708a23ff</li>
+				
+				
+				
+				<li>b5c2255783d18bc0e65d15a3b16acbd871a59a</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cb/<ul>
+				
+				
+				
+				<li>9529893a4c23b447dff7c46e5cffa799852d1b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cd/<ul>
+				
+				
+				
+				<li>9c7b630ff80cce5da1bcc45bc3f3940a76f94b</li>
+				
+				
+				
+				<li>b8f6b013e1f1c80b0253e4e1553210db7a806b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ce/<ul>
+				
+				
+				
+				<li>1a71ef6596b77944a824da45696384ee7c9d2e</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>d1/<ul>
+				
+				
+				
+				<li>60d51c5cbdedb9592c1e6f5697196f86a79cc5</li>
+				
+				
+				
+				<li>b668d82b545822bae47682ffeccf59f710c150</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>d6/<ul>
+				
+				
+				
+				<li>24304d0b6ae9e9e15474f48bc139a076825bd4</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>dd/<ul>
+				
+				
+				
+				<li>241d1fcfdc5faf27609a21095aaa10dcf124a7</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>de/<ul>
+				
+				
+				
+				<li>8e994733d9d569799ce605af36ed150219388c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e0/<ul>
+				
+				
+				
+				<li>b63872db425f8a31cf40cea51ee7f028b53335</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e1/<ul>
+				
+				
+				
+				<li>bc8479a6c408836f9d5db5d6228c59aa20a53c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e4/<ul>
+				
+				
+				
+				<li>0c15d80dfafafbeb20c0a3e73e399834874e01</li>
+				
+				
+				
+				<li>4284dd73cef3673ba6f40b7d551b9263dcc00c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e6/<ul>
+				
+				
+				
+				<li>b5cf7a7a0e0b7035b2e97a0e7e2c021953dc4a</li>
+				
+				
+				
+				<li>eb3c290f3ce716afd0537d9e5e6f6ab3c088cf</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e7/<ul>
+				
+				
+				
+				<li>06df7ef41ce88d2a0b364b0772dd3ab42822f9</li>
+				
+				
+				
+				<li>f888374f2a2eb812d8a1953e785a1019dc8160</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>eb/<ul>
+				
+				
+				
+				<li>670fd31154a15b64ac86b98f60649b2593e997</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ef/<ul>
+				
+				
+				
+				<li>2dcbcee4c59cdd448ddfa7e00ec3c1afc043ec</li>
+				
+				
+				
+				<li>df005fefd6250db3bc4571086b745b67c9eed4</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>f0/<ul>
+				
+				
+				
+				<li>03899a55724df35a9c4320add2675a4479c637</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>f5/<ul>
+				
+				
+				
+				<li>a85a186537a3faca27cbb0e2bf1ef3ba5db900</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>f6/<ul>
+				
+				
+				
+				<li>7809c1cc45b7f2718f292367bfe699f40681ef</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>fa/<ul>
+				
+				
+				
+				<li>4b47fd2e81dbb142424de31e17e0b45cd4339d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>fc/<ul>
+				
+				
+				
+				<li>2b98f3397c8dae893f525d0edfeb502f1e5ea9</li>
+				
+				
+				
+				<li>bc1bc77116df4031594ff9826da6f4d7e452ef</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>ff/<ul>
+				
+				
+				
+				<li>b9633fb92884db2987fdda15db9aec00e6447c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>libexec/<ul>
+				
+				
+				
+				<li>glibc-benchtests/<ul>
+				
+				
+				
+				<li>bench-acos</li>
+				
+				
+				
+				<li>bench-acosh</li>
+				
+				
+				
+				<li>bench-asin</li>
+				
+				
+				
+				<li>bench-asinh</li>
+				
+				
+				
+				<li>bench-atan</li>
+				
+				
+				
+				<li>bench-atan2</li>
+				
+				
+				
+				<li>bench-atanh</li>
+				
+				
+				
+				<li>bench-cbrt</li>
+				
+				
+				
+				<li>bench-cbrtl</li>
+				
+				
+				
+				<li>bench-cos</li>
+				
+				
+				
+				<li>bench-cosf</li>
+				
+				
+				
+				<li>bench-cosh</li>
+				
+				
+				
+				<li>bench-erf</li>
+				
+				
+				
+				<li>bench-erfc</li>
+				
+				
+				
+				<li>bench-exp</li>
+				
+				
+				
+				<li>bench-exp10</li>
+				
+				
+				
+				<li>bench-exp10f</li>
+				
+				
+				
+				<li>bench-exp2</li>
+				
+				
+				
+				<li>bench-exp2f</li>
+				
+				
+				
+				<li>bench-expf</li>
+				
+				
+				
+				<li>bench-expf128</li>
+				
+				
+				
+				<li>bench-expm1</li>
+				
+				
+				
+				<li>bench-ffs</li>
+				
+				
+				
+				<li>bench-ffsll</li>
+				
+				
+				
+				<li>bench-fmax</li>
+				
+				
+				
+				<li>bench-fmaxf</li>
+				
+				
+				
+				<li>bench-fmin</li>
+				
+				
+				
+				<li>bench-fminf</li>
+				
+				
+				
+				<li>bench-hypot</li>
+				
+				
+				
+				<li>bench-ilogb</li>
+				
+				
+				
+				<li>bench-ilogbf</li>
+				
+				
+				
+				<li>bench-ilogbf128</li>
+				
+				
+				
+				<li>bench-isfinite</li>
+				
+				
+				
+				<li>bench-isinf</li>
+				
+				
+				
+				<li>bench-isnan</li>
+				
+				
+				
+				<li>bench-j0</li>
+				
+				
+				
+				<li>bench-j1</li>
+				
+				
+				
+				<li>bench-lgamma</li>
+				
+				
+				
+				<li>bench-log</li>
+				
+				
+				
+				<li>bench-log10</li>
+				
+				
+				
+				<li>bench-log1p</li>
+				
+				
+				
+				<li>bench-log2</li>
+				
+				
+				
+				<li>bench-log2f</li>
+				
+				
+				
+				<li>bench-logb</li>
+				
+				
+				
+				<li>bench-logbf</li>
+				
+				
+				
+				<li>bench-logf</li>
+				
+				
+				
+				<li>bench-malloc-simple</li>
+				
+				
+				
+				<li>bench-malloc-thread</li>
+				
+				
+				
+				<li>bench-math-inlines</li>
+				
+				
+				
+				<li>bench-memccpy</li>
+				
+				
+				
+				<li>bench-memchr</li>
+				
+				
+				
+				<li>bench-memcmp</li>
+				
+				
+				
+				<li>bench-memcpy</li>
+				
+				
+				
+				<li>bench-memcpy-large</li>
+				
+				
+				
+				<li>bench-memcpy-random</li>
+				
+				
+				
+				<li>bench-memcpy-walk</li>
+				
+				
+				
+				<li>bench-memmem</li>
+				
+				
+				
+				<li>bench-memmove</li>
+				
+				
+				
+				<li>bench-memmove-large</li>
+				
+				
+				
+				<li>bench-memmove-walk</li>
+				
+				
+				
+				<li>bench-mempcpy</li>
+				
+				
+				
+				<li>bench-memrchr</li>
+				
+				
+				
+				<li>bench-memset</li>
+				
+				
+				
+				<li>bench-memset-large</li>
+				
+				
+				
+				<li>bench-memset-walk</li>
+				
+				
+				
+				<li>bench-modf</li>
+				
+				
+				
+				<li>bench-pow</li>
+				
+				
+				
+				<li>bench-powf</li>
+				
+				
+				
+				<li>bench-powf128</li>
+				
+				
+				
+				<li>bench-pthread-locks</li>
+				
+				
+				
+				<li>bench-pthread_once</li>
+				
+				
+				
+				<li>bench-rawmemchr</li>
+				
+				
+				
+				<li>bench-rint</li>
+				
+				
+				
+				<li>bench-roundeven</li>
+				
+				
+				
+				<li>bench-roundevenf</li>
+				
+				
+				
+				<li>bench-sin</li>
+				
+				
+				
+				<li>bench-sincos</li>
+				
+				
+				
+				<li>bench-sincosf</li>
+				
+				
+				
+				<li>bench-sinf</li>
+				
+				
+				
+				<li>bench-sinf128</li>
+				
+				
+				
+				<li>bench-sinh</li>
+				
+				
+				
+				<li>bench-sprintf</li>
+				
+				
+				
+				<li>bench-sqrt</li>
+				
+				
+				
+				<li>bench-stpcpy</li>
+				
+				
+				
+				<li>bench-stpcpy_chk</li>
+				
+				
+				
+				<li>bench-stpncpy</li>
+				
+				
+				
+				<li>bench-strcasecmp</li>
+				
+				
+				
+				<li>bench-strcasestr</li>
+				
+				
+				
+				<li>bench-strcat</li>
+				
+				
+				
+				<li>bench-strchr</li>
+				
+				
+				
+				<li>bench-strchrnul</li>
+				
+				
+				
+				<li>bench-strcmp</li>
+				
+				
+				
+				<li>bench-strcoll</li>
+				
+				
+				
+				<li>bench-strcpy</li>
+				
+				
+				
+				<li>bench-strcpy_chk</li>
+				
+				
+				
+				<li>bench-strcspn</li>
+				
+				
+				
+				<li>bench-strlen</li>
+				
+				
+				
+				<li>bench-strncasecmp</li>
+				
+				
+				
+				<li>bench-strncat</li>
+				
+				
+				
+				<li>bench-strncmp</li>
+				
+				
+				
+				<li>bench-strncpy</li>
+				
+				
+				
+				<li>bench-strnlen</li>
+				
+				
+				
+				<li>bench-strpbrk</li>
+				
+				
+				
+				<li>bench-strrchr</li>
+				
+				
+				
+				<li>bench-strsep</li>
+				
+				
+				
+				<li>bench-strspn</li>
+				
+				
+				
+				<li>bench-strstr</li>
+				
+				
+				
+				<li>bench-strtod</li>
+				
+				
+				
+				<li>bench-strtok</li>
+				
+				
+				
+				<li>bench-tan</li>
+				
+				
+				
+				<li>bench-tanh</li>
+				
+				
+				
+				<li>bench-tgamma</li>
+				
+				
+				
+				<li>bench-thread_create</li>
+				
+				
+				
+				<li>bench-timing-type</li>
+				
+				
+				
+				<li>bench-trunc</li>
+				
+				
+				
+				<li>bench-truncf</li>
+				
+				
+				
+				<li>bench-wcpcpy</li>
+				
+				
+				
+				<li>bench-wcpncpy</li>
+				
+				
+				
+				<li>bench-wcscat</li>
+				
+				
+				
+				<li>bench-wcschr</li>
+				
+				
+				
+				<li>bench-wcschrnul</li>
+				
+				
+				
+				<li>bench-wcscmp</li>
+				
+				
+				
+				<li>bench-wcscpy</li>
+				
+				
+				
+				<li>bench-wcscspn</li>
+				
+				
+				
+				<li>bench-wcslen</li>
+				
+				
+				
+				<li>bench-wcsncat</li>
+				
+				
+				
+				<li>bench-wcsncmp</li>
+				
+				
+				
+				<li>bench-wcsncpy</li>
+				
+				
+				
+				<li>bench-wcsnlen</li>
+				
+				
+				
+				<li>bench-wcspbrk</li>
+				
+				
+				
+				<li>bench-wcsrchr</li>
+				
+				
+				
+				<li>bench-wcsspn</li>
+				
+				
+				
+				<li>bench-wmemchr</li>
+				
+				
+				
+				<li>bench-wmemcmp</li>
+				
+				
+				
+				<li>bench-wmemset</li>
+				
+				
+				
+				<li>bench-y0</li>
+				
+				
+				
+				<li>bench-y1</li>
+				
+				
+				
+				<li>bench.mk</li>
+				
+				
+				
+				<li>benchout.schema.json</li>
+				
+				
+				
+				<li>compare_bench.py</li>
+				
+				
+				
+				<li>glibc-bench-compare</li>
+				
+				
+				
+				<li>import_bench.py</li>
+				
+				
+				
+				<li>validate_benchout.py</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
+

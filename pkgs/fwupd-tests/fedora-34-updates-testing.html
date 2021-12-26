@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>fwupd-tests-1.5.8-1.fc34 - Fedora Packages</title>
+		<title>fwupd-tests-1.7.3-1.fc34 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				fwupd-tests-1.5.8-1.fc34<small class="text-muted"> in Fedora 34</small>
+				fwupd-tests-1.7.3-1.fc34<small class="text-muted"> in Fedora 34</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of fwupd-tests</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=fwupd-1.5.8-1.fc34">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=fwupd-1.5.8-1.fc34">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=fwupd-1.7.3-1.fc34">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=fwupd-1.7.3-1.fc34">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -58,165 +58,146 @@
 					</thead>
 					
 					<tr scope="row">
-						<td>2021-03-24</td>
-						<td>Richard Hughes <richard at hughsie dot com> 1.5.8-1</td>
+						<td>2021-12-13</td>
+						<td>Richard Hughes <richard at hughsie dot com> 1.7.3-1</td>
 						<td>- New upstream release
-- Add D501 Baklava device support
-- Allow enabling plugins only matching a specific HwId
-- Check pixart firmware compatibility with hardware before flashing
-- Correct a thunderbolt assertion if kernel failed FW read
-- Correctly erase STM32 devices when transfer size is less than sector size
-- Detect SREC overflow to avoid adding ~4GB of 0xFF padding
-- Do not show a critical error when flashing footer-less binary files
-- Don't allow device updates while needing activation
-- Fix a regression in the elantp defined IAP start address
-- Fix a regression where activate stopped working
-- Fix firmware update of pointing device on Lenovo ThinkPad Nano
-- Fix the HSI plugin 'Disabled' state
-- Fix the quirk key name for the Lenovo HDMI with power
-- Fix writing to the GD32VF103 bootloader
-- Only call elantp->detach() when writing a firmware blob
-- Prompt for unlock keypress if reset command is blocked
-- Remove the Hughski public key
-- Show a warning when parsing invalid quirk files
-- Support for GATT characteristic signals/notifications
-- Support more than one protocol for a given device
-- Updated StarLabs GUIDs
-- Wait a few ms for the Logitech hardware to settle after detach</td>
+- Add a sync-bkc subcommand to ensure a known set of firmware versions
+- Add support for most Nordic Semiconductor nRF Secure devices
+- Add the CFI JEDEC instance ID if using the vendor-extended version
+- Do not wait for a USB runtime if will-disappear is set
+- Enable the MOTD integration when using pam_motd
+- Fix DFU regression when merging the FuProgress work
+- Fix VLI VL820Q7 detection to fix flashing of the Lenovo TBT3 dock
+- Ignore a USB error for STM32 attach when the device goes away
+- Make the plugin startup order deterministic
+- Set Thunderbolt ports offline on host controller
+- Wait for the System76 Launch device to come back from DFU mode</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-02-23</td>
-						<td>Richard Hughes <richard at hughsie dot com> 1.5.7-1</td>
+						<td>2021-11-19</td>
+						<td>Richard Hughes <richard at hughsie dot com> 1.7.2-1</td>
 						<td>- New upstream release
-- Add initial support for Bluez bluetooth devices
-- Add more supported pixart devices
-- Add support for the RTD21xx HDMI converter
-- Convert MBR types to GPT GUIDs to help find the ESP
-- Drop unused heap pages after startup has completed
-- Ensure SBAT metadata is added correctly
-- Only allow verify-update for plugins that support CAN_VERIFY</td>
+- Add a new HSI check that PCR registers 0-7 are not empty
+- Add support for exported MTD block devices
+- Export the component release ID over DBus
+- Fix a DFU crash if the attach failed due to a hardware fault
+- Fix a Redfish crash when specifying a URL without a port
+- Fix CLI downloads when using fwupdmgr --ipfs
+- Inhibit thunderbolt devices to correctly use UPDATABLE_HIDDEN
+- Remove support for the SoloKey and ChaosKey devices
+- Set SSL_VERIFYHOST=0 when using Redfish to fix OpenBMC auth
+- Skip UEFI devices that fail coldplug
+- Speed up the daemon startup by ~40% by doing less at startup</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-02-16</td>
-						<td>Richard Hughes <richard at hughsie dot com> 1.5.6-1</td>
+						<td>2021-11-06</td>
+						<td>Adrian Reber <adrian at lisas dot de> - 1.7.1-2</td>
+						<td>- Rebuilt for protobuf 3.19.0</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-01</td>
+						<td>Richard Hughes <richard at hughsie dot com> 1.7.1-1</td>
 						<td>- New upstream release
-- Add SBAT metadata to the fwupd EFI binary
-- Add support for GD32VF103 as found in the Longan Nano
-- Add support for RMI PS2 devices
-- Add support for the Starlabs LabTop L4
-- Add support for the System76 Keyboard
-- Allow downloading firmware from IPFS
-- Be more paranoid when parsing ASCII buffers and devices
-- Check if the fwupd BootXXXX entry exists on failure
-- Do not allow flashing using flashrom if BLE is enabled
-- Do not allow Lenovo hardware to install multiple capsules
-- Do not show Unknown [***] for every client connection
-- Fix dnload wBlockNum wraparound for ST devices
-- Fix OOM when using large ArchiveSizeMax values
-- Fix several crashes spotted by AddressSanitizer
-- Fix several places where the Goodix MOC plugin could crash
-- Include the PCR0 to the report metadata
-- Install the UX data into an optional subpacakge
-- Report the lockdown status from UEFI and SuperIO plugins
-- Show a console warning if the system clock is not set</td>
+- Allow specifying 'fwupdmgr device-test foo --json' for unattended testing
+- Show changes in HSI attributes when using 'fwupdmgr security'
+- Show the user a warning if updating may affect full-disk-encryption
+- Show translated firmware release notes when provided
+- Support loading remotes from /var/lib/fwupd/remotes.d
+- Fix a CCGX regression when loading firmware
+- Fix a potential crash when dumping Parade devices
+- Fix the CSME CVE detection for new generations
+- Handle EPERM when running the self tests on systems with IPMI
+- Mark as SUPPORTED even if on battery power
+- Only save the HSI attributes to the database if different
+- Raise the client timeout value from 25 seconds to fix Redfish startup
+- Redirect the old HSI links to the correct place
+- Set device time and timezone for logitech bulkcontroller devices
+- Set the verfmt of the returned device when the daemon device is unset</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2021-01-26</td>
-						<td>Fedora Release Engineering <releng at fedoraproject dot org> - 1.5.5-2</td>
-						<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-01-11</td>
-						<td>Richard Hughes <richard at hughsie dot com> 1.5.5-1</td>
+						<td>2021-10-06</td>
+						<td>Richard Hughes <richard at hughsie dot com> 1.7.0-1</td>
 						<td>- New upstream release
-- Add a plugin to update PixArt RF devices
-- Add new hardware to use the elantp and rts54hid plugins
-- Detect the AMD TSME encryption state for HSI-4
-- Detect the AMI PK test key is not installed for HSI-1
-- Fix flashing a fingerprint reader that is in use
-- Fix several critical warnings when parsing invalid firmware
-- Fix updating DFU devices that use DNLOAD_BUSY
-- Ignore the legacy UEFI OVMF dummy GUID
-- Make libfwupd more thread safe to fix a crash in gnome-software
-- Never show unprintable chars from invalid firmware in the logs</td>
+- Add more supported PixArt and StarBook coreboot devices
+- Add support for Synaptics CAPE, Elan FP readers and Logitech Bolt hardware
+- Allow adding GUIDs to each HSI security attribute
+- Allow waiting for multiple devices to replug
+- Create Redfish user accounts automatically using IPMI
+- Make the SuperIO ports and timeouts specific to the DMI model
+- Show HSiLevel=0 attributes in JSON security output
+- Use a per-device global percentage completion
+- Write the UX image upside down to fix some UEFI firmware</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2020-12-16</td>
-						<td>Richard Hughes <richard at hughsie dot com> 1.5.4-1</td>
+						<td>2021-09-24</td>
+						<td>Richard Hughes <richard at hughsie dot com> 1.6.4-1</td>
 						<td>- New upstream release
-- Add Maple Ridge Thunderbolt firmware parsing support
-- Allow creating FMAP and Synaptics firmware using builder.xml
-- Allow using fwupdtool as non-root for firmware commands
-- Do not trust the Block.HintSystem boolean for ESP filtering
-- Fix a memory leak when parsing Synaptics firmware
-- Fix a possible crash when reading the Goodix MOC USB request
-- Fix possible crashes when parsing invalid firmware</td>
+- Abort on invalid SREC files early to avoid a fuzzing timeout
+- Allow overriding the quirks directory at runtime
+- Fix a regression in flashing the Dell dock
+- Fix probing the Dell TPM
+- Show HSiLevel=0 attributes in JSON security output</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2020-12-08</td>
-						<td>Richard Hughes <richard at hughsie dot com> 1.5.3-1</td>
+						<td>2021-08-10</td>
+						<td>Richard Hughes <richard at hughsie dot com> 1.6.3-1</td>
 						<td>- New upstream release
-- Add a UEFI quirk for Star Labs Lite Mk III
-- Add the device firmare ID for serio class hardware
-- Allow setting the GMainContext when used for sync methods
-- Allow the client to send legacy PKCS7 and GPG signatures
-- Export the driver name from FuUdevDevice
-- Fix a possible critical warning due to missing retval
-- Fix the endianness for the CRC check in bcm57xx
-- Make sure the correct interface number is used for QMI
-- Mark more user-visible strings as translatable
-- Restrict loading component types of firmware
-- Validate ModemManager firmware update method combinations</td>
+- Disable the uefi_capsule plugin if Redfish coldplug succeeded
+- Fix an elantp crash when starting the daemon
+- Fix detection of 8Bitdo wireless usb adapter
+- Fix writing large redfish firmware files</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2020-11-23</td>
-						<td>Richard Hughes <richard at hughsie dot com> 1.5.2-1</td>
+						<td>2021-08-02</td>
+						<td>Richard Hughes <richard at hughsie dot com> 1.6.2-1</td>
 						<td>- New upstream release
-- Add a flag to indicate if packages are supported
-- Add a plugin for the Pinebook Pro laptop
-- Allow components to set the icon from the metadata
-- Fall back to FAT32 internal partitions for detecting ESP
-- Fix detection of ColorHug version on older firmware versions
-- Fix reading BCM57XX vendor and device ids from firmware
-- Fix replugging the MSP430 device
-- Fix sync method when called from threads without a context
-- Ignore an invalid vendor-id when adding releases for display
-- Improve synaptics-mst reliability when writing data
-- Install modules-load configs in the correct directory
-- Notify the service manager when idle-quitting
-- Only download the remote metadata as required
-- Remove HSI update and attestation suffixes
-- Restore recognizing GPG and PKCS7 signature types in libfwupd
-- Set the SMBIOS chassis type to portable if a DT battery exists
-- Switch from libsoup to libcurl for downloading data</td>
+- Add a plugin to check Lenovo firmware settings
+- Add support for CapsuleOnDisk and installing UEFI updates from GRUB
+- Automatically connect the BMC network interface at startup
+- Disable all UX capsules for Lenovo hardware
+- Do not assume the metainfo file is NUL-terminated
+- Do not save invalid files on LVFS server error
+- Fix a VLI regression when installing VL820Q7 firmware
+- Fix enumeration of the Synaptics Prometheus config child
+- Fix version number for legacy Wacom Bluetooth modules
+- Show the user how to switch out of Wacom tablet Android-mode
+- Work around a XCC-ism on Lenovo hardware</td>
 					</tr>
 					
 					<tr scope="row">
-						<td>2020-11-20</td>
-						<td>Adam Williamson <awilliam at redhat dot com> - 1.5.1-2</td>
-						<td>- Backport #2605 for #2600, seems to help RHBZ #1896540</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-11-01</td>
-						<td>Richard Hughes <richard at hughsie dot com> 1.5.1-1</td>
+						<td>2021-08-02</td>
+						<td>Richard Hughes <richard at hughsie dot com> 1.5.12-1</td>
 						<td>- New upstream release
-- Delete unused EFI variables when deploying firmware
-- Fix probe warning for the Logitech Unifying device
-- Include the amount of NVRAM size in use in the LVFS failure report
-- Make bcm57xx hotplug more reliable
-- Recognize authorized thunderbolt value of 2
-- Remove the duplicate parent-child data in FwupdDevice and FuDevice
-- Show a less scary fwupdate output for devices without info
-- Use a different Device ID for the OptionROM devices
-- Use UDisks to find out if swap devices are encrypted</td>
+- Add support for more Poly usb devices
+- Ignore a virtual ATA M.2 device
+- Copy the device update state when replugging
+- Do not assume the metainfo file is NUL-terminated
+- Do not save invalid files on LVFS server error
+- Add the alternate 8BitDo vendor name into the allowlist
+- Use eMMC sysattr insted of udev attr lookup for device name
+- Fix the progressbar spinner to actually work
+- Fix a SuperIO buffer overread when using --verbose
+- Fix enumeration of the synaptics-prometheus config child
+- Fix the ctrl+c SIGINT signal handling</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-02</td>
+						<td>Richard Hughes <richard at hughsie dot com> 1.5.11-1</td>
+						<td>- New upstream release
+- Add support for the Dell dock USB4 module
+- Add Redfish GUIDs lowercase to match all the other plugins
+- Fix a Redfish download warning for newer versions of libcurl
+- Fix regression in enumerating the VLI PD device
+- Fix vendor-directory remotes for firmware with an artifact section
+- Fix Wacom USB Legacy Bluetooth module version number</td>
 					</tr>
 					
 					<tbody>
@@ -235,47 +216,17 @@
 						<a href="/pkgs/fwupd/fedora-34.html">
 						
 						
-						fwupd
+						fwupd</a> = 1.7.3-1.fc34
 						
 
 						</li>
 						
 						<li>
 						
-						<a href="/pkgs/glib2/fedora-34.html">
+						<a href="/pkgs/gnutls/fedora-34.html">
 						
 						
-						glib2
-						
-
-						</li>
-						
-						<li>
-						
-						<a href="/pkgs/glibc/fedora-34.html">
-						
-						
-						glibc
-						
-
-						</li>
-						
-						<li>
-						
-						<a href="/pkgs/libcurl/fedora-34.html">
-						
-						
-						libcurl
-						
-
-						</li>
-						
-						<li>
-						
-						<a href="/pkgs/libcurl-minimal/fedora-34.html">
-						
-						
-						libcurl-minimal
+						gnutls
 						
 
 						</li>
@@ -286,36 +237,6 @@
 						
 						
 						libgcc
-						
-
-						</li>
-						
-						<li>
-						
-						<a href="/pkgs/libgudev/fedora-34.html">
-						
-						
-						libgudev
-						
-
-						</li>
-						
-						<li>
-						
-						<a href="/pkgs/libgusb/fedora-34.html">
-						
-						
-						libgusb
-						
-
-						</li>
-						
-						<li>
-						
-						<a href="/pkgs/libxmlb/fedora-34.html">
-						
-						
-						libxmlb
 						
 
 						</li>
@@ -386,23 +307,11 @@
 				
 				
 				
-				<li>26/<ul>
+				<li>0b/<ul>
 				
 				
 				
-				<li>0da63093c334b1b3ea15fd2a29f06e6ca8b669</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>3a/<ul>
-				
-				
-				
-				<li>1f81318fb6c8e0bbc7910adf07ca1d63510a62</li>
+				<li>93753125c9107a8633fd6ecd6df196c525e927</li>
 				
 				
 				
@@ -410,23 +319,11 @@
 				
 				
 				
-				<li>4b/<ul>
+				<li>14/<ul>
 				
 				
 				
-				<li>97557f8e9d2761cbc4e2b63f5d6090aed05caf</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>70/<ul>
-				
-				
-				
-				<li>49aaa8fa39c9208e66bcdfa2173b2d3e9f2574</li>
+				<li>18d25db16b4e9f604e745f805a86cc1f3f9d58</li>
 				
 				
 				
@@ -434,23 +331,11 @@
 				
 				
 				
-				<li>a9/<ul>
+				<li>15/<ul>
 				
 				
 				
-				<li>be6931780ad9249c8b01e8b0895434b111606f</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>b6/<ul>
-				
-				
-				
-				<li>28b4d7c63c61bfb7b4aac9ef2548f02b9bb6c5</li>
+				<li>76d5e8aabaee90f974668ccbf18d21edf8cc23</li>
 				
 				
 				
@@ -458,15 +343,11 @@
 				
 				
 				
-				<li>b8/<ul>
+				<li>16/<ul>
 				
 				
 				
-				<li>31e3e51d729906f07732a1a5fe435e55e924b6</li>
-				
-				
-				
-				<li>35c6cc0960dce1684aae22655e38bdd12163e6</li>
+				<li>45555ba23e67de2b0916857d31582732b73841</li>
 				
 				
 				
@@ -474,23 +355,11 @@
 				
 				
 				
-				<li>bc/<ul>
+				<li>2a/<ul>
 				
 				
 				
-				<li>d0968482e519a62b0b3ef521b2c50b6cbcac16</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>c5/<ul>
-				
-				
-				
-				<li>9b18d5f7b38c1577ea9c9293167781c966c2af</li>
+				<li>8b367988758c39aede0105c0a61b8df1a01e25</li>
 				
 				
 				
@@ -498,11 +367,123 @@
 				
 				
 				
-				<li>c9/<ul>
+				<li>4a/<ul>
 				
 				
 				
-				<li>d7b2994e0c7deca0d8e2e77e314b654f2b8108</li>
+				<li>949476980726553c66993ee3c4c8143dcc32a5</li>
+				
+				
+				
+				<li>aa8f3b5de56f4260414d4f29649ca0141ea013</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>5d/<ul>
+				
+				
+				
+				<li>a4544d7f1052cc535c20b86efcc215326d37eb</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>74/<ul>
+				
+				
+				
+				<li>b26f767681295e2f9bf8c4fd55e0986025c3f5</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>77/<ul>
+				
+				
+				
+				<li>53e7cd98a4d796933aaaa5c97fa19a0eee2585</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>79/<ul>
+				
+				
+				
+				<li>e75fe7fd56c677991888b61cdad701762bce6d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>7b/<ul>
+				
+				
+				
+				<li>64f660e808eea82e33a5194d9517c9cdfc5a6c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>a7/<ul>
+				
+				
+				
+				<li>c499245899b1816c9835d16ab4474cfce50759</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>c7/<ul>
+				
+				
+				
+				<li>e135352b8f869ca450ce269dc4e02105f0e0df</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>d5/<ul>
+				
+				
+				
+				<li>c7c18d7ab0e45cb8cce20169384971a3d34b24</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>da/<ul>
+				
+				
+				
+				<li>c527cdf21be4f23619e3079300ebbba76ec377</li>
 				
 				
 				
@@ -514,7 +495,19 @@
 				
 				
 				
-				<li>9241ffcff89e61d58b3b54d4aed2c09366a331</li>
+				<li>771e3b98a5271c4fd908b340b19d4c7a20ea67</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e4/<ul>
+				
+				
+				
+				<li>98fd0eb6f12c9ce9d592ab220fd6cf0737a462</li>
 				
 				
 				
@@ -526,19 +519,7 @@
 				
 				
 				
-				<li>00e6faf7de30f1526639da38b0aa7014367c8f</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>ff/<ul>
-				
-				
-				
-				<li>392b6d6360e75a500412ac4f80f91a75a832e8</li>
+				<li>7bedc01d7a1216632c6edfe4cbe1e6e1963289</li>
 				
 				
 				
@@ -574,11 +555,23 @@
 				
 				
 				
+				<li>acpi-phat-self-test</li>
+				
+				
+				
 				<li>ata-self-test</li>
 				
 				
 				
 				<li>bcm57xx-self-test</li>
+				
+				
+				
+				<li>ccgx-self-test</li>
+				
+				
+				
+				<li>elantp-self-test</li>
 				
 				
 				
@@ -602,6 +595,10 @@
 				
 				
 				
+				<li>pxi-self-test</li>
+				
+				
+				
 				<li>redfish-self-test</li>
 				
 				
@@ -611,6 +608,10 @@
 				
 				
 				<li>synaptics-prometheus-self-test</li>
+				
+				
+				
+				<li>synaptics-rmi-self-test</li>
 				
 				
 				
@@ -642,11 +643,279 @@
 				
 				
 				
+				<li>fwupd/<ul>
+				
+				
+				
+				<li>device-tests/<ul>
+				
+				
+				
+				<li>8bitdo-nes30pro.json</li>
+				
+				
+				
+				<li>8bitdo-sf30pro.json</li>
+				
+				
+				
+				<li>8bitdo-sfc30.json</li>
+				
+				
+				
+				<li>aiaiai-h05.json</li>
+				
+				
+				
+				<li>bizlink-no-sku-vli.json</li>
+				
+				
+				
+				<li>broadcom-bcm5719.json</li>
+				
+				
+				
+				<li>dell-kh08p.json</li>
+				
+				
+				
+				<li>dell-wd19tb.json</li>
+				
+				
+				
+				<li>fwupd-a3bu-xplained.json</li>
+				
+				
+				
+				<li>fwupd-at90usbkey.json</li>
+				
+				
+				
+				<li>hp-dock-g5.json</li>
+				
+				
+				
+				<li>hughski-colorhug-plus.json</li>
+				
+				
+				
+				<li>hughski-colorhug.json</li>
+				
+				
+				
+				<li>hughski-colorhug2.json</li>
+				
+				
+				
+				<li>hyper-no-sku-vli.json</li>
+				
+				
+				
+				<li>jabra-speak-410.json</li>
+				
+				
+				
+				<li>jabra-speak-510.json</li>
+				
+				
+				
+				<li>jabra-speak-710.json</li>
+				
+				
+				
+				<li>lenovo-03x7168.json</li>
+				
+				
+				
+				<li>lenovo-03x7605.json</li>
+				
+				
+				
+				<li>lenovo-03x7608-vli.json</li>
+				
+				
+				
+				<li>lenovo-03x7609-ccgx.json</li>
+				
+				
+				
+				<li>lenovo-03x7609-cxaudio.json</li>
+				
+				
+				
+				<li>lenovo-03x7609-vli.json</li>
+				
+				
+				
+				<li>lenovo-40au0065-vli.json</li>
+				
+				
+				
+				<li>lenovo-GX90T33021-vli.json</li>
+				
+				
+				
+				<li>logitech-bolt-receiver.json</li>
+				
+				
+				
+				<li>logitech-k780.json</li>
+				
+				
+				
+				<li>logitech-m650.json</li>
+				
+				
+				
+				<li>logitech-m750.json</li>
+				
+				
+				
+				<li>logitech-mr0077.json</li>
+				
+				
+				
+				<li>logitech-rqr12-signed.json</li>
+				
+				
+				
+				<li>logitech-rqr12.json</li>
+				
+				
+				
+				<li>logitech-rqr24-signed.json</li>
+				
+				
+				
+				<li>logitech-rqr24.json</li>
+				
+				
+				
+				<li>realtek-rts5423.json</li>
+				
+				
+				
+				<li>realtek-rts5855.json</li>
+				
+				
+				
+				<li>starlabs-phison-ata.json</li>
+				
+				
+				
+				<li>synaptics-prometheus.json</li>
+				
+				
+				
+				<li>system76-thelio.json</li>
+				
+				
+				
+				<li>ugreen-cm260.json</li>
+				
+				
+				
+				<li>wacom-intuos-bt-m-bluetooth.json</li>
+				
+				
+				
+				<li>wacom-intuos-bt-m-main.json</li>
+				
+				
+				
+				<li>wacom-intuos-bt-m.json</li>
+				
+				
+				
+				<li>wacom-intuos-bt-s.json</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
 				<li>installed-tests/<ul>
 				
 				
 				
 				<li>fwupd/<ul>
+				
+				
+				
+				<li>efi/<ul>
+				
+				
+				
+				<li>efivars/<ul>
+				
+				
+				
+				<li>CapsuleMax-39b68c46-f7fb-441b-b6ec-16b0f69821f3</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>esrt/<ul>
+				
+				
+				
+				<li>entries/<ul>
+				
+				
+				
+				<li>entry0/<ul>
+				
+				
+				
+				<li>capsule_flags</li>
+				
+				
+				
+				<li>fw_class</li>
+				
+				
+				
+				<li>fw_type</li>
+				
+				
+				
+				<li>fw_version</li>
+				
+				
+				
+				<li>last_attempt_status</li>
+				
+				
+				
+				<li>last_attempt_version</li>
+				
+				
+				
+				<li>lowest_supported_fw_version</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
 				
 				
 				
@@ -671,6 +940,82 @@
 				
 				
 				<li>fwupdmgr.test</li>
+				
+				
+				
+				<li>tests/<ul>
+				
+				
+				
+				<li>bcm57xx.builder.xml</li>
+				
+				
+				
+				<li>ccgx-dmc.builder.xml</li>
+				
+				
+				
+				<li>ccgx.builder.xml</li>
+				
+				
+				
+				<li>efi/<ul>
+				
+				
+				
+				<li>efivars/<ul>
+				
+				
+				
+				<li>RedfishIndications-16faa37e-4b6a-4891-9028-242de65a3b70</li>
+				
+				
+				
+				<li>RedfishOSCredentials-16faa37e-4b6a-4891-9028-242de65a3b70</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>elantp.builder.xml</li>
+				
+				
+				
+				<li>pixart.builder.xml</li>
+				
+				
+				
+				<li>redfish-smbios.bin</li>
+				
+				
+				
+				<li>synaptics-mst.builder.xml</li>
+				
+				
+				
+				<li>synaptics-prometheus.builder.xml</li>
+				
+				
+				
+				<li>synaptics-rmi-0x.builder.xml</li>
+				
+				
+				
+				<li>synaptics-rmi-10.builder.xml</li>
+				
+				
+				
+				<li>wacom-usb.builder.xml</li>
+				
+				
+				
+				</ul></li>
 				
 				
 				

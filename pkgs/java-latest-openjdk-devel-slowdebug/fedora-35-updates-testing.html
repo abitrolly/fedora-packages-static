@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>java-latest-openjdk-devel-slowdebug-17.0.1.0.12-13.rolling.fc35 - Fedora Packages</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/main.css">
+		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<a href="/" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+					<img src="../../assets/images/logo.png">
+				</a>
+				<div class="col-md-6 d-flex align-items-center">
+					
+				</div>
+			</div>
+
+			<hr />
+
+			<h1>
+				java-latest-openjdk-devel-slowdebug-17.0.1.0.12-13.rolling.fc35<small class="text-muted"> in Fedora 35</small>
+			</h1>
+			<p>
+				<a href=".">&crarr; Retrun to the main page of java-latest-openjdk-devel-slowdebug</a><br>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-17.0.1.0.12-13.rolling.fc35">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-17.0.1.0.12-13.rolling.fc35">Search Bodhi</a>
+			</p>
+
+			<p>
+				
+				<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+				
+				<a href="#changelog">🠗 Changelog</a><br>
+				
+				<a href="#dependencies">🠗 Dependencies</a><br>
+				
+				
+				<a href="#provides">🠗 Provides</a><br>
+				
+				
+				<a href="#files">🠗 Files</a><br>
+				
+			</p>
+
+			<h2 id="changelog">Changelog</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-borderless ">
+					<thead>
+						<tr>
+							<th scope="col">Date</th>
+							<th scope="col">Author</th>
+							<th scope="col">Change</th>
+						</tr>
+					</thead>
+					
+					<tr scope="row">
+						<td>2021-12-09</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:17.0.1.0.12-12.rolling</td>
+						<td>- Storing and restoring alterntives during update manually
+- Fixing Bug 2001567 - update of JDK/JRE is removing its manually selected alterantives and select (as auto) system JDK/JRE
+-- The move of alternatives creation to posttrans to fix:
+-- Bug 1200302 - dnf reinstall breaks alternatives
+-- Had caused the alternatives to be removed, and then created again,
+-- instead of being added, and then removing the old, and thus persisting
+-- the selection in family
+-- Thus this fix, is storing the family of manually selected master, and if
+-- stored, then it is restoring the family of the master</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-12-09</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:17.0.1.0.12-12.rolling</td>
+						<td>- Family extracted to globals</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-12-09</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:17.0.1.0.12-11.rolling</td>
+						<td>- javadoc-zip got its own provides next to plain javadoc ones</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-12-09</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:17.0.1.0.12-10.rolling</td>
+						<td>- replaced tabs by sets of spaces to make rpmlint happy</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-12-01</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.1.0.12-6.rolling</td>
+						<td>- Handle Fedora in distro conditionals that currently only pertain to RHEL.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-12-01</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.1.0.12-5.rolling</td>
+						<td>- Patch syslookup.c so it actually has some code to be compiled into libsyslookup</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-30</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.1.0.12-4.rolling</td>
+						<td>- Restructure the build so a minimal initial build is then used for the final build (with docs)
+- This reduces pressure on the system JDK and ensures the JDK being built can do a full build
+- Turn off bootstrapping for slow debug builds, which are particularly slow on ppc64le.</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-30</td>
+						<td>Jiri Vanek <jvanek at redhat dot com> - 1:17.0.1.0.12-4.rolling</td>
+						<td>- Minor cosmetic improvements to make spec more comparable between variants</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-29</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.1.0.12-3.rolling</td>
+						<td>- Add -DSTAP_SDT_ARG_CONSTRAINT=g workaround on aarch32 to fix build
+- See https://bugzilla.redhat.com/show_bug.cgi?id=2026858</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-11-29</td>
+						<td>Andrew Hughes <gnu dot andrew at redhat dot com> - 1:17.0.1.0.12-3.rolling</td>
+						<td>- Update tapsets from IcedTea 6.x repository with fix for JDK-8015774 changes (_heap->_heaps) and @JAVA_SPEC_VER@
+- Update icedtea_sync.sh with a VCS mode that retrieves sources from a Mercurial repository
+- Sync desktop files with upstream IcedTea release 3.15.0 using new script</td>
+					</tr>
+					
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				
+				<div class="col">
+					<h2 id="dependencies">Dependencies</h2>
+					<ul>
+						
+						<li>
+						
+						<a href="/pkgs/glibc/fedora-35.html">
+						
+						
+						glibc
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/java-latest-openjdk-slowdebug/fedora-35.html">
+						
+						
+						java-latest-openjdk-slowdebug</a> = 17.0.1.0.12-13.rolling.fc35
+						
+
+						</li>
+						
+					</ul>
+				</div>
+				
+				
+				<div class="col">
+					<h2 id="provides">Provides</h2>
+					<ul>
+						
+						<li>application()</li>
+						
+						<li>application(java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug-jconsole-slowdebug.desktop)</li>
+						
+						<li>java-17-devel-slowdebug</li>
+						
+						<li>java-17-openjdk-devel-slowdebug</li>
+						
+						<li>java-latest-openjdk-devel-slowdebug</li>
+						
+						<li>java-latest-openjdk-devel-slowdebug(x86-64)</li>
+						
+						<li>java-sdk-17-openjdk-slowdebug</li>
+						
+						<li>java-sdk-17-slowdebug</li>
+						
+					</ul>
+				</div>
+				
+			</div>
+
+			
+			<h2 id="files">Files</h2>
+
+			<div class="tree">
+				<ul>
+				
+				
+				<li>usr/<ul>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>.build-id/<ul>
+				
+				
+				
+				<li>04/<ul>
+				
+				
+				
+				<li>29947512dbf9b89ef5ed91587b6a468e70cc1b</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>10/<ul>
+				
+				
+				
+				<li>176c879ab690be5af885d7220c3781b52683e5</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>1b/<ul>
+				
+				
+				
+				<li>83c2efbfb132a1deadd4e3e936916143732fed</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>1d/<ul>
+				
+				
+				
+				<li>4e129832ca040c67e6ce0d8aa307bb6e9de561</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>22/<ul>
+				
+				
+				
+				<li>da64102a809acf20f2b0b510a3b12e08ccea07</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>26/<ul>
+				
+				
+				
+				<li>2fffeadee00a4737b9c7b12d8600a91cbaa61d</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>2f/<ul>
+				
+				
+				
+				<li>107ef6e21ede67223313f7bf8e9a635d922899</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>32/<ul>
+				
+				
+				
+				<li>97a4c1d7002ef8879030d76eda07666ae68ba3</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>47/<ul>
+				
+				
+				
+				<li>8092416279149bbb5ad3100c02094bed1abd54</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>55/<ul>
+				
+				
+				
+				<li>789d5091f2195bce41c22c5ed2e0f7bc7e4c5c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>65/<ul>
+				
+				
+				
+				<li>081a580fff50e765540b8b8622f229944f31f2</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>6d/<ul>
+				
+				
+				
+				<li>153640f95c1a119577cf5beebb25d5f80577ab</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>84/<ul>
+				
+				
+				
+				<li>139ebece09a9f7fd9bfaf9ecd312ffadb14c13</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>8b/<ul>
+				
+				
+				
+				<li>9d230434cc40cd789b8f079409b4a0d0048c93</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>94/<ul>
+				
+				
+				
+				<li>08c2f6364d3692e55f2d452fa403f69313e3a1</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>aa/<ul>
+				
+				
+				
+				<li>287039b6dc12ef7a20e34765ce9f8b81c56a62</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>b0/<ul>
+				
+				
+				
+				<li>32d6a50a8fe421945984ba7bdf4e6cb01af1cb</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>be/<ul>
+				
+				
+				
+				<li>4a4a3f226e00b629fcfa5f8b33b18979a4bf35</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>c8/<ul>
+				
+				
+				
+				<li>e95bcc583a92ba9da4667051f861d2cc114bca</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>cd/<ul>
+				
+				
+				
+				<li>9588492ff0ecfb4302b81047d7114ff2147902</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e1/<ul>
+				
+				
+				
+				<li>5af2f4a4a74168e38ac18abd88739f0c069736</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>e6/<ul>
+				
+				
+				
+				<li>81c68ae145011554f14a7ef86f6d7086205702</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>f2/<ul>
+				
+				
+				
+				<li>b97cc4c14369b296f952aef31c1d799502c4f4</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>fa/<ul>
+				
+				
+				
+				<li>1536fd478b2e2a057c3ae306b5a8677dff9bfe</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>fc/<ul>
+				
+				
+				
+				<li>2c47ac315d86bd57242a3cbb345a64d90d9f3c</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>jvm/<ul>
+				
+				
+				
+				<li>java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug/<ul>
+				
+				
+				
+				<li>bin/<ul>
+				
+				
+				
+				<li>jar</li>
+				
+				
+				
+				<li>jarsigner</li>
+				
+				
+				
+				<li>javac</li>
+				
+				
+				
+				<li>javadoc</li>
+				
+				
+				
+				<li>javap</li>
+				
+				
+				
+				<li>jcmd</li>
+				
+				
+				
+				<li>jconsole</li>
+				
+				
+				
+				<li>jdb</li>
+				
+				
+				
+				<li>jdeprscan</li>
+				
+				
+				
+				<li>jdeps</li>
+				
+				
+				
+				<li>jfr</li>
+				
+				
+				
+				<li>jhsdb</li>
+				
+				
+				
+				<li>jimage</li>
+				
+				
+				
+				<li>jinfo</li>
+				
+				
+				
+				<li>jlink</li>
+				
+				
+				
+				<li>jmap</li>
+				
+				
+				
+				<li>jmod</li>
+				
+				
+				
+				<li>jpackage</li>
+				
+				
+				
+				<li>jps</li>
+				
+				
+				
+				<li>jrunscript</li>
+				
+				
+				
+				<li>jshell</li>
+				
+				
+				
+				<li>jstack</li>
+				
+				
+				
+				<li>jstat</li>
+				
+				
+				
+				<li>jstatd</li>
+				
+				
+				
+				<li>serialver</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>include/<ul>
+				
+				
+				
+				<li>classfile_constants.h</li>
+				
+				
+				
+				<li>jawt.h</li>
+				
+				
+				
+				<li>jdwpTransport.h</li>
+				
+				
+				
+				<li>jni.h</li>
+				
+				
+				
+				<li>jvmti.h</li>
+				
+				
+				
+				<li>jvmticmlr.h</li>
+				
+				
+				
+				<li>linux/<ul>
+				
+				
+				
+				<li>jawt_md.h</li>
+				
+				
+				
+				<li>jni_md.h</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>lib/<ul>
+				
+				
+				
+				<li>ct.sym</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>tapset/<ul>
+				
+				
+				
+				<li>hotspot-17.0.1.0.12-13.rolling.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>hotspot_gc-17.0.1.0.12-13.rolling.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>hotspot_jni-17.0.1.0.12-13.rolling.fc35.x86_64.stp</li>
+				
+				
+				
+				<li>jstack-17.0.1.0.12-13.rolling.fc35.x86_64.stp</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>share/<ul>
+				
+				
+				
+				<li>applications/<ul>
+				
+				
+				
+				<li>java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug-jconsole-slowdebug.desktop</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>man/<ul>
+				
+				
+				
+				<li>man1/<ul>
+				
+				
+				
+				<li>jar-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jarsigner-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>javac-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>javadoc-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>javap-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jcmd-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jconsole-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jdb-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jdeprscan-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jdeps-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jfr-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jhsdb-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jinfo-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jlink-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jmap-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jmod-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jpackage-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jps-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jrunscript-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jshell-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jstack-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jstat-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>jstatd-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				<li>serialver-java-17-openjdk-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.1.gz</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				<li>systemtap/<ul>
+				
+				
+				
+				<li>tapset/<ul>
+				
+				
+				
+				<li>x86_64/<ul>
+				
+				
+				
+				<li>hotspot-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.stp</li>
+				
+				
+				
+				<li>hotspot_gc-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.stp</li>
+				
+				
+				
+				<li>hotspot_jni-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.stp</li>
+				
+				
+				
+				<li>jstack-17.0.1.0.12-13.rolling.fc35.x86_64-slowdebug.stp</li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+				
+				</ul></li>
+				
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
+

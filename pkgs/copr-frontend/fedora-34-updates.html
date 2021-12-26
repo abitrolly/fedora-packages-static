@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>copr-frontend-1.178-1.fc34 - Fedora Packages</title>
+		<title>copr-frontend-1.183-1.fc34 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				copr-frontend-1.178-1.fc34<small class="text-muted"> in Fedora 34</small>
+				copr-frontend-1.183-1.fc34<small class="text-muted"> in Fedora 34</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of copr-frontend</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=copr-frontend-1.178-1.fc34">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=copr-frontend-1.178-1.fc34">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=copr-frontend-1.183-1.fc34">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=copr-frontend-1.183-1.fc34">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -56,6 +56,106 @@
 							<th scope="col">Change</th>
 						</tr>
 					</thead>
+					
+					<tr scope="row">
+						<td>2021-11-10</td>
+						<td>Silvie Chlupova <schlupov at redhat dot com> 1.183-1</td>
+						<td>- ACR toggle - handle NO_VALUE specially too
+- Fixup ACR handling
+- "Rebuild All" form to respect chroot denylist
+- "rebuild all packages" from successful builds
+- Large project modification timeout fix
+- Homepage redesign
+- Speedup BuildChroot removals
+- Add BuildChroot(s) to Build ASAP if package is known
+- APIv3 /monitor route
+- Single before_request hook
+- Checkpoint measurement helpers
+- Assure error_handler error is 500
+- Handle CoprDir.get_by_copr consistently
+- Search by attributes using the input value
+- Print searched string with attributes
+- Add dropdown with hints for searching
+- Support searching by attributes and improve searching overall
+- Openid,login by email: guide user, don't do infinite loop
+- Conscious language (group blacklist -> denylist)
+- Conscious language (chroot blacklist -> denylist)
+- Change prompt from $ to #> in Quick Enable box
+- Accept admin permissions for Copr build
+- Explain what fedora-review project is</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-10-01</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 1.182-1</td>
+						<td>- fixup SubqueryPaginator for older sqlalchemy versions</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-09-30</td>
+						<td>Silvie Chlupova 1.181-1</td>
+						<td>- frontend: better not found message for not existing chroot
+- frontend: avoid additional query for main_dir.full_name
+- frontend: add index for combination of build.id and build.copr_id
+- frontend: move the subquery hack into paginator
+- frontend: speedup for listing builds via APIv3
+- frontend: add a warning about the server-side pagination
+- frontend: web-ui: paginate monitor page for more than 1000 packages
+- backend: don't unnecessarily split the web-ui monitor route
+- frontend: web-ui: sync package list with build list
+- frontend: web-ui: server-side pagination for too-many-packages
+- frontend: web-ui: server-side pagination for too-many-builds
+- frontend: speedup /<owner>/<project>/builds/ route
+- frontend: log pending build records only when debugging
+- frontend: drop LegacyApiError exception
+- frontend: remove all APIv1 code
+- Add API entrypoint for regenerating repos
+- frontend: fix rawhide_to_release/brach_fedora commands</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-08-25</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 1.180-1</td>
+						<td>- use the same repofile for all Fedora versions including Rawhide
+- don't traceback for "module exists" error
+- fixup logging of info messages
+- don't depend on python-six, drop __future__ imports
+- move package non-denylisted chroots to general information
+- show more of general package information on package detail page
+- update main.ini and rpkg.conf.j2 for rpkg 3.0 compatibility
+- make template caching configurable
+- log basic request information for each traceback
+- do not cache last build badge
+- drop user proxy concept, we don't use it
+- generate webhook secrets using APIv3</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-15</td>
+						<td>Pavel Raiskup <praiskup at redhat dot com> 1.179-1</td>
+						<td>- add support for optional namespaces in DistGit instances
+- add a "storage statistics" link to footer
+- fix the copr logo so it contains updated "fedora" font
+- index the CoprChroot.deleted field to speedup API/UI
+- a new admin command for prolonging unnoticed chroots
+- properly notify all not-deleted chroots
+- storage waste - drop upload temporary directories even upon source failure
+- automatically request PR CoprDirs removal using a new action type
+- colorize CoprDir-buttons on builds page, notifying users which of them will be removed soon
+- fix build-listing for copr-dirs, show all builds by default again
+- forked source builds now have forked source_status, too
+- fixed the comps file hyperlink in web-UI form
+- packaging - don't install test files (not used at runtime)
+- allow user to disable generating appstream metadata (admin action is no longer needed)
+- provide ENVRA build results via APIv3 (for particular build ID)
+- review.txt link is now shown only for proper chroots
+- add a logo for the OpenMandriva chroots
+- the default value for MockChroot.comment should be none
+- pruner: allow pruning also the finalized chroots
+- invent a new FE-BE API version constant, guarding against incompatible FE/BE installations
+- a new knob for turning a profiler on (devel setup)
+- newly we show two latest blog post articles</td>
+					</tr>
 					
 					<tr scope="row">
 						<td>2021-04-30</td>
@@ -137,125 +237,6 @@
 						<td>- fix error 500 during build resubmit in Web-UI</td>
 					</tr>
 					
-					<tr scope="row">
-						<td>2021-01-20</td>
-						<td>Pavel Raiskup <praiskup at redhat dot com> 1.173-1</td>
-						<td>- temporarily revert one patch breaking 'copr modify' command</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2021-01-20</td>
-						<td>Pavel Raiskup <praiskup at redhat dot com> 1.172-1</td>
-						<td>- reworked chroots fields in copr/build forms
-- do not fork EOLed/disabled chroots
-- allow disabling modules in the buildroot
-- rename button from Update to Request in permission form
-- allow excluding chroots when submitting builds
-- delete ReviewedOutdatedChroot rows on cascade
-- disable gpgcheck for external runtime dependencies
-- generate build_chroots for resubmitted SRPM-upload builds
-- drop dependencies on orphaned and useless javascript packages
-- allow setting isolation option per chroot
-- depend on python3-email-validator
-- allow project admins to edit chroots
-- allow overriding the api token instructions downstream
-- drop delete_after tag for re-activated EOLed chroot
-- sync delete_after_timestamp for all EOLed copr_chroots
-- support modulemd v2
-- keep showing the link to EOLed repo files in copr project
-- allow enabling not-yet-deleted but only eoled chroots</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-11-30</td>
-						<td>Pavel Raiskup <praiskup at redhat dot com> 1.171-1</td>
-						<td>- re-process killed SRPM tasks
-- backward compat APIv3 build-chroot fix
-- copr homepage/contact empty string converted to None
-- use URL path parameter (if there is such) instead of failing
-- fix custom webhook for binary payload
-- added new mock --isolation option in Copr
-- don't allow prolonging already expired chroots
-- try-except block for github webhook without clone_url
-- deduplicate APIv3 build-chroot parameters
-- don't traceback when the build ID larger than integer
-- allow searching builds by build ID
-- fix email recipient for permissions update</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-11-09</td>
-						<td>Jakub Kadlcik <frostyx at email dot cz> 1.170-1</td>
-						<td>- frontend: hide buttons in repositories pages for non-admins
-- frontend: fix User.copr_permission relationship
-- frontend: de-dup the rendering html code for repositories
-- frontend: sync flash about EOL repos with the listing indent
-- frontend, python: we cannot order chroots by name
-- frontend: show a warning that user should visit their EOL repositories page
-- frontend: add EOL repositories page for user (in opposite to project)
-- frontend: not access flask.g.user, user parameter instead
-- frontend: put the "running/starting/..." text to breadcrumb
-- frontend: silence cyclic-import warnings
-- cli, frontend: custom build batches
-- frontend: silence warnings from confused PyLint
-- frontend: de-duplicate forms
-- frontend: fix canceling builds
-- frontend: document the attributes related to EOLed chroots
-- frontend: fix APIv3 ordering
-- frontend: test: adding tests for canceling builds
-- frontend: don't set ended_on for canceled builds
-- frontend: don't re-set Build.package value
-- frontend: assign package ASAP with rebuilds
-- frontend: test chroot-edit 403 and form errors
-- frontend: fix-up the CoprChroot form rendering
-- frontend: de-duplicate work with build form
-- frontend: merge two methods which were split needlessly
-- frontend: short-cut the loop in build_config chroot search
-- frontend, cli, python, rpmbuild: better bootstrap config
-- beaker-tests, cli, frontend, python, rpmbuild: add option to config bootstrap
-- frontend: fix the monitor page
-- frontend: exception handlers fix once more
-- Revert "frontend: fix exception tests for F31"
-- frontend: redirect to URLs with trailing slashes
-- all: run pytest with -vv in package build
-- cli: fix timeout option to allow change timeout for build
-- frontend: reduce the timeout to 5 hours
-- frontend: input field for setting timeout for builds
-- frontend: remove setting memory requirements
-- frontend: access chroots more safely to avoid KeyError
-- frontend: don't mark ELN as fedora latest version
-- frontend: use "source build" collocation, not "srpm build"
-- frontend: don't duplicate enums.BuildSourceEnum
-- common, cli, python, rpmbuild, frontend, backend: DistGit source method
-- frontend: nicer message in package name validator
-- frontend: nicer web-UI error message on missing default source method
-- frontend: catch NoPackageSourceException in apiv3 on rebuild
-- frontend: move error handlers to the same file
-- frontend: fix exception tests for F31
-- frontend: improve APIv3 exception handling for better messages
-- frontend: fix custom form errors also for CoprFormFactory and
-  CreateModuleForm
-- frontend: make sure user cannot pin projects that he doesn't have permissions
-  to
-- frontend: fix PinnedCoprsForm validation
-- frontend: count srpm builds in statistics
-- frontend: allow . and disallow : in package name
-- frontend: allow '+' symbol in package name
-- frontend: enable coverage for ./commands
-- frontend: silence pylint issues
-- frontend: fix testsuite stderr warnings
-- frontend: test branch-fedora command
-- frontend: fix rawhide-to-release to inherit comment
-- frontend: fix forking into an existing project</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2020-08-18</td>
-						<td>Pavel Raiskup <praiskup at redhat dot com> 1.169-1</td>
-						<td>- fix rawhide-to-release command
-- simplify API and UI error handlers</td>
-					</tr>
-					
 					<tbody>
 					</tbody>
 				</table>
@@ -272,7 +253,7 @@
 						<a href="/pkgs/copr-frontend-fedora/fedora-34.html">
 						
 						
-						copr-frontend-fedora</a> = 4
+						copr-frontend-fedora</a> = 5
 						
 
 						</li>
@@ -309,10 +290,40 @@
 						
 						<li>
 						
+						<a href="/pkgs/httpd/fedora-34.html">
+						
+						
+						httpd
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/js-jquery-ui/fedora-34.html">
+						
+						
+						js-jquery-ui
+						
+
+						</li>
+						
+						<li>
+						
 						<a href="/pkgs/modulemd-tools/fedora-34.html">
 						
 						
 						modulemd-tools</a> >= 0.6
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-copr-common/fedora-34.html">
+						
+						
+						python3-copr-common</a> >= 0.11.1.dev
 						
 
 						</li>
@@ -333,6 +344,26 @@
 						
 						
 						python3-lxml
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-markdown/fedora-34.html">
+						
+						
+						python3-markdown
+						
+
+						</li>
+						
+						<li>
+						
+						<a href="/pkgs/python3-pytz/fedora-34.html">
+						
+						
+						python3-pytz
 						
 
 						</li>
@@ -561,6 +592,10 @@
 				
 				
 				
+				<li>2318cc31444e_add_column_appstream.py</li>
+				
+				
+				
 				<li>24e9054d4155_fix_results_paths.py</li>
 				
 				
@@ -582,6 +617,10 @@
 				
 				
 				<li>2db1d0557b06_fill_ended_on_column_in_action_table.py</li>
+				
+				
+				
+				<li>33a73ed44f83_blacklist_denylist.py</li>
 				
 				
 				
@@ -610,6 +649,10 @@
 				
 				
 				<li>3d89a66848c5_follow_fedora_branching.py</li>
+				
+				
+				
+				<li>45d0515bdc3f_drop_proxy_column.py</li>
 				
 				
 				
@@ -646,6 +689,10 @@
 				
 				
 				<li>55a07cb7bd68_add_table_for_pinnedcoprs.py</li>
+				
+				
+				
+				<li>55d1e8962a93_add_index_for_buildchrootresult_build_id.py</li>
 				
 				
 				
@@ -725,6 +772,10 @@
 				
 				
 				
+				<li>8ea94673d6ee_index_coprchroot_deleted.py</li>
+				
+				
+				
 				<li>8fd7c4714189_isolation_option_for_chroot.py</li>
 				
 				
@@ -797,6 +848,14 @@
 				
 				
 				
+				<li>2318cc31444e_add_column_appstream.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>2318cc31444e_add_column_appstream.cpython-39.pyc</li>
+				
+				
+				
 				<li>24e9054d4155_fix_results_paths.cpython-39.opt-1.pyc</li>
 				
 				
@@ -842,6 +901,14 @@
 				
 				
 				<li>2db1d0557b06_fill_ended_on_column_in_action_table.cpython-39.pyc</li>
+				
+				
+				
+				<li>33a73ed44f83_blacklist_denylist.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>33a73ed44f83_blacklist_denylist.cpython-39.pyc</li>
 				
 				
 				
@@ -898,6 +965,14 @@
 				
 				
 				<li>3d89a66848c5_follow_fedora_branching.cpython-39.pyc</li>
+				
+				
+				
+				<li>45d0515bdc3f_drop_proxy_column.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>45d0515bdc3f_drop_proxy_column.cpython-39.pyc</li>
 				
 				
 				
@@ -970,6 +1045,14 @@
 				
 				
 				<li>55a07cb7bd68_add_table_for_pinnedcoprs.cpython-39.pyc</li>
+				
+				
+				
+				<li>55d1e8962a93_add_index_for_buildchrootresult_build_id.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>55d1e8962a93_add_index_for_buildchrootresult_build_id.cpython-39.pyc</li>
 				
 				
 				
@@ -1125,6 +1208,14 @@
 				
 				
 				
+				<li>8ea94673d6ee_index_coprchroot_deleted.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>8ea94673d6ee_index_coprchroot_deleted.cpython-39.pyc</li>
+				
+				
+				
 				<li>8fd7c4714189_isolation_option_for_chroot.cpython-39.opt-1.pyc</li>
 				
 				
@@ -1194,6 +1285,14 @@
 				
 				
 				<li>b14b27e4a795_adding_isolation_option.cpython-39.pyc</li>
+				
+				
+				
+				<li>b630bad8a01e_add_index_for_combination_of_build_id_.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>b630bad8a01e_add_index_for_combination_of_build_id_.cpython-39.pyc</li>
 				
 				
 				
@@ -1285,6 +1384,14 @@
 				
 				
 				
+				<li>d5990bd4aa46_index_build_id_per_dir.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>d5990bd4aa46_index_build_id_per_dir.cpython-39.pyc</li>
+				
+				
+				
 				<li>d6cbf6cd74da_prefer_none_over_empty_string_in_email_.cpython-39.opt-1.pyc</li>
 				
 				
@@ -1341,6 +1448,22 @@
 				
 				
 				
+				<li>e2b1cb42e6b7_add_namespace_for_fedora_distgit.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>e2b1cb42e6b7_add_namespace_for_fedora_distgit.cpython-39.pyc</li>
+				
+				
+				
+				<li>efec6b1aa9a2_add_buildchrootresults.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>efec6b1aa9a2_add_buildchrootresults.cpython-39.pyc</li>
+				
+				
+				
 				<li>f61a5c930abf_unique_constraint_on_modules.cpython-39.opt-1.pyc</li>
 				
 				
@@ -1382,6 +1505,10 @@
 				
 				
 				<li>b14b27e4a795_adding_isolation_option.py</li>
+				
+				
+				
+				<li>b630bad8a01e_add_index_for_combination_of_build_id_.py</li>
 				
 				
 				
@@ -1429,6 +1556,10 @@
 				
 				
 				
+				<li>d5990bd4aa46_index_build_id_per_dir.py</li>
+				
+				
+				
 				<li>d6cbf6cd74da_prefer_none_over_empty_string_in_email_.py</li>
 				
 				
@@ -1454,6 +1585,14 @@
 				
 				
 				<li>e183e12563ee_add_index_to_module_id.py</li>
+				
+				
+				
+				<li>e2b1cb42e6b7_add_namespace_for_fedora_distgit.py</li>
+				
+				
+				
+				<li>efec6b1aa9a2_add_buildchrootresults.py</li>
 				
 				
 				
@@ -1529,6 +1668,10 @@
 				
 				
 				
+				<li>delete_dirs.py</li>
+				
+				
+				
 				<li>delete_orphans.py</li>
 				
 				
@@ -1554,6 +1697,10 @@
 				
 				
 				<li>fail_build.py</li>
+				
+				
+				
+				<li>fixup_unnoticed_chroots.py</li>
 				
 				
 				
@@ -1698,6 +1845,14 @@
 				
 				
 				<li>mail.cpython-39.pyc</li>
+				
+				
+				
+				<li>measure.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>measure.cpython-39.pyc</li>
 				
 				
 				
@@ -1969,6 +2124,10 @@
 				
 				
 				
+				<li>measure.py</li>
+				
+				
+				
 				<li>models.py</li>
 				
 				
@@ -2186,6 +2345,10 @@
 				
 				
 				<li>mageia.png</li>
+				
+				
+				
+				<li>openmandriva.png</li>
 				
 				
 				
@@ -2678,6 +2841,14 @@
 				
 				
 				</ul></li>
+				
+				
+				
+				<li>old_copr_logo.png</li>
+				
+				
+				
+				<li>openmandriva_logo.png</li>
 				
 				
 				
@@ -3349,6 +3520,14 @@
 				
 				
 				
+				<li>apiv3_monitor.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>apiv3_monitor.cpython-39.pyc</li>
+				
+				
+				
 				<li>apiv3_packages.cpython-39.opt-1.pyc</li>
 				
 				
@@ -3378,6 +3557,14 @@
 				
 				
 				<li>apiv3_projects.cpython-39.pyc</li>
+				
+				
+				
+				<li>apiv3_webhooks.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>apiv3_webhooks.cpython-39.pyc</li>
 				
 				
 				
@@ -3413,6 +3600,10 @@
 				
 				
 				
+				<li>apiv3_monitor.py</li>
+				
+				
+				
 				<li>apiv3_packages.py</li>
 				
 				
@@ -3426,6 +3617,10 @@
 				
 				
 				<li>apiv3_projects.py</li>
+				
+				
+				
+				<li>apiv3_webhooks.py</li>
 				
 				
 				
@@ -3569,6 +3764,14 @@
 				
 				
 				
+				<li>pagination_redirect.cpython-39.opt-1.pyc</li>
+				
+				
+				
+				<li>pagination_redirect.cpython-39.pyc</li>
+				
+				
+				
 				</ul></li>
 				
 				
@@ -3586,6 +3789,10 @@
 				
 				
 				<li>coprs_packages.py</li>
+				
+				
+				
+				<li>pagination_redirect.py</li>
 				
 				
 				
@@ -3958,762 +4165,6 @@
 				
 				
 				<li>copr_dump_db.sh</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>tests/<ul>
-				
-				
-				
-				<li>__init__.py</li>
-				
-				
-				
-				<li>__pycache__/<ul>
-				
-				
-				
-				<li>__init__.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>__init__.cpython-39.pyc</li>
-				
-				
-				
-				<li>coprs_test_case.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>coprs_test_case.cpython-39.pyc</li>
-				
-				
-				
-				<li>request_test_api.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>request_test_api.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_config_overrides.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_config_overrides.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_copr_create.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_copr_create.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_exceptions.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_exceptions.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_forms.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_forms.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_helpers.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_helpers.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_mail.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_mail.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_models.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_models.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_pagure_events.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_pagure_events.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_rmodels.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_rmodels.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_webhooks.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_webhooks.cpython-39.pyc</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>coprs_test_case.py</li>
-				
-				
-				
-				<li>data/<ul>
-				
-				
-				
-				<li>webhooks/<ul>
-				
-				
-				
-				<li>diff-01.html</li>
-				
-				
-				
-				<li>diff-02.html</li>
-				
-				
-				
-				<li>diff-03.html</li>
-				
-				
-				
-				<li>diff-04.html</li>
-				
-				
-				
-				<li>raw-01.patch</li>
-				
-				
-				
-				<li>raw-02.patch</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>request_test_api.py</li>
-				
-				
-				
-				<li>test_api/<ul>
-				
-				
-				
-				<li>__pycache__/<ul>
-				
-				
-				
-				<li>test_build_r.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_build_r.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_build_task_r.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_build_task_r.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_mock_chroot_r.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_mock_chroot_r.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_project_chroot_r.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_project_chroot_r.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_project_r.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_project_r.cpython-39.pyc</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_build_r.py</li>
-				
-				
-				
-				<li>test_build_task_r.py</li>
-				
-				
-				
-				<li>test_mock_chroot_r.py</li>
-				
-				
-				
-				<li>test_project_chroot_r.py</li>
-				
-				
-				
-				<li>test_project_r.py</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_apiv3/<ul>
-				
-				
-				
-				<li>__pycache__/<ul>
-				
-				
-				
-				<li>test_builds.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_builds.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_copr_chroot.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_copr_chroot.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_mock_chroot.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_mock_chroot.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_packages.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_packages.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_projects.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_projects.cpython-39.pyc</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_builds.py</li>
-				
-				
-				
-				<li>test_copr_chroot.py</li>
-				
-				
-				
-				<li>test_mock_chroot.py</li>
-				
-				
-				
-				<li>test_packages.py</li>
-				
-				
-				
-				<li>test_projects.py</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_commands/<ul>
-				
-				
-				
-				<li>__pycache__/<ul>
-				
-				
-				
-				<li>test_create_chroots.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_create_chroots.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_delete_outdated_chroots.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_delete_outdated_chroots.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_notify_outdated_chroots.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_notify_outdated_chroots.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_rawhide_to_release.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_rawhide_to_release.cpython-39.pyc</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_create_chroots.py</li>
-				
-				
-				
-				<li>test_delete_outdated_chroots.py</li>
-				
-				
-				
-				<li>test_notify_outdated_chroots.py</li>
-				
-				
-				
-				<li>test_rawhide_to_release.py</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_config_overrides.py</li>
-				
-				
-				
-				<li>test_copr_create.py</li>
-				
-				
-				
-				<li>test_exceptions.py</li>
-				
-				
-				
-				<li>test_forms.py</li>
-				
-				
-				
-				<li>test_helpers.py</li>
-				
-				
-				
-				<li>test_logic/<ul>
-				
-				
-				
-				<li>__pycache__/<ul>
-				
-				
-				
-				<li>test_batch_logic.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_batch_logic.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_builds_logic.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_builds_logic.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_complex_logic.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_complex_logic.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_coprs_logic.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_coprs_logic.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_modules_logic.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_modules_logic.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_outdated_chroots_logic.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_outdated_chroots_logic.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_packages_logic.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_packages_logic.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_stat_logic.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_stat_logic.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_users_logic.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_users_logic.cpython-39.pyc</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_batch_logic.py</li>
-				
-				
-				
-				<li>test_builds_logic.py</li>
-				
-				
-				
-				<li>test_complex_logic.py</li>
-				
-				
-				
-				<li>test_coprs_logic.py</li>
-				
-				
-				
-				<li>test_modules_logic.py</li>
-				
-				
-				
-				<li>test_outdated_chroots_logic.py</li>
-				
-				
-				
-				<li>test_packages_logic.py</li>
-				
-				
-				
-				<li>test_stat_logic.py</li>
-				
-				
-				
-				<li>test_users_logic.py</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_mail.py</li>
-				
-				
-				
-				<li>test_models.py</li>
-				
-				
-				
-				<li>test_pagure_events.py</li>
-				
-				
-				
-				<li>test_rmodels.py</li>
-				
-				
-				
-				<li>test_views/<ul>
-				
-				
-				
-				<li>__pycache__/<ul>
-				
-				
-				
-				<li>test_misc.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_misc.cpython-39.pyc</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_admin/<ul>
-				
-				
-				
-				<li>__pycache__/<ul>
-				
-				
-				
-				<li>test_admin_general.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_admin_general.cpython-39.pyc</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_admin_general.py</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_api_ns/<ul>
-				
-				
-				
-				<li>__pycache__/<ul>
-				
-				
-				
-				<li>test_api_general.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_api_general.cpython-39.pyc</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_api_general.py</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_backend_ns/<ul>
-				
-				
-				
-				<li>__pycache__/<ul>
-				
-				
-				
-				<li>test_backend_general.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_backend_general.cpython-39.pyc</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_backend_general.py</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_coprs_ns/<ul>
-				
-				
-				
-				<li>__pycache__/<ul>
-				
-				
-				
-				<li>test_coprs_builds.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_coprs_builds.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_coprs_chroots.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_coprs_chroots.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_coprs_general.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_coprs_general.cpython-39.pyc</li>
-				
-				
-				
-				<li>test_method_distgit.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_method_distgit.cpython-39.pyc</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_coprs_builds.py</li>
-				
-				
-				
-				<li>test_coprs_chroots.py</li>
-				
-				
-				
-				<li>test_coprs_general.py</li>
-				
-				
-				
-				<li>test_method_distgit.py</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_groups_ns/<ul>
-				
-				
-				
-				<li>__pycache__/<ul>
-				
-				
-				
-				<li>test_groups_general.cpython-39.opt-1.pyc</li>
-				
-				
-				
-				<li>test_groups_general.cpython-39.pyc</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_groups_general.py</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_misc.py</li>
-				
-				
-				
-				</ul></li>
-				
-				
-				
-				<li>test_webhooks.py</li>
 				
 				
 				

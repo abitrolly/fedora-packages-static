@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>tito-0.6.16-1.el8 - Fedora Packages</title>
+		<title>tito-0.6.19-1.el8 - Fedora Packages</title>
 		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../assets/css/main.css">
 		<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
@@ -22,12 +22,12 @@
 			<hr />
 
 			<h1>
-				tito-0.6.16-1.el8<small class="text-muted"> in EPEL 8</small>
+				tito-0.6.19-1.el8<small class="text-muted"> in EPEL 8</small>
 			</h1>
 			<p>
 				<a href=".">&crarr; Retrun to the main page of tito</a><br>
-				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=tito-0.6.16-1.el8">View in Koji</a><br>
-				<a href="https://bodhi.fedoraproject.org/updates/?search=tito-0.6.16-1.el8">Search Bodhi</a>
+				<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=tito-0.6.19-1.el8">View in Koji</a><br>
+				<a href="https://bodhi.fedoraproject.org/updates/?search=tito-0.6.19-1.el8">Search Bodhi</a>
 			</p>
 
 			<p>
@@ -56,6 +56,40 @@
 							<th scope="col">Change</th>
 						</tr>
 					</thead>
+					
+					<tr scope="row">
+						<td>2021-08-15</td>
+						<td>Jakub Kadlcik <frostyx at email dot cz> 0.6.19-1</td>
+						<td>- Drop unused urllib.request import (frostyx@email.cz)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-06-23</td>
+						<td>Jakub Kadlcik <frostyx at email dot cz> 0.6.18-1</td>
+						<td>- Document fetch_sources option in tito.props (frostyx@email.cz)
+- Rename fetch-sources to fetch_sources in the tito.props config
+  (frostyx@email.cz)
+- Adding option to fetch sources (sisi.chlupova@gmail.com)
+- Change the master branch in releasers.conf to rawhide (frostyx@email.cz)</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>2021-05-17</td>
+						<td>Jakub Kadlcik <frostyx at email dot cz> 0.6.17-1</td>
+						<td>- Update releasers.conf (frostyx@email.cz)
+- Make build --verbose autocompletable (nmoumoul@redhat.com)
+- Add support for centpkg (wpoteat@redhat.com)
+- Remove extraneous extra newline (areese@users.noreply.github.com)
+- Add some documentation for tito.builder.SubmoduleAwareBuilder
+  (areese999@apple.com)
+- Update based on feedback: 1. Remove PushDir, tito.common.chdir has the same
+  functionality so use that instead. 2. Remove useless override of constructor,
+  it's just extra noise. (areese999@apple.com)
+- 150 Add support for repos that use submodules. Allow though submodules are a
+  contentious topic, this adds a submodule_aware_builder (areese999@apple.com)
+- doc: fix typo tito.props (subpop@users.noreply.github.com)
+- Update fedora releaser in .tito/releasers.conf (frostyx@email.cz)</td>
+					</tr>
 					
 					<tr scope="row">
 						<td>2021-01-26</td>
@@ -143,88 +177,6 @@
 - use built-in shutil.copy2 instead of cp command (mtinberg@wisc.edu)
 - Avoid double builds with mock (tdockendorf@osc.edu)
 - Fix rsync failures in dockerized tests, update for F27. (dgoodwin@redhat.com)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2017-12-07</td>
-						<td>Devan Goodwin <dgoodwin at rm dash rf dot ca> 0.6.11-1</td>
-						<td>- Fixing remote_git_name (adammhaile@gmail.com)
-- Fix links in README.md file (mzalewsk@redhat.com)
-- Encourage usage of git push --follow-tags (mzalewsk@redhat.com)
-- Print mock output when building with MockBuilder (yuxzhu@redhat.com)
-- Fix a race condition when /tmp/tito doesn't exist (vfreex@gmail.com)
-- Don't append 'None' to Release line with no '%{?dist}' part
-  (patrice.fournier@ifax.com)
-- python3's map() returns a map object, but we expect sources to be a list
-  (evgeni@golov.de)
-- Submitting was missing a t. (jmrodri@gmail.com)
-- update links (robberphex@gmail.com)
-- use LC_ALL=C.UTF-8 rather than plain C (msuchy@redhat.com)
-- make ReleaseTagger honour --use-version (egolov@redhat.com)
-- also verify that ReleaseTagger supports --use-release (egolov@redhat.com)
-- add test for ReleaseTagger together with --use-version (egolov@redhat.com)
-- Format package list more cleanly (skuznets@redhat.com)
-- Custom tag support in tito release (vrutkovs@redhat.com)
-- VersionTagger should support custom tag format (vrutkovs@redhat.com)
-- Remove createrepo_c BR from spec (ngompa13@gmail.com)
-- Use createrepo_c for creating rpm-md repos (ngompa13@gmail.com)
-- Fixup Fedora Dockerfiles to work correctly (ngompa13@gmail.com)
-- Remove useless EL5 stuff (ngompa13@gmail.com)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2017-02-01</td>
-						<td>Devan Goodwin <dgoodwin at rm dash rf dot ca> 0.6.10-1</td>
-						<td>- Do not undo tags when git state is dirty (skuznets@redhat.com)
-- Parse options in `tito init` (skuznets@redhat.com)
-- Only use `rpmbuild --noclean` if it is supported (skuznets@redhat.com)
-- Explicitly define indicies in formatting statements (skuznets@redhat.com)
-- Achieve quiet output from `rpmbuild` without passing `--quiet`
-  (skuznets@redhat.com)
-- Update the MANIFEST.in (skuznets@redhat.com)
-- Correctly pass verbosity options through the builder CLI
-  (skuznets@redhat.com)
-- Use correct print-formatting directive in debugging (skuznets@redhat.com)
-- Use `.format()` string formatting correctly in Builder (skuznets@redhat.com)
-- Refactor `rpmbuild` invocation for readability (skuznets@redhat.com)
-- Added `--quiet` and `--verbose` to `tito build` (skuznets@redhat.com)
-- Add a Travis CI manifest (skuznets@redhat.com)
-- Only flush output stream if flushing is supported (skuznets@redhat.com)
-- Added support for choosing platforms for tests (skuznets@redhat.com)
-- Refactored version->tag mapping logic in Tagger (skuznets@redhat.com)
-- Improved debugging for RPM build step (skuznets@redhat.com)
-- Print command debugging information only once (skuznets@redhat.com)
-- Flush output buffers (skuznets@redhat.com)
-- Document `tito tag --use-release` in the manpage (skuznets@redhat.com)
-- Added an option to not escalate privileges on `tito build --install`
-  (skuznets@redhat.com)
-- Factor out the version->tag mapping in the Builder (skuznets@redhat.com)
-- Collapse tagger class selection logic (skuznets@redhat.com)
-- Rename `globalconfig` section to `buildconfig` in README
-  (skuznets@redhat.com)
-- fixes #29 - remove --list-tags and --only-tags (jmrodri@gmail.com)
-- 253 - print cmd info when --debug is supplied (jmrodri@gmail.com)
-- Work around `dnf` issues and install builddep for Rawhide
-  (skuznets@redhat.com)</td>
-					</tr>
-					
-					<tr scope="row">
-						<td>2017-01-09</td>
-						<td>Devan Goodwin <dgoodwin at rm dash rf dot ca> 0.6.9-1</td>
-						<td>- Simplified version and release update logic (skuznets@redhat.com)
-- Added `--use-release` flag for `tito tag` (skuznets@redhat.com)
-- Use `def` instead of a lambda for function assignment (skuznets@redhat.com)
-- Fix typos in man pages (lsedlar@redhat.com)
-- explain how automatic tagging was done (msuchy@redhat.com)
-- Rename CargoTagger as CargoBump (msehnout@redhat.com)
-- Fix errors in documentation (lsedlar@redhat.com)
-- fix few pep8 errors (sehnoutka.martin@gmail.com)
-- Read tito.props and look for pkg managers section.
-  (sehnoutka.martin@gmail.com)
-- Implement cargo tagger using regular expressions (without toml library)
-  (sehnoutka.martin@gmail.com)
-- Add entry point for Cargo tagger and tagger class.
-  (sehnoutka.martin@gmail.com)</td>
 					</tr>
 					
 					<tbody>
@@ -472,6 +424,14 @@
 				
 				
 				
+				<li>submodule_aware_builder.cpython-36.opt-1.pyc</li>
+				
+				
+				
+				<li>submodule_aware_builder.cpython-36.pyc</li>
+				
+				
+				
 				</ul></li>
 				
 				
@@ -481,6 +441,10 @@
 				
 				
 				<li>main.py</li>
+				
+				
+				
+				<li>submodule_aware_builder.py</li>
 				
 				
 				
@@ -688,7 +652,7 @@
 				
 				
 				
-				<li>tito-0.6.16-py3.6.egg-info/<ul>
+				<li>tito-0.6.19-py3.6.egg-info/<ul>
 				
 				
 				
