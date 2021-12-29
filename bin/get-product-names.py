@@ -36,7 +36,7 @@ def get_data(URI, previous_data=None):
 def main():
     final_data = get_data(PDC_URI)
     with open(PRODUCT_VERSION_MAPPING, "w") as outfile:
-        json.dump(final_data, outfile)
+        json.dump(final_data, outfile, indent=2)
 
 
 if __name__ == "__main__":
