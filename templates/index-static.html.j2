@@ -1,14 +1,19 @@
 {% extends "layout.html.j2" %}
 {% set no_index = True %}
+{% if main_is_static %}
+  {% set no_link = True %}
+{% endif %}
 
 {% block title %}Index - Fedora Packages{% endblock %}
 
 {% block content %}
   <h2 class="text-center">Index</h2>
 
+  {% if not main_is_static %}
   <p class="text-center">
     <a href="index.html">Back to the main page &crarr;</a>
   </p>
+  {% endif %}
 
   <p id="prefix" class="text-center">
     {% for prefix in prefix_index %}

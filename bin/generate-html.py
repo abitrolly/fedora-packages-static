@@ -121,7 +121,7 @@ def main():
     args = parser.parse_args()
 
     # Make sure output directory exists.
-    output_dir = args.target_dir
+    output_dir = Path(args.target_dir)
     os.makedirs(output_dir, exist_ok=True)
 
     # Initialize templating system.
@@ -283,6 +283,7 @@ def main():
 
     # Generate main user entrypoint.
     print("Generating index pages...")
+    main_is_static = True if SEARCH_BACKEND is False else False
 
     pkgs_list = []
     # {"aa": ["aaargh", ...]}
@@ -309,8 +310,8 @@ def main():
         date=date.today().isoformat(),
         package_count=max_page_count,
         prefix_index=prefix_index,
+        main_is_static=main_is_static
     )
-    save_to(os.path.join(output_dir, "index-static.html"), static_index_html)
 
     search = env.get_template("index.html.j2")
     search_html = search.render(
@@ -318,14 +319,19 @@ def main():
         package_count=max_page_count,
         search_backend=SEARCH_BACKEND,
     )
-    save_to(os.path.join(output_dir, "index.html"), search_html)
+
+    if main_is_static:
+        save_to(output_dir / "index.html", static_index_html)
+    else:
+        save_to(output_dir / "index-static.html", static_index_html)
+        save_to(output_dir / "index.html", search_html)
 
     index_tpl = env.get_template("index-prefix.html.j2")
     index_dir = os.path.join(output_dir, "index")
     os.makedirs(index_dir, exist_ok=True)
     for prefix, names in prefix_index.items():
         html = index_tpl.render(
-            prefix=prefix, packages=names, search_backend=SEARCH_BACKEND
+            prefix=prefix, packages=names, main_is_static=main_is_static
         )
         save_to(os.path.join(index_dir, f"{prefix}.html"), html)
 
