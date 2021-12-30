@@ -7,10 +7,12 @@ RUN dnf -y upgrade \
   uwsgi-plugin-python3 \
   supervisor \
   make \
+  curl \
   python3-requests \
   python3-jinja2 \
   python3-defusedxml \
   python3-tqdm \
+  python3-libdnf \
   npm \
   rsync
 
