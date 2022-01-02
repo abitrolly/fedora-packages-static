@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+<title>perl-MCE-1.862-1.el7 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+
+<meta name="description" content="View perl-MCE-1.862-1.el7 in EPEL 7. perl-MCE: Many-core Engine for Perl providing parallel processing capabilities">
+
+</head>
+
+<div class="container">
+  
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+      
+    </div>
+  </div>
+
+  <hr />
+  
+
+  
+<h1>
+	perl-MCE-1.862-1.el7<small class="text-muted"> in EPEL 7</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of perl-MCE</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=perl-MCE-1.862-1.el7">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=perl-MCE-1.862-1.el7">Search for updates</a>
+</p>
+
+<p>
+	
+	<b>Package Info</b><br>
+	
+	<a href="#changelog">&#129047; Changelog</a><br>
+	
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	
+	
+	<a href="#provides">&#129047; Provides</a><br>
+	
+	
+	<a href="#files">&#129047; Files</a><br>
+	
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		
+		<tr scope="row">
+			<td>2019-09-19</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.862-1</td>
+			<td>- Update to 1.862
+  - The edge cases regarding signal handling have finally been resolved for
+    MCE::Child; see mce-examples/framebuffer on GitHub</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2019-09-16</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.860-1</td>
+			<td>- Update to 1.860
+  - Signal-handling update release
+  - Localized input and output record separators in MCE::Channel
+  - IPC safety in MCE::Child during SIGINT and SIGTERM
+  - Method $child-&gt;exit in MCE::Child now sends the SIGINT signal for extra
+    reliability with MCE::Shared (previously SIGQUIT)</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2019-09-09</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.850-1</td>
+			<td>- Update to 1.850 (no changes)</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2019-09-09</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.849-1</td>
+			<td>- Update to 1.849
+  - Fixed edge case in MCE::Child when reaping inside a signal handler
+  - Added list_pids class method to MCE::Child</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2019-09-04</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.848-1</td>
+			<td>- Update to 1.848
+  - Improved IO::All::{ File, Pipe, STDIO } output via MCE-&gt;print($io, ...),
+    printf, and say; this resolves a bug introduced in 1.845 when using
+    App::Cmd::Tester to capture output</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2019-09-03</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.847-1</td>
+			<td>- Update to 1.847
+  - Obsolete RedHat MCE-1.840-Sereal-deps.patch file; this patch file is no
+    longer needed and finally resolved with this release
+  - PDL random numbers now unique between threads:
+    see https://www.perlmonks.org/?node_id=1214439
+  - Replaced &#34;PF_UNIX&#34; with &#34;AF_UNIX&#34; in MCE::Util</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2019-08-27</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.846-1</td>
+			<td>- Update to 1.846
+  - Fixed code tags in documentation</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2019-08-26</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.845-1</td>
+			<td>- Update to 1.845
+  - Croak if is_joinable, is_running, or join is called by a non-managed
+    process in MCE::Child; added LIMITATION section to the documentation
+  - Improved is_joinable, is_running, list_joinable, and list_running in
+    MCE::Child
+  - Added example (consumer requests item) to MCE::Channel documentation
+  - Support the task_end option regardless of whether user_tasks is specified
+  - Support IO::All::{ File, Pipe, STDIO } for input data including output
+    via MCE-&gt;print($io, ...), printf, and say
+  - Support gather ⇒ MCE::Candy::out_iter_fh($io) using MCE::Candy</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2019-08-15</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.844-1</td>
+			<td>- Update to 1.844
+  - Resolved MCE stalling when specifying max_retries with init_relay, ditto
+    for loop_timeout with init_relay on UNIX platforms
+  - Enhanced loop_timeout to handle workers dieing uncontrollably from any
+    user_tasks (i.e. task_id ≥ 0); previously, only task_id == 0
+  - Improved IPC on the Windows platform for edge case when a worker is
+    awaiting input while the manager process is restarting a worker
+  - MCE, MCE::Child workers exit immediately upon receiving a SIGSEGV signal;
+    this safeguards IPC from stalling inside the manager process
+  - Enhanced the _wait_one private function in MCE::Child
+  - Removed Prima from the list for auto-enabling the posix_exit option; Prima
+    (since 1.52) is parallel safe during global cleanup
+  - Reached 100% Pod coverage</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2019-07-24</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.843-1</td>
+			<td>- Update to 1.843
+  - Updated results in MCE::Child (Parallel::ForkManager-like demonstration)
+  - Completed missing interrupt signal-safety for the non-blocking methods in
+    MCE::Channel::Mutex and MCE::Channel::Threads</td>
+		</tr>
+		
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			
+			<li>
+			
+			<a href="/pkgs/perl-MCE/perl-MCE/epel-7.html">
+			
+			
+			perl-MCE</a>
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/perl-Sereal/perl-Sereal/epel-7.html">
+			
+			
+			perl-Sereal</a> &gt;= 3.015
+			
+
+			</li>
+			
+		</ul>
+	</div>
+	
+	
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			
+			<li>perl(MCE)</li>
+			
+			<li>perl(MCE::Candy)</li>
+			
+			<li>perl(MCE::Channel)</li>
+			
+			<li>perl(MCE::Channel::Mutex)</li>
+			
+			<li>perl(MCE::Channel::Simple)</li>
+			
+			<li>perl(MCE::Channel::Threads)</li>
+			
+			<li>perl(MCE::Child)</li>
+			
+			<li>perl(MCE::Core::Input::Generator)</li>
+			
+			<li>perl(MCE::Core::Input::Handle)</li>
+			
+			<li>perl(MCE::Core::Input::Iterator)</li>
+			
+			<li>perl(MCE::Core::Input::Request)</li>
+			
+			<li>perl(MCE::Core::Input::Sequence)</li>
+			
+			<li>perl(MCE::Core::Manager)</li>
+			
+			<li>perl(MCE::Core::Validation)</li>
+			
+			<li>perl(MCE::Core::Worker)</li>
+			
+			<li>perl(MCE::Flow)</li>
+			
+			<li>perl(MCE::Grep)</li>
+			
+			<li>perl(MCE::Loop)</li>
+			
+			<li>perl(MCE::Map)</li>
+			
+			<li>perl(MCE::Mutex)</li>
+			
+			<li>perl(MCE::Mutex::Channel)</li>
+			
+			<li>perl(MCE::Mutex::Channel2)</li>
+			
+			<li>perl(MCE::Mutex::Flock)</li>
+			
+			<li>perl(MCE::Queue)</li>
+			
+			<li>perl(MCE::Relay)</li>
+			
+			<li>perl(MCE::Signal)</li>
+			
+			<li>perl(MCE::Signal::_tmpdir)</li>
+			
+			<li>perl(MCE::Step)</li>
+			
+			<li>perl(MCE::Stream)</li>
+			
+			<li>perl(MCE::Subs)</li>
+			
+			<li>perl(MCE::Util)</li>
+			
+			<li>perl-MCE</li>
+			
+		</ul>
+	</div>
+	
+</div>
+
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	
+	
+	<li>usr/<ul>
+	
+	
+	
+	<li>share/<ul>
+	
+	
+	
+	<li>doc/<ul>
+	
+	
+	
+	<li>perl-MCE-1.862/<ul>
+	
+	
+	
+	<li>Changes</li>
+	
+	
+	
+	<li>Credits</li>
+	
+	
+	
+	<li>README.md</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>licenses/<ul>
+	
+	
+	
+	<li>perl-MCE-1.862/<ul>
+	
+	
+	
+	<li>Copying</li>
+	
+	
+	
+	<li>LICENSE</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>man/<ul>
+	
+	
+	
+	<li>man3/<ul>
+	
+	
+	
+	<li>MCE.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Candy.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Channel.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Channel::Mutex.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Channel::Simple.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Channel::Threads.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Child.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Core.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Core::Input::Generator.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Core::Input::Handle.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Core::Input::Iterator.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Core::Input::Request.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Core::Input::Sequence.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Core::Manager.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Core::Validation.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Core::Worker.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Examples.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Flow.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Grep.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Loop.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Map.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Mutex.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Mutex::Channel.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Mutex::Channel2.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Mutex::Flock.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Queue.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Relay.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Signal.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Step.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Stream.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Subs.3pm.gz</li>
+	
+	
+	
+	<li>MCE::Util.3pm.gz</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>perl5/<ul>
+	
+	
+	
+	<li>vendor_perl/<ul>
+	
+	
+	
+	<li>MCE/<ul>
+	
+	
+	
+	<li>Candy.pm</li>
+	
+	
+	
+	<li>Channel/<ul>
+	
+	
+	
+	<li>Mutex.pm</li>
+	
+	
+	
+	<li>Simple.pm</li>
+	
+	
+	
+	<li>Threads.pm</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>Channel.pm</li>
+	
+	
+	
+	<li>Child.pm</li>
+	
+	
+	
+	<li>Core/<ul>
+	
+	
+	
+	<li>Input/<ul>
+	
+	
+	
+	<li>Generator.pm</li>
+	
+	
+	
+	<li>Handle.pm</li>
+	
+	
+	
+	<li>Iterator.pm</li>
+	
+	
+	
+	<li>Request.pm</li>
+	
+	
+	
+	<li>Sequence.pm</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>Manager.pm</li>
+	
+	
+	
+	<li>Validation.pm</li>
+	
+	
+	
+	<li>Worker.pm</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>Core.pod</li>
+	
+	
+	
+	<li>Examples.pod</li>
+	
+	
+	
+	<li>Flow.pm</li>
+	
+	
+	
+	<li>Grep.pm</li>
+	
+	
+	
+	<li>Loop.pm</li>
+	
+	
+	
+	<li>Map.pm</li>
+	
+	
+	
+	<li>Mutex/<ul>
+	
+	
+	
+	<li>Channel.pm</li>
+	
+	
+	
+	<li>Channel2.pm</li>
+	
+	
+	
+	<li>Flock.pm</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>Mutex.pm</li>
+	
+	
+	
+	<li>Queue.pm</li>
+	
+	
+	
+	<li>Relay.pm</li>
+	
+	
+	
+	<li>Signal.pm</li>
+	
+	
+	
+	<li>Step.pm</li>
+	
+	
+	
+	<li>Stream.pm</li>
+	
+	
+	
+	<li>Subs.pm</li>
+	
+	
+	
+	<li>Util.pm</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>MCE.pm</li>
+	
+	
+	
+	<li>MCE.pod</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+</div>
+
+
+
+  <div class="text-muted text-center">
+    
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a></div>
+    
+  </div>
+</div>

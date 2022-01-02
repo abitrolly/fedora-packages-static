@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<title>geoipupdate-4.8.0-2.fc35 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+
+<meta name="description" content="View geoipupdate-4.8.0-2.fc35 in Fedora 35. geoipupdate: Update GeoIP2 binary databases from MaxMind">
+
+</head>
+
+<div class="container">
+  
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+      
+    </div>
+  </div>
+
+  <hr />
+  
+
+  
+<h1>
+	geoipupdate-4.8.0-2.fc35<small class="text-muted"> in Fedora 35</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of geoipupdate</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=geoipupdate-4.8.0-2.fc35">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=geoipupdate-4.8.0-2.fc35">Search for updates</a>
+</p>
+
+<p>
+	
+	<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+	
+	<a href="#changelog">&#129047; Changelog</a><br>
+	
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	
+	
+	<a href="#provides">&#129047; Provides</a><br>
+	
+	
+	<a href="#files">&#129047; Files</a><br>
+	
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		
+		<tr scope="row">
+			<td>2021-07-22</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 4.8.0-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-07-21</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 4.8.0-1</td>
+			<td>- Update to 4.8.0
+  - Go 1.13 or greater is now required
+  - In verbose mode, we now print a message before each HTTP request; previously
+    we would not print anything for retried requests
+  - Expected response errors no longer cause request retries; for example, we no
+    longer retry the download request if the database subscription has lapsed</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-01-26</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 4.6.0-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-12-15</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 4.6.0-1</td>
+			<td>- Update to 4.6.0
+  - Show version number in verbose output
+  - Retry downloads in more scenarios: previously we would not retry failures
+    occurring when reading the response body, but now we do</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-10-29</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 4.5.0-1</td>
+			<td>- Update to 4.5.0
+  - The edition ID is now included when there is a failure retrieving a
+    database
+  - The Docker image no longer prints the generated GeoIP.conf when starting
+    up, which prevents a possible leak of the account&#39;s license key (GH#109)
+  - The minimum Go version is now 1.11
+  - Failing HTTP requests are now retried using an exponential backoff: the
+    period to keep retrying any failed request is set to 5 minutes by default
+    and can be adjusted using the new RetryFor configuration option
+  - When using the go package rather than the command-line tool, the default
+    value for RetryFor will be 0 seconds, which means no retries will be
+    performed: to change that, set RetryFor explicitly in the Config you
+    provide, or obtain your Config value via geoipupdate.NewConfig</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-07-27</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 4.3.0-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-04-17</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 4.3.0-1</td>
+			<td>- Update to 4.3.0
+  - First release to Docker Hub (GH#24)
+  - The binary builds are now built with CGO_ENABLED=0 (GH#63)</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-02-24</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 4.2.2-1</td>
+			<td>- Update to 4.2.2
+  - The major version of the module is now included at the end of the module
+    path; previously, it was not possible to import the module in projects that
+    were using Go modules (GH#81)
+  - A valid account ID and license key combination is now required for database
+    downloads, so those configuration options are now required
+  - The error handling when closing a local database file would previously
+    ignore errors and, upon upgrading to &#39;github.com/pkg/errors&#39; 0.9.0, would
+    fail to ignore expected errors (GH#69, GH#70)
+  - The RPM release was previously lacking the correct owner and group on files
+    and directories: among other things, this caused the package to conflict
+    with the &#39;GeoIP&#39; package in CentOS 7 and &#39;GeoIP-GeoLite-data&#39; in CentOS 8;
+    the files are now owned by &#39;root&#39; (GH#76)</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-01-28</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 4.1.5-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2019-11-10</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 4.1.5-1</td>
+			<td>- Update to 4.1.5
+  - Respect the defaultConfigFile and defaultDatabaseDirectory variables in the
+    main package again; they were ignored in 4.1.0 through 4.1.4 (if not
+    specified, the GitHub and PPA releases for these versions used the config
+    /usr/local/etc/GeoIP.conf instead of /etc/GeoIP.conf and the database
+    directory /usr/local/share/GeoIP instead of /usr/share/GeoIP)</td>
+		</tr>
+		
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			
+			<li>
+			
+			<a href="/pkgs/glibc/glibc/fedora-35.html">
+			
+			
+			glibc</a> &gt;= 2.33.9000-43.fc35
+			
+
+			</li>
+			
+		</ul>
+	</div>
+	
+	
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			
+			<li>config(geoipupdate)</li>
+			
+			<li>geoipupdate</li>
+			
+			<li>geoipupdate(x86-64)</li>
+			
+		</ul>
+	</div>
+	
+</div>
+
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	
+	
+	<li>etc/<ul>
+	
+	
+	
+	<li>GeoIP.conf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>usr/<ul>
+	
+	
+	
+	<li>bin/<ul>
+	
+	
+	
+	<li>geoipupdate</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>lib/<ul>
+	
+	
+	
+	<li>.build-id/<ul>
+	
+	
+	
+	<li>8e/<ul>
+	
+	
+	
+	<li>f2cb1bb0ec041524208ab461e4f7002d2a3d69</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>share/<ul>
+	
+	
+	
+	<li>GeoIP/<ul>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>doc/<ul>
+	
+	
+	
+	<li>geoipupdate/<ul>
+	
+	
+	
+	<li>CHANGELOG.md</li>
+	
+	
+	
+	<li>GeoIP.conf.default</li>
+	
+	
+	
+	<li>GeoIP.conf.md</li>
+	
+	
+	
+	<li>README.md</li>
+	
+	
+	
+	<li>geoipupdate.md</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>licenses/<ul>
+	
+	
+	
+	<li>geoipupdate/<ul>
+	
+	
+	
+	<li>LICENSE-APACHE</li>
+	
+	
+	
+	<li>LICENSE-MIT</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>man/<ul>
+	
+	
+	
+	<li>man1/<ul>
+	
+	
+	
+	<li>geoipupdate.1.gz</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>man5/<ul>
+	
+	
+	
+	<li>GeoIP.conf.5.gz</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+</div>
+
+
+
+  <div class="text-muted text-center">
+    
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a></div>
+    
+  </div>
+</div>

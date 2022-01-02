@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<title>ghc-random - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+
+<meta name="description" content="View ghc-random in the Fedora package repositories. ghc-random: Pseudo-random number generation">
+
+</head>
+
+<div class="container">
+  
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+      
+    </div>
+  </div>
+
+  <hr />
+  
+
+  
+<h1>
+	ghc-random
+	
+</h1>
+<p class="text-muted">Pseudo-random number generation</p>
+<ul class="list-group list-group-horizontal-lg mb-3">
+	<li class="list-group-item w-100">
+		<a href="http://koji.fedoraproject.org/koji/search?match=glob&type=package&terms=ghc-random">
+			<img alt="Builds" src="../../../assets/images/16_koji.png" height="16" width="16">
+			Builds
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="https://bodhi.fedoraproject.org/updates/?packages=ghc-random">
+			<img alt="Updates" src="../../../assets/images/16_bodhi.png" height="16" width="16">
+			Updates
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="https://bugzilla.redhat.com/buglist.cgi?component=ghc-random&query_format=advanced&product=Fedora&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED">
+			<img alt="Bugs" src="../../../assets/images/16_bugzilla.png" height="16" width="16">
+			Bugs
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="https://src.fedoraproject.org/rpms/ghc-random">
+			<img alt="Sources" src="../../../assets/images/git-logo.png" height="16" width="16">
+			Sources
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="https://retrace.fedoraproject.org/faf/problems/?component_names=ghc-random">
+			<img alt="Crash Reports" src="../../../assets/images/16_abrt.png" height="16" width="16">
+			Crash Reports
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="https://koschei.fedoraproject.org/package/ghc-random">
+			<img alt="Koschei" src="../../../assets/images/24_koschei.png" height="16" width="16">
+			Koschei
+		</a>
+	</li>
+</ul>
+<div id="vue">
+	<div class="row">
+		<div class="col-md-8">
+			
+			<p class="nowrap">This package provides basic pseudo-random number generation, including the
+ability to split random number generators.
+
+== &#34;System.Random&#34;: pure pseudo-random number interface
+
+In pure code, use &#39;System.Random.uniform&#39; and &#39;System.Random.uniformR&#39; from
+&#34;System.Random&#34; to generate pseudo-random numbers with a pure pseudo-random
+number generator like &#39;System.Random.StdGen&#39;.
+
+As an example, here is how you can simulate rolls of a six-sided die using
+&#39;System.Random.uniformR&#39;:
+
+&gt;&gt;&gt; let roll = uniformR (1, 6) :: RandomGen g =&gt; g -&gt; (Word, g) &gt;&gt;&gt; let rolls =
+unfoldr (Just . roll) :: RandomGen g =&gt; g -&gt; [Word] &gt;&gt;&gt; let pureGen = mkStdGen
+42 &gt;&gt;&gt; take 10 (rolls pureGen) :: [Word] [1,1,3,2,4,5,3,4,6,2]
+
+See &#34;System.Random&#34; for more details.
+
+== &#34;System.Random.Stateful&#34;: monadic pseudo-random number interface
+
+In monadic code, use &#39;System.Random.Stateful.uniformM&#39; and
+&#39;System.Random.Stateful.uniformRM&#39; from &#34;System.Random.Stateful&#34; to generate
+pseudo-random numbers with a monadic pseudo-random number generator, or using a
+monadic adapter.
+
+As an example, here is how you can simulate rolls of a six-sided die using
+&#39;System.Random.Stateful.uniformRM&#39;:
+
+&gt;&gt;&gt; let rollM = uniformRM (1, 6) :: StatefulGen g m =&gt; g -&gt; m Word &gt;&gt;&gt; let
+pureGen = mkStdGen 42 &gt;&gt;&gt; runStateGen_ pureGen (replicateM 10 . rollM) ::
+[Word] [1,1,3,2,4,5,3,4,6,2]
+
+The monadic adapter &#39;System.Random.Stateful.runGenState_&#39; is used here to lift
+the pure pseudo-random number generator &#39;pureGen&#39; into the
+&#39;System.Random.Stateful.StatefulGen&#39; context.
+
+The monadic interface can also be used with existing monadic pseudo-random
+number generators. In this example, we use the one provided in the
+&lt;https://hackage.haskell.org/package/mwc-random mwc-random&gt; package:
+
+&gt;&gt;&gt; import System.Random.MWC as MWC &gt;&gt;&gt; let rollM = uniformRM (1, 6) ::
+StatefulGen g m =&gt; g -&gt; m Word &gt;&gt;&gt; monadicGen &lt;- MWC.create &gt;&gt;&gt; replicateM 10
+(rollM monadicGen) :: IO [Word] [2,3,6,6,4,4,3,1,5,4]
+
+See &#34;System.Random.Stateful&#34; for more details.</p>
+			
+			<h3>Releases Overview</h3>
+			<table class="table table-striped table-borderless" id="version-table">
+				<thead>
+					<tr>
+						<th scope="col">Release</th>
+						<th scope="col">Stable</th>
+						<th scope="col">Testing</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<tr scope="row">
+						<td>Fedora Rawhide</td>
+						<td>
+						
+						<a href="fedora-rawhide.html">1.2.0-1.fc35</a>
+						
+						</td>
+
+						<td>
+						
+							-
+						
+						</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>Fedora 35</td>
+						<td>
+						
+						<a href="fedora-35.html">1.2.0-1.fc35</a>
+						
+						</td>
+
+						<td>
+						
+							-
+						
+						</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>Fedora 34</td>
+						<td>
+						
+						<a href="fedora-34.html">1.1-17.fc34</a>
+						
+						</td>
+
+						<td>
+						
+							-
+						
+						</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>EPEL 7</td>
+						<td>
+						
+						<a href="epel-7.html">1.0.1.1-27.el7</a>
+						
+						</td>
+
+						<td>
+						
+							-
+						
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
+			<datagrepper></datagrepper>
+		</div>
+		<div class="col-md-4 order-first order-md-0">
+			<b>Package Info</b>
+			<ul>
+				
+				<li>Upstream: <a href="https://hackage.haskell.org/package/random">https://hackage.haskell.org/package/random</a></li>
+				
+				<li>License(s): BSD</li>
+				
+				<li>Maintainer: petersen</li>
+				
+			</ul>
+			
+			<hr />
+			<b>Related Packages</b>
+			<ul>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<li><a href="../ghc-random-devel">ghc-random-devel</a></li>
+			
+			
+			
+			
+			<li><a href="../ghc-random-doc">ghc-random-doc</a></li>
+			
+			
+			
+			
+			<li><a href="../ghc-random-prof">ghc-random-prof</a></li>
+			
+			
+			
+			
+			<li><a href="../ghc-splitmix">ghc-splitmix</a></li>
+			
+			
+			
+			
+			<li><a href="../ghc-splitmix-devel">ghc-splitmix-devel</a></li>
+			
+			
+			
+			
+			<li><a href="..">View More &raquo;</a></li>
+			
+			
+			
+			
+			
+			</ul>
+			
+			<hr />
+			<p>
+			You can contact the maintainers of this package via email at
+			<code>ghc-random dash maintainers at fedoraproject dot org</code>.
+			</p>
+			<hr class="d-md-none" />
+		</div>
+	</div>
+</div>
+
+<script src="../../../assets/js/main.js"></script>
+
+
+  <div class="text-muted text-center">
+    
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a></div>
+    
+  </div>
+</div>

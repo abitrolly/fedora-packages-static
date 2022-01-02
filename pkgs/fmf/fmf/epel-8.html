@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+
+<title>fmf-1.0.0-1.el8 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+
+<meta name="description" content="View fmf-1.0.0-1.el8 in EPEL 8. fmf: Flexible Metadata Format">
+
+</head>
+
+<div class="container">
+  
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+      
+    </div>
+  </div>
+
+  <hr />
+  
+
+  
+<h1>
+	fmf-1.0.0-1.el8<small class="text-muted"> in EPEL 8</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of fmf</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=fmf-1.0.0-1.el8">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=fmf-1.0.0-1.el8">Search for updates</a>
+</p>
+
+<p>
+	
+	<b>Package Info</b><br>
+	
+	<a href="#changelog">&#129047; Changelog</a><br>
+	
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	
+	
+	<a href="#provides">&#129047; Provides</a><br>
+	
+	
+	<a href="#files">&#129047; Files</a><br>
+	
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		
+		<tr scope="row">
+			<td>2021-11-11</td>
+			<td>Petr Šplíchal &lt;psplicha at redhat dot com&gt; - 1.0.0-1</td>
+			<td>- Migrate yaml parsing to ruamel.yaml
+- Drop support for Python 2
+- Add extra requires and enable readthedocs config (#143)
+- Filter accept value with a colon
+- Adjust style to fix issues revealed by pre-commit
+- Enable pre-commit, update contribution docs
+- Disable integration testing with tmt for centos-7</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-04-15</td>
+			<td>Petr Šplíchal &lt;psplicha at redhat dot com&gt; - 0.16.0-1</td>
+			<td>- Add support for empty files and virtual nodes
+- Change outcome of CannotDecide operations
+- Enable copr builds from master for epel-7 as well
+- Define dict method to get child or data item
+- Keep original adjust rules when adjusting nodes
+- Use a deep copy when storing raw node data
+- Fix warnings in pytest</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-03-26</td>
+			<td>Petr Šplíchal &lt;psplicha at redhat dot com&gt; - 0.15.2-1</td>
+			<td>- Do not use mutable objects as default arguments
+- A bunch of adjustments for the epel-7 build</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-03-24</td>
+			<td>Petr Šplíchal &lt;psplicha at redhat dot com&gt; - 0.15-1</td>
+			<td>- Implement the new &#39;fmf clean&#39; command
+- Functions to manipulate cache
+- Fetch the whole tree using utils.fetch_tree()
+- Raise FileException on duplicate YAML keys
+- Allow to set desired cache location
+- Adjust support for storing modified data to disk
+- Add support for storing modified metadata to disk
+- Prevent exploring tests in the tmt directory
+- Simplify special distro comparison examples
+- Store command output in run(), fetch() exceptions
+- Use filelock for locking, expand test coverage
+- Adjust locking for Tree.node() and utils.fetch()
+- Use locking to checkout/read tree
+- Enable integration testing with tmt, some cleanup
+- Implement a new method copy() for cloning nodes
+- Adjust fetch() with custom destination and env
+- Support calls fetch(destination, env) and run(env)
+- Use the origin default branch instead of master
+- Store commit hash if the tree is under a git repo</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-01-12</td>
+			<td>Petr Šplíchal &lt;psplicha at redhat dot com&gt; - 0.14-1</td>
+			<td>- Adjust context docs, fix typos, style cleanup
+- Left vs Right side in Context matches
+- Simplify deep merging, adjust test suite a bit
+- Implement recursive merging of data
+- Remove the duplicate build job from packit config
+- Adjust &#39;make test&#39; to work under virtualenv
+- Update the adjust continue key default to True</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-11-18</td>
+			<td>Petr Šplíchal &lt;psplicha at redhat dot com&gt; - 0.13-1</td>
+			<td>- Enable copr builds from master, simplify config
+- Adjust documentation for the new Context class
+- Add documentation for the new Context class
+- Add a new Tree.adjust() method for handling rules
+- Context: Better operator names, comments
+- Adjust the new Context implementation
+- Context implementation</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-06-04</td>
+			<td>Petr Šplíchal &lt;psplicha at redhat dot com&gt; - 0.12-1</td>
+			<td>- Do git pull in utils.fetch
+- Make fetch._run official as utils.run</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-03-17</td>
+			<td>Petr Šplíchal &lt;psplicha at redhat dot com&gt; - 0.11-2</td>
+			<td>- Enable back python2-fmf subpackage for RHEL7</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-02-14</td>
+			<td>Petr Šplíchal &lt;psplicha at redhat dot com&gt; - 0.11-1</td>
+			<td>- Add git to BuildRequires (now required by tests)
+- Use coveralls to report coverage results
+- Adjust Tree.node() implementation, extend tests
+- Get metadata for unique id [fix #67]
+- Use the fedora-all target in packit config (#72)
+- Define the full fmf identifier [fix #52]
+- A minor cleanup of the concept documentation
+- Always ignore special system directories
+- Filesystem root and inaccessible dirs [fix #70]
+- Rename the &#39;testsets&#39; directory to &#39;plans&#39;</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2019-10-30</td>
+			<td>Petr Šplíchal &lt;psplicha at redhat dot com&gt; - 0.10-1</td>
+			<td>- Mock is not needed for docs, fix missing new line
+- Provide a public static method Tree.init()</td>
+		</tr>
+		
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			
+			<li>
+			
+			<a href="/pkgs/fmf/python3-fmf/epel-8.html">
+			
+			
+			python3-fmf</a> = 1.0.0-1.el8
+			
+
+			</li>
+			
+		</ul>
+	</div>
+	
+	
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			
+			<li>fmf</li>
+			
+		</ul>
+	</div>
+	
+</div>
+
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	
+	
+	<li>usr/<ul>
+	
+	
+	
+	<li>bin/<ul>
+	
+	
+	
+	<li>fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>share/<ul>
+	
+	
+	
+	<li>doc/<ul>
+	
+	
+	
+	<li>fmf/<ul>
+	
+	
+	
+	<li>README.rst</li>
+	
+	
+	
+	<li>examples/<ul>
+	
+	
+	
+	<li>child/<ul>
+	
+	
+	
+	<li>.fmf/<ul>
+	
+	
+	
+	<li>version</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	<li>nobody/<ul>
+	
+	
+	
+	<li>.fmf/<ul>
+	
+	
+	
+	<li>version</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>son/<ul>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>code/<ul>
+	
+	
+	
+	<li>simple.py</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>conditions/<ul>
+	
+	
+	
+	<li>.fmf/<ul>
+	
+	
+	
+	<li>version</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>deep/<ul>
+	
+	
+	
+	<li>.fmf/<ul>
+	
+	
+	
+	<li>version</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>empty/<ul>
+	
+	
+	
+	<li>.fmf/<ul>
+	
+	
+	
+	<li>version</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	<li>nothing/<ul>
+	
+	
+	
+	<li>ignored.txt</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>merge/<ul>
+	
+	
+	
+	<li>.fmf/<ul>
+	
+	
+	
+	<li>version</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>parent.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>scatter/<ul>
+	
+	
+	
+	<li>.fmf/<ul>
+	
+	
+	
+	<li>version</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	<li>object/<ul>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>object.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>touch/<ul>
+	
+	
+	
+	<li>.fmf/<ul>
+	
+	
+	
+	<li>version</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	<li>runtest.sh</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>wget/<ul>
+	
+	
+	
+	<li>.fmf/<ul>
+	
+	
+	
+	<li>version</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>.hidden/<ul>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>.hidden.fmf</li>
+	
+	
+	
+	<li>download/<ul>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	<li>protocols/<ul>
+	
+	
+	
+	<li>ftp/<ul>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>http/<ul>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>https/<ul>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>recursion/<ul>
+	
+	
+	
+	<li>deep.fmf</li>
+	
+	
+	
+	<li>fast.fmf</li>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>requirements/<ul>
+	
+	
+	
+	<li>main.fmf</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>licenses/<ul>
+	
+	
+	
+	<li>fmf/<ul>
+	
+	
+	
+	<li>LICENSE</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>man/<ul>
+	
+	
+	
+	<li>man1/<ul>
+	
+	
+	
+	<li>fmf.1.gz</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+</div>
+
+
+
+  <div class="text-muted text-center">
+    
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a></div>
+    
+  </div>
+</div>

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+<title>python-paramiko-doc-2.9.1-1.fc36 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+
+<meta name="description" content="View python-paramiko-doc-2.9.1-1.fc36 in Fedora Rawhide. python-paramiko-doc: Docs and demo for SSH2 protocol library for python">
+
+</head>
+
+<div class="container">
+  
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+      
+    </div>
+  </div>
+
+  <hr />
+  
+
+  
+<h1>
+	python-paramiko-doc-2.9.1-1.fc36<small class="text-muted"> in Fedora Rawhide</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of python-paramiko-doc</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=python-paramiko-2.9.1-1.fc36">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=python-paramiko-2.9.1-1.fc36">Search for updates</a>
+</p>
+
+<p>
+	
+	<b>Package Info</b><br>
+	
+	<a href="#changelog">&#129047; Changelog</a><br>
+	
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	
+	
+	<a href="#provides">&#129047; Provides</a><br>
+	
+	
+	<a href="#files">&#129047; Files</a><br>
+	
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		
+		<tr scope="row">
+			<td>2021-12-25</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.9.1-1</td>
+			<td>- Update to 2.9.1
+  - Server-side support for &#39;rsa-sha2-256&#39; and &#39;ssh-rsa&#39; wasn&#39;t fully operable
+    after 2.9.0&#39;s release (signatures for RSA pubkeys were always run through
+    &#39;rsa-sha2-512&#39; instead) (GH#1935)</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-12-24</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.9.0-1</td>
+			<td>- Update to 2.9.0
+  - Add support for SHA-2 variants of RSA key verification algorithms (as
+    described in RFC 8332) as well as limited SSH extension negotiation (RFC
+    8308) (GH#1326, GH#1643, GH#1644, GH#1925)
+    How SSH servers/clients decide when and how to use this functionality can be
+    complicated; Paramiko&#39;s support is as follows:
+    - Client verification of server host key during key exchange will now prefer
+      rsa-sha2-512, rsa-sha2-256, and legacy ssh-rsa algorithms, in that order,
+      instead of just ssh-rsa
+    - Note that the preference order of other algorithm families such as
+      ed25519 and ecdsa has not changed; for example, those two groups are still
+      preferred over RSA
+    - Server mode will now offer all 3 RSA algorithms for host key verification
+      during key exchange, similar to client mode, if it has been configured
+      with an RSA host key
+    - Client mode key exchange now sends the ext-info-c flag signaling support
+      for MSG_EXT_INFO, and support for parsing the latter (specifically, its
+      server-sig-algs flag) has been added
+    - Client mode, when performing public key authentication with an RSA key or
+      cert, will act as follows:
+      - In all cases, the list of algorithms to consider is based on the new
+        preferred_pubkeys list and disabled_algorithms; this list, like with
+        host keys, prefers SHA2-512, SHA2-256 and SHA1, in that order
+      - When the server does not send server-sig-algs, Paramiko will attempt
+        the first algorithm in the above list; clients connecting to legacy
+        servers should thus use disabled_algorithms to turn off SHA2
+      - When the server does send server-sig-algs, the first algorithm
+        supported by both ends is used, or if there is none, it falls back to
+        the previous behavior
+    - SSH agent support grew the ability to specify algorithm flags when
+      requesting private key signatures; this is now used to forward SHA2
+      algorithms when appropriate
+    - Server mode is now capable of pubkey auth involving SHA-2 signatures from
+      clients, provided one&#39;s server implementation actually provides for doing
+      so; this includes basic support for sending MSG_EXT_INFO (containing
+      server-sig-algs only) to clients advertising ext-info-c in their key
+      exchange list
+    In order to implement the above, the following API additions were made:
+    - &#39;PKey.sign_ssh_data &lt;paramiko.pkey.PKey&gt;&#39;: Grew an extra, optional
+      &#39;algorithm&#39; keyword argument (defaulting to &#39;None&#39; for most subclasses,
+      and to &#34;ssh-rsa&#34; for &#39;~paramiko.rsakey.RSAKey&#39;)
+    - A new &#39;~paramiko.ssh_exception.SSHException&#39; subclass was added,
+      &#39;~paramiko.ssh_exception.IncompatiblePeer&#39;, and is raised in all spots
+      where key exchange aborts due to algorithmic incompatibility; like all
+      other exceptions in that module, it inherits from &#39;SSHException&#39;, and as
+      nothing else was changed about the raising (i.e. the attributes and
+      message text are the same) this change is backwards compatible
+    - &#39;~paramiko.transport.Transport&#39; grew a &#39;_preferred_pubkeys&#39; attribute and
+      matching &#39;preferred_pubkeys&#39; property to match the other, kex-focused,
+      such members; this allows client pubkey authentication to honor the
+      &#39;disabled_algorithms&#39; feature</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-11-29</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.8.1-1</td>
+			<td>- Update to 2.8.1
+  - Fix listdir failure when server uses a locale (GH#985, GH#992); now on
+    Python 2.7 SFTPAttributes will decode abbreviated month names correctly
+    rather than raise &#39;UnicodeDecodeError&#39;
+  - Deleting items from &#39;~paramiko.hostkeys.HostKeys&#39; would incorrectly raise
+    &#39;KeyError&#39; even for valid keys, due to a logic bug (GH#1024)
+  - Update RSA and ECDSA key decoding subroutines to correctly catch exception
+    types thrown by modern versions of Cryptography (specifically &#39;TypeError&#39;
+    and its internal &#39;UnsupportedAlgorithm&#39;) (GH#1257, GH#1266); these
+    exception classes will now become &#39;~paramiko.ssh_exception.SSHException&#39;
+    instances instead of bubbling up
+  - Update &#39;~paramiko.pkey.PKey&#39; and subclasses to compare (&#39;__eq__&#39;) via
+    direct field/attribute comparison instead of hashing (while retaining the
+    existing behavior of &#39;__hash__&#39; via a slight refactor) (GH#908)
+    Warning:
+    This fixes a security flaw! If you are running Paramiko on 32-bit systems
+    with low entropy (such as any 32-bit Python 2, or a 32-bit Python 3 that is
+    running with &#39;PYTHONHASHSEED=0&#39;) it is possible for an attacker to craft a
+    new keypair from an exfiltrated public key, which Paramiko would consider
+    equal to the original key.
+    This could enable attacks such as, but not limited to, the following:
+    - Paramiko server processes would incorrectly authenticate the attacker
+      (using their generated private key) as if they were the victim. We see
+      this as the most plausible attack using this flaw.
+    - Paramiko client processes would incorrectly validate a connected server
+      (when host key verification is enabled) while subjected to a
+      man-in-the-middle attack. This impacts more users than the server-side
+      version, but also carries higher requirements for the attacker, namely
+      successful DNS poisoning or other MITM techniques.</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-10-11</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.8.0-1</td>
+			<td>- Update to 2.8.0
+  - Administrivia overhaul, including but not limited to:
+    - Migrate CI to CircleCI
+    - Primary dev branch is now &#39;main&#39; (renamed)
+    - Many README edits for clarity, modernization etc.; including a bunch more
+      (and consistent) status badges and unification with main project site
+      index
+    - PyPI page much more fleshed out (long_description is now filled in with
+      the README; sidebar links expanded; etc.)
+    - flake8, pytest configs split out of setup.cfg into their own files
+    - Invoke/invocations (used by maintainers/contributors) upgraded to modern
+      versions
+  - Newer server-side key exchange algorithms not intended to use SHA1
+    (diffie-hellman-group14-sha256, diffie-hellman-group16-sha512) were
+    incorrectly using SHA1 after all, due to a bug causing them to ignore the
+    &#39;hash_algo&#39; class attribute; this has been corrected (GH#1452, GH#1882)
+  - Add a &#39;prefetch&#39; keyword argument to &#39;SFTPClient.get&#39;/&#39;SFTPClient.getfo&#39; so
+    that users who need to skip SFTP prefetching are able to conditionally turn
+    it off (GH#1846)</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-07-23</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 2.7.2-6</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-06-04</td>
+			<td>Python Maint &lt;python dash maint at redhat dot com&gt; - 2.7.2-5</td>
+			<td>- Rebuilt for Python 3.10</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-03-03</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.7.2-4</td>
+			<td>- Drop invoke dependencies as it requires ancient pytest and we can&#39;t expect
+  it to remain around</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-03-02</td>
+			<td>Dan Radez &lt;dradez at redhat dot com&gt; - 2.7.2-3</td>
+			<td>- Removing the python-relax dep using upstream patch
+  https://github.com/paramiko/paramiko/pull/1665/</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-01-27</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 2.7.2-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-08-31</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.7.2-1</td>
+			<td>- Update to 2.7.2
+  - Update our CI to catch issues with sdist generation, installation and
+    testing
+  - Add missing test suite fixtures directory to MANIFEST.in, reinstating the
+    ability to run Paramiko&#39;s tests from an sdist tarball (GH#1727)
+  - Remove leading whitespace from OpenSSH RSA test suite static key fixture,
+    to conform better to spec. (GH#1722)
+  - Fix incorrect string formatting causing unhelpful error message annotation
+    when using Kerberos/GSSAPI
+  - Fix incorrectly swapped order of &#39;p&#39; and &#39;q&#39; numbers when loading
+    OpenSSH-format RSA private keys; at minimum this should address a slowdown
+    when using such keys, and it also means Paramiko works with Cryptography
+    3.1 and above, which complains strenuously when this problem appears
+    (GH#1723)</td>
+		</tr>
+		
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			
+			<li>
+			
+			<a href="/pkgs/python-paramiko/python3-paramiko/fedora-rawhide.html">
+			
+			
+			python3-paramiko</a> = 2.9.1-1.fc36
+			
+
+			</li>
+			
+		</ul>
+	</div>
+	
+	
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			
+			<li>python-paramiko-doc</li>
+			
+		</ul>
+	</div>
+	
+</div>
+
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	
+	
+	<li>usr/<ul>
+	
+	
+	
+	<li>share/<ul>
+	
+	
+	
+	<li>doc/<ul>
+	
+	
+	
+	<li>python-paramiko-doc/<ul>
+	
+	
+	
+	<li>demos/<ul>
+	
+	
+	
+	<li>demo.py</li>
+	
+	
+	
+	<li>demo_keygen.py</li>
+	
+	
+	
+	<li>demo_server.py</li>
+	
+	
+	
+	<li>demo_sftp.py</li>
+	
+	
+	
+	<li>demo_simple.py</li>
+	
+	
+	
+	<li>forward.py</li>
+	
+	
+	
+	<li>interactive.py</li>
+	
+	
+	
+	<li>rforward.py</li>
+	
+	
+	
+	<li>test_rsa.key</li>
+	
+	
+	
+	<li>user_rsa_key</li>
+	
+	
+	
+	<li>user_rsa_key.pub</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>html/<ul>
+	
+	
+	
+	<li>.doctrees/<ul>
+	
+	
+	
+	<li>api/<ul>
+	
+	
+	
+	<li>agent.doctree</li>
+	
+	
+	
+	<li>buffered_pipe.doctree</li>
+	
+	
+	
+	<li>channel.doctree</li>
+	
+	
+	
+	<li>client.doctree</li>
+	
+	
+	
+	<li>config.doctree</li>
+	
+	
+	
+	<li>file.doctree</li>
+	
+	
+	
+	<li>hostkeys.doctree</li>
+	
+	
+	
+	<li>kex_gss.doctree</li>
+	
+	
+	
+	<li>keys.doctree</li>
+	
+	
+	
+	<li>message.doctree</li>
+	
+	
+	
+	<li>packet.doctree</li>
+	
+	
+	
+	<li>pipe.doctree</li>
+	
+	
+	
+	<li>proxy.doctree</li>
+	
+	
+	
+	<li>server.doctree</li>
+	
+	
+	
+	<li>sftp.doctree</li>
+	
+	
+	
+	<li>ssh_exception.doctree</li>
+	
+	
+	
+	<li>ssh_gss.doctree</li>
+	
+	
+	
+	<li>transport.doctree</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>environment.pickle</li>
+	
+	
+	
+	<li>index.doctree</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>_sources/<ul>
+	
+	
+	
+	<li>api/<ul>
+	
+	
+	
+	<li>agent.rst.txt</li>
+	
+	
+	
+	<li>buffered_pipe.rst.txt</li>
+	
+	
+	
+	<li>channel.rst.txt</li>
+	
+	
+	
+	<li>client.rst.txt</li>
+	
+	
+	
+	<li>config.rst.txt</li>
+	
+	
+	
+	<li>file.rst.txt</li>
+	
+	
+	
+	<li>hostkeys.rst.txt</li>
+	
+	
+	
+	<li>kex_gss.rst.txt</li>
+	
+	
+	
+	<li>keys.rst.txt</li>
+	
+	
+	
+	<li>message.rst.txt</li>
+	
+	
+	
+	<li>packet.rst.txt</li>
+	
+	
+	
+	<li>pipe.rst.txt</li>
+	
+	
+	
+	<li>proxy.rst.txt</li>
+	
+	
+	
+	<li>server.rst.txt</li>
+	
+	
+	
+	<li>sftp.rst.txt</li>
+	
+	
+	
+	<li>ssh_exception.rst.txt</li>
+	
+	
+	
+	<li>ssh_gss.rst.txt</li>
+	
+	
+	
+	<li>transport.rst.txt</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>index.rst.txt</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>_static/<ul>
+	
+	
+	
+	<li>alabaster.css</li>
+	
+	
+	
+	<li>basic.css</li>
+	
+	
+	
+	<li>custom.css</li>
+	
+	
+	
+	<li>doctools.js</li>
+	
+	
+	
+	<li>documentation_options.js</li>
+	
+	
+	
+	<li>file.png</li>
+	
+	
+	
+	<li>jquery-3.5.1.js</li>
+	
+	
+	
+	<li>jquery.js</li>
+	
+	
+	
+	<li>language_data.js</li>
+	
+	
+	
+	<li>minus.png</li>
+	
+	
+	
+	<li>plus.png</li>
+	
+	
+	
+	<li>pygments.css</li>
+	
+	
+	
+	<li>searchtools.js</li>
+	
+	
+	
+	<li>underscore-1.13.1.js</li>
+	
+	
+	
+	<li>underscore.js</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>api/<ul>
+	
+	
+	
+	<li>agent.html</li>
+	
+	
+	
+	<li>buffered_pipe.html</li>
+	
+	
+	
+	<li>channel.html</li>
+	
+	
+	
+	<li>client.html</li>
+	
+	
+	
+	<li>config.html</li>
+	
+	
+	
+	<li>file.html</li>
+	
+	
+	
+	<li>hostkeys.html</li>
+	
+	
+	
+	<li>kex_gss.html</li>
+	
+	
+	
+	<li>keys.html</li>
+	
+	
+	
+	<li>message.html</li>
+	
+	
+	
+	<li>packet.html</li>
+	
+	
+	
+	<li>pipe.html</li>
+	
+	
+	
+	<li>proxy.html</li>
+	
+	
+	
+	<li>server.html</li>
+	
+	
+	
+	<li>sftp.html</li>
+	
+	
+	
+	<li>ssh_exception.html</li>
+	
+	
+	
+	<li>ssh_gss.html</li>
+	
+	
+	
+	<li>transport.html</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>genindex.html</li>
+	
+	
+	
+	<li>index.html</li>
+	
+	
+	
+	<li>objects.inv</li>
+	
+	
+	
+	<li>py-modindex.html</li>
+	
+	
+	
+	<li>search.html</li>
+	
+	
+	
+	<li>searchindex.js</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+</div>
+
+
+
+  <div class="text-muted text-center">
+    
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a></div>
+    
+  </div>
+</div>

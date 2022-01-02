@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<title>ghc-generic-deriving - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+
+<meta name="description" content="View ghc-generic-deriving in the Fedora package repositories. ghc-generic-deriving: Generic programming library for generalised deriving">
+
+</head>
+
+<div class="container">
+  
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+      
+    </div>
+  </div>
+
+  <hr />
+  
+
+  
+<h1>
+	ghc-generic-deriving
+	
+</h1>
+<p class="text-muted">Generic programming library for generalised deriving</p>
+<ul class="list-group list-group-horizontal-lg mb-3">
+	<li class="list-group-item w-100">
+		<a href="http://koji.fedoraproject.org/koji/search?match=glob&type=package&terms=ghc-generic-deriving">
+			<img alt="Builds" src="../../../assets/images/16_koji.png" height="16" width="16">
+			Builds
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="https://bodhi.fedoraproject.org/updates/?packages=ghc-generic-deriving">
+			<img alt="Updates" src="../../../assets/images/16_bodhi.png" height="16" width="16">
+			Updates
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="https://bugzilla.redhat.com/buglist.cgi?component=ghc-generic-deriving&query_format=advanced&product=Fedora&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED">
+			<img alt="Bugs" src="../../../assets/images/16_bugzilla.png" height="16" width="16">
+			Bugs
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="https://src.fedoraproject.org/rpms/ghc-generic-deriving">
+			<img alt="Sources" src="../../../assets/images/git-logo.png" height="16" width="16">
+			Sources
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="https://retrace.fedoraproject.org/faf/problems/?component_names=ghc-generic-deriving">
+			<img alt="Crash Reports" src="../../../assets/images/16_abrt.png" height="16" width="16">
+			Crash Reports
+		</a>
+	</li>
+	<li class="list-group-item w-100">
+		<a href="https://koschei.fedoraproject.org/package/ghc-generic-deriving">
+			<img alt="Koschei" src="../../../assets/images/24_koschei.png" height="16" width="16">
+			Koschei
+		</a>
+	</li>
+</ul>
+<div id="vue">
+	<div class="row">
+		<div class="col-md-8">
+			
+			<p class="nowrap">This package provides functionality for generalising the deriving mechanism in
+Haskell to arbitrary classes. It was first described in the paper:
+
+* /A generic deriving mechanism for Haskell/. Jose Pedro Magalhaes, Atze
+Dijkstra, Johan Jeuring, and Andres Loeh. Haskell&#39;10.
+
+The current implementation integrates with the new GHC Generics. See
+&lt;http://www.haskell.org/haskellwiki/GHC.Generics&gt; for more information.
+Template Haskell code is provided for supporting older GHCs.
+
+This library is organized as follows:
+
+* &#34;Generics.Deriving.Base&#34; defines the core functionality for GHC generics,
+including the &#39;Generic(1)&#39; classes and representation data types. On modern
+versions of GHC, this simply re-exports &#34;GHC.Generics&#34; from &#39;base&#39;. On older
+versions of GHC, this module backports parts of &#34;GHC.Generics&#34; that were not
+included at the time, including &#39;Generic(1)&#39; instances.
+
+* &#34;Generics.Deriving.TH&#34; implements Template Haskell functionality for deriving
+instances of &#39;Generic(1)&#39;.
+
+* Educational code: in order to provide examples of how to define and use
+&#34;GHC.Generics&#34;-based defaults, this library offers a number of modules which
+define examples of type classes along with default implementations for the
+classes&#39; methods. Currently, the following modules are provided:
+&#34;Generics.Deriving.Copoint&#34;, &#34;Generics.Deriving.ConNames&#34;,
+&#34;Generics.Deriving.Enum&#34;, &#34;Generics.Deriving.Eq&#34;, &#34;Generics.Deriving.Foldable&#34;,
+&#34;Generics.Deriving.Functor&#34;, &#34;Generics.Deriving.Monoid&#34;,
+&#34;Generics.Deriving.Semigroup&#34;, &#34;Generics.Deriving.Show&#34;,
+&#34;Generics.Deriving.Traversable&#34;, and &#34;Generics.Deriving.Uniplate&#34;.
+
+It is worth emphasizing that these modules are primarly intended for
+educational purposes. Many of the classes in these modules resemble other
+commonly used classes—for example, &#39;GShow&#39; from &#34;Generics.Deriving.Show&#34;
+resembles &#39;Show&#39; from &#39;base&#39;—but in general, the classes that
+&#39;generic-deriving&#39; defines are not drop-in replacements. Moreover, the generic
+defaults that &#39;generic-deriving&#39; provide often make simplifying assumptions
+that may violate expectations of how these classes might work elsewhere.
+For example, the generic default for &#39;GShow&#39; does not behave exactly like
+&#39;deriving Show&#39; would.
+
+If you are seeking &#34;GHC.Generics&#34;-based defaults for type classes in &#39;base&#39;,
+consider using the &#39;&lt;http://hackage.haskell.org/package/generic-data
+generic-data&gt;&#39; library.
+
+* &#34;Generics.Deriving.Default&#34; provides newtypes that allow leveraging the
+generic defaults in this library using the &#39;DerivingVia&#39; GHC language
+extension.
+
+* &#34;Generics.Deriving&#34; re-exports &#34;Generics.Deriving.Base&#34;,
+&#34;Generics.Deriving.Default&#34;, and a selection of educational modules.</p>
+			
+			<h3>Releases Overview</h3>
+			<table class="table table-striped table-borderless" id="version-table">
+				<thead>
+					<tr>
+						<th scope="col">Release</th>
+						<th scope="col">Stable</th>
+						<th scope="col">Testing</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<tr scope="row">
+						<td>Fedora Rawhide</td>
+						<td>
+						
+						<a href="fedora-rawhide.html">1.14-1.fc35</a>
+						
+						</td>
+
+						<td>
+						
+							-
+						
+						</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>Fedora 35</td>
+						<td>
+						
+						<a href="fedora-35.html">1.14-1.fc35</a>
+						
+						</td>
+
+						<td>
+						
+							-
+						
+						</td>
+					</tr>
+					
+					<tr scope="row">
+						<td>Fedora 34</td>
+						<td>
+						
+						<a href="fedora-34.html">1.13.1-3.fc34</a>
+						
+						</td>
+
+						<td>
+						
+							-
+						
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
+			<datagrepper></datagrepper>
+		</div>
+		<div class="col-md-4 order-first order-md-0">
+			<b>Package Info</b>
+			<ul>
+				
+				<li>Upstream: <a href="https://hackage.haskell.org/package/generic-deriving">https://hackage.haskell.org/package/generic-deriving</a></li>
+				
+				<li>License(s): BSD</li>
+				
+				<li>Maintainer: qulogic</li>
+				
+			</ul>
+			
+			<hr />
+			<b>Related Packages</b>
+			<ul>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<li><a href="../ghc-generic-deriving-devel">ghc-generic-deriving-devel</a></li>
+			
+			
+			
+			
+			<li><a href="../ghc-generic-deriving-doc">ghc-generic-deriving-doc</a></li>
+			
+			
+			
+			
+			<li><a href="../ghc-generic-deriving-prof">ghc-generic-deriving-prof</a></li>
+			
+			
+			
+			</ul>
+			
+			<hr />
+			<p>
+			You can contact the maintainers of this package via email at
+			<code>ghc-generic-deriving dash maintainers at fedoraproject dot org</code>.
+			</p>
+			<hr class="d-md-none" />
+		</div>
+	</div>
+</div>
+
+<script src="../../../assets/js/main.js"></script>
+
+
+  <div class="text-muted text-center">
+    
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a></div>
+    
+  </div>
+</div>

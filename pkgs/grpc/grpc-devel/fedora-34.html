@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+
+<title>grpc-devel-1.26.0-13.fc34 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+
+<meta name="description" content="View grpc-devel-1.26.0-13.fc34 in Fedora 34. grpc-devel: Development files for gRPC library">
+
+</head>
+
+<div class="container">
+  
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+      
+    </div>
+  </div>
+
+  <hr />
+  
+
+  
+<h1>
+	grpc-devel-1.26.0-13.fc34<small class="text-muted"> in Fedora 34</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of grpc-devel</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=grpc-1.26.0-13.fc34">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=grpc-1.26.0-13.fc34">Search for updates</a>
+</p>
+
+<p>
+	
+	<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+	
+	<a href="#changelog">&#129047; Changelog</a><br>
+	
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	
+	
+	<a href="#provides">&#129047; Provides</a><br>
+	
+	
+	<a href="#files">&#129047; Files</a><br>
+	
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		
+		<tr scope="row">
+			<td>2021-03-23</td>
+			<td>Benjamin A. Beasley &lt;code at musicinmybrain dot net&gt; - 1.26.0-13</td>
+			<td>- General:
+  * Replace * with • in descriptions
+  * Use cmake() dependencies first, and pkgconfig() dependencies second, where
+    available
+  * Drop explicit pkgconfig BR
+  * Fix the directory in which CMake installs pkgconfig files
+  * Improved CMake options
+  * Build the Doxygen reference manuals
+- C (core) and C++ (cpp):
+  * Let the -devel package require cmake-filesystem
+  * Allow building tests with our own copy of gtest/gmock, which will become
+    mandatory when we depend on abseil-cpp and switch to C++17
+  * Fix a link error in the core tests when using CMake
+  * Manually install grpc_cli (CMake)
+  * Add CMake files to the files list for the -devel package
+  * Start running some of the core tests in %check
+- Python:
+  * Add several patches required for the tests
+  * BR gevent for gevent_tests
+  * Fix build; in particular, add missing preprocess and build_package_protos
+    steps, without which the packages were missing generated proto modules and
+    were not
+    usable!
+  * Add %py_provides for Fedora 32
+  * Drop python3dist(setuptools) BR, redundant with %pyproject_buildrequires
+  * Start running most of the Python tests in %check
+  * Merge the python-grpcio-doc subpackage into grpc-doc</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-02-16</td>
+			<td>Benjamin A. Beasley &lt;code at musicinmybrain dot net&gt; - 1.26.0-12</td>
+			<td>- C (core) and C++ (cpp):
+  * Add CMake build support but do not enable it yet; there is still a problem
+    where grpc_cli is only built with the tests, and a linking problem when
+    building the tests</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-02-02</td>
+			<td>Benjamin A. Beasley &lt;code at musicinmybrain dot net&gt; - 1.26.0-11</td>
+			<td>- General:
+  * Update summaries and descriptions
+  * Update License fields to include licenses from bundled components
+  * Fix failure to respect Fedora build flags
+  * Use the system shared certificate bundle instead of shipping our own
+- CLI:
+  * No longer set rpath $ORIGIN
+- C (core) and C++ (cpp):
+  * Add c_so_version/cpp_so_version macros
+  * Split out C++ bindings and shared data into subpackages
+  * Drop obsolete ldconfig_scriptlets macro
+  * Stop stripping debugging symbols
+- Python:
+  * Use generated BR’s
+  * Build and package Python binding documentation
+  * Disable accommodations for older libc’s
+  * Patch out -std=gnu99 flag, which is inappropriate for C++
+  * Build additional Python packages grpcio_tools, gprcio_channelz,
+    grpcio_health_checking, grpcio_reflection, grpcio_status, and
+    grpcio_testing</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-01-26</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1.26.0-10</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-01-14</td>
+			<td>Adrian Reber &lt;adrian at lisas dot de&gt; - 1.26.0-9</td>
+			<td>- Rebuilt for protobuf 3.14</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-11-13</td>
+			<td>Artem Polishchuk &lt;ego dot cordatus at gmail dot com&gt; - 1.26.0-8</td>
+			<td>- build: disable LTO due to rh#1893533</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-09-24</td>
+			<td>Adrian Reber &lt;adrian at lisas dot de&gt; - 1.26.0-7</td>
+			<td>- Rebuilt for protobuf 3.13</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-08-03</td>
+			<td>Gwyn Ciesla &lt;gwync at protonmail dot com&gt; - 1.26.0-6</td>
+			<td>- Patches for https://github.com/grpc/grpc/pull/21669</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-07-28</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1.26.0-5</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-06-14</td>
+			<td>Adrian Reber &lt;adrian at lisas dot de&gt; - 1.26.0-4</td>
+			<td>- Rebuilt for protobuf 3.12</td>
+		</tr>
+		
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			
+			<li>
+			
+			<a href="/pkgs/c-ares/c-ares-devel/fedora-34.html">
+			
+			
+			c-ares-devel</a>
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/cmake/cmake-filesystem/fedora-34.html">
+			
+			
+			cmake-filesystem</a>
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/grpc/grpc/fedora-34.html">
+			
+			
+			grpc</a> = 1.26.0-13.fc34
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/grpc/grpc-cpp/fedora-34.html">
+			
+			
+			grpc-cpp</a> = 1.26.0-13.fc34
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/grpc/grpc-devel/fedora-34.html">
+			
+			
+			grpc-devel</a>
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/openssl/openssl-devel/fedora-34.html">
+			
+			
+			openssl-devel</a>
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/openssl1.1/openssl1.1-devel/fedora-34.html">
+			
+			
+			openssl1.1-devel</a>
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/protobuf/protobuf-devel/fedora-34.html">
+			
+			
+			protobuf-devel</a>
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/zlib/zlib-devel/fedora-34.html">
+			
+			
+			zlib-devel</a>
+			
+
+			</li>
+			
+		</ul>
+	</div>
+	
+	
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			
+			<li>grpc-devel</li>
+			
+			<li>grpc-devel(x86-64)</li>
+			
+			<li>pkgconfig(gpr)</li>
+			
+			<li>pkgconfig(grpc)</li>
+			
+			<li>pkgconfig(grpc++)</li>
+			
+			<li>pkgconfig(grpc++_unsecure)</li>
+			
+			<li>pkgconfig(grpc_unsecure)</li>
+			
+		</ul>
+	</div>
+	
+</div>
+
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	
+	
+	<li>usr/<ul>
+	
+	
+	
+	<li>include/<ul>
+	
+	
+	
+	<li>grpc/<ul>
+	
+	
+	
+	<li>byte_buffer.h</li>
+	
+	
+	
+	<li>byte_buffer_reader.h</li>
+	
+	
+	
+	<li>census.h</li>
+	
+	
+	
+	<li>compression.h</li>
+	
+	
+	
+	<li>fork.h</li>
+	
+	
+	
+	<li>grpc.h</li>
+	
+	
+	
+	<li>grpc_cronet.h</li>
+	
+	
+	
+	<li>grpc_posix.h</li>
+	
+	
+	
+	<li>grpc_security.h</li>
+	
+	
+	
+	<li>grpc_security_constants.h</li>
+	
+	
+	
+	<li>impl/<ul>
+	
+	
+	
+	<li>codegen/<ul>
+	
+	
+	
+	<li>atm.h</li>
+	
+	
+	
+	<li>atm_gcc_atomic.h</li>
+	
+	
+	
+	<li>atm_gcc_sync.h</li>
+	
+	
+	
+	<li>atm_windows.h</li>
+	
+	
+	
+	<li>byte_buffer.h</li>
+	
+	
+	
+	<li>byte_buffer_reader.h</li>
+	
+	
+	
+	<li>compression_types.h</li>
+	
+	
+	
+	<li>connectivity_state.h</li>
+	
+	
+	
+	<li>fork.h</li>
+	
+	
+	
+	<li>gpr_slice.h</li>
+	
+	
+	
+	<li>gpr_types.h</li>
+	
+	
+	
+	<li>grpc_types.h</li>
+	
+	
+	
+	<li>log.h</li>
+	
+	
+	
+	<li>port_platform.h</li>
+	
+	
+	
+	<li>propagation_bits.h</li>
+	
+	
+	
+	<li>slice.h</li>
+	
+	
+	
+	<li>status.h</li>
+	
+	
+	
+	<li>sync.h</li>
+	
+	
+	
+	<li>sync_custom.h</li>
+	
+	
+	
+	<li>sync_generic.h</li>
+	
+	
+	
+	<li>sync_posix.h</li>
+	
+	
+	
+	<li>sync_windows.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>load_reporting.h</li>
+	
+	
+	
+	<li>slice.h</li>
+	
+	
+	
+	<li>slice_buffer.h</li>
+	
+	
+	
+	<li>status.h</li>
+	
+	
+	
+	<li>support/<ul>
+	
+	
+	
+	<li>alloc.h</li>
+	
+	
+	
+	<li>atm.h</li>
+	
+	
+	
+	<li>atm_gcc_atomic.h</li>
+	
+	
+	
+	<li>atm_gcc_sync.h</li>
+	
+	
+	
+	<li>atm_windows.h</li>
+	
+	
+	
+	<li>cpu.h</li>
+	
+	
+	
+	<li>log.h</li>
+	
+	
+	
+	<li>log_windows.h</li>
+	
+	
+	
+	<li>port_platform.h</li>
+	
+	
+	
+	<li>string_util.h</li>
+	
+	
+	
+	<li>sync.h</li>
+	
+	
+	
+	<li>sync_custom.h</li>
+	
+	
+	
+	<li>sync_generic.h</li>
+	
+	
+	
+	<li>sync_posix.h</li>
+	
+	
+	
+	<li>sync_windows.h</li>
+	
+	
+	
+	<li>thd_id.h</li>
+	
+	
+	
+	<li>time.h</li>
+	
+	
+	
+	<li>workaround_list.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>grpc++/<ul>
+	
+	
+	
+	<li>alarm.h</li>
+	
+	
+	
+	<li>channel.h</li>
+	
+	
+	
+	<li>client_context.h</li>
+	
+	
+	
+	<li>completion_queue.h</li>
+	
+	
+	
+	<li>create_channel.h</li>
+	
+	
+	
+	<li>create_channel_posix.h</li>
+	
+	
+	
+	<li>ext/<ul>
+	
+	
+	
+	<li>health_check_service_server_builder_option.h</li>
+	
+	
+	
+	<li>proto_server_reflection_plugin.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>generic/<ul>
+	
+	
+	
+	<li>async_generic_service.h</li>
+	
+	
+	
+	<li>generic_stub.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>grpc++.h</li>
+	
+	
+	
+	<li>health_check_service_interface.h</li>
+	
+	
+	
+	<li>impl/<ul>
+	
+	
+	
+	<li>call.h</li>
+	
+	
+	
+	<li>channel_argument_option.h</li>
+	
+	
+	
+	<li>client_unary_call.h</li>
+	
+	
+	
+	<li>codegen/<ul>
+	
+	
+	
+	<li>async_stream.h</li>
+	
+	
+	
+	<li>async_unary_call.h</li>
+	
+	
+	
+	<li>byte_buffer.h</li>
+	
+	
+	
+	<li>call.h</li>
+	
+	
+	
+	<li>call_hook.h</li>
+	
+	
+	
+	<li>channel_interface.h</li>
+	
+	
+	
+	<li>client_context.h</li>
+	
+	
+	
+	<li>client_unary_call.h</li>
+	
+	
+	
+	<li>completion_queue.h</li>
+	
+	
+	
+	<li>completion_queue_tag.h</li>
+	
+	
+	
+	<li>config.h</li>
+	
+	
+	
+	<li>config_protobuf.h</li>
+	
+	
+	
+	<li>core_codegen.h</li>
+	
+	
+	
+	<li>core_codegen_interface.h</li>
+	
+	
+	
+	<li>create_auth_context.h</li>
+	
+	
+	
+	<li>grpc_library.h</li>
+	
+	
+	
+	<li>metadata_map.h</li>
+	
+	
+	
+	<li>method_handler_impl.h</li>
+	
+	
+	
+	<li>proto_utils.h</li>
+	
+	
+	
+	<li>rpc_method.h</li>
+	
+	
+	
+	<li>rpc_service_method.h</li>
+	
+	
+	
+	<li>security/<ul>
+	
+	
+	
+	<li>auth_context.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>serialization_traits.h</li>
+	
+	
+	
+	<li>server_context.h</li>
+	
+	
+	
+	<li>server_interface.h</li>
+	
+	
+	
+	<li>service_type.h</li>
+	
+	
+	
+	<li>slice.h</li>
+	
+	
+	
+	<li>status.h</li>
+	
+	
+	
+	<li>status_code_enum.h</li>
+	
+	
+	
+	<li>string_ref.h</li>
+	
+	
+	
+	<li>stub_options.h</li>
+	
+	
+	
+	<li>sync_stream.h</li>
+	
+	
+	
+	<li>time.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>grpc_library.h</li>
+	
+	
+	
+	<li>method_handler_impl.h</li>
+	
+	
+	
+	<li>rpc_method.h</li>
+	
+	
+	
+	<li>rpc_service_method.h</li>
+	
+	
+	
+	<li>serialization_traits.h</li>
+	
+	
+	
+	<li>server_builder_option.h</li>
+	
+	
+	
+	<li>server_builder_plugin.h</li>
+	
+	
+	
+	<li>server_initializer.h</li>
+	
+	
+	
+	<li>service_type.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>resource_quota.h</li>
+	
+	
+	
+	<li>security/<ul>
+	
+	
+	
+	<li>auth_context.h</li>
+	
+	
+	
+	<li>auth_metadata_processor.h</li>
+	
+	
+	
+	<li>credentials.h</li>
+	
+	
+	
+	<li>server_credentials.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>server.h</li>
+	
+	
+	
+	<li>server_builder.h</li>
+	
+	
+	
+	<li>server_context.h</li>
+	
+	
+	
+	<li>server_posix.h</li>
+	
+	
+	
+	<li>support/<ul>
+	
+	
+	
+	<li>async_stream.h</li>
+	
+	
+	
+	<li>async_unary_call.h</li>
+	
+	
+	
+	<li>byte_buffer.h</li>
+	
+	
+	
+	<li>channel_arguments.h</li>
+	
+	
+	
+	<li>config.h</li>
+	
+	
+	
+	<li>error_details.h</li>
+	
+	
+	
+	<li>slice.h</li>
+	
+	
+	
+	<li>status.h</li>
+	
+	
+	
+	<li>status_code_enum.h</li>
+	
+	
+	
+	<li>string_ref.h</li>
+	
+	
+	
+	<li>stub_options.h</li>
+	
+	
+	
+	<li>sync_stream.h</li>
+	
+	
+	
+	<li>time.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>grpcpp/<ul>
+	
+	
+	
+	<li>alarm.h</li>
+	
+	
+	
+	<li>alarm_impl.h</li>
+	
+	
+	
+	<li>channel.h</li>
+	
+	
+	
+	<li>channel_impl.h</li>
+	
+	
+	
+	<li>client_context.h</li>
+	
+	
+	
+	<li>completion_queue.h</li>
+	
+	
+	
+	<li>completion_queue_impl.h</li>
+	
+	
+	
+	<li>create_channel.h</li>
+	
+	
+	
+	<li>create_channel_impl.h</li>
+	
+	
+	
+	<li>create_channel_posix.h</li>
+	
+	
+	
+	<li>create_channel_posix_impl.h</li>
+	
+	
+	
+	<li>ext/<ul>
+	
+	
+	
+	<li>channelz_service_plugin.h</li>
+	
+	
+	
+	<li>channelz_service_plugin_impl.h</li>
+	
+	
+	
+	<li>health_check_service_server_builder_option.h</li>
+	
+	
+	
+	<li>proto_server_reflection_plugin.h</li>
+	
+	
+	
+	<li>proto_server_reflection_plugin_impl.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>generic/<ul>
+	
+	
+	
+	<li>async_generic_service.h</li>
+	
+	
+	
+	<li>generic_stub.h</li>
+	
+	
+	
+	<li>generic_stub_impl.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>grpcpp.h</li>
+	
+	
+	
+	<li>health_check_service_interface.h</li>
+	
+	
+	
+	<li>health_check_service_interface_impl.h</li>
+	
+	
+	
+	<li>impl/<ul>
+	
+	
+	
+	<li>call.h</li>
+	
+	
+	
+	<li>channel_argument_option.h</li>
+	
+	
+	
+	<li>client_unary_call.h</li>
+	
+	
+	
+	<li>codegen/<ul>
+	
+	
+	
+	<li>async_generic_service.h</li>
+	
+	
+	
+	<li>async_stream.h</li>
+	
+	
+	
+	<li>async_stream_impl.h</li>
+	
+	
+	
+	<li>async_unary_call.h</li>
+	
+	
+	
+	<li>async_unary_call_impl.h</li>
+	
+	
+	
+	<li>byte_buffer.h</li>
+	
+	
+	
+	<li>call.h</li>
+	
+	
+	
+	<li>call_hook.h</li>
+	
+	
+	
+	<li>call_op_set.h</li>
+	
+	
+	
+	<li>call_op_set_interface.h</li>
+	
+	
+	
+	<li>callback_common.h</li>
+	
+	
+	
+	<li>channel_interface.h</li>
+	
+	
+	
+	<li>client_callback.h</li>
+	
+	
+	
+	<li>client_callback_impl.h</li>
+	
+	
+	
+	<li>client_context.h</li>
+	
+	
+	
+	<li>client_context_impl.h</li>
+	
+	
+	
+	<li>client_interceptor.h</li>
+	
+	
+	
+	<li>client_unary_call.h</li>
+	
+	
+	
+	<li>completion_queue.h</li>
+	
+	
+	
+	<li>completion_queue_impl.h</li>
+	
+	
+	
+	<li>completion_queue_tag.h</li>
+	
+	
+	
+	<li>config.h</li>
+	
+	
+	
+	<li>config_protobuf.h</li>
+	
+	
+	
+	<li>core_codegen.h</li>
+	
+	
+	
+	<li>core_codegen_interface.h</li>
+	
+	
+	
+	<li>create_auth_context.h</li>
+	
+	
+	
+	<li>delegating_channel.h</li>
+	
+	
+	
+	<li>grpc_library.h</li>
+	
+	
+	
+	<li>intercepted_channel.h</li>
+	
+	
+	
+	<li>interceptor.h</li>
+	
+	
+	
+	<li>interceptor_common.h</li>
+	
+	
+	
+	<li>message_allocator.h</li>
+	
+	
+	
+	<li>metadata_map.h</li>
+	
+	
+	
+	<li>method_handler.h</li>
+	
+	
+	
+	<li>method_handler_impl.h</li>
+	
+	
+	
+	<li>proto_buffer_reader.h</li>
+	
+	
+	
+	<li>proto_buffer_writer.h</li>
+	
+	
+	
+	<li>proto_utils.h</li>
+	
+	
+	
+	<li>rpc_method.h</li>
+	
+	
+	
+	<li>rpc_service_method.h</li>
+	
+	
+	
+	<li>security/<ul>
+	
+	
+	
+	<li>auth_context.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>serialization_traits.h</li>
+	
+	
+	
+	<li>server_callback.h</li>
+	
+	
+	
+	<li>server_callback_handlers.h</li>
+	
+	
+	
+	<li>server_callback_impl.h</li>
+	
+	
+	
+	<li>server_context.h</li>
+	
+	
+	
+	<li>server_context_impl.h</li>
+	
+	
+	
+	<li>server_interceptor.h</li>
+	
+	
+	
+	<li>server_interface.h</li>
+	
+	
+	
+	<li>service_type.h</li>
+	
+	
+	
+	<li>slice.h</li>
+	
+	
+	
+	<li>status.h</li>
+	
+	
+	
+	<li>status_code_enum.h</li>
+	
+	
+	
+	<li>string_ref.h</li>
+	
+	
+	
+	<li>stub_options.h</li>
+	
+	
+	
+	<li>sync.h</li>
+	
+	
+	
+	<li>sync_stream.h</li>
+	
+	
+	
+	<li>sync_stream_impl.h</li>
+	
+	
+	
+	<li>time.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>grpc_library.h</li>
+	
+	
+	
+	<li>method_handler_impl.h</li>
+	
+	
+	
+	<li>rpc_method.h</li>
+	
+	
+	
+	<li>rpc_service_method.h</li>
+	
+	
+	
+	<li>serialization_traits.h</li>
+	
+	
+	
+	<li>server_builder_option.h</li>
+	
+	
+	
+	<li>server_builder_option_impl.h</li>
+	
+	
+	
+	<li>server_builder_plugin.h</li>
+	
+	
+	
+	<li>server_initializer.h</li>
+	
+	
+	
+	<li>server_initializer_impl.h</li>
+	
+	
+	
+	<li>service_type.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>resource_quota.h</li>
+	
+	
+	
+	<li>resource_quota_impl.h</li>
+	
+	
+	
+	<li>security/<ul>
+	
+	
+	
+	<li>auth_context.h</li>
+	
+	
+	
+	<li>auth_metadata_processor.h</li>
+	
+	
+	
+	<li>auth_metadata_processor_impl.h</li>
+	
+	
+	
+	<li>credentials.h</li>
+	
+	
+	
+	<li>credentials_impl.h</li>
+	
+	
+	
+	<li>server_credentials.h</li>
+	
+	
+	
+	<li>server_credentials_impl.h</li>
+	
+	
+	
+	<li>tls_credentials_options.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>server.h</li>
+	
+	
+	
+	<li>server_builder.h</li>
+	
+	
+	
+	<li>server_builder_impl.h</li>
+	
+	
+	
+	<li>server_context.h</li>
+	
+	
+	
+	<li>server_impl.h</li>
+	
+	
+	
+	<li>server_posix.h</li>
+	
+	
+	
+	<li>server_posix_impl.h</li>
+	
+	
+	
+	<li>support/<ul>
+	
+	
+	
+	<li>async_stream.h</li>
+	
+	
+	
+	<li>async_stream_impl.h</li>
+	
+	
+	
+	<li>async_unary_call.h</li>
+	
+	
+	
+	<li>async_unary_call_impl.h</li>
+	
+	
+	
+	<li>byte_buffer.h</li>
+	
+	
+	
+	<li>channel_arguments.h</li>
+	
+	
+	
+	<li>channel_arguments_impl.h</li>
+	
+	
+	
+	<li>client_callback.h</li>
+	
+	
+	
+	<li>client_callback_impl.h</li>
+	
+	
+	
+	<li>client_interceptor.h</li>
+	
+	
+	
+	<li>config.h</li>
+	
+	
+	
+	<li>error_details.h</li>
+	
+	
+	
+	<li>error_details_impl.h</li>
+	
+	
+	
+	<li>interceptor.h</li>
+	
+	
+	
+	<li>message_allocator.h</li>
+	
+	
+	
+	<li>proto_buffer_reader.h</li>
+	
+	
+	
+	<li>proto_buffer_writer.h</li>
+	
+	
+	
+	<li>server_callback.h</li>
+	
+	
+	
+	<li>server_callback_impl.h</li>
+	
+	
+	
+	<li>server_interceptor.h</li>
+	
+	
+	
+	<li>slice.h</li>
+	
+	
+	
+	<li>status.h</li>
+	
+	
+	
+	<li>status_code_enum.h</li>
+	
+	
+	
+	<li>string_ref.h</li>
+	
+	
+	
+	<li>stub_options.h</li>
+	
+	
+	
+	<li>sync_stream.h</li>
+	
+	
+	
+	<li>sync_stream_impl.h</li>
+	
+	
+	
+	<li>time.h</li>
+	
+	
+	
+	<li>validate_service_config.h</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>lib64/<ul>
+	
+	
+	
+	<li>libaddress_sorting.so</li>
+	
+	
+	
+	<li>libgpr.so</li>
+	
+	
+	
+	<li>libgrpc++.so</li>
+	
+	
+	
+	<li>libgrpc++_error_details.so</li>
+	
+	
+	
+	<li>libgrpc++_reflection.so</li>
+	
+	
+	
+	<li>libgrpc++_unsecure.so</li>
+	
+	
+	
+	<li>libgrpc.so</li>
+	
+	
+	
+	<li>libgrpc_cronet.so</li>
+	
+	
+	
+	<li>libgrpc_unsecure.so</li>
+	
+	
+	
+	<li>libgrpcpp_channelz.so</li>
+	
+	
+	
+	<li>libupb.so</li>
+	
+	
+	
+	<li>pkgconfig/<ul>
+	
+	
+	
+	<li>gpr.pc</li>
+	
+	
+	
+	<li>grpc++.pc</li>
+	
+	
+	
+	<li>grpc++_unsecure.pc</li>
+	
+	
+	
+	<li>grpc.pc</li>
+	
+	
+	
+	<li>grpc_unsecure.pc</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+</div>
+
+
+
+  <div class="text-muted text-center">
+    
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a></div>
+    
+  </div>
+</div>

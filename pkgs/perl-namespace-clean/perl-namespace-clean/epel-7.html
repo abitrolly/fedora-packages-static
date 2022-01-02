@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<title>perl-namespace-clean-0.24-2.el7 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+
+<meta name="description" content="View perl-namespace-clean-0.24-2.el7 in EPEL 7. perl-namespace-clean: Keep your namespace tidy">
+
+</head>
+
+<div class="container">
+  
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+      
+    </div>
+  </div>
+
+  <hr />
+  
+
+  
+<h1>
+	perl-namespace-clean-0.24-2.el7<small class="text-muted"> in EPEL 7</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of perl-namespace-clean</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=perl-namespace-clean-0.24-2.el7">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=perl-namespace-clean-0.24-2.el7">Search for updates</a>
+</p>
+
+<p>
+	
+	<b>Package Info</b><br>
+	
+	<a href="#changelog">&#129047; Changelog</a><br>
+	
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	
+	
+	<a href="#provides">&#129047; Provides</a><br>
+	
+	
+	<a href="#files">&#129047; Files</a><br>
+	
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		
+		<tr scope="row">
+			<td>2013-02-14</td>
+			<td>Fedora Release Engineering &lt;rel dash eng at lists dot fedoraproject dot org&gt; - 0.24-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2012-12-05</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 0.24-1</td>
+			<td>- Update to 0.24
+  - Properly skip debugger test when optional deps not available
+  - Make sure pure-perl tests pass correctly on space-containing paths
+    (CPAN RT#77528)
+  - Remove all the pure-perl fallback code and depend on PP-capable
+    B::H::EOS 0.12
+- Module no longer attempts to use Hash::Util::FieldHash, so drop filters
+- BR: perl(Sub::Identify) and perl(Sub::Name) unconditionally
+- BR: perl(base), perl(ExtUtils::CBuilder) and perl(lib)
+- Drop BR: perl(FindBin), not dual-lived upstream
+- Update patch for building with old Test::More versions</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2012-07-20</td>
+			<td>Fedora Release Engineering &lt;rel dash eng at lists dot fedoraproject dot org&gt; - 0.23-3</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2012-06-19</td>
+			<td>Petr Pisar &lt;ppisar at redhat dot com&gt; - 0.23-2</td>
+			<td>- Perl 5.16 rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2012-03-11</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 0.23-1</td>
+			<td>- Update to 0.23
+  - Rely on B::Hooks::EndOfScope version 0.10 to fix issues with new
+    Module::Runtime versions (≥ 0.012) on perl 5.10 due to incorrect hook
+    firing due to %^H localisation
+  - Fix failures on 5.13.6 due to incorrect version number threshold
+    (CPAN RT#74683)
+- Don&#39;t need to remove empty directories from buildroot
+- Drop %defattr, redundant since rpm 4.4</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2012-01-27</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 0.22-1</td>
+			<td>- Update to 0.22
+  - Limit the debugger workarounds to perls between 5.8.8 and 5.14, extend
+    debugger support to all perl versions (CPAN RT#69862)
+  - If possible, automatically install (but not load) the debugger workaround
+    libraries on perls between 5.8.8 and 5.14 (CPAN RT#72368)
+  - Add back dropped NAME section (CPAN RT#70259)
+  - Simplify the ≥ 5.10 PP variant even more - move the hook from DESTROY
+    into DELETE
+  - Force explicit callback invocation order on 5.8 PP
+  - Replace the %^H tie approach with fieldhashes, which fixes all known
+    corner cases and caveats on supported perls ≥ 5.8.1 (CPAN RT#73402)
+  - Compile away the debugger fixup on perls ≥ 5.15.5
+- Only BR:/R: Sub::Identify and Sub::Name for perl versions where they&#39;re
+  actually needed
+- Reinstate compatibility with old distributions like EL-5
+  - Patch test suite to work with Test::More &lt; 0.88 if necessary
+  - Filter dependency on Hash::Util::FieldHash on perl 5.8.x
+  - Add back buildroot definition, %clean section, %defattr etc.
+- Only include tests if we have %{perl_default_filter} to avoid the unwanted
+  requires/provides that come with them
+- Drop redundant buildreq perl(CPAN)
+- Make %files list more explicit
+- Use tabs</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2012-01-22</td>
+			<td>Iain Arnell &lt;iarnell at gmail dot com&gt; - 0.21-3</td>
+			<td>- Drop tests subpackage; move tests to main package documentation</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2012-01-14</td>
+			<td>Fedora Release Engineering &lt;rel dash eng at lists dot fedoraproject dot org&gt; - 0.21-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2011-10-02</td>
+			<td>Iain Arnell &lt;iarnell at gmail dot com&gt; - 0.21-1</td>
+			<td>- Update to latest upstream version
+- Clean up spec for modern rpmbuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2011-07-20</td>
+			<td>Petr Sabata &lt;contyk at redhat dot com&gt; - 0.20-3</td>
+			<td>- Perl mass rebuild</td>
+		</tr>
+		
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			
+			<li>
+			
+			<a href="/pkgs/perl-B-Hooks-EndOfScope/perl-B-Hooks-EndOfScope/epel-7.html">
+			
+			
+			perl-B-Hooks-EndOfScope</a>
+			
+
+			</li>
+			
+		</ul>
+	</div>
+	
+	
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			
+			<li>perl(namespace::clean)</li>
+			
+			<li>perl-namespace-clean</li>
+			
+			<li>perl-namespace-clean-tests</li>
+			
+		</ul>
+	</div>
+	
+</div>
+
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	
+	
+	<li>usr/<ul>
+	
+	
+	
+	<li>share/<ul>
+	
+	
+	
+	<li>doc/<ul>
+	
+	
+	
+	<li>perl-namespace-clean-0.24/<ul>
+	
+	
+	
+	<li>Changes</li>
+	
+	
+	
+	<li>t/<ul>
+	
+	
+	
+	<li>00-basic.t</li>
+	
+	
+	
+	<li>01-function-wipeout.t</li>
+	
+	
+	
+	<li>02-inheritance.t</li>
+	
+	
+	
+	<li>03-unimport.t</li>
+	
+	
+	
+	<li>04-except.t</li>
+	
+	
+	
+	<li>05-explicit-cleanee.t</li>
+	
+	
+	
+	<li>05-syntax-error.t</li>
+	
+	
+	
+	<li>06-other-types.t</li>
+	
+	
+	
+	<li>07-debugger.t</li>
+	
+	
+	
+	<li>08-const-sub.t</li>
+	
+	
+	
+	<li>09-fiddle-hinthash.t</li>
+	
+	
+	
+	<li>10-pure-perl.t</li>
+	
+	
+	
+	<li>lib/<ul>
+	
+	
+	
+	<li>CleaneeBridge.pm</li>
+	
+	
+	
+	<li>CleaneeBridgeDirect.pm</li>
+	
+	
+	
+	<li>CleaneeBridgeExplicit.pm</li>
+	
+	
+	
+	<li>CleaneeTarget.pm</li>
+	
+	
+	
+	<li>ExporterTest.pm</li>
+	
+	
+	
+	<li>FunctionWipeout.pm</li>
+	
+	
+	
+	<li>Inheritance.pm</li>
+	
+	
+	
+	<li>OtherTypes.pm</li>
+	
+	
+	
+	<li>SyntaxError.pm</li>
+	
+	
+	
+	<li>Unimport.pm</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>man/<ul>
+	
+	
+	
+	<li>man3/<ul>
+	
+	
+	
+	<li>namespace::clean.3pm.gz</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>perl5/<ul>
+	
+	
+	
+	<li>vendor_perl/<ul>
+	
+	
+	
+	<li>namespace/<ul>
+	
+	
+	
+	<li>clean.pm</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+</div>
+
+
+
+  <div class="text-muted text-center">
+    
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a></div>
+    
+  </div>
+</div>

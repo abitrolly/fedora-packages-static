@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+<title>acpica-tools-20210604-3.fc35 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+
+<meta name="description" content="View acpica-tools-20210604-3.fc35 in Fedora 35. acpica-tools: ACPICA tools for the development and debug of ACPI tables">
+
+</head>
+
+<div class="container">
+  
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+      
+    </div>
+  </div>
+
+  <hr />
+  
+
+  
+<h1>
+	acpica-tools-20210604-3.fc35<small class="text-muted"> in Fedora 35</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of acpica-tools</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=acpica-tools-20210604-3.fc35">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=acpica-tools-20210604-3.fc35">Search for updates</a>
+</p>
+
+<p>
+	
+	<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+	
+	<a href="#changelog">&#129047; Changelog</a><br>
+	
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	
+	
+	<a href="#provides">&#129047; Provides</a><br>
+	
+	
+	<a href="#files">&#129047; Files</a><br>
+	
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		
+		<tr scope="row">
+			<td>2021-07-27</td>
+			<td>Al Stone &lt;ahs3 at redhat dot com&gt; - 20210604-3</td>
+			<td>- Running &#39;iasl -T all&#39; would segfault when dumping the PHAT template;
+  fixed AcpiDmDumpPhat() by removing unnecessary assignments from patch
+- Borrowed a patch from upstream to fix Unicode usage in WPBTs</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-07-21</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 20210604-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-07-11</td>
+			<td>Al Stone &lt;ahs3 at redhat dot com&gt; - 20210604-1</td>
+			<td>- Update to 20210604 source tree (please note that tarballs for versions
+  between 20200925 and 20210604 have been uploaded for archival reasons
+  but no packaged version of these has been commited to the Fedora project)
+- Bring the big-endian patches up-to-date with what has been submitted
+  upstream (not accepted currently).</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-01-25</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 20200925-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-10-19</td>
+			<td>Al Stone &lt;ahs3 at redhat dot com&gt; - 20200925-1</td>
+			<td>- Update to 20200925 source tree
+- Completely revamp the old big-endian patches (maintainability was the goal).
+  This results in a much larger patch set, but each patch is more clearly used
+  for a specific purpose.
+- The acpinames command has been deprecated upstream; acpiexec provides 
+  replacement functionality.</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-07-31</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 20200430-3</td>
+			<td>- Second attempt - Rebuilt for
+  https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-07-27</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 20200430-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-06-08</td>
+			<td>Al Stone &lt;ahs3 at redhat dot com&gt; - 202004306-1</td>
+			<td>- Update to 202004306 source tree, including patch refreshes</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-04-01</td>
+			<td>Al Stone &lt;ahs3 at redhat dot com&gt; - 20200326-1</td>
+			<td>- Update to 20200326 source tree, including patch refreshes
+- Removed a couple of patches that got included upstream</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-02-26</td>
+			<td>Al Stone &lt;ahs3 at redhat dot com&gt; - 20200214-1</td>
+			<td>- Update to 20200214 source tree, including patch refreshes
+- Add patch to fix up issues where strings and 4-byte quantities
+  get interchanged; C strings want to be null terminated now, but
+  AML does not so using strncpy is painful.
+- Add patch for s390x specific issue (dbtest), where initializing a
+  string on the stack behaves a little differently 
+- &#34;PCC&#34; is a defined Register() type, but &#34;PlatformCommChannel&#34; was
+  being used instead; put it back to &#34;PCC&#34; as it should be in pcc.patch
+- Add another big-endian patch to compensate for changes to nsutils.c</td>
+		</tr>
+		
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			
+			<li>
+			
+			<a href="/pkgs/bash/bash/fedora-35.html">
+			
+			
+			bash</a>
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/glibc/glibc/fedora-35.html">
+			
+			
+			glibc</a> &gt;= 2.33.9000-54.fc35
+			
+
+			</li>
+			
+		</ul>
+	</div>
+	
+	
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			
+			<li>acpica-tools</li>
+			
+			<li>acpica-tools(x86-64)</li>
+			
+			<li>acpidump</li>
+			
+			<li>acpixtract</li>
+			
+			<li>iasl</li>
+			
+			<li>pmtools</li>
+			
+		</ul>
+	</div>
+	
+</div>
+
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	
+	
+	<li>usr/<ul>
+	
+	
+	
+	<li>bin/<ul>
+	
+	
+	
+	<li>acpibin</li>
+	
+	
+	
+	<li>acpidump</li>
+	
+	
+	
+	<li>acpiexamples</li>
+	
+	
+	
+	<li>acpiexec</li>
+	
+	
+	
+	<li>acpihelp</li>
+	
+	
+	
+	<li>acpisrc</li>
+	
+	
+	
+	<li>acpixtract</li>
+	
+	
+	
+	<li>iasl</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>lib/<ul>
+	
+	
+	
+	<li>.build-id/<ul>
+	
+	
+	
+	<li>28/<ul>
+	
+	
+	
+	<li>080c7d143f11c70d8c838832de3d6902f8c89a</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>73/<ul>
+	
+	
+	
+	<li>7b45df78ee118a066236c33f941fea91e1dd66</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>8a/<ul>
+	
+	
+	
+	<li>c8e0fe52cde975d20e325594a03b6c7408b970</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>8b/<ul>
+	
+	
+	
+	<li>198d6a97ffb98f939f6034f8f64a47e1d9370f</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>9b/<ul>
+	
+	
+	
+	<li>9c3e90b6be20944bfbccecc6cd98593180f48b</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>9c/<ul>
+	
+	
+	
+	<li>e56a2a8fe96133d869db2ac834195c28d92e5f</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>e3/<ul>
+	
+	
+	
+	<li>238cf36db9a4b26449001676ed00aa76695c56</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>f3/<ul>
+	
+	
+	
+	<li>03d98057fd81c0667c343927d067bf24314404</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>share/<ul>
+	
+	
+	
+	<li>doc/<ul>
+	
+	
+	
+	<li>acpica-tools/<ul>
+	
+	
+	
+	<li>COPYING</li>
+	
+	
+	
+	<li>README.Fedora</li>
+	
+	
+	
+	<li>changes.txt</li>
+	
+	
+	
+	<li>examples/<ul>
+	
+	
+	
+	<li>examples.c</li>
+	
+	
+	
+	<li>examples.h</li>
+	
+	
+	
+	<li>exstubs.c</li>
+	
+	
+	
+	<li>extables.c</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>new_table.txt</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>man/<ul>
+	
+	
+	
+	<li>man1/<ul>
+	
+	
+	
+	<li>acpibin.1.gz</li>
+	
+	
+	
+	<li>acpidump.1.gz</li>
+	
+	
+	
+	<li>acpiexamples.1.gz</li>
+	
+	
+	
+	<li>acpiexec.1.gz</li>
+	
+	
+	
+	<li>acpihelp.1.gz</li>
+	
+	
+	
+	<li>acpisrc.1.gz</li>
+	
+	
+	
+	<li>acpixtract.1.gz</li>
+	
+	
+	
+	<li>iasl.1.gz</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+</div>
+
+
+
+  <div class="text-muted text-center">
+    
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a></div>
+    
+  </div>
+</div>

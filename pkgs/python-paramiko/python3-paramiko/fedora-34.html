@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+
+<title>python3-paramiko-2.7.2-4.fc34 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+
+<meta name="description" content="View python3-paramiko-2.7.2-4.fc34 in Fedora 34. python3-paramiko: SSH2 protocol library for python">
+
+</head>
+
+<div class="container">
+  
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+      
+    </div>
+  </div>
+
+  <hr />
+  
+
+  
+<h1>
+	python3-paramiko-2.7.2-4.fc34<small class="text-muted"> in Fedora 34</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of python3-paramiko</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=python-paramiko-2.7.2-4.fc34">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=python-paramiko-2.7.2-4.fc34">Search for updates</a>
+</p>
+
+<p>
+	
+	<b>Package Info</b><br>
+	
+	<a href="#changelog">&#129047; Changelog</a><br>
+	
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	
+	
+	<a href="#provides">&#129047; Provides</a><br>
+	
+	
+	<a href="#files">&#129047; Files</a><br>
+	
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		
+		<tr scope="row">
+			<td>2021-03-03</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.7.2-4</td>
+			<td>- Drop invoke dependencies as it requires ancient pytest and we can&#39;t expect
+  it to remain around</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-03-02</td>
+			<td>Dan Radez &lt;dradez at redhat dot com&gt; - 2.7.2-3</td>
+			<td>- Removing the python-relax dep using upstream patch
+  https://github.com/paramiko/paramiko/pull/1665/</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-01-27</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 2.7.2-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-08-31</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.7.2-1</td>
+			<td>- Update to 2.7.2
+  - Update our CI to catch issues with sdist generation, installation and
+    testing
+  - Add missing test suite fixtures directory to MANIFEST.in, reinstating the
+    ability to run Paramiko&#39;s tests from an sdist tarball (GH#1727)
+  - Remove leading whitespace from OpenSSH RSA test suite static key fixture,
+    to conform better to spec. (GH#1722)
+  - Fix incorrect string formatting causing unhelpful error message annotation
+    when using Kerberos/GSSAPI
+  - Fix incorrectly swapped order of &#39;p&#39; and &#39;q&#39; numbers when loading
+    OpenSSH-format RSA private keys; at minimum this should address a slowdown
+    when using such keys, and it also means Paramiko works with Cryptography
+    3.1 and above, which complains strenuously when this problem appears
+    (GH#1723)</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-07-29</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 2.7.1-5</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-05-30</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.7.1-4</td>
+			<td>- Avoid FTBFS with pytest 5 (pytest-relaxed pulls in pytest 4)
+- Drop explicit dependencies for things that the python dependency generator
+  finds by itself</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-05-24</td>
+			<td>Miro Hrončok &lt;mhroncok at redhat dot com&gt; - 2.7.1-3</td>
+			<td>- Rebuilt for Python 3.9</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2020-01-30</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 2.7.1-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2019-12-11</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.7.1-1</td>
+			<td>- Update to 2.7.1
+  - The new-style private key format (added in 2.7.0) suffered from an
+    unpadding bug that had been fixed earlier for Ed25519 (as that key type has
+    always used the newer format); that fix has been refactored and applied to
+    the base key class (GH#1567)
+  - Fix a bug in support for ECDSA keys under the newly-supported OpenSSH key
+    format (GH#1565, GH#1566)</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2019-12-04</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.7.0-1</td>
+			<td>- Update to 2.7.0
+  - Implement support for OpenSSH 6.5-style private key files (typically
+    denoted as having &#39;BEGIN OPENSSH PRIVATE KEY&#39; headers instead of PEM
+    format&#39;s &#39;BEGIN RSA PRIVATE KEY&#39; or similar); if you were getting any sort
+    of weird auth error from &#34;modern&#34; keys generated on newer operating system
+    releases (such as macOS Mojave), this is the first update to try (GH#602,
+    GH#618, GH#1313, GH#1343)
+  - Token expansion in &#39;ssh_config&#39; used a different method of determining the
+    local username (&#39;$USER&#39; environment variable), compared to what the (much
+    older) client connection code does (&#39;getpass.getuser&#39;, which includes
+    &#39;$USER&#39; but may check other variables first, and is generally much more
+    comprehensive); both modules now use &#39;getpass.getuser&#39;
+  - A couple of outright &#39;~paramiko.config.SSHConfig&#39; parse errors were
+    previously represented as vanilla &#39;Exception&#39; instances; as part of recent
+    feature work a more specific exception class,
+    &#39;~paramiko.ssh_exception.ConfigParseError&#39;, has been created; it is now
+    also used in those older spots, which is naturally backwards compatible
+  - Implement support for the &#39;Match&#39; keyword in &#39;ssh_config&#39; files;
+    previously, this keyword was simply ignored and keywords inside such blocks
+    were treated as if they were part of the previous block (GH#717)
+    - Note: this feature adds a new optional install dependency &#39;Invoke&#39;
+      (https://www.pyinvoke.org), for managing &#39;Match exec&#39; subprocesses
+  - Additional installation &#39;extras_require&#39; &#34;flavors&#34; (&#39;ed25519&#39;, &#39;invoke&#39;,
+    and &#39;all&#39;) have been added to our packaging metadata
+  - Paramiko&#39;s use of &#39;subprocess&#39; for &#39;ProxyCommand&#39; support is conditionally
+    imported to prevent issues on limited interpreter platforms like Google
+    Compute Engine; however, any resulting &#39;ImportError&#39; was lost instead of
+    preserved for raising (in the rare cases where a user tried leveraging
+    &#39;ProxyCommand&#39; in such an environment); this has been fixed
+  - Perform deduplication of &#39;IdentityFile&#39; contents during &#39;ssh_config&#39;
+    parsing; previously, if your config would result in the same value being
+    encountered more than once, &#39;IdentityFile&#39; would contain that many copies
+    of the same string
+  - Implement most &#39;canonical hostname&#39; &#39;ssh_config&#39; functionality
+    (&#39;CanonicalizeHostname&#39;, &#39;CanonicalDomains&#39;, &#39;CanonicalizeFallbackLocal&#39;,
+    and &#39;CanonicalizeMaxDots&#39;; &#39;CanonicalizePermittedCNAMEs&#39; has *not* yet
+    been implemented) - all were previously silently ignored (GH#897)
+  - Explicitly document which ssh_config features we currently support;
+    previously users just had to guess, which is simply no good
+  - Add new convenience classmethod constructors to
+    &#39;~paramiko.config.SSHConfig&#39;: &#39;~paramiko.config.SSHConfig.from_text&#39;,
+    &#39;~paramiko.config.SSHConfig.from_file&#39;, and
+    &#39;~paramiko.config.SSHConfig.from_path&#39;; no more annoying two-step process!
+- Add Recommends: of python3-invoke and python3-pyasn1 for optional
+  functionality</td>
+		</tr>
+		
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			
+			<li>
+			
+			<a href="/pkgs/python2.7/python2.7/fedora-34.html">
+			
+			
+			python2.7</a> = 3.9
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/python3.9/python3/fedora-34.html">
+			
+			
+			python3</a> = 3.9
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/python-bcrypt/python3-bcrypt/fedora-34.html">
+			
+			
+			python3-bcrypt</a> &gt;= 3.1.3
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/python-cryptography/python3-cryptography/fedora-34.html">
+			
+			
+			python3-cryptography</a> &gt;= 2.5
+			
+
+			</li>
+			
+			<li>
+			
+			<a href="/pkgs/python-pynacl/python3-pynacl/fedora-34.html">
+			
+			
+			python3-pynacl</a> &gt;= 1.0.1
+			
+
+			</li>
+			
+		</ul>
+	</div>
+	
+	
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			
+			<li>python-paramiko</li>
+			
+			<li>python3-paramiko</li>
+			
+			<li>python3.9-paramiko</li>
+			
+			<li>python3.9dist(paramiko)</li>
+			
+			<li>python3dist(paramiko)</li>
+			
+		</ul>
+	</div>
+	
+</div>
+
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	
+	
+	<li>usr/<ul>
+	
+	
+	
+	<li>lib/<ul>
+	
+	
+	
+	<li>python3.9/<ul>
+	
+	
+	
+	<li>site-packages/<ul>
+	
+	
+	
+	<li>paramiko/<ul>
+	
+	
+	
+	<li>__init__.py</li>
+	
+	
+	
+	<li>__pycache__/<ul>
+	
+	
+	
+	<li>__init__.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>__init__.cpython-39.pyc</li>
+	
+	
+	
+	<li>_version.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>_version.cpython-39.pyc</li>
+	
+	
+	
+	<li>_winapi.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>_winapi.cpython-39.pyc</li>
+	
+	
+	
+	<li>agent.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>agent.cpython-39.pyc</li>
+	
+	
+	
+	<li>auth_handler.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>auth_handler.cpython-39.pyc</li>
+	
+	
+	
+	<li>ber.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>ber.cpython-39.pyc</li>
+	
+	
+	
+	<li>buffered_pipe.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>buffered_pipe.cpython-39.pyc</li>
+	
+	
+	
+	<li>channel.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>channel.cpython-39.pyc</li>
+	
+	
+	
+	<li>client.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>client.cpython-39.pyc</li>
+	
+	
+	
+	<li>common.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>common.cpython-39.pyc</li>
+	
+	
+	
+	<li>compress.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>compress.cpython-39.pyc</li>
+	
+	
+	
+	<li>config.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>config.cpython-39.pyc</li>
+	
+	
+	
+	<li>dsskey.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>dsskey.cpython-39.pyc</li>
+	
+	
+	
+	<li>ecdsakey.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>ecdsakey.cpython-39.pyc</li>
+	
+	
+	
+	<li>ed25519key.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>ed25519key.cpython-39.pyc</li>
+	
+	
+	
+	<li>file.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>file.cpython-39.pyc</li>
+	
+	
+	
+	<li>hostkeys.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>hostkeys.cpython-39.pyc</li>
+	
+	
+	
+	<li>kex_curve25519.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>kex_curve25519.cpython-39.pyc</li>
+	
+	
+	
+	<li>kex_ecdh_nist.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>kex_ecdh_nist.cpython-39.pyc</li>
+	
+	
+	
+	<li>kex_gex.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>kex_gex.cpython-39.pyc</li>
+	
+	
+	
+	<li>kex_group1.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>kex_group1.cpython-39.pyc</li>
+	
+	
+	
+	<li>kex_group14.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>kex_group14.cpython-39.pyc</li>
+	
+	
+	
+	<li>kex_group16.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>kex_group16.cpython-39.pyc</li>
+	
+	
+	
+	<li>kex_gss.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>kex_gss.cpython-39.pyc</li>
+	
+	
+	
+	<li>message.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>message.cpython-39.pyc</li>
+	
+	
+	
+	<li>packet.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>packet.cpython-39.pyc</li>
+	
+	
+	
+	<li>pipe.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>pipe.cpython-39.pyc</li>
+	
+	
+	
+	<li>pkey.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>pkey.cpython-39.pyc</li>
+	
+	
+	
+	<li>primes.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>primes.cpython-39.pyc</li>
+	
+	
+	
+	<li>proxy.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>proxy.cpython-39.pyc</li>
+	
+	
+	
+	<li>py3compat.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>py3compat.cpython-39.pyc</li>
+	
+	
+	
+	<li>rsakey.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>rsakey.cpython-39.pyc</li>
+	
+	
+	
+	<li>server.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>server.cpython-39.pyc</li>
+	
+	
+	
+	<li>sftp.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>sftp.cpython-39.pyc</li>
+	
+	
+	
+	<li>sftp_attr.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>sftp_attr.cpython-39.pyc</li>
+	
+	
+	
+	<li>sftp_client.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>sftp_client.cpython-39.pyc</li>
+	
+	
+	
+	<li>sftp_file.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>sftp_file.cpython-39.pyc</li>
+	
+	
+	
+	<li>sftp_handle.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>sftp_handle.cpython-39.pyc</li>
+	
+	
+	
+	<li>sftp_server.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>sftp_server.cpython-39.pyc</li>
+	
+	
+	
+	<li>sftp_si.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>sftp_si.cpython-39.pyc</li>
+	
+	
+	
+	<li>ssh_exception.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>ssh_exception.cpython-39.pyc</li>
+	
+	
+	
+	<li>ssh_gss.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>ssh_gss.cpython-39.pyc</li>
+	
+	
+	
+	<li>transport.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>transport.cpython-39.pyc</li>
+	
+	
+	
+	<li>util.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>util.cpython-39.pyc</li>
+	
+	
+	
+	<li>win_pageant.cpython-39.opt-1.pyc</li>
+	
+	
+	
+	<li>win_pageant.cpython-39.pyc</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>_version.py</li>
+	
+	
+	
+	<li>_winapi.py</li>
+	
+	
+	
+	<li>agent.py</li>
+	
+	
+	
+	<li>auth_handler.py</li>
+	
+	
+	
+	<li>ber.py</li>
+	
+	
+	
+	<li>buffered_pipe.py</li>
+	
+	
+	
+	<li>channel.py</li>
+	
+	
+	
+	<li>client.py</li>
+	
+	
+	
+	<li>common.py</li>
+	
+	
+	
+	<li>compress.py</li>
+	
+	
+	
+	<li>config.py</li>
+	
+	
+	
+	<li>dsskey.py</li>
+	
+	
+	
+	<li>ecdsakey.py</li>
+	
+	
+	
+	<li>ed25519key.py</li>
+	
+	
+	
+	<li>file.py</li>
+	
+	
+	
+	<li>hostkeys.py</li>
+	
+	
+	
+	<li>kex_curve25519.py</li>
+	
+	
+	
+	<li>kex_ecdh_nist.py</li>
+	
+	
+	
+	<li>kex_gex.py</li>
+	
+	
+	
+	<li>kex_group1.py</li>
+	
+	
+	
+	<li>kex_group14.py</li>
+	
+	
+	
+	<li>kex_group16.py</li>
+	
+	
+	
+	<li>kex_gss.py</li>
+	
+	
+	
+	<li>message.py</li>
+	
+	
+	
+	<li>packet.py</li>
+	
+	
+	
+	<li>pipe.py</li>
+	
+	
+	
+	<li>pkey.py</li>
+	
+	
+	
+	<li>primes.py</li>
+	
+	
+	
+	<li>proxy.py</li>
+	
+	
+	
+	<li>py3compat.py</li>
+	
+	
+	
+	<li>rsakey.py</li>
+	
+	
+	
+	<li>server.py</li>
+	
+	
+	
+	<li>sftp.py</li>
+	
+	
+	
+	<li>sftp_attr.py</li>
+	
+	
+	
+	<li>sftp_client.py</li>
+	
+	
+	
+	<li>sftp_file.py</li>
+	
+	
+	
+	<li>sftp_handle.py</li>
+	
+	
+	
+	<li>sftp_server.py</li>
+	
+	
+	
+	<li>sftp_si.py</li>
+	
+	
+	
+	<li>ssh_exception.py</li>
+	
+	
+	
+	<li>ssh_gss.py</li>
+	
+	
+	
+	<li>transport.py</li>
+	
+	
+	
+	<li>util.py</li>
+	
+	
+	
+	<li>win_pageant.py</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>paramiko-2.7.2-py3.9.egg-info/<ul>
+	
+	
+	
+	<li>PKG-INFO</li>
+	
+	
+	
+	<li>SOURCES.txt</li>
+	
+	
+	
+	<li>dependency_links.txt</li>
+	
+	
+	
+	<li>requires.txt</li>
+	
+	
+	
+	<li>top_level.txt</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>share/<ul>
+	
+	
+	
+	<li>doc/<ul>
+	
+	
+	
+	<li>python3-paramiko/<ul>
+	
+	
+	
+	<li>NEWS</li>
+	
+	
+	
+	<li>README.rst</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>licenses/<ul>
+	
+	
+	
+	<li>python3-paramiko/<ul>
+	
+	
+	
+	<li>LICENSE</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+</div>
+
+
+
+  <div class="text-muted text-center">
+    
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a></div>
+    
+  </div>
+</div>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<title>packit-0.43.0-1.el8 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+
+<meta name="description" content="View packit-0.43.0-1.el8 in EPEL 8. packit: A tool for integrating upstream projects with Fedora operating system">
+
+</head>
+
+<div class="container">
+  
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+      
+    </div>
+  </div>
+
+  <hr />
+  
+
+  
+<h1>
+	packit-0.43.0-1.el8<small class="text-muted"> in EPEL 8</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of packit</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=packit-0.43.0-1.el8">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=packit-0.43.0-1.el8">Search for updates</a>
+</p>
+
+<p>
+	
+	<b>Package Info</b><br>
+	
+	<a href="#changelog">&#129047; Changelog</a><br>
+	
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	
+	
+	<a href="#provides">&#129047; Provides</a><br>
+	
+	
+	<a href="#files">&#129047; Files</a><br>
+	
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		
+		<tr scope="row">
+			<td>2021-12-08</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.43.0-1</td>
+			<td>- A new `packit prepare-sources` command has been implemented for preparing                                                                                                                                                                 
+  sources for an SRPM build using the content of an upstream repository.                                                                                                                                                                    
+  ([packit#1424](https://github.com/packit/packit/pull/1424))                                                         
+- Packit now visibly informs about an ongoing cloning process to remove                                                                                                                                                                     
+  potential confusion.                                                                                                                                                                                                                      
+  ([packit#1431](https://github.com/packit/packit/pull/1431))                                                                                                                                                                               
+- The `upstream_package_name` config option is now checked for illegal                                                                                                                                                                      
+  characters and an error is thrown if it contains them.                                                                                                                                                                                    
+  ([packit#1434](https://github.com/packit/packit/pull/1434))</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-11-25</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.42.0-1</td>
+			<td>- Running `post-upstream-clone` action in `propose-downstream` command was fixed.
+  This solves the issue for projects that generate the specfile during this action.
+- New config option `env` has been added for specifying environment variables
+  used for running tests in the Testing Farm.</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-11-11</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.41.0-1</td>
+			<td>- Packit now supports `changelog-entry` action that is used when creating
+  SRPM. The action is supposed to generate whole changelog entry (including
+  the `-` at the start of the lines) and has a priority over any other way we
+  modify the changelog with. (#1367)
+- Fixed an issue, which raised an `UnicodeEncodingError`, when working with
+  dist-git patch files with an encoding other than UTF-8. (#1406)
+- Backup alias definitions now reflect the official release of Fedora Linux 35. (#1405)
+- We have introduced a new configuration option `merge_pr_in_ci` that allows
+  you to disable merging of PR into the base branch before creating SRPM in
+  service. (#1395)
+- Fixed an issue, where spec-files located in a sub-directory of upstream
+  projects, were not placed in the root of the dist-git repo when proposing
+  changes downstream. (#1402)</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-10-27</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.40.0-1</td>
+			<td>- Packit will deduce the version for SRPM from the spec file, if there are no git tags or action for acquiring current version defined. (#1388)
+- We have introduced new options for generating SRPM packages: (#1396)
+  - `--no-bump` that prevents changing of the release in the SRPM, which can be used for creating SRPMs on checked out tags/releases.
+  - `--release-suffix` that allows you to customize the suffix after the release number, e.g. reference bugzilla or specific branch of the build.</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-10-14</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.39.0-1</td>
+			<td>- Bug in Packit causing issues with local build when the branch was named with prefix rpm has been fixed. (#1380)
+- We have added a new option to Packit CLI when creating Bodhi updates, you can use `-b` or `--resolve-bugzillas` and specify IDs (separated by comma, e.g. `-b 1` or `-b 1,2,3`) of bugzillas that are being closed by the update. (#1383)</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-09-30</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.38.0-1</td>
+			<td>- `packit validate-config` was updated to check if files to be synced
+  downstream are present in the upstream repo and emit a warning in case they
+  are missing. (#1366)
+- Patch files are read as byte streams now, in order to support having
+  non-UTF-8 characters. (#1372)</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-09-17</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.37.0-1</td>
+			<td>- `packit source-git` init was updated to try to apply patches with `git am` first, and use `patch` only when this fails, in order to keep the commit message of Git-formatted (mbox) patch files in the source-git history. (#1358)
+- Packit now provides `PACKIT_RPMSPEC_RELEASE` environment variable in actions. (#1363)</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-09-01</td>
+			<td>Jiri Popelka &lt;jpopelka at redhat dot com&gt; - 0.36.0-1</td>
+			<td>- `status` command has been refactored and now provides much cleaner output. (#1329)
+- A log warning is raised if the specfile specified by the user in the config doesn&#39;t exist. (#1342)
+- Packit by default locally merges checked out pull requests into target branch. Logging for checking out pull requests was improved to contain hashes and summaries of last commit on both source and target branches. (#1344)
+- `source-git update-dist-git` now supports using Git trailers to define patch metadata, which will control how patches are generated and added to the spec-file. `source-git init` uses this format to capture patch metadata when setting up a source-git repo, instead of the YAML one. To maintain backwards compatibility, the YAML format is still parsed, but only if none of the patches defines metadata using Git trailers. (#1336)
+- Fixed a bug that caused purging or syncing upstream changelog (when not configured) from specfile when running `propose-downstream`. New behavior preserves downstream changelog and in case there are either no entries or no %changelog section present, it is created with a new entry. (#1349)</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-08-09</td>
+			<td>Tomas Tomecek &lt;ttomecek at redhat dot com&gt; - 0.35.0-1</td>
+			<td>- Propose-downstream: log when a PR already exists downstream (#1322).
+- `packit init` to set spec file path in the config if it&#39;s not defined (#1313).
+- Make it possible to clone packages from staging dist-git (#1306).
+- Source-git: squash patches by patch name - no need to have a dedicated attribute, `squash_commits`, for that (#1309).
+- Source-git: look for the config file in .distro/source-git.yaml as well (#1302).
+- Source-git: change logging from error to warning when %prep is not using setup (#1317).</td>
+		</tr>
+		
+		<tr scope="row">
+			<td>2021-07-22</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 0.34.0-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+		</tr>
+		
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			
+			<li>
+			
+			<a href="/pkgs/packit/python3-packit/epel-8.html">
+			
+			
+			python3-packit</a> = 0.43.0-1.el8
+			
+
+			</li>
+			
+		</ul>
+	</div>
+	
+	
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			
+			<li>packit</li>
+			
+		</ul>
+	</div>
+	
+</div>
+
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	
+	
+	<li>usr/<ul>
+	
+	
+	
+	<li>bin/<ul>
+	
+	
+	
+	<li>_packitpatch</li>
+	
+	
+	
+	<li>packit</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>share/<ul>
+	
+	
+	
+	<li>bash-completion/<ul>
+	
+	
+	
+	<li>completions/<ul>
+	
+	
+	
+	<li>packit</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>licenses/<ul>
+	
+	
+	
+	<li>packit/<ul>
+	
+	
+	
+	<li>LICENSE</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	<li>man/<ul>
+	
+	
+	
+	<li>man1/<ul>
+	
+	
+	
+	<li>packit-build.1.gz</li>
+	
+	
+	
+	<li>packit-copr-build.1.gz</li>
+	
+	
+	
+	<li>packit-create-update.1.gz</li>
+	
+	
+	
+	<li>packit-init.1.gz</li>
+	
+	
+	
+	<li>packit-local-build.1.gz</li>
+	
+	
+	
+	<li>packit-prepare-sources.1.gz</li>
+	
+	
+	
+	<li>packit-propose-downstream.1.gz</li>
+	
+	
+	
+	<li>packit-push-updates.1.gz</li>
+	
+	
+	
+	<li>packit-source-git-init.1.gz</li>
+	
+	
+	
+	<li>packit-source-git-update-dist-git.1.gz</li>
+	
+	
+	
+	<li>packit-source-git.1.gz</li>
+	
+	
+	
+	<li>packit-srpm.1.gz</li>
+	
+	
+	
+	<li>packit-status.1.gz</li>
+	
+	
+	
+	<li>packit-sync-from-downstream.1.gz</li>
+	
+	
+	
+	<li>packit-validate-config.1.gz</li>
+	
+	
+	
+	<li>packit.1.gz</li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+	
+	</ul></li>
+	
+	
+</div>
+
+
+
+  <div class="text-muted text-center">
+    
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a></div>
+    
+  </div>
+</div>
