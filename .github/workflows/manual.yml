@@ -19,16 +19,19 @@ jobs:
         brew install abitrolly/tap/tdu
         duf
 
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Install dependencies and free space
-      #run: sudo apt-get -y install $(grep "^[^#]" dependencies.txt)
+    - name: Free space
       run: |
-        pip install tqdm defusedxml
         sudo rm -rf /usr/share/dotnet
         sudo rm -rf /usr/local/lib/android
         dust /
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      #run: sudo apt-get -y install $(grep "^[^#]" dependencies.txt)
+      run: |
+        pip install tqdm defusedxml
 
     - name: Build
       env:
