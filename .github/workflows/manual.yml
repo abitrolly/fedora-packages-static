@@ -16,8 +16,9 @@ jobs:
     - name: Install Homebrew for Ubuntu 21.04
       run: |
         apt-get -y update
-        apt-get -y install --no-install-recommends curl
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        apt-get -y install --no-install-recommends curl ca-certificates
+        curl -fsSLo /tmp/install.sh https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+        /bin/bash /tmp/install.sh
 
     - name: Disk space utils
       run: |
