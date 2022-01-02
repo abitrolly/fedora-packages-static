@@ -20,12 +20,18 @@ jobs:
         apt-get -y install --no-install-recommends curl ca-certificates git
         curl -fsSLo /tmp/install.sh https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
         /bin/bash /tmp/install.sh
+
         # Add `brew` to PATH
         # https://docs.github.com/en/actions/learn-github-actions/workflow-commands-for-github-actions#adding-a-system-path
         echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
+        # Set other `brew` vars to fix bottle installation problem
+        # https://github.com/Homebrew/discussions/discussions/2713
+        echo "HOMEBREW_PREFIX=/home/linuxbrew/.linuxbrew" >> $GITHUB_ENV
 
     - name: Disk space utils
       run: |
+        brew config
+
         brew install duf
         brew install dust
         brew install abitrolly/tap/tdu
