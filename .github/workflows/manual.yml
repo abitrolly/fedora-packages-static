@@ -20,8 +20,9 @@ jobs:
         apt-get -y install --no-install-recommends curl ca-certificates git
         curl -fsSLo /tmp/install.sh https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
         /bin/bash /tmp/install.sh
-        # add `brew` to PATH
-        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /github/home/.profile
+        # Add `brew` to PATH
+        # https://docs.github.com/en/actions/learn-github-actions/workflow-commands-for-github-actions#adding-a-system-path
+        echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
 
     - name: Disk space utils
       run: |
