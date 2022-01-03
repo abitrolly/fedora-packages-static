@@ -126,7 +126,10 @@ def main():
 
     # Initialize templating system.
     env = Environment(
-        loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True
+        loader=FileSystemLoader(TEMPLATE_DIR),
+        autoescape=True,
+        trim_blocks=True,
+        lstrip_blocks=True
     )
 
     # Load maintainer mapping (imported from dist-git).
@@ -406,7 +409,7 @@ def main():
             page_count += 1
             if page_count % 100 == 0 or page_count == max_page_count:
                 print(
-                    "Processed {}/{} package pages.".format(page_count, max_page_count)
+                    f"Processed {page_count}/{max_page_count} package pages.. {pkg.name}"
                 )
 
             for release in pkg.releases.keys():
