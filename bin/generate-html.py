@@ -16,10 +16,13 @@ import argparse
 import glob
 
 from datetime import date
+from collections import defaultdict
+from pathlib import Path
 
-from jinja2 import Environment, PackageLoader
+from jinja2 import Environment, FileSystemLoader
 
-TEMPLATE_DIR = "../templates"
+ROOT_DIR = Path(__file__).parent.parent
+TEMPLATE_DIR = ROOT_DIR / "templates"
 DBS_DIR = os.environ.get("DB_DIR") or "repositories"
 ASSETS_DIR = "assets"
 SCM_MAINTAINER_MAPPING = (
@@ -123,7 +126,7 @@ def main():
 
     # Initialize templating system.
     env = Environment(
-        loader=PackageLoader("generate-html", TEMPLATE_DIR), autoescape=True
+        loader=FileSystemLoader(TEMPLATE_DIR), autoescape=True
     )
 
     # Load maintainer mapping (imported from dist-git).
@@ -138,7 +141,7 @@ def main():
         release_mapping = json.load(raw)
 
     # Group databases files.
-    databases = {}
+    databases = defaultdict(dict)
     db_pattern = re.compile(
         "^(fedora|epel)-([\w|-]+)_(primary|filelists|other).sqlite$"
     )
@@ -148,10 +151,8 @@ def main():
 
         (product, branch, db_type) = db_pattern.findall(db)[0]
         release_branch = "{}-{}".format(product, branch)
-        if release_branch in databases:
+        if release_branch in release_mapping:
             databases[release_branch][db_type] = db
-        else:
-            databases[release_branch] = {db_type: db}
 
     # Build internal package metadata structure / cache.
     # { "src_pkg": { "subpackage": pkg, ... } }

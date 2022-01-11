@@ -358,7 +358,7 @@ def main():
     args = parser.parse_args()
 
     # Get active releases from PDC.
-    print("Fetching active releases from PDC...")
+    print("Fetching active releases from PDC... https://pdc.fedoraproject.org/")
     r = requests.get(
         "https://pdc.fedoraproject.org/rest_api/v1/product-versions/",
         params={"active": "true"},
