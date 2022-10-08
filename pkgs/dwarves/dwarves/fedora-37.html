@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<title>dwarves-1.24-1.fc37 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="description" content="View dwarves-1.24-1.fc37 in Fedora 37. dwarves: Debugging Information Manipulation Tools (pahole &amp; friends)">
+
+<div class="container">
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+    </div>
+  </div>
+
+  <hr />
+
+<h1>
+	dwarves-1.24-1.fc37<small class="text-muted"> in Fedora 37</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of dwarves</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=dwarves-1.24-1.fc37">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=dwarves-1.24-1.fc37">Search for updates</a>
+</p>
+
+<p>
+	<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+	<a href="#changelog">&#129047; Changelog</a><br>
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	<a href="#provides">&#129047; Provides</a><br>
+	<a href="#files">&#129047; Files</a><br>
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>2022-08-17</td>
+			<td>Arnaldo Carvalho de Melo &lt;acme at redhat dot com&gt; - 1.24-1</td>
+			<td>- New release: v1.24
+- Add support to BTF_KIND_ENUM64.
+- Support multithreaded BTF encoding.
+- Encode char type as signed in BTF.
+- Introduce --lang and --lang_exclude to pahole.
+- Introduce --compile to pahole.
+- Don&#39;t segfault when processing bogus files.</td>
+		</tr>
+		<tr>
+			<td>2022-07-21</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1.23-3</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild</td>
+		</tr>
+		<tr>
+			<td>2022-01-20</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1.23-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild</td>
+		</tr>
+		<tr>
+			<td>2021-12-08</td>
+			<td>Arnaldo Carvalho de Melo &lt;acme at redhat dot com&gt; - 1.23-1</td>
+			<td>- New release: v1.23
+- Process DW_TAG_LLVM_annotation tags.
+- Initial support for DW_TAG_skeleton_unit.
+- Encode BTF_KIND_TYPE_TAG and BTF_KIND_DECL_TAG
+- Fix handling of percpu symbols on s390.
+- Use cacheline size to infer struct member alignment from BTF.
+- Add --skip_missing to not stop when not finding one of -C arguments.
+- Fix __attribute__((__aligned__(N)) printing alignment for struct members.
+- Fix nested __attribute__(__aligned__(N)) struct printing order.</td>
+		</tr>
+		<tr>
+			<td>2021-08-23</td>
+			<td>Arnaldo Carvalho de Melo &lt;acme at redhat dot com&gt; - 1.22-1</td>
+			<td>- New release: v1.22
+- Introduce -j/--jobs option to specify the number of threads to use.
+- Multithreaded DWARF loading, requires elfutils &gt;= 0.178.
+- Preparatory work for multithreaded BTF encoding, the focus for 1.23.
+- Allow encoding BTF to a separate file.
+- Show all different types with the same name, not just the first one found.
+- Stop assuming that reading from stdin means pretty, add --prettify.
+- Improve type resolution for the --header command line option.
+- Do not consider the ftrace filter when encoding BTF for kernel functions.
+- Lock calls to non-thread safe elfutils&#39; dwarf_decl_file() and dwarf_decl_line().
+- Change hash table size to one that performs better with current typical vmlinux files.
+- Allow tweaking the hash table size from the command line.
+- Add --kabi_prefix to avoid deduplication woes when using _RH_KABI_REPLACE().
+- Add --with_flexible_array to show just types with flexible arrays.
+- Support btfdiff with a detached BTF file.
+- Introduce sorted type output (--sort).
+- Disable incomplete CTF encoder.</td>
+		</tr>
+		<tr>
+			<td>2021-07-21</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1.21-3</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+		</tr>
+		<tr>
+			<td>2021-05-10</td>
+			<td>Arnaldo Carvalho de Melo &lt;acme at redhat dot com&gt; - 1.21-2</td>
+			<td>- Backport 0001-btf-Remove-ftrace-filter.patch from upstream</td>
+		</tr>
+		<tr>
+			<td>2021-04-09</td>
+			<td>Arnaldo Carvalho de Melo &lt;acme at redhat dot com&gt; - 1.21-1</td>
+			<td>- New release: v1.21
+- DWARF loader:
+- Handle DWARF5 DW_OP_addrx properly
+- Handle subprogram ret type with abstract_origin properly
+- Check .notes section for LTO build info
+- Check .debug_abbrev for cross-CU references
+- Permit merging all DWARF CU&#39;s for clang LTO built binary
+- Factor out common code to initialize a cu
+- Permit a flexible HASHTAGS__BITS
+- Use a better hashing function, from libbpf
+- btf_encoder:
+- Add --btf_gen_all flag
+- Match ftrace addresses within ELF functions
+- Funnel ELF error reporting through a macro
+- Sanitize non-regular int base type
+- Add support for the floating-point types
+- Pretty printer:
+- Honour conf_fprintf.hex when printing enumerations</td>
+		</tr>
+		<tr>
+			<td>2021-02-02</td>
+			<td>Arnaldo Carvalho de Melo &lt;acme at redhat dot com&gt; - 1.20-1</td>
+			<td>- New release: v1.20
+- btf_encoder:
+- Improve ELF error reporting using elf_errmsg(elf_errno())
+- Improve objcopy error handling.
+- Fix handling of &#39;restrict&#39; qualifier, that was being treated as a &#39;const&#39;.
+- Support SHN_XINDEX in st_shndx symbol indexes
+- Cope with functions without a name
+- Fix BTF variable generation for kernel modules
+- Fix address size to match what is in the ELF file being processed.
+- Use kernel module ftrace addresses when finding which functions to encode.
+- libbpf:
+- Allow use of packaged version.
+- dwarf_loader:
+- Support DW_AT_data_bit_offset
+- DW_FORM_implicit_const in attr_numeric() and attr_offset()
+- Support DW_TAG_GNU_call_site, standardized rename of DW_TAG_GNU_call_site.
+- build:
+- Fix compilation on 32-bit architectures.</td>
+		</tr>
+		<tr>
+			<td>2020-11-20</td>
+			<td>Arnaldo Carvalho de Melo &lt;acme at redhat dot com&gt; - 1.19-1</td>
+			<td>- New release: 1.19
+- Split BTF
+- DWARF workarounds for DW_AT_declaration
+- Support cross-compiled ELF binaries with different endianness
+- Support showing typedefs for anonymous types
+- Speedups using libbpf algorithms
+- See changes-v1.19 for a complete and more detailed list of changes</td>
+		</tr>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			<li>
+			<a href="/pkgs/elfutils/elfutils-libelf/fedora-37.html">
+			elfutils-libelf</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/glibc/glibc/fedora-37.html">
+			glibc</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/dwarves/libdwarves1/fedora-37.html">
+			libdwarves1</a>
+
+			</li>
+		</ul>
+	</div>
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			<li>dwarves</li>
+			<li>dwarves(x86-64)</li>
+		</ul>
+	</div>
+</div>
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	<li>usr/<ul>
+	<li>bin/<ul>
+	<li>btfdiff</li>
+	<li>codiff</li>
+	<li>ctracer</li>
+	<li>dtagnames</li>
+	<li>fullcircle</li>
+	<li>ostra-cg</li>
+	<li>pahole</li>
+	<li>pdwtags</li>
+	<li>pfunct</li>
+	<li>pglobal</li>
+	<li>prefcnt</li>
+	<li>scncopy</li>
+	<li>syscse</li>
+	</ul></li>
+	<li>lib/<ul>
+	<li>.build-id/<ul>
+	<li>10/<ul>
+	<li>0daf4ab6ed4e0be1fd080820fc629d8ead502d</li>
+	</ul></li>
+	<li>52/<ul>
+	<li>8b6ba0a7b85a7320e3d1e0ccf6cc76eaa7526f</li>
+	<li>f806fca5ac92ff99caadcc94764ca28bb489cd</li>
+	</ul></li>
+	<li>75/<ul>
+	<li>8bd5f2477145f2b7a7598d19eb66dc190caa97</li>
+	</ul></li>
+	<li>7c/<ul>
+	<li>c1a8bcf193e5d966440085cf88606449a383af</li>
+	</ul></li>
+	<li>ba/<ul>
+	<li>0c3ab1594cd59cec285a2289e264f4d5c07ef5</li>
+	</ul></li>
+	<li>c4/<ul>
+	<li>b293ce296f839cc58fb040dd361b5613c2e3ff</li>
+	</ul></li>
+	<li>d1/<ul>
+	<li>46eaa026ff7be2c4a46ae712a8e593573ef352</li>
+	</ul></li>
+	<li>d4/<ul>
+	<li>eb4b1c00ac0f86c32a2c1e529e3bb0f40eb194</li>
+	</ul></li>
+	<li>e0/<ul>
+	<li>822681703bce35591386fe05231101bb5d10cd</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>share/<ul>
+	<li>doc/<ul>
+	<li>dwarves/<ul>
+	<li>NEWS</li>
+	<li>README.btf</li>
+	<li>README.ctracer</li>
+	<li>changes-v1.24</li>
+	</ul></li>
+	</ul></li>
+	<li>dwarves/<ul>
+	<li>runtime/<ul>
+	<li>Makefile</li>
+	<li>ctracer_relay.c</li>
+	<li>ctracer_relay.h</li>
+	<li>linux.blacklist.cu</li>
+	<li>python/<ul>
+	<li>ostra.py</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>man/<ul>
+	<li>man1/<ul>
+	<li>pahole.1.gz</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+</div>
+
+  <div class="text-muted text-center">
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>
+  </div>
+</div>

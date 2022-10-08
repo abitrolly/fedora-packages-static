@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<title>xen-libs-4.16.0-5.fc36 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="description" content="View xen-libs-4.16.0-5.fc36 in Fedora 36. xen-libs: Libraries for Xen tools">
+
+<div class="container">
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+    </div>
+  </div>
+
+  <hr />
+
+<h1>
+	xen-libs-4.16.0-5.fc36<small class="text-muted"> in Fedora 36</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of xen-libs</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=xen-4.16.0-5.fc36">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=xen-4.16.0-5.fc36">Search for updates</a>
+</p>
+
+<p>
+	<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+	<a href="#changelog">&#129047; Changelog</a><br>
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	<a href="#provides">&#129047; Provides</a><br>
+	<a href="#files">&#129047; Files</a><br>
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>2022-03-21</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.16.0-5</td>
+			<td>- fix build of xen*.efi file and package it in /usr/lib*/efi</td>
+		</tr>
+		<tr>
+			<td>2022-03-15</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.16.0-4</td>
+			<td>- Multiple speculative security issues [XSA-398]
+- additional patches so above applies cleanly</td>
+		</tr>
+		<tr>
+			<td>2022-01-29</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.16.0-3</td>
+			<td>- adjust build script and patches for gcc12 and package note support</td>
+		</tr>
+		<tr>
+			<td>2022-01-29</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt;</td>
+			<td>- arm: guest_physmap_remove_page not removing the p2m mappings [XSA-393,
+	CVE-2022-23033] (#2045044)
+- A PV guest could DoS Xen while unmapping a grant [XSA-394, CVE-2022-23034]
+	(#2045042)
+- Insufficient cleanup of passed-through device IRQs [XSA-395,
+	CVE-2022-23035] (#2045040)</td>
+		</tr>
+		<tr>
+			<td>2022-01-22</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 4.16.0-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild</td>
+		</tr>
+		<tr>
+			<td>2022-01-10</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.16.0-1</td>
+			<td>- update to xen-4.16.0
+  rebase xen.canonicalize.patch and xen.gcc11.fixes.patch
+  drop xen.fedora.efi.build.patch which is no longer useful
+  remove or adjust patches now included or superceded upstream
+  update libxenstore libary versions
+  unpackage /boot/efi/EFI/fedora/xen*.efi
+  package xen-mceinj and xen-vmtrace
+- don&#39;t build qemu-traditional or pv-grub by default (following upstream)
+- fix some incorrect dependencies on building qemu-traditional
+- change grub module package dependencies from Suggests to Recommends
+	and move to hypervisor package
+- rework seabios configure logic (bios.bin is no longer useful)
+- frontends vulnerable to backends [XSA-376] (document change only)</td>
+		</tr>
+		<tr>
+			<td>2021-11-23</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.15.1-4</td>
+			<td>- guests may exceed their designated memory limit [XSA-385, CVE-2021-28706]
+- PoD operations on misaligned GFNs [XSA-388, CVE-2021-28704, CVE-2021-28707
+	CVE-2021-28708]
+- issues with partially successful P2M updates on x86 [XSA-389,
+	CVE-2021-28705, CVE-2021-28709]
+- certain VT-d IOMMUs may not work in shared page table mode [XSA-390,
+	CVE-2021-28710]</td>
+		</tr>
+		<tr>
+			<td>2021-10-06</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.15.1-3</td>
+			<td>- rebuild (f36 only) for OCaml 4.13.1</td>
+		</tr>
+		<tr>
+			<td>2021-10-05</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.15.1-2</td>
+			<td>- PCI devices with RMRRs not deassigned correctly [XSA-386, CVE-2021-28702]
+	(#2011248)</td>
+		</tr>
+		<tr>
+			<td>2021-09-12</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.15.1-1</td>
+			<td>- update to xen-4.15.1
+  remove or adjust patches now included or superceded upstream
+  update libxencall version</td>
+		</tr>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			<li>
+			<a href="/pkgs/bzip2/bzip2-libs/fedora-36.html">
+			bzip2-libs</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/e2fsprogs/e2fsprogs-libs/fedora-36.html">
+			e2fsprogs-libs</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/glibc/glibc/fedora-36.html">
+			glibc</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/gcc/libgcc/fedora-36.html">
+			libgcc</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/libnl3/libnl3/fedora-36.html">
+			libnl3</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/util-linux/libuuid/fedora-36.html">
+			libuuid</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/zstd/libzstd/fedora-36.html">
+			libzstd</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/xen/xen-licenses/fedora-36.html">
+			xen-licenses</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/xz/xz-libs/fedora-36.html">
+			xz-libs</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/yajl/yajl/fedora-36.html">
+			yajl</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/zlib/zlib/fedora-36.html">
+			zlib</a>
+
+			</li>
+		</ul>
+	</div>
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			<li>libxencall.so.1()(64bit)</li>
+			<li>libxencall.so.1(VERS_1.0)(64bit)</li>
+			<li>libxencall.so.1(VERS_1.1)(64bit)</li>
+			<li>libxencall.so.1(VERS_1.2)(64bit)</li>
+			<li>libxencall.so.1(VERS_1.3)(64bit)</li>
+			<li>libxenctrl.so.4.16()(64bit)</li>
+			<li>libxenctrl.so.4.16(VERS_4.16.0)(64bit)</li>
+			<li>libxendevicemodel.so.1()(64bit)</li>
+			<li>libxendevicemodel.so.1(VERS_1.0)(64bit)</li>
+			<li>libxendevicemodel.so.1(VERS_1.1)(64bit)</li>
+			<li>libxendevicemodel.so.1(VERS_1.2)(64bit)</li>
+			<li>libxendevicemodel.so.1(VERS_1.3)(64bit)</li>
+			<li>libxendevicemodel.so.1(VERS_1.4)(64bit)</li>
+			<li>libxenevtchn.so.1()(64bit)</li>
+			<li>libxenevtchn.so.1(VERS_1.0)(64bit)</li>
+			<li>libxenevtchn.so.1(VERS_1.1)(64bit)</li>
+			<li>libxenevtchn.so.1(VERS_1.2)(64bit)</li>
+			<li>libxenforeignmemory.so.1()(64bit)</li>
+			<li>libxenforeignmemory.so.1(VERS_1.0)(64bit)</li>
+			<li>libxenforeignmemory.so.1(VERS_1.1)(64bit)</li>
+			<li>libxenforeignmemory.so.1(VERS_1.2)(64bit)</li>
+			<li>libxenforeignmemory.so.1(VERS_1.3)(64bit)</li>
+			<li>libxenforeignmemory.so.1(VERS_1.4)(64bit)</li>
+			<li>libxenfsimage.so.4.16()(64bit)</li>
+			<li>libxenfsimage.so.4.16(libfsimage.so.1.0)(64bit)</li>
+			<li>libxengnttab.so.1()(64bit)</li>
+			<li>libxengnttab.so.1(VERS_1.0)(64bit)</li>
+			<li>libxengnttab.so.1(VERS_1.1)(64bit)</li>
+			<li>libxengnttab.so.1(VERS_1.2)(64bit)</li>
+			<li>libxenguest.so.4.16()(64bit)</li>
+			<li>libxenguest.so.4.16(VERS_4.16.0)(64bit)</li>
+			<li>libxenhypfs.so.1()(64bit)</li>
+			<li>libxenhypfs.so.1(VERS_1.0)(64bit)</li>
+			<li>libxenlight.so.4.16()(64bit)</li>
+			<li>libxenlight.so.4.16(VERS_4.16.0)(64bit)</li>
+			<li>libxenstat.so.4.16()(64bit)</li>
+			<li>libxenstat.so.4.16(VERS_4.16.0)(64bit)</li>
+			<li>libxenstore.so.4()(64bit)</li>
+			<li>libxenstore.so.4(VERS_4.0)(64bit)</li>
+			<li>libxentoolcore.so.1()(64bit)</li>
+			<li>libxentoolcore.so.1(VERS_1.0)(64bit)</li>
+			<li>libxentoollog.so.1()(64bit)</li>
+			<li>libxentoollog.so.1(VERS_1.0)(64bit)</li>
+			<li>libxenvchan.so.4.16()(64bit)</li>
+			<li>libxenvchan.so.4.16(VERS_4.16.0)(64bit)</li>
+			<li>libxlutil.so.4.16()(64bit)</li>
+			<li>libxlutil.so.4.16(VERS_4.16.0)(64bit)</li>
+			<li>xen-libs</li>
+			<li>xen-libs(x86-64)</li>
+		</ul>
+	</div>
+</div>
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	<li>usr/<ul>
+	<li>lib/<ul>
+	<li>.build-id/<ul>
+	<li>04/<ul>
+	<li>a96b0e7dfaaeb2de38412f697973beaf43e86d</li>
+	</ul></li>
+	<li>0f/<ul>
+	<li>a68519b0851570d2f497c0e599a3caf8b86fc3</li>
+	</ul></li>
+	<li>1a/<ul>
+	<li>aa33f0389889b939ecb35dddab0d06da22f83e</li>
+	</ul></li>
+	<li>4b/<ul>
+	<li>2fa2c65cd9279482d941f0deabe5894d1b0c48</li>
+	</ul></li>
+	<li>4f/<ul>
+	<li>61c84c991ac3071c351b1a1650ee1753927795</li>
+	</ul></li>
+	<li>60/<ul>
+	<li>08c7686b3cb03c1f901e31bf7adb0d9454d877</li>
+	</ul></li>
+	<li>85/<ul>
+	<li>44937e9b3eda3d3541be9786fccb4be6161ca2</li>
+	</ul></li>
+	<li>87/<ul>
+	<li>0d995be0caf384a295f065e20eaaffda5613f0</li>
+	</ul></li>
+	<li>91/<ul>
+	<li>c1955c5ed9a1f5dc944d9d5541f930c9986416</li>
+	</ul></li>
+	<li>92/<ul>
+	<li>378c4dd9990c1d4a08a7f43c12495e462d4d28</li>
+	</ul></li>
+	<li>95/<ul>
+	<li>ac3fbb51608b17e478d03b4448f300533f0bd7</li>
+	</ul></li>
+	<li>9f/<ul>
+	<li>3134b5d26f66d9358950e940986d6b7ec2a585</li>
+	</ul></li>
+	<li>a5/<ul>
+	<li>5450176e74a1dcd9b135fe9624824a096ffcf5</li>
+	</ul></li>
+	<li>a7/<ul>
+	<li>9edf096dfefc00fbc3cb54b3def6870285ab2e</li>
+	</ul></li>
+	<li>aa/<ul>
+	<li>41d1eaa27ee3d9ca1202e2f390eec349f9b25b</li>
+	</ul></li>
+	<li>b2/<ul>
+	<li>b62f5cf96238a880703987ee7a734dffeb0a02</li>
+	</ul></li>
+	<li>c2/<ul>
+	<li>f88d54a91deb1aca6eb953def5cb921563dd0e</li>
+	</ul></li>
+	<li>c8/<ul>
+	<li>ec7226a3c09770d2c9cb6e4a143520e9829a40</li>
+	</ul></li>
+	<li>d4/<ul>
+	<li>1c4a098b0b9cb173dbdd78248722296f2e86c6</li>
+	</ul></li>
+	<li>e2/<ul>
+	<li>3c3ff7746ffbc5a9c7c4d45ebfeb064ef9b4be</li>
+	</ul></li>
+	<li>eb/<ul>
+	<li>fdd92857d7e33d439a4a7ce426519501e39b01</li>
+	</ul></li>
+	<li>ee/<ul>
+	<li>db8cdef15d3a97fe159c344e4fae6c605c3984</li>
+	</ul></li>
+	<li>fa/<ul>
+	<li>97e88cf1e47e74791c62319e12d1e81fd4091f</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>lib64/<ul>
+	<li>libxencall.so.1</li>
+	<li>libxencall.so.1.3</li>
+	<li>libxenctrl.so.4.16</li>
+	<li>libxenctrl.so.4.16.0</li>
+	<li>libxendevicemodel.so.1</li>
+	<li>libxendevicemodel.so.1.4</li>
+	<li>libxenevtchn.so.1</li>
+	<li>libxenevtchn.so.1.2</li>
+	<li>libxenforeignmemory.so.1</li>
+	<li>libxenforeignmemory.so.1.4</li>
+	<li>libxenfsimage.so.4.16</li>
+	<li>libxenfsimage.so.4.16.0</li>
+	<li>libxengnttab.so.1</li>
+	<li>libxengnttab.so.1.2</li>
+	<li>libxenguest.so.4.16</li>
+	<li>libxenguest.so.4.16.0</li>
+	<li>libxenhypfs.so.1</li>
+	<li>libxenhypfs.so.1.0</li>
+	<li>libxenlight.so.4.16</li>
+	<li>libxenlight.so.4.16.0</li>
+	<li>libxenstat.so.4.16</li>
+	<li>libxenstat.so.4.16.0</li>
+	<li>libxenstore.so.4</li>
+	<li>libxenstore.so.4.0</li>
+	<li>libxentoolcore.so.1</li>
+	<li>libxentoolcore.so.1.0</li>
+	<li>libxentoollog.so.1</li>
+	<li>libxentoollog.so.1.0</li>
+	<li>libxenvchan.so.4.16</li>
+	<li>libxenvchan.so.4.16.0</li>
+	<li>libxlutil.so.4.16</li>
+	<li>libxlutil.so.4.16.0</li>
+	<li>xenfsimage/<ul>
+	<li>ext2fs-lib/<ul>
+	<li>fsimage.so</li>
+	</ul></li>
+	<li>fat/<ul>
+	<li>fsimage.so</li>
+	</ul></li>
+	<li>iso9660/<ul>
+	<li>fsimage.so</li>
+	</ul></li>
+	<li>reiserfs/<ul>
+	<li>fsimage.so</li>
+	</ul></li>
+	<li>ufs/<ul>
+	<li>fsimage.so</li>
+	</ul></li>
+	<li>xfs/<ul>
+	<li>fsimage.so</li>
+	</ul></li>
+	<li>zfs/<ul>
+	<li>fsimage.so</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+</div>
+
+  <div class="text-muted text-center">
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>
+  </div>
+</div>

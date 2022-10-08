@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+
+<title>copr-frontend-1.191-1.fc37 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="description" content="View copr-frontend-1.191-1.fc37 in Fedora 37. copr-frontend: Frontend for Copr">
+
+<div class="container">
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+    </div>
+  </div>
+
+  <hr />
+
+<h1>
+	copr-frontend-1.191-1.fc37<small class="text-muted"> in Fedora 37</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of copr-frontend</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=copr-frontend-1.191-1.fc37">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=copr-frontend-1.191-1.fc37">Search for updates</a>
+</p>
+
+<p>
+	<b>Package Info</b><br>
+	<a href="#changelog">&#129047; Changelog</a><br>
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	<a href="#provides">&#129047; Provides</a><br>
+	<a href="#files">&#129047; Files</a><br>
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>2022-09-20</td>
+			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.191-1</td>
+			<td>- show timeout in the build detail page
+- disable Edit button in the project settings when chroot unchecked
+- fix FTBFS issues for F37/Rawhide
+- match OS logos by their OS family
+- show the batch ID (if assigned) in the build detail
+- add link to /user/repositories/ on the user detail page
+- stg frontend instance should link to stg FAS instance
+- add page for exploring projects
+- remove APIv2 code</td>
+		</tr>
+		<tr>
+			<td>2022-08-16</td>
+			<td>Jiri Kyjovsky &lt;j1 dot kyjovsky at gmail dot com&gt; 1.190-1</td>
+			<td>- Create field for packit_forge_project when creating build</td>
+		</tr>
+		<tr>
+			<td>2022-08-16</td>
+			<td>Jiri Kyjovsky &lt;j1 dot kyjovsky at gmail dot com&gt; 1.189-1</td>
+			<td>- check packit_forge_project option in build_options for builds
+- add packit_forge_projects_allowed for Copr projects
+- remove leading and trailing whitespace from StringField</td>
+		</tr>
+		<tr>
+			<td>2022-07-26</td>
+			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.188-1</td>
+			<td>- Add support for pyp2spec generator
+- Add API support for runtime_dependencies
+- Runtime_dependencies may be separated by a newline
+- Pagure-events: don&#39;t submit builds for disabled projects</td>
+		</tr>
+		<tr>
+			<td>2022-06-21</td>
+			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.187-1</td>
+			<td>- Start logging important events
+- Change logging formatter to show also flask.g.user
+- APIv3 support for chroot_denylist
+- Restrict the CoprDir names to &lt;copr&gt;:custom:&lt;suffix&gt;
+- Don&#39;t require trailing slash in APIv3 /package/list
+- Don&#39;t hide CoprDir buttons in Builds web-ui
+- New command &#39;copr-frontend chroots-template&#39;
+- More understandable Pagure badges
+- Detect ClientDisconnected errors</td>
+		</tr>
+		<tr>
+			<td>2022-04-04</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.186-1</td>
+			<td>- support for api_3 gssapi login
+- the /pending-jobs/ is now a streamed page
+- a bit more optimized /pending-jobs/ route
+- web-UI: make sure that background builds are more visible
+- build &#34;is_background&#34; info in the api_3 calls
+- indicate low priority builds in status overview</td>
+		</tr>
+		<tr>
+			<td>2022-03-18</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.185-1</td>
+			<td>- added support for resetting fields in chroots over the API
+- get-chroot - return modules as a list
+- add a link to comps.xml documentation into the chroot edit form
+- user-friendly error for devel stack(s) when there is a database problem
+- optimize the SQL for the /pending/ routes a bit
+- a new route /pending/all/ giving a rough stats
+- cache the number of currently processed batches to speedup the overall web-UI
+- speed-up the models.Batch related routes
+- don&#39;t use redis as a middleman when updating hitcounter stats
+- use standard backend auth for updating stats
+- hitcounter: don&#39;t return 201 when there is an exception
+- add API routes for editing module list in chroot</td>
+		</tr>
+		<tr>
+			<td>2022-02-02</td>
+			<td>Silvie Chlupova &lt;schlupov at redhat dot com&gt; 1.184-1</td>
+			<td>- sort chroot-histogram graphs by number of builds
+- use dist-git method for builds by default
+- fix size of graphs on status page
+- limit max number of packages per request
+- paginate packages list in APIv3
+- don&#39;t query all packages when empty list is specified
+- webhook rebuilds are background jobs now
+- re-enabled chroots should reset final_prunerepo_done
+- fix import order reported by pylint
+- print human-readable validation errors in APIv3
+- basic build tagging
+- use new Fedora chroot icon
+- use official EPEL log for chroot icon
+- PyLint fixes for create_db.py
+- fix ./run_tests.sh script for coverage args
+- don&#39;t insert+commit in create_after event
+- build PyPI only for python3 by default
+- describe advanced searching possibilities
+- limit RubyGems and PyPI package names length
+- Disable coverage analysis during RPM build
+- 2029379 - workaround GitHub caching proxy
+- drop duplicit &#34;group&#34; table join
+- add &#34;My Projects&#34; button to the homepage
+- api monitor page to contain pkg_version</td>
+		</tr>
+		<tr>
+			<td>2021-11-10</td>
+			<td>Silvie Chlupova &lt;schlupov at redhat dot com&gt; 1.183-1</td>
+			<td>- ACR toggle - handle NO_VALUE specially too
+- Fixup ACR handling
+- &#34;Rebuild All&#34; form to respect chroot denylist
+- &#34;rebuild all packages&#34; from successful builds
+- Large project modification timeout fix
+- Homepage redesign
+- Speedup BuildChroot removals
+- Add BuildChroot(s) to Build ASAP if package is known
+- APIv3 /monitor route
+- Single before_request hook
+- Checkpoint measurement helpers
+- Assure error_handler error is 500
+- Handle CoprDir.get_by_copr consistently
+- Search by attributes using the input value
+- Print searched string with attributes
+- Add dropdown with hints for searching
+- Support searching by attributes and improve searching overall
+- Openid,login by email: guide user, don&#39;t do infinite loop
+- Conscious language (group blacklist -&gt; denylist)
+- Conscious language (chroot blacklist -&gt; denylist)
+- Change prompt from $ to #&gt; in Quick Enable box
+- Accept admin permissions for Copr build
+- Explain what fedora-review project is</td>
+		</tr>
+		<tr>
+			<td>2021-10-01</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.182-1</td>
+			<td>- fixup SubqueryPaginator for older sqlalchemy versions</td>
+		</tr>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			<li>
+			<a href="/pkgs/bash/bash/fedora-37.html">
+			bash</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/copr-frontend/copr-frontend-fedora/fedora-37.html">
+			copr-frontend-fedora</a> = 5
+
+			</li>
+			<li>
+			<a href="/pkgs/crontabs/crontabs/fedora-37.html">
+			crontabs</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/curl/curl/fedora-37.html">
+			curl</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/curl/curl-minimal/fedora-37.html">
+			curl-minimal</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/fedora-messaging/fedora-messaging/fedora-37.html">
+			fedora-messaging</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/httpd/httpd/fedora-37.html">
+			httpd</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/js-jquery/js-jquery/fedora-37.html">
+			js-jquery</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/js-jquery-ui/js-jquery-ui/fedora-37.html">
+			js-jquery-ui</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/modulemd-tools/modulemd-tools/fedora-37.html">
+			modulemd-tools</a> &gt;= 0.6
+
+			</li>
+			<li>
+			<a href="/pkgs/python-CommonMark/python3-CommonMark/fedora-37.html">
+			python3-CommonMark</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-alembic/python3-alembic/fedora-37.html">
+			python3-alembic</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-anytree/python3-anytree/fedora-37.html">
+			python3-anytree</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-blinker/python3-blinker/fedora-37.html">
+			python3-blinker</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-click/python3-click/fedora-37.html">
+			python3-click</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-copr-common/python3-copr-common/fedora-37.html">
+			python3-copr-common</a> &gt;= 0.11.1.dev
+
+			</li>
+			<li>
+			<a href="/pkgs/python-dateutil/python3-dateutil/fedora-37.html">
+			python3-dateutil</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-email-validator/python3-email-validator/fedora-37.html">
+			python3-email-validator</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-flask/python3-flask/fedora-37.html">
+			python3-flask</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-flask-caching/python3-flask-caching/fedora-37.html">
+			python3-flask-caching</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-flask-openid/python3-flask-openid/fedora-37.html">
+			python3-flask-openid</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-flask-restful/python3-flask-restful/fedora-37.html">
+			python3-flask-restful</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-flask-sqlalchemy/python3-flask-sqlalchemy/fedora-37.html">
+			python3-flask-sqlalchemy</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-flask-whooshee/python3-flask-whooshee/fedora-37.html">
+			python3-flask-whooshee</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-flask-wtf/python3-flask-wtf/fedora-37.html">
+			python3-flask-wtf</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/pygobject3/python3-gobject/fedora-37.html">
+			python3-gobject</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-html2text/python3-html2text/fedora-37.html">
+			python3-html2text</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-html5-parser/python3-html5-parser/fedora-37.html">
+			python3-html5-parser</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-humanize/python3-humanize/fedora-37.html">
+			python3-humanize</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/libmodulemd1/python3-libmodulemd1/fedora-37.html">
+			python3-libmodulemd1</a> &gt;= 1.7.0
+
+			</li>
+			<li>
+			<a href="/pkgs/python-lxml/python3-lxml/fedora-37.html">
+			python3-lxml</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-markdown/python3-markdown/fedora-37.html">
+			python3-markdown</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-marshmallow/python3-marshmallow/fedora-37.html">
+			python3-marshmallow</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/mod_wsgi/python3-mod_wsgi/fedora-37.html">
+			python3-mod_wsgi</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-munch/python3-munch/fedora-37.html">
+			python3-munch</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-netaddr/python3-netaddr/fedora-37.html">
+			python3-netaddr</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-openid-teams/python3-openid-teams/fedora-37.html">
+			python3-openid-teams</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-psycopg2/python3-psycopg2/fedora-37.html">
+			python3-psycopg2</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-pygments/python3-pygments/fedora-37.html">
+			python3-pygments</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-pylibravatar/python3-pylibravatar/fedora-37.html">
+			python3-pylibravatar</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/pytz/python3-pytz/fedora-37.html">
+			python3-pytz</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-redis/python3-redis/fedora-37.html">
+			python3-redis</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-requests/python3-requests/fedora-37.html">
+			python3-requests</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-templated-dictionary/python3-templated-dictionary/fedora-37.html">
+			python3-templated-dictionary</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-wtforms/python3-wtforms/fedora-37.html">
+			python3-wtforms</a> &gt;= 2.2.1
+
+			</li>
+			<li>
+			<a href="/pkgs/python-zmq/python3-zmq/fedora-37.html">
+			python3-zmq</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/redis/redis/fedora-37.html">
+			redis</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-XStatic-Bootstrap-SCSS/xstatic-bootstrap-scss-common/fedora-37.html">
+			xstatic-bootstrap-scss-common</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-XStatic-DataTables/xstatic-datatables-common/fedora-37.html">
+			xstatic-datatables-common</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-XStatic-Patternfly/xstatic-patternfly-common/fedora-37.html">
+			xstatic-patternfly-common</a>
+
+			</li>
+		</ul>
+	</div>
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			<li>bundled(bootstrap-combobox)</li>
+			<li>bundled(bootstrap-select)</li>
+			<li>bundled(bootstrap-treeview)</li>
+			<li>bundled(c3)</li>
+			<li>bundled(d3)</li>
+			<li>bundled(datatables-colreorder)</li>
+			<li>bundled(datatables-colvis)</li>
+			<li>bundled(font-awesome)</li>
+			<li>bundled(google-code-prettify)</li>
+			<li>config(copr-frontend)</li>
+			<li>copr-frontend</li>
+		</ul>
+	</div>
+</div>
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	<li>etc/<ul>
+	<li>copr/<ul>
+	<li>chroots.conf</li>
+	<li>copr.conf</li>
+	<li>copr_devel.conf</li>
+	<li>copr_unit_test.conf</li>
+	</ul></li>
+	<li>cron.daily/<ul>
+	<li>copr-frontend</li>
+	<li>copr-frontend-optional</li>
+	</ul></li>
+	<li>cron.hourly/<ul>
+	<li>copr-frontend</li>
+	<li>copr-frontend-optional</li>
+	</ul></li>
+	<li>logrotate.d/<ul>
+	<li>copr-frontend</li>
+	</ul></li>
+	</ul></li>
+	<li>usr/<ul>
+	<li>bin/<ul>
+	<li>copr-frontend</li>
+	</ul></li>
+	<li>libexec/<ul>
+	<li>copr_dump_db.sh</li>
+	</ul></li>
+	<li>share/<ul>
+	<li>copr/<ul>
+	<li>coprs_frontend/<ul>
+	<li>alembic/<ul>
+	<li>__pycache__/<ul>
+	<li>env.cpython-311.opt-1.pyc</li>
+	<li>env.cpython-311.pyc</li>
+	</ul></li>
+	<li>env.py</li>
+	<li>script.py.mako</li>
+	<li>versions/<ul>
+	<li>004a017535dc_add_packit_forge_projects_allowed_for_.py</li>
+	<li>0dbdd06fb850_multilib_knob_on_copr_public.py</li>
+	<li>10029c92dd0d_add_with_without_columns_for_copr_chroot.py</li>
+	<li>12abab545d7a_added_index_for_main_in_copr_dir.py</li>
+	<li>1c67bc715d78_add_fedora_review_column_for_projects.py</li>
+	<li>1f4e04bb3618_add_build_submitted_by_field.py</li>
+	<li>1f94b22f70a1_change_module_version_to_bigint.py</li>
+	<li>227f6bf8f10b_add_build_requires_to_build_chroot.py</li>
+	<li>2318cc31444e_add_column_appstream.py</li>
+	<li>24e9054d4155_fix_results_paths.py</li>
+	<li>2561c13a3556_add_dist_git_instance_table.py</li>
+	<li>26bf5b9a4dd0_indeces_for_faster_build_selection.py</li>
+	<li>29c352bde564_separate_private_stuff_into_private_.py</li>
+	<li>2d8b4722918b_remove_unused_module_md_name_and_module_.py</li>
+	<li>2db1d0557b06_fill_ended_on_column_in_action_table.py</li>
+	<li>33a73ed44f83_blacklist_denylist.py</li>
+	<li>3576fc77fb31_added_source_status_to_build.py</li>
+	<li>3637b9daf7e4_generate_main_copr_dirs.py</li>
+	<li>38ea34def9a_add_proxy_column_to_user_table.py</li>
+	<li>3b0851cb25fc_add_build_to_module_relation.py</li>
+	<li>3b67c52f5277_add_repos_to_copr_chroot.py</li>
+	<li>3cba3ffe2836_on_delete_cascade_for_table_build.py</li>
+	<li>3d89a66848c5_follow_fedora_branching.py</li>
+	<li>45d0515bdc3f_drop_proxy_column.py</li>
+	<li>465202bfb9ce_update_db_functions.py</li>
+	<li>484a1d4dd424_add_cancel_requests_table.py</li>
+	<li>484e28958b27_deduplicate_packages.py</li>
+	<li>4af9d157c4ea_add_unique_constraint_for_mock_chroots.py</li>
+	<li>4d06318043d3_add_buildchroot_id_and_coprchroot_id.py</li>
+	<li>4ed794df3bbb_add_module_hotfixes_column_for_copr_.py</li>
+	<li>4edb1ca2a13f_remove_priority_columns.py</li>
+	<li>50e68db97d0a_adjust_counterstat_name_length.py</li>
+	<li>512ff2b9eb6c_unify_scm_source_types_for_packages.py</li>
+	<li>51716ab39d37_package_chroot_blacklist.py</li>
+	<li>55a07cb7bd68_add_table_for_pinnedcoprs.py</li>
+	<li>55d1e8962a93_add_index_for_buildchrootresult_build_id.py</li>
+	<li>58eab04e5afc_add_priority_column_for_actions.py</li>
+	<li>58f7510f0fae_mockchroot_tags_property.py</li>
+	<li>5ecebe072cb7_drop_config_name_column_from_krb_login.py</li>
+	<li>63db6872060f_add_bootstrap_config_columns.py</li>
+	<li>65a172e3f102_unquote_counter_stat_urls.py</li>
+	<li>669ba46bf357_add_srpm_url_to_build_table.py</li>
+	<li>67ba91dda3e3_add_module_toggle_to_copr_chroot.py</li>
+	<li>6800e08934eb_add_comment_to_mock_chroot_table.py</li>
+	<li>6866cd91c3c6_add_deleted_column_for_coprchroot.py</li>
+	<li>69c5f19841a5_add_delete_after_and_delete_notify_.py</li>
+	<li>6b48324e9264_disallow_dash_in_os_release.py</li>
+	<li>6d0a02dc7de4_sync_desynced_migrations_with_models.py</li>
+	<li>6f83ea2ba416_add_runtime_dependencies_to_copr.py</li>
+	<li>6fed8655d074_remove_build_results_column.py</li>
+	<li>745250baedaf_new_column_resubmitted_from_id.py</li>
+	<li>7723d580c625_copy_private_data_to_private_tables.py</li>
+	<li>7bb0c7762df0_make_new_prio_columns.py</li>
+	<li>808912fe46d3_unique_name_in_copr.py</li>
+	<li>878d9d5311b7_add_use_bootstrap_container_to_copr.py</li>
+	<li>887cbbd6575e_scm_integration.py</li>
+	<li>8ae65946df53_add_blocked_by_column_for_batch.py</li>
+	<li>8bf844cc7135_add_index_for_delete_after_a_delete_.py</li>
+	<li>8ea94673d6ee_index_coprchroot_deleted.py</li>
+	<li>8fd7c4714189_isolation_option_for_chroot.py</li>
+	<li>9409fc1d5895_build_batch_id_indexed.py</li>
+	<li>9b7211be5017_add_reviewed_outdated_chroot_table.py</li>
+	<li>9bc8681ed275_max_package_builds_per_copr_dir.py</li>
+	<li>__pycache__/<ul>
+	<li>004a017535dc_add_packit_forge_projects_allowed_for_.cpython-311.opt-1.pyc</li>
+	<li>004a017535dc_add_packit_forge_projects_allowed_for_.cpython-311.pyc</li>
+	<li>0dbdd06fb850_multilib_knob_on_copr_public.cpython-311.opt-1.pyc</li>
+	<li>0dbdd06fb850_multilib_knob_on_copr_public.cpython-311.pyc</li>
+	<li>10029c92dd0d_add_with_without_columns_for_copr_chroot.cpython-311.opt-1.pyc</li>
+	<li>10029c92dd0d_add_with_without_columns_for_copr_chroot.cpython-311.pyc</li>
+	<li>12abab545d7a_added_index_for_main_in_copr_dir.cpython-311.opt-1.pyc</li>
+	<li>12abab545d7a_added_index_for_main_in_copr_dir.cpython-311.pyc</li>
+	<li>1c67bc715d78_add_fedora_review_column_for_projects.cpython-311.opt-1.pyc</li>
+	<li>1c67bc715d78_add_fedora_review_column_for_projects.cpython-311.pyc</li>
+	<li>1f4e04bb3618_add_build_submitted_by_field.cpython-311.opt-1.pyc</li>
+	<li>1f4e04bb3618_add_build_submitted_by_field.cpython-311.pyc</li>
+	<li>1f94b22f70a1_change_module_version_to_bigint.cpython-311.opt-1.pyc</li>
+	<li>1f94b22f70a1_change_module_version_to_bigint.cpython-311.pyc</li>
+	<li>227f6bf8f10b_add_build_requires_to_build_chroot.cpython-311.opt-1.pyc</li>
+	<li>227f6bf8f10b_add_build_requires_to_build_chroot.cpython-311.pyc</li>
+	<li>2318cc31444e_add_column_appstream.cpython-311.opt-1.pyc</li>
+	<li>2318cc31444e_add_column_appstream.cpython-311.pyc</li>
+	<li>24e9054d4155_fix_results_paths.cpython-311.opt-1.pyc</li>
+	<li>24e9054d4155_fix_results_paths.cpython-311.pyc</li>
+	<li>2561c13a3556_add_dist_git_instance_table.cpython-311.opt-1.pyc</li>
+	<li>2561c13a3556_add_dist_git_instance_table.cpython-311.pyc</li>
+	<li>26bf5b9a4dd0_indeces_for_faster_build_selection.cpython-311.opt-1.pyc</li>
+	<li>26bf5b9a4dd0_indeces_for_faster_build_selection.cpython-311.pyc</li>
+	<li>29c352bde564_separate_private_stuff_into_private_.cpython-311.opt-1.pyc</li>
+	<li>29c352bde564_separate_private_stuff_into_private_.cpython-311.pyc</li>
+	<li>2d8b4722918b_remove_unused_module_md_name_and_module_.cpython-311.opt-1.pyc</li>
+	<li>2d8b4722918b_remove_unused_module_md_name_and_module_.cpython-311.pyc</li>
+	<li>2db1d0557b06_fill_ended_on_column_in_action_table.cpython-311.opt-1.pyc</li>
+	<li>2db1d0557b06_fill_ended_on_column_in_action_table.cpython-311.pyc</li>
+	<li>33a73ed44f83_blacklist_denylist.cpython-311.opt-1.pyc</li>
+	<li>33a73ed44f83_blacklist_denylist.cpython-311.pyc</li>
+	<li>3576fc77fb31_added_source_status_to_build.cpython-311.opt-1.pyc</li>
+	<li>3576fc77fb31_added_source_status_to_build.cpython-311.pyc</li>
+	<li>3637b9daf7e4_generate_main_copr_dirs.cpython-311.opt-1.pyc</li>
+	<li>3637b9daf7e4_generate_main_copr_dirs.cpython-311.pyc</li>
+	<li>38ea34def9a_add_proxy_column_to_user_table.cpython-311.opt-1.pyc</li>
+	<li>38ea34def9a_add_proxy_column_to_user_table.cpython-311.pyc</li>
+	<li>3b0851cb25fc_add_build_to_module_relation.cpython-311.opt-1.pyc</li>
+	<li>3b0851cb25fc_add_build_to_module_relation.cpython-311.pyc</li>
+	<li>3b67c52f5277_add_repos_to_copr_chroot.cpython-311.opt-1.pyc</li>
+	<li>3b67c52f5277_add_repos_to_copr_chroot.cpython-311.pyc</li>
+	<li>3cba3ffe2836_on_delete_cascade_for_table_build.cpython-311.opt-1.pyc</li>
+	<li>3cba3ffe2836_on_delete_cascade_for_table_build.cpython-311.pyc</li>
+	<li>3d89a66848c5_follow_fedora_branching.cpython-311.opt-1.pyc</li>
+	<li>3d89a66848c5_follow_fedora_branching.cpython-311.pyc</li>
+	<li>45d0515bdc3f_drop_proxy_column.cpython-311.opt-1.pyc</li>
+	<li>45d0515bdc3f_drop_proxy_column.cpython-311.pyc</li>
+	<li>465202bfb9ce_update_db_functions.cpython-311.opt-1.pyc</li>
+	<li>465202bfb9ce_update_db_functions.cpython-311.pyc</li>
+	<li>484a1d4dd424_add_cancel_requests_table.cpython-311.opt-1.pyc</li>
+	<li>484a1d4dd424_add_cancel_requests_table.cpython-311.pyc</li>
+	<li>484e28958b27_deduplicate_packages.cpython-311.opt-1.pyc</li>
+	<li>484e28958b27_deduplicate_packages.cpython-311.pyc</li>
+	<li>4af9d157c4ea_add_unique_constraint_for_mock_chroots.cpython-311.opt-1.pyc</li>
+	<li>4af9d157c4ea_add_unique_constraint_for_mock_chroots.cpython-311.pyc</li>
+	<li>4d06318043d3_add_buildchroot_id_and_coprchroot_id.cpython-311.opt-1.pyc</li>
+	<li>4d06318043d3_add_buildchroot_id_and_coprchroot_id.cpython-311.pyc</li>
+	<li>4ed794df3bbb_add_module_hotfixes_column_for_copr_.cpython-311.opt-1.pyc</li>
+	<li>4ed794df3bbb_add_module_hotfixes_column_for_copr_.cpython-311.pyc</li>
+	<li>4edb1ca2a13f_remove_priority_columns.cpython-311.opt-1.pyc</li>
+	<li>4edb1ca2a13f_remove_priority_columns.cpython-311.pyc</li>
+	<li>50e68db97d0a_adjust_counterstat_name_length.cpython-311.opt-1.pyc</li>
+	<li>50e68db97d0a_adjust_counterstat_name_length.cpython-311.pyc</li>
+	<li>512ff2b9eb6c_unify_scm_source_types_for_packages.cpython-311.opt-1.pyc</li>
+	<li>512ff2b9eb6c_unify_scm_source_types_for_packages.cpython-311.pyc</li>
+	<li>51716ab39d37_package_chroot_blacklist.cpython-311.opt-1.pyc</li>
+	<li>51716ab39d37_package_chroot_blacklist.cpython-311.pyc</li>
+	<li>55a07cb7bd68_add_table_for_pinnedcoprs.cpython-311.opt-1.pyc</li>
+	<li>55a07cb7bd68_add_table_for_pinnedcoprs.cpython-311.pyc</li>
+	<li>55d1e8962a93_add_index_for_buildchrootresult_build_id.cpython-311.opt-1.pyc</li>
+	<li>55d1e8962a93_add_index_for_buildchrootresult_build_id.cpython-311.pyc</li>
+	<li>58eab04e5afc_add_priority_column_for_actions.cpython-311.opt-1.pyc</li>
+	<li>58eab04e5afc_add_priority_column_for_actions.cpython-311.pyc</li>
+	<li>58f7510f0fae_mockchroot_tags_property.cpython-311.opt-1.pyc</li>
+	<li>58f7510f0fae_mockchroot_tags_property.cpython-311.pyc</li>
+	<li>5ecebe072cb7_drop_config_name_column_from_krb_login.cpython-311.opt-1.pyc</li>
+	<li>5ecebe072cb7_drop_config_name_column_from_krb_login.cpython-311.pyc</li>
+	<li>63db6872060f_add_bootstrap_config_columns.cpython-311.opt-1.pyc</li>
+	<li>63db6872060f_add_bootstrap_config_columns.cpython-311.pyc</li>
+	<li>65a172e3f102_unquote_counter_stat_urls.cpython-311.opt-1.pyc</li>
+	<li>65a172e3f102_unquote_counter_stat_urls.cpython-311.pyc</li>
+	<li>669ba46bf357_add_srpm_url_to_build_table.cpython-311.opt-1.pyc</li>
+	<li>669ba46bf357_add_srpm_url_to_build_table.cpython-311.pyc</li>
+	<li>67ba91dda3e3_add_module_toggle_to_copr_chroot.cpython-311.opt-1.pyc</li>
+	<li>67ba91dda3e3_add_module_toggle_to_copr_chroot.cpython-311.pyc</li>
+	<li>6800e08934eb_add_comment_to_mock_chroot_table.cpython-311.opt-1.pyc</li>
+	<li>6800e08934eb_add_comment_to_mock_chroot_table.cpython-311.pyc</li>
+	<li>6866cd91c3c6_add_deleted_column_for_coprchroot.cpython-311.opt-1.pyc</li>
+	<li>6866cd91c3c6_add_deleted_column_for_coprchroot.cpython-311.pyc</li>
+	<li>69c5f19841a5_add_delete_after_and_delete_notify_.cpython-311.opt-1.pyc</li>
+	<li>69c5f19841a5_add_delete_after_and_delete_notify_.cpython-311.pyc</li>
+	<li>6b48324e9264_disallow_dash_in_os_release.cpython-311.opt-1.pyc</li>
+	<li>6b48324e9264_disallow_dash_in_os_release.cpython-311.pyc</li>
+	<li>6d0a02dc7de4_sync_desynced_migrations_with_models.cpython-311.opt-1.pyc</li>
+	<li>6d0a02dc7de4_sync_desynced_migrations_with_models.cpython-311.pyc</li>
+	<li>6f83ea2ba416_add_runtime_dependencies_to_copr.cpython-311.opt-1.pyc</li>
+	<li>6f83ea2ba416_add_runtime_dependencies_to_copr.cpython-311.pyc</li>
+	<li>6fed8655d074_remove_build_results_column.cpython-311.opt-1.pyc</li>
+	<li>6fed8655d074_remove_build_results_column.cpython-311.pyc</li>
+	<li>745250baedaf_new_column_resubmitted_from_id.cpython-311.opt-1.pyc</li>
+	<li>745250baedaf_new_column_resubmitted_from_id.cpython-311.pyc</li>
+	<li>7723d580c625_copy_private_data_to_private_tables.cpython-311.opt-1.pyc</li>
+	<li>7723d580c625_copy_private_data_to_private_tables.cpython-311.pyc</li>
+	<li>7bb0c7762df0_make_new_prio_columns.cpython-311.opt-1.pyc</li>
+	<li>7bb0c7762df0_make_new_prio_columns.cpython-311.pyc</li>
+	<li>808912fe46d3_unique_name_in_copr.cpython-311.opt-1.pyc</li>
+	<li>808912fe46d3_unique_name_in_copr.cpython-311.pyc</li>
+	<li>878d9d5311b7_add_use_bootstrap_container_to_copr.cpython-311.opt-1.pyc</li>
+	<li>878d9d5311b7_add_use_bootstrap_container_to_copr.cpython-311.pyc</li>
+	<li>887cbbd6575e_scm_integration.cpython-311.opt-1.pyc</li>
+	<li>887cbbd6575e_scm_integration.cpython-311.pyc</li>
+	<li>8ae65946df53_add_blocked_by_column_for_batch.cpython-311.opt-1.pyc</li>
+	<li>8ae65946df53_add_blocked_by_column_for_batch.cpython-311.pyc</li>
+	<li>8bf844cc7135_add_index_for_delete_after_a_delete_.cpython-311.opt-1.pyc</li>
+	<li>8bf844cc7135_add_index_for_delete_after_a_delete_.cpython-311.pyc</li>
+	<li>8ea94673d6ee_index_coprchroot_deleted.cpython-311.opt-1.pyc</li>
+	<li>8ea94673d6ee_index_coprchroot_deleted.cpython-311.pyc</li>
+	<li>8fd7c4714189_isolation_option_for_chroot.cpython-311.opt-1.pyc</li>
+	<li>8fd7c4714189_isolation_option_for_chroot.cpython-311.pyc</li>
+	<li>9409fc1d5895_build_batch_id_indexed.cpython-311.opt-1.pyc</li>
+	<li>9409fc1d5895_build_batch_id_indexed.cpython-311.pyc</li>
+	<li>9b7211be5017_add_reviewed_outdated_chroot_table.cpython-311.opt-1.pyc</li>
+	<li>9b7211be5017_add_reviewed_outdated_chroot_table.cpython-311.pyc</li>
+	<li>9bc8681ed275_max_package_builds_per_copr_dir.cpython-311.opt-1.pyc</li>
+	<li>9bc8681ed275_max_package_builds_per_copr_dir.cpython-311.pyc</li>
+	<li>a8654abcec65_unify_scm_source_types.cpython-311.opt-1.pyc</li>
+	<li>a8654abcec65_unify_scm_source_types.cpython-311.pyc</li>
+	<li>a8ef299dcac8_add_indexes_to_actions.cpython-311.opt-1.pyc</li>
+	<li>a8ef299dcac8_add_indexes_to_actions.cpython-311.pyc</li>
+	<li>ac5917e5c4fe_make_copr_dirs_unique_by_ownername.cpython-311.opt-1.pyc</li>
+	<li>ac5917e5c4fe_make_copr_dirs_unique_by_ownername.cpython-311.pyc</li>
+	<li>acac8d3ae868_add_table_for_graph_statistics.cpython-311.opt-1.pyc</li>
+	<li>acac8d3ae868_add_table_for_graph_statistics.cpython-311.pyc</li>
+	<li>b0fd99505e37_fixup_unassigned_copr_chroots.cpython-311.opt-1.pyc</li>
+	<li>b0fd99505e37_fixup_unassigned_copr_chroots.cpython-311.pyc</li>
+	<li>b14b27e4a795_adding_isolation_option.cpython-311.opt-1.pyc</li>
+	<li>b14b27e4a795_adding_isolation_option.cpython-311.pyc</li>
+	<li>b630bad8a01e_add_index_for_combination_of_build_id_.cpython-311.opt-1.pyc</li>
+	<li>b630bad8a01e_add_index_for_combination_of_build_id_.cpython-311.pyc</li>
+	<li>b64659389c54_add_column_final_prunerepo_done_to_mock_.cpython-311.opt-1.pyc</li>
+	<li>b64659389c54_add_column_final_prunerepo_done_to_mock_.cpython-311.pyc</li>
+	<li>b828274ddebf_temporary_project.cpython-311.opt-1.pyc</li>
+	<li>b828274ddebf_temporary_project.cpython-311.pyc</li>
+	<li>b8a8a1345ed9_remove_now_private_columns_from_user_and_copr.cpython-311.opt-1.pyc</li>
+	<li>b8a8a1345ed9_remove_now_private_columns_from_user_and_copr.cpython-311.pyc</li>
+	<li>bf4b5dc74740_map_mock_croots_to_dits_git_branch.cpython-311.opt-1.pyc</li>
+	<li>bf4b5dc74740_map_mock_croots_to_dits_git_branch.cpython-311.pyc</li>
+	<li>c28451aaed50_fix_defaults.cpython-311.opt-1.pyc</li>
+	<li>c28451aaed50_fix_defaults.cpython-311.pyc</li>
+	<li>ca76b7902c2f_remove_old_status_column.cpython-311.opt-1.pyc</li>
+	<li>ca76b7902c2f_remove_old_status_column.cpython-311.pyc</li>
+	<li>cab566cc7dfb_add_batch_build_table.cpython-311.opt-1.pyc</li>
+	<li>cab566cc7dfb_add_batch_build_table.cpython-311.pyc</li>
+	<li>cb928c34d36c_add_actionsstatistics_table.cpython-311.opt-1.pyc</li>
+	<li>cb928c34d36c_add_actionsstatistics_table.cpython-311.pyc</li>
+	<li>code4beaf000_add_indexes3.cpython-311.opt-1.pyc</li>
+	<li>code4beaf000_add_indexes3.cpython-311.pyc</li>
+	<li>d230af5e05d8_drop_unused_pg_only_db_functions.cpython-311.opt-1.pyc</li>
+	<li>d230af5e05d8_drop_unused_pg_only_db_functions.cpython-311.pyc</li>
+	<li>d2fbc2ab630d_drop_fedora_alembic_config.cpython-311.opt-1.pyc</li>
+	<li>d2fbc2ab630d_drop_fedora_alembic_config.cpython-311.pyc</li>
+	<li>d5990bd4aa46_index_build_id_per_dir.cpython-311.opt-1.pyc</li>
+	<li>d5990bd4aa46_index_build_id_per_dir.cpython-311.pyc</li>
+	<li>d6cbf6cd74da_prefer_none_over_empty_string_in_email_.cpython-311.opt-1.pyc</li>
+	<li>d6cbf6cd74da_prefer_none_over_empty_string_in_email_.cpython-311.pyc</li>
+	<li>d8a1062ee4cf_fixup_source_state.cpython-311.opt-1.pyc</li>
+	<li>d8a1062ee4cf_fixup_source_state.cpython-311.pyc</li>
+	<li>dabab11132c1_initial_db_setup.cpython-311.opt-1.pyc</li>
+	<li>dabab11132c1_initial_db_setup.cpython-311.pyc</li>
+	<li>de903581465c_create_table_for_upvoting_and_.cpython-311.opt-1.pyc</li>
+	<li>de903581465c_create_table_for_upvoting_and_.cpython-311.pyc</li>
+	<li>deadbeafc0de_add_indexes2.cpython-311.opt-1.pyc</li>
+	<li>deadbeafc0de_add_indexes2.cpython-311.pyc</li>
+	<li>deaddeadc0de_add_indexes.cpython-311.opt-1.pyc</li>
+	<li>deaddeadc0de_add_indexes.cpython-311.pyc</li>
+	<li>e183e12563ee_add_index_to_module_id.cpython-311.opt-1.pyc</li>
+	<li>e183e12563ee_add_index_to_module_id.cpython-311.pyc</li>
+	<li>e2b1cb42e6b7_add_namespace_for_fedora_distgit.cpython-311.opt-1.pyc</li>
+	<li>e2b1cb42e6b7_add_namespace_for_fedora_distgit.cpython-311.pyc</li>
+	<li>efec6b1aa9a2_add_buildchrootresults.cpython-311.opt-1.pyc</li>
+	<li>efec6b1aa9a2_add_buildchrootresults.cpython-311.pyc</li>
+	<li>f61a5c930abf_unique_constraint_on_modules.cpython-311.opt-1.pyc</li>
+	<li>f61a5c930abf_unique_constraint_on_modules.cpython-311.pyc</li>
+	<li>fdec9947f8a1_add_web_hook_source_type_index.cpython-311.opt-1.pyc</li>
+	<li>fdec9947f8a1_add_web_hook_source_type_index.cpython-311.pyc</li>
+	</ul></li>
+	<li>a8654abcec65_unify_scm_source_types.py</li>
+	<li>a8ef299dcac8_add_indexes_to_actions.py</li>
+	<li>ac5917e5c4fe_make_copr_dirs_unique_by_ownername.py</li>
+	<li>acac8d3ae868_add_table_for_graph_statistics.py</li>
+	<li>b0fd99505e37_fixup_unassigned_copr_chroots.py</li>
+	<li>b14b27e4a795_adding_isolation_option.py</li>
+	<li>b630bad8a01e_add_index_for_combination_of_build_id_.py</li>
+	<li>b64659389c54_add_column_final_prunerepo_done_to_mock_.py</li>
+	<li>b828274ddebf_temporary_project.py</li>
+	<li>b8a8a1345ed9_remove_now_private_columns_from_user_and_copr.py</li>
+	<li>bf4b5dc74740_map_mock_croots_to_dits_git_branch.py</li>
+	<li>c28451aaed50_fix_defaults.py</li>
+	<li>ca76b7902c2f_remove_old_status_column.py</li>
+	<li>cab566cc7dfb_add_batch_build_table.py</li>
+	<li>cb928c34d36c_add_actionsstatistics_table.py</li>
+	<li>code4beaf000_add_indexes3.py</li>
+	<li>d230af5e05d8_drop_unused_pg_only_db_functions.py</li>
+	<li>d2fbc2ab630d_drop_fedora_alembic_config.py</li>
+	<li>d5990bd4aa46_index_build_id_per_dir.py</li>
+	<li>d6cbf6cd74da_prefer_none_over_empty_string_in_email_.py</li>
+	<li>d8a1062ee4cf_fixup_source_state.py</li>
+	<li>dabab11132c1_initial_db_setup.py</li>
+	<li>de903581465c_create_table_for_upvoting_and_.py</li>
+	<li>deadbeafc0de_add_indexes2.py</li>
+	<li>deaddeadc0de_add_indexes.py</li>
+	<li>e183e12563ee_add_index_to_module_id.py</li>
+	<li>e2b1cb42e6b7_add_namespace_for_fedora_distgit.py</li>
+	<li>efec6b1aa9a2_add_buildchrootresults.py</li>
+	<li>f61a5c930abf_unique_constraint_on_modules.py</li>
+	<li>fdec9947f8a1_add_web_hook_source_type_index.py</li>
+	</ul></li>
+	</ul></li>
+	<li>alembic.ini</li>
+	<li>application</li>
+	<li>commands/<ul>
+	<li>__init__.py</li>
+	<li>add_user.py</li>
+	<li>alter_chroot.py</li>
+	<li>alter_user.py</li>
+	<li>branch_fedora.py</li>
+	<li>chroots_template.py</li>
+	<li>clean_expired_projects.py</li>
+	<li>clean_old_builds.py</li>
+	<li>comment_chroot.py</li>
+	<li>create_chroot.py</li>
+	<li>create_db.py</li>
+	<li>create_sqlite_file.py</li>
+	<li>delete_dirs.py</li>
+	<li>delete_orphans.py</li>
+	<li>delete_outdated_chroots.py</li>
+	<li>display_chroots.py</li>
+	<li>drop_chroot.py</li>
+	<li>drop_db.py</li>
+	<li>dump_user.py</li>
+	<li>fail_build.py</li>
+	<li>fixup_unnoticed_chroots.py</li>
+	<li>flask3_wrapper.py</li>
+	<li>get_admins.py</li>
+	<li>notify_outdated_chroots.py</li>
+	<li>rawhide_to_release.py</li>
+	<li>test.py</li>
+	<li>update_graphs.py</li>
+	<li>update_indexes.py</li>
+	<li>update_indexes_quick.py</li>
+	<li>update_indexes_required.py</li>
+	<li>vacuum_graphs.py</li>
+	</ul></li>
+	<li>config/<ul>
+	</ul></li>
+	<li>coprs/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>config.cpython-311.opt-1.pyc</li>
+	<li>config.cpython-311.pyc</li>
+	<li>context_processors.cpython-311.opt-1.pyc</li>
+	<li>context_processors.cpython-311.pyc</li>
+	<li>error_handlers.cpython-311.opt-1.pyc</li>
+	<li>error_handlers.cpython-311.pyc</li>
+	<li>exceptions.cpython-311.opt-1.pyc</li>
+	<li>exceptions.cpython-311.pyc</li>
+	<li>filters.cpython-311.opt-1.pyc</li>
+	<li>filters.cpython-311.pyc</li>
+	<li>forms.cpython-311.opt-1.pyc</li>
+	<li>forms.cpython-311.pyc</li>
+	<li>helpers.cpython-311.opt-1.pyc</li>
+	<li>helpers.cpython-311.pyc</li>
+	<li>log.cpython-311.opt-1.pyc</li>
+	<li>log.cpython-311.pyc</li>
+	<li>mail.cpython-311.opt-1.pyc</li>
+	<li>mail.cpython-311.pyc</li>
+	<li>measure.cpython-311.opt-1.pyc</li>
+	<li>measure.cpython-311.pyc</li>
+	<li>models.cpython-311.opt-1.pyc</li>
+	<li>models.cpython-311.pyc</li>
+	<li>redis_session.cpython-311.opt-1.pyc</li>
+	<li>redis_session.cpython-311.pyc</li>
+	<li>whoosheers.cpython-311.opt-1.pyc</li>
+	<li>whoosheers.cpython-311.pyc</li>
+	</ul></li>
+	<li>config.py</li>
+	<li>context_processors.py</li>
+	<li>error_handlers.py</li>
+	<li>exceptions.py</li>
+	<li>filters.py</li>
+	<li>forms.py</li>
+	<li>helpers.py</li>
+	<li>log.py</li>
+	<li>logic/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>actions_logic.cpython-311.opt-1.pyc</li>
+	<li>actions_logic.cpython-311.pyc</li>
+	<li>api_logic.cpython-311.opt-1.pyc</li>
+	<li>api_logic.cpython-311.pyc</li>
+	<li>backend_logic.cpython-311.opt-1.pyc</li>
+	<li>backend_logic.cpython-311.pyc</li>
+	<li>batches_logic.cpython-311.opt-1.pyc</li>
+	<li>batches_logic.cpython-311.pyc</li>
+	<li>builds_logic.cpython-311.opt-1.pyc</li>
+	<li>builds_logic.cpython-311.pyc</li>
+	<li>complex_logic.cpython-311.opt-1.pyc</li>
+	<li>complex_logic.cpython-311.pyc</li>
+	<li>coprs_logic.cpython-311.opt-1.pyc</li>
+	<li>coprs_logic.cpython-311.pyc</li>
+	<li>dist_git_logic.cpython-311.opt-1.pyc</li>
+	<li>dist_git_logic.cpython-311.pyc</li>
+	<li>helpers.cpython-311.opt-1.pyc</li>
+	<li>helpers.cpython-311.pyc</li>
+	<li>modules_logic.cpython-311.opt-1.pyc</li>
+	<li>modules_logic.cpython-311.pyc</li>
+	<li>outdated_chroots_logic.cpython-311.opt-1.pyc</li>
+	<li>outdated_chroots_logic.cpython-311.pyc</li>
+	<li>packages_logic.cpython-311.opt-1.pyc</li>
+	<li>packages_logic.cpython-311.pyc</li>
+	<li>stat_logic.cpython-311.opt-1.pyc</li>
+	<li>stat_logic.cpython-311.pyc</li>
+	<li>users_logic.cpython-311.opt-1.pyc</li>
+	<li>users_logic.cpython-311.pyc</li>
+	</ul></li>
+	<li>actions_logic.py</li>
+	<li>api_logic.py</li>
+	<li>backend_logic.py</li>
+	<li>batches_logic.py</li>
+	<li>builds_logic.py</li>
+	<li>complex_logic.py</li>
+	<li>coprs_logic.py</li>
+	<li>dist_git_logic.py</li>
+	<li>helpers.py</li>
+	<li>modules_logic.py</li>
+	<li>outdated_chroots_logic.py</li>
+	<li>packages_logic.py</li>
+	<li>stat_logic.py</li>
+	<li>users_logic.py</li>
+	</ul></li>
+	<li>mail.py</li>
+	<li>measure.py</li>
+	<li>models.py</li>
+	<li>redis_session.py</li>
+	<li>static/<ul>
+	<li>.bowerrc</li>
+	<li>README</li>
+	<li>cauldron_logo.png</li>
+	<li>centos_logo.png</li>
+	<li>chroot_logodir/<ul>
+	<li>centos.png</li>
+	<li>epel.png</li>
+	<li>fedora.png</li>
+	<li>mageia.png</li>
+	<li>openmandriva.png</li>
+	<li>opensuse.png</li>
+	<li>rhel.png</li>
+	<li>rhelbeta-8.png</li>
+	</ul></li>
+	<li>components/<ul>
+	<li>c3/<ul>
+	<li>.bower.json</li>
+	<li>LICENSE</li>
+	<li>README.md</li>
+	<li>bower.json</li>
+	<li>c3.css</li>
+	<li>c3.js</li>
+	<li>c3.min.css</li>
+	<li>c3.min.js</li>
+	<li>extensions/<ul>
+	<li>exporter/<ul>
+	<li>config.json</li>
+	<li>phantom-exporter.js</li>
+	<li>test.png</li>
+	</ul></li>
+	<li>js/<ul>
+	<li>c3ext.js</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>d3/<ul>
+	<li>.bower.json</li>
+	<li>CONTRIBUTING.md</li>
+	<li>LICENSE</li>
+	<li>README.md</li>
+	<li>bower.json</li>
+	<li>d3.js</li>
+	<li>d3.min.js</li>
+	</ul></li>
+	</ul></li>
+	<li>copr-old.css</li>
+	<li>copr.css</li>
+	<li>copr.js</li>
+	<li>css/<ul>
+	<li>bootstrap-theme.css</li>
+	<li>bootstrap-theme.min.css</li>
+	<li>bootstrap.css</li>
+	<li>bootstrap.min.css</li>
+	<li>custom-styles.css</li>
+	<li>pygments-autumn.css</li>
+	<li>style-overwrite.css</li>
+	</ul></li>
+	<li>default_user.png</li>
+	<li>fedora_logo.png</li>
+	<li>fonts/<ul>
+	<li>OpenSans-Bold-webfont.eot</li>
+	<li>OpenSans-Bold-webfont.svg</li>
+	<li>OpenSans-Bold-webfont.ttf</li>
+	<li>OpenSans-Bold-webfont.woff</li>
+	<li>OpenSans-BoldItalic-webfont.eot</li>
+	<li>OpenSans-BoldItalic-webfont.svg</li>
+	<li>OpenSans-BoldItalic-webfont.ttf</li>
+	<li>OpenSans-BoldItalic-webfont.woff</li>
+	<li>OpenSans-ExtraBold-webfont.eot</li>
+	<li>OpenSans-ExtraBold-webfont.svg</li>
+	<li>OpenSans-ExtraBold-webfont.ttf</li>
+	<li>OpenSans-ExtraBold-webfont.woff</li>
+	<li>OpenSans-ExtraBoldItalic-webfont.eot</li>
+	<li>OpenSans-ExtraBoldItalic-webfont.svg</li>
+	<li>OpenSans-ExtraBoldItalic-webfont.ttf</li>
+	<li>OpenSans-ExtraBoldItalic-webfont.woff</li>
+	<li>OpenSans-Italic-webfont.eot</li>
+	<li>OpenSans-Italic-webfont.svg</li>
+	<li>OpenSans-Italic-webfont.ttf</li>
+	<li>OpenSans-Italic-webfont.woff</li>
+	<li>OpenSans-Light-webfont.eot</li>
+	<li>OpenSans-Light-webfont.svg</li>
+	<li>OpenSans-Light-webfont.ttf</li>
+	<li>OpenSans-Light-webfont.woff</li>
+	<li>OpenSans-LightItalic-webfont.eot</li>
+	<li>OpenSans-LightItalic-webfont.svg</li>
+	<li>OpenSans-LightItalic-webfont.ttf</li>
+	<li>OpenSans-LightItalic-webfont.woff</li>
+	<li>OpenSans-Regular-webfont.eot</li>
+	<li>OpenSans-Regular-webfont.svg</li>
+	<li>OpenSans-Regular-webfont.ttf</li>
+	<li>OpenSans-Regular-webfont.woff</li>
+	<li>OpenSans-Semibold-webfont.eot</li>
+	<li>OpenSans-Semibold-webfont.svg</li>
+	<li>OpenSans-Semibold-webfont.ttf</li>
+	<li>OpenSans-Semibold-webfont.woff</li>
+	<li>OpenSans-SemiboldItalic-webfont.eot</li>
+	<li>OpenSans-SemiboldItalic-webfont.svg</li>
+	<li>OpenSans-SemiboldItalic-webfont.ttf</li>
+	<li>OpenSans-SemiboldItalic-webfont.woff</li>
+	<li>PatternFlyIcons-webfont.eot</li>
+	<li>PatternFlyIcons-webfont.svg</li>
+	<li>PatternFlyIcons-webfont.ttf</li>
+	<li>PatternFlyIcons-webfont.woff</li>
+	<li>glyphicons-halflings-regular.eot</li>
+	<li>glyphicons-halflings-regular.svg</li>
+	<li>glyphicons-halflings-regular.ttf</li>
+	<li>glyphicons-halflings-regular.woff</li>
+	<li>glyphicons-halflings-regular.woff2</li>
+	</ul></li>
+	<li>geeko_logo.png</li>
+	<li>img/<ul>
+	<li>apple-touch-icon-114-precomposed.png</li>
+	<li>apple-touch-icon-144-precomposed.png</li>
+	<li>apple-touch-icon-57-precomposed.png</li>
+	<li>apple-touch-icon-72-precomposed.png</li>
+	<li>bg-login.jpg</li>
+	<li>brand-lg.png</li>
+	<li>brand.png</li>
+	<li>brand.svg</li>
+	<li>favicon.ico</li>
+	<li>logo.png</li>
+	<li>logo.svg</li>
+	<li>spinner-lg.gif</li>
+	<li>spinner-sm.gif</li>
+	<li>spinner-xs.gif</li>
+	<li>spinner.gif</li>
+	</ul></li>
+	<li>js/<ul>
+	<li>blog.js</li>
+	<li>graphs.js</li>
+	</ul></li>
+	<li>old_copr_logo.png</li>
+	<li>openmandriva_logo.png</li>
+	<li>pink_arrow.png</li>
+	<li>rhel_logo.png</li>
+	<li>status_images/<ul>
+	<li>bad_url.png</li>
+	<li>failed.png</li>
+	<li>in_progress.png</li>
+	<li>succeeded.png</li>
+	<li>unknown.png</li>
+	</ul></li>
+	</ul></li>
+	<li>templates/<ul>
+	<li>_helpers.html</li>
+	<li>admin/<ul>
+	<li>_admin_forms.html</li>
+	<li>index.html</li>
+	<li>layout.html</li>
+	<li>legal-flag.html</li>
+	<li>playground.html</li>
+	</ul></li>
+	<li>api.html</li>
+	<li>batches/<ul>
+	<li>detail.html</li>
+	</ul></li>
+	<li>coprs/<ul>
+	<li>_coprs_forms.html</li>
+	<li>add.html</li>
+	<li>add_fedora_review.html</li>
+	<li>copr-modules.cfg</li>
+	<li>copr-repo-package.spec</li>
+	<li>copr_dir.repo</li>
+	<li>create_module.html</li>
+	<li>detail/<ul>
+	<li>_build_states.html</li>
+	<li>_builds_forms.html</li>
+	<li>_builds_table.html</li>
+	<li>_describe_failure.html</li>
+	<li>_describe_source.html</li>
+	<li>_method_forms.html</li>
+	<li>_module_states.html</li>
+	<li>_modules_table.html</li>
+	<li>_package_forms.html</li>
+	<li>_package_helpers.html</li>
+	<li>_package_table.html</li>
+	<li>_packages_table.html</li>
+	<li>_permissions_table.html</li>
+	<li>add_build/<ul>
+	<li>custom.html</li>
+	<li>distgit.html</li>
+	<li>pypi.html</li>
+	<li>rebuild.html</li>
+	<li>rubygems.html</li>
+	<li>scm.html</li>
+	<li>upload.html</li>
+	<li>url.html</li>
+	</ul></li>
+	<li>add_build.html</li>
+	<li>add_package.html</li>
+	<li>build.html</li>
+	<li>builds.html</li>
+	<li>edit_chroot.html</li>
+	<li>edit_package.html</li>
+	<li>forks.html</li>
+	<li>module.html</li>
+	<li>modules.html</li>
+	<li>monitor/<ul>
+	<li>detailed.html</li>
+	<li>simple.html</li>
+	</ul></li>
+	<li>monitor.html</li>
+	<li>overview.html</li>
+	<li>package.html</li>
+	<li>packages.html</li>
+	<li>packages_rebuild_all.html</li>
+	<li>settings/<ul>
+	<li>delete.html</li>
+	<li>edit.html</li>
+	<li>integrations.html</li>
+	<li>permissions.html</li>
+	<li>repositories.html</li>
+	</ul></li>
+	<li>settings.html</li>
+	</ul></li>
+	<li>detail.html</li>
+	<li>external_dependency.repo</li>
+	<li>fork.html</li>
+	<li>group_add.html</li>
+	<li>group_show.html</li>
+	<li>report_abuse.html</li>
+	<li>show/<ul>
+	<li>all.html</li>
+	<li>fulltext.html</li>
+	<li>group.html</li>
+	<li>user.html</li>
+	</ul></li>
+	<li>show.html</li>
+	</ul></li>
+	<li>explore.html</li>
+	<li>groups/<ul>
+	<li>activate_fas_group.html</li>
+	<li>user_fas_groups.html</li>
+	</ul></li>
+	<li>html-error.html</li>
+	<li>layout.html</li>
+	<li>login.html</li>
+	<li>pinned.html</li>
+	<li>recent/<ul>
+	<li>all.html</li>
+	<li>my.html</li>
+	</ul></li>
+	<li>recent.html</li>
+	<li>repositories.html</li>
+	<li>rss/<ul>
+	<li>rss.xml</li>
+	</ul></li>
+	<li>status/<ul>
+	<li>batch_list.html</li>
+	<li>stats.html</li>
+	</ul></li>
+	<li>status.html</li>
+	<li>status_overview.html</li>
+	<li>user_info.html</li>
+	</ul></li>
+	<li>views/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>explore_ns.cpython-311.opt-1.pyc</li>
+	<li>explore_ns.cpython-311.pyc</li>
+	<li>memory_analyzer.cpython-311.opt-1.pyc</li>
+	<li>memory_analyzer.cpython-311.pyc</li>
+	<li>misc.cpython-311.opt-1.pyc</li>
+	<li>misc.cpython-311.pyc</li>
+	</ul></li>
+	<li>admin_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>admin_general.cpython-311.opt-1.pyc</li>
+	<li>admin_general.cpython-311.pyc</li>
+	</ul></li>
+	<li>admin_general.py</li>
+	</ul></li>
+	<li>api_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>api_general.cpython-311.opt-1.pyc</li>
+	<li>api_general.cpython-311.pyc</li>
+	</ul></li>
+	<li>api_general.py</li>
+	</ul></li>
+	<li>apiv3_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>apiv3_build_chroots.cpython-311.opt-1.pyc</li>
+	<li>apiv3_build_chroots.cpython-311.pyc</li>
+	<li>apiv3_builds.cpython-311.opt-1.pyc</li>
+	<li>apiv3_builds.cpython-311.pyc</li>
+	<li>apiv3_general.cpython-311.opt-1.pyc</li>
+	<li>apiv3_general.cpython-311.pyc</li>
+	<li>apiv3_mock_chroots.cpython-311.opt-1.pyc</li>
+	<li>apiv3_mock_chroots.cpython-311.pyc</li>
+	<li>apiv3_modules.cpython-311.opt-1.pyc</li>
+	<li>apiv3_modules.cpython-311.pyc</li>
+	<li>apiv3_monitor.cpython-311.opt-1.pyc</li>
+	<li>apiv3_monitor.cpython-311.pyc</li>
+	<li>apiv3_packages.cpython-311.opt-1.pyc</li>
+	<li>apiv3_packages.cpython-311.pyc</li>
+	<li>apiv3_permissions.cpython-311.opt-1.pyc</li>
+	<li>apiv3_permissions.cpython-311.pyc</li>
+	<li>apiv3_project_chroots.cpython-311.opt-1.pyc</li>
+	<li>apiv3_project_chroots.cpython-311.pyc</li>
+	<li>apiv3_projects.cpython-311.opt-1.pyc</li>
+	<li>apiv3_projects.cpython-311.pyc</li>
+	<li>apiv3_webhooks.cpython-311.opt-1.pyc</li>
+	<li>apiv3_webhooks.cpython-311.pyc</li>
+	<li>json2form.cpython-311.opt-1.pyc</li>
+	<li>json2form.cpython-311.pyc</li>
+	</ul></li>
+	<li>apiv3_build_chroots.py</li>
+	<li>apiv3_builds.py</li>
+	<li>apiv3_general.py</li>
+	<li>apiv3_mock_chroots.py</li>
+	<li>apiv3_modules.py</li>
+	<li>apiv3_monitor.py</li>
+	<li>apiv3_packages.py</li>
+	<li>apiv3_permissions.py</li>
+	<li>apiv3_project_chroots.py</li>
+	<li>apiv3_projects.py</li>
+	<li>apiv3_webhooks.py</li>
+	<li>json2form.py</li>
+	</ul></li>
+	<li>backend_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>backend_general.cpython-311.opt-1.pyc</li>
+	<li>backend_general.cpython-311.pyc</li>
+	</ul></li>
+	<li>backend_general.py</li>
+	</ul></li>
+	<li>batches_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>coprs_batches.cpython-311.opt-1.pyc</li>
+	<li>coprs_batches.cpython-311.pyc</li>
+	</ul></li>
+	<li>coprs_batches.py</li>
+	</ul></li>
+	<li>coprs_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>coprs_builds.cpython-311.opt-1.pyc</li>
+	<li>coprs_builds.cpython-311.pyc</li>
+	<li>coprs_chroots.cpython-311.opt-1.pyc</li>
+	<li>coprs_chroots.cpython-311.pyc</li>
+	<li>coprs_general.cpython-311.opt-1.pyc</li>
+	<li>coprs_general.cpython-311.pyc</li>
+	<li>coprs_packages.cpython-311.opt-1.pyc</li>
+	<li>coprs_packages.cpython-311.pyc</li>
+	<li>pagination_redirect.cpython-311.opt-1.pyc</li>
+	<li>pagination_redirect.cpython-311.pyc</li>
+	</ul></li>
+	<li>coprs_builds.py</li>
+	<li>coprs_chroots.py</li>
+	<li>coprs_general.py</li>
+	<li>coprs_packages.py</li>
+	<li>pagination_redirect.py</li>
+	</ul></li>
+	<li>explore_ns.py</li>
+	<li>groups_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>groups_general.cpython-311.opt-1.pyc</li>
+	<li>groups_general.cpython-311.pyc</li>
+	</ul></li>
+	<li>groups_general.py</li>
+	</ul></li>
+	<li>memory_analyzer.py</li>
+	<li>misc.py</li>
+	<li>recent_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>recent_general.cpython-311.opt-1.pyc</li>
+	<li>recent_general.cpython-311.pyc</li>
+	</ul></li>
+	<li>recent_general.py</li>
+	</ul></li>
+	<li>rss_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>rss_general.cpython-311.opt-1.pyc</li>
+	<li>rss_general.cpython-311.pyc</li>
+	</ul></li>
+	<li>rss_general.py</li>
+	</ul></li>
+	<li>stats_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>stats_receiver.cpython-311.opt-1.pyc</li>
+	<li>stats_receiver.cpython-311.pyc</li>
+	</ul></li>
+	<li>stats_receiver.py</li>
+	</ul></li>
+	<li>status_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>status_general.cpython-311.opt-1.pyc</li>
+	<li>status_general.cpython-311.pyc</li>
+	</ul></li>
+	<li>status_general.py</li>
+	</ul></li>
+	<li>tmp_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>tmp_general.cpython-311.opt-1.pyc</li>
+	<li>tmp_general.cpython-311.pyc</li>
+	</ul></li>
+	<li>tmp_general.py</li>
+	</ul></li>
+	<li>user_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>user_general.cpython-311.opt-1.pyc</li>
+	<li>user_general.cpython-311.pyc</li>
+	</ul></li>
+	<li>user_general.py</li>
+	</ul></li>
+	<li>webhooks_ns/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>webhooks_general.cpython-311.opt-1.pyc</li>
+	<li>webhooks_general.cpython-311.pyc</li>
+	</ul></li>
+	<li>webhooks_general.py</li>
+	</ul></li>
+	</ul></li>
+	<li>whoosheers.py</li>
+	</ul></li>
+	<li>manage.py</li>
+	<li>pagure_events.py</li>
+	<li>run/<ul>
+	<li>__init__.py</li>
+	<li>check_for_anitya_version_updates.py</li>
+	<li>copr-gdpr-sar.sh</li>
+	<li>copr_dump_db.sh</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>doc/<ul>
+	<li>copr-frontend/<ul>
+	<li>coprs.conf.example</li>
+	</ul></li>
+	</ul></li>
+	<li>licenses/<ul>
+	<li>copr-frontend/<ul>
+	<li>LICENSE</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>var/<ul>
+	<li>lib/<ul>
+	<li>copr/<ul>
+	<li>data/<ul>
+	<li>copr.db</li>
+	<li>openid_store/<ul>
+	</ul></li>
+	<li>srpm_storage/<ul>
+	</ul></li>
+	<li>whooshee/<ul>
+	<li>copr_user_whoosheer/<ul>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>log/<ul>
+	<li>copr-frontend/<ul>
+	<li>frontend.log</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+</div>
+
+  <div class="text-muted text-center">
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>
+  </div>
+</div>

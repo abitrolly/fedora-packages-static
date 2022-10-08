@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<title>copr-frontend-fedora-1.191-1.fc37 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="description" content="View copr-frontend-fedora-1.191-1.fc37 in Fedora 37. copr-frontend-fedora: Template files for copr-frontend">
+
+<div class="container">
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+    </div>
+  </div>
+
+  <hr />
+
+<h1>
+	copr-frontend-fedora-1.191-1.fc37<small class="text-muted"> in Fedora 37</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of copr-frontend-fedora</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=copr-frontend-1.191-1.fc37">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=copr-frontend-1.191-1.fc37">Search for updates</a>
+</p>
+
+<p>
+	<b>Package Info</b><br>
+	<a href="#changelog">&#129047; Changelog</a><br>
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	<a href="#provides">&#129047; Provides</a><br>
+	<a href="#files">&#129047; Files</a><br>
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>2022-09-20</td>
+			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.191-1</td>
+			<td>- show timeout in the build detail page
+- disable Edit button in the project settings when chroot unchecked
+- fix FTBFS issues for F37/Rawhide
+- match OS logos by their OS family
+- show the batch ID (if assigned) in the build detail
+- add link to /user/repositories/ on the user detail page
+- stg frontend instance should link to stg FAS instance
+- add page for exploring projects
+- remove APIv2 code</td>
+		</tr>
+		<tr>
+			<td>2022-08-16</td>
+			<td>Jiri Kyjovsky &lt;j1 dot kyjovsky at gmail dot com&gt; 1.190-1</td>
+			<td>- Create field for packit_forge_project when creating build</td>
+		</tr>
+		<tr>
+			<td>2022-08-16</td>
+			<td>Jiri Kyjovsky &lt;j1 dot kyjovsky at gmail dot com&gt; 1.189-1</td>
+			<td>- check packit_forge_project option in build_options for builds
+- add packit_forge_projects_allowed for Copr projects
+- remove leading and trailing whitespace from StringField</td>
+		</tr>
+		<tr>
+			<td>2022-07-26</td>
+			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.188-1</td>
+			<td>- Add support for pyp2spec generator
+- Add API support for runtime_dependencies
+- Runtime_dependencies may be separated by a newline
+- Pagure-events: don&#39;t submit builds for disabled projects</td>
+		</tr>
+		<tr>
+			<td>2022-06-21</td>
+			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.187-1</td>
+			<td>- Start logging important events
+- Change logging formatter to show also flask.g.user
+- APIv3 support for chroot_denylist
+- Restrict the CoprDir names to &lt;copr&gt;:custom:&lt;suffix&gt;
+- Don&#39;t require trailing slash in APIv3 /package/list
+- Don&#39;t hide CoprDir buttons in Builds web-ui
+- New command &#39;copr-frontend chroots-template&#39;
+- More understandable Pagure badges
+- Detect ClientDisconnected errors</td>
+		</tr>
+		<tr>
+			<td>2022-04-04</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.186-1</td>
+			<td>- support for api_3 gssapi login
+- the /pending-jobs/ is now a streamed page
+- a bit more optimized /pending-jobs/ route
+- web-UI: make sure that background builds are more visible
+- build &#34;is_background&#34; info in the api_3 calls
+- indicate low priority builds in status overview</td>
+		</tr>
+		<tr>
+			<td>2022-03-18</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.185-1</td>
+			<td>- added support for resetting fields in chroots over the API
+- get-chroot - return modules as a list
+- add a link to comps.xml documentation into the chroot edit form
+- user-friendly error for devel stack(s) when there is a database problem
+- optimize the SQL for the /pending/ routes a bit
+- a new route /pending/all/ giving a rough stats
+- cache the number of currently processed batches to speedup the overall web-UI
+- speed-up the models.Batch related routes
+- don&#39;t use redis as a middleman when updating hitcounter stats
+- use standard backend auth for updating stats
+- hitcounter: don&#39;t return 201 when there is an exception
+- add API routes for editing module list in chroot</td>
+		</tr>
+		<tr>
+			<td>2022-02-02</td>
+			<td>Silvie Chlupova &lt;schlupov at redhat dot com&gt; 1.184-1</td>
+			<td>- sort chroot-histogram graphs by number of builds
+- use dist-git method for builds by default
+- fix size of graphs on status page
+- limit max number of packages per request
+- paginate packages list in APIv3
+- don&#39;t query all packages when empty list is specified
+- webhook rebuilds are background jobs now
+- re-enabled chroots should reset final_prunerepo_done
+- fix import order reported by pylint
+- print human-readable validation errors in APIv3
+- basic build tagging
+- use new Fedora chroot icon
+- use official EPEL log for chroot icon
+- PyLint fixes for create_db.py
+- fix ./run_tests.sh script for coverage args
+- don&#39;t insert+commit in create_after event
+- build PyPI only for python3 by default
+- describe advanced searching possibilities
+- limit RubyGems and PyPI package names length
+- Disable coverage analysis during RPM build
+- 2029379 - workaround GitHub caching proxy
+- drop duplicit &#34;group&#34; table join
+- add &#34;My Projects&#34; button to the homepage
+- api monitor page to contain pkg_version</td>
+		</tr>
+		<tr>
+			<td>2021-11-10</td>
+			<td>Silvie Chlupova &lt;schlupov at redhat dot com&gt; 1.183-1</td>
+			<td>- ACR toggle - handle NO_VALUE specially too
+- Fixup ACR handling
+- &#34;Rebuild All&#34; form to respect chroot denylist
+- &#34;rebuild all packages&#34; from successful builds
+- Large project modification timeout fix
+- Homepage redesign
+- Speedup BuildChroot removals
+- Add BuildChroot(s) to Build ASAP if package is known
+- APIv3 /monitor route
+- Single before_request hook
+- Checkpoint measurement helpers
+- Assure error_handler error is 500
+- Handle CoprDir.get_by_copr consistently
+- Search by attributes using the input value
+- Print searched string with attributes
+- Add dropdown with hints for searching
+- Support searching by attributes and improve searching overall
+- Openid,login by email: guide user, don&#39;t do infinite loop
+- Conscious language (group blacklist -&gt; denylist)
+- Conscious language (chroot blacklist -&gt; denylist)
+- Change prompt from $ to #&gt; in Quick Enable box
+- Accept admin permissions for Copr build
+- Explain what fedora-review project is</td>
+		</tr>
+		<tr>
+			<td>2021-10-01</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.182-1</td>
+			<td>- fixup SubqueryPaginator for older sqlalchemy versions</td>
+		</tr>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			<li>
+			<a href="/pkgs/copr-frontend/copr-frontend/fedora-37.html">
+			copr-frontend</a> = 1.191
+
+			</li>
+		</ul>
+	</div>
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			<li>copr-frontend-fedora</li>
+			<li>copr-frontend-flavor</li>
+		</ul>
+	</div>
+</div>
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	<li>usr/<ul>
+	<li>share/<ul>
+	<li>copr/<ul>
+	<li>coprs_frontend/<ul>
+	<li>coprs/<ul>
+	<li>static/<ul>
+	<li>copr_logo.png</li>
+	<li>css/<ul>
+	<li>copr-flavor.css</li>
+	</ul></li>
+	<li>favicon.ico</li>
+	<li>header_background.png</li>
+	</ul></li>
+	<li>templates/<ul>
+	<li>additional_token_info.html</li>
+	<li>contact_us.html</li>
+	<li>documentation_cards.html</li>
+	<li>homepage_header.html</li>
+	<li>project_info.html</li>
+	<li>quick_enable.html</li>
+	<li>user_meta.html</li>
+	<li>welcome.html</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>licenses/<ul>
+	<li>copr-frontend-fedora/<ul>
+	<li>LICENSE</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+</div>
+
+  <div class="text-muted text-center">
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>
+  </div>
+</div>

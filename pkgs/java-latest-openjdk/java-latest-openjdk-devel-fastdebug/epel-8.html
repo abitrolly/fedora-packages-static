@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<title>java-latest-openjdk-devel-fastdebug-17.0.1.0.12-3.rolling.el8 - Fedora Packages</title>
+<title>java-latest-openjdk-devel-fastdebug-19.0.0.0.36-2.rolling.el8 - Fedora Packages</title>
 <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../assets/css/main.css">
 <link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<meta name="description" content="View java-latest-openjdk-devel-fastdebug-17.0.1.0.12-3.rolling.el8 in EPEL 8. java-latest-openjdk-devel-fastdebug: OpenJDK 17 Development Environment optimised with full debugging on">
+<meta name="description" content="View java-latest-openjdk-devel-fastdebug-19.0.0.0.36-2.rolling.el8 in EPEL 8. java-latest-openjdk-devel-fastdebug: OpenJDK 19 Development Environment optimised with full debugging on">
 
 <div class="container">
   <div class="row">
@@ -20,12 +20,12 @@
   <hr />
 
 <h1>
-	java-latest-openjdk-devel-fastdebug-17.0.1.0.12-3.rolling.el8<small class="text-muted"> in EPEL 8</small>
+	java-latest-openjdk-devel-fastdebug-19.0.0.0.36-2.rolling.el8<small class="text-muted"> in EPEL 8</small>
 </h1>
 <p>
 	<a href=".">&crarr; Return to the main page of java-latest-openjdk-devel-fastdebug</a><br>
-	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-17.0.1.0.12-3.rolling.el8">View build</a><br>
-	<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-17.0.1.0.12-3.rolling.el8">Search for updates</a>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-19.0.0.0.36-2.rolling.el8">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-19.0.0.0.36-2.rolling.el8">Search for updates</a>
 </p>
 
 <p>
@@ -47,70 +47,74 @@
 			</tr>
 		</thead>
 		<tr>
-			<td>2021-11-05</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.35-3.rolling</td>
-			<td>- Patch syslookup.c so it actually has some code to be compiled into libsyslookup
-- Related: rhbz#2013846</td>
+			<td>2022-08-29</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:19.0.0.0.36-2.rolling</td>
+			<td>- Switch to static builds, reducing system dependencies and making build more portable</td>
 		</tr>
 		<tr>
-			<td>2021-11-03</td>
-			<td>Severin Gehwolf &lt;sgehwolf at redhat dot com&gt; - 1:17.0.1.0.12-2.rolling</td>
-			<td>- Use &#39;sql:&#39; prefix in nss.fips.cfg as F35+ no longer ship the legacy
-  secmod.db file as part of nss</td>
+			<td>2022-08-29</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:19.0.0.0.36-1.rolling</td>
+			<td>- Update to RC version of OpenJDK 19
+- Update release notes to 19.0.0
+- Rebase FIPS patches from fips-19u branch
+- Need to include the &#39;.S&#39; suffix in debuginfo checks after JDK-8284661
+- Add patch to provide translations for Europe/Kyiv added in tzdata2022b
+- Add test to ensure timezones can be translated
+- Remove references to sample directory removed by JDK-8284999</td>
 		</tr>
 		<tr>
-			<td>2021-10-20</td>
-			<td>Petra Alice Mikova &lt;pmikova at redhat dot com&gt; - 1:17.0.1.0.12-1.rolling</td>
-			<td>- October CPU update to jdk 17.0.1+12
-- dropped commented-out source line</td>
+			<td>2022-07-22</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.2.0.9-1.rolling</td>
+			<td>- Update to jdk-18.0.2 release
+- Update release notes to 18.0.2
+- Drop JDK-8282004 patch which is now upstreamed under JDK-8282231
+- Exclude x86 where java_arches is undefined, in order to unbreak build</td>
 		</tr>
 		<tr>
-			<td>2021-10-11</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.35-3.rolling</td>
-			<td>- Update release notes to document the major changes between OpenJDK 11 &amp; 17.</td>
+			<td>2022-07-22</td>
+			<td>Jiri Vanek &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-8.rolling</td>
+			<td>- moved to build only on %{java_arches}
+-- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs
+- reverted :
+-- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild (always mess up release)
+-- Try to build on x86 again by creating a husk of a JDK which does not depend on itself
+-- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable
+-- Replaced binaries and .so files with bash-stubs on i686
+- added ExclusiveArch:  %{java_arches}
+-- this now excludes i686
+-- this is safely backport-able to older fedoras, as the macro was backported properly (with i686 included)
+- https://bugzilla.redhat.com/show_bug.cgi?id=2104125</td>
 		</tr>
 		<tr>
-			<td>2021-10-10</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.35-2.rolling</td>
-			<td>- Fix unused function compiler warning found in systemconf.c
-- Extend the default security policy to accomodate PKCS11 accessing jdk.internal.access.
-- Allow plain key import to be disabled with -Dcom.redhat.fips.plainKeySupport=false</td>
+			<td>2022-07-21</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1:18.0.1.1.2-7.rolling.1</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild</td>
 		</tr>
 		<tr>
-			<td>2021-10-10</td>
-			<td>Martin Balao &lt;mbalao at redhat dot com&gt; - 1:17.0.0.0.35-2.rolling</td>
-			<td>- Add patch to disable non-FIPS crypto in the SUN and SunEC security providers.
-- Add patch to login to the NSS software token when in FIPS mode.
-- Add patch to allow plain key import.</td>
+			<td>2022-07-19</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-7.rolling</td>
+			<td>- Try to build on x86 again by creating a husk of a JDK which does not depend on itself</td>
 		</tr>
 		<tr>
-			<td>2021-09-14</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.35-1.rolling</td>
-			<td>- Update to jdk-17+35, also known as jdk-17-ga.
-- Switch to GA mode.</td>
+			<td>2022-07-17</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-6.rolling</td>
+			<td>- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable</td>
 		</tr>
 		<tr>
-			<td>2021-09-08</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.33-0.3.ea.rolling</td>
-			<td>- Minor code cleanups on FIPS detection patch and check for SECMOD_GetSystemFIPSEnabled in configure.
-- Remove unneeded Requires on NSS as it will now be dynamically linked and detected by RPM.</td>
+			<td>2022-07-13</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-5.rolling</td>
+			<td>- Explicitly require crypto-policies during build and runtime for system security properties</td>
 		</tr>
 		<tr>
-			<td>2021-09-08</td>
-			<td>Martin Balao &lt;mbalao at redhat dot com&gt; - 1:17.0.0.0.33-0.3.ea.rolling</td>
-			<td>- Detect FIPS using SECMOD_GetSystemFIPSEnabled in the new libsystemconf JDK library.</td>
+			<td>2022-07-13</td>
+			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:18.0.1.1.2-4.rolling.</td>
+			<td>- Replaced binaries and .so files with bash-stubs on i686 in preparation of the removal on that architecture:
+- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs</td>
 		</tr>
 		<tr>
-			<td>2021-09-06</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.33-0.2.ea.rolling</td>
-			<td>- Update RH1655466 FIPS patch with changes in OpenJDK 8 version.
-- SunPKCS11 runtime provider name is a concatenation of &#34;SunPKCS11-&#34; and the name in the config file.
-- Change nss.fips.cfg config name to &#34;NSS-FIPS&#34; to avoid confusion with nss.cfg.
-- No need to substitute path to nss.fips.cfg as java.security file supports a java.home variable.
-- Disable FIPS mode support unless com.redhat.fips is set to &#34;true&#34;.
-- Enable alignment with FIPS crypto policy by default (-Dcom.redhat.fips=false to disable).
-- Add explicit runtime dependency on NSS for the PKCS11 provider in FIPS mode
-- Move setup of JavaSecuritySystemConfiguratorAccess to Security class so it always occurs (RH1915071)</td>
+			<td>2022-07-13</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-3.rolling</td>
+			<td>- Make use of the vendor version string to store our version &amp; release rather than an upstream release date</td>
 		</tr>
 		<tbody>
 		</tbody>
@@ -123,7 +127,7 @@
 		<ul>
 			<li>
 			<a href="/pkgs/java-latest-openjdk/java-latest-openjdk-fastdebug/epel-8.html">
-			java-latest-openjdk-fastdebug</a> = 17.0.1.0.12-3.rolling.el8
+			java-latest-openjdk-fastdebug</a> = 19.0.0.0.36-2.rolling.el8
 
 			</li>
 		</ul>
@@ -132,13 +136,13 @@
 		<h2 id="provides">Provides</h2>
 		<ul>
 			<li>application()</li>
-			<li>application(java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug-jconsole-fastdebug.desktop)</li>
-			<li>java-17-devel-fastdebug</li>
-			<li>java-17-openjdk-devel-fastdebug</li>
+			<li>application(java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug-jconsole-fastdebug.desktop)</li>
+			<li>java-19-devel-fastdebug</li>
+			<li>java-19-openjdk-devel-fastdebug</li>
 			<li>java-latest-openjdk-devel-fastdebug</li>
 			<li>java-latest-openjdk-devel-fastdebug(x86-64)</li>
-			<li>java-sdk-17-fastdebug</li>
-			<li>java-sdk-17-openjdk-fastdebug</li>
+			<li>java-sdk-19-fastdebug</li>
+			<li>java-sdk-19-openjdk-fastdebug</li>
 		</ul>
 	</div>
 </div>
@@ -150,82 +154,83 @@
 	<li>usr/<ul>
 	<li>lib/<ul>
 	<li>.build-id/<ul>
-	<li>02/<ul>
-	<li>68952b022a3f55465bd0f58afbae803e71d518</li>
+	<li>01/<ul>
+	<li>76ac51342b9c0cac93d9f06a2d5d8230158bdc</li>
 	</ul></li>
-	<li>08/<ul>
-	<li>052585877e5cb704b693e4a639eb66e1a3c809</li>
+	<li>09/<ul>
+	<li>1f3e847662a80e111a7938928592721fc7a19b</li>
 	</ul></li>
-	<li>19/<ul>
-	<li>50dcd407ffd6dbba0affbc8fe77785d14ebd7a</li>
+	<li>0c/<ul>
+	<li>80b6338b06cdfb4d2117971ae59dadc45a76ac</li>
 	</ul></li>
-	<li>28/<ul>
-	<li>c670b46ccbbdf3769e5ed97724ec93e8c0620b</li>
+	<li>16/<ul>
+	<li>3829ab25f7353293c2ff5fd0607ca1f6806f0d</li>
 	</ul></li>
-	<li>3c/<ul>
-	<li>2ffe6a44f8b543238ceb90f8f1f6e52370bd10</li>
+	<li>2a/<ul>
+	<li>760137b0bcf824f0248858aa6d86712cfd9eea</li>
 	</ul></li>
-	<li>40/<ul>
-	<li>288567645d47075c013b041fd0692ed070be79</li>
-	<li>e62db35fc23313786182b999962c1fcff1ce69</li>
+	<li>31/<ul>
+	<li>18ec877a9de35405990513ad80399110bbc6d3</li>
 	</ul></li>
-	<li>4c/<ul>
-	<li>3e50abf73d6a2a6d61a0f169b735d4bf6ebd4a</li>
+	<li>34/<ul>
+	<li>fb1bab563948277a8388b53510932e90093a6c</li>
 	</ul></li>
-	<li>4e/<ul>
-	<li>61025a32ad8d86550f1ea37fd7885d47ac325c</li>
+	<li>36/<ul>
+	<li>023a9a06666d21d890f07bc0396faefdd34aaf</li>
+	<li>a131c11f0187035667679e8eee661f8c892731</li>
+	</ul></li>
+	<li>3b/<ul>
+	<li>98981e545eab8849ff170f9d97acdc64f964e8</li>
+	</ul></li>
+	<li>4a/<ul>
+	<li>e8442097c4decb5e12124c7655900a294a87db</li>
+	</ul></li>
+	<li>61/<ul>
+	<li>d3f462ce7ab1c187b4df6090af34a2fb7b903d</li>
 	</ul></li>
 	<li>63/<ul>
-	<li>48c36704d57cd55029ec684551d84ee82ab2a6</li>
+	<li>1c244f4ed962c32fb89a145e5d74c64833c1ee</li>
 	</ul></li>
-	<li>65/<ul>
-	<li>dd2acf1b005ed04a0b6ccaaca017e5a63a23f6</li>
+	<li>71/<ul>
+	<li>c0e2c515eb6fd2d960b0a4a35fe3ba5e2bbccc</li>
 	</ul></li>
-	<li>67/<ul>
-	<li>e2b7f1465de26c7abef9fda0a505f01500d3e6</li>
+	<li>81/<ul>
+	<li>2d2f5ee83d01e9410b6bf4ca78e1dec525144b</li>
 	</ul></li>
-	<li>6d/<ul>
-	<li>ccf627b839054baee583e53543fce626eb67ec</li>
+	<li>90/<ul>
+	<li>6e043de78f393d6270d43d32995074f52ab766</li>
 	</ul></li>
-	<li>85/<ul>
-	<li>90a432a315ed4f35114943d361a68d3234b257</li>
-	</ul></li>
-	<li>8e/<ul>
-	<li>a04377c0112ae20affbdbe0e4b76c5093f5b87</li>
-	</ul></li>
-	<li>98/<ul>
-	<li>2f98ea962eb9f1bf1b7a8ab914c0a89ba6a7cc</li>
+	<li>95/<ul>
+	<li>a79139febdbbd1c16fb276cddfdc276e0dd617</li>
 	</ul></li>
 	<li>9a/<ul>
-	<li>5a4467ff6fcce5f6153c567c1ebe712755e678</li>
+	<li>4807941f0c70a44b9c28fc4e39b6e380e61cd6</li>
 	</ul></li>
-	<li>a9/<ul>
-	<li>cfcffaf27df0ba032c35a8387a2861f780ab16</li>
+	<li>bb/<ul>
+	<li>356bce35f86cb626f81b8ab0cea66ba9ef5da7</li>
 	</ul></li>
-	<li>aa/<ul>
-	<li>06e62facd640afa2c394c2c1815c355997eba8</li>
+	<li>c1/<ul>
+	<li>9f40553bfe04ccf896762fdad1e5c033441fb8</li>
 	</ul></li>
-	<li>c6/<ul>
-	<li>08186f04dea9d66ff30940a493d2df2a199342</li>
+	<li>c3/<ul>
+	<li>55e3a6bc7c442e9f69eeaa1939770589ffcfbe</li>
 	</ul></li>
-	<li>c8/<ul>
-	<li>6b53841c37e8924865323c2cfd8c2fde725299</li>
+	<li>d5/<ul>
+	<li>2e3538f2d180aefad45dc26ba3c19692890248</li>
+	<li>65926d6776211408da6fc33a2a550fa8526153</li>
 	</ul></li>
-	<li>d0/<ul>
-	<li>ece5972234a1abd9ec7680f2fd1b0328daed73</li>
+	<li>ea/<ul>
+	<li>11dbe6c6562ed1baeb71d98497fb266f9e1a2b</li>
 	</ul></li>
-	<li>d7/<ul>
-	<li>4a4a466a607cf0098ee0f3a4b341304c3d05aa</li>
+	<li>fa/<ul>
+	<li>a19f076cdc6ca27ffd3593a7bbd4be959885ca</li>
 	</ul></li>
-	<li>de/<ul>
-	<li>2b1ef4aef7f36a8d771910329371c0ca936563</li>
-	</ul></li>
-	<li>e0/<ul>
-	<li>ba14bf4012ccf53cab90d380e09ab444e41d8d</li>
+	<li>fd/<ul>
+	<li>8d566723da04309f667335516a92d5f8cd3150</li>
 	</ul></li>
 	</ul></li>
 	<li>jvm/<ul>
-	<li>java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug/<ul>
+	<li>java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug/<ul>
 	<li>bin/<ul>
 	<li>jar</li>
 	<li>jarsigner</li>
@@ -251,6 +256,7 @@
 	<li>jstack</li>
 	<li>jstat</li>
 	<li>jstatd</li>
+	<li>jwebserver</li>
 	<li>serialver</li>
 	</ul></li>
 	<li>include/<ul>
@@ -269,53 +275,54 @@
 	<li>ct.sym</li>
 	</ul></li>
 	<li>tapset/<ul>
-	<li>hotspot17.0.1.0.12-3.rolling.el8.x86_64.stp</li>
-	<li>hotspot_gc17.0.1.0.12-3.rolling.el8.x86_64.stp</li>
-	<li>hotspot_jni17.0.1.0.12-3.rolling.el8.x86_64.stp</li>
-	<li>jstack17.0.1.0.12-3.rolling.el8.x86_64.stp</li>
+	<li>hotspot-19.0.0.0.36-2.rolling.el8.x86_64.stp</li>
+	<li>hotspot_gc-19.0.0.0.36-2.rolling.el8.x86_64.stp</li>
+	<li>hotspot_jni-19.0.0.0.36-2.rolling.el8.x86_64.stp</li>
+	<li>jstack-19.0.0.0.36-2.rolling.el8.x86_64.stp</li>
 	</ul></li>
 	</ul></li>
 	</ul></li>
 	</ul></li>
 	<li>share/<ul>
 	<li>applications/<ul>
-	<li>java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug-jconsole-fastdebug.desktop</li>
+	<li>java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug-jconsole-fastdebug.desktop</li>
 	</ul></li>
 	<li>man/<ul>
 	<li>man1/<ul>
-	<li>jar-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jarsigner-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>javac-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>javadoc-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>javap-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jcmd-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jconsole-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jdb-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jdeprscan-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jdeps-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jfr-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jhsdb-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jinfo-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jlink-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jmap-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jmod-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jpackage-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jps-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jrunscript-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jshell-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jstack-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jstat-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>jstatd-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
-	<li>serialver-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jar-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jarsigner-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>javac-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>javadoc-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>javap-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jcmd-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jconsole-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jdb-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jdeprscan-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jdeps-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jfr-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jhsdb-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jinfo-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jlink-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jmap-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jmod-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jpackage-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jps-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jrunscript-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jshell-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jstack-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jstat-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jstatd-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>jwebserver-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
+	<li>serialver-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.1.gz</li>
 	</ul></li>
 	</ul></li>
 	<li>systemtap/<ul>
 	<li>tapset/<ul>
 	<li>x86_64/<ul>
-	<li>hotspot17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.stp</li>
-	<li>hotspot_gc17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.stp</li>
-	<li>hotspot_jni17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.stp</li>
-	<li>jstack17.0.1.0.12-3.rolling.el8.x86_64-fastdebug.stp</li>
+	<li>hotspot-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.stp</li>
+	<li>hotspot_gc-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.stp</li>
+	<li>hotspot_jni-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.stp</li>
+	<li>jstack-19.0.0.0.36-2.rolling.el8.x86_64-fastdebug.stp</li>
 	</ul></li>
 	</ul></li>
 	</ul></li>

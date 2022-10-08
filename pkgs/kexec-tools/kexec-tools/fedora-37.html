@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<title>kexec-tools-2.0.25-1.fc37 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="description" content="View kexec-tools-2.0.25-1.fc37 in Fedora 37. kexec-tools: The kexec/kdump userspace component">
+
+<div class="container">
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+    </div>
+  </div>
+
+  <hr />
+
+<h1>
+	kexec-tools-2.0.25-1.fc37<small class="text-muted"> in Fedora 37</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of kexec-tools</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=kexec-tools-2.0.25-1.fc37">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=kexec-tools-2.0.25-1.fc37">Search for updates</a>
+</p>
+
+<p>
+	<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+	<a href="#changelog">&#129047; Changelog</a><br>
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	<a href="#provides">&#129047; Provides</a><br>
+	<a href="#files">&#129047; Files</a><br>
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>2022-08-03</td>
+			<td>Coiby &lt;coxu at redhat dot com&gt; - 2.0.25-1</td>
+			<td>- Update kexec-tools to 2.0.25
+- remind the users to run zipl after calling grubby on s390x
+- remove useless --zipl when calling grubby to update kernel command line
+- skip updating /etc/default/grub for s390x
+- use /run/ostree-booted to tell if scriptlet is running on OSTree system
+- Allow to update kexec-tools using virt-customize for cloud base image
+- KDUMP_COMMANDLINE: remove irqpoll parameter on aws aarch64 platform</td>
+		</tr>
+		<tr>
+			<td>2022-07-21</td>
+			<td>Coiby &lt;coxu at redhat dot com&gt; - 2.0.24-4</td>
+			<td>- Checking the existence of 40-redhat.rules before modifying
+- kdump-lib: Add the CoreOS kernel dir to the boot_dirlist
+- kdump-lib: attempt to fix BOOT_IMAGE detection
+- kdump-lib: change how ostree based systems are detected
+- kdump-lib: clear up references to Atomic/CoreOS
+- crashkernel: optimize arm64 reserved size if PAGE_SIZE=4k
+- kdump-lib: use non-debug kernels first</td>
+		</tr>
+		<tr>
+			<td>2022-05-23</td>
+			<td>Coiby &lt;coxu at redhat dot com&gt; - 2.0.24-3</td>
+			<td>- Update makedumpfile to 1.7.1
+- unit tests: add tests for get_system_size and get_recommend_size
+- improve get_recommend_size
+- fix a calculation error in get_system_size
+- logger: save log after all kdump progress finished</td>
+		</tr>
+		<tr>
+			<td>2022-04-24</td>
+			<td>Coiby &lt;coxu at redhat dot com&gt; - 2.0.24-2</td>
+			<td>- remove the upper bound of default crashkernel value example
+- update fadump-howto
+- update kexec-kdump-howto
+- update crashkernel-howto
+- add man documentation for kdumpctl get-default-crashkernel
+- unit tests: add check_config with with the default kdump.conf
+- unit tests: add tests for kdump_get_conf_val in kdump-lib-initramfs.sh
+- unit tests: add tests for &#34;kdumpctl reset-crashkernel&#34;
+- unit tests: add tests for _{update,read}_kernel_arg_in_grub_etc_default in kdumpctl
+- unit tests: add tests for kdumpctl read_proc_environ_var and _is_osbuild
+- unit tests: add tests for get_dump_mode_by_fadump_val
+- unit tests: add tests for get_grub_kernel_boot_parameter
+- unit tests: prepare for kdumpctl and kdump-lib.sh to be unit-tested</td>
+		</tr>
+		<tr>
+			<td>2022-04-11</td>
+			<td>Coiby &lt;coxu at redhat dot com&gt; - 2.0.24-1</td>
+			<td>- Update kexec-tools to 2.0.24
+- kdumpctl: remove kdump_get_conf_val in save_raw
+- kdumpctl: drop DUMP_TARGET variable
+- kdumpctl: drop SSH_KEY_LOCATION variable
+- kdumpctl: drop SAVE_PATH variable
+- kdumpctl: reduce file operations on kdump.conf
+- kdumpctl: merge check_ssh_config into check_config
+- kdumpctl: simplify propagate_ssh_key
+- kdumpctl: forbid aliases from ssh config
+- kdumpctl: fix comment in check_and_wait_network_ready
+- kdump-lib-initramfs: merge definitions for default ssh key
+- kdumpctl: remove unnecessary uses of $?
+- kdump-lib: fix typo in variable name
+- kdump-capture.service: switch to journal for stdout
+- kdumpctl/estimate: Fix unnecessary warning
+- kdumpctl: sync the $TARGET_INITRD after rebuild
+- try to update the crashkernel in GRUB_ETC_DEFAULT after kexec-tools updates the default crashkernel value
+- address the case where there are multiple values for the same kernel arg
+- update kernel crashkernel in posttrans RPM scriptlet when updating kexec-tools
+- kdump-lib.sh: Check the output of blkid with sed instead of eval</td>
+		</tr>
+		<tr>
+			<td>2022-02-14</td>
+			<td>Coiby &lt;coxu at redhat dot com&gt; - 2.0.23-5</td>
+			<td>- fix incorrect usage of _get_all_kernels_from_grubby
+- fix the mistake of swapping function parameters of read_proc_environ_var</td>
+		</tr>
+		<tr>
+			<td>2022-01-26</td>
+			<td>Coiby &lt;coxu at redhat dot com&gt; - 2.0.23-4</td>
+			<td>- fix broken kdump_get_arch_recommend_size
+- remove the upper bound of 102400T for the range in default crashkernel
+- fix the error of parsing the container environ variable for osbuild
+- s390: handle R_390_PLT32DBL reloc entries in machine_apply_elf_rel()
+- Revert &#34;Remove trace_buf_size and trace_event from the kernel bootparameters of the kdump kernel&#34;
+- spec: only install mkfadumprd for ppc
+- selftest: Add early kdump test
+- selftest: run-test.sh: wait for subprocess instead of kill it</td>
+		</tr>
+		<tr>
+			<td>2022-01-20</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 2.0.23-3</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild</td>
+		</tr>
+		<tr>
+			<td>2022-01-13</td>
+			<td>Coiby &lt;coxu at redhat dot com&gt; - 2.0.23-2</td>
+			<td>- fix &#34;kdump: Invalid kdump config option auto_reset_crashkernel&#34; error
+- use grep -s to suppress error messages about nonexistent or unreadable files
+- kdump-lib.sh: Escape &#39;|&#39; for &#39;failure_action|default&#39; in is_dump_to_rootfs
+- Set zstd as the default compression method for kdump initrd
+- (origin/auto_reset_crashkernel, auto_reset_crashkernel) update crashkernel-howto
+- set up kernel crashkernel for osbuild in kernel hook
+- reset kernel crashkernel for the special case where the kernel is updated right after kexec-tools
+- try to reset kernel crashkernel when kexec-tools updates the default crashkernel value
+- introduce the auto_reset_crashkernel option to kdump.conf
+- rewrite reset_crashkernel to support fadump and to used by RPM scriptlet
+- fix incorrect usage of rpm-ostree to update kernel command line parameters
+- add helper functions to get kernel path by kernel release and the path of current running kernel
+- add helper functions to get dump mode
+- add a helper function to read kernel cmdline parameter from grubby --info
+- provide kdumpctl get-default-crashkernel for kdump_anaconda_addon and RPM scriptlet
+- factor out kdump_get_arch_recommend_crashkernel
+- update default crashkernel value
+- kdumpctl: remove some legacy code
+- dracut-early-kdump-module-setup.sh: install xargs and kdump-lib-initramfs.sh
+- ppc64/ppc64le: drop cpu online rule in 40-redhat.rules in kdump initramfs
+- kdump/ppc64: suppress the error message &#34;Could not find a registered notification tool&#34; from servicelog_notify
+- add keytuils as a weak dependency for POWER
+- Document/kexec-kdump-howto.txt: improve notes for kdump_pre and kdump_post scripts
+- sysconfig: make kexec_file_load as default option on ppc64le
+- sysconfig: make kexec_file_load as default option on aarch64
+- Enable zstd compression for makedumpfile in kexec-tools.spec</td>
+		</tr>
+		<tr>
+			<td>2021-11-18</td>
+			<td>Coiby &lt;coxu at redhat dot com&gt; - 2.0.23-1</td>
+			<td>- Update kexec-tools to 2.0.23
+- Rebase makedumpfile to 1.7.0
+- fix broken extra_bins when installing multiple binaries
+- mkdumprd: drop mountaddr/mountproto nfs mount options
+- selftest: kill VM reliably by recursively kill children processes</td>
+		</tr>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			<li>
+			<a href="/pkgs/bash/bash/fedora-37.html">
+			bash</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/coreutils/coreutils/fedora-37.html">
+			coreutils</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/coreutils/coreutils-single/fedora-37.html">
+			coreutils-single</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/dracut/dracut/fedora-37.html">
+			dracut</a> &gt;= 050
+
+			</li>
+			<li>
+			<a href="/pkgs/dracut/dracut-network/fedora-37.html">
+			dracut-network</a> &gt;= 050
+
+			</li>
+			<li>
+			<a href="/pkgs/dracut/dracut-squash/fedora-37.html">
+			dracut-squash</a> &gt;= 050
+
+			</li>
+			<li>
+			<a href="/pkgs/elfutils/elfutils-libelf/fedora-37.html">
+			elfutils-libelf</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/elfutils/elfutils-libs/fedora-37.html">
+			elfutils-libs</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/ethtool/ethtool/fedora-37.html">
+			ethtool</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/glibc/glibc/fedora-37.html">
+			glibc</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/gcc/libgcc/fedora-37.html">
+			libgcc</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/zstd/libzstd/fedora-37.html">
+			libzstd</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/lzo/lzo/fedora-37.html">
+			lzo</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/ncurses/ncurses-libs/fedora-37.html">
+			ncurses-libs</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/sed/sed/fedora-37.html">
+			sed</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/snappy/snappy/fedora-37.html">
+			snappy</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/systemd/systemd-udev/fedora-37.html">
+			systemd-udev</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/xz/xz-libs/fedora-37.html">
+			xz-libs</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/zlib/zlib/fedora-37.html">
+			zlib</a>
+
+			</li>
+		</ul>
+	</div>
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			<li>config(kexec-tools)</li>
+			<li>kexec-tools</li>
+			<li>kexec-tools(x86-64)</li>
+		</ul>
+	</div>
+</div>
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	<li>etc/<ul>
+	<li>kdump/<ul>
+	<li>post.d/<ul>
+	</ul></li>
+	<li>pre.d/<ul>
+	</ul></li>
+	</ul></li>
+	<li>kdump.conf</li>
+	<li>makedumpfile.conf.sample</li>
+	<li>sysconfig/<ul>
+	<li>kdump</li>
+	</ul></li>
+	</ul></li>
+	<li>usr/<ul>
+	<li>bin/<ul>
+	<li>kdumpctl</li>
+	</ul></li>
+	<li>lib/<ul>
+	<li>.build-id/<ul>
+	<li>06/<ul>
+	<li>30686ba51572aa20fef1436390c6fc305df409</li>
+	</ul></li>
+	<li>2d/<ul>
+	<li>90eab68ad6faa20e27a5c19895f33d3ec06744</li>
+	</ul></li>
+	<li>97/<ul>
+	<li>5d4ba938087e652252613afc8dc5ac57714b8d</li>
+	<li>c5a3775327795544a886ebbe14f081b1205a96</li>
+	</ul></li>
+	</ul></li>
+	<li>dracut/<ul>
+	<li>modules.d/<ul>
+	<li>99earlykdump/<ul>
+	<li>early-kdump.sh</li>
+	<li>module-setup.sh</li>
+	</ul></li>
+	<li>99kdumpbase/<ul>
+	<li>kdump-capture.service</li>
+	<li>kdump-emergency.service</li>
+	<li>kdump-emergency.target</li>
+	<li>kdump.sh</li>
+	<li>module-setup.sh</li>
+	<li>monitor_dd_progress</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>kdump/<ul>
+	<li>kdump-lib-initramfs.sh</li>
+	<li>kdump-lib.sh</li>
+	<li>kdump-logger.sh</li>
+	</ul></li>
+	<li>kernel/<ul>
+	<li>install.d/<ul>
+	<li>60-kdump.install</li>
+	<li>92-crashkernel.install</li>
+	</ul></li>
+	</ul></li>
+	<li>systemd/<ul>
+	<li>system/<ul>
+	<li>kdump.service</li>
+	</ul></li>
+	<li>system-generators/<ul>
+	<li>kdump-dep-generator.sh</li>
+	</ul></li>
+	</ul></li>
+	<li>udev/<ul>
+	<li>kdump-udev-throttler</li>
+	<li>rules.d/<ul>
+	<li>98-kexec.rules</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>lib64/<ul>
+	<li>eppic_makedumpfile.so</li>
+	</ul></li>
+	<li>sbin/<ul>
+	<li>kexec</li>
+	<li>makedumpfile</li>
+	<li>mkdumprd</li>
+	<li>vmcore-dmesg</li>
+	</ul></li>
+	<li>share/<ul>
+	<li>doc/<ul>
+	<li>kexec-tools/<ul>
+	<li>News</li>
+	<li>TODO</li>
+	<li>crashkernel-howto.txt</li>
+	<li>early-kdump-howto.txt</li>
+	<li>fadump-howto.txt</li>
+	<li>kdump-in-cluster-environment.txt</li>
+	<li>kexec-kdump-howto.txt</li>
+	<li>live-image-kdump-howto.txt</li>
+	</ul></li>
+	</ul></li>
+	<li>kdump/<ul>
+	</ul></li>
+	<li>licenses/<ul>
+	<li>kexec-tools/<ul>
+	<li>COPYING</li>
+	</ul></li>
+	</ul></li>
+	<li>makedumpfile/<ul>
+	<li>eppic_scripts/<ul>
+	<li>README</li>
+	<li>ap_messages_3_10_to_4_8.c</li>
+	<li>dir_names_3_10_to_3_13.c</li>
+	<li>dir_names_3_14_to_4_8.c</li>
+	<li>keyring_3_10_to_4_3.c</li>
+	<li>keyring_4_4_to_4_8.c</li>
+	<li>proc_names_3_10_to_4_8.c</li>
+	<li>tcp_sk_buf_3_10_to_4_8.c</li>
+	<li>udp_sk_buf_3_10_to_4_8.c</li>
+	<li>unix_sk_buff_3_10_to_4_8.c</li>
+	<li>vhost_net_buffers_3_10_to_3_18.c</li>
+	<li>vhost_net_buffers_3_19_to_4_8.c</li>
+	<li>vhost_scsi_buffers_3_10_to_4_8.c</li>
+	</ul></li>
+	</ul></li>
+	<li>man/<ul>
+	<li>man5/<ul>
+	<li>kdump.conf.5.gz</li>
+	<li>makedumpfile.conf.5.gz</li>
+	</ul></li>
+	<li>man8/<ul>
+	<li>kdumpctl.8.gz</li>
+	<li>kexec.8.gz</li>
+	<li>makedumpfile.8.gz</li>
+	<li>mkdumprd.8.gz</li>
+	<li>vmcore-dmesg.8.gz</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>var/<ul>
+	<li>crash/<ul>
+	</ul></li>
+	<li>lib/<ul>
+	<li>kdump/<ul>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+</div>
+
+  <div class="text-muted text-center">
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>
+  </div>
+</div>

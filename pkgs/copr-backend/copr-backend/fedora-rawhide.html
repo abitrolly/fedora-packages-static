@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<title>copr-backend-1.152-1.fc36 - Fedora Packages</title>
+<title>copr-backend-1.161-1.fc38 - Fedora Packages</title>
 <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../assets/css/main.css">
 <link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<meta name="description" content="View copr-backend-1.152-1.fc36 in Fedora Rawhide. copr-backend: Backend for Copr">
+<meta name="description" content="View copr-backend-1.161-1.fc38 in Fedora Rawhide. copr-backend: Backend for Copr">
 
 <div class="container">
   <div class="row">
@@ -20,12 +20,12 @@
   <hr />
 
 <h1>
-	copr-backend-1.152-1.fc36<small class="text-muted"> in Fedora Rawhide</small>
+	copr-backend-1.161-1.fc38<small class="text-muted"> in Fedora Rawhide</small>
 </h1>
 <p>
 	<a href=".">&crarr; Return to the main page of copr-backend</a><br>
-	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=copr-backend-1.152-1.fc36">View build</a><br>
-	<a href="https://bodhi.fedoraproject.org/updates/?search=copr-backend-1.152-1.fc36">Search for updates</a>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=copr-backend-1.161-1.fc38">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=copr-backend-1.161-1.fc38">Search for updates</a>
 </p>
 
 <p>
@@ -47,83 +47,79 @@
 			</tr>
 		</thead>
 		<tr>
+			<td>2022-09-26</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.161-1</td>
+			<td>- sign everything EPEL-5+ with sha256 hashalgo</td>
+		</tr>
+		<tr>
+			<td>2022-09-20</td>
+			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.160-1</td>
+			<td>- aws-hitcounter: remove temporary files as soon as possible
+- aws-hitcounter: ignore downloaded SRPM files
+- aws-hitcounter: decode special characters from URLs</td>
+		</tr>
+		<tr>
+			<td>2022-08-16</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.159-1</td>
+			<td>- count only hits from an appropriate CDN hostname
+- add option for infinite number of attempts to the hitcounter script
+- print more reasonable output from AWS hitcounter script</td>
+		</tr>
+		<tr>
+			<td>2022-08-16</td>
+			<td>Jiri Kyjovsky &lt;j1 dot kyjovsky at gmail dot com&gt; 1.158-1</td>
+			<td>- log every request that is sent to frontend</td>
+		</tr>
+		<tr>
+			<td>2022-07-26</td>
+			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.157-1</td>
+			<td>- Don&#39;t use --keep-all-metadata
+- Search for comps.xml in chroot dir</td>
+		</tr>
+		<tr>
+			<td>2022-06-21</td>
+			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.156-1</td>
+			<td>- Consolidate the two hitcounter scripts
+- Dump Resalloc ticket ID and hostname to backend.log
+- Automatically restart services in %post
+- Don&#39;t count RPMs downloaded from Mock
+- Attempt to sign multiple times
+- Try multiple attempts of creating GPG keys</td>
+		</tr>
+		<tr>
+			<td>2022-04-04</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.155-1</td>
+			<td>- fix slow priority queue filling
+- speedup the background-process spawner</td>
+		</tr>
+		<tr>
+			<td>2022-03-18</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.154-1</td>
+			<td>- copr_fix_gpg: automatically refresh CDN cache
+- copr_fix_gpg: don&#39;t use --skip-stat for copr-repo when RPMs are re-signed
+- action processor: properly return failures of the fork action
+- sign EL8+ with sha256 hash algorithm
+- copr_fix_gpg: add a new --chroot option
+- copr_fix_gpg: skip non-chroot directories
+- add hitcounter script for AWS CDN
+- backend: tasks in concurrent sandboxes reprioritized to be more fair</td>
+		</tr>
+		<tr>
+			<td>2022-02-02</td>
+			<td>Silvie Chlupova &lt;schlupov at redhat dot com&gt; 1.153-1</td>
+			<td>- less aggressive final_prunerepo setting
+- analyze-results: dump data for projects&#39; chroots
+- basic build tagging
+- better &#34;regenerate repo&#34; instructions
+- limit RubyGems and PyPI package names length
+- Disable coverage analysis during RPM build
+- python code for removing unused tarballs on dist-git server</td>
+		</tr>
+		<tr>
 			<td>2021-11-10</td>
 			<td>Silvie Chlupova &lt;schlupov at redhat dot com&gt; 1.152-1</td>
 			<td>- Fixup ACR handling
 - Drop the unused pid file from the specfile</td>
-		</tr>
-		<tr>
-			<td>2021-09-30</td>
-			<td>Silvie Chlupova 1.151-1</td>
-			<td>- backend: use lock(timeout=5) to work-around fair-locks</td>
-		</tr>
-		<tr>
-			<td>2021-08-25</td>
-			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.150-1</td>
-			<td>- request arch_noarch resalloc tag for source RPM builds
-- re-try /bin/sign call upon connection timeout
-- drop &#39;check_consecutive_build_fails&#39; script</td>
-		</tr>
-		<tr>
-			<td>2021-06-15</td>
-			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.149-1</td>
-			<td>- new weekly cron-job for analyzing storage use (graphs, statistics)
-- added some convenience globals into copr_backend.setup module
-- keep the max batch size really on the MAX_IN_BATCH limit
-- require up2date rpmbuild version
-- new action for removing CoprDirs (triggered by cron on frontend)
-- fix the CompsUpdate action
-- users now can disable appstream metadata generation themselves (without admins asistance)
-- handle results.json given by builder, and provide it to frontend (served as APIv3 later)
-- pruner: allow pruning also the finalized chroots on demand
-- invent FE-BE API version, so backend politely waits for an updated copr-frontend version</td>
-		</tr>
-		<tr>
-			<td>2021-05-13</td>
-			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.148-1</td>
-			<td>- work with builders also over ipv6</td>
-		</tr>
-		<tr>
-			<td>2021-05-02</td>
-			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.147-1</td>
-			<td>- fix logging traceback for module builds
-- call creatrepo_c with --update if possible
-- don&#39;t do full createrpeo with --rpms-to-remove</td>
-		</tr>
-		<tr>
-			<td>2021-04-30</td>
-			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.146-1</td>
-			<td>- better fixes for the appstream-builder generated files
-- new helper script named /bin/copr-assure-permissions
-- do not rsync-copy permissions from the builder
-- log the partial &#34;prunerepo&#34; effects into resultdir
-- better, more verbose call_copr_repo logging</td>
-		</tr>
-		<tr>
-			<td>2021-04-27</td>
-			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.145-1</td>
-			<td>- backend: make the walk_limited test not dependend on its output order, pt2</td>
-		</tr>
-		<tr>
-			<td>2021-04-27</td>
-			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.144-1</td>
-			<td>- backend: make the walk_limited test not dependend on its output order</td>
-		</tr>
-		<tr>
-			<td>2021-04-27</td>
-			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.143-1</td>
-			<td>- backend: fix copr_prune_results logging once more
-- backend: better logging in prunerepo
-- backend: prunerepo: don&#39;t re-createrepo when no rpm is removed
-- backend: catch correct client exceptions in copr_prune_results
-- test: backend: change prunerepo logic, use get_rpms_to_remove from prunerepo
-- backend: new fixture for testing prunerepo
-- backend: use safe defaults if APIv3 result doesn&#39;t contain what it should
-- backend: migrate to APIv3
-- backend: better how-to-redirect logs comment
-- backend, frontend, keygen, distgit: keep cca 3 months of logs
-- backend: don&#39;t createrepo in srpm-builds on delete
-- backend: test walk_limited function from helpers</td>
 		</tr>
 		<tbody>
 		</tbody>
@@ -196,12 +192,17 @@
 			</li>
 			<li>
 			<a href="/pkgs/python2.7/python2.7/fedora-rawhide.html">
-			python2.7</a> = 3.10
+			python2.7</a> = 3.11
 
 			</li>
 			<li>
-			<a href="/pkgs/python3.10/python3/fedora-rawhide.html">
-			python3</a> = 3.10
+			<a href="/pkgs/python3.11/python3/fedora-rawhide.html">
+			python3</a> = 3.11
+
+			</li>
+			<li>
+			<a href="/pkgs/python-boto3/python3-boto3/fedora-rawhide.html">
+			python3-boto3</a>
 
 			</li>
 			<li>
@@ -211,7 +212,7 @@
 			</li>
 			<li>
 			<a href="/pkgs/python-copr-common/python3-copr-common/fedora-rawhide.html">
-			python3-copr-common</a> &gt;= 0.11.1.dev
+			python3-copr-common</a> &gt;= 0.13.1.dev
 
 			</li>
 			<li>
@@ -341,7 +342,7 @@
 		<ul>
 			<li>config(copr-backend)</li>
 			<li>copr-backend</li>
-			<li>python3.10dist(copr-backend)</li>
+			<li>python3.11dist(copr-backend)</li>
 			<li>python3dist(copr-backend)</li>
 		</ul>
 	</div>
@@ -371,6 +372,7 @@
 	<li>usr/<ul>
 	<li>bin/<ul>
 	<li>copr-assure-permissions</li>
+	<li>copr-aws-s3-hitcounter</li>
 	<li>copr-backend-analyze-results</li>
 	<li>copr-backend-generate-graphs</li>
 	<li>copr-backend-process-action</li>
@@ -391,53 +393,55 @@
 	<li>print_queues.py</li>
 	</ul></li>
 	<li>lib/<ul>
-	<li>python3.10/<ul>
+	<li>python3.11/<ul>
 	<li>site-packages/<ul>
 	<li>copr_backend/<ul>
 	<li>__init__.py</li>
 	<li>__pycache__/<ul>
-	<li>__init__.cpython-310.opt-1.pyc</li>
-	<li>__init__.cpython-310.pyc</li>
-	<li>actions.cpython-310.opt-1.pyc</li>
-	<li>actions.cpython-310.pyc</li>
-	<li>ans_utils.cpython-310.opt-1.pyc</li>
-	<li>ans_utils.cpython-310.pyc</li>
-	<li>app.cpython-310.opt-1.pyc</li>
-	<li>app.cpython-310.pyc</li>
-	<li>background_worker.cpython-310.opt-1.pyc</li>
-	<li>background_worker.cpython-310.pyc</li>
-	<li>background_worker_build.cpython-310.opt-1.pyc</li>
-	<li>background_worker_build.cpython-310.pyc</li>
-	<li>cancellable_thread.cpython-310.opt-1.pyc</li>
-	<li>cancellable_thread.cpython-310.pyc</li>
-	<li>constants.cpython-310.opt-1.pyc</li>
-	<li>constants.cpython-310.pyc</li>
-	<li>createrepo.cpython-310.opt-1.pyc</li>
-	<li>createrepo.cpython-310.pyc</li>
-	<li>dispatcher.cpython-310.opt-1.pyc</li>
-	<li>dispatcher.cpython-310.pyc</li>
-	<li>exceptions.cpython-310.opt-1.pyc</li>
-	<li>exceptions.cpython-310.pyc</li>
-	<li>frontend.cpython-310.opt-1.pyc</li>
-	<li>frontend.cpython-310.pyc</li>
-	<li>helpers.cpython-310.opt-1.pyc</li>
-	<li>helpers.cpython-310.pyc</li>
-	<li>job.cpython-310.opt-1.pyc</li>
-	<li>job.cpython-310.pyc</li>
-	<li>msgbus.cpython-310.opt-1.pyc</li>
-	<li>msgbus.cpython-310.pyc</li>
-	<li>rpm_builds.cpython-310.opt-1.pyc</li>
-	<li>rpm_builds.cpython-310.pyc</li>
-	<li>setup.cpython-310.opt-1.pyc</li>
-	<li>setup.cpython-310.pyc</li>
-	<li>sign.cpython-310.opt-1.pyc</li>
-	<li>sign.cpython-310.pyc</li>
-	<li>sshcmd.cpython-310.opt-1.pyc</li>
-	<li>sshcmd.cpython-310.pyc</li>
-	<li>vm_alloc.cpython-310.opt-1.pyc</li>
-	<li>vm_alloc.cpython-310.pyc</li>
-	<li>worker_manager.cpython-310.opt-1.pyc</li>
-	<li>worker_manager.cpython-310.pyc</li>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>actions.cpython-311.opt-1.pyc</li>
+	<li>actions.cpython-311.pyc</li>
+	<li>ans_utils.cpython-311.opt-1.pyc</li>
+	<li>ans_utils.cpython-311.pyc</li>
+	<li>app.cpython-311.opt-1.pyc</li>
+	<li>app.cpython-311.pyc</li>
+	<li>background_worker.cpython-311.opt-1.pyc</li>
+	<li>background_worker.cpython-311.pyc</li>
+	<li>background_worker_build.cpython-311.opt-1.pyc</li>
+	<li>background_worker_build.cpython-311.pyc</li>
+	<li>cancellable_thread.cpython-311.opt-1.pyc</li>
+	<li>cancellable_thread.cpython-311.pyc</li>
+	<li>constants.cpython-311.opt-1.pyc</li>
+	<li>constants.cpython-311.pyc</li>
+	<li>createrepo.cpython-311.opt-1.pyc</li>
+	<li>createrepo.cpython-311.pyc</li>
+	<li>dispatcher.cpython-311.opt-1.pyc</li>
+	<li>dispatcher.cpython-311.pyc</li>
+	<li>exceptions.cpython-311.opt-1.pyc</li>
+	<li>exceptions.cpython-311.pyc</li>
+	<li>frontend.cpython-311.opt-1.pyc</li>
+	<li>frontend.cpython-311.pyc</li>
+	<li>helpers.cpython-311.opt-1.pyc</li>
+	<li>helpers.cpython-311.pyc</li>
+	<li>hitcounter.cpython-311.opt-1.pyc</li>
+	<li>hitcounter.cpython-311.pyc</li>
+	<li>job.cpython-311.opt-1.pyc</li>
+	<li>job.cpython-311.pyc</li>
+	<li>msgbus.cpython-311.opt-1.pyc</li>
+	<li>msgbus.cpython-311.pyc</li>
+	<li>rpm_builds.cpython-311.opt-1.pyc</li>
+	<li>rpm_builds.cpython-311.pyc</li>
+	<li>setup.cpython-311.opt-1.pyc</li>
+	<li>setup.cpython-311.pyc</li>
+	<li>sign.cpython-311.opt-1.pyc</li>
+	<li>sign.cpython-311.pyc</li>
+	<li>sshcmd.cpython-311.opt-1.pyc</li>
+	<li>sshcmd.cpython-311.pyc</li>
+	<li>vm_alloc.cpython-311.opt-1.pyc</li>
+	<li>vm_alloc.cpython-311.pyc</li>
+	<li>worker_manager.cpython-311.opt-1.pyc</li>
+	<li>worker_manager.cpython-311.pyc</li>
 	</ul></li>
 	<li>actions.py</li>
 	<li>ans_utils.py</li>
@@ -450,14 +454,14 @@
 	<li>daemons/<ul>
 	<li>__init__.py</li>
 	<li>__pycache__/<ul>
-	<li>__init__.cpython-310.opt-1.pyc</li>
-	<li>__init__.cpython-310.pyc</li>
-	<li>action_dispatcher.cpython-310.opt-1.pyc</li>
-	<li>action_dispatcher.cpython-310.pyc</li>
-	<li>build_dispatcher.cpython-310.opt-1.pyc</li>
-	<li>build_dispatcher.cpython-310.pyc</li>
-	<li>log.cpython-310.opt-1.pyc</li>
-	<li>log.cpython-310.pyc</li>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>action_dispatcher.cpython-311.opt-1.pyc</li>
+	<li>action_dispatcher.cpython-311.pyc</li>
+	<li>build_dispatcher.cpython-311.opt-1.pyc</li>
+	<li>build_dispatcher.cpython-311.pyc</li>
+	<li>log.cpython-311.opt-1.pyc</li>
+	<li>log.cpython-311.pyc</li>
 	</ul></li>
 	<li>action_dispatcher.py</li>
 	<li>build_dispatcher.py</li>
@@ -467,6 +471,7 @@
 	<li>exceptions.py</li>
 	<li>frontend.py</li>
 	<li>helpers.py</li>
+	<li>hitcounter.py</li>
 	<li>job.py</li>
 	<li>msgbus.py</li>
 	<li>rpm_builds.py</li>
@@ -476,8 +481,8 @@
 	<li>stats_templates/<ul>
 	<li>__init__.py</li>
 	<li>__pycache__/<ul>
-	<li>__init__.cpython-310.opt-1.pyc</li>
-	<li>__init__.cpython-310.pyc</li>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
 	</ul></li>
 	<li>arches.html.j2</li>
 	<li>chroots.html.j2</li>
@@ -488,7 +493,7 @@
 	<li>vm_alloc.py</li>
 	<li>worker_manager.py</li>
 	</ul></li>
-	<li>copr_backend-1.152-py3.10.egg-info/<ul>
+	<li>copr_backend-1.161-py3.11.egg-info/<ul>
 	<li>PKG-INFO</li>
 	<li>SOURCES.txt</li>
 	<li>dependency_links.txt</li>

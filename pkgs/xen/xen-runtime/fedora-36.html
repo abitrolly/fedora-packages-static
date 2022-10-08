@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+
+<title>xen-runtime-4.16.0-5.fc36 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="description" content="View xen-runtime-4.16.0-5.fc36 in Fedora 36. xen-runtime: Core Xen runtime environment">
+
+<div class="container">
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+    </div>
+  </div>
+
+  <hr />
+
+<h1>
+	xen-runtime-4.16.0-5.fc36<small class="text-muted"> in Fedora 36</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of xen-runtime</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=xen-4.16.0-5.fc36">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=xen-4.16.0-5.fc36">Search for updates</a>
+</p>
+
+<p>
+	<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+	<a href="#changelog">&#129047; Changelog</a><br>
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	<a href="#provides">&#129047; Provides</a><br>
+	<a href="#files">&#129047; Files</a><br>
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>2022-03-21</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.16.0-5</td>
+			<td>- fix build of xen*.efi file and package it in /usr/lib*/efi</td>
+		</tr>
+		<tr>
+			<td>2022-03-15</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.16.0-4</td>
+			<td>- Multiple speculative security issues [XSA-398]
+- additional patches so above applies cleanly</td>
+		</tr>
+		<tr>
+			<td>2022-01-29</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.16.0-3</td>
+			<td>- adjust build script and patches for gcc12 and package note support</td>
+		</tr>
+		<tr>
+			<td>2022-01-29</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt;</td>
+			<td>- arm: guest_physmap_remove_page not removing the p2m mappings [XSA-393,
+	CVE-2022-23033] (#2045044)
+- A PV guest could DoS Xen while unmapping a grant [XSA-394, CVE-2022-23034]
+	(#2045042)
+- Insufficient cleanup of passed-through device IRQs [XSA-395,
+	CVE-2022-23035] (#2045040)</td>
+		</tr>
+		<tr>
+			<td>2022-01-22</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 4.16.0-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild</td>
+		</tr>
+		<tr>
+			<td>2022-01-10</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.16.0-1</td>
+			<td>- update to xen-4.16.0
+  rebase xen.canonicalize.patch and xen.gcc11.fixes.patch
+  drop xen.fedora.efi.build.patch which is no longer useful
+  remove or adjust patches now included or superceded upstream
+  update libxenstore libary versions
+  unpackage /boot/efi/EFI/fedora/xen*.efi
+  package xen-mceinj and xen-vmtrace
+- don&#39;t build qemu-traditional or pv-grub by default (following upstream)
+- fix some incorrect dependencies on building qemu-traditional
+- change grub module package dependencies from Suggests to Recommends
+	and move to hypervisor package
+- rework seabios configure logic (bios.bin is no longer useful)
+- frontends vulnerable to backends [XSA-376] (document change only)</td>
+		</tr>
+		<tr>
+			<td>2021-11-23</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.15.1-4</td>
+			<td>- guests may exceed their designated memory limit [XSA-385, CVE-2021-28706]
+- PoD operations on misaligned GFNs [XSA-388, CVE-2021-28704, CVE-2021-28707
+	CVE-2021-28708]
+- issues with partially successful P2M updates on x86 [XSA-389,
+	CVE-2021-28705, CVE-2021-28709]
+- certain VT-d IOMMUs may not work in shared page table mode [XSA-390,
+	CVE-2021-28710]</td>
+		</tr>
+		<tr>
+			<td>2021-10-06</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.15.1-3</td>
+			<td>- rebuild (f36 only) for OCaml 4.13.1</td>
+		</tr>
+		<tr>
+			<td>2021-10-05</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.15.1-2</td>
+			<td>- PCI devices with RMRRs not deassigned correctly [XSA-386, CVE-2021-28702]
+	(#2011248)</td>
+		</tr>
+		<tr>
+			<td>2021-09-12</td>
+			<td>Michael Young &lt;m dot a dot young at durham dot ac dot uk&gt; - 4.15.1-1</td>
+			<td>- update to xen-4.15.1
+  remove or adjust patches now included or superceded upstream
+  update libxencall version</td>
+		</tr>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			<li>
+			<a href="/pkgs/bash/bash/fedora-36.html">
+			bash</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/glibc/glibc/fedora-36.html">
+			glibc</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/ncurses/ncurses-libs/fedora-36.html">
+			ncurses-libs</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python2.7/python2.7/fedora-36.html">
+			python2.7</a> = 3.10
+
+			</li>
+			<li>
+			<a href="/pkgs/python3.10/python3/fedora-36.html">
+			python3</a> = 3.10
+
+			</li>
+			<li>
+			<a href="/pkgs/systemd/systemd-libs/fedora-36.html">
+			systemd-libs</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/xen/xen-hypervisor/fedora-36.html">
+			xen-hypervisor</a> = 4.16
+
+			</li>
+			<li>
+			<a href="/pkgs/xen/xen-libs/fedora-36.html">
+			xen-libs</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/yajl/yajl/fedora-36.html">
+			yajl</a>
+
+			</li>
+		</ul>
+	</div>
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			<li>config(xen-runtime)</li>
+			<li>debuginfo(build-id)</li>
+			<li>python3.10dist(pygrub)</li>
+			<li>python3dist(pygrub)</li>
+			<li>xen-runtime</li>
+			<li>xen-runtime(x86-64)</li>
+		</ul>
+	</div>
+</div>
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	<li>etc/<ul>
+	<li>bash_completion.d/<ul>
+	<li>xl</li>
+	</ul></li>
+	<li>logrotate.d/<ul>
+	<li>xen</li>
+	</ul></li>
+	<li>sysconfig/<ul>
+	<li>xencommons</li>
+	</ul></li>
+	<li>xen/<ul>
+	<li>cpupool</li>
+	<li>scripts/<ul>
+	<li>block</li>
+	<li>block-common.sh</li>
+	<li>block-drbd-probe</li>
+	<li>block-dummy</li>
+	<li>block-enbd</li>
+	<li>block-iscsi</li>
+	<li>block-nbd</li>
+	<li>block-tap</li>
+	<li>colo-proxy-setup</li>
+	<li>external-device-migrate</li>
+	<li>hotplugpath.sh</li>
+	<li>launch-xenstore</li>
+	<li>locking.sh</li>
+	<li>logging.sh</li>
+	<li>remus-netbuf-setup</li>
+	<li>vif-bridge</li>
+	<li>vif-common.sh</li>
+	<li>vif-nat</li>
+	<li>vif-openvswitch</li>
+	<li>vif-route</li>
+	<li>vif-setup</li>
+	<li>vscsi</li>
+	<li>xen-hotplug-common.sh</li>
+	<li>xen-network-common.sh</li>
+	<li>xen-script-common.sh</li>
+	</ul></li>
+	<li>xl.conf</li>
+	<li>xlexample.hvm</li>
+	<li>xlexample.pvhlinux</li>
+	<li>xlexample.pvlinux</li>
+	</ul></li>
+	</ul></li>
+	<li>usr/<ul>
+	<li>bin/<ul>
+	<li>pygrub</li>
+	<li>qemu-img-xen</li>
+	<li>qemu-nbd-xen</li>
+	<li>vchan-socket-proxy</li>
+	<li>xen-cpuid</li>
+	<li>xen-detect</li>
+	<li>xenalyze</li>
+	<li>xencov_split</li>
+	<li>xenstore</li>
+	<li>xenstore-chmod</li>
+	<li>xenstore-control</li>
+	<li>xenstore-exists</li>
+	<li>xenstore-list</li>
+	<li>xenstore-ls</li>
+	<li>xenstore-read</li>
+	<li>xenstore-rm</li>
+	<li>xenstore-watch</li>
+	<li>xenstore-write</li>
+	<li>xentrace_format</li>
+	</ul></li>
+	<li>lib/<ul>
+	<li>.build-id/<ul>
+	<li>10/<ul>
+	<li>99a7b770c523d49edb326ee6ff592ff58871f0</li>
+	</ul></li>
+	<li>13/<ul>
+	<li>b0440ddba5a4dd95e987ffb2a10314d0957006</li>
+	</ul></li>
+	<li>16/<ul>
+	<li>1bd25788aa044c39042a613016eb100bb7ea0f</li>
+	</ul></li>
+	<li>1a/<ul>
+	<li>958c89709e292b9d24ac27d3b73d522f36f47c</li>
+	</ul></li>
+	<li>1b/<ul>
+	<li>323207d0fa30d55eb056ab2585f6d5a31cf489</li>
+	<li>efdba6e3c351c65d6ecfb6c69b7c1187fdf81a</li>
+	</ul></li>
+	<li>27/<ul>
+	<li>ec9beba6e7192103a3e10c72130c85f52b7feb</li>
+	</ul></li>
+	<li>32/<ul>
+	<li>ee09574f900e4b14028382d9402d2a37381716</li>
+	</ul></li>
+	<li>34/<ul>
+	<li>f6fbef45554ea86f3d5c366450af8f5dfbdbd3</li>
+	</ul></li>
+	<li>38/<ul>
+	<li>8df7dd4b79aa818560d70df76c66a31e26bc7a</li>
+	</ul></li>
+	<li>3c/<ul>
+	<li>3b2003530e7f43089b223340d4db2ad96a7512</li>
+	</ul></li>
+	<li>3e/<ul>
+	<li>e855574975d52f1e4d24db1b54655ef3088e57</li>
+	</ul></li>
+	<li>40/<ul>
+	<li>99ecb87617af36c771fdf39417af658906d978</li>
+	</ul></li>
+	<li>4b/<ul>
+	<li>e43bbcc209350cfec9477a7fef6b78383008b1</li>
+	<li>e43bbcc209350cfec9477a7fef6b78383008b1.1</li>
+	<li>e43bbcc209350cfec9477a7fef6b78383008b1.2</li>
+	<li>e43bbcc209350cfec9477a7fef6b78383008b1.3</li>
+	<li>e43bbcc209350cfec9477a7fef6b78383008b1.4</li>
+	<li>e43bbcc209350cfec9477a7fef6b78383008b1.5</li>
+	<li>e43bbcc209350cfec9477a7fef6b78383008b1.6</li>
+	<li>e43bbcc209350cfec9477a7fef6b78383008b1.7</li>
+	<li>e43bbcc209350cfec9477a7fef6b78383008b1.8</li>
+	</ul></li>
+	<li>4c/<ul>
+	<li>fd4094ac7717e94b6a8ba8bc7be4651f88c70c</li>
+	</ul></li>
+	<li>55/<ul>
+	<li>1ddf8a57447a355d883e2862c27d0072b51acd</li>
+	</ul></li>
+	<li>5b/<ul>
+	<li>974d8886bf14f1e2f2952b2566c4f781dca439</li>
+	<li>e6329dd5676fe7586bdec0ea0b335068a0a99d</li>
+	</ul></li>
+	<li>5f/<ul>
+	<li>804f32f6881291063af69d82001f4c5462fd28</li>
+	</ul></li>
+	<li>65/<ul>
+	<li>55ed80bc656b4783bd8e9abc51d0ad314579dc</li>
+	</ul></li>
+	<li>6c/<ul>
+	<li>5eb696ef40a1ced0c226c515293cd642544fd2</li>
+	</ul></li>
+	<li>6d/<ul>
+	<li>97c48f9254dbe22f80ad672b406b10d769340f</li>
+	</ul></li>
+	<li>79/<ul>
+	<li>82227a3ad87c1ad7c68508392d9e17d947d458</li>
+	</ul></li>
+	<li>7b/<ul>
+	<li>4f332949206b9a4cab7eea99ca964d4a0a5b16</li>
+	</ul></li>
+	<li>80/<ul>
+	<li>b2da706f397433426c7f8e56ec2e2fb94e641f</li>
+	</ul></li>
+	<li>88/<ul>
+	<li>c72461305f31d6741b84cc85765abd1d732e08</li>
+	</ul></li>
+	<li>89/<ul>
+	<li>b698b35457a5301f6ebec875484d29f6e20fee</li>
+	</ul></li>
+	<li>93/<ul>
+	<li>6d346fe06a789a390e78c26a3fb84a845f639e</li>
+	</ul></li>
+	<li>97/<ul>
+	<li>06ce46d4b9e213ef026da29b7e1889777f43f7</li>
+	</ul></li>
+	<li>9d/<ul>
+	<li>2d0ca03fb66ea4b3a5ebdaca5333887f428f48</li>
+	</ul></li>
+	<li>a0/<ul>
+	<li>70cd7e433b4ef7ae36254279ca9398eabf8745</li>
+	</ul></li>
+	<li>a3/<ul>
+	<li>1c0286aba5f1e0d649053d1e89476023ef8502</li>
+	</ul></li>
+	<li>a7/<ul>
+	<li>2360c016ea9af47093b8f85fb004204dba9aa2</li>
+	</ul></li>
+	<li>ac/<ul>
+	<li>db709b75113f97c680235de3ffc85c1bf3c560</li>
+	</ul></li>
+	<li>ae/<ul>
+	<li>111a14df4084a3613ca67ffb18ee9e36ee09f5</li>
+	</ul></li>
+	<li>b0/<ul>
+	<li>9ed02d1ac2a7330175d01ee778485da2bb7938</li>
+	</ul></li>
+	<li>b4/<ul>
+	<li>fa725866f687961a67435113910062058ad49c</li>
+	</ul></li>
+	<li>ba/<ul>
+	<li>720b1c6b4cdb978d871ad510f8bd78992bfaf4</li>
+	</ul></li>
+	<li>bd/<ul>
+	<li>913a7a3ce01081131935cd8f508ad220e7b1cf</li>
+	</ul></li>
+	<li>c8/<ul>
+	<li>9b50367fb59e5708ac88916d44bb03bbf0ea16</li>
+	</ul></li>
+	<li>cc/<ul>
+	<li>87bae2833a6c7337c5880cb0ef941bd0f77e19</li>
+	</ul></li>
+	<li>d1/<ul>
+	<li>67aa6926c792690afe13a716395132a2859287</li>
+	</ul></li>
+	<li>d3/<ul>
+	<li>e52d66cf2a2cca3c14b147b8d5d368b3076c08</li>
+	</ul></li>
+	<li>dc/<ul>
+	<li>2370e0d61c8d977fbe92aba0e08d53be168e0c</li>
+	</ul></li>
+	<li>e0/<ul>
+	<li>17accbd933497abff80d10096a92314287a521</li>
+	<li>d1a1fcfebcc890168cf3f22209490919467e0c</li>
+	</ul></li>
+	<li>e2/<ul>
+	<li>21aaea974d3bb947d95a0f84792bd7d43bfed2</li>
+	<li>f796f7c5760d0db26e5db8e73a22eb2a5b9a5b</li>
+	</ul></li>
+	<li>e5/<ul>
+	<li>b8624836561eaf3f18719d9b04d03854988c96</li>
+	</ul></li>
+	<li>e6/<ul>
+	<li>9a68fbf404b0bf01b3410ff3d0753ee5cbfe2c</li>
+	</ul></li>
+	<li>ea/<ul>
+	<li>0ef2d9a25ea5f7bc79fcef7ec4edaf3b140f92</li>
+	</ul></li>
+	<li>ec/<ul>
+	<li>9bbf8e5ea2abb50c6e2c604ceb992694fada4c</li>
+	</ul></li>
+	<li>f1/<ul>
+	<li>faa79b74a670562bc92a29bbf55b7e89841dff</li>
+	</ul></li>
+	<li>f4/<ul>
+	<li>66b2937ca21e29052fe9c807b9e3455027b419</li>
+	</ul></li>
+	<li>fb/<ul>
+	<li>17ae79c15c517302f9e9f46deca6f07076e381</li>
+	</ul></li>
+	</ul></li>
+	<li>debug/<ul>
+	<li>.build-id/<ul>
+	<li>6c/<ul>
+	<li>ac04e3b8c70bf13a0a92198e50858d79d5dfd6</li>
+	<li>ac04e3b8c70bf13a0a92198e50858d79d5dfd6.debug</li>
+	</ul></li>
+	</ul></li>
+	<li>usr/<ul>
+	<li>libexec/<ul>
+	<li>xen/<ul>
+	<li>boot/<ul>
+	<li>xen-shim-syms</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>modules-load.d/<ul>
+	<li>xen.conf</li>
+	</ul></li>
+	<li>systemd/<ul>
+	<li>system/<ul>
+	<li>proc-xen.mount</li>
+	<li>var-lib-xenstored.mount</li>
+	<li>xen-qemu-dom0-disk-backend.service</li>
+	<li>xen-watchdog.service</li>
+	<li>xenconsoled.service</li>
+	<li>xendriverdomain.service</li>
+	<li>xenstored.service</li>
+	</ul></li>
+	</ul></li>
+	<li>xen</li>
+	</ul></li>
+	<li>lib64/<ul>
+	<li>python3.10/<ul>
+	<li>site-packages/<ul>
+	<li>grub/<ul>
+	<li>ExtLinuxConf.py</li>
+	<li>GrubConf.py</li>
+	<li>LiloConf.py</li>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>ExtLinuxConf.cpython-310.opt-1.pyc</li>
+	<li>ExtLinuxConf.cpython-310.pyc</li>
+	<li>GrubConf.cpython-310.opt-1.pyc</li>
+	<li>GrubConf.cpython-310.pyc</li>
+	<li>LiloConf.cpython-310.opt-1.pyc</li>
+	<li>LiloConf.cpython-310.pyc</li>
+	<li>__init__.cpython-310.opt-1.pyc</li>
+	<li>__init__.cpython-310.pyc</li>
+	</ul></li>
+	</ul></li>
+	<li>pygrub-0.6-py3.10.egg-info</li>
+	<li>xenfsimage.cpython-310-x86_64-linux-gnu.so</li>
+	</ul></li>
+	</ul></li>
+	<li>xen</li>
+	</ul></li>
+	<li>libexec/<ul>
+	<li>xen/<ul>
+	<li>bin/<ul>
+	<li>convert-legacy-stream</li>
+	<li>depriv-fd-checker</li>
+	<li>init-xenstore-domain</li>
+	<li>libxl-save-helper</li>
+	<li>lsevtchn</li>
+	<li>pygrub</li>
+	<li>qemu-system-i386</li>
+	<li>readnotes</li>
+	<li>test-cpu-policy</li>
+	<li>test-resource</li>
+	<li>test-tsx</li>
+	<li>test-xenstore</li>
+	<li>verify-stream-v2</li>
+	<li>xen-init-dom0</li>
+	<li>xenconsole</li>
+	<li>xenctx</li>
+	<li>xendomains</li>
+	<li>xenpaging</li>
+	<li>xenpvnetboot</li>
+	</ul></li>
+	<li>boot/<ul>
+	<li>hvmloader</li>
+	<li>ovmf.bin</li>
+	<li>xen-shim</li>
+	<li>xenstore-stubdom.gz</li>
+	<li>xenstorepvh-stubdom.gz</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>sbin/<ul>
+	<li>flask-get-bool</li>
+	<li>flask-getenforce</li>
+	<li>flask-label-pci</li>
+	<li>flask-loadpolicy</li>
+	<li>flask-set-bool</li>
+	<li>flask-setenforce</li>
+	<li>gdbsx</li>
+	<li>xen-access</li>
+	<li>xen-diag</li>
+	<li>xen-hptool</li>
+	<li>xen-hvmcrash</li>
+	<li>xen-hvmctx</li>
+	<li>xen-kdd</li>
+	<li>xen-livepatch</li>
+	<li>xen-lowmemd</li>
+	<li>xen-mceinj</li>
+	<li>xen-memshare</li>
+	<li>xen-mfndump</li>
+	<li>xen-ucode</li>
+	<li>xen-vmtrace</li>
+	<li>xenbaked</li>
+	<li>xenconsoled</li>
+	<li>xencov</li>
+	<li>xenhypfs</li>
+	<li>xenlockprof</li>
+	<li>xenmon</li>
+	<li>xenperf</li>
+	<li>xenpm</li>
+	<li>xenpmd</li>
+	<li>xenstored</li>
+	<li>xentop</li>
+	<li>xentrace</li>
+	<li>xentrace_setmask</li>
+	<li>xentrace_setsize</li>
+	<li>xenwatchdogd</li>
+	<li>xl</li>
+	</ul></li>
+	<li>share/<ul>
+	<li>man/<ul>
+	<li>man1/<ul>
+	<li>xenhypfs.1.gz</li>
+	<li>xenstore-chmod.1.gz</li>
+	<li>xenstore-ls.1.gz</li>
+	<li>xenstore-read.1.gz</li>
+	<li>xenstore-write.1.gz</li>
+	<li>xenstore.1.gz</li>
+	<li>xentop.1.gz</li>
+	<li>xentrace_format.1.gz</li>
+	<li>xl.1.gz</li>
+	</ul></li>
+	<li>man5/<ul>
+	<li>xl-disk-configuration.5.gz</li>
+	<li>xl-network-configuration.5.gz</li>
+	<li>xl-pci-configuration.5.gz</li>
+	<li>xl.cfg.5.gz</li>
+	<li>xl.conf.5.gz</li>
+	<li>xlcpupool.cfg.5.gz</li>
+	</ul></li>
+	<li>man7/<ul>
+	<li>xen-pci-device-reservations.7.gz</li>
+	<li>xen-pv-channel.7.gz</li>
+	<li>xen-tscmode.7.gz</li>
+	<li>xen-vbd-interface.7.gz</li>
+	<li>xen-vtpm.7.gz</li>
+	<li>xen-vtpmmgr.7.gz</li>
+	<li>xl-numa-placement.7.gz</li>
+	</ul></li>
+	<li>man8/<ul>
+	<li>xentrace.8.gz</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>var/<ul>
+	<li>lib/<ul>
+	<li>xen/<ul>
+	<li>dump/<ul>
+	</ul></li>
+	<li>images/<ul>
+	</ul></li>
+	</ul></li>
+	<li>xenstored/<ul>
+	</ul></li>
+	</ul></li>
+	<li>log/<ul>
+	<li>xen/<ul>
+	<li>console/<ul>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>run/<ul>
+	<li>xenstored/<ul>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+</div>
+
+  <div class="text-muted text-center">
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>
+  </div>
+</div>

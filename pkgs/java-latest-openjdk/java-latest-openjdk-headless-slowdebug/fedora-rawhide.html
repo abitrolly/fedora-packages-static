@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<title>java-latest-openjdk-headless-slowdebug-17.0.1.0.12-13.rolling.fc36 - Fedora Packages</title>
+<title>java-latest-openjdk-headless-slowdebug-19.0.0.0.36-2.rolling.fc38 - Fedora Packages</title>
 <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../assets/css/main.css">
 <link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<meta name="description" content="View java-latest-openjdk-headless-slowdebug-17.0.1.0.12-13.rolling.fc36 in Fedora Rawhide. java-latest-openjdk-headless-slowdebug: OpenJDK 17 Runtime Environment unoptimised with full debugging on">
+<meta name="description" content="View java-latest-openjdk-headless-slowdebug-19.0.0.0.36-2.rolling.fc38 in Fedora Rawhide. java-latest-openjdk-headless-slowdebug: OpenJDK 19 Runtime Environment unoptimised with full debugging on">
 
 <div class="container">
   <div class="row">
@@ -20,12 +20,12 @@
   <hr />
 
 <h1>
-	java-latest-openjdk-headless-slowdebug-17.0.1.0.12-13.rolling.fc36<small class="text-muted"> in Fedora Rawhide</small>
+	java-latest-openjdk-headless-slowdebug-19.0.0.0.36-2.rolling.fc38<small class="text-muted"> in Fedora Rawhide</small>
 </h1>
 <p>
 	<a href=".">&crarr; Return to the main page of java-latest-openjdk-headless-slowdebug</a><br>
-	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-17.0.1.0.12-13.rolling.fc36">View build</a><br>
-	<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-17.0.1.0.12-13.rolling.fc36">Search for updates</a>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-19.0.0.0.36-2.rolling.fc38">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-19.0.0.0.36-2.rolling.fc38">Search for updates</a>
 </p>
 
 <p>
@@ -47,32 +47,74 @@
 			</tr>
 		</thead>
 		<tr>
-			<td>2021-12-09</td>
-			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:17.0.1.0.12-12.rolling</td>
-			<td>- Storing and restoring alterntives during update manually
-- Fixing Bug 2001567 - update of JDK/JRE is removing its manually selected alterantives and select (as auto) system JDK/JRE
--- The move of alternatives creation to posttrans to fix:
--- Bug 1200302 - dnf reinstall breaks alternatives
--- Had caused the alternatives to be removed, and then created again,
--- instead of being added, and then removing the old, and thus persisting
--- the selection in family
--- Thus this fix, is storing the family of manually selected master, and if
--- stored, then it is restoring the family of the master</td>
+			<td>2022-08-30</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:19.0.0.0.36-2.rolling</td>
+			<td>- Switch buildjdkver back to being featurever, now java-19-openjdk is available in the buildroot</td>
 		</tr>
 		<tr>
-			<td>2021-12-09</td>
-			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:17.0.1.0.12-12.rolling</td>
-			<td>- Family extracted to globals</td>
+			<td>2022-08-29</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:19.0.0.0.36-2.rolling</td>
+			<td>- Switch to static builds, reducing system dependencies and making build more portable</td>
 		</tr>
 		<tr>
-			<td>2021-12-09</td>
-			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:17.0.1.0.12-11.rolling</td>
-			<td>- javadoc-zip got its own provides next to plain javadoc ones</td>
+			<td>2022-08-29</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:19.0.0.0.36-1.rolling</td>
+			<td>- Update to RC version of OpenJDK 19
+- Update release notes to 19.0.0
+- Rebase FIPS patches from fips-19u branch
+- Need to include the &#39;.S&#39; suffix in debuginfo checks after JDK-8284661
+- Add patch to provide translations for Europe/Kyiv added in tzdata2022b
+- Add test to ensure timezones can be translated
+- Remove references to sample directory removed by JDK-8284999</td>
 		</tr>
 		<tr>
-			<td>2021-12-09</td>
-			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:17.0.1.0.12-10.rolling</td>
-			<td>- replaced tabs by sets of spaces to make rpmlint happy</td>
+			<td>2022-07-22</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.2.0.9-1.rolling</td>
+			<td>- Update to jdk-18.0.2 release
+- Update release notes to 18.0.2
+- Drop JDK-8282004 patch which is now upstreamed under JDK-8282231
+- Exclude x86 where java_arches is undefined, in order to unbreak build</td>
+		</tr>
+		<tr>
+			<td>2022-07-22</td>
+			<td>Jiri Vanek &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-8.rolling</td>
+			<td>- moved to build only on %{java_arches}
+-- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs
+- reverted :
+-- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild (always mess up release)
+-- Try to build on x86 again by creating a husk of a JDK which does not depend on itself
+-- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable
+-- Replaced binaries and .so files with bash-stubs on i686
+- added ExclusiveArch:  %{java_arches}
+-- this now excludes i686
+-- this is safely backport-able to older fedoras, as the macro was backported properly (with i686 included)
+- https://bugzilla.redhat.com/show_bug.cgi?id=2104125</td>
+		</tr>
+		<tr>
+			<td>2022-07-21</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1:18.0.1.1.2-7.rolling.1</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild</td>
+		</tr>
+		<tr>
+			<td>2022-07-19</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-7.rolling</td>
+			<td>- Try to build on x86 again by creating a husk of a JDK which does not depend on itself</td>
+		</tr>
+		<tr>
+			<td>2022-07-17</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-6.rolling</td>
+			<td>- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable</td>
+		</tr>
+		<tr>
+			<td>2022-07-13</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-5.rolling</td>
+			<td>- Explicitly require crypto-policies during build and runtime for system security properties</td>
+		</tr>
+		<tr>
+			<td>2022-07-13</td>
+			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:18.0.1.1.2-4.rolling.</td>
+			<td>- Replaced binaries and .so files with bash-stubs on i686 in preparation of the removal on that architecture:
+- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs</td>
 		</tr>
 		<tbody>
 		</tbody>
@@ -104,13 +146,13 @@
 
 			</li>
 			<li>
-			<a href="/pkgs/cups/cups-libs/fedora-rawhide.html">
-			cups-libs</a>
+			<a href="/pkgs/crypto-policies/crypto-policies/fedora-rawhide.html">
+			crypto-policies</a>
 
 			</li>
 			<li>
-			<a href="/pkgs/freetype/freetype/fedora-rawhide.html">
-			freetype</a>
+			<a href="/pkgs/cups/cups-libs/fedora-rawhide.html">
+			cups-libs</a>
 
 			</li>
 			<li>
@@ -119,33 +161,8 @@
 
 			</li>
 			<li>
-			<a href="/pkgs/harfbuzz/harfbuzz/fedora-rawhide.html">
-			harfbuzz</a>
-
-			</li>
-			<li>
 			<a href="/pkgs/javapackages-tools/javapackages-filesystem/fedora-rawhide.html">
 			javapackages-filesystem</a>
-
-			</li>
-			<li>
-			<a href="/pkgs/lcms2/lcms2/fedora-rawhide.html">
-			lcms2</a>
-
-			</li>
-			<li>
-			<a href="/pkgs/gcc/libgcc/fedora-rawhide.html">
-			libgcc</a>
-
-			</li>
-			<li>
-			<a href="/pkgs/libjpeg-turbo/libjpeg-turbo/fedora-rawhide.html">
-			libjpeg-turbo</a>
-
-			</li>
-			<li>
-			<a href="/pkgs/gcc/libstdc++/fedora-rawhide.html">
-			libstdc++</a>
 
 			</li>
 			<li>
@@ -160,12 +177,7 @@
 			</li>
 			<li>
 			<a href="/pkgs/tzdata/tzdata-java/fedora-rawhide.html">
-			tzdata-java</a> &gt;= 2015d
-
-			</li>
-			<li>
-			<a href="/pkgs/zlib/zlib/fedora-rawhide.html">
-			zlib</a>
+			tzdata-java</a> &gt;= 2022a
 
 			</li>
 		</ul>
@@ -174,13 +186,13 @@
 		<h2 id="provides">Provides</h2>
 		<ul>
 			<li>config(java-latest-openjdk-headless-slowdebug)</li>
-			<li>java-17-headless-slowdebug</li>
-			<li>java-17-openjdk-headless-slowdebug</li>
+			<li>java-19-headless-slowdebug</li>
+			<li>java-19-openjdk-headless-slowdebug</li>
 			<li>java-latest-openjdk-headless-slowdebug</li>
 			<li>java-latest-openjdk-headless-slowdebug(x86-64)</li>
-			<li>jre-17-headless-slowdebug</li>
-			<li>jre-17-openjdk-headless-slowdebug</li>
-			<li>libsvml.so()(64bit)</li>
+			<li>jre-19-headless-slowdebug</li>
+			<li>jre-19-openjdk-headless-slowdebug</li>
+			<li>libjsvml.so()(64bit)</li>
 			<li>libsyslookup.so()(64bit)</li>
 		</ul>
 	</div>
@@ -196,8 +208,8 @@
 	</ul></li>
 	</ul></li>
 	<li>java/<ul>
-	<li>java-17-openjdk/<ul>
-	<li>java-17-openjdk-17.0.1.0.12-13.rolling.fc36.x86_64-slowdebug/<ul>
+	<li>java-19-openjdk/<ul>
+	<li>java-19-openjdk-19.0.0.0.36-2.rolling.fc38.x86_64-slowdebug/<ul>
 	<li>conf/<ul>
 	<li>logging.properties</li>
 	<li>management/<ul>
@@ -233,6 +245,7 @@
 	<li>security/<ul>
 	<li>blocked.certs</li>
 	<li>cacerts</li>
+	<li>cacerts.upstream</li>
 	<li>default.policy</li>
 	<li>public_suffix_list.dat</li>
 	</ul></li>
@@ -245,124 +258,127 @@
 	<li>lib/<ul>
 	<li>.build-id/<ul>
 	<li>01/<ul>
-	<li>5e0892dbc8f40a0938bf8ec5d28b651c4fe28b</li>
+	<li>cb5c780294c11438bf3d73e5dbcbca9c505a2d</li>
 	</ul></li>
-	<li>10/<ul>
-	<li>f57ccd63980703b0ed39c00f878a9c9e3a48ae</li>
+	<li>0d/<ul>
+	<li>a472a0b33fbd4fd0d6967a80c33182a874a56c</li>
 	</ul></li>
-	<li>1c/<ul>
-	<li>21f8f19e96e5de0c2d01757b95a00ed538a8e3</li>
+	<li>11/<ul>
+	<li>3721a948c4a82ed51efb9bd0db6b7ca62fdafc</li>
 	</ul></li>
-	<li>23/<ul>
-	<li>188148d0a11e3ab6295863b80c5a508bc1f294</li>
+	<li>12/<ul>
+	<li>e0477cf18838ec15b5d9cd698dfdfcef1d77d2</li>
 	</ul></li>
-	<li>2a/<ul>
-	<li>16baafd5c7a62c99e9c4724c2632288642451f</li>
+	<li>16/<ul>
+	<li>4ee08f8282e12da303b2f893b549ad8c9889fb</li>
+	<li>4ee08f8282e12da303b2f893b549ad8c9889fb.1</li>
 	</ul></li>
-	<li>2c/<ul>
-	<li>5dc5a246568326fb9299048a3a94bfb58605f0</li>
+	<li>1e/<ul>
+	<li>38aa6ff04e03e665ea5dc886b58ef586ce0438</li>
 	</ul></li>
-	<li>3d/<ul>
-	<li>b5136e483cb1ae36161b35bd7e0f18a62542d4</li>
+	<li>28/<ul>
+	<li>3e012abf35b2dab730ec3f4057c4cf99921120</li>
 	</ul></li>
-	<li>47/<ul>
-	<li>5d15806c8317d0f3ac5825fcf40881a796745a</li>
+	<li>33/<ul>
+	<li>03a444367046a83321c66443a52e0502fb71e6</li>
 	</ul></li>
-	<li>54/<ul>
-	<li>4e9fd955da47abe8dd47b09e38ab3211877fbc</li>
+	<li>49/<ul>
+	<li>fc8cbcd46d4caf6cadb8e7c88453b74a07f0ef</li>
 	</ul></li>
-	<li>5b/<ul>
-	<li>b5780c8749d43a877bd4b509d61bb7382e9aa5</li>
-	<li>b5780c8749d43a877bd4b509d61bb7382e9aa5.1</li>
+	<li>4a/<ul>
+	<li>75f1db8cce2011495dab20cbc1e47f063defd5</li>
 	</ul></li>
-	<li>5e/<ul>
-	<li>57eef3b998e2b301e1c5c5a72df4a6eba0a7f3</li>
+	<li>4d/<ul>
+	<li>68cd98913fe454da0d97bf291f534606df1413</li>
 	</ul></li>
-	<li>62/<ul>
-	<li>67164387c7af8d98856750caffc30b373da648</li>
+	<li>52/<ul>
+	<li>800400f5fe43cd9bf2e3e526b882c29ef524ff</li>
 	</ul></li>
-	<li>64/<ul>
-	<li>0c5691c323313a9632254f2ca105e89edc2907</li>
-	<li>8f26323ee9a152a288c9f39a56bec67078980c</li>
+	<li>55/<ul>
+	<li>8b6a2103be764d7e77b7b4c409d65e2a195616</li>
 	</ul></li>
-	<li>6d/<ul>
-	<li>9c47565ea93971cddc13928e7bcbdc5a5c835b</li>
+	<li>5c/<ul>
+	<li>8961558ec3a530732fdc7d05f2acf69d2c1468</li>
+	</ul></li>
+	<li>61/<ul>
+	<li>2d69cb04ed8e75a9a3def52d4a59bdbaf7735c</li>
+	</ul></li>
+	<li>68/<ul>
+	<li>71a44073790bf4e45a1a842d4bee612101b0ef</li>
+	</ul></li>
+	<li>6a/<ul>
+	<li>7454dbe0b219729c9f8deb277071e114a0f907</li>
+	</ul></li>
+	<li>6c/<ul>
+	<li>a543de2cf23054eb56718a219e5db497ed2efa</li>
+	</ul></li>
+	<li>6e/<ul>
+	<li>60ce411330377a349b99483257251d88161090</li>
 	</ul></li>
 	<li>6f/<ul>
-	<li>3922f9a55cc84e3c54f1ef64b6379d39401774</li>
+	<li>c525d986a16f9b12cbc787942bb10b279430a5</li>
 	</ul></li>
 	<li>79/<ul>
-	<li>56ac375876b10705a43af816ac6983df1d7801</li>
+	<li>390cd386f530636b01f92bbe13e113c2d5f2da</li>
 	</ul></li>
-	<li>83/<ul>
-	<li>244e108f02818166e90b0562e12a35a88781bc</li>
+	<li>7a/<ul>
+	<li>bbb4a4d26dcb92faa8ff038ced089d9ab13df1</li>
 	</ul></li>
-	<li>87/<ul>
-	<li>140e2d13a8fa981f3217cc896a39b537418316</li>
+	<li>7b/<ul>
+	<li>4d49a6d99eef629ce40dfc5fd40e9e7a5dfff6</li>
 	</ul></li>
-	<li>93/<ul>
-	<li>1b78932ef4843fd9e6472b3b9f42cbee2d2e49</li>
-	<li>b0c46376374b334ae9cbd5051da4c7f4aad4d8</li>
+	<li>85/<ul>
+	<li>554abc70e2ed30ac7784327982882ccceb03d6</li>
 	</ul></li>
-	<li>9b/<ul>
-	<li>d5055b44750fcfdcd457c2cb4cb43ef677377a</li>
+	<li>91/<ul>
+	<li>3296e4d6ff3254c9ff4954d3b6d878b940a86b</li>
+	<li>8aee67c99e5833da8f0a94c515389d414424d0</li>
 	</ul></li>
-	<li>a8/<ul>
-	<li>13afd01a833d77c93a93dd87abd336b962b694</li>
+	<li>92/<ul>
+	<li>0ae1c9f5f4ed9ae172767628067eeaa8231797</li>
 	</ul></li>
-	<li>b0/<ul>
-	<li>9ead6a46f85afab8cffd94b203c6f2e0072a59</li>
+	<li>9f/<ul>
+	<li>e0239bb270accab8ff5022a6d4f4a36902f1ee</li>
 	</ul></li>
-	<li>b4/<ul>
-	<li>d4072c1c526c6178e98f89988cfca0eaf90e72</li>
+	<li>a2/<ul>
+	<li>e146b469e33b6a4ab8e064c5f31f0cbb2d3edc</li>
 	</ul></li>
-	<li>b6/<ul>
-	<li>387f730c8ad057686ee062c26b8bca830d75a5</li>
+	<li>a3/<ul>
+	<li>745ed5184f641e3ff5ad0b748667b061b96fe1</li>
 	</ul></li>
-	<li>bd/<ul>
-	<li>1e96a3a460b464d2444d0738c8f7a93d951af1</li>
-	<li>d9a7b9185730d56b4e0cbbf4d4ebb91523424a</li>
+	<li>a9/<ul>
+	<li>2a225641caa757a87d75d22194238ff376808c</li>
 	</ul></li>
-	<li>be/<ul>
-	<li>fa5a2a3ee84cd55fe199c3de211218beb6810a</li>
+	<li>af/<ul>
+	<li>17724f5af0b55a7a6d557b43dffa5589458215</li>
 	</ul></li>
-	<li>c1/<ul>
-	<li>f8dc3959caf8a8df089bdb1142744c5dc7721e</li>
-	</ul></li>
-	<li>c3/<ul>
-	<li>368b5075dcf90fb7b1b1a836d7b5b5c237265f</li>
+	<li>ba/<ul>
+	<li>de31f24a159f0cedc358251553b9f314f0acd7</li>
 	</ul></li>
 	<li>c4/<ul>
-	<li>d0538f8838fdbe73528edb3596ccec1f28e2a6</li>
+	<li>f11c4c8a8e206ec738964caa939c71b6e2a619</li>
 	</ul></li>
-	<li>c8/<ul>
-	<li>ddbd6791c020d7f2c4fb819919c3e2ee3a97ed</li>
+	<li>c5/<ul>
+	<li>1e56ed1e97f9e591b78ee8ecd90baa78a70962</li>
+	<li>84d7cdd05209c951c41086a4042bb6dc26332c</li>
 	</ul></li>
-	<li>c9/<ul>
-	<li>46bcf0dff4f0092ba287b175b06604e5aeba8b</li>
-	<li>eb1682f4f83450f259a181836087a19747cdd1</li>
+	<li>ca/<ul>
+	<li>555290cc69d45f48f51fc72e5c09e2e599e239</li>
+	<li>6fbc70b13a1224463a954c757299536ad1f20b</li>
+	</ul></li>
+	<li>cf/<ul>
+	<li>0928c81629cceb5d259420d3a47831c942172c</li>
 	</ul></li>
 	<li>d3/<ul>
-	<li>18cfb91cfabfba572308539e6422b66ea196c6</li>
+	<li>c7d95a5808a6134b7f8f5eacdfee01e1480608</li>
+	<li>fe151ee4388431614ca4ab048b3e2e130d82f5</li>
 	</ul></li>
-	<li>e2/<ul>
-	<li>3ae0e19c63c4b55c4d99d575ba6ac807afbe28</li>
-	</ul></li>
-	<li>e3/<ul>
-	<li>51e28aae7969db05c4273f31dfc86ffe24b45d</li>
-	</ul></li>
-	<li>eb/<ul>
-	<li>53954695138f2796bb288b1ec75625899a250c</li>
-	</ul></li>
-	<li>f5/<ul>
-	<li>9848017ba700977443f64ff364bc6f5e9f9055</li>
-	</ul></li>
-	<li>fb/<ul>
-	<li>85b546d7ebc7768b54b9c84972ebbd0d87b2ca</li>
+	<li>d9/<ul>
+	<li>f0275e41cd5245d661ec9f8c7718683d7b77b4</li>
 	</ul></li>
 	</ul></li>
 	<li>jvm/<ul>
-	<li>java-17-openjdk-17.0.1.0.12-13.rolling.fc36.x86_64-slowdebug/<ul>
+	<li>java-19-openjdk-19.0.0.0.36-2.rolling.fc38.x86_64-slowdebug/<ul>
 	<li>bin/<ul>
 	<li>alt-java</li>
 	<li>java</li>
@@ -383,6 +399,7 @@
 	<li>icu.md</li>
 	<li>public_suffix.md</li>
 	<li>unicode.md</li>
+	<li>zlib.md</li>
 	</ul></li>
 	<li>java.compiler/<ul>
 	<li>ADDITIONAL_LICENSE_INFO</li>
@@ -399,6 +416,12 @@
 	<li>ASSEMBLY_EXCEPTION</li>
 	<li>LICENSE</li>
 	<li>colorimaging.md</li>
+	<li>freetype.md</li>
+	<li>giflib.md</li>
+	<li>harfbuzz.md</li>
+	<li>jpeg.md</li>
+	<li>lcms.md</li>
+	<li>libpng.md</li>
 	<li>mesa3d.md</li>
 	<li>xwd.md</li>
 	</ul></li>
@@ -552,7 +575,7 @@
 	<li>ASSEMBLY_EXCEPTION</li>
 	<li>LICENSE</li>
 	</ul></li>
-	<li>jdk.incubator.foreign/<ul>
+	<li>jdk.incubator.concurrent/<ul>
 	<li>ADDITIONAL_LICENSE_INFO</li>
 	<li>ASSEMBLY_EXCEPTION</li>
 	<li>LICENSE</li>
@@ -765,6 +788,7 @@
 	<li>libdt_socket.so</li>
 	<li>libextnet.so</li>
 	<li>libfontmanager.so</li>
+	<li>libfreetype.so</li>
 	<li>libinstrument.so</li>
 	<li>libj2gss.so</li>
 	<li>libj2pcsc.so</li>
@@ -777,6 +801,7 @@
 	<li>libjli.so</li>
 	<li>libjsig.so</li>
 	<li>libjsound.so</li>
+	<li>libjsvml.so</li>
 	<li>liblcms.so</li>
 	<li>libmanagement.so</li>
 	<li>libmanagement_agent.so</li>
@@ -788,7 +813,6 @@
 	<li>librmi.so</li>
 	<li>libsaproc.so</li>
 	<li>libsctp.so</li>
-	<li>libsvml.so</li>
 	<li>libsyslookup.so</li>
 	<li>libsystemconf.so</li>
 	<li>libverify.so</li>
@@ -805,24 +829,25 @@
 	<li>libjvm.so</li>
 	</ul></li>
 	<li>tzdb.dat</li>
+	<li>tzdb.dat.upstream</li>
 	</ul></li>
 	<li>release</li>
 	</ul></li>
-	<li>jre-17-openjdk-17.0.1.0.12-13.rolling.fc36.x86_64-slowdebug</li>
+	<li>jre-19-openjdk-19.0.0.0.36-2.rolling.fc38.x86_64-slowdebug</li>
 	</ul></li>
 	</ul></li>
 	<li>share/<ul>
 	<li>doc/<ul>
-	<li>java-17-openjdk-17.0.1.0.12-13.rolling.fc36.x86_64-slowdebug/<ul>
+	<li>java-19-openjdk-19.0.0.0.36-2.rolling.fc38.x86_64-slowdebug/<ul>
 	<li>NEWS</li>
 	</ul></li>
 	</ul></li>
 	<li>man/<ul>
 	<li>man1/<ul>
-	<li>alt-java-java-17-openjdk-17.0.1.0.12-13.rolling.fc36.x86_64-slowdebug.1.gz</li>
-	<li>java-java-17-openjdk-17.0.1.0.12-13.rolling.fc36.x86_64-slowdebug.1.gz</li>
-	<li>keytool-java-17-openjdk-17.0.1.0.12-13.rolling.fc36.x86_64-slowdebug.1.gz</li>
-	<li>rmiregistry-java-17-openjdk-17.0.1.0.12-13.rolling.fc36.x86_64-slowdebug.1.gz</li>
+	<li>alt-java-java-19-openjdk-19.0.0.0.36-2.rolling.fc38.x86_64-slowdebug.1.gz</li>
+	<li>java-java-19-openjdk-19.0.0.0.36-2.rolling.fc38.x86_64-slowdebug.1.gz</li>
+	<li>keytool-java-19-openjdk-19.0.0.0.36-2.rolling.fc38.x86_64-slowdebug.1.gz</li>
+	<li>rmiregistry-java-19-openjdk-19.0.0.0.36-2.rolling.fc38.x86_64-slowdebug.1.gz</li>
 	</ul></li>
 	</ul></li>
 	</ul></li>

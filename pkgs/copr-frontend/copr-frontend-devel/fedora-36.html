@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<title>copr-frontend-devel-1.185-1.fc36 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="description" content="View copr-frontend-devel-1.185-1.fc36 in Fedora 36. copr-frontend-devel: Development files to build against copr-frontend">
+
+<div class="container">
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+    </div>
+  </div>
+
+  <hr />
+
+<h1>
+	copr-frontend-devel-1.185-1.fc36<small class="text-muted"> in Fedora 36</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of copr-frontend-devel</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=copr-frontend-1.185-1.fc36">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=copr-frontend-1.185-1.fc36">Search for updates</a>
+</p>
+
+<p>
+	<b>Package Info</b><br>
+	<a href="#changelog">&#129047; Changelog</a><br>
+	<a href="#provides">&#129047; Provides</a><br>
+	<a href="#files">&#129047; Files</a><br>
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>2022-03-18</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.185-1</td>
+			<td>- added support for resetting fields in chroots over the API
+- get-chroot - return modules as a list
+- add a link to comps.xml documentation into the chroot edit form
+- user-friendly error for devel stack(s) when there is a database problem
+- optimize the SQL for the /pending/ routes a bit
+- a new route /pending/all/ giving a rough stats
+- cache the number of currently processed batches to speedup the overall web-UI
+- speed-up the models.Batch related routes
+- don&#39;t use redis as a middleman when updating hitcounter stats
+- use standard backend auth for updating stats
+- hitcounter: don&#39;t return 201 when there is an exception
+- add API routes for editing module list in chroot</td>
+		</tr>
+		<tr>
+			<td>2022-02-02</td>
+			<td>Silvie Chlupova &lt;schlupov at redhat dot com&gt; 1.184-1</td>
+			<td>- sort chroot-histogram graphs by number of builds
+- use dist-git method for builds by default
+- fix size of graphs on status page
+- limit max number of packages per request
+- paginate packages list in APIv3
+- don&#39;t query all packages when empty list is specified
+- webhook rebuilds are background jobs now
+- re-enabled chroots should reset final_prunerepo_done
+- fix import order reported by pylint
+- print human-readable validation errors in APIv3
+- basic build tagging
+- use new Fedora chroot icon
+- use official EPEL log for chroot icon
+- PyLint fixes for create_db.py
+- fix ./run_tests.sh script for coverage args
+- don&#39;t insert+commit in create_after event
+- build PyPI only for python3 by default
+- describe advanced searching possibilities
+- limit RubyGems and PyPI package names length
+- Disable coverage analysis during RPM build
+- 2029379 - workaround GitHub caching proxy
+- drop duplicit &#34;group&#34; table join
+- add &#34;My Projects&#34; button to the homepage
+- api monitor page to contain pkg_version</td>
+		</tr>
+		<tr>
+			<td>2021-11-10</td>
+			<td>Silvie Chlupova &lt;schlupov at redhat dot com&gt; 1.183-1</td>
+			<td>- ACR toggle - handle NO_VALUE specially too
+- Fixup ACR handling
+- &#34;Rebuild All&#34; form to respect chroot denylist
+- &#34;rebuild all packages&#34; from successful builds
+- Large project modification timeout fix
+- Homepage redesign
+- Speedup BuildChroot removals
+- Add BuildChroot(s) to Build ASAP if package is known
+- APIv3 /monitor route
+- Single before_request hook
+- Checkpoint measurement helpers
+- Assure error_handler error is 500
+- Handle CoprDir.get_by_copr consistently
+- Search by attributes using the input value
+- Print searched string with attributes
+- Add dropdown with hints for searching
+- Support searching by attributes and improve searching overall
+- Openid,login by email: guide user, don&#39;t do infinite loop
+- Conscious language (group blacklist -&gt; denylist)
+- Conscious language (chroot blacklist -&gt; denylist)
+- Change prompt from $ to #&gt; in Quick Enable box
+- Accept admin permissions for Copr build
+- Explain what fedora-review project is</td>
+		</tr>
+		<tr>
+			<td>2021-10-01</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.182-1</td>
+			<td>- fixup SubqueryPaginator for older sqlalchemy versions</td>
+		</tr>
+		<tr>
+			<td>2021-09-30</td>
+			<td>Silvie Chlupova 1.181-1</td>
+			<td>- frontend: better not found message for not existing chroot
+- frontend: avoid additional query for main_dir.full_name
+- frontend: add index for combination of build.id and build.copr_id
+- frontend: move the subquery hack into paginator
+- frontend: speedup for listing builds via APIv3
+- frontend: add a warning about the server-side pagination
+- frontend: web-ui: paginate monitor page for more than 1000 packages
+- backend: don&#39;t unnecessarily split the web-ui monitor route
+- frontend: web-ui: sync package list with build list
+- frontend: web-ui: server-side pagination for too-many-packages
+- frontend: web-ui: server-side pagination for too-many-builds
+- frontend: speedup /&lt;owner&gt;/&lt;project&gt;/builds/ route
+- frontend: log pending build records only when debugging
+- frontend: drop LegacyApiError exception
+- frontend: remove all APIv1 code
+- Add API entrypoint for regenerating repos
+- frontend: fix rawhide_to_release/brach_fedora commands</td>
+		</tr>
+		<tr>
+			<td>2021-08-25</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.180-1</td>
+			<td>- use the same repofile for all Fedora versions including Rawhide
+- don&#39;t traceback for &#34;module exists&#34; error
+- fixup logging of info messages
+- don&#39;t depend on python-six, drop __future__ imports
+- move package non-denylisted chroots to general information
+- show more of general package information on package detail page
+- update main.ini and rpkg.conf.j2 for rpkg 3.0 compatibility
+- make template caching configurable
+- log basic request information for each traceback
+- do not cache last build badge
+- drop user proxy concept, we don&#39;t use it
+- generate webhook secrets using APIv3</td>
+		</tr>
+		<tr>
+			<td>2021-06-15</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.179-1</td>
+			<td>- add support for optional namespaces in DistGit instances
+- add a &#34;storage statistics&#34; link to footer
+- fix the copr logo so it contains updated &#34;fedora&#34; font
+- index the CoprChroot.deleted field to speedup API/UI
+- a new admin command for prolonging unnoticed chroots
+- properly notify all not-deleted chroots
+- storage waste - drop upload temporary directories even upon source failure
+- automatically request PR CoprDirs removal using a new action type
+- colorize CoprDir-buttons on builds page, notifying users which of them will be removed soon
+- fix build-listing for copr-dirs, show all builds by default again
+- forked source builds now have forked source_status, too
+- fixed the comps file hyperlink in web-UI form
+- packaging - don&#39;t install test files (not used at runtime)
+- allow user to disable generating appstream metadata (admin action is no longer needed)
+- provide ENVRA build results via APIv3 (for particular build ID)
+- review.txt link is now shown only for proper chroots
+- add a logo for the OpenMandriva chroots
+- the default value for MockChroot.comment should be none
+- pruner: allow pruning also the finalized chroots
+- invent a new FE-BE API version constant, guarding against incompatible FE/BE installations
+- a new knob for turning a profiler on (devel setup)
+- newly we show two latest blog post articles</td>
+		</tr>
+		<tr>
+			<td>2021-04-30</td>
+			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.178-1</td>
+			<td>- frontend: oops, forgot to change these two instances
+- frontend: show deletion tooltip in project overview</td>
+		</tr>
+		<tr>
+			<td>2021-04-30</td>
+			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; 1.177-1</td>
+			<td>- fix chroot disabling in project settings
+- not display EOL warning for per-project disabled chroots</td>
+		</tr>
+		<tr>
+			<td>2021-04-27</td>
+			<td>Jakub Kadlcik &lt;frostyx at email dot cz&gt; 1.176-1</td>
+			<td>- frontend: fix tests that fail in Fedora Rawhide chroots
+- frontend: create project for Fedora Review
+- frontend: memory_analyzer route module
+- frontend: fix unrelated pylint warnings
+- frontend: use correct auto_prune default when creating via API
+- frontend: better test the branch-fedora command
+- frontend: print forking stats for rawhide-to-release
+- frontend: rawhide-to-release fix for deactivated chroots
+- frontend: clone all CoprChroot attributes when forking
+- frontend: simplified Build.state logic, and better log
+- frontend: avoid NULLed source_status
+- frontend: don&#39;t create builds if there are no active chroots
+- frontend: hide deactivated chroots in the project overview
+- frontend: traceback for outdated-chroots flash message
+- frontend: make the [modified] chroot clickable
+- frontend: fix Jinja traceback on nulled buildroot_pkgs
+- frontend: catch tracebacks when rendering invalid modules
+- frontend: update FAS links to use the new site
+- frontend: fix unrelated pylint warnings
+- frontend: introduce ChrootDeletionStatus
+- frontend: delete data for unclicked chroots after few days
+- frontend: assure unique Copr name for group/user in DB
+- frontend: test that we can set these options via API
+- frontend: drop an unused pagure_events.py knob
+- GitLab moved their webhook settings to a different page.
+- frontend: fix createrepo scope for chroot enable
+- frontend: fix already defined method name
+- frontend: add base form for creating and modifying projects
+- frontend: move tests to proper class
+- frontend: explain what actions are
+- frontend: use Builds instead of Tasks in stats/
+- backend, frontend, keygen, distgit: keep cca 3 months of logs
+- frontend: test API for &#39;copr modify&#39;
+- fronted: stats - sort chroots by name</td>
+		</tr>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			<li>copr-frontend-devel</li>
+		</ul>
+	</div>
+</div>
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	<li>usr/<ul>
+	<li>lib/<ul>
+	<li>rpm/<ul>
+	<li>macros.d/<ul>
+	<li>macros.coprfrontend</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>share/<ul>
+	<li>copr/<ul>
+	<li>copr-flavor-filelist</li>
+	<li>coprs_frontend/<ul>
+	<li>generate_colorscheme</li>
+	</ul></li>
+	</ul></li>
+	<li>licenses/<ul>
+	<li>copr-frontend-devel/<ul>
+	<li>LICENSE</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+</div>
+
+  <div class="text-muted text-center">
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>
+  </div>
+</div>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<title>proftpd-1.3.8-0.1.rc2.el9 - Fedora Packages</title>
+<title>proftpd-1.3.8-0.4.rc4.el9 - Fedora Packages</title>
 <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../assets/css/main.css">
 <link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<meta name="description" content="View proftpd-1.3.8-0.1.rc2.el9 in EPEL 9. proftpd: Flexible, stable and highly-configurable FTP server">
+<meta name="description" content="View proftpd-1.3.8-0.4.rc4.el9 in EPEL 9. proftpd: Flexible, stable and highly-configurable FTP server">
 
 <div class="container">
   <div class="row">
@@ -20,12 +20,12 @@
   <hr />
 
 <h1>
-	proftpd-1.3.8-0.1.rc2.el9<small class="text-muted"> in EPEL 9</small>
+	proftpd-1.3.8-0.4.rc4.el9<small class="text-muted"> in EPEL 9</small>
 </h1>
 <p>
 	<a href=".">&crarr; Return to the main page of proftpd</a><br>
-	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=proftpd-1.3.8-0.1.rc2.el9">View build</a><br>
-	<a href="https://bodhi.fedoraproject.org/updates/?search=proftpd-1.3.8-0.1.rc2.el9">Search for updates</a>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=proftpd-1.3.8-0.4.rc4.el9">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=proftpd-1.3.8-0.4.rc4.el9">Search for updates</a>
 </p>
 
 <p>
@@ -45,6 +45,72 @@
 				<th scope="col">Change</th>
 			</tr>
 		</thead>
+		<tr>
+			<td>2022-08-04</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.3.8-0.4.rc4</td>
+			<td>- Update mod_vroot to 0.9.10
+  - Fix unexpected filtering behaviour with mod_vroot (#2104972, GH#1491)</td>
+		</tr>
+		<tr>
+			<td>2022-07-24</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.3.8-0.3.rc4</td>
+			<td>- Update to 1.3.8rc4
+  - mod_sftp should fail on startup when SFTP and TLS are both enabled for a
+    vhost (GH#1434)
+  - DelayTable not properly using documented default value; this is a
+    regression caused by the changes for Bug#4020 (GH#1440)
+  - Support customizing SSH ciphers, digests, key exchanges via SFTPClientMatch
+    (GH#1444)
+  - Ensure that mod_sftp algorithms work properly with OpenSSL 3.x (GH#1448)
+  - BanOnEvent BadProtocol triggers segfault (GH#1445)
+  - SFTP &#34;check-file&#34; implementation computes incorrect results (GH#1439)
+  - Implement SFTPHostKeys directive for configuring the SSH host key
+    algorithms (GH#1457)
+  - Implement the &#34;curve448-sha512&#34; SSH key exchange algorithm (GH#1437)
+  - Include directive broken when using wildcards for directory components
+    (GH#1472)
+  - mod_sftp fails to build using OpenSSL 1.0.x: undefined reference to
+    &#39;EVP_MD_CTX_reset&#39; (Bug #4485)
+  - Reload after omitting explicit ModulePath value causes fatal module load
+    failures (GH#1476)
+- Drop pcre build dependency since we have been explicitly disabling it for the
+  last 5 years anyway
+- Fix X448 support check to fail properly with OpenSSL 1.1.0 (GH#1488)</td>
+		</tr>
+		<tr>
+			<td>2022-04-25</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.3.8-0.2.rc3</td>
+			<td>- Update to 1.3.8rc3
+  - Support SSH hostkey rotation via OpenSSH extensions (GH#1323)
+  - NLST did not behave consistently for relative paths (GH#1325)
+  - Support AES Galois Counter Mode (AES-GCM) in SSH; support for the
+    &#34;aes128-gcm@openssh.com&#34; and &#34;aes256-gcm@openssh.com&#34; ciphers has been
+    added to mod_sftp (Bug #3759)
+  - Implement an LDAPConnectTimeout directive, to configure the timeout used
+    when connecting to LDAP servers (GH#1333)
+  - Implement OpenSSH &#34;Encrypt-Then-MAC&#34; (ETM) algorithm extensions (GH#1330)
+  - Implement AllowForeignAddress class matching for passive data transfers
+    (GH#1346)
+  - Implement support for PCRE2 (GH#1353)
+  - ProFTPD wouldn&#39;t start with several locales (Bug #4466)
+  - Auth sources providing space-bearing user/group names caused compliance
+    issues with MLSD/MLST responses (GH#1367)
+  - DeleteAbortedStores removed successfully transferred files unexpectedly
+    (Bug #4467)
+  - Omit EPRT/EPSV from FEAT response when denied by &lt;Limit&gt; configuration
+    (GH#1383)
+  - Support uploading to symlinked files (GH#1379)
+  - Keepalive socket options should be set using IPPROTO_TCP, not SOL_SOCKET
+    (GH#1401)
+  - TCP keepalive SocketOptions should apply to control as well as data
+    connection (GH#1402)
+  - ProFTPD always used the same PassivePorts port for first transfer (GH#1396)
+  - mod_sftp needs to handle unknown SSH messages in an RFC-compliant manner,
+    ignoring rather than disconnecting (GH#1410)
+  - Improve handling of some globally applied configuration directives (GH#1418)
+  - Name-based virtual hosts not working as expected after upgrade from 1.3.7a
+    to 1.3.7b (GH#1369)</td>
+		</tr>
 		<tr>
 			<td>2021-12-20</td>
 			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.3.8-0.1.rc2</td>
@@ -120,24 +186,6 @@
 			<td>Pavel Raiskup &lt;praiskup at redhat dot com&gt; - 1.3.7a-6</td>
 			<td>- Rebuild for libpq ABI fix rhbz#1908268</td>
 		</tr>
-		<tr>
-			<td>2021-01-27</td>
-			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1.3.7a-5</td>
-			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
-		</tr>
-		<tr>
-			<td>2020-11-24</td>
-			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.3.7a-4</td>
-			<td>- Package mod_unique_id (#1901100)</td>
-		</tr>
-		<tr>
-			<td>2020-07-29</td>
-			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 1.3.7a-3</td>
-			<td>- Handle changed API in check 0.15
-  (see https://bugzilla.redhat.com/show_bug.cgi?id=1850198)
-- Work around getaddrinfo() returning EAGAIN in netaddr api test
-  (https://github.com/proftpd/proftpd/pull/1075)</td>
-		</tr>
 		<tbody>
 		</tbody>
 	</table>
@@ -193,104 +241,108 @@
 	</ul></li>
 	<li>lib/<ul>
 	<li>.build-id/<ul>
-	<li>04/<ul>
-	<li>bb34bf7ca74f4fb561c628058fcf97adffedcd</li>
+	<li>01/<ul>
+	<li>150fb5d0a91b524c0b1008b56d4982d6826fe6</li>
 	</ul></li>
-	<li>06/<ul>
-	<li>1cb709b28d6093ffa503b2cc35c3ede7fb1026</li>
-	</ul></li>
-	<li>08/<ul>
-	<li>7deedbbb3b9926a3547e5dab1ee128d8f11a28</li>
-	</ul></li>
-	<li>0a/<ul>
-	<li>9b68ea5e08f49a83eee1297d36e29bbf3309ab</li>
-	</ul></li>
-	<li>0d/<ul>
-	<li>72bdcbd9c16838f91f1b0fb92105fc55bd7e6e</li>
+	<li>03/<ul>
+	<li>681b49936e82e079d702c9af2ffc588941b33f</li>
 	</ul></li>
 	<li>10/<ul>
-	<li>9a3119f20f0420abc3a17291cb53eb705f5f02</li>
+	<li>890ea24ddfbf5f80522b5f4aaae71b07e35f55</li>
 	</ul></li>
-	<li>1c/<ul>
-	<li>0134c61882d56a8b90fa6bfaffdf265651b52a</li>
+	<li>11/<ul>
+	<li>172d1355ed7bdb0e70800e47d71bb823642a32</li>
 	</ul></li>
-	<li>24/<ul>
-	<li>1fecc410c9aa7625927d613223a74321d8c7df</li>
+	<li>2a/<ul>
+	<li>180c8b358330d9e4471adc34d7b0e81c36ae55</li>
 	</ul></li>
-	<li>2e/<ul>
-	<li>297213eb3f65f2d1c8c1809c7e8241d9e864ce</li>
+	<li>2d/<ul>
+	<li>13eb725f04b34595df006b8542e0784c9f2349</li>
 	</ul></li>
-	<li>35/<ul>
-	<li>5872f166f83c368b058c8166ced4076223351c</li>
+	<li>30/<ul>
+	<li>60bca28f18dd1d4213c6bb5af828e20f4f7e61</li>
 	</ul></li>
-	<li>3f/<ul>
-	<li>69f55dac3ce760bf88d0c724a90f6ed3ddd442</li>
+	<li>34/<ul>
+	<li>8345e273b116418363cbecb0845d8578d79112</li>
 	</ul></li>
-	<li>43/<ul>
-	<li>392d4eb30c1c29f30e6e710591f2f1121cfe27</li>
+	<li>39/<ul>
+	<li>edc5e806629071bfd7abef4807b2fc249c7407</li>
+	</ul></li>
+	<li>3a/<ul>
+	<li>042cd78dc6e87a6e375d39e12ba156fb695353</li>
+	</ul></li>
+	<li>3c/<ul>
+	<li>40ac6393167067e4d4b88d0b5507c38eca7de5</li>
+	</ul></li>
+	<li>45/<ul>
+	<li>1ed04901c06989b828bac738a8254bf5b25154</li>
 	</ul></li>
 	<li>47/<ul>
-	<li>de67e02d3fddf9a63bb64ab2a66f209035ee1c</li>
+	<li>34438ef1245c3cd2c741c5917ac102e99ceb9b</li>
 	</ul></li>
-	<li>4e/<ul>
-	<li>b97b85177173800a4e59277af14915312ab701</li>
+	<li>55/<ul>
+	<li>8c8c1f949c784e524962526b8512e66665bc7a</li>
 	</ul></li>
-	<li>51/<ul>
-	<li>86a8b48e6d40fcdbd25c3565e69dbcc66dd8a9</li>
+	<li>5d/<ul>
+	<li>d4b4211461e64cc93444d3f8378e23e55312a2</li>
 	</ul></li>
-	<li>53/<ul>
-	<li>4d96263bd060b4969cf7868ebd13dce2bb48a6</li>
+	<li>67/<ul>
+	<li>23d4401ef359e2306ba6b494349948842e2d35</li>
 	</ul></li>
-	<li>64/<ul>
-	<li>e7cda777e66a1ff83a939dc42ded268bbf159b</li>
-	</ul></li>
-	<li>7a/<ul>
-	<li>849d98f2f5faf20ffc4ecd27817cf598c50b2c</li>
+	<li>6d/<ul>
+	<li>41b6c48145cfd5a294d53aeffec8c63708cd6b</li>
 	</ul></li>
 	<li>7b/<ul>
-	<li>f7228d5d4e1f2736b1d3f612a996cdc90ef19a</li>
+	<li>409e007dd12254f3514674324e9f1e27970a79</li>
 	</ul></li>
-	<li>83/<ul>
-	<li>6717fa4418fa2d29425da4d12ae74ec733c164</li>
-	</ul></li>
-	<li>89/<ul>
-	<li>0181a8f199831a6a66999aaf22cc506ce9f3ac</li>
-	<li>7b3cb2a74648fd648b78a8e0664a5e58f92add</li>
-	</ul></li>
-	<li>8b/<ul>
-	<li>e07f206a453133ae35d1f8ac633eef8d443d90</li>
-	</ul></li>
-	<li>90/<ul>
-	<li>3cb4e04d6dfdfe0b36e2f5c3918bf3c76c8224</li>
+	<li>7f/<ul>
+	<li>21e174b9b792b61dbad966d34a41ab7a5e2e4d</li>
+	<li>fb6db02f24a555e902fb05e54b03eceb087dad</li>
 	</ul></li>
 	<li>92/<ul>
-	<li>98547b1dfb6765590ee8aafbad12fb515072ce</li>
+	<li>3f51ef97f53a8aed6ed8372b46b8b27e203b20</li>
 	</ul></li>
-	<li>ba/<ul>
-	<li>5beff37f9740d5de4215ead0432e4acdd01d95</li>
-	<li>c9a25891b5340c5d55a131706e2b6fb8215c5c</li>
+	<li>97/<ul>
+	<li>63628f6542063a088e03be9654c9fe0cc7e67f</li>
 	</ul></li>
-	<li>bb/<ul>
-	<li>7d3b7ab18a1aefee8dc05946a3ff4cfc6173ab</li>
+	<li>9e/<ul>
+	<li>0b6c984f8aa7100842f2265ebf048780a3e09f</li>
 	</ul></li>
-	<li>bf/<ul>
-	<li>9d468638e5800e6ff933d34e3eb94f3cf709cd</li>
+	<li>9f/<ul>
+	<li>55881c65942a2cd1c3b58cd3304681c84baace</li>
 	</ul></li>
-	<li>c6/<ul>
-	<li>77ea56ceb879abaf85542f88d5504c019b25c1</li>
+	<li>a3/<ul>
+	<li>73bd3c238446451294f894b67859127ed40c19</li>
 	</ul></li>
-	<li>d4/<ul>
-	<li>66e85d23b71f4d706edcaeb7f9e9ec1314aadd</li>
+	<li>a6/<ul>
+	<li>0c207c851ed1ea753ee5a8d6ae9c98ac0cc35d</li>
 	</ul></li>
-	<li>d5/<ul>
-	<li>a95216a21328e35af52a3e3206b2fa21c067bd</li>
+	<li>ad/<ul>
+	<li>9ee7cff2a0a2253224157d55b34e799a98e026</li>
 	</ul></li>
-	<li>dc/<ul>
-	<li>24e5fe5694a29fceed94a6508ee0178aa03684</li>
+	<li>b1/<ul>
+	<li>56f011b3649877de2b2da003a7a16e680ce494</li>
 	</ul></li>
-	<li>e5/<ul>
-	<li>4903e033ad70222c4c5c8da6976d6ec54db00e</li>
-	<li>ab44f2c0e94c5aecaca712ba6d9d60592dfdd6</li>
+	<li>b5/<ul>
+	<li>13c9e6cb7d5284c5c99b262a4a2a64f4deeb15</li>
+	</ul></li>
+	<li>bd/<ul>
+	<li>f444c6b113a5a625d8f3cebc46f34af9581f62</li>
+	</ul></li>
+	<li>ca/<ul>
+	<li>7e22b80f0eade77bbd77c482eeb6796906c49b</li>
+	</ul></li>
+	<li>e2/<ul>
+	<li>f880f77ff518f2905df717211fa57db528ae17</li>
+	</ul></li>
+	<li>e8/<ul>
+	<li>e084ae24b59fcebec424ed2edaeb49762e8423</li>
+	</ul></li>
+	<li>f0/<ul>
+	<li>4033ea0acb4ab4ac90c24c34d852097e92961b</li>
+	</ul></li>
+	<li>f3/<ul>
+	<li>811c66e70f558592fe6a8756d8b5e1bb689273</li>
 	</ul></li>
 	</ul></li>
 	<li>systemd/<ul>
@@ -350,9 +402,6 @@
 	<li>proftpd/<ul>
 	<li>CREDITS</li>
 	<li>ChangeLog</li>
-	<li>Configuration.html</li>
-	<li>Configuration.pdf</li>
-	<li>Configuration.sgml</li>
 	<li>NEWS</li>
 	<li>README.contrib</li>
 	<li>README.md</li>
@@ -410,6 +459,9 @@
 	<li>mod_wrap2_file.html</li>
 	<li>mod_wrap2_redis.html</li>
 	<li>mod_wrap2_sql.html</li>
+	</ul></li>
+	<li>directives/<ul>
+	<li>index.html</li>
 	</ul></li>
 	<li>faq.html</li>
 	<li>howto/<ul>

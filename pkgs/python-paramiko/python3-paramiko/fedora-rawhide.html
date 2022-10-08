@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<title>python3-paramiko-2.9.2-1.fc36 - Fedora Packages</title>
+<title>python3-paramiko-2.11.0-3.fc37 - Fedora Packages</title>
 <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../assets/css/main.css">
 <link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<meta name="description" content="View python3-paramiko-2.9.2-1.fc36 in Fedora Rawhide. python3-paramiko: SSH2 protocol library for python">
+<meta name="description" content="View python3-paramiko-2.11.0-3.fc37 in Fedora Rawhide. python3-paramiko: SSH2 protocol library for python">
 
 <div class="container">
   <div class="row">
@@ -20,12 +20,12 @@
   <hr />
 
 <h1>
-	python3-paramiko-2.9.2-1.fc36<small class="text-muted"> in Fedora Rawhide</small>
+	python3-paramiko-2.11.0-3.fc37<small class="text-muted"> in Fedora Rawhide</small>
 </h1>
 <p>
 	<a href=".">&crarr; Return to the main page of python3-paramiko</a><br>
-	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=python-paramiko-2.9.2-1.fc36">View build</a><br>
-	<a href="https://bodhi.fedoraproject.org/updates/?search=python-paramiko-2.9.2-1.fc36">Search for updates</a>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=python-paramiko-2.11.0-3.fc37">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=python-paramiko-2.11.0-3.fc37">Search for updates</a>
 </p>
 
 <p>
@@ -47,162 +47,120 @@
 			</tr>
 		</thead>
 		<tr>
-			<td>2022-01-08</td>
-			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.9.2-1</td>
-			<td>- Update to 2.9.2
-  - Connecting to servers that support &#39;server-sig-algs&#39; but which have no
-    overlap between that list and what a Paramiko client supports, now raise
-    an exception instead of defaulting to &#39;rsa-sha2-512&#39; (since the use of
-    &#39;server-sig-algs&#39; allows us to know what the server supports)
-  - Enhanced log output when connecting to servers that do not support
-    &#39;server-sig-algs&#39; extensions, making the new-as-of-2.9 defaulting to SHA2
-    pubkey algorithms more obvious when it kicks in</td>
+			<td>2022-07-22</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 2.11.0-3</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild</td>
 		</tr>
 		<tr>
-			<td>2021-12-25</td>
-			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.9.1-1</td>
-			<td>- Update to 2.9.1
-  - Server-side support for &#39;rsa-sha2-256&#39; and &#39;ssh-rsa&#39; wasn&#39;t fully operable
-    after 2.9.0&#39;s release (signatures for RSA pubkeys were always run through
-    &#39;rsa-sha2-512&#39; instead) (GH#1935)</td>
+			<td>2022-06-14</td>
+			<td>Python Maint &lt;python dash maint at redhat dot com&gt; - 2.11.0-2</td>
+			<td>- Rebuilt for Python 3.11</td>
 		</tr>
 		<tr>
-			<td>2021-12-24</td>
-			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.9.0-1</td>
-			<td>- Update to 2.9.0
-  - Add support for SHA-2 variants of RSA key verification algorithms (as
-    described in RFC 8332) as well as limited SSH extension negotiation (RFC
-    8308) (GH#1326, GH#1643, GH#1644, GH#1925)
-    How SSH servers/clients decide when and how to use this functionality can be
-    complicated; Paramiko&#39;s support is as follows:
-    - Client verification of server host key during key exchange will now prefer
-      rsa-sha2-512, rsa-sha2-256, and legacy ssh-rsa algorithms, in that order,
-      instead of just ssh-rsa
-    - Note that the preference order of other algorithm families such as
-      ed25519 and ecdsa has not changed; for example, those two groups are still
-      preferred over RSA
-    - Server mode will now offer all 3 RSA algorithms for host key verification
-      during key exchange, similar to client mode, if it has been configured
-      with an RSA host key
-    - Client mode key exchange now sends the ext-info-c flag signaling support
-      for MSG_EXT_INFO, and support for parsing the latter (specifically, its
-      server-sig-algs flag) has been added
-    - Client mode, when performing public key authentication with an RSA key or
-      cert, will act as follows:
-      - In all cases, the list of algorithms to consider is based on the new
-        preferred_pubkeys list and disabled_algorithms; this list, like with
-        host keys, prefers SHA2-512, SHA2-256 and SHA1, in that order
-      - When the server does not send server-sig-algs, Paramiko will attempt
-        the first algorithm in the above list; clients connecting to legacy
-        servers should thus use disabled_algorithms to turn off SHA2
-      - When the server does send server-sig-algs, the first algorithm
-        supported by both ends is used, or if there is none, it falls back to
-        the previous behavior
-    - SSH agent support grew the ability to specify algorithm flags when
-      requesting private key signatures; this is now used to forward SHA2
-      algorithms when appropriate
-    - Server mode is now capable of pubkey auth involving SHA-2 signatures from
-      clients, provided one&#39;s server implementation actually provides for doing
-      so; this includes basic support for sending MSG_EXT_INFO (containing
-      server-sig-algs only) to clients advertising ext-info-c in their key
-      exchange list
-    In order to implement the above, the following API additions were made:
-    - &#39;PKey.sign_ssh_data &lt;paramiko.pkey.PKey&gt;&#39;: Grew an extra, optional
-      &#39;algorithm&#39; keyword argument (defaulting to &#39;None&#39; for most subclasses,
-      and to &#34;ssh-rsa&#34; for &#39;~paramiko.rsakey.RSAKey&#39;)
-    - A new &#39;~paramiko.ssh_exception.SSHException&#39; subclass was added,
-      &#39;~paramiko.ssh_exception.IncompatiblePeer&#39;, and is raised in all spots
-      where key exchange aborts due to algorithmic incompatibility; like all
-      other exceptions in that module, it inherits from &#39;SSHException&#39;, and as
-      nothing else was changed about the raising (i.e. the attributes and
-      message text are the same) this change is backwards compatible
-    - &#39;~paramiko.transport.Transport&#39; grew a &#39;_preferred_pubkeys&#39; attribute and
-      matching &#39;preferred_pubkeys&#39; property to match the other, kex-focused,
-      such members; this allows client pubkey authentication to honor the
-      &#39;disabled_algorithms&#39; feature</td>
+			<td>2022-05-17</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.11.0-1</td>
+			<td>- Update to 2.11.0
+  - Align signature verification algorithm with OpenSSH re: zero-padding
+    signatures that don&#39;t match their nominal size/length; this shouldn&#39;t
+    affect most users, but will help Paramiko-implemented SSH servers handle
+    poorly behaved clients such as PuTTY (GH#1933)
+  - OpenSSH 7.7 and older has a bug preventing it from understanding how to
+    perform SHA2 signature verification for RSA certificates (specifically
+    certs - not keys), so when we added SHA2 support it broke all clients using
+    RSA certificates with these servers; this has been fixed in a manner similar
+    to what OpenSSH&#39;s own client does - a version check is performed and the
+    algorithm used is downgraded if needed (GH#2017)
+  - Recent versions of Cryptography have deprecated Blowfish algorithm support;
+    in lieu of an easy method for users to remove it from the list of
+    algorithms Paramiko tries to import and use, we&#39;ve decided to remove it
+    from our &#34;preferred algorithms&#34; list, which will both discourage use of a
+    weak algorithm, and avoid warnings (GH#2038, GH#2039)
+  - Windows-native SSH agent support as merged in 2.10 could encounter
+    &#39;Errno 22&#39; &#39;OSError&#39; exceptions in some scenarios (e.g. server not cleanly
+    closing a relevant named pipe); this has been worked around and should be
+    less problematic (GH#2008, GH#2010)
+  - Add SSH config token expansion (eg &#39;%h&#39;, &#39;%p&#39;) when parsing &#39;ProxyJump&#39;
+    directives (GH#1951)
+  - Apply unittest &#39;skipIf&#39; to tests currently using SHA1 in their critical
+    path, to avoid failures on systems starting to disable SHA1 outright in
+    their crypto backends (e.g. RHEL 9) (GH#2004, GH#2011)</td>
 		</tr>
 		<tr>
-			<td>2021-11-29</td>
-			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.8.1-1</td>
-			<td>- Update to 2.8.1
-  - Fix listdir failure when server uses a locale (GH#985, GH#992); now on
-    Python 2.7 SFTPAttributes will decode abbreviated month names correctly
-    rather than raise &#39;UnicodeDecodeError&#39;
-  - Deleting items from &#39;~paramiko.hostkeys.HostKeys&#39; would incorrectly raise
-    &#39;KeyError&#39; even for valid keys, due to a logic bug (GH#1024)
-  - Update RSA and ECDSA key decoding subroutines to correctly catch exception
-    types thrown by modern versions of Cryptography (specifically &#39;TypeError&#39;
-    and its internal &#39;UnsupportedAlgorithm&#39;) (GH#1257, GH#1266); these
-    exception classes will now become &#39;~paramiko.ssh_exception.SSHException&#39;
-    instances instead of bubbling up
-  - Update &#39;~paramiko.pkey.PKey&#39; and subclasses to compare (&#39;__eq__&#39;) via
-    direct field/attribute comparison instead of hashing (while retaining the
-    existing behavior of &#39;__hash__&#39; via a slight refactor) (GH#908)
-    Warning:
-    This fixes a security flaw! If you are running Paramiko on 32-bit systems
-    with low entropy (such as any 32-bit Python 2, or a 32-bit Python 3 that is
-    running with &#39;PYTHONHASHSEED=0&#39;) it is possible for an attacker to craft a
-    new keypair from an exfiltrated public key, which Paramiko would consider
-    equal to the original key.
-    This could enable attacks such as, but not limited to, the following:
-    - Paramiko server processes would incorrectly authenticate the attacker
-      (using their generated private key) as if they were the victim. We see
-      this as the most plausible attack using this flaw.
-    - Paramiko client processes would incorrectly validate a connected server
-      (when host key verification is enabled) while subjected to a
-      man-in-the-middle attack. This impacts more users than the server-side
-      version, but also carries higher requirements for the attacker, namely
-      successful DNS poisoning or other MITM techniques.</td>
+			<td>2022-04-26</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.10.4-1</td>
+			<td>- Update to 2.10.4
+  - Update &#39;camelCase&#39; method calls against the &#39;threading&#39; module to be
+    &#39;snake_case&#39;; this and related tweaks should fix some deprecation warnings
+    under Python 3.10 (GH#1838, GH#1870, GH#2028)
+  - &#39;~paramiko.pkey.PKey&#39; instances&#39; &#39;__eq__&#39; did not have the usual safety
+    guard in place to ensure they were being compared to another &#39;PKey&#39; object,
+    causing occasional spurious &#39;BadHostKeyException&#39;, among other things
+    (GH#1964, GH#2023, GH#2024)
+  - Servers offering certificate variants of hostkey algorithms (e.g.
+    &#39;ssh-rsa-cert-v01@openssh.com&#39;) could not have their host keys verified by
+    Paramiko clients, as it only ever considered non-cert key types for that
+    part of connection handshaking (GH#2035)</td>
 		</tr>
 		<tr>
-			<td>2021-10-11</td>
-			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.8.0-1</td>
-			<td>- Update to 2.8.0
-  - Administrivia overhaul, including but not limited to:
-    - Migrate CI to CircleCI
-    - Primary dev branch is now &#39;main&#39; (renamed)
-    - Many README edits for clarity, modernization etc.; including a bunch more
-      (and consistent) status badges and unification with main project site
-      index
-    - PyPI page much more fleshed out (long_description is now filled in with
-      the README; sidebar links expanded; etc.)
-    - flake8, pytest configs split out of setup.cfg into their own files
-    - Invoke/invocations (used by maintainers/contributors) upgraded to modern
-      versions
-  - Newer server-side key exchange algorithms not intended to use SHA1
-    (diffie-hellman-group14-sha256, diffie-hellman-group16-sha512) were
-    incorrectly using SHA1 after all, due to a bug causing them to ignore the
-    &#39;hash_algo&#39; class attribute; this has been corrected (GH#1452, GH#1882)
-  - Add a &#39;prefetch&#39; keyword argument to &#39;SFTPClient.get&#39;/&#39;SFTPClient.getfo&#39; so
-    that users who need to skip SFTP prefetching are able to conditionally turn
-    it off (GH#1846)</td>
+			<td>2022-03-21</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.10.3-2</td>
+			<td>- Skip tests that would fail without SHA-1 signing support in backend, such as
+  on EL-9 (GH#2011)</td>
 		</tr>
 		<tr>
-			<td>2021-07-23</td>
-			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 2.7.2-6</td>
-			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
+			<td>2022-03-19</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.10.3-1</td>
+			<td>- Update to 2.10.3
+  - Certificate-based pubkey auth was inadvertently broken when adding SHA2
+    support in version 2.9.0 (GH#1963, GH#1977)
+  - Switch from module-global to thread-local storage when recording thread IDs
+    for a logging helper; this should avoid one flavor of memory leak for
+    long-running processes (GH#2002, GH#2003)</td>
 		</tr>
 		<tr>
-			<td>2021-06-04</td>
-			<td>Python Maint &lt;python dash maint at redhat dot com&gt; - 2.7.2-5</td>
-			<td>- Rebuilt for Python 3.10</td>
+			<td>2022-03-15</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.10.2-1</td>
+			<td>- Update to 2.10.2
+  - Fix Python 2 compatibility breakage introduced in 2.10.1 (GH#2001)
+- Re-enable sftp tests, no longer failing under mock</td>
 		</tr>
 		<tr>
-			<td>2021-03-03</td>
-			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.7.2-4</td>
-			<td>- Drop invoke dependencies as it requires ancient pytest and we can&#39;t expect
-  it to remain around</td>
+			<td>2022-03-13</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.10.1-1</td>
+			<td>- Update to 2.10.1
+  - CVE-2022-24302: Creation of new private key files using
+    &#39;~paramiko.pkey.PKey&#39; subclasses was subject to a race condition between
+    file creation and mode modification, which could be exploited by an
+    attacker with knowledge of where the Paramiko-using code would write out
+    such files; this has been patched by using &#39;os.open&#39; and &#39;os.fdopen&#39; to
+    ensure new files are opened with the correct mode immediately (we&#39;ve left
+    the subsequent explicit &#39;chmod&#39; in place to minimize any possible
+    disruption, though it may get removed in future backwards-incompatible
+    updates)
+  - Add support for the &#39;%C&#39; token when parsing SSH config files (GH#1976)
+  - Add support for OpenSSH&#39;s Windows agent as a fallback when Putty/WinPageant
+    isn&#39;t available or functional (GH#1509, GH#1837, GH#1868)
+  - Significantly speed up low-level read/write actions on
+    &#39;~paramiko.sftp_file.SFTPFile&#39; objects by using &#39;bytearray&#39;/&#39;memoryview&#39;
+    (GH#892); this is unlikely to change anything for users of the higher level
+    methods like &#39;SFTPClient.get&#39; or &#39;SFTPClient.getfo&#39;, but users of
+    &#39;SFTPClient.open&#39; will likely see orders of magnitude improvements for
+    files larger than a few megabytes in size
+  - Add &#39;six&#39; explicitly to install-requires; it snuck into active use at some
+    point but has only been indicated by transitive dependency on &#39;bcrypt&#39;
+    until they somewhat-recently dropped it (GH#1985); this will be short-lived
+    until we drop Python 2 support</td>
 		</tr>
 		<tr>
-			<td>2021-03-02</td>
-			<td>Dan Radez &lt;dradez at redhat dot com&gt; - 2.7.2-3</td>
-			<td>- Removing the python-relax dep using upstream patch
-  https://github.com/paramiko/paramiko/pull/1665/</td>
+			<td>2022-01-21</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 2.9.2-3</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild</td>
 		</tr>
 		<tr>
-			<td>2021-01-27</td>
-			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 2.7.2-2</td>
-			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
+			<td>2022-01-14</td>
+			<td>Paul Howarth &lt;paul at city dash fan dot org&gt; - 2.9.2-2</td>
+			<td>- Avoid use of deprecated python-mock by using unittest.mock instead
+  https://github.com/paramiko/paramiko/pull/1666</td>
 		</tr>
 		<tbody>
 		</tbody>
@@ -215,12 +173,12 @@
 		<ul>
 			<li>
 			<a href="/pkgs/python2.7/python2.7/fedora-rawhide.html">
-			python2.7</a> = 3.10
+			python2.7</a> = 3.11
 
 			</li>
 			<li>
-			<a href="/pkgs/python3.10/python3/fedora-rawhide.html">
-			python3</a> = 3.10
+			<a href="/pkgs/python3.11/python3/fedora-rawhide.html">
+			python3</a> = 3.11
 
 			</li>
 			<li>
@@ -238,6 +196,11 @@
 			python3-pynacl</a> &gt;= 1.0.1
 
 			</li>
+			<li>
+			<a href="/pkgs/python-six/python3-six/fedora-rawhide.html">
+			python3-six</a>
+
+			</li>
 		</ul>
 	</div>
 	<div class="col">
@@ -245,8 +208,8 @@
 		<ul>
 			<li>python-paramiko</li>
 			<li>python3-paramiko</li>
-			<li>python3.10-paramiko</li>
-			<li>python3.10dist(paramiko)</li>
+			<li>python3.11-paramiko</li>
+			<li>python3.11dist(paramiko)</li>
 			<li>python3dist(paramiko)</li>
 		</ul>
 	</div>
@@ -258,101 +221,103 @@
 	<ul>
 	<li>usr/<ul>
 	<li>lib/<ul>
-	<li>python3.10/<ul>
+	<li>python3.11/<ul>
 	<li>site-packages/<ul>
 	<li>paramiko/<ul>
 	<li>__init__.py</li>
 	<li>__pycache__/<ul>
-	<li>__init__.cpython-310.opt-1.pyc</li>
-	<li>__init__.cpython-310.pyc</li>
-	<li>_version.cpython-310.opt-1.pyc</li>
-	<li>_version.cpython-310.pyc</li>
-	<li>_winapi.cpython-310.opt-1.pyc</li>
-	<li>_winapi.cpython-310.pyc</li>
-	<li>agent.cpython-310.opt-1.pyc</li>
-	<li>agent.cpython-310.pyc</li>
-	<li>auth_handler.cpython-310.opt-1.pyc</li>
-	<li>auth_handler.cpython-310.pyc</li>
-	<li>ber.cpython-310.opt-1.pyc</li>
-	<li>ber.cpython-310.pyc</li>
-	<li>buffered_pipe.cpython-310.opt-1.pyc</li>
-	<li>buffered_pipe.cpython-310.pyc</li>
-	<li>channel.cpython-310.opt-1.pyc</li>
-	<li>channel.cpython-310.pyc</li>
-	<li>client.cpython-310.opt-1.pyc</li>
-	<li>client.cpython-310.pyc</li>
-	<li>common.cpython-310.opt-1.pyc</li>
-	<li>common.cpython-310.pyc</li>
-	<li>compress.cpython-310.opt-1.pyc</li>
-	<li>compress.cpython-310.pyc</li>
-	<li>config.cpython-310.opt-1.pyc</li>
-	<li>config.cpython-310.pyc</li>
-	<li>dsskey.cpython-310.opt-1.pyc</li>
-	<li>dsskey.cpython-310.pyc</li>
-	<li>ecdsakey.cpython-310.opt-1.pyc</li>
-	<li>ecdsakey.cpython-310.pyc</li>
-	<li>ed25519key.cpython-310.opt-1.pyc</li>
-	<li>ed25519key.cpython-310.pyc</li>
-	<li>file.cpython-310.opt-1.pyc</li>
-	<li>file.cpython-310.pyc</li>
-	<li>hostkeys.cpython-310.opt-1.pyc</li>
-	<li>hostkeys.cpython-310.pyc</li>
-	<li>kex_curve25519.cpython-310.opt-1.pyc</li>
-	<li>kex_curve25519.cpython-310.pyc</li>
-	<li>kex_ecdh_nist.cpython-310.opt-1.pyc</li>
-	<li>kex_ecdh_nist.cpython-310.pyc</li>
-	<li>kex_gex.cpython-310.opt-1.pyc</li>
-	<li>kex_gex.cpython-310.pyc</li>
-	<li>kex_group1.cpython-310.opt-1.pyc</li>
-	<li>kex_group1.cpython-310.pyc</li>
-	<li>kex_group14.cpython-310.opt-1.pyc</li>
-	<li>kex_group14.cpython-310.pyc</li>
-	<li>kex_group16.cpython-310.opt-1.pyc</li>
-	<li>kex_group16.cpython-310.pyc</li>
-	<li>kex_gss.cpython-310.opt-1.pyc</li>
-	<li>kex_gss.cpython-310.pyc</li>
-	<li>message.cpython-310.opt-1.pyc</li>
-	<li>message.cpython-310.pyc</li>
-	<li>packet.cpython-310.opt-1.pyc</li>
-	<li>packet.cpython-310.pyc</li>
-	<li>pipe.cpython-310.opt-1.pyc</li>
-	<li>pipe.cpython-310.pyc</li>
-	<li>pkey.cpython-310.opt-1.pyc</li>
-	<li>pkey.cpython-310.pyc</li>
-	<li>primes.cpython-310.opt-1.pyc</li>
-	<li>primes.cpython-310.pyc</li>
-	<li>proxy.cpython-310.opt-1.pyc</li>
-	<li>proxy.cpython-310.pyc</li>
-	<li>py3compat.cpython-310.opt-1.pyc</li>
-	<li>py3compat.cpython-310.pyc</li>
-	<li>rsakey.cpython-310.opt-1.pyc</li>
-	<li>rsakey.cpython-310.pyc</li>
-	<li>server.cpython-310.opt-1.pyc</li>
-	<li>server.cpython-310.pyc</li>
-	<li>sftp.cpython-310.opt-1.pyc</li>
-	<li>sftp.cpython-310.pyc</li>
-	<li>sftp_attr.cpython-310.opt-1.pyc</li>
-	<li>sftp_attr.cpython-310.pyc</li>
-	<li>sftp_client.cpython-310.opt-1.pyc</li>
-	<li>sftp_client.cpython-310.pyc</li>
-	<li>sftp_file.cpython-310.opt-1.pyc</li>
-	<li>sftp_file.cpython-310.pyc</li>
-	<li>sftp_handle.cpython-310.opt-1.pyc</li>
-	<li>sftp_handle.cpython-310.pyc</li>
-	<li>sftp_server.cpython-310.opt-1.pyc</li>
-	<li>sftp_server.cpython-310.pyc</li>
-	<li>sftp_si.cpython-310.opt-1.pyc</li>
-	<li>sftp_si.cpython-310.pyc</li>
-	<li>ssh_exception.cpython-310.opt-1.pyc</li>
-	<li>ssh_exception.cpython-310.pyc</li>
-	<li>ssh_gss.cpython-310.opt-1.pyc</li>
-	<li>ssh_gss.cpython-310.pyc</li>
-	<li>transport.cpython-310.opt-1.pyc</li>
-	<li>transport.cpython-310.pyc</li>
-	<li>util.cpython-310.opt-1.pyc</li>
-	<li>util.cpython-310.pyc</li>
-	<li>win_pageant.cpython-310.opt-1.pyc</li>
-	<li>win_pageant.cpython-310.pyc</li>
+	<li>__init__.cpython-311.opt-1.pyc</li>
+	<li>__init__.cpython-311.pyc</li>
+	<li>_version.cpython-311.opt-1.pyc</li>
+	<li>_version.cpython-311.pyc</li>
+	<li>_winapi.cpython-311.opt-1.pyc</li>
+	<li>_winapi.cpython-311.pyc</li>
+	<li>agent.cpython-311.opt-1.pyc</li>
+	<li>agent.cpython-311.pyc</li>
+	<li>auth_handler.cpython-311.opt-1.pyc</li>
+	<li>auth_handler.cpython-311.pyc</li>
+	<li>ber.cpython-311.opt-1.pyc</li>
+	<li>ber.cpython-311.pyc</li>
+	<li>buffered_pipe.cpython-311.opt-1.pyc</li>
+	<li>buffered_pipe.cpython-311.pyc</li>
+	<li>channel.cpython-311.opt-1.pyc</li>
+	<li>channel.cpython-311.pyc</li>
+	<li>client.cpython-311.opt-1.pyc</li>
+	<li>client.cpython-311.pyc</li>
+	<li>common.cpython-311.opt-1.pyc</li>
+	<li>common.cpython-311.pyc</li>
+	<li>compress.cpython-311.opt-1.pyc</li>
+	<li>compress.cpython-311.pyc</li>
+	<li>config.cpython-311.opt-1.pyc</li>
+	<li>config.cpython-311.pyc</li>
+	<li>dsskey.cpython-311.opt-1.pyc</li>
+	<li>dsskey.cpython-311.pyc</li>
+	<li>ecdsakey.cpython-311.opt-1.pyc</li>
+	<li>ecdsakey.cpython-311.pyc</li>
+	<li>ed25519key.cpython-311.opt-1.pyc</li>
+	<li>ed25519key.cpython-311.pyc</li>
+	<li>file.cpython-311.opt-1.pyc</li>
+	<li>file.cpython-311.pyc</li>
+	<li>hostkeys.cpython-311.opt-1.pyc</li>
+	<li>hostkeys.cpython-311.pyc</li>
+	<li>kex_curve25519.cpython-311.opt-1.pyc</li>
+	<li>kex_curve25519.cpython-311.pyc</li>
+	<li>kex_ecdh_nist.cpython-311.opt-1.pyc</li>
+	<li>kex_ecdh_nist.cpython-311.pyc</li>
+	<li>kex_gex.cpython-311.opt-1.pyc</li>
+	<li>kex_gex.cpython-311.pyc</li>
+	<li>kex_group1.cpython-311.opt-1.pyc</li>
+	<li>kex_group1.cpython-311.pyc</li>
+	<li>kex_group14.cpython-311.opt-1.pyc</li>
+	<li>kex_group14.cpython-311.pyc</li>
+	<li>kex_group16.cpython-311.opt-1.pyc</li>
+	<li>kex_group16.cpython-311.pyc</li>
+	<li>kex_gss.cpython-311.opt-1.pyc</li>
+	<li>kex_gss.cpython-311.pyc</li>
+	<li>message.cpython-311.opt-1.pyc</li>
+	<li>message.cpython-311.pyc</li>
+	<li>packet.cpython-311.opt-1.pyc</li>
+	<li>packet.cpython-311.pyc</li>
+	<li>pipe.cpython-311.opt-1.pyc</li>
+	<li>pipe.cpython-311.pyc</li>
+	<li>pkey.cpython-311.opt-1.pyc</li>
+	<li>pkey.cpython-311.pyc</li>
+	<li>primes.cpython-311.opt-1.pyc</li>
+	<li>primes.cpython-311.pyc</li>
+	<li>proxy.cpython-311.opt-1.pyc</li>
+	<li>proxy.cpython-311.pyc</li>
+	<li>py3compat.cpython-311.opt-1.pyc</li>
+	<li>py3compat.cpython-311.pyc</li>
+	<li>rsakey.cpython-311.opt-1.pyc</li>
+	<li>rsakey.cpython-311.pyc</li>
+	<li>server.cpython-311.opt-1.pyc</li>
+	<li>server.cpython-311.pyc</li>
+	<li>sftp.cpython-311.opt-1.pyc</li>
+	<li>sftp.cpython-311.pyc</li>
+	<li>sftp_attr.cpython-311.opt-1.pyc</li>
+	<li>sftp_attr.cpython-311.pyc</li>
+	<li>sftp_client.cpython-311.opt-1.pyc</li>
+	<li>sftp_client.cpython-311.pyc</li>
+	<li>sftp_file.cpython-311.opt-1.pyc</li>
+	<li>sftp_file.cpython-311.pyc</li>
+	<li>sftp_handle.cpython-311.opt-1.pyc</li>
+	<li>sftp_handle.cpython-311.pyc</li>
+	<li>sftp_server.cpython-311.opt-1.pyc</li>
+	<li>sftp_server.cpython-311.pyc</li>
+	<li>sftp_si.cpython-311.opt-1.pyc</li>
+	<li>sftp_si.cpython-311.pyc</li>
+	<li>ssh_exception.cpython-311.opt-1.pyc</li>
+	<li>ssh_exception.cpython-311.pyc</li>
+	<li>ssh_gss.cpython-311.opt-1.pyc</li>
+	<li>ssh_gss.cpython-311.pyc</li>
+	<li>transport.cpython-311.opt-1.pyc</li>
+	<li>transport.cpython-311.pyc</li>
+	<li>util.cpython-311.opt-1.pyc</li>
+	<li>util.cpython-311.pyc</li>
+	<li>win_openssh.cpython-311.opt-1.pyc</li>
+	<li>win_openssh.cpython-311.pyc</li>
+	<li>win_pageant.cpython-311.opt-1.pyc</li>
+	<li>win_pageant.cpython-311.pyc</li>
 	</ul></li>
 	<li>_version.py</li>
 	<li>_winapi.py</li>
@@ -397,9 +362,10 @@
 	<li>ssh_gss.py</li>
 	<li>transport.py</li>
 	<li>util.py</li>
+	<li>win_openssh.py</li>
 	<li>win_pageant.py</li>
 	</ul></li>
-	<li>paramiko-2.9.2-py3.10.egg-info/<ul>
+	<li>paramiko-2.11.0-py3.11.egg-info/<ul>
 	<li>PKG-INFO</li>
 	<li>SOURCES.txt</li>
 	<li>dependency_links.txt</li>

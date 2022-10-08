@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+
+<title>python3-packit-0.47.1-1.fc36 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="description" content="View python3-packit-0.47.1-1.fc36 in Fedora 36. python3-packit: A tool for integrating upstream projects with Fedora operating system">
+
+<div class="container">
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+    </div>
+  </div>
+
+  <hr />
+
+<h1>
+	python3-packit-0.47.1-1.fc36<small class="text-muted"> in Fedora 36</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of python3-packit</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=packit-0.47.1-1.fc36">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=packit-0.47.1-1.fc36">Search for updates</a>
+</p>
+
+<p>
+	<b>Package Info</b><br>
+	<a href="#changelog">&#129047; Changelog</a><br>
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	<a href="#provides">&#129047; Provides</a><br>
+	<a href="#files">&#129047; Files</a><br>
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>2022-03-17</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.47.1-1</td>
+			<td>- When using Packit CLI for creating Bodhi updates, you can now set `fas_username` and `fas_password`
+  in your Packit user config to not be asked about that when the command is executed. (#1517)</td>
+		</tr>
+		<tr>
+			<td>2022-03-08</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.47.0-1</td>
+			<td>- When specfile is being generated, and both `specfile_path` and
+  `downstream_package_name` are not set, Packit now correctly resolves this
+  situation and sets `specfile_path` to the name of the upstream repo suffixed
+  with &#34;.spec&#34;. (#1499)
+- We are now building SRPMs for Packit&#39;s own PRs in Copr. For more info see #1490 and
+  https://packit.dev/docs/configuration/#srpm_build_deps (#1490)
+- All source-git-commands were updated to append a `From-source-git-commit` or `From-dist-git-commit`
+  Git-trailer to the commit messages they create in dist-git or source-git, in order to
+  save the hash of the commits from which these commits were created. This information
+  is going to be used to tell whether a source-git repository is in sync with the
+  corresponding dist-git repository. (#1488)
+- Spec file and configuration file are no more automatically added to the list of files
+  to sync when the `new files_to_sync` option is used. The old `synced_files` option is
+  deprecated. (#1483)
+- We have added a new configuration option for Copr builds `enable_net` that allows you to
+  disable network access during Copr builds. It is also complemented by
+  `--enable-net/--disable-net` CLI options if you use Packit locally. (#1504)</td>
+		</tr>
+		<tr>
+			<td>2022-02-16</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.46.0-1</td>
+			<td>- Synchronization of default files can now be disabled using a new config
+  `files_to_sync`. Key `sync_files` is now deprecated. (#1483)
+- Packit now correctly handles colons in git trailer values in source-git commits. (#1478)
+- Fedora 36 was added to the static list of `fedora-` aliases. (#1480)</td>
+		</tr>
+		<tr>
+			<td>2022-02-04</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.45.0-1</td>
+			<td>- A new `packit source-git update-source-git` command has been introduced for
+  taking new changes from dist-git (specified by a revision range) to source-git.
+  These may include any changes except source code, patches and `Version` tag
+  changes in the spec file. ([packit#1456](https://github.com/packit/packit/pull/1456))
+- There&#39;s a new configuration option `create_sync_note` that allows you to
+  disable creating of README by packit in downstream. ([packit#1465](https://github.com/packit/packit/pull/1465))
+- A new option `--no-require-autosetup` for `source-git init` command has been
+  introduced. Please note that source-git repositories not using `
+%setup       -q
+
+
+
+` may
+  not be properly initialized. ([packit#1470](https://github.com/packit/packit/pull/1470))</td>
+		</tr>
+		<tr>
+			<td>2022-01-20</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.44.0-1</td>
+			<td>- Packit now correctly finds the release, even if you don&#39;t use the version as
+  the title of the release on GitHub. ([packit#1437](https://github.com/packit/packit/pull/1437))
+- Local branches are now named as `pr/{pr_id}` when checking out a PR, even
+  when it&#39;s not being merged with the target branch. This results in the NVR
+  of the build containing `pr{pr_id}` instead of `pr.changes{pr_id}`. ([packit#1445](https://github.com/packit/packit/pull/1445))
+- A bug which caused ignoring the `--no-bump` and `--release-suffix` options
+  when creating an SRPMs from source-git repositories has been fixed. Packit
+  also doesn&#39;t touch the `Release` field in the specfile unless it needs to be
+  changed (the macros are not expanded that way when not necessary). ([packit#1452](https://github.com/packit/packit/pull/1452))
+- When checking if directories hold a Git-tree, Packit now also allows `.git`
+  to be a file with a `gitdir` reference, not only a directory. ([packit#1458](https://github.com/packit/packit/pull/1458))</td>
+		</tr>
+		<tr>
+			<td>2021-12-08</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.43.0-1</td>
+			<td>- A new `packit prepare-sources` command has been implemented for preparing                                                                                                                                                                 
+  sources for an SRPM build using the content of an upstream repository.                                                                                                                                                                    
+  ([packit#1424](https://github.com/packit/packit/pull/1424))                                                         
+- Packit now visibly informs about an ongoing cloning process to remove                                                                                                                                                                     
+  potential confusion.                                                                                                                                                                                                                      
+  ([packit#1431](https://github.com/packit/packit/pull/1431))                                                                                                                                                                               
+- The `upstream_package_name` config option is now checked for illegal                                                                                                                                                                      
+  characters and an error is thrown if it contains them.                                                                                                                                                                                    
+  ([packit#1434](https://github.com/packit/packit/pull/1434))</td>
+		</tr>
+		<tr>
+			<td>2021-11-25</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.42.0-1</td>
+			<td>- Running `post-upstream-clone` action in `propose-downstream` command was fixed.
+  This solves the issue for projects that generate the specfile during this action.
+- New config option `env` has been added for specifying environment variables
+  used for running tests in the Testing Farm.</td>
+		</tr>
+		<tr>
+			<td>2021-11-11</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.41.0-1</td>
+			<td>- Packit now supports `changelog-entry` action that is used when creating
+  SRPM. The action is supposed to generate whole changelog entry (including
+  the `-` at the start of the lines) and has a priority over any other way we
+  modify the changelog with. (#1367)
+- Fixed an issue, which raised an `UnicodeEncodingError`, when working with
+  dist-git patch files with an encoding other than UTF-8. (#1406)
+- Backup alias definitions now reflect the official release of Fedora Linux 35. (#1405)
+- We have introduced a new configuration option `merge_pr_in_ci` that allows
+  you to disable merging of PR into the base branch before creating SRPM in
+  service. (#1395)
+- Fixed an issue, where spec-files located in a sub-directory of upstream
+  projects, were not placed in the root of the dist-git repo when proposing
+  changes downstream. (#1402)</td>
+		</tr>
+		<tr>
+			<td>2021-10-27</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.40.0-1</td>
+			<td>- Packit will deduce the version for SRPM from the spec file, if there are no git tags or action for acquiring current version defined. (#1388)
+- We have introduced new options for generating SRPM packages: (#1396)
+  - `--no-bump` that prevents changing of the release in the SRPM, which can be used for creating SRPMs on checked out tags/releases.
+  - `--release-suffix` that allows you to customize the suffix after the release number, e.g. reference bugzilla or specific branch of the build.</td>
+		</tr>
+		<tr>
+			<td>2021-10-14</td>
+			<td>Packit Service &lt;user dash cont dash team+packit dash service at redhat dot com&gt; - 0.39.0-1</td>
+			<td>- Bug in Packit causing issues with local build when the branch was named with prefix rpm has been fixed. (#1380)
+- We have added a new option to Packit CLI when creating Bodhi updates, you can use `-b` or `--resolve-bugzillas` and specify IDs (separated by comma, e.g. `-b 1` or `-b 1,2,3`) of bugzillas that are being closed by the update. (#1383)</td>
+		</tr>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			<li>
+			<a href="/pkgs/fedpkg/fedpkg/fedora-36.html">
+			fedpkg</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/git/git/fedora-36.html">
+			git</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/krb5/krb5-workstation/fedora-36.html">
+			krb5-workstation</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python2.7/python2.7/fedora-36.html">
+			python2.7</a> = 3.10
+
+			</li>
+			<li>
+			<a href="/pkgs/python3.10/python3/fedora-36.html">
+			python3</a> = 3.10
+
+			</li>
+			<li>
+			<a href="/pkgs/GitPython/python3-GitPython/fedora-36.html">
+			python3-GitPython</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/bodhi/python3-bodhi-client/fedora-36.html">
+			python3-bodhi-client</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-cachetools/python3-cachetools/fedora-36.html">
+			python3-cachetools</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-cccolutils/python3-cccolutils/fedora-36.html">
+			python3-cccolutils</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-click/python3-click/fedora-36.html">
+			python3-click</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-copr/python3-copr/fedora-36.html">
+			python3-copr</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-gnupg/python3-gnupg/fedora-36.html">
+			python3-gnupg</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/koji/python3-koji/fedora-36.html">
+			python3-koji</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-lazy-object-proxy/python3-lazy-object-proxy/fedora-36.html">
+			python3-lazy-object-proxy</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-marshmallow/python3-marshmallow/fedora-36.html">
+			python3-marshmallow</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-marshmallow-enum/python3-marshmallow-enum/fedora-36.html">
+			python3-marshmallow-enum</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-munch/python3-munch/fedora-36.html">
+			python3-munch</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-ogr/python3-ogr/fedora-36.html">
+			python3-ogr</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-packaging/python3-packaging/fedora-36.html">
+			python3-packaging</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/PyYAML/python3-pyyaml/fedora-36.html">
+			python3-pyyaml</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-requests/python3-requests/fedora-36.html">
+			python3-requests</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-setuptools/python3-setuptools/fedora-36.html">
+			python3-setuptools</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/python-tabulate/python3-tabulate/fedora-36.html">
+			python3-tabulate</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/rebase-helper/rebase-helper/fedora-36.html">
+			rebase-helper</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/rpm/rpm-build/fedora-36.html">
+			rpm-build</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/rpmdevtools/rpmdevtools/fedora-36.html">
+			rpmdevtools</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/rsync/rsync/fedora-36.html">
+			rsync</a>
+
+			</li>
+		</ul>
+	</div>
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			<li>python-packit</li>
+			<li>python3-packit</li>
+			<li>python3.10-packit</li>
+			<li>python3.10dist(packitos)</li>
+			<li>python3dist(packitos)</li>
+		</ul>
+	</div>
+</div>
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	<li>usr/<ul>
+	<li>lib/<ul>
+	<li>python3.10/<ul>
+	<li>site-packages/<ul>
+	<li>packit/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-310.opt-1.pyc</li>
+	<li>__init__.cpython-310.pyc</li>
+	<li>actions.cpython-310.opt-1.pyc</li>
+	<li>actions.cpython-310.pyc</li>
+	<li>api.cpython-310.opt-1.pyc</li>
+	<li>api.cpython-310.pyc</li>
+	<li>base_git.cpython-310.opt-1.pyc</li>
+	<li>base_git.cpython-310.pyc</li>
+	<li>command_handler.cpython-310.opt-1.pyc</li>
+	<li>command_handler.cpython-310.pyc</li>
+	<li>constants.cpython-310.opt-1.pyc</li>
+	<li>constants.cpython-310.pyc</li>
+	<li>copr_helper.cpython-310.opt-1.pyc</li>
+	<li>copr_helper.cpython-310.pyc</li>
+	<li>distgit.cpython-310.opt-1.pyc</li>
+	<li>distgit.cpython-310.pyc</li>
+	<li>exceptions.cpython-310.opt-1.pyc</li>
+	<li>exceptions.cpython-310.pyc</li>
+	<li>local_project.cpython-310.opt-1.pyc</li>
+	<li>local_project.cpython-310.pyc</li>
+	<li>patches.cpython-310.opt-1.pyc</li>
+	<li>patches.cpython-310.pyc</li>
+	<li>pkgtool.cpython-310.opt-1.pyc</li>
+	<li>pkgtool.cpython-310.pyc</li>
+	<li>schema.cpython-310.opt-1.pyc</li>
+	<li>schema.cpython-310.pyc</li>
+	<li>security.cpython-310.opt-1.pyc</li>
+	<li>security.cpython-310.pyc</li>
+	<li>source_git.cpython-310.opt-1.pyc</li>
+	<li>source_git.cpython-310.pyc</li>
+	<li>specfile.cpython-310.opt-1.pyc</li>
+	<li>specfile.cpython-310.pyc</li>
+	<li>status.cpython-310.opt-1.pyc</li>
+	<li>status.cpython-310.pyc</li>
+	<li>sync.cpython-310.opt-1.pyc</li>
+	<li>sync.cpython-310.pyc</li>
+	<li>upstream.cpython-310.opt-1.pyc</li>
+	<li>upstream.cpython-310.pyc</li>
+	</ul></li>
+	<li>actions.py</li>
+	<li>api.py</li>
+	<li>base_git.py</li>
+	<li>cli/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-310.opt-1.pyc</li>
+	<li>__init__.cpython-310.pyc</li>
+	<li>build.cpython-310.opt-1.pyc</li>
+	<li>build.cpython-310.pyc</li>
+	<li>copr_build.cpython-310.opt-1.pyc</li>
+	<li>copr_build.cpython-310.pyc</li>
+	<li>create_update.cpython-310.opt-1.pyc</li>
+	<li>create_update.cpython-310.pyc</li>
+	<li>init.cpython-310.opt-1.pyc</li>
+	<li>init.cpython-310.pyc</li>
+	<li>local_build.cpython-310.opt-1.pyc</li>
+	<li>local_build.cpython-310.pyc</li>
+	<li>packit_base.cpython-310.opt-1.pyc</li>
+	<li>packit_base.cpython-310.pyc</li>
+	<li>prepare_sources.cpython-310.opt-1.pyc</li>
+	<li>prepare_sources.cpython-310.pyc</li>
+	<li>propose_downstream.cpython-310.opt-1.pyc</li>
+	<li>propose_downstream.cpython-310.pyc</li>
+	<li>push_updates.cpython-310.opt-1.pyc</li>
+	<li>push_updates.cpython-310.pyc</li>
+	<li>source_git.cpython-310.opt-1.pyc</li>
+	<li>source_git.cpython-310.pyc</li>
+	<li>source_git_init.cpython-310.opt-1.pyc</li>
+	<li>source_git_init.cpython-310.pyc</li>
+	<li>source_git_status.cpython-310.opt-1.pyc</li>
+	<li>source_git_status.cpython-310.pyc</li>
+	<li>srpm.cpython-310.opt-1.pyc</li>
+	<li>srpm.cpython-310.pyc</li>
+	<li>status.cpython-310.opt-1.pyc</li>
+	<li>status.cpython-310.pyc</li>
+	<li>sync_from_downstream.cpython-310.opt-1.pyc</li>
+	<li>sync_from_downstream.cpython-310.pyc</li>
+	<li>types.cpython-310.opt-1.pyc</li>
+	<li>types.cpython-310.pyc</li>
+	<li>update_dist_git.cpython-310.opt-1.pyc</li>
+	<li>update_dist_git.cpython-310.pyc</li>
+	<li>update_source_git.cpython-310.opt-1.pyc</li>
+	<li>update_source_git.cpython-310.pyc</li>
+	<li>utils.cpython-310.opt-1.pyc</li>
+	<li>utils.cpython-310.pyc</li>
+	<li>validate_config.cpython-310.opt-1.pyc</li>
+	<li>validate_config.cpython-310.pyc</li>
+	</ul></li>
+	<li>build.py</li>
+	<li>copr_build.py</li>
+	<li>create_update.py</li>
+	<li>init.py</li>
+	<li>local_build.py</li>
+	<li>packit_base.py</li>
+	<li>prepare_sources.py</li>
+	<li>propose_downstream.py</li>
+	<li>push_updates.py</li>
+	<li>source_git.py</li>
+	<li>source_git_init.py</li>
+	<li>source_git_status.py</li>
+	<li>srpm.py</li>
+	<li>status.py</li>
+	<li>sync_from_downstream.py</li>
+	<li>types.py</li>
+	<li>update_dist_git.py</li>
+	<li>update_source_git.py</li>
+	<li>utils.py</li>
+	<li>validate_config.py</li>
+	</ul></li>
+	<li>command_handler.py</li>
+	<li>config/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-310.opt-1.pyc</li>
+	<li>__init__.cpython-310.pyc</li>
+	<li>aliases.cpython-310.opt-1.pyc</li>
+	<li>aliases.cpython-310.pyc</li>
+	<li>common_package_config.cpython-310.opt-1.pyc</li>
+	<li>common_package_config.cpython-310.pyc</li>
+	<li>config.cpython-310.opt-1.pyc</li>
+	<li>config.cpython-310.pyc</li>
+	<li>job_config.cpython-310.opt-1.pyc</li>
+	<li>job_config.cpython-310.pyc</li>
+	<li>notifications.cpython-310.opt-1.pyc</li>
+	<li>notifications.cpython-310.pyc</li>
+	<li>package_config.cpython-310.opt-1.pyc</li>
+	<li>package_config.cpython-310.pyc</li>
+	<li>package_config_validator.cpython-310.opt-1.pyc</li>
+	<li>package_config_validator.cpython-310.pyc</li>
+	<li>sources.cpython-310.opt-1.pyc</li>
+	<li>sources.cpython-310.pyc</li>
+	</ul></li>
+	<li>aliases.py</li>
+	<li>common_package_config.py</li>
+	<li>config.py</li>
+	<li>job_config.py</li>
+	<li>notifications.py</li>
+	<li>package_config.py</li>
+	<li>package_config_validator.py</li>
+	<li>sources.py</li>
+	</ul></li>
+	<li>constants.py</li>
+	<li>copr_helper.py</li>
+	<li>distgit.py</li>
+	<li>exceptions.py</li>
+	<li>local_project.py</li>
+	<li>patches.py</li>
+	<li>pkgtool.py</li>
+	<li>schema.py</li>
+	<li>security.py</li>
+	<li>source_git.py</li>
+	<li>specfile.py</li>
+	<li>status.py</li>
+	<li>sync.py</li>
+	<li>upstream.py</li>
+	<li>utils/<ul>
+	<li>__init__.py</li>
+	<li>__pycache__/<ul>
+	<li>__init__.cpython-310.opt-1.pyc</li>
+	<li>__init__.cpython-310.pyc</li>
+	<li>bodhi.cpython-310.opt-1.pyc</li>
+	<li>bodhi.cpython-310.pyc</li>
+	<li>changelog_helper.cpython-310.opt-1.pyc</li>
+	<li>changelog_helper.cpython-310.pyc</li>
+	<li>commands.cpython-310.opt-1.pyc</li>
+	<li>commands.cpython-310.pyc</li>
+	<li>decorators.cpython-310.opt-1.pyc</li>
+	<li>decorators.cpython-310.pyc</li>
+	<li>extensions.cpython-310.opt-1.pyc</li>
+	<li>extensions.cpython-310.pyc</li>
+	<li>logging.cpython-310.opt-1.pyc</li>
+	<li>logging.cpython-310.pyc</li>
+	<li>repo.cpython-310.opt-1.pyc</li>
+	<li>repo.cpython-310.pyc</li>
+	<li>source_script.cpython-310.opt-1.pyc</li>
+	<li>source_script.cpython-310.pyc</li>
+	</ul></li>
+	<li>bodhi.py</li>
+	<li>changelog_helper.py</li>
+	<li>commands.py</li>
+	<li>decorators.py</li>
+	<li>extensions.py</li>
+	<li>logging.py</li>
+	<li>repo.py</li>
+	<li>source_script.py</li>
+	</ul></li>
+	</ul></li>
+	<li>packitos-0.47.1-py3.10.egg-info/<ul>
+	<li>PKG-INFO</li>
+	<li>SOURCES.txt</li>
+	<li>dependency_links.txt</li>
+	<li>entry_points.txt</li>
+	<li>requires.txt</li>
+	<li>top_level.txt</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>share/<ul>
+	<li>doc/<ul>
+	<li>python3-packit/<ul>
+	<li>README.md</li>
+	</ul></li>
+	</ul></li>
+	<li>licenses/<ul>
+	<li>python3-packit/<ul>
+	<li>LICENSE</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+</div>
+
+  <div class="text-muted text-center">
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>
+  </div>
+</div>

@@ -58,8 +58,9 @@
 <div id="vue">
 	<div class="row">
 		<div class="col-md-8">
-			<p class="nowrap">Ansible roles and playbooks to install and uninstall FreeIPA servers, replicas
-and clients. Also modules management.
+			<p class="nowrap">Ansible roles to install and uninstall FreeIPA servers, replicas and clients,
+roles for backups and SmartCard configuration, modules for management and also
+playbooks for all roles and modules.
 
 Note: The Ansible playbooks and roles require a configured Ansible environment
 where the Ansible nodes are reachable and are properly set up to have an IP
@@ -72,8 +73,11 @@ Features
 - One-time-password (OTP) support for client installation
 - Repair mode for clients
 - Backup and restore, also to and from controller
+- Smartcard setup for servers and clients
 - Modules for automembership rule management
+- Modules for automount key management
 - Modules for automount location management
+- Modules for automount map management
 - Modules for config management
 - Modules for delegation management
 - Modules for dns config management
@@ -86,6 +90,7 @@ Features
 - Modules for hbacsvcgroup management
 - Modules for host management
 - Modules for hostgroup management
+- Modules for idrange management
 - Modules for location management
 - Modules for permission management
 - Modules for privilege management
@@ -94,6 +99,8 @@ Features
 - Modules for self service management
 - Modules for server management
 - Modules for service management
+- Modules for service delegation rule management
+- Modules for service delegation target management
 - Modules for sudocmd management
 - Modules for sudocmdgroup management
 - Modules for sudorule management
@@ -123,8 +130,6 @@ Requirements
   - Ansible version: 2.8+ (ansible-freeipa is an Ansible Collection)
   - /usr/bin/kinit is required on the controller if a one time password (OTP)
     is used
-  - python3-gssapi is required on the controller if a one time password (OTP)
-    is used with keytab to install the client.
 
   Node
   - Supported FreeIPA version (see above)
@@ -149,7 +154,27 @@ a separate step before starting the server installation.</p>
 					<tr>
 						<td>Fedora Rawhide</td>
 						<td>
-						<a href="fedora-rawhide.html">1.5.3-1.fc36</a>
+						<a href="fedora-rawhide.html">1.8.4-1.fc38</a>
+						</td>
+
+						<td>
+							-
+						</td>
+					</tr>
+					<tr>
+						<td>Fedora 37</td>
+						<td>
+						<a href="fedora-37.html">1.8.4-1.fc37</a>
+						</td>
+
+						<td>
+							-
+						</td>
+					</tr>
+					<tr>
+						<td>Fedora 36</td>
+						<td>
+						<a href="fedora-36.html">1.6.2-1.fc36</a>
 						</td>
 
 						<td>
@@ -166,16 +191,6 @@ a separate step before starting the server installation.</p>
 							-
 						</td>
 					</tr>
-					<tr>
-						<td>Fedora 34</td>
-						<td>
-						<a href="fedora-34.html">0.3.5-1.fc34</a>
-						</td>
-
-						<td>
-							-
-						</td>
-					</tr>
 				</tbody>
 			</table>
 			<datagrepper></datagrepper>
@@ -185,7 +200,7 @@ a separate step before starting the server installation.</p>
 			<ul>
 				<li>Upstream: <a href="https://github.com/freeipa/ansible-freeipa">https://github.com/freeipa/ansible-freeipa</a></li>
 				<li>License(s): GPLv3+</li>
-				<li>Maintainer: twoerner</li>
+				<li>Maintainers: rjeffman, twoerner</li>
 			</ul>
 			<hr />
 			<b>Related Packages</b>

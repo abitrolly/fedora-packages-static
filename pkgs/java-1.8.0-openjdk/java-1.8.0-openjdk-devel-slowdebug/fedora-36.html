@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<title>java-1.8.0-openjdk-devel-slowdebug-1.8.0.322.b06-6.fc36 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="description" content="View java-1.8.0-openjdk-devel-slowdebug-1.8.0.322.b06-6.fc36 in Fedora 36. java-1.8.0-openjdk-devel-slowdebug: OpenJDK 8 Development Environment unoptimised with full debugging on">
+
+<div class="container">
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+    </div>
+  </div>
+
+  <hr />
+
+<h1>
+	java-1.8.0-openjdk-devel-slowdebug-1.8.0.322.b06-6.fc36<small class="text-muted"> in Fedora 36</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of java-1.8.0-openjdk-devel-slowdebug</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-1.8.0-openjdk-1.8.0.322.b06-6.fc36">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=java-1.8.0-openjdk-1.8.0.322.b06-6.fc36">Search for updates</a>
+</p>
+
+<p>
+	<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+	<a href="#changelog">&#129047; Changelog</a><br>
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	<a href="#provides">&#129047; Provides</a><br>
+	<a href="#files">&#129047; Files</a><br>
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>2022-02-26</td>
+			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:1.8.0.322.b06-6</td>
+			<td>- Storing and restoring alterntives during update manually
+- Fixing Bug 2001567 - update of JDK/JRE is removing its manually selected alterantives and select (as auto) system JDK/JRE
+-- The move of alternatives creation to posttrans to fix:
+-- Bug 1200302 - dnf reinstall breaks alternatives
+-- Had caused the alternatives to be removed, and then created again,
+-- instead of being added, and then removing the old, and thus persisting
+-- the selection in family
+-- Thus this fix, is storing the family of manually selected master, and if
+-- stored, then it is restoring the family of the master</td>
+		</tr>
+		<tr>
+			<td>2022-02-26</td>
+			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:1.8.0.322.b06-5</td>
+			<td>- Family extracted to globals</td>
+		</tr>
+		<tr>
+			<td>2022-02-26</td>
+			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:1.8.0.322.b06-4</td>
+			<td>- javadoc-zip got its own provides next to plain javadoc ones</td>
+		</tr>
+		<tr>
+			<td>2022-02-22</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:1.8.0.322.b06-3</td>
+			<td>- Separate crypto policy initialisation from FIPS initialisation, now they are no longer interdependent</td>
+		</tr>
+		<tr>
+			<td>2022-02-16</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:1.8.0.322.b06-2</td>
+			<td>- Fix FIPS issues in native code and with initialisation of java.security.Security</td>
+		</tr>
+		<tr>
+			<td>2022-02-16</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:1.8.0.322.b06-1</td>
+			<td>- Update to aarch64-shenandoah-jdk8u322-b06 (EA)
+- Update release notes for 8u322-b06.
+- Switch to GA mode for final release.
+- Require tzdata 2021e as of JDK-8275766.
+- Update tarball generation script to use git following shenandoah-jdk8u&#39;s move to github
+- Fix FIPS issues in native code and with initialisation of java.security.Security</td>
+		</tr>
+		<tr>
+			<td>2022-02-07</td>
+			<td>Severin Gehwolf &lt;sgehwolf at redhat dot com&gt; - 1:1.8.0.322.b06-1</td>
+			<td>- Re-enable gdb backtrace check.</td>
+		</tr>
+		<tr>
+			<td>2022-01-20</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:1.8.0.322.b04-0.2.ea</td>
+			<td>- Temporarily move x86 to use Zero in order to get a working build
+- Introduce architecture restriction logic for the gdb test. (RH2041970)
+- Disable on x86, x86_64, ppc64le &amp; s390x while these are broken in rawhide.
+- Replace GCC 11 patch to remove use of the register keyword with correct fix to ADLC build (JDK-8281098)
+- Adjust JDK8199936/PR3533 -mstackrealign patch to instead pass -mincoming-stack-boundary=2 -mpreferred-stack-boundary=4
+- Refactor build functions so we can build just HotSpot without any attempt at installation.
+- Explicitly list JIT architectures rather than relying on those with slowdebug builds
+- Disable the serviceability agent on Zero architectures even when the architecture itself is supported
+- Add backport of JDK-8257794 to fix bogus assert on slowdebug x86-32 Zero builds
+- Resolves: rhbz#2045726
+- Related: rhbz#2051302
+- Related: rhbz#2041970</td>
+		</tr>
+		<tr>
+			<td>2022-01-20</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1:1.8.0.322.b04-0.1.ea.1</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild</td>
+		</tr>
+		<tr>
+			<td>2022-01-10</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:1.8.0.322.b04-0.1.ea</td>
+			<td>- Update to aarch64-shenandoah-jdk8u322-b04 (EA)
+- Update release notes for 8u322-b04.
+- Require tzdata 2021c as of JDK-8274407.</td>
+		</tr>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			<li>
+			<a href="/pkgs/bash/bash/fedora-36.html">
+			bash</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/glibc/glibc/fedora-36.html">
+			glibc</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/java-1.8.0-openjdk/java-1.8.0-openjdk-slowdebug/fedora-36.html">
+			java-1.8.0-openjdk-slowdebug</a> = 1.8.0.322.b06-6.fc36
+
+			</li>
+			<li>
+			<a href="/pkgs/zlib/zlib/fedora-36.html">
+			zlib</a>
+
+			</li>
+		</ul>
+	</div>
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			<li>application()</li>
+			<li>application(java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug-jconsole-slowdebug.desktop)</li>
+			<li>java-1.8.0-devel-slowdebug</li>
+			<li>java-1.8.0-openjdk-devel-slowdebug</li>
+			<li>java-1.8.0-openjdk-devel-slowdebug(x86-64)</li>
+			<li>java-sdk-1.8.0-openjdk-slowdebug</li>
+			<li>java-sdk-1.8.0-slowdebug</li>
+		</ul>
+	</div>
+</div>
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	<li>usr/<ul>
+	<li>lib/<ul>
+	<li>.build-id/<ul>
+	<li>00/<ul>
+	<li>499b4c2bfd692b6bc32388cf8206369c5946f9.1</li>
+	</ul></li>
+	<li>03/<ul>
+	<li>f57cf30ecef18cba8c66719d11958e888be9ed</li>
+	</ul></li>
+	<li>07/<ul>
+	<li>bde802c4200607ed6efb31f89f2ef1400542fd.1</li>
+	</ul></li>
+	<li>08/<ul>
+	<li>0ac5c1e573870798614f64066f6ab506842036</li>
+	</ul></li>
+	<li>0e/<ul>
+	<li>39e18fb42af11ce8362a6670b3fa9b933d6f90</li>
+	</ul></li>
+	<li>12/<ul>
+	<li>dd68fc05324f1eed2205e09f86846bd474e639</li>
+	</ul></li>
+	<li>13/<ul>
+	<li>d2cc5e76571054f7d86ffffb21864e90e4ea25.1</li>
+	</ul></li>
+	<li>1a/<ul>
+	<li>73ddbf570cd98b06bcaaf9264874efecbcd1d4.1</li>
+	</ul></li>
+	<li>1b/<ul>
+	<li>329a767ceb2f67acba8df97b34f8d8e52178dd</li>
+	</ul></li>
+	<li>24/<ul>
+	<li>2d349df2922f0e4a26056322cd938dc8e26374</li>
+	</ul></li>
+	<li>27/<ul>
+	<li>17c64377992461baa42211f017c36ba64abe60.1</li>
+	</ul></li>
+	<li>33/<ul>
+	<li>23967dec3d3b70233f5e23dbe4aa37adaacfa4.1</li>
+	</ul></li>
+	<li>45/<ul>
+	<li>0788d52eea2faca4566a73fe67f52e1054e205</li>
+	<li>3c730fe14754a1c9192c57c5bb90e05c1ad691</li>
+	</ul></li>
+	<li>4c/<ul>
+	<li>c30b436c2df2471db29f482fe655f7a116b089</li>
+	</ul></li>
+	<li>4e/<ul>
+	<li>d02d7ef795b998776bdeed7e379d98549906b6</li>
+	</ul></li>
+	<li>4f/<ul>
+	<li>9e1591a41a07ad3177f33048dcd1fc487faa55</li>
+	</ul></li>
+	<li>55/<ul>
+	<li>b4297ca0d7e1950c9bb2295842914145a7bc80</li>
+	</ul></li>
+	<li>5c/<ul>
+	<li>0900da616f36de7407423c14f32997ec22fde7</li>
+	</ul></li>
+	<li>5d/<ul>
+	<li>7fa3666315b467683770ef41cbe2dc8d4b0626.1</li>
+	</ul></li>
+	<li>5f/<ul>
+	<li>cb79b16c588746473e4942a6426dd6dc72f388.1</li>
+	</ul></li>
+	<li>62/<ul>
+	<li>32071baeb684624b7ad11708e36a4d27aa1aec</li>
+	</ul></li>
+	<li>63/<ul>
+	<li>97a54a4479cb0aeb25670d2d739c1f0af95dac</li>
+	</ul></li>
+	<li>64/<ul>
+	<li>24888a0257d987f74eabc0d0c04087408696ed</li>
+	</ul></li>
+	<li>68/<ul>
+	<li>c39817111b3a8ba45a71c03dca56b1c165d420</li>
+	</ul></li>
+	<li>71/<ul>
+	<li>5d00ef02db8ceb39a092543f6a7351cf967faa</li>
+	</ul></li>
+	<li>77/<ul>
+	<li>bdead9796ab72fc997747f1a64163c81ff3c00.1</li>
+	</ul></li>
+	<li>79/<ul>
+	<li>5e461bdec93e5c08d2bf53d7805fc0c96d979b</li>
+	</ul></li>
+	<li>7b/<ul>
+	<li>242283cda1a9dfcb18bfe5b7c1b44f1c598c74</li>
+	</ul></li>
+	<li>98/<ul>
+	<li>4c25ae31f1c2f3aeb0b52fd619cb697d526fb7</li>
+	</ul></li>
+	<li>a7/<ul>
+	<li>dfdbfccaa887c50d0a737f329582a51e2f5f50.1</li>
+	</ul></li>
+	<li>a8/<ul>
+	<li>0ae920f27b461983b74682a935e17ca87b61c3</li>
+	</ul></li>
+	<li>b5/<ul>
+	<li>26307f5fbcf77271373501d3b241823aecd7f6.1</li>
+	</ul></li>
+	<li>b9/<ul>
+	<li>16813b5554267c8c9af917ea6d863775c0d38d.1</li>
+	</ul></li>
+	<li>c0/<ul>
+	<li>d0261369f496237307ab7427c5f4a958748fda.1</li>
+	</ul></li>
+	<li>c3/<ul>
+	<li>501dc768233d7deb4ba77884723f2a5c656f9d</li>
+	</ul></li>
+	<li>c5/<ul>
+	<li>8882d9800f89272ee78a2ed71096dda842440e</li>
+	</ul></li>
+	<li>c7/<ul>
+	<li>90a0cead8d8ccffc2ea99579b3b74a4efdc42e</li>
+	</ul></li>
+	<li>c8/<ul>
+	<li>badacea13c78000c58836e05207101042b466f</li>
+	</ul></li>
+	<li>d1/<ul>
+	<li>66958fbc6f783cf9c7b69d4a9e4658a78e5634</li>
+	</ul></li>
+	<li>dc/<ul>
+	<li>5892ff1b3f9dde21b0788d01311343424bf0b2</li>
+	</ul></li>
+	<li>e0/<ul>
+	<li>60a14f8968f70d9365dfff14e02286892bb909</li>
+	</ul></li>
+	<li>e9/<ul>
+	<li>f851d204c4a389c9c6c9c171e91c4bd99681d4.1</li>
+	</ul></li>
+	<li>f2/<ul>
+	<li>826888f42903e1e66a582a841106a08530e024.1</li>
+	</ul></li>
+	<li>f4/<ul>
+	<li>553b0011168759a8e91a6f53913a5f63ec1d71</li>
+	</ul></li>
+	<li>f9/<ul>
+	<li>3e54d8ecf7e04695fb9bf707e0cc15e17b2c6c</li>
+	</ul></li>
+	<li>ff/<ul>
+	<li>f5fdd30cee23ec95420c458cfdbcda68668646</li>
+	</ul></li>
+	</ul></li>
+	<li>jvm/<ul>
+	<li>java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug/<ul>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	<li>THIRD_PARTY_README</li>
+	<li>bin/<ul>
+	<li>alt-java</li>
+	<li>appletviewer</li>
+	<li>clhsdb</li>
+	<li>extcheck</li>
+	<li>hsdb</li>
+	<li>idlj</li>
+	<li>jar</li>
+	<li>jarsigner</li>
+	<li>java</li>
+	<li>java-rmi.cgi</li>
+	<li>javac</li>
+	<li>javadoc</li>
+	<li>javah</li>
+	<li>javap</li>
+	<li>jcmd</li>
+	<li>jconsole</li>
+	<li>jdb</li>
+	<li>jdeps</li>
+	<li>jfr</li>
+	<li>jhat</li>
+	<li>jinfo</li>
+	<li>jjs</li>
+	<li>jmap</li>
+	<li>jps</li>
+	<li>jrunscript</li>
+	<li>jsadebugd</li>
+	<li>jstack</li>
+	<li>jstat</li>
+	<li>jstatd</li>
+	<li>keytool</li>
+	<li>native2ascii</li>
+	<li>orbd</li>
+	<li>pack200</li>
+	<li>policytool</li>
+	<li>rmic</li>
+	<li>rmid</li>
+	<li>rmiregistry</li>
+	<li>schemagen</li>
+	<li>serialver</li>
+	<li>servertool</li>
+	<li>tnameserv</li>
+	<li>unpack200</li>
+	<li>wsgen</li>
+	<li>wsimport</li>
+	<li>xjc</li>
+	</ul></li>
+	<li>include/<ul>
+	<li>classfile_constants.h</li>
+	<li>jawt.h</li>
+	<li>jdwpTransport.h</li>
+	<li>jni.h</li>
+	<li>jvmti.h</li>
+	<li>jvmticmlr.h</li>
+	<li>linux/<ul>
+	<li>jawt_md.h</li>
+	<li>jni_md.h</li>
+	</ul></li>
+	</ul></li>
+	<li>lib/<ul>
+	<li>amd64/<ul>
+	<li>jli/<ul>
+	<li>libjli.so</li>
+	</ul></li>
+	<li>libjawt.so</li>
+	</ul></li>
+	<li>ct.sym</li>
+	<li>dt.jar</li>
+	<li>ir.idl</li>
+	<li>jconsole.jar</li>
+	<li>jexec</li>
+	<li>orb.idl</li>
+	<li>sa-jdi.jar</li>
+	<li>tools.jar</li>
+	</ul></li>
+	<li>tapset/<ul>
+	<li>hotspot-1.8.0.322.b06-6.fc36.x86_64.stp</li>
+	<li>hotspot_gc-1.8.0.322.b06-6.fc36.x86_64.stp</li>
+	<li>hotspot_jni-1.8.0.322.b06-6.fc36.x86_64.stp</li>
+	<li>jstack-1.8.0.322.b06-6.fc36.x86_64.stp</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>share/<ul>
+	<li>applications/<ul>
+	<li>java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug-jconsole-slowdebug.desktop</li>
+	</ul></li>
+	<li>man/<ul>
+	<li>man1/<ul>
+	<li>appletviewer-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>extcheck-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>idlj-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jar-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jarsigner-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>javac-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>javadoc-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>javah-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>javap-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jcmd-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jconsole-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jdb-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jdeps-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jhat-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jinfo-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jmap-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jps-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jrunscript-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jsadebugd-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jstack-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jstat-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>jstatd-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>native2ascii-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>rmic-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>schemagen-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>serialver-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>wsgen-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>wsimport-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	<li>xjc-java-1.8.0-openjdk-1.8.0.322.b06-6.fc36.x86_64-slowdebug.1.gz</li>
+	</ul></li>
+	</ul></li>
+	<li>systemtap/<ul>
+	<li>tapset/<ul>
+	<li>x86_64/<ul>
+	<li>hotspot-1.8.0.322.b06-6.fc36.x86_64-slowdebug.stp</li>
+	<li>hotspot_gc-1.8.0.322.b06-6.fc36.x86_64-slowdebug.stp</li>
+	<li>hotspot_jni-1.8.0.322.b06-6.fc36.x86_64-slowdebug.stp</li>
+	<li>jstack-1.8.0.322.b06-6.fc36.x86_64-slowdebug.stp</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+</div>
+
+  <div class="text-muted text-center">
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>
+  </div>
+</div>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<title>java-latest-openjdk-headless-17.0.1.0.12-3.rolling.el8 - Fedora Packages</title>
+<title>java-latest-openjdk-headless-19.0.0.0.36-2.rolling.el8 - Fedora Packages</title>
 <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../assets/css/main.css">
 <link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<meta name="description" content="View java-latest-openjdk-headless-17.0.1.0.12-3.rolling.el8 in EPEL 8. java-latest-openjdk-headless: OpenJDK 17 Headless Runtime Environment">
+<meta name="description" content="View java-latest-openjdk-headless-19.0.0.0.36-2.rolling.el8 in EPEL 8. java-latest-openjdk-headless: OpenJDK 19 Headless Runtime Environment">
 
 <div class="container">
   <div class="row">
@@ -20,12 +20,12 @@
   <hr />
 
 <h1>
-	java-latest-openjdk-headless-17.0.1.0.12-3.rolling.el8<small class="text-muted"> in EPEL 8</small>
+	java-latest-openjdk-headless-19.0.0.0.36-2.rolling.el8<small class="text-muted"> in EPEL 8</small>
 </h1>
 <p>
 	<a href=".">&crarr; Return to the main page of java-latest-openjdk-headless</a><br>
-	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-17.0.1.0.12-3.rolling.el8">View build</a><br>
-	<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-17.0.1.0.12-3.rolling.el8">Search for updates</a>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-19.0.0.0.36-2.rolling.el8">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-19.0.0.0.36-2.rolling.el8">Search for updates</a>
 </p>
 
 <p>
@@ -46,70 +46,74 @@
 			</tr>
 		</thead>
 		<tr>
-			<td>2021-11-05</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.35-3.rolling</td>
-			<td>- Patch syslookup.c so it actually has some code to be compiled into libsyslookup
-- Related: rhbz#2013846</td>
+			<td>2022-08-29</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:19.0.0.0.36-2.rolling</td>
+			<td>- Switch to static builds, reducing system dependencies and making build more portable</td>
 		</tr>
 		<tr>
-			<td>2021-11-03</td>
-			<td>Severin Gehwolf &lt;sgehwolf at redhat dot com&gt; - 1:17.0.1.0.12-2.rolling</td>
-			<td>- Use &#39;sql:&#39; prefix in nss.fips.cfg as F35+ no longer ship the legacy
-  secmod.db file as part of nss</td>
+			<td>2022-08-29</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:19.0.0.0.36-1.rolling</td>
+			<td>- Update to RC version of OpenJDK 19
+- Update release notes to 19.0.0
+- Rebase FIPS patches from fips-19u branch
+- Need to include the &#39;.S&#39; suffix in debuginfo checks after JDK-8284661
+- Add patch to provide translations for Europe/Kyiv added in tzdata2022b
+- Add test to ensure timezones can be translated
+- Remove references to sample directory removed by JDK-8284999</td>
 		</tr>
 		<tr>
-			<td>2021-10-20</td>
-			<td>Petra Alice Mikova &lt;pmikova at redhat dot com&gt; - 1:17.0.1.0.12-1.rolling</td>
-			<td>- October CPU update to jdk 17.0.1+12
-- dropped commented-out source line</td>
+			<td>2022-07-22</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.2.0.9-1.rolling</td>
+			<td>- Update to jdk-18.0.2 release
+- Update release notes to 18.0.2
+- Drop JDK-8282004 patch which is now upstreamed under JDK-8282231
+- Exclude x86 where java_arches is undefined, in order to unbreak build</td>
 		</tr>
 		<tr>
-			<td>2021-10-11</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.35-3.rolling</td>
-			<td>- Update release notes to document the major changes between OpenJDK 11 &amp; 17.</td>
+			<td>2022-07-22</td>
+			<td>Jiri Vanek &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-8.rolling</td>
+			<td>- moved to build only on %{java_arches}
+-- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs
+- reverted :
+-- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild (always mess up release)
+-- Try to build on x86 again by creating a husk of a JDK which does not depend on itself
+-- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable
+-- Replaced binaries and .so files with bash-stubs on i686
+- added ExclusiveArch:  %{java_arches}
+-- this now excludes i686
+-- this is safely backport-able to older fedoras, as the macro was backported properly (with i686 included)
+- https://bugzilla.redhat.com/show_bug.cgi?id=2104125</td>
 		</tr>
 		<tr>
-			<td>2021-10-10</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.35-2.rolling</td>
-			<td>- Fix unused function compiler warning found in systemconf.c
-- Extend the default security policy to accomodate PKCS11 accessing jdk.internal.access.
-- Allow plain key import to be disabled with -Dcom.redhat.fips.plainKeySupport=false</td>
+			<td>2022-07-21</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1:18.0.1.1.2-7.rolling.1</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild</td>
 		</tr>
 		<tr>
-			<td>2021-10-10</td>
-			<td>Martin Balao &lt;mbalao at redhat dot com&gt; - 1:17.0.0.0.35-2.rolling</td>
-			<td>- Add patch to disable non-FIPS crypto in the SUN and SunEC security providers.
-- Add patch to login to the NSS software token when in FIPS mode.
-- Add patch to allow plain key import.</td>
+			<td>2022-07-19</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-7.rolling</td>
+			<td>- Try to build on x86 again by creating a husk of a JDK which does not depend on itself</td>
 		</tr>
 		<tr>
-			<td>2021-09-14</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.35-1.rolling</td>
-			<td>- Update to jdk-17+35, also known as jdk-17-ga.
-- Switch to GA mode.</td>
+			<td>2022-07-17</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-6.rolling</td>
+			<td>- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable</td>
 		</tr>
 		<tr>
-			<td>2021-09-08</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.33-0.3.ea.rolling</td>
-			<td>- Minor code cleanups on FIPS detection patch and check for SECMOD_GetSystemFIPSEnabled in configure.
-- Remove unneeded Requires on NSS as it will now be dynamically linked and detected by RPM.</td>
+			<td>2022-07-13</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-5.rolling</td>
+			<td>- Explicitly require crypto-policies during build and runtime for system security properties</td>
 		</tr>
 		<tr>
-			<td>2021-09-08</td>
-			<td>Martin Balao &lt;mbalao at redhat dot com&gt; - 1:17.0.0.0.33-0.3.ea.rolling</td>
-			<td>- Detect FIPS using SECMOD_GetSystemFIPSEnabled in the new libsystemconf JDK library.</td>
+			<td>2022-07-13</td>
+			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:18.0.1.1.2-4.rolling.</td>
+			<td>- Replaced binaries and .so files with bash-stubs on i686 in preparation of the removal on that architecture:
+- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs</td>
 		</tr>
 		<tr>
-			<td>2021-09-06</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.33-0.2.ea.rolling</td>
-			<td>- Update RH1655466 FIPS patch with changes in OpenJDK 8 version.
-- SunPKCS11 runtime provider name is a concatenation of &#34;SunPKCS11-&#34; and the name in the config file.
-- Change nss.fips.cfg config name to &#34;NSS-FIPS&#34; to avoid confusion with nss.cfg.
-- No need to substitute path to nss.fips.cfg as java.security file supports a java.home variable.
-- Disable FIPS mode support unless com.redhat.fips is set to &#34;true&#34;.
-- Enable alignment with FIPS crypto policy by default (-Dcom.redhat.fips=false to disable).
-- Add explicit runtime dependency on NSS for the PKCS11 provider in FIPS mode
-- Move setup of JavaSecuritySystemConfiguratorAccess to Security class so it always occurs (RH1915071)</td>
+			<td>2022-07-13</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-3.rolling</td>
+			<td>- Make use of the vendor version string to store our version &amp; release rather than an upstream release date</td>
 		</tr>
 		<tbody>
 		</tbody>
@@ -121,13 +125,13 @@
 		<h2 id="provides">Provides</h2>
 		<ul>
 			<li>config(java-latest-openjdk-headless)</li>
-			<li>java-17-headless</li>
-			<li>java-17-openjdk-headless</li>
+			<li>java-19-headless</li>
+			<li>java-19-openjdk-headless</li>
 			<li>java-latest-openjdk-headless</li>
 			<li>java-latest-openjdk-headless(x86-64)</li>
-			<li>jre-17-headless</li>
-			<li>jre-17-openjdk-headless</li>
-			<li>libsvml.so()(64bit)</li>
+			<li>jre-19-headless</li>
+			<li>jre-19-openjdk-headless</li>
+			<li>libjsvml.so()(64bit)</li>
 			<li>libsyslookup.so()(64bit)</li>
 		</ul>
 	</div>
@@ -143,8 +147,8 @@
 	</ul></li>
 	</ul></li>
 	<li>java/<ul>
-	<li>java-17-openjdk/<ul>
-	<li>java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64/<ul>
+	<li>java-19-openjdk/<ul>
+	<li>java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64/<ul>
 	<li>conf/<ul>
 	<li>logging.properties</li>
 	<li>management/<ul>
@@ -180,6 +184,7 @@
 	<li>security/<ul>
 	<li>blocked.certs</li>
 	<li>cacerts</li>
+	<li>cacerts.upstream</li>
 	<li>default.policy</li>
 	<li>public_suffix_list.dat</li>
 	</ul></li>
@@ -191,127 +196,126 @@
 	<li>usr/<ul>
 	<li>lib/<ul>
 	<li>.build-id/<ul>
-	<li>04/<ul>
-	<li>1750248029db9945a6c10e517994843714a1ed</li>
+	<li>01/<ul>
+	<li>d4989d1500c5b39641230768ab9a7b37045656</li>
 	</ul></li>
-	<li>06/<ul>
-	<li>41f62706424e4ed82c267d103650fa656836bc</li>
+	<li>08/<ul>
+	<li>3f1d06d10d33d0158301fce30a91f438a0f253</li>
 	</ul></li>
-	<li>0a/<ul>
-	<li>d0ef8a441be93953cf669da23900c128ffd343</li>
+	<li>12/<ul>
+	<li>2b214d901e44075845bb1e6b058d878e043ae2</li>
+	<li>57c28708cfc467e996b9edbe17155561f3fc0c</li>
 	</ul></li>
-	<li>0c/<ul>
-	<li>3ed5bd98fa8380e3b10d906b75e31d2f6f3209</li>
+	<li>24/<ul>
+	<li>0b510248242c0e411e052ea69e4d636a08f882</li>
 	</ul></li>
-	<li>16/<ul>
-	<li>5ddf52a12b51beaa5a480b274960a5c96120e6</li>
-	</ul></li>
-	<li>1b/<ul>
-	<li>35ddb3e45561eadaf605c199dae114cd6dba23</li>
-	</ul></li>
-	<li>1f/<ul>
-	<li>1bb1d4d00043652190e59772fe93d657da6a1c</li>
+	<li>29/<ul>
+	<li>17a682d1711a3fff3f0c0f529964eb83b180c4</li>
 	</ul></li>
 	<li>2a/<ul>
-	<li>10204100a6ad918503a10cfc97e06c207a5ac3</li>
-	</ul></li>
-	<li>2b/<ul>
-	<li>6dbf8b9452b2ad75c4f15a9dca78016b11c4a5</li>
+	<li>2de0263d93bc84f85bafcc2ff1d7c60666bdcd</li>
 	</ul></li>
 	<li>34/<ul>
-	<li>b163cdde4a3fd6858323006ddac659f4dcdd13</li>
+	<li>7fe89e94d7aa0a42a748c52e99b3bf83b8f314</li>
 	</ul></li>
-	<li>39/<ul>
-	<li>194614bb81b7700a616547854878ba65d0e0bf</li>
+	<li>3a/<ul>
+	<li>4c35e27883537b02e0695a354a60e118843a52</li>
+	<li>537f36998bd57fb7c5dca282a38af710d651ea</li>
+	</ul></li>
+	<li>3b/<ul>
+	<li>222c512cd1a13372679eb6c0a7db7fc57ee774</li>
+	</ul></li>
+	<li>3d/<ul>
+	<li>b259cf4740b1f984148a9b949bca799e752244</li>
+	</ul></li>
+	<li>41/<ul>
+	<li>50bee5d1cf40b0402c1e828062912534d67725</li>
+	</ul></li>
+	<li>42/<ul>
+	<li>f04a62e67eb1b35a0e606e8a381688fac9eabe</li>
+	</ul></li>
+	<li>47/<ul>
+	<li>6453e6f38a9295a0f3e00a6f07442151d7cf18</li>
+	<li>c7e8b0cb2b4c5b10972cd1bef224315cc5d368</li>
+	</ul></li>
+	<li>48/<ul>
+	<li>a7b28db631caf980d9c383cbb54c758407d944</li>
 	</ul></li>
 	<li>49/<ul>
-	<li>c5fa6d17da0e8e9f449733bce8c0dbda35e35c</li>
+	<li>13b5c19a3c46047b3b26bc8266a7c40c1fd20c</li>
 	</ul></li>
-	<li>52/<ul>
-	<li>0576aaca34828c3ece903b15d066b0365b1784</li>
-	<li>3b14be6e3ed7dafaeb5c569d742906896cf56b</li>
+	<li>4b/<ul>
+	<li>9d99227caa45206ffd8e51291b6573c5520e3a</li>
 	</ul></li>
-	<li>57/<ul>
-	<li>ddbea59ff9ad70e1826d98ec1425e0a90dbf5f</li>
+	<li>56/<ul>
+	<li>e1d087a6ce10be8b8e642a2ec0bfcf8c8c6af6</li>
 	</ul></li>
-	<li>5c/<ul>
-	<li>055c872eef683ea906d3354c34b2689e6f5c4e</li>
+	<li>5b/<ul>
+	<li>58a9443ee1887d8e60e2926b36ba5341b1d63b</li>
+	</ul></li>
+	<li>5d/<ul>
+	<li>3ccfbf4d8e117ea6478e19636b4805fa057139</li>
 	</ul></li>
 	<li>66/<ul>
-	<li>776feba31be2fdacac981d0c2f262a0345857c</li>
+	<li>2a9e9f6490e80171aa7a3ce745517909e392fd</li>
 	</ul></li>
-	<li>69/<ul>
-	<li>2e4530f696daa52bb47cd7e6f8d27b5bc79f7b</li>
+	<li>6c/<ul>
+	<li>445de4e93c578df1204909f64caab529fafe45</li>
+	<li>bfe223b1de6e43553cb29c1da9c7bf6b1d1b19</li>
 	</ul></li>
-	<li>6d/<ul>
-	<li>55db70b705499c615a863585b2f45a84fd9816</li>
+	<li>71/<ul>
+	<li>05bc12f040440a44d1062ecd1f5fd27a5eb0d5</li>
 	</ul></li>
-	<li>7e/<ul>
-	<li>8b99e035a1e78c986d4bcf348b2c0ef81f450e</li>
+	<li>80/<ul>
+	<li>1d972e31bccda9bf79534c9da205762d47caa5</li>
 	</ul></li>
-	<li>88/<ul>
-	<li>d861372eddc69c42234a8a2908ec55a8faab53</li>
+	<li>99/<ul>
+	<li>969eb5c89d436e3c54cc9f1d9ea64ad8486638</li>
 	</ul></li>
-	<li>90/<ul>
-	<li>dd4959cdfb39d649c2933ec35588096cf4db81</li>
+	<li>a1/<ul>
+	<li>bc9f1acd6655ef33aa938f4418ce65fb50d31a</li>
 	</ul></li>
-	<li>93/<ul>
-	<li>885cfe4e39cf0062ee80d191a6bffb49a00cae</li>
+	<li>a4/<ul>
+	<li>26737c64e48bf1e514a0f37dfe9639c6b985c3</li>
 	</ul></li>
-	<li>9e/<ul>
-	<li>88d189221a492eb3555b4b44e7ce5349d99d3b</li>
-	</ul></li>
-	<li>a2/<ul>
-	<li>a81ff30a1d7c838bd4ee01d67f8f9f5c1ad0af</li>
-	</ul></li>
-	<li>a5/<ul>
-	<li>1465bfa04c8aee41c0390ae4d3bccbcbaf8974</li>
-	</ul></li>
-	<li>aa/<ul>
-	<li>996354baa4d718a3c41ffdb02baeb6be19c39e</li>
+	<li>a8/<ul>
+	<li>1a0269b87a5b4978c340978e5653a126d8676f</li>
 	</ul></li>
 	<li>ae/<ul>
-	<li>d93f029b297df3e6da49d47bea1bed173463e3</li>
+	<li>e760d8e71cca5a86a08f3f0c8a0cfc6f74e012</li>
 	</ul></li>
-	<li>af/<ul>
-	<li>b0467243fbe2041d48434969477faa6e2e800e</li>
+	<li>c0/<ul>
+	<li>6c808ae819156dc578e785e7d2d16aadeff3a3</li>
 	</ul></li>
-	<li>b8/<ul>
-	<li>9c81630bf74d632ec406996c139261cf1913e5</li>
+	<li>c7/<ul>
+	<li>494d72ad0df7b4a8d3ddc681e83ad68072d8fe</li>
+	<li>87a7f45970b41290625b8899551645793976ca</li>
 	</ul></li>
-	<li>c1/<ul>
-	<li>ec81df07f459e328bc9ffad3ef376e70cf6457</li>
+	<li>cd/<ul>
+	<li>cc5042a1e3e3fe04eb26d7e701538a03a6ccc4</li>
+	<li>cc5042a1e3e3fe04eb26d7e701538a03a6ccc4.1</li>
 	</ul></li>
-	<li>c8/<ul>
-	<li>a189e5bcfcc24c37e7176a27a96d681dd2007e</li>
+	<li>ce/<ul>
+	<li>5acd084b0a8ffb246df4b001aedaa6c4d5bbd1</li>
 	</ul></li>
-	<li>d0/<ul>
-	<li>e31ba974cf7f07c679c7b2457b0e035dbf580e</li>
+	<li>cf/<ul>
+	<li>7015445f6a1b8bcb94ed339f16af0a78c5d1e2</li>
 	</ul></li>
-	<li>da/<ul>
-	<li>982ef2c4ad3a795bafbe805f31b60f6704376e</li>
+	<li>de/<ul>
+	<li>19b67ca225813c1c80f56a9a1b51551c689426</li>
 	</ul></li>
-	<li>e0/<ul>
-	<li>56c0aa00f9407e689798d188c8329a731bcf74</li>
-	<li>56c0aa00f9407e689798d188c8329a731bcf74.1</li>
+	<li>e4/<ul>
+	<li>8bb1292699c3418c693ac65385cfbb29886214</li>
 	</ul></li>
-	<li>ed/<ul>
-	<li>2a2232a7cfab087d4430b490153ff9fc769f59</li>
+	<li>f4/<ul>
+	<li>dc41aa2ea42fb229c25aa54c3c5ce7972e3df0</li>
 	</ul></li>
-	<li>ee/<ul>
-	<li>0b939f868aeee091fef88fc6ea5bdf02bf4897</li>
-	<li>da98cea38c56c15cdbc167d21829236521b102</li>
-	</ul></li>
-	<li>ef/<ul>
-	<li>0ff691d1318822abe111f5ee9154ee4addf587</li>
-	<li>145637ac413854d4fa456dfa94078c47f146ac</li>
-	</ul></li>
-	<li>f7/<ul>
-	<li>37c9b7bf211a2543b2c4efa764e1b115f11fad</li>
+	<li>fd/<ul>
+	<li>9955ee4cfc7ca2c7d749f2dff137440acb58dc</li>
 	</ul></li>
 	</ul></li>
 	<li>jvm/<ul>
-	<li>java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64/<ul>
+	<li>java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64/<ul>
 	<li>bin/<ul>
 	<li>alt-java</li>
 	<li>java</li>
@@ -319,6 +323,7 @@
 	<li>rmiregistry</li>
 	</ul></li>
 	<li>conf</li>
+	<li>conf.rpmmoved</li>
 	<li>legal/<ul>
 	<li>java.base/<ul>
 	<li>ADDITIONAL_LICENSE_INFO</li>
@@ -331,6 +336,7 @@
 	<li>icu.md</li>
 	<li>public_suffix.md</li>
 	<li>unicode.md</li>
+	<li>zlib.md</li>
 	</ul></li>
 	<li>java.compiler/<ul>
 	<li>ADDITIONAL_LICENSE_INFO</li>
@@ -347,6 +353,12 @@
 	<li>ASSEMBLY_EXCEPTION</li>
 	<li>LICENSE</li>
 	<li>colorimaging.md</li>
+	<li>freetype.md</li>
+	<li>giflib.md</li>
+	<li>harfbuzz.md</li>
+	<li>jpeg.md</li>
+	<li>lcms.md</li>
+	<li>libpng.md</li>
 	<li>mesa3d.md</li>
 	<li>xwd.md</li>
 	</ul></li>
@@ -500,7 +512,7 @@
 	<li>ASSEMBLY_EXCEPTION</li>
 	<li>LICENSE</li>
 	</ul></li>
-	<li>jdk.incubator.foreign/<ul>
+	<li>jdk.incubator.concurrent/<ul>
 	<li>ADDITIONAL_LICENSE_INFO</li>
 	<li>ASSEMBLY_EXCEPTION</li>
 	<li>LICENSE</li>
@@ -713,6 +725,7 @@
 	<li>libdt_socket.so</li>
 	<li>libextnet.so</li>
 	<li>libfontmanager.so</li>
+	<li>libfreetype.so</li>
 	<li>libinstrument.so</li>
 	<li>libj2gss.so</li>
 	<li>libj2pcsc.so</li>
@@ -725,6 +738,7 @@
 	<li>libjli.so</li>
 	<li>libjsig.so</li>
 	<li>libjsound.so</li>
+	<li>libjsvml.so</li>
 	<li>liblcms.so</li>
 	<li>libmanagement.so</li>
 	<li>libmanagement_agent.so</li>
@@ -736,7 +750,6 @@
 	<li>librmi.so</li>
 	<li>libsaproc.so</li>
 	<li>libsctp.so</li>
-	<li>libsvml.so</li>
 	<li>libsyslookup.so</li>
 	<li>libsystemconf.so</li>
 	<li>libverify.so</li>
@@ -745,6 +758,7 @@
 	<li>psfont.properties.ja</li>
 	<li>psfontj2d.properties</li>
 	<li>security</li>
+	<li>security.rpmmoved</li>
 	<li>server/<ul>
 	<li>classes.jsa</li>
 	<li>classes_nocoops.jsa</li>
@@ -752,24 +766,25 @@
 	<li>libjvm.so</li>
 	</ul></li>
 	<li>tzdb.dat</li>
+	<li>tzdb.dat.upstream</li>
 	</ul></li>
 	<li>release</li>
 	</ul></li>
-	<li>jre-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64</li>
+	<li>jre-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64</li>
 	</ul></li>
 	</ul></li>
 	<li>share/<ul>
 	<li>doc/<ul>
-	<li>java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64/<ul>
+	<li>java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64/<ul>
 	<li>NEWS</li>
 	</ul></li>
 	</ul></li>
 	<li>man/<ul>
 	<li>man1/<ul>
-	<li>alt-java-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64.1.gz</li>
-	<li>java-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64.1.gz</li>
-	<li>keytool-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64.1.gz</li>
-	<li>rmiregistry-java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64.1.gz</li>
+	<li>alt-java-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64.1.gz</li>
+	<li>java-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64.1.gz</li>
+	<li>keytool-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64.1.gz</li>
+	<li>rmiregistry-java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64.1.gz</li>
 	</ul></li>
 	</ul></li>
 	</ul></li>

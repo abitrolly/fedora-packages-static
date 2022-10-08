@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<title>ansible-collection-microsoft-sql-1.1.0-2.fc35 - Fedora Packages</title>
+<title>ansible-collection-microsoft-sql-1.2.4-1.fc38 - Fedora Packages</title>
 <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../assets/css/main.css">
 <link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<meta name="description" content="View ansible-collection-microsoft-sql-1.1.0-2.fc35 in Fedora Rawhide. ansible-collection-microsoft-sql: The Ansible collection for Microsoft SQL Server management">
+<meta name="description" content="View ansible-collection-microsoft-sql-1.2.4-1.fc38 in Fedora Rawhide. ansible-collection-microsoft-sql: The Ansible collection for Microsoft SQL Server management">
 
 <div class="container">
   <div class="row">
@@ -20,17 +20,18 @@
   <hr />
 
 <h1>
-	ansible-collection-microsoft-sql-1.1.0-2.fc35<small class="text-muted"> in Fedora Rawhide</small>
+	ansible-collection-microsoft-sql-1.2.4-1.fc38<small class="text-muted"> in Fedora Rawhide</small>
 </h1>
 <p>
 	<a href=".">&crarr; Return to the main page of ansible-collection-microsoft-sql</a><br>
-	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=ansible-collection-microsoft-sql-1.1.0-2.fc35">View build</a><br>
-	<a href="https://bodhi.fedoraproject.org/updates/?search=ansible-collection-microsoft-sql-1.1.0-2.fc35">Search for updates</a>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=ansible-collection-microsoft-sql-1.2.4-1.fc38">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=ansible-collection-microsoft-sql-1.2.4-1.fc38">Search for updates</a>
 </p>
 
 <p>
 	<b>Package Info</b><br>
 	<a href="#changelog">&#129047; Changelog</a><br>
+	<a href="#dependencies">&#129047; Dependencies</a><br>
 	<a href="#provides">&#129047; Provides</a><br>
 	<a href="#files">&#129047; Files</a><br>
 </p>
@@ -45,6 +46,72 @@
 				<th scope="col">Change</th>
 			</tr>
 		</thead>
+		<tr>
+			<td>2022-09-01</td>
+			<td>Sergei Petrosian &lt;spetrosi at redhat dot com&gt; - 1.2.4-1</td>
+			<td>- Replicate all provided databases
+  - This change fixes the bug where only the first database provided with
+mssql_ha_db_names got replicated
+  - Clarify that the role does not remove not listed databases
+  Resolves: rhbz#2066337
+- Input multiple sql scripts
+  - Allow _input_sql_file vars to accept list of files
+  - Flush handlers prior to inputting post sql script
+  Resolves: rhbz#2120712
+- Note that ha_cluster is not idempotent
+- SPEC: Do not update dates in CHANGELOG.md</td>
+		</tr>
+		<tr>
+			<td>2022-08-25</td>
+			<td>Sergei Petrosian &lt;spetrosi at redhat dot com&gt; - 1.2.3-1</td>
+			<td>- Use firewall role to configure firewall for SQL Server
+  Resolves: rhbz#2120709
+- Add mssql_ha_virtual_ip
+  Replace mssql_ha_db_name with mssql_ha_db_names to let users replicate multiple DBs
+  Resolves: rhbz#2066337
+
+- Replace simple `mssql_input_sql_file` with `pre` and `post` variables
+  Resolves: rhbz#2120712
+- Add Requires: linux-system-roles or rhel-system-roles
+- Replace fedora.linux_system_roles:redhat.rhel_system_roles on RHEL
+- Add downstream values to galaxy.yml
+- Change defcommit to defsource that takes both tags and commits
+- Update CHANGELOG.md with the current date and copy it to collection dir</td>
+		</tr>
+		<tr>
+			<td>2022-07-20</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1.1.1-4</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild</td>
+		</tr>
+		<tr>
+			<td>2022-03-21</td>
+			<td>Sergei Petrosian &lt;spetrosi at redhat dot com&gt; - 1.1.1-3</td>
+			<td>- Fix inserting ansible_managed
+  Resolves: rhbz#2057651 (EL8)
+  Resolves: rhbz#2064690 (EL9)
+- Users now can provide a custom URLs to pull packages and RPM key from
+  Resolves: rhbz#2038256 (EL8)
+  Resolves: rhbz#2064648 (EL9)</td>
+		</tr>
+		<tr>
+			<td>2022-03-18</td>
+			<td>Sergei Petrosian &lt;spetrosi at redhat dot com&gt; - 1.1.1-2</td>
+			<td>- RHEL8.6, 9 - add &#34;Requires: ansible-core or ansible&#34;
+  Resolves: rhbz#2065664 (EL8)
+  Resolves: rhbz#2065669 (EL8)</td>
+		</tr>
+		<tr>
+			<td>2022-03-17</td>
+			<td>Sergei Petrosian &lt;spetrosi at redhat dot com&gt; - 1.1.1-1</td>
+			<td>- Insert the &#34;Ansible managed&#34; comment to the /var/opt/mssql/mssql.conf file
+  Resolves rhbz#2057651 (EL8)
+  Resolves rhbz#2064690 (EL9)</td>
+		</tr>
+		<tr>
+			<td>2022-01-19</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1.1.0-3</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild</td>
+		</tr>
 		<tr>
 			<td>2021-07-21</td>
 			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1.1.0-2</td>
@@ -62,57 +129,22 @@
   Link to the original fix:
   https://src.fedoraproject.org/rpms/linux-system-roles/c/093981119f99ac51a6e06a2714b587e4e2fe287c</td>
 		</tr>
-		<tr>
-			<td>2021-07-13</td>
-			<td>Sergei Petrosian &lt;spetrosi at redhat dot com&gt; - 1.0.12-1</td>
-			<td>- Add the meta-runtime option from the latest auto-maintenance
-- Use the latest mssql that ships fixes for issues #24,#25,#26,#27,#28,35</td>
-		</tr>
-		<tr>
-			<td>2021-06-29</td>
-			<td>Sergei Petrosian &lt;spetrosi at redhat dot com&gt; - 1.0.11-3</td>
-			<td>- Add a missing slash at the {ansible_collection_files} definition for rhel 7</td>
-		</tr>
-		<tr>
-			<td>2021-06-17</td>
-			<td>Sergei Petrosian &lt;spetrosi at redhat dot com&gt; - 1.0.11-2</td>
-			<td>- Make the ansible_collection_files macro defined in Fedora automatically and
-  in RHEL manually consistent - having slash at the end to clean double-slashes</td>
-		</tr>
-		<tr>
-			<td>2021-06-17</td>
-			<td>Sergei Petrosian &lt;spetrosi at redhat dot com&gt; - 1.0.11-1</td>
-			<td>- Update the version to be consistent with the Galaxy collection at
-  https://galaxy.ansible.com/microsoft/sql</td>
-		</tr>
-		<tr>
-			<td>2021-06-16</td>
-			<td>Sergei Petrosian &lt;spetrosi at redhat dot com&gt; - 0.0.1-5</td>
-			<td>- Update commit hash for mssql</td>
-		</tr>
-		<tr>
-			<td>2021-06-16</td>
-			<td>Sergei Petrosian &lt;spetrosi at redhat dot com&gt; - 0.0.1-4</td>
-			<td>- Generate symlinks for roles in /usr/share/ansible/roles</td>
-		</tr>
-		<tr>
-			<td>2021-06-16</td>
-			<td>Sergei Petrosian &lt;spetrosi at redhat dot com&gt; - 0.0.1-3</td>
-			<td>- Copy changes made to linux-system-roles in this PR:
-  https://src.fedoraproject.org/rpms/linux-system-roles/pull-request/13#
-- Make spec file available for older versions of OSes.
-- Drop python3-six dependency which was used by lsr_role2collection.py.
-- Drop html files from rpm if the version has no markdown parser.
-- Drop unnecessary python scripts which include python3 only code, e.g.,
-  f-strings.
-  Resolves rhbz#1970165</td>
-		</tr>
 		<tbody>
 		</tbody>
 	</table>
 </div>
 
 <div class="row">
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			<li>
+			<a href="/pkgs/linux-system-roles/linux-system-roles/fedora-rawhide.html">
+			linux-system-roles</a>
+
+			</li>
+		</ul>
+	</div>
 	<div class="col">
 		<h2 id="provides">Provides</h2>
 		<ul>
@@ -133,6 +165,7 @@
 	<li>ansible_collections/<ul>
 	<li>microsoft/<ul>
 	<li>sql/<ul>
+	<li>CHANGELOG.md</li>
 	<li>FILES.json</li>
 	<li>LICENSE-server</li>
 	<li>MANIFEST.json</li>
@@ -150,12 +183,30 @@
 	<li>main.yml</li>
 	</ul></li>
 	<li>meta/<ul>
+	<li>collection-requirements.yml</li>
 	<li>main.yml</li>
 	</ul></li>
 	<li>tasks/<ul>
+	<li>input_sql_file.yml</li>
 	<li>main.yml</li>
 	<li>mssql_conf_setting.yml</li>
+	<li>set_vars.yml</li>
 	<li>verify_password.yml</li>
+	</ul></li>
+	<li>templates/<ul>
+	<li>configure_ag.j2</li>
+	<li>configure_endpoint.j2</li>
+	<li>configure_listener.j2</li>
+	<li>create_and_back_up_cert.j2</li>
+	<li>create_ha_login.j2</li>
+	<li>create_master_key_encryption.j2</li>
+	<li>drop_cert.j2</li>
+	<li>enable_alwayson.j2</li>
+	<li>get_ansible_managed.j2</li>
+	<li>grant_permissions_to_ha_login.j2</li>
+	<li>join_to_ag.j2</li>
+	<li>replicate_db.j2</li>
+	<li>restore_cert.j2</li>
 	</ul></li>
 	<li>vars/<ul>
 	<li>CentOS_7.yml</li>
@@ -170,7 +221,13 @@
 	<li>.fmf/<ul>
 	<li>version</li>
 	</ul></li>
-	<li>ansible.cfg</li>
+	<li>clean_up_mssql_pacemaker.yml</li>
+	<li>files/<ul>
+	<li>create_ExampleDB1.sql</li>
+	<li>create_ExampleDB2.sql</li>
+	<li>sql_script.sql</li>
+	<li>verify_fts.sql</li>
+	</ul></li>
 	<li>provision.fmf</li>
 	<li>roles/<ul>
 	<li>caller/<ul>
@@ -182,14 +239,32 @@
 	</ul></li>
 	</ul></li>
 	</ul></li>
-	<li>sql_script.sql</li>
+	<li>setup-snapshot.yml</li>
 	<li>tasks/<ul>
+	<li>check_header.yml</li>
 	<li>mssql-sever-increase-start-limit.yml</li>
 	<li>mssql_conf_verify.yml</li>
+	<li>snapshot_install_packages.yml</li>
 	<li>verify_package.yml</li>
 	<li>verify_settings.yml</li>
+	<li>verify_tcp_port.yml</li>
+	</ul></li>
+	<li>templates/<ul>
+	<li>add_test_listener.j2</li>
+	<li>alter_ag.j2</li>
+	<li>alter_endpoint.j2</li>
+	<li>configure_ag_cluster_type_none.j2</li>
+	<li>create_example_db.j2</li>
+	<li>disable_alwayson.j2</li>
+	<li>drop_ag.j2</li>
+	<li>drop_endpoint.j2</li>
+	<li>get_ansible_managed.j2</li>
+	<li>remove_listener.j2</li>
+	<li>remove_sql_cert.j2</li>
+	<li>separate_from_ag.j2</li>
 	</ul></li>
 	<li>tests_accept_eula_2019.yml</li>
+	<li>tests_configure_ha_cluster.yml</li>
 	<li>tests_default_2019.yml</li>
 	<li>tests_idempotency_2017.yml</li>
 	<li>tests_idempotency_2019.yml</li>
@@ -198,6 +273,7 @@
 	<li>tests_password_2017.yml</li>
 	<li>tests_password_2019.yml</li>
 	<li>tests_powershell_2019.yml</li>
+	<li>tests_tcp_firewall.yml</li>
 	<li>tests_tls_2019.yml</li>
 	<li>tests_upgrade_2017.yml</li>
 	</ul></li>
@@ -235,6 +311,7 @@
 	</ul></li>
 	<li>microsoft/<ul>
 	<li>sql-server/<ul>
+	<li>CHANGELOG.md</li>
 	<li>LICENSE</li>
 	<li>README.html</li>
 	<li>README.md</li>
@@ -247,21 +324,45 @@
 	<li>main.yml</li>
 	</ul></li>
 	<li>meta/<ul>
+	<li>collection-requirements.yml</li>
 	<li>main.yml</li>
 	</ul></li>
 	<li>molecule_extra_requirements.txt</li>
 	<li>pylint_extra_requirements.txt</li>
 	<li>pytest_extra_requirements.txt</li>
 	<li>tasks/<ul>
+	<li>input_sql_file.yml</li>
 	<li>main.yml</li>
 	<li>mssql_conf_setting.yml</li>
+	<li>set_vars.yml</li>
 	<li>verify_password.yml</li>
+	</ul></li>
+	<li>templates/<ul>
+	<li>configure_ag.j2</li>
+	<li>configure_endpoint.j2</li>
+	<li>configure_listener.j2</li>
+	<li>create_and_back_up_cert.j2</li>
+	<li>create_ha_login.j2</li>
+	<li>create_master_key_encryption.j2</li>
+	<li>drop_cert.j2</li>
+	<li>enable_alwayson.j2</li>
+	<li>get_ansible_managed.j2</li>
+	<li>grant_permissions_to_ha_login.j2</li>
+	<li>join_to_ag.j2</li>
+	<li>replicate_db.j2</li>
+	<li>restore_cert.j2</li>
 	</ul></li>
 	<li>tests/<ul>
 	<li>.fmf/<ul>
 	<li>version</li>
 	</ul></li>
-	<li>ansible.cfg</li>
+	<li>clean_up_mssql_pacemaker.yml</li>
+	<li>files/<ul>
+	<li>create_ExampleDB1.sql</li>
+	<li>create_ExampleDB2.sql</li>
+	<li>sql_script.sql</li>
+	<li>verify_fts.sql</li>
+	</ul></li>
 	<li>provision.fmf</li>
 	<li>roles/<ul>
 	<li>caller/<ul>
@@ -273,14 +374,32 @@
 	</ul></li>
 	</ul></li>
 	</ul></li>
-	<li>sql_script.sql</li>
+	<li>setup-snapshot.yml</li>
 	<li>tasks/<ul>
+	<li>check_header.yml</li>
 	<li>mssql-sever-increase-start-limit.yml</li>
 	<li>mssql_conf_verify.yml</li>
+	<li>snapshot_install_packages.yml</li>
 	<li>verify_package.yml</li>
 	<li>verify_settings.yml</li>
+	<li>verify_tcp_port.yml</li>
+	</ul></li>
+	<li>templates/<ul>
+	<li>add_test_listener.j2</li>
+	<li>alter_ag.j2</li>
+	<li>alter_endpoint.j2</li>
+	<li>configure_ag_cluster_type_none.j2</li>
+	<li>create_example_db.j2</li>
+	<li>disable_alwayson.j2</li>
+	<li>drop_ag.j2</li>
+	<li>drop_endpoint.j2</li>
+	<li>get_ansible_managed.j2</li>
+	<li>remove_listener.j2</li>
+	<li>remove_sql_cert.j2</li>
+	<li>separate_from_ag.j2</li>
 	</ul></li>
 	<li>tests_accept_eula_2019.yml</li>
+	<li>tests_configure_ha_cluster.yml</li>
 	<li>tests_default_2019.yml</li>
 	<li>tests_idempotency_2017.yml</li>
 	<li>tests_idempotency_2019.yml</li>
@@ -289,6 +408,7 @@
 	<li>tests_password_2017.yml</li>
 	<li>tests_password_2019.yml</li>
 	<li>tests_powershell_2019.yml</li>
+	<li>tests_tcp_firewall.yml</li>
 	<li>tests_tls_2019.yml</li>
 	<li>tests_upgrade_2017.yml</li>
 	</ul></li>

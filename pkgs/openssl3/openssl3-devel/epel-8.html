@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<title>openssl3-devel-3.0.0-3.el8.1 - Fedora Packages</title>
+<title>openssl3-devel-3.0.1-41.el8.1 - Fedora Packages</title>
 <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../assets/css/main.css">
 <link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<meta name="description" content="View openssl3-devel-3.0.0-3.el8.1 in EPEL 8. openssl3-devel: Files for development of applications which will use OpenSSL">
+<meta name="description" content="View openssl3-devel-3.0.1-41.el8.1 in EPEL 8. openssl3-devel: Files for development of applications which will use OpenSSL">
 
 <div class="container">
   <div class="row">
@@ -20,12 +20,12 @@
   <hr />
 
 <h1>
-	openssl3-devel-3.0.0-3.el8.1<small class="text-muted"> in EPEL 8</small>
+	openssl3-devel-3.0.1-41.el8.1<small class="text-muted"> in EPEL 8</small>
 </h1>
 <p>
 	<a href=".">&crarr; Return to the main page of openssl3-devel</a><br>
-	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=openssl3-3.0.0-3.el8.1">View build</a><br>
-	<a href="https://bodhi.fedoraproject.org/updates/?search=openssl3-3.0.0-3.el8.1">Search for updates</a>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=openssl3-3.0.1-41.el8.1">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=openssl3-3.0.1-41.el8.1">Search for updates</a>
 </p>
 
 <p>
@@ -47,68 +47,99 @@
 			</tr>
 		</thead>
 		<tr>
-			<td>2021-11-17</td>
-			<td>Michel Alexandre Salim &lt;salimma at fedoraproject dot org&gt; - 1:3.0.0-3.1</td>
-			<td>- Fork c9s&#39; openssl to openssl3 for epel8 (and possibly Fedora &lt;= 35)</td>
+			<td>2022-09-27</td>
+			<td>Michel Alexandre Salim &lt;salimma at fedoraproject dot org&gt; 3.0.1-41.1</td>
+			<td>- Merge c9s openssl changes to pick up CVE fixes</td>
 		</tr>
 		<tr>
-			<td>2021-10-07</td>
-			<td>Dmitry Belyavskiy &lt;dbelyavs at redhat dot com&gt; - 1:3.0.0-3</td>
-			<td>- Fix memory leak in s_client
-- Related: rhbz#1996092</td>
+			<td>2022-08-11</td>
+			<td>Clemens Lang &lt;cllang at redhat dot com&gt; - 1:3.0.1-41</td>
+			<td>- Zeroize public keys as required by FIPS 140-3
+  Related: rhbz#2102542
+- Add FIPS indicator for HKDF
+  Related: rhbz#2114772</td>
 		</tr>
 		<tr>
-			<td>2021-09-20</td>
-			<td>Dmitry Belyavskiy &lt;dbelyavs at redhat dot com&gt; - 1:3.0.0-2</td>
-			<td>- Avoid double-free on error seeding the RNG.
-- KTLS and FIPS may interfere, so tests need to be tuned
-- Resolves: rhbz#1952844, rhbz#1961643</td>
+			<td>2022-08-05</td>
+			<td>Dmitry Belyavskiy &lt;dbelyavs at redhat dot com&gt; - 1:3.0.1-40</td>
+			<td>- Deal with DH keys in FIPS mode according FIPS-140-3 requirements
+  Related: rhbz#2102536
+- Deal with ECDH keys in FIPS mode according FIPS-140-3 requirements
+  Related: rhbz#2102537
+- Use signature for RSA pairwise test according FIPS-140-3 requirements
+  Related: rhbz#2102540
+- Reseed all the parent DRBGs in chain on reseeding a DRBG
+  Related: rhbz#2102541</td>
 		</tr>
 		<tr>
-			<td>2021-09-09</td>
-			<td>Sahana Prasad &lt;sahana at redhat dot com&gt; - 1:3.0.0-1</td>
-			<td>- Rebase to upstream version 3.0.0
-- Related: rhbz#1990814</td>
+			<td>2022-08-01</td>
+			<td>Clemens Lang &lt;cllang at redhat dot com&gt; - 1:3.0.1-39</td>
+			<td>- Use RSA-OAEP in FIPS RSA encryption/decryption FIPS self-test
+- Use Use digest_sign &amp; digest_verify in FIPS signature self test
+- Use FFDHE2048 in Diffie-Hellman FIPS self-test
+  Resolves: rhbz#2102535</td>
 		</tr>
 		<tr>
-			<td>2021-08-25</td>
-			<td>Sahana Prasad &lt;sahana at redhat dot com&gt; - 1:3.0.0-0.beta2.7</td>
-			<td>- Removes the dual-abi build as it not required anymore. The mass rebuild
-  was completed and all packages are rebuilt against Beta version.
-- Resolves: rhbz#1984097</td>
+			<td>2022-07-14</td>
+			<td>Clemens Lang &lt;cllang at redhat dot com&gt; - 1:3.0.1-38</td>
+			<td>- Fix segfault in EVP_PKEY_Q_keygen() when OpenSSL was not previously
+  initialized.
+  Resolves: rhbz#2103289
+- Improve AES-GCM performance on Power9 and Power10 ppc64le
+  Resolves: rhbz#2051312
+- Improve ChaCha20 performance on Power10 ppc64le
+  Resolves: rhbz#2051312</td>
 		</tr>
 		<tr>
-			<td>2021-08-23</td>
-			<td>Dmitry Belyavskiy &lt;dbelyavs at redhat dot com&gt; - 1:3.0.0-0.beta2.6</td>
-			<td>- Correctly process CMS reading from /dev/stdin
-- Resolves: rhbz#1986315</td>
+			<td>2022-07-05</td>
+			<td>Clemens Lang &lt;cllang at redhat dot com&gt; - 1:3.0.1-37</td>
+			<td>- CVE-2022-2097: AES OCB fails to encrypt some bytes on 32-bit x86
+  Resolves: CVE-2022-2097</td>
 		</tr>
 		<tr>
-			<td>2021-08-16</td>
-			<td>Sahana Prasad &lt;sahana at redhat dot com&gt; - 3.0.0-0.beta2.5</td>
-			<td>- Add instruction for loading legacy provider in openssl.cnf
-- Resolves: rhbz#1975836</td>
+			<td>2022-06-16</td>
+			<td>Dmitry Belyavskiy &lt;dbelyavs at redhat dot com&gt; - 1:3.0.1-36</td>
+			<td>- Ciphersuites with RSAPSK KX should be filterd in FIPS mode
+- Related: rhbz#2085088
+- FIPS provider should block RSA encryption for key transport.
+- Other RSA encryption options should still be available if key length is enough
+- Related: rhbz#2053289
+- Improve diagnostics when passing unsupported groups in TLS
+- Related: rhbz#2070197
+- Fix PPC64 Montgomery multiplication bug
+- Related: rhbz#2098199
+- Strict certificates validation shouldn&#39;t allow explicit EC parameters
+- Related: rhbz#2058663
+- CVE-2022-2068: the c_rehash script allows command injection
+- Related: rhbz#2098277</td>
 		</tr>
 		<tr>
-			<td>2021-08-16</td>
-			<td>Sahana Prasad &lt;sahana at redhat dot com&gt; - 3.0.0-0.beta2.4</td>
-			<td>- Adds support for IDEA encryption.
-- Resolves: rhbz#1990602</td>
+			<td>2022-06-08</td>
+			<td>Clemens Lang &lt;cllang at redhat dot com&gt; - 1:3.0.1-35</td>
+			<td>- Add explicit indicators for signatures in FIPS mode and mark signature
+  primitives as unapproved.
+  Resolves: rhbz#2087147</td>
 		</tr>
 		<tr>
-			<td>2021-08-10</td>
-			<td>Sahana Prasad &lt;sahana at redhat dot com&gt; - 3.0.0-0.beta2.3</td>
-			<td>- Fixes core dump in openssl req -modulus
-- Fixes &#39;openssl req&#39; to not ask for password when non-encrypted private key
-  is used
-- cms: Do not try to check binary format on stdin and -rctform fix
-- Resolves: rhbz#1988137, rhbz#1988468, rhbz#1988137</td>
+			<td>2022-06-03</td>
+			<td>Dmitry Belyavskiy &lt;dbelyavs at redhat dot com&gt; - 1:3.0.1-34</td>
+			<td>- Some OpenSSL test certificates are expired, updating
+- Resolves: rhbz#2092456</td>
 		</tr>
 		<tr>
-			<td>2021-08-09</td>
-			<td>Mohan Boddu &lt;mboddu at redhat dot com&gt; - 1:3.0.0-0.beta2.2.1</td>
-			<td>- Rebuilt for IMA sigs, glibc 2.34, aarch64 flags
-  Related: rhbz#1991688</td>
+			<td>2022-05-26</td>
+			<td>Dmitry Belyavskiy &lt;dbelyavs at redhat dot com&gt; - 1:3.0.1-33</td>
+			<td>- CVE-2022-1473 openssl: OPENSSL_LH_flush() breaks reuse of memory
+- Resolves: rhbz#2089444
+- CVE-2022-1343 openssl: Signer certificate verification returned
+  inaccurate response when using OCSP_NOCHECKS
+- Resolves: rhbz#2087911
+- CVE-2022-1292 openssl: c_rehash script allows command injection
+- Resolves: rhbz#2090362
+- Revert &#34;Disable EVP_PKEY_sign/EVP_PKEY_verify in FIPS mode&#34;
+  Related: rhbz#2087147
+- Use KAT for ECDSA signature tests, s390 arch
+- Resolves: rhbz#2069235</td>
 		</tr>
 		<tbody>
 		</tbody>
@@ -522,7 +553,7 @@
 	<li>EVP_PKEY_verify.3ossl3.gz</li>
 	<li>EVP_PKEY_verify_recover.3ossl3.gz</li>
 	<li>EVP_RAND.3ossl3.gz</li>
-	<li>EVP_SIGNATURE_free.3ossl3.gz</li>
+	<li>EVP_SIGNATURE.3ossl3.gz</li>
 	<li>EVP_SealInit.3ossl3.gz</li>
 	<li>EVP_SignInit.3ossl3.gz</li>
 	<li>EVP_VerifyInit.3ossl3.gz</li>
@@ -578,6 +609,7 @@
 	<li>OPENSSL_malloc.3ossl3.gz</li>
 	<li>OPENSSL_s390xcap.3ossl3.gz</li>
 	<li>OPENSSL_secure_malloc.3ossl3.gz</li>
+	<li>OPENSSL_strcasecmp.3ossl3.gz</li>
 	<li>OSSL_CMP_CTX_new.3ossl3.gz</li>
 	<li>OSSL_CMP_HDR_get0_transactionID.3ossl3.gz</li>
 	<li>OSSL_CMP_ITAV_set0.3ossl3.gz</li>

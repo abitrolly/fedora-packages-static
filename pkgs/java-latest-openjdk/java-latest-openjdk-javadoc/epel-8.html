@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<title>java-latest-openjdk-javadoc-17.0.1.0.12-3.rolling.el8 - Fedora Packages</title>
+<title>java-latest-openjdk-javadoc-19.0.0.0.36-2.rolling.el8 - Fedora Packages</title>
 <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../assets/css/main.css">
 <link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<meta name="description" content="View java-latest-openjdk-javadoc-17.0.1.0.12-3.rolling.el8 in EPEL 8. java-latest-openjdk-javadoc: OpenJDK 17 API documentation">
+<meta name="description" content="View java-latest-openjdk-javadoc-19.0.0.0.36-2.rolling.el8 in EPEL 8. java-latest-openjdk-javadoc: OpenJDK 19 API documentation">
 
 <div class="container">
   <div class="row">
@@ -20,12 +20,12 @@
   <hr />
 
 <h1>
-	java-latest-openjdk-javadoc-17.0.1.0.12-3.rolling.el8<small class="text-muted"> in EPEL 8</small>
+	java-latest-openjdk-javadoc-19.0.0.0.36-2.rolling.el8<small class="text-muted"> in EPEL 8</small>
 </h1>
 <p>
 	<a href=".">&crarr; Return to the main page of java-latest-openjdk-javadoc</a><br>
-	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-17.0.1.0.12-3.rolling.el8">View build</a><br>
-	<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-17.0.1.0.12-3.rolling.el8">Search for updates</a>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-19.0.0.0.36-2.rolling.el8">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-19.0.0.0.36-2.rolling.el8">Search for updates</a>
 </p>
 
 <p>
@@ -46,70 +46,74 @@
 			</tr>
 		</thead>
 		<tr>
-			<td>2021-11-05</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.35-3.rolling</td>
-			<td>- Patch syslookup.c so it actually has some code to be compiled into libsyslookup
-- Related: rhbz#2013846</td>
+			<td>2022-08-29</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:19.0.0.0.36-2.rolling</td>
+			<td>- Switch to static builds, reducing system dependencies and making build more portable</td>
 		</tr>
 		<tr>
-			<td>2021-11-03</td>
-			<td>Severin Gehwolf &lt;sgehwolf at redhat dot com&gt; - 1:17.0.1.0.12-2.rolling</td>
-			<td>- Use &#39;sql:&#39; prefix in nss.fips.cfg as F35+ no longer ship the legacy
-  secmod.db file as part of nss</td>
+			<td>2022-08-29</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:19.0.0.0.36-1.rolling</td>
+			<td>- Update to RC version of OpenJDK 19
+- Update release notes to 19.0.0
+- Rebase FIPS patches from fips-19u branch
+- Need to include the &#39;.S&#39; suffix in debuginfo checks after JDK-8284661
+- Add patch to provide translations for Europe/Kyiv added in tzdata2022b
+- Add test to ensure timezones can be translated
+- Remove references to sample directory removed by JDK-8284999</td>
 		</tr>
 		<tr>
-			<td>2021-10-20</td>
-			<td>Petra Alice Mikova &lt;pmikova at redhat dot com&gt; - 1:17.0.1.0.12-1.rolling</td>
-			<td>- October CPU update to jdk 17.0.1+12
-- dropped commented-out source line</td>
+			<td>2022-07-22</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.2.0.9-1.rolling</td>
+			<td>- Update to jdk-18.0.2 release
+- Update release notes to 18.0.2
+- Drop JDK-8282004 patch which is now upstreamed under JDK-8282231
+- Exclude x86 where java_arches is undefined, in order to unbreak build</td>
 		</tr>
 		<tr>
-			<td>2021-10-11</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.35-3.rolling</td>
-			<td>- Update release notes to document the major changes between OpenJDK 11 &amp; 17.</td>
+			<td>2022-07-22</td>
+			<td>Jiri Vanek &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-8.rolling</td>
+			<td>- moved to build only on %{java_arches}
+-- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs
+- reverted :
+-- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild (always mess up release)
+-- Try to build on x86 again by creating a husk of a JDK which does not depend on itself
+-- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable
+-- Replaced binaries and .so files with bash-stubs on i686
+- added ExclusiveArch:  %{java_arches}
+-- this now excludes i686
+-- this is safely backport-able to older fedoras, as the macro was backported properly (with i686 included)
+- https://bugzilla.redhat.com/show_bug.cgi?id=2104125</td>
 		</tr>
 		<tr>
-			<td>2021-10-10</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.35-2.rolling</td>
-			<td>- Fix unused function compiler warning found in systemconf.c
-- Extend the default security policy to accomodate PKCS11 accessing jdk.internal.access.
-- Allow plain key import to be disabled with -Dcom.redhat.fips.plainKeySupport=false</td>
+			<td>2022-07-21</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1:18.0.1.1.2-7.rolling.1</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild</td>
 		</tr>
 		<tr>
-			<td>2021-10-10</td>
-			<td>Martin Balao &lt;mbalao at redhat dot com&gt; - 1:17.0.0.0.35-2.rolling</td>
-			<td>- Add patch to disable non-FIPS crypto in the SUN and SunEC security providers.
-- Add patch to login to the NSS software token when in FIPS mode.
-- Add patch to allow plain key import.</td>
+			<td>2022-07-19</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-7.rolling</td>
+			<td>- Try to build on x86 again by creating a husk of a JDK which does not depend on itself</td>
 		</tr>
 		<tr>
-			<td>2021-09-14</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.35-1.rolling</td>
-			<td>- Update to jdk-17+35, also known as jdk-17-ga.
-- Switch to GA mode.</td>
+			<td>2022-07-17</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-6.rolling</td>
+			<td>- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable</td>
 		</tr>
 		<tr>
-			<td>2021-09-08</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.33-0.3.ea.rolling</td>
-			<td>- Minor code cleanups on FIPS detection patch and check for SECMOD_GetSystemFIPSEnabled in configure.
-- Remove unneeded Requires on NSS as it will now be dynamically linked and detected by RPM.</td>
+			<td>2022-07-13</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-5.rolling</td>
+			<td>- Explicitly require crypto-policies during build and runtime for system security properties</td>
 		</tr>
 		<tr>
-			<td>2021-09-08</td>
-			<td>Martin Balao &lt;mbalao at redhat dot com&gt; - 1:17.0.0.0.33-0.3.ea.rolling</td>
-			<td>- Detect FIPS using SECMOD_GetSystemFIPSEnabled in the new libsystemconf JDK library.</td>
+			<td>2022-07-13</td>
+			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:18.0.1.1.2-4.rolling.</td>
+			<td>- Replaced binaries and .so files with bash-stubs on i686 in preparation of the removal on that architecture:
+- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs</td>
 		</tr>
 		<tr>
-			<td>2021-09-06</td>
-			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:17.0.0.0.33-0.2.ea.rolling</td>
-			<td>- Update RH1655466 FIPS patch with changes in OpenJDK 8 version.
-- SunPKCS11 runtime provider name is a concatenation of &#34;SunPKCS11-&#34; and the name in the config file.
-- Change nss.fips.cfg config name to &#34;NSS-FIPS&#34; to avoid confusion with nss.cfg.
-- No need to substitute path to nss.fips.cfg as java.security file supports a java.home variable.
-- Disable FIPS mode support unless com.redhat.fips is set to &#34;true&#34;.
-- Enable alignment with FIPS crypto policy by default (-Dcom.redhat.fips=false to disable).
-- Add explicit runtime dependency on NSS for the PKCS11 provider in FIPS mode
-- Move setup of JavaSecuritySystemConfiguratorAccess to Security class so it always occurs (RH1915071)</td>
+			<td>2022-07-13</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-3.rolling</td>
+			<td>- Make use of the vendor version string to store our version &amp; release rather than an upstream release date</td>
 		</tr>
 		<tbody>
 		</tbody>
@@ -120,8 +124,8 @@
 	<div class="col">
 		<h2 id="provides">Provides</h2>
 		<ul>
-			<li>java-17-javadoc</li>
-			<li>java-17-openjdk-javadoc</li>
+			<li>java-19-javadoc</li>
+			<li>java-19-openjdk-javadoc</li>
 			<li>java-latest-openjdk-javadoc</li>
 			<li>java-latest-openjdk-javadoc(x86-64)</li>
 		</ul>
@@ -135,7 +139,7 @@
 	<li>usr/<ul>
 	<li>lib/<ul>
 	<li>jvm/<ul>
-	<li>java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64/<ul>
+	<li>java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64/<ul>
 	<li>legal/<ul>
 	<li>java.base/<ul>
 	<li>ADDITIONAL_LICENSE_INFO</li>
@@ -148,6 +152,7 @@
 	<li>icu.md</li>
 	<li>public_suffix.md</li>
 	<li>unicode.md</li>
+	<li>zlib.md</li>
 	</ul></li>
 	<li>java.compiler/<ul>
 	<li>ADDITIONAL_LICENSE_INFO</li>
@@ -164,6 +169,12 @@
 	<li>ASSEMBLY_EXCEPTION</li>
 	<li>LICENSE</li>
 	<li>colorimaging.md</li>
+	<li>freetype.md</li>
+	<li>giflib.md</li>
+	<li>harfbuzz.md</li>
+	<li>jpeg.md</li>
+	<li>lcms.md</li>
+	<li>libpng.md</li>
 	<li>mesa3d.md</li>
 	<li>xwd.md</li>
 	</ul></li>
@@ -317,7 +328,7 @@
 	<li>ASSEMBLY_EXCEPTION</li>
 	<li>LICENSE</li>
 	</ul></li>
-	<li>jdk.incubator.foreign/<ul>
+	<li>jdk.incubator.concurrent/<ul>
 	<li>ADDITIONAL_LICENSE_INFO</li>
 	<li>ASSEMBLY_EXCEPTION</li>
 	<li>LICENSE</li>
@@ -519,11 +530,12 @@
 	</ul></li>
 	<li>share/<ul>
 	<li>javadoc/<ul>
-	<li>java-17-openjdk-17.0.1.0.12-3.rolling.el8.x86_64/<ul>
+	<li>java-19-openjdk-19.0.0.0.36-2.rolling.el8.x86_64/<ul>
 	<li>api/<ul>
 	<li>allclasses-index.html</li>
 	<li>allpackages-index.html</li>
 	<li>constant-values.html</li>
+	<li>copy.svg</li>
 	<li>deprecated-list.html</li>
 	<li>element-list</li>
 	<li>help-doc.html</li>
@@ -794,6 +806,7 @@
 	<li>LayerInstantiationException.html</li>
 	<li>LinkageError.html</li>
 	<li>Long.html</li>
+	<li>MatchException.html</li>
 	<li>Math.html</li>
 	<li>Module.html</li>
 	<li>ModuleLayer.Controller.html</li>
@@ -844,6 +857,9 @@
 	<li>System.Logger.html</li>
 	<li>System.LoggerFinder.html</li>
 	<li>System.html</li>
+	<li>Thread.Builder.OfPlatform.html</li>
+	<li>Thread.Builder.OfVirtual.html</li>
+	<li>Thread.Builder.html</li>
 	<li>Thread.State.html</li>
 	<li>Thread.UncaughtExceptionHandler.html</li>
 	<li>Thread.html</li>
@@ -859,6 +875,7 @@
 	<li>VerifyError.html</li>
 	<li>VirtualMachineError.html</li>
 	<li>Void.html</li>
+	<li>WrongThreadException.html</li>
 	<li>annotation/<ul>
 	<li>Annotation.html</li>
 	<li>AnnotationFormatError.html</li>
@@ -946,6 +963,7 @@
 	<li>LayerInstantiationException.html</li>
 	<li>LinkageError.html</li>
 	<li>Long.html</li>
+	<li>MatchException.html</li>
 	<li>Math.html</li>
 	<li>Module.html</li>
 	<li>ModuleLayer.Controller.html</li>
@@ -996,6 +1014,9 @@
 	<li>System.Logger.html</li>
 	<li>System.LoggerFinder.html</li>
 	<li>System.html</li>
+	<li>Thread.Builder.OfPlatform.html</li>
+	<li>Thread.Builder.OfVirtual.html</li>
+	<li>Thread.Builder.html</li>
 	<li>Thread.State.html</li>
 	<li>Thread.UncaughtExceptionHandler.html</li>
 	<li>Thread.html</li>
@@ -1011,6 +1032,7 @@
 	<li>VerifyError.html</li>
 	<li>VirtualMachineError.html</li>
 	<li>Void.html</li>
+	<li>WrongThreadException.html</li>
 	</ul></li>
 	<li>constant/<ul>
 	<li>ClassDesc.html</li>
@@ -1042,6 +1064,61 @@
 	<li>doc-files/<ul>
 	<li>ValueBased.html</li>
 	<li>threadPrimitiveDeprecation.html</li>
+	</ul></li>
+	<li>foreign/<ul>
+	<li>Addressable.html</li>
+	<li>FunctionDescriptor.html</li>
+	<li>GroupLayout.html</li>
+	<li>Linker.html</li>
+	<li>MemoryAddress.html</li>
+	<li>MemoryLayout.PathElement.html</li>
+	<li>MemoryLayout.html</li>
+	<li>MemorySegment.html</li>
+	<li>MemorySession.html</li>
+	<li>SegmentAllocator.html</li>
+	<li>SequenceLayout.html</li>
+	<li>SymbolLookup.html</li>
+	<li>VaList.Builder.html</li>
+	<li>VaList.html</li>
+	<li>ValueLayout.OfAddress.html</li>
+	<li>ValueLayout.OfBoolean.html</li>
+	<li>ValueLayout.OfByte.html</li>
+	<li>ValueLayout.OfChar.html</li>
+	<li>ValueLayout.OfDouble.html</li>
+	<li>ValueLayout.OfFloat.html</li>
+	<li>ValueLayout.OfInt.html</li>
+	<li>ValueLayout.OfLong.html</li>
+	<li>ValueLayout.OfShort.html</li>
+	<li>ValueLayout.html</li>
+	<li>class-use/<ul>
+	<li>Addressable.html</li>
+	<li>FunctionDescriptor.html</li>
+	<li>GroupLayout.html</li>
+	<li>Linker.html</li>
+	<li>MemoryAddress.html</li>
+	<li>MemoryLayout.PathElement.html</li>
+	<li>MemoryLayout.html</li>
+	<li>MemorySegment.html</li>
+	<li>MemorySession.html</li>
+	<li>SegmentAllocator.html</li>
+	<li>SequenceLayout.html</li>
+	<li>SymbolLookup.html</li>
+	<li>VaList.Builder.html</li>
+	<li>VaList.html</li>
+	<li>ValueLayout.OfAddress.html</li>
+	<li>ValueLayout.OfBoolean.html</li>
+	<li>ValueLayout.OfByte.html</li>
+	<li>ValueLayout.OfChar.html</li>
+	<li>ValueLayout.OfDouble.html</li>
+	<li>ValueLayout.OfFloat.html</li>
+	<li>ValueLayout.OfInt.html</li>
+	<li>ValueLayout.OfLong.html</li>
+	<li>ValueLayout.OfShort.html</li>
+	<li>ValueLayout.html</li>
+	</ul></li>
+	<li>package-summary.html</li>
+	<li>package-tree.html</li>
+	<li>package-use.html</li>
 	</ul></li>
 	<li>invoke/<ul>
 	<li>CallSite.html</li>
@@ -1407,8 +1484,16 @@
 	<li>package-tree.html</li>
 	<li>package-use.html</li>
 	<li>spi/<ul>
+	<li>InetAddressResolver.LookupPolicy.html</li>
+	<li>InetAddressResolver.html</li>
+	<li>InetAddressResolverProvider.Configuration.html</li>
+	<li>InetAddressResolverProvider.html</li>
 	<li>URLStreamHandlerProvider.html</li>
 	<li>class-use/<ul>
+	<li>InetAddressResolver.LookupPolicy.html</li>
+	<li>InetAddressResolver.html</li>
+	<li>InetAddressResolverProvider.Configuration.html</li>
+	<li>InetAddressResolverProvider.html</li>
 	<li>URLStreamHandlerProvider.html</li>
 	</ul></li>
 	<li>package-summary.html</li>
@@ -2802,6 +2887,7 @@
 	<li>ForkJoinPool.html</li>
 	<li>ForkJoinTask.html</li>
 	<li>ForkJoinWorkerThread.html</li>
+	<li>Future.State.html</li>
 	<li>Future.html</li>
 	<li>FutureTask.html</li>
 	<li>LinkedBlockingDeque.html</li>
@@ -2914,6 +3000,7 @@
 	<li>ForkJoinPool.html</li>
 	<li>ForkJoinTask.html</li>
 	<li>ForkJoinWorkerThread.html</li>
+	<li>Future.State.html</li>
 	<li>Future.html</li>
 	<li>FutureTask.html</li>
 	<li>LinkedBlockingDeque.html</li>
@@ -4467,7 +4554,7 @@
 	<li>Choice-1.gif</li>
 	<li>DesktopProperties.html</li>
 	<li>FlowLayout-1.gif</li>
-	<li>FocusCycle.gif</li>
+	<li>FocusCycle.svg</li>
 	<li>FocusSpec.html</li>
 	<li>FontMetrics-1.gif</li>
 	<li>GridBagLayout-1.gif</li>
@@ -4475,7 +4562,8 @@
 	<li>GridBagLayout-baseline.png</li>
 	<li>GridLayout-1.gif</li>
 	<li>GridLayout-2.gif</li>
-	<li>ImplicitFocusTransfer.gif</li>
+	<li>ImplicitFocusTransfer1.svg</li>
+	<li>ImplicitFocusTransfer2.svg</li>
 	<li>Label-1.gif</li>
 	<li>LinearGradientPaint.png</li>
 	<li>List-1.gif</li>
@@ -4490,10 +4578,10 @@
 	<li>Scrollbar-2.gif</li>
 	<li>TextArea-1.gif</li>
 	<li>TextField-1.gif</li>
-	<li>modal-example1.gif</li>
-	<li>modal-example2.gif</li>
-	<li>modal-example3.gif</li>
-	<li>modal-example4.gif</li>
+	<li>modal-example1.svg</li>
+	<li>modal-example2.svg</li>
+	<li>modal-example3.svg</li>
+	<li>modal-example4.svg</li>
 	</ul></li>
 	<li>event/<ul>
 	<li>AWTEventListener.html</li>
@@ -10179,6 +10267,7 @@
 	<li>SerialFieldTree.html</li>
 	<li>SerialTree.html</li>
 	<li>SinceTree.html</li>
+	<li>SnippetTree.html</li>
 	<li>StartElementTree.html</li>
 	<li>SummaryTree.html</li>
 	<li>SystemPropertyTree.html</li>
@@ -10221,6 +10310,7 @@
 	<li>SerialFieldTree.html</li>
 	<li>SerialTree.html</li>
 	<li>SinceTree.html</li>
+	<li>SnippetTree.html</li>
 	<li>StartElementTree.html</li>
 	<li>SummaryTree.html</li>
 	<li>SystemPropertyTree.html</li>
@@ -10255,7 +10345,9 @@
 	<li>CompilationUnitTree.html</li>
 	<li>CompoundAssignmentTree.html</li>
 	<li>ConditionalExpressionTree.html</li>
+	<li>ConstantCaseLabelTree.html</li>
 	<li>ContinueTree.html</li>
+	<li>DeconstructionPatternTree.html</li>
 	<li>DefaultCaseLabelTree.html</li>
 	<li>DirectiveTree.html</li>
 	<li>DoWhileLoopTree.html</li>
@@ -10266,7 +10358,6 @@
 	<li>ExpressionStatementTree.html</li>
 	<li>ExpressionTree.html</li>
 	<li>ForLoopTree.html</li>
-	<li>GuardedPatternTree.html</li>
 	<li>IdentifierTree.html</li>
 	<li>IfTree.html</li>
 	<li>ImportTree.html</li>
@@ -10292,6 +10383,7 @@
 	<li>ParameterizedTypeTree.html</li>
 	<li>ParenthesizedPatternTree.html</li>
 	<li>ParenthesizedTree.html</li>
+	<li>PatternCaseLabelTree.html</li>
 	<li>PatternTree.html</li>
 	<li>PrimitiveTypeTree.html</li>
 	<li>ProvidesTree.html</li>
@@ -10335,7 +10427,9 @@
 	<li>CompilationUnitTree.html</li>
 	<li>CompoundAssignmentTree.html</li>
 	<li>ConditionalExpressionTree.html</li>
+	<li>ConstantCaseLabelTree.html</li>
 	<li>ContinueTree.html</li>
+	<li>DeconstructionPatternTree.html</li>
 	<li>DefaultCaseLabelTree.html</li>
 	<li>DirectiveTree.html</li>
 	<li>DoWhileLoopTree.html</li>
@@ -10346,7 +10440,6 @@
 	<li>ExpressionStatementTree.html</li>
 	<li>ExpressionTree.html</li>
 	<li>ForLoopTree.html</li>
-	<li>GuardedPatternTree.html</li>
 	<li>IdentifierTree.html</li>
 	<li>IfTree.html</li>
 	<li>ImportTree.html</li>
@@ -10372,6 +10465,7 @@
 	<li>ParameterizedTypeTree.html</li>
 	<li>ParenthesizedPatternTree.html</li>
 	<li>ParenthesizedTree.html</li>
+	<li>PatternCaseLabelTree.html</li>
 	<li>PatternTree.html</li>
 	<li>PrimitiveTypeTree.html</li>
 	<li>ProvidesTree.html</li>
@@ -10605,12 +10699,16 @@
 	<li>HttpContext.html</li>
 	<li>HttpExchange.html</li>
 	<li>HttpHandler.html</li>
+	<li>HttpHandlers.html</li>
 	<li>HttpPrincipal.html</li>
 	<li>HttpServer.html</li>
 	<li>HttpsConfigurator.html</li>
 	<li>HttpsExchange.html</li>
 	<li>HttpsParameters.html</li>
 	<li>HttpsServer.html</li>
+	<li>Request.html</li>
+	<li>SimpleFileServer.OutputLevel.html</li>
+	<li>SimpleFileServer.html</li>
 	<li>class-use/<ul>
 	<li>Authenticator.Failure.html</li>
 	<li>Authenticator.Result.html</li>
@@ -10624,12 +10722,16 @@
 	<li>HttpContext.html</li>
 	<li>HttpExchange.html</li>
 	<li>HttpHandler.html</li>
+	<li>HttpHandlers.html</li>
 	<li>HttpPrincipal.html</li>
 	<li>HttpServer.html</li>
 	<li>HttpsConfigurator.html</li>
 	<li>HttpsExchange.html</li>
 	<li>HttpsParameters.html</li>
 	<li>HttpsServer.html</li>
+	<li>Request.html</li>
+	<li>SimpleFileServer.OutputLevel.html</li>
+	<li>SimpleFileServer.html</li>
 	</ul></li>
 	<li>package-summary.html</li>
 	<li>package-tree.html</li>
@@ -10649,51 +10751,19 @@
 	</ul></li>
 	<li>module-summary.html</li>
 	</ul></li>
-	<li>jdk.incubator.foreign/<ul>
+	<li>jdk.incubator.concurrent/<ul>
 	<li>jdk/<ul>
 	<li>incubator/<ul>
-	<li>foreign/<ul>
-	<li>Addressable.html</li>
-	<li>CLinker.TypeKind.html</li>
-	<li>CLinker.VaList.Builder.html</li>
-	<li>CLinker.VaList.html</li>
-	<li>CLinker.html</li>
-	<li>FunctionDescriptor.html</li>
-	<li>GroupLayout.html</li>
-	<li>MemoryAccess.html</li>
-	<li>MemoryAddress.html</li>
-	<li>MemoryHandles.html</li>
-	<li>MemoryLayout.PathElement.html</li>
-	<li>MemoryLayout.html</li>
-	<li>MemoryLayouts.html</li>
-	<li>MemorySegment.html</li>
-	<li>ResourceScope.Handle.html</li>
-	<li>ResourceScope.html</li>
-	<li>SegmentAllocator.html</li>
-	<li>SequenceLayout.html</li>
-	<li>SymbolLookup.html</li>
-	<li>ValueLayout.html</li>
+	<li>concurrent/<ul>
+	<li>StructureViolationException.html</li>
+	<li>StructuredTaskScope.ShutdownOnFailure.html</li>
+	<li>StructuredTaskScope.ShutdownOnSuccess.html</li>
+	<li>StructuredTaskScope.html</li>
 	<li>class-use/<ul>
-	<li>Addressable.html</li>
-	<li>CLinker.TypeKind.html</li>
-	<li>CLinker.VaList.Builder.html</li>
-	<li>CLinker.VaList.html</li>
-	<li>CLinker.html</li>
-	<li>FunctionDescriptor.html</li>
-	<li>GroupLayout.html</li>
-	<li>MemoryAccess.html</li>
-	<li>MemoryAddress.html</li>
-	<li>MemoryHandles.html</li>
-	<li>MemoryLayout.PathElement.html</li>
-	<li>MemoryLayout.html</li>
-	<li>MemoryLayouts.html</li>
-	<li>MemorySegment.html</li>
-	<li>ResourceScope.Handle.html</li>
-	<li>ResourceScope.html</li>
-	<li>SegmentAllocator.html</li>
-	<li>SequenceLayout.html</li>
-	<li>SymbolLookup.html</li>
-	<li>ValueLayout.html</li>
+	<li>StructureViolationException.html</li>
+	<li>StructuredTaskScope.ShutdownOnFailure.html</li>
+	<li>StructuredTaskScope.ShutdownOnSuccess.html</li>
+	<li>StructuredTaskScope.html</li>
 	</ul></li>
 	<li>package-summary.html</li>
 	<li>package-tree.html</li>
@@ -10902,6 +10972,7 @@
 	<li>NativeMethodException.html</li>
 	<li>ObjectCollectedException.html</li>
 	<li>ObjectReference.html</li>
+	<li>OpaqueFrameException.html</li>
 	<li>PathSearchingVirtualMachine.html</li>
 	<li>PrimitiveType.html</li>
 	<li>PrimitiveValue.html</li>
@@ -10970,6 +11041,7 @@
 	<li>NativeMethodException.html</li>
 	<li>ObjectCollectedException.html</li>
 	<li>ObjectReference.html</li>
+	<li>OpaqueFrameException.html</li>
 	<li>PathSearchingVirtualMachine.html</li>
 	<li>PrimitiveType.html</li>
 	<li>PrimitiveValue.html</li>
@@ -11304,9 +11376,11 @@
 	<li>Snippet.SubKind.html</li>
 	<li>Snippet.html</li>
 	<li>SnippetEvent.html</li>
+	<li>SourceCodeAnalysis.Attribute.html</li>
 	<li>SourceCodeAnalysis.Completeness.html</li>
 	<li>SourceCodeAnalysis.CompletionInfo.html</li>
 	<li>SourceCodeAnalysis.Documentation.html</li>
+	<li>SourceCodeAnalysis.Highlight.html</li>
 	<li>SourceCodeAnalysis.QualifiedNames.html</li>
 	<li>SourceCodeAnalysis.SnippetWrapper.html</li>
 	<li>SourceCodeAnalysis.Suggestion.html</li>
@@ -11333,9 +11407,11 @@
 	<li>Snippet.SubKind.html</li>
 	<li>Snippet.html</li>
 	<li>SnippetEvent.html</li>
+	<li>SourceCodeAnalysis.Attribute.html</li>
 	<li>SourceCodeAnalysis.Completeness.html</li>
 	<li>SourceCodeAnalysis.CompletionInfo.html</li>
 	<li>SourceCodeAnalysis.Documentation.html</li>
+	<li>SourceCodeAnalysis.Highlight.html</li>
 	<li>SourceCodeAnalysis.QualifiedNames.html</li>
 	<li>SourceCodeAnalysis.SnippetWrapper.html</li>
 	<li>SourceCodeAnalysis.Suggestion.html</li>
@@ -11457,6 +11533,7 @@
 	<li>GarbageCollectionNotificationInfo.html</li>
 	<li>GarbageCollectorMXBean.html</li>
 	<li>GcInfo.html</li>
+	<li>HotSpotDiagnosticMXBean.ThreadDumpFormat.html</li>
 	<li>HotSpotDiagnosticMXBean.html</li>
 	<li>OperatingSystemMXBean.html</li>
 	<li>ThreadMXBean.html</li>
@@ -11468,6 +11545,7 @@
 	<li>GarbageCollectionNotificationInfo.html</li>
 	<li>GarbageCollectorMXBean.html</li>
 	<li>GcInfo.html</li>
+	<li>HotSpotDiagnosticMXBean.ThreadDumpFormat.html</li>
 	<li>HotSpotDiagnosticMXBean.html</li>
 	<li>OperatingSystemMXBean.html</li>
 	<li>ThreadMXBean.html</li>
@@ -11967,25 +12045,13 @@
 	<li>x.png</li>
 	</ul></li>
 	<li>script-dir/<ul>
-	<li>images/<ul>
-	<li>ui-bg_glass_55_fbf9ee_1x400.png</li>
-	<li>ui-bg_glass_65_dadada_1x400.png</li>
-	<li>ui-bg_glass_75_dadada_1x400.png</li>
-	<li>ui-bg_glass_75_e6e6e6_1x400.png</li>
-	<li>ui-bg_glass_95_fef1ec_1x400.png</li>
-	<li>ui-bg_highlight-soft_75_cccccc_1x100.png</li>
-	<li>ui-icons_222222_256x240.png</li>
-	<li>ui-icons_2e83ff_256x240.png</li>
-	<li>ui-icons_454545_256x240.png</li>
-	<li>ui-icons_888888_256x240.png</li>
-	<li>ui-icons_cd0a0a_256x240.png</li>
-	</ul></li>
-	<li>jquery-3.5.1.min.js</li>
+	<li>jquery-3.6.0.min.js</li>
 	<li>jquery-ui.min.css</li>
 	<li>jquery-ui.min.js</li>
-	<li>jquery-ui.structure.min.css</li>
 	</ul></li>
 	<li>script.js</li>
+	<li>search-page.js</li>
+	<li>search.html</li>
 	<li>search.js</li>
 	<li>serialized-form.html</li>
 	<li>stylesheet.css</li>

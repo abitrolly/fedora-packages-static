@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<title>java-latest-openjdk-devel-slowdebug-19.0.0.0.36-2.rolling.fc37 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="description" content="View java-latest-openjdk-devel-slowdebug-19.0.0.0.36-2.rolling.fc37 in Fedora 37. java-latest-openjdk-devel-slowdebug: OpenJDK 19 Development Environment unoptimised with full debugging on">
+
+<div class="container">
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+    </div>
+  </div>
+
+  <hr />
+
+<h1>
+	java-latest-openjdk-devel-slowdebug-19.0.0.0.36-2.rolling.fc37<small class="text-muted"> in Fedora 37</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of java-latest-openjdk-devel-slowdebug</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-19.0.0.0.36-2.rolling.fc37">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-19.0.0.0.36-2.rolling.fc37">Search for updates</a>
+</p>
+
+<p>
+	<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+	<a href="#changelog">&#129047; Changelog</a><br>
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	<a href="#provides">&#129047; Provides</a><br>
+	<a href="#files">&#129047; Files</a><br>
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>2022-08-29</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:19.0.0.0.36-2.rolling</td>
+			<td>- Switch to static builds, reducing system dependencies and making build more portable</td>
+		</tr>
+		<tr>
+			<td>2022-08-29</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:19.0.0.0.36-1.rolling</td>
+			<td>- Update to RC version of OpenJDK 19
+- Update release notes to 19.0.0
+- Rebase FIPS patches from fips-19u branch
+- Need to include the &#39;.S&#39; suffix in debuginfo checks after JDK-8284661
+- Add patch to provide translations for Europe/Kyiv added in tzdata2022b
+- Add test to ensure timezones can be translated
+- Remove references to sample directory removed by JDK-8284999</td>
+		</tr>
+		<tr>
+			<td>2022-07-22</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.2.0.9-1.rolling</td>
+			<td>- Update to jdk-18.0.2 release
+- Update release notes to 18.0.2
+- Drop JDK-8282004 patch which is now upstreamed under JDK-8282231
+- Exclude x86 where java_arches is undefined, in order to unbreak build</td>
+		</tr>
+		<tr>
+			<td>2022-07-22</td>
+			<td>Jiri Vanek &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-8.rolling</td>
+			<td>- moved to build only on %{java_arches}
+-- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs
+- reverted :
+-- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild (always mess up release)
+-- Try to build on x86 again by creating a husk of a JDK which does not depend on itself
+-- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable
+-- Replaced binaries and .so files with bash-stubs on i686
+- added ExclusiveArch:  %{java_arches}
+-- this now excludes i686
+-- this is safely backport-able to older fedoras, as the macro was backported properly (with i686 included)
+- https://bugzilla.redhat.com/show_bug.cgi?id=2104125</td>
+		</tr>
+		<tr>
+			<td>2022-07-21</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1:18.0.1.1.2-7.rolling.1</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild</td>
+		</tr>
+		<tr>
+			<td>2022-07-19</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-7.rolling</td>
+			<td>- Try to build on x86 again by creating a husk of a JDK which does not depend on itself</td>
+		</tr>
+		<tr>
+			<td>2022-07-17</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-6.rolling</td>
+			<td>- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable</td>
+		</tr>
+		<tr>
+			<td>2022-07-13</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-5.rolling</td>
+			<td>- Explicitly require crypto-policies during build and runtime for system security properties</td>
+		</tr>
+		<tr>
+			<td>2022-07-13</td>
+			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:18.0.1.1.2-4.rolling.</td>
+			<td>- Replaced binaries and .so files with bash-stubs on i686 in preparation of the removal on that architecture:
+- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs</td>
+		</tr>
+		<tr>
+			<td>2022-07-13</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-3.rolling</td>
+			<td>- Make use of the vendor version string to store our version &amp; release rather than an upstream release date</td>
+		</tr>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			<li>
+			<a href="/pkgs/bash/bash/fedora-37.html">
+			bash</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/glibc/glibc/fedora-37.html">
+			glibc</a>
+
+			</li>
+			<li>
+			<a href="/pkgs/java-latest-openjdk/java-latest-openjdk-slowdebug/fedora-37.html">
+			java-latest-openjdk-slowdebug</a> = 19.0.0.0.36-2.rolling.fc37
+
+			</li>
+		</ul>
+	</div>
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			<li>application()</li>
+			<li>application(java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug-jconsole-slowdebug.desktop)</li>
+			<li>java-19-devel-slowdebug</li>
+			<li>java-19-openjdk-devel-slowdebug</li>
+			<li>java-latest-openjdk-devel-slowdebug</li>
+			<li>java-latest-openjdk-devel-slowdebug(x86-64)</li>
+			<li>java-sdk-19-openjdk-slowdebug</li>
+			<li>java-sdk-19-slowdebug</li>
+		</ul>
+	</div>
+</div>
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	<li>usr/<ul>
+	<li>lib/<ul>
+	<li>.build-id/<ul>
+	<li>02/<ul>
+	<li>222ace959fc93cc2d5622dce93c6ff603c167c</li>
+	</ul></li>
+	<li>31/<ul>
+	<li>992b581d5356992f1dbdb5ad828f6978f032a2</li>
+	</ul></li>
+	<li>3c/<ul>
+	<li>2b016c706f613e6c9d37168ab0d29bbffef210</li>
+	</ul></li>
+	<li>40/<ul>
+	<li>2d5a219279e675db2610c6b4fa2b3334396c9e</li>
+	</ul></li>
+	<li>43/<ul>
+	<li>2754e5ccd7f1608e6a99d4e1e58c95dbd4fc9e</li>
+	</ul></li>
+	<li>4b/<ul>
+	<li>077f96a45cbe7387f2b37a9b6c3574fdef0f50</li>
+	</ul></li>
+	<li>56/<ul>
+	<li>9327148461dabcc6f5370b1044a6fb0f2dc05b</li>
+	</ul></li>
+	<li>57/<ul>
+	<li>00a57c26cbab7f93f19d94668be110ef601fb4</li>
+	</ul></li>
+	<li>5b/<ul>
+	<li>6ff94c2c655a4a425aa929797c4f1da3585946</li>
+	</ul></li>
+	<li>5c/<ul>
+	<li>7d93ba6ed02f2c01a8a872f6f9f9d59eb245fb</li>
+	</ul></li>
+	<li>6d/<ul>
+	<li>a888a1185a68ec80462bb07a4e4969c3a5a4a0</li>
+	</ul></li>
+	<li>70/<ul>
+	<li>253f960e2c6e29a208280a140e7711dd58df06</li>
+	</ul></li>
+	<li>73/<ul>
+	<li>73d424a3ee99882ff6aebe23809128a17bc992</li>
+	</ul></li>
+	<li>7b/<ul>
+	<li>607077e4526fc71b7a8503d36c9e88beabaa99</li>
+	<li>89c5895ed52acc1bf477278b5f456d112eb17c</li>
+	</ul></li>
+	<li>8b/<ul>
+	<li>21878e9cad7cd51f127074ab41cfde54fe8279</li>
+	<li>46ae5c03e2f0c64128ba426f570d7696f4d5e8</li>
+	</ul></li>
+	<li>8e/<ul>
+	<li>ca578a6c8b989b63d01a1d4c9fa63074a47dc1</li>
+	</ul></li>
+	<li>bd/<ul>
+	<li>bbf8764857dc80617132d3faa17308c6c90927</li>
+	</ul></li>
+	<li>ce/<ul>
+	<li>f6825210f8e60ad7c4e3efdf5ca5eb1088c43a</li>
+	</ul></li>
+	<li>d1/<ul>
+	<li>7cfff848c2e26578c2a6e044de7d3eddc5f5ac</li>
+	</ul></li>
+	<li>dc/<ul>
+	<li>6627056e58a1f889f07174e5ce91241887bc18</li>
+	</ul></li>
+	<li>e6/<ul>
+	<li>814a6a1588989abe837d30f169b56ea85b8bba</li>
+	</ul></li>
+	<li>ef/<ul>
+	<li>1eedabf6a5888f5575169603675e3be72464a4</li>
+	<li>840871bdd92f10c4c178c6391ef934d1516d07</li>
+	</ul></li>
+	<li>fd/<ul>
+	<li>50e5e958896b9eda3ba4b3e5937feafa3b70f2</li>
+	</ul></li>
+	</ul></li>
+	<li>jvm/<ul>
+	<li>java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug/<ul>
+	<li>bin/<ul>
+	<li>jar</li>
+	<li>jarsigner</li>
+	<li>javac</li>
+	<li>javadoc</li>
+	<li>javap</li>
+	<li>jcmd</li>
+	<li>jconsole</li>
+	<li>jdb</li>
+	<li>jdeprscan</li>
+	<li>jdeps</li>
+	<li>jfr</li>
+	<li>jhsdb</li>
+	<li>jimage</li>
+	<li>jinfo</li>
+	<li>jlink</li>
+	<li>jmap</li>
+	<li>jmod</li>
+	<li>jpackage</li>
+	<li>jps</li>
+	<li>jrunscript</li>
+	<li>jshell</li>
+	<li>jstack</li>
+	<li>jstat</li>
+	<li>jstatd</li>
+	<li>jwebserver</li>
+	<li>serialver</li>
+	</ul></li>
+	<li>include/<ul>
+	<li>classfile_constants.h</li>
+	<li>jawt.h</li>
+	<li>jdwpTransport.h</li>
+	<li>jni.h</li>
+	<li>jvmti.h</li>
+	<li>jvmticmlr.h</li>
+	<li>linux/<ul>
+	<li>jawt_md.h</li>
+	<li>jni_md.h</li>
+	</ul></li>
+	</ul></li>
+	<li>lib/<ul>
+	<li>ct.sym</li>
+	</ul></li>
+	<li>tapset/<ul>
+	<li>hotspot-19.0.0.0.36-2.rolling.fc37.x86_64.stp</li>
+	<li>hotspot_gc-19.0.0.0.36-2.rolling.fc37.x86_64.stp</li>
+	<li>hotspot_jni-19.0.0.0.36-2.rolling.fc37.x86_64.stp</li>
+	<li>jstack-19.0.0.0.36-2.rolling.fc37.x86_64.stp</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>share/<ul>
+	<li>applications/<ul>
+	<li>java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug-jconsole-slowdebug.desktop</li>
+	</ul></li>
+	<li>man/<ul>
+	<li>man1/<ul>
+	<li>jar-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jarsigner-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>javac-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>javadoc-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>javap-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jcmd-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jconsole-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jdb-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jdeprscan-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jdeps-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jfr-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jhsdb-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jinfo-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jlink-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jmap-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jmod-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jpackage-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jps-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jrunscript-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jshell-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jstack-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jstat-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jstatd-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>jwebserver-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	<li>serialver-java-19-openjdk-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.1.gz</li>
+	</ul></li>
+	</ul></li>
+	<li>systemtap/<ul>
+	<li>tapset/<ul>
+	<li>x86_64/<ul>
+	<li>hotspot-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.stp</li>
+	<li>hotspot_gc-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.stp</li>
+	<li>hotspot_jni-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.stp</li>
+	<li>jstack-19.0.0.0.36-2.rolling.fc37.x86_64-slowdebug.stp</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+</div>
+
+  <div class="text-muted text-center">
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>
+  </div>
+</div>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<title>java-latest-openjdk-devel-slowdebug-18.0.2.0.9-1.rolling.el9 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="description" content="View java-latest-openjdk-devel-slowdebug-18.0.2.0.9-1.rolling.el9 in EPEL 9. java-latest-openjdk-devel-slowdebug: OpenJDK 19 Development Environment unoptimised with full debugging on">
+
+<div class="container">
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+    </div>
+  </div>
+
+  <hr />
+
+<h1>
+	java-latest-openjdk-devel-slowdebug-18.0.2.0.9-1.rolling.el9<small class="text-muted"> in EPEL 9</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of java-latest-openjdk-devel-slowdebug</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-18.0.2.0.9-1.rolling.el9">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-18.0.2.0.9-1.rolling.el9">Search for updates</a>
+</p>
+
+<p>
+	<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+	<a href="#changelog">&#129047; Changelog</a><br>
+	<a href="#dependencies">&#129047; Dependencies</a><br>
+	<a href="#provides">&#129047; Provides</a><br>
+	<a href="#files">&#129047; Files</a><br>
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>2022-07-22</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.2.0.9-1.rolling</td>
+			<td>- Update to jdk-18.0.2 release
+- Update release notes to 18.0.2
+- Drop JDK-8282004 patch which is now upstreamed under JDK-8282231
+- Exclude x86 where java_arches is undefined, in order to unbreak build</td>
+		</tr>
+		<tr>
+			<td>2022-07-22</td>
+			<td>Jiri Vanek &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-8.rolling</td>
+			<td>- moved to build only on %{java_arches}
+-- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs
+- reverted :
+-- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild (always mess up release)
+-- Try to build on x86 again by creating a husk of a JDK which does not depend on itself
+-- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable
+-- Replaced binaries and .so files with bash-stubs on i686
+- added ExclusiveArch:  %{java_arches}
+-- this now excludes i686
+-- this is safely backport-able to older fedoras, as the macro was backported properly (with i686 included)
+- https://bugzilla.redhat.com/show_bug.cgi?id=2104125</td>
+		</tr>
+		<tr>
+			<td>2022-07-21</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1:18.0.1.1.2-7.rolling.1</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild</td>
+		</tr>
+		<tr>
+			<td>2022-07-19</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-7.rolling</td>
+			<td>- Try to build on x86 again by creating a husk of a JDK which does not depend on itself</td>
+		</tr>
+		<tr>
+			<td>2022-07-17</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-6.rolling</td>
+			<td>- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable</td>
+		</tr>
+		<tr>
+			<td>2022-07-13</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-5.rolling</td>
+			<td>- Explicitly require crypto-policies during build and runtime for system security properties</td>
+		</tr>
+		<tr>
+			<td>2022-07-13</td>
+			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:18.0.1.1.2-4.rolling.</td>
+			<td>- Replaced binaries and .so files with bash-stubs on i686 in preparation of the removal on that architecture:
+- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs</td>
+		</tr>
+		<tr>
+			<td>2022-07-13</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-3.rolling</td>
+			<td>- Make use of the vendor version string to store our version &amp; release rather than an upstream release date</td>
+		</tr>
+		<tr>
+			<td>2022-07-12</td>
+			<td>FeRD (Frank Dana) &lt;ferdnyc at gmail dot com&gt; - 1:18.0.1.1.2-2.rolling</td>
+			<td>- Add javaver- and origin-specific javadoc and javadoczip alternatives.</td>
+		</tr>
+		<tr>
+			<td>2022-07-11</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-1.rolling</td>
+			<td>- Update to jdk-18.0.1.1 interim release
+- Update release notes to actually reflect OpenJDK 18 and subsequent releases 18.0.1 &amp; 18.0.1.1
+- Print release file during build, which should now include a correct SOURCE value from .src-rev
+- Update tarball script with IcedTea GitHub URL and .src-rev generation
+- Include script to generate bug list for release notes
+- Update tzdata requirement to 2022a to match JDK-8283350</td>
+		</tr>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<div class="col">
+		<h2 id="dependencies">Dependencies</h2>
+		<ul>
+			<li>
+			<a href="/pkgs/java-latest-openjdk/java-latest-openjdk-slowdebug/epel-9.html">
+			java-latest-openjdk-slowdebug</a> = 18.0.2.0.9-1.rolling.el9
+
+			</li>
+		</ul>
+	</div>
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			<li>application()</li>
+			<li>application(java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug-jconsole-slowdebug.desktop)</li>
+			<li>java-18-devel-slowdebug</li>
+			<li>java-18-openjdk-devel-slowdebug</li>
+			<li>java-latest-openjdk-devel-slowdebug</li>
+			<li>java-latest-openjdk-devel-slowdebug(x86-64)</li>
+			<li>java-sdk-18-openjdk-slowdebug</li>
+			<li>java-sdk-18-slowdebug</li>
+		</ul>
+	</div>
+</div>
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	<li>usr/<ul>
+	<li>lib/<ul>
+	<li>.build-id/<ul>
+	<li>06/<ul>
+	<li>ac6ce38f37ae5a9e2593a0a09b9f8e7f7f8edf</li>
+	</ul></li>
+	<li>15/<ul>
+	<li>f8a36c720471ea635f2bd1b3676f7ad57a1eec</li>
+	</ul></li>
+	<li>17/<ul>
+	<li>d526af939692b7b19d592a016daa7b56f3bd4c</li>
+	</ul></li>
+	<li>23/<ul>
+	<li>37ba8de08e13077c50f6537a6321af4796b741</li>
+	</ul></li>
+	<li>37/<ul>
+	<li>253609a411174d1dc8aeceeaeae0d9293759e4</li>
+	</ul></li>
+	<li>3d/<ul>
+	<li>f670b0aab3bef40013e063fa675f93cb3cb462</li>
+	</ul></li>
+	<li>50/<ul>
+	<li>2dd239e522e1f5d999d0c686b79e6662f89569</li>
+	</ul></li>
+	<li>5a/<ul>
+	<li>76a4ecd52b4be021b0219c676c7a7e5707a22a</li>
+	</ul></li>
+	<li>6d/<ul>
+	<li>a2a7855c5de5bf171fd9e275b3befdd4dab75c</li>
+	</ul></li>
+	<li>77/<ul>
+	<li>43deb8d3140c52112b7b4d47970da33da45d77</li>
+	</ul></li>
+	<li>7c/<ul>
+	<li>614c8b1d65d41bc342c3eac95e0a7d37d811c0</li>
+	</ul></li>
+	<li>98/<ul>
+	<li>58495727e5d405c440698ed94edc7133b924a2</li>
+	</ul></li>
+	<li>99/<ul>
+	<li>59e855ff93d664b736f08088071667708bf164</li>
+	</ul></li>
+	<li>a6/<ul>
+	<li>70e00e79c30f85dd2b3e0c1c9619aadbababd7</li>
+	</ul></li>
+	<li>af/<ul>
+	<li>24907680bb2751f7dd60510c2d1ccfbbbe7ba3</li>
+	</ul></li>
+	<li>b6/<ul>
+	<li>7dca7a670f1d53fe640b26ba5e141adfa6350b</li>
+	</ul></li>
+	<li>b8/<ul>
+	<li>76b496e6ca0872892330fb3075835605137e59</li>
+	</ul></li>
+	<li>b9/<ul>
+	<li>cc38e2c30ab7620e9e962a63e1f6a426114233</li>
+	</ul></li>
+	<li>bf/<ul>
+	<li>fc17d8fbcc5963aa99bc8f6a489d5915aa1c24</li>
+	</ul></li>
+	<li>c7/<ul>
+	<li>619b8e96244c8ecd8ea57b88097c8c155ca9f7</li>
+	</ul></li>
+	<li>c8/<ul>
+	<li>f87b30bce7680e389a7fdfbfb92ba1216215d7</li>
+	</ul></li>
+	<li>db/<ul>
+	<li>99760487913614fc3571039b25c9818218de8f</li>
+	</ul></li>
+	<li>e8/<ul>
+	<li>52270115fdbec58304340193ffb7c8b0ea63f0</li>
+	</ul></li>
+	<li>f2/<ul>
+	<li>77a22c61038faef9c270843461cc3701fc73f4</li>
+	</ul></li>
+	<li>fd/<ul>
+	<li>89f8685df1acaf118b0324f4f1e44f125a961d</li>
+	</ul></li>
+	<li>ff/<ul>
+	<li>eac66cf31275141ef50ea1c08f2ff4d7814814</li>
+	</ul></li>
+	</ul></li>
+	<li>jvm/<ul>
+	<li>java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug/<ul>
+	<li>bin/<ul>
+	<li>jar</li>
+	<li>jarsigner</li>
+	<li>javac</li>
+	<li>javadoc</li>
+	<li>javap</li>
+	<li>jcmd</li>
+	<li>jconsole</li>
+	<li>jdb</li>
+	<li>jdeprscan</li>
+	<li>jdeps</li>
+	<li>jfr</li>
+	<li>jhsdb</li>
+	<li>jimage</li>
+	<li>jinfo</li>
+	<li>jlink</li>
+	<li>jmap</li>
+	<li>jmod</li>
+	<li>jpackage</li>
+	<li>jps</li>
+	<li>jrunscript</li>
+	<li>jshell</li>
+	<li>jstack</li>
+	<li>jstat</li>
+	<li>jstatd</li>
+	<li>jwebserver</li>
+	<li>serialver</li>
+	</ul></li>
+	<li>include/<ul>
+	<li>classfile_constants.h</li>
+	<li>jawt.h</li>
+	<li>jdwpTransport.h</li>
+	<li>jni.h</li>
+	<li>jvmti.h</li>
+	<li>jvmticmlr.h</li>
+	<li>linux/<ul>
+	<li>jawt_md.h</li>
+	<li>jni_md.h</li>
+	</ul></li>
+	</ul></li>
+	<li>lib/<ul>
+	<li>ct.sym</li>
+	</ul></li>
+	<li>tapset/<ul>
+	<li>hotspot-18.0.2.0.9-1.rolling.el9.x86_64.stp</li>
+	<li>hotspot_gc-18.0.2.0.9-1.rolling.el9.x86_64.stp</li>
+	<li>hotspot_jni-18.0.2.0.9-1.rolling.el9.x86_64.stp</li>
+	<li>jstack-18.0.2.0.9-1.rolling.el9.x86_64.stp</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>share/<ul>
+	<li>applications/<ul>
+	<li>java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug-jconsole-slowdebug.desktop</li>
+	</ul></li>
+	<li>man/<ul>
+	<li>man1/<ul>
+	<li>jar-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jarsigner-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>javac-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>javadoc-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>javap-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jcmd-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jconsole-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jdb-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jdeprscan-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jdeps-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jfr-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jhsdb-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jinfo-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jlink-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jmap-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jmod-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jpackage-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jps-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jrunscript-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jshell-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jstack-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jstat-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jstatd-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>jwebserver-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	<li>serialver-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.1.gz</li>
+	</ul></li>
+	</ul></li>
+	<li>systemtap/<ul>
+	<li>tapset/<ul>
+	<li>x86_64/<ul>
+	<li>hotspot-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.stp</li>
+	<li>hotspot_gc-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.stp</li>
+	<li>hotspot_jni-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.stp</li>
+	<li>jstack-18.0.2.0.9-1.rolling.el9.x86_64-slowdebug.stp</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+</div>
+
+  <div class="text-muted text-center">
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>
+  </div>
+</div>

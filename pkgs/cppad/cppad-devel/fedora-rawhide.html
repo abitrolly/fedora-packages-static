@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<title>cppad-devel-20210000.7-1.fc35 - Fedora Packages</title>
+<title>cppad-devel-20220000.4-2.fc37 - Fedora Packages</title>
 <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../assets/css/main.css">
 <link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<meta name="description" content="View cppad-devel-20210000.7-1.fc35 in Fedora Rawhide. cppad-devel: The cppad C++ include files for Algorithmic Differentiation (AD)">
+<meta name="description" content="View cppad-devel-20220000.4-2.fc37 in Fedora Rawhide. cppad-devel: The cppad C++ include files for Algorithmic Differentiation (AD)">
 
 <div class="container">
   <div class="row">
@@ -20,12 +20,12 @@
   <hr />
 
 <h1>
-	cppad-devel-20210000.7-1.fc35<small class="text-muted"> in Fedora Rawhide</small>
+	cppad-devel-20220000.4-2.fc37<small class="text-muted"> in Fedora Rawhide</small>
 </h1>
 <p>
 	<a href=".">&crarr; Return to the main page of cppad-devel</a><br>
-	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=cppad-20210000.7-1.fc35">View build</a><br>
-	<a href="https://bodhi.fedoraproject.org/updates/?search=cppad-20210000.7-1.fc35">Search for updates</a>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=cppad-20220000.4-2.fc37">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=cppad-20220000.4-2.fc37">Search for updates</a>
 </p>
 
 <p>
@@ -47,6 +47,55 @@
 			</tr>
 		</thead>
 		<tr>
+			<td>2022-07-20</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 20220000.4-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild</td>
+		</tr>
+		<tr>
+			<td>2022-05-21</td>
+			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20220000.4-1</td>
+			<td>- Advance to upstream 20220000.4. Main motivation for this is to make 
+  cppad_eigen.hpp work with Eigen 3.4.0.</td>
+		</tr>
+		<tr>
+			<td>2022-02-14</td>
+			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20220000.1-1</td>
+			<td>- Not necessary to advance to 20220000.2 because Fedora build is getting
+  correct result for cppad.pc.</td>
+		</tr>
+		<tr>
+			<td>2022-02-02</td>
+			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20220000.1-1</td>
+			<td>- Try commenting out to_string test of long double on ppc56le arch.
+  This problem does not reproduce on ppc64le-test.fedorainfracloud.org.</td>
+		</tr>
+		<tr>
+			<td>2022-02-01</td>
+			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20220000.1-1</td>
+			<td>- Modify to_string.cpp patch to print out more information on failure.
+- Add simple program to print machine epsilon before any other testing.</td>
+		</tr>
+		<tr>
+			<td>2022-01-31</td>
+			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20220000.1-1</td>
+			<td>- Fix following long standing typos in cmake command:
+- 1. cppad_test_vector -&gt; cppad_testvector
+- 2. cppad_max_num_theads -&gt; cppad_max_num_threads
+- Temporary change to debug ppc64le build failure: replace to_string.cpp
+- Replace temporary change by a patch to example/utility/to_string.cpp</td>
+		</tr>
+		<tr>
+			<td>2022-01-24</td>
+			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20220000.1-1</td>
+			<td>- Advance to upstream source 20220000.1
+- Add -Wno-array-bounds to compiler flags (see remarks about this flag)</td>
+		</tr>
+		<tr>
+			<td>2022-01-19</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 20210000.7-2</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild</td>
+		</tr>
+		<tr>
 			<td>2021-08-02</td>
 			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20210000.7-1</td>
 			<td>- Advance to upstream source 20210000.7</td>
@@ -55,57 +104,6 @@
 			<td>2021-07-21</td>
 			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 20210000.5-3</td>
 			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild</td>
-		</tr>
-		<tr>
-			<td>2021-03-07</td>
-			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20210000.5-2</td>
-			<td>- Remove %debug_package (not necessary to create debug info).
-- Use %setup to unpack tarballs (sets premissions properly).
-- Add comments about using %clean to check BUILDROOT.</td>
-		</tr>
-		<tr>
-			<td>2021-02-28</td>
-			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20210000.5-1</td>
-			<td>- Advance to upstream source 20210000.5
-- Remove patches that are no longer necessary.
-- Change: Source1, Source2 -&gt; Source0, Source1.
-- Change: make %{?_smp_mflags} -&gt; %make_build
-- Change: make install DESTDIR=%{buildroot} -&gt; %make_install.</td>
-		</tr>
-		<tr>
-			<td>2021-02-18</td>
-			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20210000.3-3</td>
-			<td>- Patch corresponding to bug fix in upstream source 20210000.5</td>
-		</tr>
-		<tr>
-			<td>2021-02-02</td>
-			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20210000.3-2</td>
-			<td>- Patch corresponding to bug fix in upstream source 20210000.4</td>
-		</tr>
-		<tr>
-			<td>2021-01-26</td>
-			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20210000.3-1</td>
-			<td>- Advance to upstream source 20210000.3
-- Remove patches that are no longer necessary.
-- Update cmake command line to new version of upstream source.</td>
-		</tr>
-		<tr>
-			<td>2021-01-26</td>
-			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 20200000.0-8</td>
-			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild</td>
-		</tr>
-		<tr>
-			<td>2020-12-27</td>
-			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20200000.0-7</td>
-			<td>- Add _smp_mflags to the make check command (parallel make)
-- Build Debuginfo version of the cppad_lib library.</td>
-		</tr>
-		<tr>
-			<td>2020-08-01</td>
-			<td>Brad Bell &lt;bradbell at seanet dot com&gt; - 20200000.0-6</td>
-			<td>- define __cmake_in_source_build see:
-  https://docs.fedoraproject.org/en-US/packaging-guidelines/CMake/
-- Change soversion edit so modified soversion displayed during cmake command</td>
 		</tr>
 		<tbody>
 		</tbody>
@@ -141,7 +139,7 @@
 			<li>cppad</li>
 			<li>cppad-devel</li>
 			<li>cppad-devel(x86-64)</li>
-			<li>libcppad_lib.so.2.0()(64bit)</li>
+			<li>libcppad_lib.so.3.0()(64bit)</li>
 			<li>pkgconfig(cppad)</li>
 		</ul>
 	</div>
@@ -348,33 +346,14 @@
 	<li>solve_result.hpp</li>
 	</ul></li>
 	<li>local/<ul>
-	<li>abs_op.hpp</li>
-	<li>acos_op.hpp</li>
-	<li>acosh_op.hpp</li>
 	<li>ad_tape.hpp</li>
-	<li>add_op.hpp</li>
-	<li>asin_op.hpp</li>
-	<li>asinh_op.hpp</li>
-	<li>atan_op.hpp</li>
-	<li>atanh_op.hpp</li>
 	<li>atom_state.hpp</li>
 	<li>atomic_index.hpp</li>
 	<li>color_general.hpp</li>
 	<li>color_symmetric.hpp</li>
-	<li>comp_op.hpp</li>
-	<li>cond_op.hpp</li>
-	<li>cos_op.hpp</li>
-	<li>cosh_op.hpp</li>
 	<li>cppad_colpack.hpp</li>
-	<li>cskip_op.hpp</li>
-	<li>csum_op.hpp</li>
 	<li>declare_ad.hpp</li>
 	<li>define.hpp</li>
-	<li>discrete_op.hpp</li>
-	<li>div_op.hpp</li>
-	<li>erf_op.hpp</li>
-	<li>exp_op.hpp</li>
-	<li>expm1_op.hpp</li>
 	<li>graph/<ul>
 	<li>cpp_graph_itr.hpp</li>
 	<li>cpp_graph_op.hpp</li>
@@ -385,10 +364,45 @@
 	<li>hash_code.hpp</li>
 	<li>independent.hpp</li>
 	<li>is_pod.hpp</li>
+	<li>op/<ul>
+	<li>abs_op.hpp</li>
+	<li>acos_op.hpp</li>
+	<li>acosh_op.hpp</li>
+	<li>add_op.hpp</li>
+	<li>asin_op.hpp</li>
+	<li>asinh_op.hpp</li>
+	<li>atan_op.hpp</li>
+	<li>atanh_op.hpp</li>
+	<li>comp_op.hpp</li>
+	<li>cond_op.hpp</li>
+	<li>cos_op.hpp</li>
+	<li>cosh_op.hpp</li>
+	<li>cskip_op.hpp</li>
+	<li>csum_op.hpp</li>
+	<li>discrete_op.hpp</li>
+	<li>div_op.hpp</li>
+	<li>erf_op.hpp</li>
+	<li>exp_op.hpp</li>
+	<li>expm1_op.hpp</li>
 	<li>load_op.hpp</li>
 	<li>log1p_op.hpp</li>
 	<li>log_op.hpp</li>
 	<li>mul_op.hpp</li>
+	<li>neg_op.hpp</li>
+	<li>parameter_op.hpp</li>
+	<li>pow_op.hpp</li>
+	<li>print_op.hpp</li>
+	<li>prototype_op.hpp</li>
+	<li>sign_op.hpp</li>
+	<li>sin_op.hpp</li>
+	<li>sinh_op.hpp</li>
+	<li>sqrt_op.hpp</li>
+	<li>store_op.hpp</li>
+	<li>sub_op.hpp</li>
+	<li>tan_op.hpp</li>
+	<li>tanh_op.hpp</li>
+	<li>zmul_op.hpp</li>
+	</ul></li>
 	<li>op.hpp</li>
 	<li>op_code_dyn.hpp</li>
 	<li>op_code_var.hpp</li>
@@ -411,7 +425,6 @@
 	<li>size_pair.hpp</li>
 	<li>usage.hpp</li>
 	</ul></li>
-	<li>parameter_op.hpp</li>
 	<li>play/<ul>
 	<li>addr_enum.hpp</li>
 	<li>atom_op_info.hpp</li>
@@ -422,9 +435,6 @@
 	<li>subgraph_iterator.hpp</li>
 	</ul></li>
 	<li>pod_vector.hpp</li>
-	<li>pow_op.hpp</li>
-	<li>print_op.hpp</li>
-	<li>prototype_op.hpp</li>
 	<li>record/<ul>
 	<li>comp_op.hpp</li>
 	<li>cond_exp.hpp</li>
@@ -434,9 +444,6 @@
 	<li>recorder.hpp</li>
 	</ul></li>
 	<li>set_get_in_parallel.hpp</li>
-	<li>sign_op.hpp</li>
-	<li>sin_op.hpp</li>
-	<li>sinh_op.hpp</li>
 	<li>sparse/<ul>
 	<li>binary_op.hpp</li>
 	<li>internal.hpp</li>
@@ -445,10 +452,7 @@
 	<li>svec_setvec.hpp</li>
 	<li>unary_op.hpp</li>
 	</ul></li>
-	<li>sqrt_op.hpp</li>
 	<li>std_set.hpp</li>
-	<li>store_op.hpp</li>
-	<li>sub_op.hpp</li>
 	<li>subgraph/<ul>
 	<li>arg_variable.hpp</li>
 	<li>entire_call.hpp</li>
@@ -469,13 +473,10 @@
 	<li>rev_jac.hpp</li>
 	<li>reverse.hpp</li>
 	</ul></li>
-	<li>tan_op.hpp</li>
-	<li>tanh_op.hpp</li>
 	<li>utility/<ul>
 	<li>cppad_vector_itr.hpp</li>
 	<li>vector_bool.hpp</li>
 	</ul></li>
-	<li>zmul_op.hpp</li>
 	</ul></li>
 	<li>speed/<ul>
 	<li>det_33.hpp</li>
@@ -530,14 +531,14 @@
 	</ul></li>
 	<li>lib/<ul>
 	<li>.build-id/<ul>
-	<li>a9/<ul>
-	<li>8d6c1c3cf86557424ecd7f6cfdea65b26e71e5</li>
+	<li>13/<ul>
+	<li>1f82961f915224c9b7c9962c837d4eca1c2745</li>
 	</ul></li>
 	</ul></li>
 	</ul></li>
 	<li>lib64/<ul>
 	<li>libcppad_lib.so</li>
-	<li>libcppad_lib.so.2.0</li>
+	<li>libcppad_lib.so.3.0</li>
 	<li>pkgconfig/<ul>
 	<li>cppad.pc</li>
 	</ul></li>

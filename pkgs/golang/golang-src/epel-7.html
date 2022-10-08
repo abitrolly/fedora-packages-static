@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<title>golang-src-1.15.14-1.el7 - Fedora Packages</title>
+<title>golang-src-1.17.12-1.el7 - Fedora Packages</title>
 <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../../assets/css/main.css">
 <link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
-<meta name="description" content="View golang-src-1.15.14-1.el7 in EPEL 7. golang-src: Golang compiler source tree">
+<meta name="description" content="View golang-src-1.17.12-1.el7 in EPEL 7. golang-src: Golang compiler source tree">
 
 <div class="container">
   <div class="row">
@@ -20,12 +20,12 @@
   <hr />
 
 <h1>
-	golang-src-1.15.14-1.el7<small class="text-muted"> in EPEL 7</small>
+	golang-src-1.17.12-1.el7<small class="text-muted"> in EPEL 7</small>
 </h1>
 <p>
 	<a href=".">&crarr; Return to the main page of golang-src</a><br>
-	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=golang-1.15.14-1.el7">View build</a><br>
-	<a href="https://bodhi.fedoraproject.org/updates/?search=golang-1.15.14-1.el7">Search for updates</a>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=golang-1.17.12-1.el7">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=golang-1.17.12-1.el7">Search for updates</a>
 </p>
 
 <p>
@@ -45,6 +45,32 @@
 				<th scope="col">Change</th>
 			</tr>
 		</thead>
+		<tr>
+			<td>2022-08-01</td>
+			<td>Dave Dykstra &lt;dwd at fedoraproject dot org&gt; - 1.17.12-1</td>
+			<td>- Update to 1.17.12 by doing the equivalent changes as centos8-stream.</td>
+		</tr>
+		<tr>
+			<td>2022-06-30</td>
+			<td>Dave Dykstra &lt;dwd at fedoraproject dot org&gt; - 1.17.10-1</td>
+			<td>- Update to 1.17.10 by cherry-picking the commit from centos8-stream.</td>
+		</tr>
+		<tr>
+			<td>2022-05-10</td>
+			<td>Dave Dykstra &lt;dwd at fedoraproject dot org&gt; - 1.17.7-1</td>
+			<td>- Update to 1.17.7, based on centos8-stream packaging except keeping
+  go-srpm-macros and the &#34;--with ignore_tests&#34; rpmbuild option</td>
+		</tr>
+		<tr>
+			<td>2022-01-20</td>
+			<td>Dave Dykstra &lt;dwd at fedoraproject dot org&gt; - 1.16.13-2</td>
+			<td>- Add back providing go-srpm-macros on rhel 7</td>
+		</tr>
+		<tr>
+			<td>2022-01-18</td>
+			<td>Dave Dykstra &lt;dwd at fedoraproject dot org&gt; - 1.16.13-1</td>
+			<td>- Update to go1.16.13, copied from f35</td>
+		</tr>
 		<tr>
 			<td>2021-07-27</td>
 			<td>Jakub Čajka &lt;jcajka at redhat dot com&gt; - 1.15.14-1</td>
@@ -80,35 +106,6 @@
 			<td>- Rebase to go1.13.14
 - Fix for  CVE-2020-15586
 - Resolves: BZ#1856956</td>
-		</tr>
-		<tr>
-			<td>2020-05-18</td>
-			<td>Álex Sáez &lt;asm at redhat dot com&gt; - 1.13.11-1</td>
-			<td>- Rebase to go1.13.11</td>
-		</tr>
-		<tr>
-			<td>2020-02-03</td>
-			<td>Jakub Čajka &lt;jcajka at redhat dot com&gt; - 1.13.6-1</td>
-			<td>- Rebase to go1.13.6</td>
-		</tr>
-		<tr>
-			<td>2019-11-13</td>
-			<td>Jakub Čajka &lt;jcajka at redhat dot com&gt; - 1.13.4-1</td>
-			<td>- Rebase to go1.13.4</td>
-		</tr>
-		<tr>
-			<td>2019-10-30</td>
-			<td>Jakub Čajka &lt;jcajka at redhat dot com&gt; - 1.13.3-1</td>
-			<td>- Rebase to go1.13.3
-- Fix for CVE-2019-17596
-- Resolves: BZ#1763311</td>
-		</tr>
-		<tr>
-			<td>2019-10-05</td>
-			<td>Jakub Čajka &lt;jcajka at redhat dot com&gt; - 1.13.1-1</td>
-			<td>- Rebase to go1.13.1
-- Fix for CVE-2019-16276
-- Resolves: BZ#1755971</td>
 		</tr>
 		<tbody>
 		</tbody>
@@ -226,8 +223,12 @@
 	</ul></li>
 	<li>compile/<ul>
 	<li>README.md</li>
+	<li>abi-internal.md</li>
 	<li>doc.go</li>
 	<li>internal/<ul>
+	<li>abi/<ul>
+	<li>abiutils.go</li>
+	</ul></li>
 	<li>amd64/<ul>
 	<li>galign.go</li>
 	<li>ggen.go</li>
@@ -243,72 +244,79 @@
 	<li>ggen.go</li>
 	<li>ssa.go</li>
 	</ul></li>
-	<li>gc/<ul>
-	<li>alg.go</li>
-	<li>algkind_string.go</li>
-	<li>align.go</li>
-	<li>bexport.go</li>
-	<li>bimport.go</li>
-	<li>bitset.go</li>
-	<li>bootstrap.go</li>
-	<li>builtin/<ul>
-	<li>runtime.go</li>
-	</ul></li>
-	<li>builtin.go</li>
-	<li>bv.go</li>
-	<li>class_string.go</li>
-	<li>closure.go</li>
-	<li>const.go</li>
-	<li>dcl.go</li>
-	<li>dump.go</li>
-	<li>dwinl.go</li>
-	<li>esc.go</li>
-	<li>escape.go</li>
-	<li>export.go</li>
-	<li>fmt.go</li>
-	<li>gen.go</li>
-	<li>go.go</li>
-	<li>gsubr.go</li>
-	<li>iexport.go</li>
-	<li>iimport.go</li>
-	<li>init.go</li>
-	<li>initorder.go</li>
-	<li>inl.go</li>
-	<li>lex.go</li>
-	<li>main.go</li>
-	<li>mapfile_mmap.go</li>
-	<li>mapfile_read.go</li>
-	<li>mkbuiltin.go</li>
-	<li>mpfloat.go</li>
-	<li>mpint.go</li>
-	<li>noder.go</li>
-	<li>obj.go</li>
-	<li>op_string.go</li>
-	<li>order.go</li>
-	<li>pgen.go</li>
-	<li>phi.go</li>
-	<li>plive.go</li>
-	<li>pprof.go</li>
-	<li>racewalk.go</li>
-	<li>range.go</li>
-	<li>reflect.go</li>
-	<li>scc.go</li>
-	<li>scope.go</li>
-	<li>select.go</li>
-	<li>sinit.go</li>
-	<li>ssa.go</li>
-	<li>subr.go</li>
-	<li>swt.go</li>
-	<li>syntax.go</li>
+	<li>base/<ul>
+	<li>base.go</li>
+	<li>debug.go</li>
+	<li>flag.go</li>
+	<li>link.go</li>
+	<li>print.go</li>
 	<li>timings.go</li>
+	</ul></li>
+	<li>bitvec/<ul>
+	<li>bv.go</li>
+	</ul></li>
+	<li>deadcode/<ul>
+	<li>deadcode.go</li>
+	</ul></li>
+	<li>devirtualize/<ul>
+	<li>devirtualize.go</li>
+	</ul></li>
+	<li>dwarfgen/<ul>
+	<li>dwarf.go</li>
+	<li>dwinl.go</li>
+	<li>marker.go</li>
+	<li>scope.go</li>
+	</ul></li>
+	<li>escape/<ul>
+	<li>escape.go</li>
+	</ul></li>
+	<li>gc/<ul>
+	<li>bootstrap.go</li>
+	<li>compile.go</li>
+	<li>export.go</li>
+	<li>main.go</li>
+	<li>obj.go</li>
+	<li>pprof.go</li>
 	<li>trace.go</li>
-	<li>typecheck.go</li>
-	<li>types.go</li>
-	<li>types_acc.go</li>
-	<li>universe.go</li>
-	<li>unsafe.go</li>
 	<li>util.go</li>
-	<li>walk.go</li>
+	</ul></li>
+	<li>importer/<ul>
+	<li>exportdata.go</li>
+	<li>gcimporter.go</li>
+	<li>iimport.go</li>
+	<li>support.go</li>
+	</ul></li>
+	<li>inline/<ul>
+	<li>inl.go</li>
+	</ul></li>
+	<li>ir/<ul>
+	<li>bitset.go</li>
+	<li>cfg.go</li>
+	<li>class_string.go</li>
+	<li>const.go</li>
+	<li>copy.go</li>
+	<li>dump.go</li>
+	<li>expr.go</li>
+	<li>fmt.go</li>
+	<li>func.go</li>
+	<li>ir.go</li>
+	<li>mini.go</li>
+	<li>mknode.go</li>
+	<li>name.go</li>
+	<li>node.go</li>
+	<li>node_gen.go</li>
+	<li>op_string.go</li>
+	<li>package.go</li>
+	<li>scc.go</li>
+	<li>stmt.go</li>
+	<li>symtab.go</li>
+	<li>type.go</li>
+	<li>val.go</li>
+	<li>visit.go</li>
+	</ul></li>
+	<li>liveness/<ul>
+	<li>bvset.go</li>
+	<li>plive.go</li>
 	</ul></li>
 	<li>logopt/<ul>
 	<li>escape.go</li>
@@ -325,11 +333,42 @@
 	<li>ggen.go</li>
 	<li>ssa.go</li>
 	</ul></li>
+	<li>noder/<ul>
+	<li>decl.go</li>
+	<li>expr.go</li>
+	<li>func.go</li>
+	<li>helpers.go</li>
+	<li>import.go</li>
+	<li>irgen.go</li>
+	<li>lex.go</li>
+	<li>noder.go</li>
+	<li>object.go</li>
+	<li>posmap.go</li>
+	<li>scopes.go</li>
+	<li>sizes.go</li>
+	<li>stencil.go</li>
+	<li>stmt.go</li>
+	<li>transform.go</li>
+	<li>types.go</li>
+	<li>validate.go</li>
+	</ul></li>
+	<li>objw/<ul>
+	<li>objw.go</li>
+	<li>prog.go</li>
+	</ul></li>
+	<li>pkginit/<ul>
+	<li>init.go</li>
+	<li>initorder.go</li>
+	</ul></li>
 	<li>ppc64/<ul>
 	<li>galign.go</li>
 	<li>ggen.go</li>
 	<li>opt.go</li>
 	<li>ssa.go</li>
+	</ul></li>
+	<li>reflectdata/<ul>
+	<li>alg.go</li>
+	<li>reflect.go</li>
 	</ul></li>
 	<li>riscv64/<ul>
 	<li>galign.go</li>
@@ -362,11 +401,13 @@
 	<li>debug.go</li>
 	<li>decompose.go</li>
 	<li>dom.go</li>
+	<li>expand_calls.go</li>
 	<li>flagalloc.go</li>
 	<li>flags_amd64_test.s</li>
 	<li>flags_arm64_test.s</li>
 	<li>func.go</li>
 	<li>fuse.go</li>
+	<li>fuse_branchredirect.go</li>
 	<li>fuse_comparisons.go</li>
 	<li>gen/<ul>
 	<li>386.rules</li>
@@ -396,8 +437,6 @@
 	<li>dec.rules</li>
 	<li>dec64.rules</li>
 	<li>dec64Ops.go</li>
-	<li>decArgs.rules</li>
-	<li>decArgsOps.go</li>
 	<li>decOps.go</li>
 	<li>generic.rules</li>
 	<li>genericOps.go</li>
@@ -425,7 +464,6 @@
 	<li>poset.go</li>
 	<li>print.go</li>
 	<li>prove.go</li>
-	<li>redblack32.go</li>
 	<li>regalloc.go</li>
 	<li>rewrite.go</li>
 	<li>rewrite386.go</li>
@@ -442,7 +480,6 @@
 	<li>rewriteWasm.go</li>
 	<li>rewritedec.go</li>
 	<li>rewritedec64.go</li>
-	<li>rewritedecArgs.go</li>
 	<li>rewritegeneric.go</li>
 	<li>schedule.go</li>
 	<li>shortcircuit.go</li>
@@ -450,7 +487,6 @@
 	<li>sparsemap.go</li>
 	<li>sparseset.go</li>
 	<li>sparsetree.go</li>
-	<li>sparsetreemap.go</li>
 	<li>stackalloc.go</li>
 	<li>stackframe.go</li>
 	<li>tighten.go</li>
@@ -461,6 +497,21 @@
 	<li>xposmap.go</li>
 	<li>zcse.go</li>
 	</ul></li>
+	<li>ssagen/<ul>
+	<li>abi.go</li>
+	<li>arch.go</li>
+	<li>nowb.go</li>
+	<li>pgen.go</li>
+	<li>phi.go</li>
+	<li>ssa.go</li>
+	</ul></li>
+	<li>staticdata/<ul>
+	<li>data.go</li>
+	<li>embed.go</li>
+	</ul></li>
+	<li>staticinit/<ul>
+	<li>sched.go</li>
+	</ul></li>
 	<li>syntax/<ul>
 	<li>branches.go</li>
 	<li>dumper.go</li>
@@ -468,31 +519,120 @@
 	<li>operator_string.go</li>
 	<li>parser.go</li>
 	<li>pos.go</li>
+	<li>positions.go</li>
 	<li>printer.go</li>
 	<li>scanner.go</li>
 	<li>source.go</li>
 	<li>syntax.go</li>
+	<li>testing.go</li>
 	<li>token_string.go</li>
 	<li>tokens.go</li>
+	<li>walk.go</li>
 	</ul></li>
 	<li>test/<ul>
 	<li>README</li>
 	<li>test.go</li>
 	</ul></li>
+	<li>typebits/<ul>
+	<li>typebits.go</li>
+	</ul></li>
+	<li>typecheck/<ul>
+	<li>bexport.go</li>
+	<li>builtin/<ul>
+	<li>runtime.go</li>
+	</ul></li>
+	<li>builtin.go</li>
+	<li>const.go</li>
+	<li>dcl.go</li>
+	<li>export.go</li>
+	<li>expr.go</li>
+	<li>func.go</li>
+	<li>iexport.go</li>
+	<li>iimport.go</li>
+	<li>mapfile_mmap.go</li>
+	<li>mapfile_read.go</li>
+	<li>mkbuiltin.go</li>
+	<li>stmt.go</li>
+	<li>subr.go</li>
+	<li>syms.go</li>
+	<li>target.go</li>
+	<li>type.go</li>
+	<li>typecheck.go</li>
+	<li>universe.go</li>
+	</ul></li>
 	<li>types/<ul>
-	<li>etype_string.go</li>
+	<li>alg.go</li>
+	<li>algkind_string.go</li>
+	<li>fmt.go</li>
+	<li>goversion.go</li>
 	<li>identity.go</li>
+	<li>kind_string.go</li>
 	<li>pkg.go</li>
 	<li>scope.go</li>
+	<li>size.go</li>
+	<li>sort.go</li>
 	<li>sym.go</li>
 	<li>type.go</li>
 	<li>utils.go</li>
+	</ul></li>
+	<li>types2/<ul>
+	<li>api.go</li>
+	<li>assignments.go</li>
+	<li>builtins.go</li>
+	<li>call.go</li>
+	<li>check.go</li>
+	<li>conversions.go</li>
+	<li>decl.go</li>
+	<li>errors.go</li>
+	<li>expr.go</li>
+	<li>gccgosizes.go</li>
+	<li>index.go</li>
+	<li>infer.go</li>
+	<li>initorder.go</li>
+	<li>instantiate.go</li>
+	<li>labels.go</li>
+	<li>lookup.go</li>
+	<li>object.go</li>
+	<li>objset.go</li>
+	<li>operand.go</li>
+	<li>package.go</li>
+	<li>predicates.go</li>
+	<li>resolver.go</li>
+	<li>return.go</li>
+	<li>sanitize.go</li>
+	<li>scope.go</li>
+	<li>selection.go</li>
+	<li>sizes.go</li>
+	<li>stmt.go</li>
+	<li>subst.go</li>
+	<li>type.go</li>
+	<li>typestring.go</li>
+	<li>typexpr.go</li>
+	<li>unify.go</li>
+	<li>universe.go</li>
+	<li>version.go</li>
+	</ul></li>
+	<li>walk/<ul>
+	<li>assign.go</li>
+	<li>builtin.go</li>
+	<li>closure.go</li>
+	<li>compare.go</li>
+	<li>complit.go</li>
+	<li>convert.go</li>
+	<li>expr.go</li>
+	<li>order.go</li>
+	<li>race.go</li>
+	<li>range.go</li>
+	<li>select.go</li>
+	<li>stmt.go</li>
+	<li>switch.go</li>
+	<li>temp.go</li>
+	<li>walk.go</li>
 	</ul></li>
 	<li>wasm/<ul>
 	<li>ssa.go</li>
 	</ul></li>
 	<li>x86/<ul>
-	<li>387.go</li>
 	<li>galign.go</li>
 	<li>ggen.go</li>
 	<li>ssa.go</li>
@@ -505,7 +645,6 @@
 	<li>doc.go</li>
 	<li>func.go</li>
 	<li>html.go</li>
-	<li>profile.go</li>
 	</ul></li>
 	<li>dist/<ul>
 	<li>README</li>
@@ -513,10 +652,8 @@
 	<li>buildgo.go</li>
 	<li>buildruntime.go</li>
 	<li>buildtool.go</li>
-	<li>cpuid_386.s</li>
-	<li>cpuid_amd64.s</li>
-	<li>cpuid_default.s</li>
 	<li>doc.go</li>
+	<li>exec.go</li>
 	<li>imports.go</li>
 	<li>main.go</li>
 	<li>sys_default.go</li>
@@ -576,7 +713,6 @@
 	</ul></li>
 	<li>cfg/<ul>
 	<li>cfg.go</li>
-	<li>cfg.go.orig</li>
 	<li>zdefaultcc.go</li>
 	<li>zosarch.go</li>
 	</ul></li>
@@ -598,14 +734,14 @@
 	<li>fmtcmd/<ul>
 	<li>fmt.go</li>
 	</ul></li>
+	<li>fsys/<ul>
+	<li>fsys.go</li>
+	</ul></li>
 	<li>generate/<ul>
 	<li>generate.go</li>
 	</ul></li>
 	<li>get/<ul>
-	<li>discovery.go</li>
 	<li>get.go</li>
-	<li>path.go</li>
-	<li>vcs.go</li>
 	</ul></li>
 	<li>help/<ul>
 	<li>help.go</li>
@@ -680,10 +816,8 @@
 	</ul></li>
 	<li>coderepo.go</li>
 	<li>fetch.go</li>
-	<li>insecure.go</li>
 	<li>key.go</li>
 	<li>proxy.go</li>
-	<li>pseudo.go</li>
 	<li>repo.go</li>
 	<li>sumdb.go</li>
 	<li>zip_sum_test/<ul>
@@ -691,12 +825,15 @@
 	</ul></li>
 	<li>modget/<ul>
 	<li>get.go</li>
+	<li>query.go</li>
 	</ul></li>
 	<li>modinfo/<ul>
 	<li>info.go</li>
 	</ul></li>
 	<li>modload/<ul>
 	<li>build.go</li>
+	<li>buildlist.go</li>
+	<li>edit.go</li>
 	<li>help.go</li>
 	<li>import.go</li>
 	<li>init.go</li>
@@ -709,17 +846,16 @@
 	<li>stat_openfile.go</li>
 	<li>stat_unix.go</li>
 	<li>stat_windows.go</li>
-	<li>testgo.go</li>
 	<li>vendor.go</li>
 	</ul></li>
 	<li>mvs/<ul>
+	<li>errors.go</li>
+	<li>graph.go</li>
 	<li>mvs.go</li>
 	</ul></li>
 	<li>par/<ul>
+	<li>queue.go</li>
 	<li>work.go</li>
-	</ul></li>
-	<li>renameio/<ul>
-	<li>renameio.go</li>
 	</ul></li>
 	<li>robustio/<ul>
 	<li>robustio.go</li>
@@ -748,8 +884,15 @@
 	<li>tool/<ul>
 	<li>tool.go</li>
 	</ul></li>
+	<li>trace/<ul>
+	<li>trace.go</li>
+	</ul></li>
 	<li>txtar/<ul>
 	<li>archive.go</li>
+	</ul></li>
+	<li>vcs/<ul>
+	<li>discovery.go</li>
+	<li>vcs.go</li>
 	</ul></li>
 	<li>version/<ul>
 	<li>exe.go</li>
@@ -792,6 +935,9 @@
 	<li>simplify.go</li>
 	</ul></li>
 	<li>internal/<ul>
+	<li>archive/<ul>
+	<li>archive.go</li>
+	</ul></li>
 	<li>bio/<ul>
 	<li>buf.go</li>
 	<li>buf_mmap.go</li>
@@ -805,6 +951,9 @@
 	<li>buildid.go</li>
 	<li>note.go</li>
 	<li>rewrite.go</li>
+	</ul></li>
+	<li>codesign/<ul>
+	<li>codesign.go</li>
 	</ul></li>
 	<li>diff/<ul>
 	<li>diff.go</li>
@@ -820,10 +969,6 @@
 	<li>gcprog.go</li>
 	</ul></li>
 	<li>goobj/<ul>
-	<li>read.go</li>
-	<li>readnew.go</li>
-	</ul></li>
-	<li>goobj2/<ul>
 	<li>builtin.go</li>
 	<li>builtinlist.go</li>
 	<li>funcinfo.go</li>
@@ -848,6 +993,7 @@
 	<li>anames.go</li>
 	<li>anames7.go</li>
 	<li>asm7.go</li>
+	<li>asm_arm64_test.s</li>
 	<li>doc.go</li>
 	<li>list7.go</li>
 	<li>obj7.go</li>
@@ -869,7 +1015,6 @@
 	<li>obj0.go</li>
 	</ul></li>
 	<li>objfile.go</li>
-	<li>objfile2.go</li>
 	<li>pass.go</li>
 	<li>pcln.go</li>
 	<li>plist.go</li>
@@ -923,7 +1068,6 @@
 	</ul></li>
 	<li>objabi/<ul>
 	<li>autotype.go</li>
-	<li>doc.go</li>
 	<li>flag.go</li>
 	<li>funcdata.go</li>
 	<li>funcid.go</li>
@@ -949,6 +1093,9 @@
 	<li>plan9obj.go</li>
 	<li>xcoff.go</li>
 	</ul></li>
+	<li>pkgpath/<ul>
+	<li>pkgpath.go</li>
+	</ul></li>
 	<li>src/<ul>
 	<li>pos.go</li>
 	<li>xpos.go</li>
@@ -959,6 +1106,9 @@
 	</ul></li>
 	<li>test2json/<ul>
 	<li>test2json.go</li>
+	</ul></li>
+	<li>traceviewer/<ul>
+	<li>format.go</li>
 	</ul></li>
 	</ul></li>
 	<li>link/<ul>
@@ -984,19 +1134,18 @@
 	</ul></li>
 	<li>ld/<ul>
 	<li>ar.go</li>
+	<li>asmb.go</li>
 	<li>config.go</li>
 	<li>data.go</li>
-	<li>data2.go</li>
 	<li>deadcode.go</li>
 	<li>decodesym.go</li>
 	<li>dwarf.go</li>
-	<li>dwarf2.go</li>
 	<li>elf.go</li>
-	<li>elf2.go</li>
 	<li>errors.go</li>
 	<li>execarchive.go</li>
 	<li>execarchive_noexec.go</li>
 	<li>go.go</li>
+	<li>heap.go</li>
 	<li>ld.go</li>
 	<li>lib.go</li>
 	<li>link.go</li>
@@ -1009,6 +1158,7 @@
 	<li>outbuf_mmap.go</li>
 	<li>outbuf_nofallocate.go</li>
 	<li>outbuf_nommap.go</li>
+	<li>outbuf_notdarwin.go</li>
 	<li>outbuf_windows.go</li>
 	<li>pcln.go</li>
 	<li>pe.go</li>
@@ -1018,7 +1168,6 @@
 	<li>typelink.go</li>
 	<li>util.go</li>
 	<li>xcoff.go</li>
-	<li>xcoff2.go</li>
 	</ul></li>
 	<li>loadelf/<ul>
 	<li>ldelf.go</li>
@@ -1062,13 +1211,11 @@
 	<li>obj.go</li>
 	</ul></li>
 	<li>sym/<ul>
-	<li>attribute.go</li>
 	<li>compilation_unit.go</li>
 	<li>library.go</li>
 	<li>reloc.go</li>
 	<li>segment.go</li>
 	<li>symbol.go</li>
-	<li>symbols.go</li>
 	<li>symkind.go</li>
 	<li>symkind_string.go</li>
 	</ul></li>
@@ -1089,120 +1236,6 @@
 	<li>nm.go</li>
 	</ul></li>
 	<li>objdump/<ul>
-	<li>main.go</li>
-	</ul></li>
-	<li>oldlink/<ul>
-	<li>doc.go</li>
-	<li>internal/<ul>
-	<li>amd64/<ul>
-	<li>asm.go</li>
-	<li>l.go</li>
-	<li>obj.go</li>
-	</ul></li>
-	<li>arm/<ul>
-	<li>asm.go</li>
-	<li>l.go</li>
-	<li>obj.go</li>
-	</ul></li>
-	<li>arm64/<ul>
-	<li>asm.go</li>
-	<li>l.go</li>
-	<li>obj.go</li>
-	</ul></li>
-	<li>ld/<ul>
-	<li>ar.go</li>
-	<li>config.go</li>
-	<li>data.go</li>
-	<li>deadcode.go</li>
-	<li>deadcode2.go</li>
-	<li>decodesym.go</li>
-	<li>dwarf.go</li>
-	<li>elf.go</li>
-	<li>execarchive.go</li>
-	<li>execarchive_noexec.go</li>
-	<li>go.go</li>
-	<li>ld.go</li>
-	<li>lib.go</li>
-	<li>link.go</li>
-	<li>macho.go</li>
-	<li>macho_combine_dwarf.go</li>
-	<li>main.go</li>
-	<li>outbuf.go</li>
-	<li>outbuf_mmap.go</li>
-	<li>outbuf_nommap.go</li>
-	<li>outbuf_windows.go</li>
-	<li>pcln.go</li>
-	<li>pe.go</li>
-	<li>sym.go</li>
-	<li>symtab.go</li>
-	<li>typelink.go</li>
-	<li>util.go</li>
-	<li>xcoff.go</li>
-	</ul></li>
-	<li>loadelf/<ul>
-	<li>ldelf.go</li>
-	</ul></li>
-	<li>loader/<ul>
-	<li>loader.go</li>
-	</ul></li>
-	<li>loadmacho/<ul>
-	<li>ldmacho.go</li>
-	</ul></li>
-	<li>loadpe/<ul>
-	<li>ldpe.go</li>
-	</ul></li>
-	<li>loadxcoff/<ul>
-	<li>ldxcoff.go</li>
-	</ul></li>
-	<li>mips/<ul>
-	<li>asm.go</li>
-	<li>l.go</li>
-	<li>obj.go</li>
-	</ul></li>
-	<li>mips64/<ul>
-	<li>asm.go</li>
-	<li>l.go</li>
-	<li>obj.go</li>
-	</ul></li>
-	<li>objfile/<ul>
-	<li>objfile.go</li>
-	</ul></li>
-	<li>ppc64/<ul>
-	<li>asm.go</li>
-	<li>l.go</li>
-	<li>obj.go</li>
-	</ul></li>
-	<li>riscv64/<ul>
-	<li>asm.go</li>
-	<li>l.go</li>
-	<li>obj.go</li>
-	</ul></li>
-	<li>s390x/<ul>
-	<li>asm.go</li>
-	<li>l.go</li>
-	<li>obj.go</li>
-	</ul></li>
-	<li>sym/<ul>
-	<li>attribute.go</li>
-	<li>compilation_unit.go</li>
-	<li>library.go</li>
-	<li>reloc.go</li>
-	<li>segment.go</li>
-	<li>symbol.go</li>
-	<li>symbols.go</li>
-	<li>symkind.go</li>
-	<li>symkind_string.go</li>
-	</ul></li>
-	<li>wasm/<ul>
-	<li>asm.go</li>
-	<li>obj.go</li>
-	</ul></li>
-	<li>x86/<ul>
-	<li>asm.go</li>
-	<li>l.go</li>
-	<li>obj.go</li>
-	</ul></li>
-	</ul></li>
 	<li>main.go</li>
 	</ul></li>
 	<li>pack/<ul>
@@ -1248,6 +1281,7 @@
 	<li>driver/<ul>
 	<li>cli.go</li>
 	<li>commands.go</li>
+	<li>config.go</li>
 	<li>driver.go</li>
 	<li>driver_focus.go</li>
 	<li>fetch.go</li>
@@ -1255,6 +1289,7 @@
 	<li>flamegraph.go</li>
 	<li>interactive.go</li>
 	<li>options.go</li>
+	<li>settings.go</li>
 	<li>svg.go</li>
 	<li>tempfile.go</li>
 	<li>webhtml.go</li>
@@ -1277,6 +1312,7 @@
 	<li>report.go</li>
 	<li>source.go</li>
 	<li>source_html.go</li>
+	<li>synth.go</li>
 	</ul></li>
 	<li>symbolizer/<ul>
 	<li>symbolizer.go</li>
@@ -1394,18 +1430,6 @@
 	</ul></li>
 	</ul></li>
 	</ul></li>
-	<li>ssh/<ul>
-	<li>terminal/<ul>
-	<li>terminal.go</li>
-	<li>util.go</li>
-	<li>util_aix.go</li>
-	<li>util_bsd.go</li>
-	<li>util_linux.go</li>
-	<li>util_plan9.go</li>
-	<li>util_solaris.go</li>
-	<li>util_windows.go</li>
-	</ul></li>
-	</ul></li>
 	</ul></li>
 	<li>mod/<ul>
 	<li>LICENSE</li>
@@ -1422,6 +1446,7 @@
 	</ul></li>
 	<li>module/<ul>
 	<li>module.go</li>
+	<li>pseudo.go</li>
 	</ul></li>
 	<li>semver/<ul>
 	<li>semver.go</li>
@@ -1457,21 +1482,40 @@
 	<li>unsafeheader.go</li>
 	</ul></li>
 	</ul></li>
+	<li>plan9/<ul>
+	<li>asm.s</li>
+	<li>asm_plan9_386.s</li>
+	<li>asm_plan9_amd64.s</li>
+	<li>asm_plan9_arm.s</li>
+	<li>const_plan9.go</li>
+	<li>dir_plan9.go</li>
+	<li>env_plan9.go</li>
+	<li>errors_plan9.go</li>
+	<li>mkall.sh</li>
+	<li>mkerrors.sh</li>
+	<li>mksysnum_plan9.sh</li>
+	<li>pwd_go15_plan9.go</li>
+	<li>pwd_plan9.go</li>
+	<li>race.go</li>
+	<li>race0.go</li>
+	<li>str.go</li>
+	<li>syscall.go</li>
+	<li>syscall_plan9.go</li>
+	<li>zsyscall_plan9_386.go</li>
+	<li>zsyscall_plan9_amd64.go</li>
+	<li>zsyscall_plan9_arm.go</li>
+	<li>zsysnum_plan9.go</li>
+	</ul></li>
 	<li>unix/<ul>
 	<li>.gitignore</li>
 	<li>README.md</li>
 	<li>affinity_linux.go</li>
 	<li>aliases.go</li>
 	<li>asm_aix_ppc64.s</li>
-	<li>asm_darwin_386.s</li>
-	<li>asm_darwin_amd64.s</li>
-	<li>asm_darwin_arm.s</li>
-	<li>asm_darwin_arm64.s</li>
-	<li>asm_dragonfly_amd64.s</li>
-	<li>asm_freebsd_386.s</li>
-	<li>asm_freebsd_amd64.s</li>
-	<li>asm_freebsd_arm.s</li>
-	<li>asm_freebsd_arm64.s</li>
+	<li>asm_bsd_386.s</li>
+	<li>asm_bsd_amd64.s</li>
+	<li>asm_bsd_arm.s</li>
+	<li>asm_bsd_arm64.s</li>
 	<li>asm_linux_386.s</li>
 	<li>asm_linux_amd64.s</li>
 	<li>asm_linux_arm.s</li>
@@ -1481,15 +1525,9 @@
 	<li>asm_linux_ppc64x.s</li>
 	<li>asm_linux_riscv64.s</li>
 	<li>asm_linux_s390x.s</li>
-	<li>asm_netbsd_386.s</li>
-	<li>asm_netbsd_amd64.s</li>
-	<li>asm_netbsd_arm.s</li>
-	<li>asm_netbsd_arm64.s</li>
-	<li>asm_openbsd_386.s</li>
-	<li>asm_openbsd_amd64.s</li>
-	<li>asm_openbsd_arm.s</li>
-	<li>asm_openbsd_arm64.s</li>
+	<li>asm_openbsd_mips64.s</li>
 	<li>asm_solaris_amd64.s</li>
+	<li>asm_zos_s390x.s</li>
 	<li>bluetooth_linux.go</li>
 	<li>cap_freebsd.go</li>
 	<li>constants.go</li>
@@ -1501,10 +1539,12 @@
 	<li>dev_linux.go</li>
 	<li>dev_netbsd.go</li>
 	<li>dev_openbsd.go</li>
+	<li>dev_zos.go</li>
 	<li>dirent.go</li>
 	<li>endian_big.go</li>
 	<li>endian_little.go</li>
 	<li>env_unix.go</li>
+	<li>epoll_zos.go</li>
 	<li>errors_freebsd_386.go</li>
 	<li>errors_freebsd_amd64.go</li>
 	<li>errors_freebsd_arm.go</li>
@@ -1513,14 +1553,19 @@
 	<li>fcntl_darwin.go</li>
 	<li>fcntl_linux_32bit.go</li>
 	<li>fdset.go</li>
+	<li>fstatfs_zos.go</li>
 	<li>gccgo.go</li>
 	<li>gccgo_c.c</li>
 	<li>gccgo_linux_amd64.go</li>
 	<li>ioctl.go</li>
+	<li>ioctl_linux.go</li>
+	<li>ioctl_zos.go</li>
 	<li>mkall.sh</li>
 	<li>mkerrors.sh</li>
 	<li>pagesize_unix.go</li>
 	<li>pledge_openbsd.go</li>
+	<li>ptrace_darwin.go</li>
+	<li>ptrace_ios.go</li>
 	<li>race.go</li>
 	<li>race0.go</li>
 	<li>readdirent_getdents.go</li>
@@ -1538,13 +1583,7 @@
 	<li>syscall_darwin.1_12.go</li>
 	<li>syscall_darwin.1_13.go</li>
 	<li>syscall_darwin.go</li>
-	<li>syscall_darwin_386.1_11.go</li>
-	<li>syscall_darwin_386.go</li>
-	<li>syscall_darwin_amd64.1_11.go</li>
 	<li>syscall_darwin_amd64.go</li>
-	<li>syscall_darwin_arm.1_11.go</li>
-	<li>syscall_darwin_arm.go</li>
-	<li>syscall_darwin_arm64.1_11.go</li>
 	<li>syscall_darwin_arm64.go</li>
 	<li>syscall_darwin_libSystem.go</li>
 	<li>syscall_dragonfly.go</li>
@@ -1563,10 +1602,12 @@
 	<li>syscall_linux_arm64.go</li>
 	<li>syscall_linux_gc.go</li>
 	<li>syscall_linux_gc_386.go</li>
+	<li>syscall_linux_gc_arm.go</li>
 	<li>syscall_linux_gccgo_386.go</li>
 	<li>syscall_linux_gccgo_arm.go</li>
 	<li>syscall_linux_mips64x.go</li>
 	<li>syscall_linux_mipsx.go</li>
+	<li>syscall_linux_ppc.go</li>
 	<li>syscall_linux_ppc64x.go</li>
 	<li>syscall_linux_riscv64.go</li>
 	<li>syscall_linux_s390x.go</li>
@@ -1581,19 +1622,19 @@
 	<li>syscall_openbsd_amd64.go</li>
 	<li>syscall_openbsd_arm.go</li>
 	<li>syscall_openbsd_arm64.go</li>
+	<li>syscall_openbsd_mips64.go</li>
 	<li>syscall_solaris.go</li>
 	<li>syscall_solaris_amd64.go</li>
 	<li>syscall_unix.go</li>
 	<li>syscall_unix_gc.go</li>
 	<li>syscall_unix_gc_ppc64x.go</li>
+	<li>syscall_zos_s390x.go</li>
 	<li>timestruct.go</li>
 	<li>unveil_openbsd.go</li>
 	<li>xattr_bsd.go</li>
 	<li>zerrors_aix_ppc.go</li>
 	<li>zerrors_aix_ppc64.go</li>
-	<li>zerrors_darwin_386.go</li>
 	<li>zerrors_darwin_amd64.go</li>
-	<li>zerrors_darwin_arm.go</li>
 	<li>zerrors_darwin_arm64.go</li>
 	<li>zerrors_dragonfly_amd64.go</li>
 	<li>zerrors_freebsd_386.go</li>
@@ -1609,6 +1650,7 @@
 	<li>zerrors_linux_mips64.go</li>
 	<li>zerrors_linux_mips64le.go</li>
 	<li>zerrors_linux_mipsle.go</li>
+	<li>zerrors_linux_ppc.go</li>
 	<li>zerrors_linux_ppc64.go</li>
 	<li>zerrors_linux_ppc64le.go</li>
 	<li>zerrors_linux_riscv64.go</li>
@@ -1622,7 +1664,9 @@
 	<li>zerrors_openbsd_amd64.go</li>
 	<li>zerrors_openbsd_arm.go</li>
 	<li>zerrors_openbsd_arm64.go</li>
+	<li>zerrors_openbsd_mips64.go</li>
 	<li>zerrors_solaris_amd64.go</li>
+	<li>zerrors_zos_s390x.go</li>
 	<li>zptrace_armnn_linux.go</li>
 	<li>zptrace_linux_arm64.go</li>
 	<li>zptrace_mipsnn_linux.go</li>
@@ -1632,22 +1676,10 @@
 	<li>zsyscall_aix_ppc64.go</li>
 	<li>zsyscall_aix_ppc64_gc.go</li>
 	<li>zsyscall_aix_ppc64_gccgo.go</li>
-	<li>zsyscall_darwin_386.1_11.go</li>
-	<li>zsyscall_darwin_386.1_13.go</li>
-	<li>zsyscall_darwin_386.1_13.s</li>
-	<li>zsyscall_darwin_386.go</li>
-	<li>zsyscall_darwin_386.s</li>
-	<li>zsyscall_darwin_amd64.1_11.go</li>
 	<li>zsyscall_darwin_amd64.1_13.go</li>
 	<li>zsyscall_darwin_amd64.1_13.s</li>
 	<li>zsyscall_darwin_amd64.go</li>
 	<li>zsyscall_darwin_amd64.s</li>
-	<li>zsyscall_darwin_arm.1_11.go</li>
-	<li>zsyscall_darwin_arm.1_13.go</li>
-	<li>zsyscall_darwin_arm.1_13.s</li>
-	<li>zsyscall_darwin_arm.go</li>
-	<li>zsyscall_darwin_arm.s</li>
-	<li>zsyscall_darwin_arm64.1_11.go</li>
 	<li>zsyscall_darwin_arm64.1_13.go</li>
 	<li>zsyscall_darwin_arm64.1_13.s</li>
 	<li>zsyscall_darwin_arm64.go</li>
@@ -1667,6 +1699,7 @@
 	<li>zsyscall_linux_mips64.go</li>
 	<li>zsyscall_linux_mips64le.go</li>
 	<li>zsyscall_linux_mipsle.go</li>
+	<li>zsyscall_linux_ppc.go</li>
 	<li>zsyscall_linux_ppc64.go</li>
 	<li>zsyscall_linux_ppc64le.go</li>
 	<li>zsyscall_linux_riscv64.go</li>
@@ -1680,14 +1713,15 @@
 	<li>zsyscall_openbsd_amd64.go</li>
 	<li>zsyscall_openbsd_arm.go</li>
 	<li>zsyscall_openbsd_arm64.go</li>
+	<li>zsyscall_openbsd_mips64.go</li>
 	<li>zsyscall_solaris_amd64.go</li>
+	<li>zsyscall_zos_s390x.go</li>
 	<li>zsysctl_openbsd_386.go</li>
 	<li>zsysctl_openbsd_amd64.go</li>
 	<li>zsysctl_openbsd_arm.go</li>
 	<li>zsysctl_openbsd_arm64.go</li>
-	<li>zsysnum_darwin_386.go</li>
+	<li>zsysctl_openbsd_mips64.go</li>
 	<li>zsysnum_darwin_amd64.go</li>
-	<li>zsysnum_darwin_arm.go</li>
 	<li>zsysnum_darwin_arm64.go</li>
 	<li>zsysnum_dragonfly_amd64.go</li>
 	<li>zsysnum_freebsd_386.go</li>
@@ -1702,6 +1736,7 @@
 	<li>zsysnum_linux_mips64.go</li>
 	<li>zsysnum_linux_mips64le.go</li>
 	<li>zsysnum_linux_mipsle.go</li>
+	<li>zsysnum_linux_ppc.go</li>
 	<li>zsysnum_linux_ppc64.go</li>
 	<li>zsysnum_linux_ppc64le.go</li>
 	<li>zsysnum_linux_riscv64.go</li>
@@ -1715,17 +1750,18 @@
 	<li>zsysnum_openbsd_amd64.go</li>
 	<li>zsysnum_openbsd_arm.go</li>
 	<li>zsysnum_openbsd_arm64.go</li>
+	<li>zsysnum_openbsd_mips64.go</li>
+	<li>zsysnum_zos_s390x.go</li>
 	<li>ztypes_aix_ppc.go</li>
 	<li>ztypes_aix_ppc64.go</li>
-	<li>ztypes_darwin_386.go</li>
 	<li>ztypes_darwin_amd64.go</li>
-	<li>ztypes_darwin_arm.go</li>
 	<li>ztypes_darwin_arm64.go</li>
 	<li>ztypes_dragonfly_amd64.go</li>
 	<li>ztypes_freebsd_386.go</li>
 	<li>ztypes_freebsd_amd64.go</li>
 	<li>ztypes_freebsd_arm.go</li>
 	<li>ztypes_freebsd_arm64.go</li>
+	<li>ztypes_illumos_amd64.go</li>
 	<li>ztypes_linux.go</li>
 	<li>ztypes_linux_386.go</li>
 	<li>ztypes_linux_amd64.go</li>
@@ -1735,6 +1771,7 @@
 	<li>ztypes_linux_mips64.go</li>
 	<li>ztypes_linux_mips64le.go</li>
 	<li>ztypes_linux_mipsle.go</li>
+	<li>ztypes_linux_ppc.go</li>
 	<li>ztypes_linux_ppc64.go</li>
 	<li>ztypes_linux_ppc64le.go</li>
 	<li>ztypes_linux_riscv64.go</li>
@@ -1748,7 +1785,9 @@
 	<li>ztypes_openbsd_amd64.go</li>
 	<li>ztypes_openbsd_arm.go</li>
 	<li>ztypes_openbsd_arm64.go</li>
+	<li>ztypes_openbsd_mips64.go</li>
 	<li>ztypes_solaris_amd64.go</li>
+	<li>ztypes_zos_s390x.go</li>
 	</ul></li>
 	<li>windows/<ul>
 	<li>aliases.go</li>
@@ -1765,6 +1804,7 @@
 	<li>race0.go</li>
 	<li>security_windows.go</li>
 	<li>service.go</li>
+	<li>setupapierrors_windows.go</li>
 	<li>str.go</li>
 	<li>syscall.go</li>
 	<li>syscall_windows.go</li>
@@ -1772,16 +1812,36 @@
 	<li>types_windows_386.go</li>
 	<li>types_windows_amd64.go</li>
 	<li>types_windows_arm.go</li>
+	<li>types_windows_arm64.go</li>
 	<li>zerrors_windows.go</li>
 	<li>zknownfolderids_windows.go</li>
 	<li>zsyscall_windows.go</li>
 	</ul></li>
+	</ul></li>
+	<li>term/<ul>
+	<li>AUTHORS</li>
+	<li>CONTRIBUTING.md</li>
+	<li>CONTRIBUTORS</li>
+	<li>LICENSE</li>
+	<li>PATENTS</li>
+	<li>README.md</li>
+	<li>term.go</li>
+	<li>term_plan9.go</li>
+	<li>term_unix.go</li>
+	<li>term_unix_bsd.go</li>
+	<li>term_unix_other.go</li>
+	<li>term_unsupported.go</li>
+	<li>term_windows.go</li>
+	<li>terminal.go</li>
 	</ul></li>
 	<li>tools/<ul>
 	<li>AUTHORS</li>
 	<li>CONTRIBUTORS</li>
 	<li>LICENSE</li>
 	<li>PATENTS</li>
+	<li>cover/<ul>
+	<li>profile.go</li>
+	</ul></li>
 	<li>go/<ul>
 	<li>analysis/<ul>
 	<li>analysis.go</li>
@@ -1812,6 +1872,7 @@
 	</ul></li>
 	<li>buildtag/<ul>
 	<li>buildtag.go</li>
+	<li>buildtag_old.go</li>
 	</ul></li>
 	<li>cgocall/<ul>
 	<li>cgocall.go</li>
@@ -1828,6 +1889,9 @@
 	</ul></li>
 	<li>errorsas/<ul>
 	<li>errorsas.go</li>
+	</ul></li>
+	<li>framepointer/<ul>
+	<li>framepointer.go</li>
 	</ul></li>
 	<li>httpresponse/<ul>
 	<li>httpresponse.go</li>
@@ -1860,6 +1924,9 @@
 	<li>dead.go</li>
 	<li>shift.go</li>
 	</ul></li>
+	<li>sigchanyzer/<ul>
+	<li>sigchanyzer.go</li>
+	</ul></li>
 	<li>stdmethods/<ul>
 	<li>stdmethods.go</li>
 	</ul></li>
@@ -1868,6 +1935,9 @@
 	</ul></li>
 	<li>structtag/<ul>
 	<li>structtag.go</li>
+	</ul></li>
+	<li>testinggoroutine/<ul>
+	<li>testinggoroutine.go</li>
 	</ul></li>
 	<li>tests/<ul>
 	<li>tests.go</li>
@@ -1924,6 +1994,12 @@
 	<li>analysisinternal/<ul>
 	<li>analysis.go</li>
 	</ul></li>
+	<li>lsp/<ul>
+	<li>fuzzy/<ul>
+	<li>input.go</li>
+	<li>matcher.go</li>
+	</ul></li>
+	</ul></li>
 	</ul></li>
 	</ul></li>
 	<li>xerrors/<ul>
@@ -1937,7 +2013,6 @@
 	<li>fmt.go</li>
 	<li>format.go</li>
 	<li>frame.go</li>
-	<li>go.mod</li>
 	<li>internal/<ul>
 	<li>internal.go</li>
 	</ul></li>
@@ -2020,6 +2095,9 @@
 	<li>gcm_s390x.go</li>
 	<li>modes.go</li>
 	</ul></li>
+	<li>boring/<ul>
+	<li>boring.go</li>
+	</ul></li>
 	<li>cipher/<ul>
 	<li>cbc.go</li>
 	<li>cfb.go</li>
@@ -2030,6 +2108,8 @@
 	<li>ofb.go</li>
 	<li>xor_amd64.go</li>
 	<li>xor_amd64.s</li>
+	<li>xor_arm64.go</li>
+	<li>xor_arm64.s</li>
 	<li>xor_generic.go</li>
 	<li>xor_ppc64x.go</li>
 	<li>xor_ppc64x.s</li>
@@ -2044,6 +2124,7 @@
 	<li>dsa.go</li>
 	</ul></li>
 	<li>ecdsa/<ul>
+	<li>boring.go</li>
 	<li>ecdsa.go</li>
 	<li>ecdsa_noasm.go</li>
 	<li>ecdsa_s390x.go</li>
@@ -2053,13 +2134,39 @@
 	<li>ed25519.go</li>
 	<li>internal/<ul>
 	<li>edwards25519/<ul>
-	<li>const.go</li>
+	<li>doc.go</li>
 	<li>edwards25519.go</li>
+	<li>field/<ul>
+	<li>_asm/<ul>
+	<li>fe_amd64_asm.go</li>
+	<li>go.mod</li>
+	<li>go.sum</li>
+	</ul></li>
+	<li>fe.go</li>
+	<li>fe_amd64.go</li>
+	<li>fe_amd64.s</li>
+	<li>fe_amd64_noasm.go</li>
+	<li>fe_arm64.go</li>
+	<li>fe_arm64.s</li>
+	<li>fe_arm64_noasm.go</li>
+	<li>fe_generic.go</li>
+	</ul></li>
+	<li>scalar.go</li>
+	<li>scalarmult.go</li>
+	<li>tables.go</li>
 	</ul></li>
 	</ul></li>
 	</ul></li>
 	<li>elliptic/<ul>
 	<li>elliptic.go</li>
+	<li>internal/<ul>
+	<li>fiat/<ul>
+	<li>Dockerfile</li>
+	<li>README</li>
+	<li>p521.go</li>
+	<li>p521_fiat64.go</li>
+	</ul></li>
+	</ul></li>
 	<li>p224.go</li>
 	<li>p256.go</li>
 	<li>p256_asm.go</li>
@@ -2067,14 +2174,50 @@
 	<li>p256_asm_arm64.s</li>
 	<li>p256_asm_ppc64le.s</li>
 	<li>p256_asm_s390x.s</li>
+	<li>p256_asm_table.go</li>
 	<li>p256_generic.go</li>
 	<li>p256_ppc64le.go</li>
 	<li>p256_s390x.go</li>
+	<li>p521.go</li>
 	</ul></li>
 	<li>hmac/<ul>
 	<li>hmac.go</li>
 	</ul></li>
 	<li>internal/<ul>
+	<li>boring/<ul>
+	<li>Dockerfile</li>
+	<li>LICENSE</li>
+	<li>aes.go</li>
+	<li>boring.go</li>
+	<li>build.sh</li>
+	<li>doc.go</li>
+	<li>ecdsa.go</li>
+	<li>fipstls/<ul>
+	<li>dummy.s</li>
+	<li>tls.go</li>
+	</ul></li>
+	<li>goboringcrypto.h</li>
+	<li>goopenssl.h</li>
+	<li>hmac.go</li>
+	<li>notboring.go</li>
+	<li>openssl_ecdsa_signature.c</li>
+	<li>openssl_evp.c</li>
+	<li>openssl_lock_setup.c</li>
+	<li>openssl_port_aead_gcm.c</li>
+	<li>openssl_port_ctr128.c</li>
+	<li>openssl_port_evp_md5_sha1.c</li>
+	<li>openssl_port_hmac.c</li>
+	<li>openssl_port_rsa.c</li>
+	<li>openssl_stub_rand.c</li>
+	<li>rand.go</li>
+	<li>rsa.go</li>
+	<li>sha.go</li>
+	<li>sig/<ul>
+	<li>sig.go</li>
+	<li>sig_amd64.s</li>
+	<li>sig_other.s</li>
+	</ul></li>
+	</ul></li>
 	<li>randutil/<ul>
 	<li>randutil.go</li>
 	</ul></li>
@@ -2100,10 +2243,12 @@
 	<li>eagain.go</li>
 	<li>rand.go</li>
 	<li>rand_batched.go</li>
+	<li>rand_dragonfly.go</li>
 	<li>rand_freebsd.go</li>
+	<li>rand_getentropy.go</li>
 	<li>rand_js.go</li>
 	<li>rand_linux.go</li>
-	<li>rand_openbsd.go</li>
+	<li>rand_solaris.go</li>
 	<li>rand_unix.go</li>
 	<li>rand_windows.go</li>
 	<li>util.go</li>
@@ -2112,11 +2257,14 @@
 	<li>rc4.go</li>
 	</ul></li>
 	<li>rsa/<ul>
+	<li>boring.go</li>
 	<li>pkcs1v15.go</li>
 	<li>pss.go</li>
 	<li>rsa.go</li>
 	</ul></li>
 	<li>sha1/<ul>
+	<li>boring.go</li>
+	<li>notboring.go</li>
 	<li>sha1.go</li>
 	<li>sha1block.go</li>
 	<li>sha1block_386.s</li>
@@ -2161,10 +2309,14 @@
 	<li>tls/<ul>
 	<li>alert.go</li>
 	<li>auth.go</li>
+	<li>boring.go</li>
 	<li>cipher_suites.go</li>
 	<li>common.go</li>
 	<li>common_string.go</li>
 	<li>conn.go</li>
+	<li>fipsonly/<ul>
+	<li>fipsonly.go</li>
+	</ul></li>
 	<li>generate_cert.go</li>
 	<li>handshake_client.go</li>
 	<li>handshake_client_tls13.go</li>
@@ -2187,6 +2339,7 @@
 	<li>security.s</li>
 	</ul></li>
 	</ul></li>
+	<li>parser.go</li>
 	<li>pem_decrypt.go</li>
 	<li>pkcs1.go</li>
 	<li>pkcs8.go</li>
@@ -2196,10 +2349,9 @@
 	<li>root.go</li>
 	<li>root_aix.go</li>
 	<li>root_bsd.go</li>
-	<li>root_cgo_darwin_amd64.go</li>
-	<li>root_darwin_amd64.go</li>
-	<li>root_darwin_ios.go</li>
-	<li>root_darwin_ios_gen.go</li>
+	<li>root_darwin.go</li>
+	<li>root_ios.go</li>
+	<li>root_ios_gen.go</li>
 	<li>root_js.go</li>
 	<li>root_linux.go</li>
 	<li>root_omit.go</li>
@@ -2211,7 +2363,6 @@
 	<li>test-file.crt</li>
 	<li>verify.go</li>
 	<li>x509.go</li>
-	<li>x509_test_import.go</li>
 	</ul></li>
 	</ul></li>
 	<li>database/<ul>
@@ -2266,6 +2417,14 @@
 	<li>plan9obj/<ul>
 	<li>file.go</li>
 	<li>plan9obj.go</li>
+	</ul></li>
+	</ul></li>
+	<li>embed/<ul>
+	<li>embed.go</li>
+	<li>internal/<ul>
+	<li>embedtest/<ul>
+	<li>concurrency.txt</li>
+	</ul></li>
 	</ul></li>
 	</ul></li>
 	<li>encoding/<ul>
@@ -2352,6 +2511,8 @@
 	<li>go/<ul>
 	<li>ast/<ul>
 	<li>ast.go</li>
+	<li>ast_notypeparams.go</li>
+	<li>ast_typeparams.go</li>
 	<li>commentmap.go</li>
 	<li>filter.go</li>
 	<li>import.go</li>
@@ -2359,9 +2520,14 @@
 	<li>resolve.go</li>
 	<li>scope.go</li>
 	<li>walk.go</li>
+	<li>walk_notypeparams.go</li>
+	<li>walk_typeparams.go</li>
 	</ul></li>
 	<li>build/<ul>
 	<li>build.go</li>
+	<li>constraint/<ul>
+	<li>expr.go</li>
+	</ul></li>
 	<li>doc.go</li>
 	<li>gc.go</li>
 	<li>gccgo.go</li>
@@ -2406,12 +2572,19 @@
 	<li>srcimporter/<ul>
 	<li>srcimporter.go</li>
 	</ul></li>
+	<li>typeparams/<ul>
+	<li>common.go</li>
+	<li>notypeparams.go</li>
+	<li>typeparams.go</li>
+	</ul></li>
 	</ul></li>
 	<li>parser/<ul>
 	<li>interface.go</li>
 	<li>parser.go</li>
+	<li>resolver.go</li>
 	</ul></li>
 	<li>printer/<ul>
+	<li>gobuild.go</li>
 	<li>nodes.go</li>
 	<li>printer.go</li>
 	</ul></li>
@@ -2426,18 +2599,23 @@
 	</ul></li>
 	<li>types/<ul>
 	<li>api.go</li>
+	<li>api_notypeparams.go</li>
+	<li>api_typeparams.go</li>
 	<li>assignments.go</li>
 	<li>builtins.go</li>
 	<li>call.go</li>
 	<li>check.go</li>
 	<li>conversions.go</li>
 	<li>decl.go</li>
+	<li>errorcodes.go</li>
 	<li>errors.go</li>
 	<li>eval.go</li>
 	<li>expr.go</li>
 	<li>exprstring.go</li>
 	<li>gccgosizes.go</li>
 	<li>gotype.go</li>
+	<li>index.go</li>
+	<li>infer.go</li>
 	<li>initorder.go</li>
 	<li>labels.go</li>
 	<li>lookup.go</li>
@@ -2449,14 +2627,18 @@
 	<li>predicates.go</li>
 	<li>resolver.go</li>
 	<li>return.go</li>
+	<li>sanitize.go</li>
 	<li>scope.go</li>
 	<li>selection.go</li>
 	<li>sizes.go</li>
 	<li>stmt.go</li>
+	<li>subst.go</li>
 	<li>type.go</li>
 	<li>typestring.go</li>
 	<li>typexpr.go</li>
+	<li>unify.go</li>
 	<li>universe.go</li>
+	<li>version.go</li>
 	</ul></li>
 	</ul></li>
 	<li>go.mod</li>
@@ -2571,6 +2753,20 @@
 	</ul></li>
 	</ul></li>
 	<li>internal/<ul>
+	<li>abi/<ul>
+	<li>abi.go</li>
+	<li>abi_amd64.go</li>
+	<li>abi_generic.go</li>
+	<li>abi_test.s</li>
+	</ul></li>
+	<li>boringtest/<ul>
+	<li>boring.go</li>
+	</ul></li>
+	<li>buildcfg/<ul>
+	<li>cfg.go</li>
+	<li>exp.go</li>
+	<li>zbootstrap.go</li>
+	</ul></li>
 	<li>bytealg/<ul>
 	<li>bytealg.go</li>
 	<li>compare_386.s</li>
@@ -2590,6 +2786,7 @@
 	<li>count_generic.go</li>
 	<li>count_native.go</li>
 	<li>count_ppc64x.s</li>
+	<li>count_riscv64.s</li>
 	<li>count_s390x.s</li>
 	<li>equal_386.s</li>
 	<li>equal_amd64.s</li>
@@ -2609,6 +2806,8 @@
 	<li>index_arm64.s</li>
 	<li>index_generic.go</li>
 	<li>index_native.go</li>
+	<li>index_ppc64x.go</li>
+	<li>index_ppc64x.s</li>
 	<li>index_s390x.go</li>
 	<li>index_s390x.s</li>
 	<li>indexbyte_386.s</li>
@@ -2629,15 +2828,25 @@
 	</ul></li>
 	<li>cpu/<ul>
 	<li>cpu.go</li>
+	<li>cpu.s</li>
 	<li>cpu_386.go</li>
 	<li>cpu_amd64.go</li>
 	<li>cpu_arm.go</li>
 	<li>cpu_arm64.go</li>
+	<li>cpu_arm64.s</li>
+	<li>cpu_arm64_android.go</li>
+	<li>cpu_arm64_darwin.go</li>
+	<li>cpu_arm64_freebsd.go</li>
+	<li>cpu_arm64_hwcap.go</li>
+	<li>cpu_arm64_linux.go</li>
+	<li>cpu_arm64_other.go</li>
 	<li>cpu_mips.go</li>
 	<li>cpu_mips64x.go</li>
 	<li>cpu_mipsle.go</li>
-	<li>cpu_no_init.go</li>
+	<li>cpu_no_name.go</li>
 	<li>cpu_ppc64x.go</li>
+	<li>cpu_ppc64x_aix.go</li>
+	<li>cpu_ppc64x_linux.go</li>
 	<li>cpu_riscv64.go</li>
 	<li>cpu_s390x.go</li>
 	<li>cpu_s390x.s</li>
@@ -2651,12 +2860,37 @@
 	<li>fmtsort/<ul>
 	<li>sort.go</li>
 	</ul></li>
+	<li>goexperiment/<ul>
+	<li>exp_fieldtrack_off.go</li>
+	<li>exp_fieldtrack_on.go</li>
+	<li>exp_preemptibleloops_off.go</li>
+	<li>exp_preemptibleloops_on.go</li>
+	<li>exp_regabi_off.go</li>
+	<li>exp_regabi_on.go</li>
+	<li>exp_regabiargs_off.go</li>
+	<li>exp_regabiargs_on.go</li>
+	<li>exp_regabidefer_off.go</li>
+	<li>exp_regabidefer_on.go</li>
+	<li>exp_regabig_off.go</li>
+	<li>exp_regabig_on.go</li>
+	<li>exp_regabireflect_off.go</li>
+	<li>exp_regabireflect_on.go</li>
+	<li>exp_regabiwrappers_off.go</li>
+	<li>exp_regabiwrappers_on.go</li>
+	<li>exp_staticlockranking_off.go</li>
+	<li>exp_staticlockranking_on.go</li>
+	<li>flags.go</li>
+	<li>mkconsts.go</li>
+	</ul></li>
 	<li>goroot/<ul>
 	<li>gc.go</li>
 	<li>gccgo.go</li>
 	</ul></li>
 	<li>goversion/<ul>
 	<li>goversion.go</li>
+	</ul></li>
+	<li>itoa/<ul>
+	<li>itoa.go</li>
 	</ul></li>
 	<li>lazyregexp/<ul>
 	<li>lazyre.go</li>
@@ -2694,10 +2928,13 @@
 	<li>fd_unix.go</li>
 	<li>fd_windows.go</li>
 	<li>fd_writev_darwin.go</li>
+	<li>fd_writev_illumos.go</li>
 	<li>fd_writev_unix.go</li>
 	<li>hook_cloexec.go</li>
 	<li>hook_unix.go</li>
 	<li>hook_windows.go</li>
+	<li>iovec_illumos.go</li>
+	<li>iovec_unix.go</li>
 	<li>sendfile_bsd.go</li>
 	<li>sendfile_linux.go</li>
 	<li>sendfile_solaris.go</li>
@@ -2743,6 +2980,7 @@
 	</ul></li>
 	<li>unix/<ul>
 	<li>asm_aix_ppc64.s</li>
+	<li>asm_darwin.s</li>
 	<li>asm_solaris.s</li>
 	<li>at.go</li>
 	<li>at_aix.go</li>
@@ -2760,13 +2998,18 @@
 	<li>at_sysnum_openbsd.go</li>
 	<li>copy_file_range_linux.go</li>
 	<li>fcntl_linux_32bit.go</li>
+	<li>getentropy_darwin.go</li>
 	<li>getentropy_openbsd.go</li>
+	<li>getrandom.go</li>
+	<li>getrandom_dragonfly.go</li>
 	<li>getrandom_freebsd.go</li>
 	<li>getrandom_linux.go</li>
+	<li>getrandom_solaris.go</li>
 	<li>ioctl_aix.go</li>
 	<li>nonblocking.go</li>
 	<li>nonblocking_js.go</li>
 	<li>nonblocking_libc.go</li>
+	<li>pipe2_illumos.go</li>
 	<li>sysnum_linux_386.go</li>
 	<li>sysnum_linux_amd64.go</li>
 	<li>sysnum_linux_arm.go</li>
@@ -2775,6 +3018,7 @@
 	<li>sysnum_linux_mipsx.go</li>
 	<li>sysnum_linux_ppc64x.go</li>
 	<li>sysnum_linux_s390x.go</li>
+	<li>writev_illumos.go</li>
 	</ul></li>
 	<li>windows/<ul>
 	<li>mksyscall.go</li>
@@ -2796,6 +3040,9 @@
 	<li>zsyscall_windows.go</li>
 	</ul></li>
 	</ul></li>
+	<li>sysinfo/<ul>
+	<li>sysinfo.go</li>
+	</ul></li>
 	<li>testenv/<ul>
 	<li>testenv.go</li>
 	<li>testenv_cgo.go</li>
@@ -2803,6 +3050,7 @@
 	<li>testenv_windows.go</li>
 	</ul></li>
 	<li>testlog/<ul>
+	<li>exit.go</li>
 	<li>log.go</li>
 	</ul></li>
 	<li>trace/<ul>
@@ -2824,6 +3072,15 @@
 	</ul></li>
 	</ul></li>
 	<li>io/<ul>
+	<li>fs/<ul>
+	<li>fs.go</li>
+	<li>glob.go</li>
+	<li>readdir.go</li>
+	<li>readfile.go</li>
+	<li>stat.go</li>
+	<li>sub.go</li>
+	<li>walk.go</li>
+	</ul></li>
 	<li>io.go</li>
 	<li>ioutil/<ul>
 	<li>ioutil.go</li>
@@ -2832,7 +3089,6 @@
 	<li>multi.go</li>
 	<li>pipe.go</li>
 	</ul></li>
-	<li>iostest.bash</li>
 	<li>log/<ul>
 	<li>log.go</li>
 	<li>syslog/<ul>
@@ -2851,15 +3107,12 @@
 	<li>acosh_s390x.s</li>
 	<li>arith_s390x.go</li>
 	<li>asin.go</li>
-	<li>asin_386.s</li>
 	<li>asin_s390x.s</li>
 	<li>asinh.go</li>
 	<li>asinh_s390x.s</li>
 	<li>atan.go</li>
 	<li>atan2.go</li>
-	<li>atan2_386.s</li>
 	<li>atan2_s390x.s</li>
-	<li>atan_386.s</li>
 	<li>atan_s390x.s</li>
 	<li>atanh.go</li>
 	<li>atanh_s390x.s</li>
@@ -2891,6 +3144,7 @@
 	<li>intmarsh.go</li>
 	<li>nat.go</li>
 	<li>natconv.go</li>
+	<li>natdiv.go</li>
 	<li>prime.go</li>
 	<li>rat.go</li>
 	<li>ratconv.go</li>
@@ -2931,6 +3185,8 @@
 	<li>dim.go</li>
 	<li>dim_amd64.s</li>
 	<li>dim_arm64.s</li>
+	<li>dim_asm.go</li>
+	<li>dim_noasm.go</li>
 	<li>dim_riscv64.s</li>
 	<li>dim_s390x.s</li>
 	<li>erf.go</li>
@@ -2938,50 +3194,53 @@
 	<li>erfc_s390x.s</li>
 	<li>erfinv.go</li>
 	<li>exp.go</li>
-	<li>exp2_386.s</li>
+	<li>exp2_asm.go</li>
+	<li>exp2_noasm.go</li>
+	<li>exp_amd64.go</li>
 	<li>exp_amd64.s</li>
 	<li>exp_arm64.s</li>
 	<li>exp_asm.go</li>
+	<li>exp_noasm.go</li>
 	<li>exp_s390x.s</li>
 	<li>expm1.go</li>
-	<li>expm1_386.s</li>
 	<li>expm1_s390x.s</li>
 	<li>floor.go</li>
 	<li>floor_386.s</li>
 	<li>floor_amd64.s</li>
 	<li>floor_arm64.s</li>
+	<li>floor_asm.go</li>
+	<li>floor_noasm.go</li>
 	<li>floor_ppc64x.s</li>
 	<li>floor_s390x.s</li>
 	<li>floor_wasm.s</li>
 	<li>fma.go</li>
 	<li>frexp.go</li>
-	<li>frexp_386.s</li>
 	<li>gamma.go</li>
 	<li>hypot.go</li>
 	<li>hypot_386.s</li>
 	<li>hypot_amd64.s</li>
+	<li>hypot_asm.go</li>
+	<li>hypot_noasm.go</li>
 	<li>j0.go</li>
 	<li>j1.go</li>
 	<li>jn.go</li>
 	<li>ldexp.go</li>
-	<li>ldexp_386.s</li>
 	<li>lgamma.go</li>
 	<li>log.go</li>
 	<li>log10.go</li>
-	<li>log10_386.s</li>
 	<li>log10_s390x.s</li>
 	<li>log1p.go</li>
-	<li>log1p_386.s</li>
 	<li>log1p_s390x.s</li>
-	<li>log_386.s</li>
 	<li>log_amd64.s</li>
+	<li>log_asm.go</li>
 	<li>log_s390x.s</li>
+	<li>log_stub.go</li>
 	<li>logb.go</li>
 	<li>mod.go</li>
-	<li>mod_386.s</li>
 	<li>modf.go</li>
-	<li>modf_386.s</li>
 	<li>modf_arm64.s</li>
+	<li>modf_asm.go</li>
+	<li>modf_noasm.go</li>
 	<li>modf_ppc64x.s</li>
 	<li>nextafter.go</li>
 	<li>pow.go</li>
@@ -2996,7 +3255,6 @@
 	<li>zipf.go</li>
 	</ul></li>
 	<li>remainder.go</li>
-	<li>remainder_386.s</li>
 	<li>signbit.go</li>
 	<li>sin.go</li>
 	<li>sin_s390x.s</li>
@@ -3008,21 +3266,15 @@
 	<li>sqrt_amd64.s</li>
 	<li>sqrt_arm.s</li>
 	<li>sqrt_arm64.s</li>
+	<li>sqrt_asm.go</li>
 	<li>sqrt_mipsx.s</li>
+	<li>sqrt_noasm.go</li>
 	<li>sqrt_ppc64x.s</li>
 	<li>sqrt_riscv64.s</li>
 	<li>sqrt_s390x.s</li>
 	<li>sqrt_wasm.s</li>
-	<li>stubs_386.s</li>
-	<li>stubs_amd64.s</li>
-	<li>stubs_arm.s</li>
-	<li>stubs_arm64.s</li>
-	<li>stubs_mips64x.s</li>
-	<li>stubs_mipsx.s</li>
-	<li>stubs_ppc64x.s</li>
-	<li>stubs_riscv64.s</li>
+	<li>stubs.go</li>
 	<li>stubs_s390x.s</li>
-	<li>stubs_wasm.s</li>
 	<li>tan.go</li>
 	<li>tan_s390x.s</li>
 	<li>tanh.go</li>
@@ -3128,8 +3380,13 @@
 	<li>reverseproxy.go</li>
 	</ul></li>
 	<li>internal/<ul>
+	<li>ascii/<ul>
+	<li>print.go</li>
+	</ul></li>
 	<li>chunked.go</li>
+	<li>testcert/<ul>
 	<li>testcert.go</li>
+	</ul></li>
 	</ul></li>
 	<li>jar.go</li>
 	<li>method.go</li>
@@ -3262,6 +3519,9 @@
 	<li>unixsock.go</li>
 	<li>unixsock_plan9.go</li>
 	<li>unixsock_posix.go</li>
+	<li>unixsock_readmsg_cloexec.go</li>
+	<li>unixsock_readmsg_cmsg_cloexec.go</li>
+	<li>unixsock_readmsg_other.go</li>
 	<li>url/<ul>
 	<li>url.go</li>
 	</ul></li>
@@ -3273,6 +3533,16 @@
 	<li>dir_plan9.go</li>
 	<li>dir_unix.go</li>
 	<li>dir_windows.go</li>
+	<li>dirent_aix.go</li>
+	<li>dirent_dragonfly.go</li>
+	<li>dirent_freebsd.go</li>
+	<li>dirent_js.go</li>
+	<li>dirent_linux.go</li>
+	<li>dirent_netbsd.go</li>
+	<li>dirent_openbsd.go</li>
+	<li>dirent_solaris.go</li>
+	<li>endian_big.go</li>
+	<li>endian_little.go</li>
 	<li>env.go</li>
 	<li>error.go</li>
 	<li>error_errno.go</li>
@@ -3296,11 +3566,13 @@
 	<li>exec_windows.go</li>
 	<li>executable.go</li>
 	<li>executable_darwin.go</li>
+	<li>executable_dragonfly.go</li>
 	<li>executable_freebsd.go</li>
 	<li>executable_path.go</li>
 	<li>executable_plan9.go</li>
 	<li>executable_procfs.go</li>
 	<li>executable_solaris.go</li>
+	<li>executable_sysctl.go</li>
 	<li>executable_windows.go</li>
 	<li>file.go</li>
 	<li>file_plan9.go</li>
@@ -3308,12 +3580,12 @@
 	<li>file_unix.go</li>
 	<li>file_windows.go</li>
 	<li>getwd.go</li>
-	<li>getwd_darwin.go</li>
 	<li>path.go</li>
 	<li>path_plan9.go</li>
 	<li>path_unix.go</li>
 	<li>path_windows.go</li>
 	<li>pipe2_bsd.go</li>
+	<li>pipe2_illumos.go</li>
 	<li>pipe_bsd.go</li>
 	<li>pipe_linux.go</li>
 	<li>proc.go</li>
@@ -3359,6 +3631,7 @@
 	<li>sys_solaris.go</li>
 	<li>sys_unix.go</li>
 	<li>sys_windows.go</li>
+	<li>tempfile.go</li>
 	<li>types.go</li>
 	<li>types_plan9.go</li>
 	<li>types_unix.go</li>
@@ -3368,7 +3641,7 @@
 	<li>getgrouplist_darwin.go</li>
 	<li>getgrouplist_unix.go</li>
 	<li>listgroups_aix.go</li>
-	<li>listgroups_solaris.go</li>
+	<li>listgroups_illumos.go</li>
 	<li>listgroups_unix.go</li>
 	<li>lookup.go</li>
 	<li>lookup_android.go</li>
@@ -3404,6 +3677,7 @@
 	<li>race.bash</li>
 	<li>race.bat</li>
 	<li>reflect/<ul>
+	<li>abi.go</li>
 	<li>asm_386.s</li>
 	<li>asm_amd64.s</li>
 	<li>asm_arm.s</li>
@@ -3415,10 +3689,19 @@
 	<li>asm_s390x.s</li>
 	<li>asm_wasm.s</li>
 	<li>deepequal.go</li>
+	<li>internal/<ul>
+	<li>example1/<ul>
+	<li>example.go</li>
+	</ul></li>
+	<li>example2/<ul>
+	<li>example.go</li>
+	</ul></li>
+	</ul></li>
 	<li>makefunc.go</li>
 	<li>swapper.go</li>
 	<li>type.go</li>
 	<li>value.go</li>
+	<li>visiblefields.go</li>
 	</ul></li>
 	<li>regexp/<ul>
 	<li>backtrack.go</li>
@@ -3464,6 +3747,7 @@
 	<li>atomic_riscv64.s</li>
 	<li>auxv_none.go</li>
 	<li>cgo/<ul>
+	<li>abi_amd64.h</li>
 	<li>asm_386.s</li>
 	<li>asm_amd64.s</li>
 	<li>asm_arm.s</li>
@@ -3471,6 +3755,7 @@
 	<li>asm_mips64x.s</li>
 	<li>asm_mipsx.s</li>
 	<li>asm_ppc64x.s</li>
+	<li>asm_riscv64.s</li>
 	<li>asm_s390x.s</li>
 	<li>asm_wasm.s</li>
 	<li>callbacks.go</li>
@@ -3505,6 +3790,7 @@
 	<li>gcc_linux_mips64x.c</li>
 	<li>gcc_linux_mipsx.c</li>
 	<li>gcc_linux_ppc64x.S</li>
+	<li>gcc_linux_riscv64.c</li>
 	<li>gcc_linux_s390x.c</li>
 	<li>gcc_mips64x.S</li>
 	<li>gcc_mipsx.S</li>
@@ -3517,29 +3803,35 @@
 	<li>gcc_openbsd_amd64.c</li>
 	<li>gcc_openbsd_arm.c</li>
 	<li>gcc_openbsd_arm64.c</li>
+	<li>gcc_openbsd_mips64.c</li>
 	<li>gcc_ppc64x.c</li>
+	<li>gcc_riscv64.S</li>
 	<li>gcc_s390x.S</li>
 	<li>gcc_setenv.c</li>
 	<li>gcc_sigaction.c</li>
-	<li>gcc_signal2_darwin_arm64.c</li>
-	<li>gcc_signal_darwin_arm64.c</li>
-	<li>gcc_signal_darwin_lldb.c</li>
+	<li>gcc_signal2_ios_arm64.c</li>
+	<li>gcc_signal_ios_arm64.c</li>
+	<li>gcc_signal_ios_nolldb.c</li>
 	<li>gcc_solaris_amd64.c</li>
 	<li>gcc_traceback.c</li>
 	<li>gcc_util.c</li>
 	<li>gcc_windows_386.c</li>
 	<li>gcc_windows_amd64.c</li>
+	<li>gcc_windows_arm64.c</li>
+	<li>handle.go</li>
 	<li>iscgo.go</li>
 	<li>libcgo.h</li>
 	<li>libcgo_unix.h</li>
 	<li>libcgo_windows.h</li>
+	<li>linux.go</li>
+	<li>linux_syscall.c</li>
 	<li>mmap.go</li>
 	<li>netbsd.go</li>
 	<li>openbsd.go</li>
 	<li>setenv.go</li>
 	<li>sigaction.go</li>
-	<li>signal_darwin_arm64.go</li>
-	<li>signal_darwin_arm64.s</li>
+	<li>signal_ios_arm64.go</li>
+	<li>signal_ios_arm64.s</li>
 	</ul></li>
 	<li>cgo.go</li>
 	<li>cgo_mmap.go</li>
@@ -3554,6 +3846,7 @@
 	<li>complex.go</li>
 	<li>cpuflags.go</li>
 	<li>cpuflags_amd64.go</li>
+	<li>cpuflags_arm64.go</li>
 	<li>cpuprof.go</li>
 	<li>cputicks.go</li>
 	<li>debug/<ul>
@@ -3610,6 +3903,7 @@
 	<li>defs_openbsd_amd64.go</li>
 	<li>defs_openbsd_arm.go</li>
 	<li>defs_openbsd_arm64.go</li>
+	<li>defs_openbsd_mips64.go</li>
 	<li>defs_plan9_386.go</li>
 	<li>defs_plan9_amd64.go</li>
 	<li>defs_plan9_arm.go</li>
@@ -3619,12 +3913,14 @@
 	<li>defs_windows_386.go</li>
 	<li>defs_windows_amd64.go</li>
 	<li>defs_windows_arm.go</li>
+	<li>defs_windows_arm64.go</li>
 	<li>duff_386.s</li>
 	<li>duff_amd64.s</li>
 	<li>duff_arm.s</li>
 	<li>duff_arm64.s</li>
 	<li>duff_mips64x.s</li>
 	<li>duff_ppc64x.s</li>
+	<li>duff_riscv64.s</li>
 	<li>duff_s390x.s</li>
 	<li>env_plan9.go</li>
 	<li>env_posix.go</li>
@@ -3639,21 +3935,16 @@
 	<li>hash32.go</li>
 	<li>hash64.go</li>
 	<li>heapdump.go</li>
+	<li>histogram.go</li>
 	<li>iface.go</li>
 	<li>internal/<ul>
 	<li>atomic/<ul>
-	<li>asm_386.s</li>
-	<li>asm_amd64.s</li>
-	<li>asm_arm.s</li>
-	<li>asm_arm64.s</li>
-	<li>asm_mips64x.s</li>
-	<li>asm_mipsx.s</li>
-	<li>asm_ppc64x.s</li>
-	<li>asm_s390x.s</li>
-	<li>asm_wasm.s</li>
 	<li>atomic_386.go</li>
+	<li>atomic_386.s</li>
 	<li>atomic_amd64.go</li>
+	<li>atomic_amd64.s</li>
 	<li>atomic_arm.go</li>
+	<li>atomic_arm.s</li>
 	<li>atomic_arm64.go</li>
 	<li>atomic_arm64.s</li>
 	<li>atomic_mips64x.go</li>
@@ -3665,10 +3956,13 @@
 	<li>atomic_riscv64.go</li>
 	<li>atomic_riscv64.s</li>
 	<li>atomic_s390x.go</li>
+	<li>atomic_s390x.s</li>
 	<li>atomic_wasm.go</li>
+	<li>atomic_wasm.s</li>
 	<li>stubs.go</li>
 	<li>sys_linux_arm.s</li>
 	<li>sys_nonlinux_arm.s</li>
+	<li>unaligned.go</li>
 	</ul></li>
 	<li>math/<ul>
 	<li>math.go</li>
@@ -3693,7 +3987,6 @@
 	<li>intrinsics_386.s</li>
 	<li>intrinsics_common.go</li>
 	<li>intrinsics_stubs.go</li>
-	<li>stubs.go</li>
 	<li>sys.go</li>
 	<li>zgoarch_386.go</li>
 	<li>zgoarch_amd64.go</li>
@@ -3701,6 +3994,7 @@
 	<li>zgoarch_arm64.go</li>
 	<li>zgoarch_arm64be.go</li>
 	<li>zgoarch_armbe.go</li>
+	<li>zgoarch_loong64.go</li>
 	<li>zgoarch_mips.go</li>
 	<li>zgoarch_mips64.go</li>
 	<li>zgoarch_mips64le.go</li>
@@ -3724,6 +4018,7 @@
 	<li>zgoos_freebsd.go</li>
 	<li>zgoos_hurd.go</li>
 	<li>zgoos_illumos.go</li>
+	<li>zgoos_ios.go</li>
 	<li>zgoos_js.go</li>
 	<li>zgoos_linux.go</li>
 	<li>zgoos_netbsd.go</li>
@@ -3756,6 +4051,7 @@
 	<li>mbitmap.go</li>
 	<li>mcache.go</li>
 	<li>mcentral.go</li>
+	<li>mcheckmark.go</li>
 	<li>mem_aix.go</li>
 	<li>mem_bsd.go</li>
 	<li>mem_darwin.go</li>
@@ -3787,14 +4083,22 @@
 	<li>memmove_riscv64.s</li>
 	<li>memmove_s390x.s</li>
 	<li>memmove_wasm.s</li>
+	<li>metrics/<ul>
+	<li>description.go</li>
+	<li>doc.go</li>
+	<li>histogram.go</li>
+	<li>sample.go</li>
+	<li>value.go</li>
+	</ul></li>
+	<li>metrics.go</li>
 	<li>mfinal.go</li>
 	<li>mfixalloc.go</li>
 	<li>mgc.go</li>
 	<li>mgcmark.go</li>
+	<li>mgcpacer.go</li>
 	<li>mgcscavenge.go</li>
 	<li>mgcstack.go</li>
 	<li>mgcsweep.go</li>
-	<li>mgcsweepbuf.go</li>
 	<li>mgcwork.go</li>
 	<li>mheap.go</li>
 	<li>mkduff.go</li>
@@ -3874,11 +4178,17 @@
 	<li>os_openbsd.go</li>
 	<li>os_openbsd_arm.go</li>
 	<li>os_openbsd_arm64.go</li>
+	<li>os_openbsd_libc.go</li>
+	<li>os_openbsd_mips64.go</li>
+	<li>os_openbsd_syscall.go</li>
+	<li>os_openbsd_syscall1.go</li>
+	<li>os_openbsd_syscall2.go</li>
 	<li>os_plan9.go</li>
 	<li>os_plan9_arm.go</li>
 	<li>os_solaris.go</li>
 	<li>os_windows.go</li>
 	<li>os_windows_arm.go</li>
+	<li>os_windows_arm64.go</li>
 	<li>panic.go</li>
 	<li>panic32.go</li>
 	<li>plugin.go</li>
@@ -3915,11 +4225,13 @@
 	<li>doc.go</li>
 	<li>race.go</li>
 	<li>race_darwin_amd64.syso</li>
+	<li>race_darwin_arm64.syso</li>
 	<li>race_freebsd_amd64.syso</li>
 	<li>race_linux_amd64.syso</li>
 	<li>race_linux_arm64.syso</li>
 	<li>race_linux_ppc64le.syso</li>
 	<li>race_netbsd_amd64.syso</li>
+	<li>race_openbsd_amd64.syso</li>
 	<li>race_windows_amd64.syso</li>
 	</ul></li>
 	<li>race.go</li>
@@ -3942,6 +4254,8 @@
 	<li>rt0_freebsd_arm.s</li>
 	<li>rt0_freebsd_arm64.s</li>
 	<li>rt0_illumos_amd64.s</li>
+	<li>rt0_ios_amd64.s</li>
+	<li>rt0_ios_arm64.s</li>
 	<li>rt0_js_wasm.s</li>
 	<li>rt0_linux_386.s</li>
 	<li>rt0_linux_amd64.s</li>
@@ -3961,6 +4275,7 @@
 	<li>rt0_openbsd_amd64.s</li>
 	<li>rt0_openbsd_arm.s</li>
 	<li>rt0_openbsd_arm64.s</li>
+	<li>rt0_openbsd_mips64.s</li>
 	<li>rt0_plan9_386.s</li>
 	<li>rt0_plan9_amd64.s</li>
 	<li>rt0_plan9_arm.s</li>
@@ -3968,10 +4283,12 @@
 	<li>rt0_windows_386.s</li>
 	<li>rt0_windows_amd64.s</li>
 	<li>rt0_windows_arm.s</li>
+	<li>rt0_windows_arm64.s</li>
 	<li>runtime-gdb.py</li>
 	<li>runtime.go</li>
 	<li>runtime1.go</li>
 	<li>runtime2.go</li>
+	<li>runtime_boring.go</li>
 	<li>rwmutex.go</li>
 	<li>select.go</li>
 	<li>sema.go</li>
@@ -4012,6 +4329,7 @@
 	<li>signal_openbsd_amd64.go</li>
 	<li>signal_openbsd_arm.go</li>
 	<li>signal_openbsd_arm64.go</li>
+	<li>signal_openbsd_mips64.go</li>
 	<li>signal_plan9.go</li>
 	<li>signal_ppc64x.go</li>
 	<li>signal_riscv64.go</li>
@@ -4033,7 +4351,6 @@
 	<li>stubs.go</li>
 	<li>stubs2.go</li>
 	<li>stubs3.go</li>
-	<li>stubs32.go</li>
 	<li>stubs_386.go</li>
 	<li>stubs_amd64.go</li>
 	<li>stubs_arm.go</li>
@@ -4042,7 +4359,8 @@
 	<li>stubs_mips64x.go</li>
 	<li>stubs_mipsx.go</li>
 	<li>stubs_nonlinux.go</li>
-	<li>stubs_ppc64x.go</li>
+	<li>stubs_ppc64.go</li>
+	<li>stubs_ppc64le.go</li>
 	<li>stubs_s390x.go</li>
 	<li>symtab.go</li>
 	<li>sys_aix_ppc64.s</li>
@@ -4050,12 +4368,14 @@
 	<li>sys_arm64.go</li>
 	<li>sys_darwin.go</li>
 	<li>sys_darwin_amd64.s</li>
+	<li>sys_darwin_arm64.go</li>
 	<li>sys_darwin_arm64.s</li>
 	<li>sys_dragonfly_amd64.s</li>
 	<li>sys_freebsd_386.s</li>
 	<li>sys_freebsd_amd64.s</li>
 	<li>sys_freebsd_arm.s</li>
 	<li>sys_freebsd_arm64.s</li>
+	<li>sys_libc.go</li>
 	<li>sys_linux_386.s</li>
 	<li>sys_linux_amd64.s</li>
 	<li>sys_linux_arm.s</li>
@@ -4072,10 +4392,15 @@
 	<li>sys_netbsd_arm.s</li>
 	<li>sys_netbsd_arm64.s</li>
 	<li>sys_nonppc64x.go</li>
+	<li>sys_openbsd.go</li>
+	<li>sys_openbsd1.go</li>
+	<li>sys_openbsd2.go</li>
+	<li>sys_openbsd3.go</li>
 	<li>sys_openbsd_386.s</li>
 	<li>sys_openbsd_amd64.s</li>
 	<li>sys_openbsd_arm.s</li>
 	<li>sys_openbsd_arm64.s</li>
+	<li>sys_openbsd_mips64.s</li>
 	<li>sys_plan9_386.s</li>
 	<li>sys_plan9_amd64.s</li>
 	<li>sys_plan9_arm.s</li>
@@ -4088,6 +4413,7 @@
 	<li>sys_windows_386.s</li>
 	<li>sys_windows_amd64.s</li>
 	<li>sys_windows_arm.s</li>
+	<li>sys_windows_arm64.s</li>
 	<li>sys_x86.go</li>
 	<li>syscall2_solaris.go</li>
 	<li>syscall_aix.go</li>
@@ -4096,7 +4422,13 @@
 	<li>textflag.h</li>
 	<li>time.go</li>
 	<li>time_fake.go</li>
+	<li>time_linux_amd64.s</li>
 	<li>time_nofake.go</li>
+	<li>time_windows.h</li>
+	<li>time_windows_386.s</li>
+	<li>time_windows_amd64.s</li>
+	<li>time_windows_arm.s</li>
+	<li>time_windows_arm64.s</li>
 	<li>timeasm.go</li>
 	<li>timestub.go</li>
 	<li>timestub2.go</li>
@@ -4108,6 +4440,8 @@
 	<li>tls_ppc64x.s</li>
 	<li>tls_riscv64.s</li>
 	<li>tls_s390x.s</li>
+	<li>tls_stub.go</li>
+	<li>tls_windows_amd64.go</li>
 	<li>trace/<ul>
 	<li>annotation.go</li>
 	<li>trace.go</li>
@@ -4140,6 +4474,7 @@
 	<li>zcallback_windows.go</li>
 	<li>zcallback_windows.s</li>
 	<li>zcallback_windows_arm.s</li>
+	<li>zcallback_windows_arm64.s</li>
 	</ul></li>
 	<li>sort/<ul>
 	<li>genzfunc.go</li>
@@ -4156,11 +4491,14 @@
 	<li>atoc.go</li>
 	<li>atof.go</li>
 	<li>atoi.go</li>
+	<li>bytealg.go</li>
+	<li>bytealg_bootstrap.go</li>
 	<li>ctoa.go</li>
 	<li>decimal.go</li>
 	<li>doc.go</li>
-	<li>extfloat.go</li>
+	<li>eisel_lemire.go</li>
 	<li>ftoa.go</li>
+	<li>ftoaryu.go</li>
 	<li>isprint.go</li>
 	<li>itoa.go</li>
 	<li>makeisprint.go</li>
@@ -4212,15 +4550,17 @@
 	<li>asm_linux_s390x.s</li>
 	<li>asm_netbsd_arm.s</li>
 	<li>asm_netbsd_arm64.s</li>
+	<li>asm_openbsd_386.s</li>
+	<li>asm_openbsd_amd64.s</li>
 	<li>asm_openbsd_arm.s</li>
 	<li>asm_openbsd_arm64.s</li>
+	<li>asm_openbsd_mips64.s</li>
 	<li>asm_plan9_386.s</li>
 	<li>asm_plan9_amd64.s</li>
 	<li>asm_plan9_arm.s</li>
 	<li>asm_solaris_amd64.s</li>
 	<li>asm_unix_386.s</li>
 	<li>asm_unix_amd64.s</li>
-	<li>asm_windows.s</li>
 	<li>bpf_bsd.go</li>
 	<li>bpf_darwin.go</li>
 	<li>const_plan9.go</li>
@@ -4233,8 +4573,8 @@
 	<li>env_windows.go</li>
 	<li>errors_plan9.go</li>
 	<li>exec_bsd.go</li>
-	<li>exec_darwin.go</li>
 	<li>exec_libc.go</li>
+	<li>exec_libc2.go</li>
 	<li>exec_linux.go</li>
 	<li>exec_plan9.go</li>
 	<li>exec_unix.go</li>
@@ -4253,14 +4593,13 @@
 	</ul></li>
 	<li>lsf_linux.go</li>
 	<li>mkall.sh</li>
-	<li>mkasm_darwin.go</li>
+	<li>mkasm.go</li>
 	<li>mkerrors.sh</li>
 	<li>mkpost.go</li>
 	<li>mksyscall.pl</li>
 	<li>mksyscall_libc.pl</li>
 	<li>mksyscall_windows.go</li>
 	<li>mksysctl_openbsd.pl</li>
-	<li>mksysnum_darwin.pl</li>
 	<li>mksysnum_dragonfly.pl</li>
 	<li>mksysnum_freebsd.pl</li>
 	<li>mksysnum_linux.pl</li>
@@ -4272,6 +4611,8 @@
 	<li>net.go</li>
 	<li>net_js.go</li>
 	<li>netlink_linux.go</li>
+	<li>ptrace_darwin.go</li>
+	<li>ptrace_ios.go</li>
 	<li>pwd_plan9.go</li>
 	<li>route_bsd.go</li>
 	<li>route_darwin.go</li>
@@ -4289,7 +4630,6 @@
 	<li>sockcmsg_linux.go</li>
 	<li>sockcmsg_unix.go</li>
 	<li>sockcmsg_unix_other.go</li>
-	<li>str.go</li>
 	<li>syscall.go</li>
 	<li>syscall_aix.go</li>
 	<li>syscall_aix_ppc64.go</li>
@@ -4306,7 +4646,7 @@
 	<li>syscall_freebsd_amd64.go</li>
 	<li>syscall_freebsd_arm.go</li>
 	<li>syscall_freebsd_arm64.go</li>
-	<li>syscall_getwd_bsd.go</li>
+	<li>syscall_illumos.go</li>
 	<li>syscall_js.go</li>
 	<li>syscall_linux.go</li>
 	<li>syscall_linux_386.go</li>
@@ -4324,17 +4664,18 @@
 	<li>syscall_netbsd_arm.go</li>
 	<li>syscall_netbsd_arm64.go</li>
 	<li>syscall_openbsd.go</li>
+	<li>syscall_openbsd1.go</li>
 	<li>syscall_openbsd_386.go</li>
 	<li>syscall_openbsd_amd64.go</li>
 	<li>syscall_openbsd_arm.go</li>
 	<li>syscall_openbsd_arm64.go</li>
+	<li>syscall_openbsd_libc.go</li>
+	<li>syscall_openbsd_mips64.go</li>
 	<li>syscall_plan9.go</li>
 	<li>syscall_solaris.go</li>
 	<li>syscall_solaris_amd64.go</li>
 	<li>syscall_unix.go</li>
 	<li>syscall_windows.go</li>
-	<li>syscall_windows_386.go</li>
-	<li>syscall_windows_amd64.go</li>
 	<li>tables_js.go</li>
 	<li>time_fake.go</li>
 	<li>time_nofake.go</li>
@@ -4343,6 +4684,7 @@
 	<li>types_darwin.go</li>
 	<li>types_dragonfly.go</li>
 	<li>types_freebsd.go</li>
+	<li>types_illumos_amd64.go</li>
 	<li>types_linux.go</li>
 	<li>types_netbsd.go</li>
 	<li>types_openbsd.go</li>
@@ -4351,6 +4693,7 @@
 	<li>types_windows_386.go</li>
 	<li>types_windows_amd64.go</li>
 	<li>types_windows_arm.go</li>
+	<li>types_windows_arm64.go</li>
 	<li>zerrors_aix_ppc64.go</li>
 	<li>zerrors_darwin_amd64.go</li>
 	<li>zerrors_darwin_arm64.go</li>
@@ -4379,10 +4722,9 @@
 	<li>zerrors_openbsd_amd64.go</li>
 	<li>zerrors_openbsd_arm.go</li>
 	<li>zerrors_openbsd_arm64.go</li>
+	<li>zerrors_openbsd_mips64.go</li>
 	<li>zerrors_solaris_amd64.go</li>
 	<li>zerrors_windows.go</li>
-	<li>zerrors_windows_386.go</li>
-	<li>zerrors_windows_amd64.go</li>
 	<li>zsyscall_aix_ppc64.go</li>
 	<li>zsyscall_darwin_amd64.go</li>
 	<li>zsyscall_darwin_amd64.s</li>
@@ -4410,9 +4752,14 @@
 	<li>zsyscall_netbsd_arm.go</li>
 	<li>zsyscall_netbsd_arm64.go</li>
 	<li>zsyscall_openbsd_386.go</li>
+	<li>zsyscall_openbsd_386.s</li>
 	<li>zsyscall_openbsd_amd64.go</li>
+	<li>zsyscall_openbsd_amd64.s</li>
 	<li>zsyscall_openbsd_arm.go</li>
+	<li>zsyscall_openbsd_arm.s</li>
 	<li>zsyscall_openbsd_arm64.go</li>
+	<li>zsyscall_openbsd_arm64.s</li>
+	<li>zsyscall_openbsd_mips64.go</li>
 	<li>zsyscall_plan9_386.go</li>
 	<li>zsyscall_plan9_amd64.go</li>
 	<li>zsyscall_plan9_arm.go</li>
@@ -4446,10 +4793,9 @@
 	<li>zsysnum_openbsd_amd64.go</li>
 	<li>zsysnum_openbsd_arm.go</li>
 	<li>zsysnum_openbsd_arm64.go</li>
+	<li>zsysnum_openbsd_mips64.go</li>
 	<li>zsysnum_plan9.go</li>
 	<li>zsysnum_solaris_amd64.go</li>
-	<li>zsysnum_windows_386.go</li>
-	<li>zsysnum_windows_amd64.go</li>
 	<li>ztypes_aix_ppc64.go</li>
 	<li>ztypes_darwin_amd64.go</li>
 	<li>ztypes_darwin_arm64.go</li>
@@ -4478,6 +4824,7 @@
 	<li>ztypes_openbsd_amd64.go</li>
 	<li>ztypes_openbsd_arm.go</li>
 	<li>ztypes_openbsd_arm64.go</li>
+	<li>ztypes_openbsd_mips64.go</li>
 	<li>ztypes_solaris_amd64.go</li>
 	</ul></li>
 	<li>testing/<ul>
@@ -4485,6 +4832,10 @@
 	<li>benchmark.go</li>
 	<li>cover.go</li>
 	<li>example.go</li>
+	<li>fstest/<ul>
+	<li>mapfs.go</li>
+	<li>testfs.go</li>
+	</ul></li>
 	<li>internal/<ul>
 	<li>testdeps/<ul>
 	<li>deps.go</li>
@@ -4546,7 +4897,6 @@
 	<li>zoneinfo_js.go</li>
 	<li>zoneinfo_plan9.go</li>
 	<li>zoneinfo_read.go</li>
-	<li>zoneinfo_test.go.orig</li>
 	<li>zoneinfo_unix.go</li>
 	<li>zoneinfo_windows.go</li>
 	</ul></li>
@@ -4614,7 +4964,7 @@
 	<li>internal/<ul>
 	<li>subtle/<ul>
 	<li>aliasing.go</li>
-	<li>aliasing_appengine.go</li>
+	<li>aliasing_purego.go</li>
 	</ul></li>
 	</ul></li>
 	<li>poly1305/<ul>
@@ -4664,7 +5014,8 @@
 	<li>punycode.go</li>
 	<li>tables10.0.0.go</li>
 	<li>tables11.0.0.go</li>
-	<li>tables12.00.go</li>
+	<li>tables12.0.0.go</li>
+	<li>tables13.0.0.go</li>
 	<li>tables9.0.0.go</li>
 	<li>trie.go</li>
 	<li>trieval.go</li>
@@ -4707,7 +5058,6 @@
 	<li>sys_netbsd.go</li>
 	<li>sys_openbsd.go</li>
 	<li>syscall.go</li>
-	<li>syscall_go1_11_darwin.go</li>
 	<li>syscall_go1_12_darwin.go</li>
 	<li>zsys_darwin.go</li>
 	<li>zsys_dragonfly.go</li>
@@ -4728,7 +5078,7 @@
 	<li>asm_aix_ppc64.s</li>
 	<li>byteorder.go</li>
 	<li>cpu.go</li>
-	<li>cpu_aix_ppc64.go</li>
+	<li>cpu_aix.go</li>
 	<li>cpu_arm.go</li>
 	<li>cpu_arm64.go</li>
 	<li>cpu_arm64.s</li>
@@ -4748,13 +5098,21 @@
 	<li>cpu_linux_s390x.go</li>
 	<li>cpu_mips64x.go</li>
 	<li>cpu_mipsx.go</li>
+	<li>cpu_netbsd_arm64.go</li>
+	<li>cpu_other_arm.go</li>
 	<li>cpu_other_arm64.go</li>
+	<li>cpu_other_mips64x.go</li>
+	<li>cpu_ppc64x.go</li>
 	<li>cpu_riscv64.go</li>
+	<li>cpu_s390x.go</li>
 	<li>cpu_s390x.s</li>
 	<li>cpu_wasm.go</li>
 	<li>cpu_x86.go</li>
 	<li>cpu_x86.s</li>
+	<li>cpu_zos.go</li>
+	<li>cpu_zos_s390x.go</li>
 	<li>hwcap_linux.go</li>
+	<li>syscall_aix_gccgo.go</li>
 	<li>syscall_aix_ppc64_gc.go</li>
 	</ul></li>
 	</ul></li>
@@ -4782,6 +5140,7 @@
 	<li>tables10.0.0.go</li>
 	<li>tables11.0.0.go</li>
 	<li>tables12.0.0.go</li>
+	<li>tables13.0.0.go</li>
 	<li>tables9.0.0.go</li>
 	<li>trieval.go</li>
 	</ul></li>
@@ -4795,6 +5154,7 @@
 	<li>tables10.0.0.go</li>
 	<li>tables11.0.0.go</li>
 	<li>tables12.0.0.go</li>
+	<li>tables13.0.0.go</li>
 	<li>tables9.0.0.go</li>
 	<li>transform.go</li>
 	<li>trie.go</li>

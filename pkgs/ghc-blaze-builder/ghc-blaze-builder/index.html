@@ -58,17 +58,17 @@
 <div id="vue">
 	<div class="row">
 		<div class="col-md-8">
-			<p class="nowrap">This library provides an implementation of the older blaze-builder interface in
-terms of the new builder that shipped with bytestring-0.10.4.0
+			<p class="nowrap">This library allows to efficiently serialize Haskell values to lazy bytestrings
+with a large average chunk size. The large average chunk size allows to make
+good use of cache prefetching in later processing steps (e.g.
+compression) and reduces the system call overhead when writing the resulting
+lazy bytestring to a file or sending it over the network.
 
-This implementation is mostly intended as a bridge to the new builder, so that
-code that uses the old interface can interoperate with code that uses the new
-implementation. Note that no attempt has been made to preserve the old internal
-modules, so code that has these dependencies cannot use this interface.
-
-New code should, for the most part, use the new interface. However, this module
-does implement a chunked HTTP encoding, which is not otherwise implemented
-(yet?) with the new builder.</p>
+This library was inspired by the module Data.Binary.Builder provided by the
+binary package. It was originally developed with the specific needs of the
+blaze-html package in mind. Since then it has been restructured to serve as a
+drop-in replacement for Data.Binary.Builder, which it improves upon both in
+speed as well as expressivity.</p>
 			<h3>Releases Overview</h3>
 			<table class="table table-striped table-borderless" id="version-table">
 				<thead>
@@ -82,7 +82,27 @@ does implement a chunked HTTP encoding, which is not otherwise implemented
 					<tr>
 						<td>Fedora Rawhide</td>
 						<td>
-						<a href="fedora-rawhide.html">0.4.2.1-1.fc35</a>
+						<a href="fedora-rawhide.html">0.4.2.2-2.fc37</a>
+						</td>
+
+						<td>
+							-
+						</td>
+					</tr>
+					<tr>
+						<td>Fedora 37</td>
+						<td>
+						<a href="fedora-37.html">0.4.2.2-2.fc37</a>
+						</td>
+
+						<td>
+							-
+						</td>
+					</tr>
+					<tr>
+						<td>Fedora 36</td>
+						<td>
+						<a href="fedora-36.html">0.4.2.1-2.fc36</a>
 						</td>
 
 						<td>
@@ -100,9 +120,19 @@ does implement a chunked HTTP encoding, which is not otherwise implemented
 						</td>
 					</tr>
 					<tr>
-						<td>Fedora 34</td>
+						<td>EPEL 9</td>
 						<td>
-						<a href="fedora-34.html">0.4.1.0-9.fc34</a>
+						<a href="epel-9.html">0.4.2.2-1.el9</a>
+						</td>
+
+						<td>
+							-
+						</td>
+					</tr>
+					<tr>
+						<td>EPEL 8</td>
+						<td>
+						<a href="epel-8.html">0.4.1.0-1.el8</a>
 						</td>
 
 						<td>
@@ -128,7 +158,7 @@ does implement a chunked HTTP encoding, which is not otherwise implemented
 			<ul>
 				<li>Upstream: <a href="https://hackage.haskell.org/package/blaze-builder">https://hackage.haskell.org/package/blaze-builder</a></li>
 				<li>License(s): BSD</li>
-				<li>Maintainers: petersen, mathstuf</li>
+				<li>Maintainers: mathstuf, petersen</li>
 			</ul>
 			<hr />
 			<b>Related Packages</b>

@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+<title>java-latest-openjdk-headless-fastdebug-18.0.2.0.9-1.rolling.el9 - Fedora Packages</title>
+<link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../assets/css/main.css">
+<link href="https://apps.fedoraproject.org/global/fedora-bootstrap-fonts/open-sans.css" type="text/css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="description" content="View java-latest-openjdk-headless-fastdebug-18.0.2.0.9-1.rolling.el9 in EPEL 9. java-latest-openjdk-headless-fastdebug: OpenJDK 19 Runtime Environment optimised with full debugging on">
+
+<div class="container">
+  <div class="row">
+    <a href="../../../" class="col-md-6 d-flex align-items-center justify-content-center justify-content-md-start p-1">
+      <img alt="Fedora Packages" src="../../../assets/images/logo.png">
+    </a>
+    <div class="col-md-6 d-flex align-items-center">
+    </div>
+  </div>
+
+  <hr />
+
+<h1>
+	java-latest-openjdk-headless-fastdebug-18.0.2.0.9-1.rolling.el9<small class="text-muted"> in EPEL 9</small>
+</h1>
+<p>
+	<a href=".">&crarr; Return to the main page of java-latest-openjdk-headless-fastdebug</a><br>
+	<a href="https://koji.fedoraproject.org/koji/search?match=exact&type=build&terms=java-latest-openjdk-18.0.2.0.9-1.rolling.el9">View build</a><br>
+	<a href="https://bodhi.fedoraproject.org/updates/?search=java-latest-openjdk-18.0.2.0.9-1.rolling.el9">Search for updates</a>
+</p>
+
+<p>
+	<b>Package Info <span class="text-muted">(Data from x86_64 build)</span></b><br>
+	<a href="#changelog">&#129047; Changelog</a><br>
+	<a href="#provides">&#129047; Provides</a><br>
+	<a href="#files">&#129047; Files</a><br>
+</p>
+
+<h2 id="changelog">Changelog</h2>
+<div class="table-responsive">
+	<table class="table table-striped table-borderless ">
+		<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Author</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>2022-07-22</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.2.0.9-1.rolling</td>
+			<td>- Update to jdk-18.0.2 release
+- Update release notes to 18.0.2
+- Drop JDK-8282004 patch which is now upstreamed under JDK-8282231
+- Exclude x86 where java_arches is undefined, in order to unbreak build</td>
+		</tr>
+		<tr>
+			<td>2022-07-22</td>
+			<td>Jiri Vanek &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-8.rolling</td>
+			<td>- moved to build only on %{java_arches}
+-- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs
+- reverted :
+-- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild (always mess up release)
+-- Try to build on x86 again by creating a husk of a JDK which does not depend on itself
+-- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable
+-- Replaced binaries and .so files with bash-stubs on i686
+- added ExclusiveArch:  %{java_arches}
+-- this now excludes i686
+-- this is safely backport-able to older fedoras, as the macro was backported properly (with i686 included)
+- https://bugzilla.redhat.com/show_bug.cgi?id=2104125</td>
+		</tr>
+		<tr>
+			<td>2022-07-21</td>
+			<td>Fedora Release Engineering &lt;releng at fedoraproject dot org&gt; - 1:18.0.1.1.2-7.rolling.1</td>
+			<td>- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild</td>
+		</tr>
+		<tr>
+			<td>2022-07-19</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-7.rolling</td>
+			<td>- Try to build on x86 again by creating a husk of a JDK which does not depend on itself</td>
+		</tr>
+		<tr>
+			<td>2022-07-17</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-6.rolling</td>
+			<td>- Exclude x86 from builds as the bootstrap JDK is now completely broken and unusable</td>
+		</tr>
+		<tr>
+			<td>2022-07-13</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-5.rolling</td>
+			<td>- Explicitly require crypto-policies during build and runtime for system security properties</td>
+		</tr>
+		<tr>
+			<td>2022-07-13</td>
+			<td>Jiri Vanek &lt;jvanek at redhat dot com&gt; - 1:18.0.1.1.2-4.rolling.</td>
+			<td>- Replaced binaries and .so files with bash-stubs on i686 in preparation of the removal on that architecture:
+- https://fedoraproject.org/wiki/Changes/Drop_i686_JDKs</td>
+		</tr>
+		<tr>
+			<td>2022-07-13</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-3.rolling</td>
+			<td>- Make use of the vendor version string to store our version &amp; release rather than an upstream release date</td>
+		</tr>
+		<tr>
+			<td>2022-07-12</td>
+			<td>FeRD (Frank Dana) &lt;ferdnyc at gmail dot com&gt; - 1:18.0.1.1.2-2.rolling</td>
+			<td>- Add javaver- and origin-specific javadoc and javadoczip alternatives.</td>
+		</tr>
+		<tr>
+			<td>2022-07-11</td>
+			<td>Andrew Hughes &lt;gnu dot andrew at redhat dot com&gt; - 1:18.0.1.1.2-1.rolling</td>
+			<td>- Update to jdk-18.0.1.1 interim release
+- Update release notes to actually reflect OpenJDK 18 and subsequent releases 18.0.1 &amp; 18.0.1.1
+- Print release file during build, which should now include a correct SOURCE value from .src-rev
+- Update tarball script with IcedTea GitHub URL and .src-rev generation
+- Include script to generate bug list for release notes
+- Update tzdata requirement to 2022a to match JDK-8283350</td>
+		</tr>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<div class="col">
+		<h2 id="provides">Provides</h2>
+		<ul>
+			<li>config(java-latest-openjdk-headless-fastdebug)</li>
+			<li>java-18-headless-fastdebug</li>
+			<li>java-18-openjdk-headless-fastdebug</li>
+			<li>java-latest-openjdk-headless-fastdebug</li>
+			<li>java-latest-openjdk-headless-fastdebug(x86-64)</li>
+			<li>jre-18-headless-fastdebug</li>
+			<li>jre-18-openjdk-headless-fastdebug</li>
+			<li>libjsvml.so()(64bit)</li>
+			<li>libsyslookup.so()(64bit)</li>
+		</ul>
+	</div>
+</div>
+
+<h2 id="files">Files</h2>
+
+<div class="tree">
+	<ul>
+	<li>etc/<ul>
+	<li>.java/<ul>
+	<li>.systemPrefs/<ul>
+	</ul></li>
+	</ul></li>
+	<li>java/<ul>
+	<li>java-18-openjdk/<ul>
+	<li>java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-fastdebug/<ul>
+	<li>conf/<ul>
+	<li>logging.properties</li>
+	<li>management/<ul>
+	<li>jmxremote.access</li>
+	<li>jmxremote.password.template</li>
+	<li>management.properties</li>
+	</ul></li>
+	<li>net.properties</li>
+	<li>sdp/<ul>
+	<li>sdp.conf.template</li>
+	</ul></li>
+	<li>security/<ul>
+	<li>java.policy</li>
+	<li>java.security</li>
+	<li>nss.cfg</li>
+	<li>nss.fips.cfg</li>
+	<li>policy/<ul>
+	<li>README.txt</li>
+	<li>limited/<ul>
+	<li>default_US_export.policy</li>
+	<li>default_local.policy</li>
+	<li>exempt_local.policy</li>
+	</ul></li>
+	<li>unlimited/<ul>
+	<li>default_US_export.policy</li>
+	<li>default_local.policy</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>sound.properties</li>
+	</ul></li>
+	<li>lib/<ul>
+	<li>security/<ul>
+	<li>blocked.certs</li>
+	<li>cacerts</li>
+	<li>cacerts.upstream</li>
+	<li>default.policy</li>
+	<li>public_suffix_list.dat</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	<li>usr/<ul>
+	<li>lib/<ul>
+	<li>.build-id/<ul>
+	<li>02/<ul>
+	<li>9ce28d036c9f2543a2f200fd3e133f28981a1b</li>
+	</ul></li>
+	<li>07/<ul>
+	<li>c9718dd8195a0219f4703d1027d378372a67c3</li>
+	</ul></li>
+	<li>1e/<ul>
+	<li>592affbdff00a2ba98d70ab9a9d160f999a44b</li>
+	</ul></li>
+	<li>29/<ul>
+	<li>8f882c05c3295d16e7f7c6d46cbec8bc549913</li>
+	</ul></li>
+	<li>2a/<ul>
+	<li>970ee1863d8106a4c6f5011eace6c9394fd3c2</li>
+	</ul></li>
+	<li>38/<ul>
+	<li>2f3c569f4be5b8d47175d32ce38ea8ac0a9c02</li>
+	</ul></li>
+	<li>47/<ul>
+	<li>007579105bcfda329add4a7983fd59e0cb973b</li>
+	</ul></li>
+	<li>4c/<ul>
+	<li>92c60e47abda55179717da2f9caf2299337c2a</li>
+	</ul></li>
+	<li>4e/<ul>
+	<li>dc448a010529b12482d412dbe97069623f100d</li>
+	</ul></li>
+	<li>50/<ul>
+	<li>6883d968ae0fc40b645455dda63cfb347d7be0</li>
+	</ul></li>
+	<li>52/<ul>
+	<li>de632a67edb4872534f11b1ab978ce4783206a</li>
+	</ul></li>
+	<li>54/<ul>
+	<li>7c50bce9c2deb7c22c3afcdf71b1c87a7b20cd</li>
+	<li>a46bc511bef63dc3f1e8c2b8c685a3920ed2b4</li>
+	</ul></li>
+	<li>57/<ul>
+	<li>50976abe2619970293eee9015ffd8b65c844d2</li>
+	</ul></li>
+	<li>5c/<ul>
+	<li>4c5c3e01d5573f8c5814593d0528d54f26b522</li>
+	</ul></li>
+	<li>6c/<ul>
+	<li>5b0517f2bd5da60b75ae700e3caaf4599c37f2</li>
+	</ul></li>
+	<li>70/<ul>
+	<li>1abe1b20275d22dd27c065f4f0848cb8536b77</li>
+	</ul></li>
+	<li>7b/<ul>
+	<li>250cd3f08d03ece9437fad8f579d4aef24514a</li>
+	</ul></li>
+	<li>8d/<ul>
+	<li>69c9aac1883aa3d101a5c367b2b425a71b9bf6</li>
+	<li>69c9aac1883aa3d101a5c367b2b425a71b9bf6.1</li>
+	<li>c92a189ed0825a1ab210697a3c51f9daf4bb92</li>
+	</ul></li>
+	<li>8f/<ul>
+	<li>b2275dbac0c2cea73b899edf9658ab297e76fe</li>
+	</ul></li>
+	<li>b0/<ul>
+	<li>094f661502d0d2ed89b2c9efeb0b6be0ca5321</li>
+	</ul></li>
+	<li>ba/<ul>
+	<li>cdba580c22f1383b8496b6ce046e506983e9ec</li>
+	</ul></li>
+	<li>bb/<ul>
+	<li>b404962ef8748d9e00dc1d43c7241479c178f1</li>
+	</ul></li>
+	<li>be/<ul>
+	<li>03c468ab8cb914eef5c6278a116bb95c5c4870</li>
+	</ul></li>
+	<li>ca/<ul>
+	<li>a7dac2f9908d3fe763611ccc6bf68a5068b2b1</li>
+	</ul></li>
+	<li>cb/<ul>
+	<li>fff8e0a5eb96ee9bf3c4814655856aca5a1e72</li>
+	</ul></li>
+	<li>d4/<ul>
+	<li>3fb63d0510754483c8dd430cc4012e88b55dfe</li>
+	</ul></li>
+	<li>db/<ul>
+	<li>fd1cb2cba3f62af8ef267d7522932b25cf3879</li>
+	</ul></li>
+	<li>df/<ul>
+	<li>0a1f7853044ab6933199df7ab8f9c94b745ad8</li>
+	</ul></li>
+	<li>e0/<ul>
+	<li>16f30f27f0b230e591be6ca1ce28dd900d53da</li>
+	</ul></li>
+	<li>e9/<ul>
+	<li>012f06bb2418c47638d1c475e3d26189f941ee</li>
+	</ul></li>
+	<li>ea/<ul>
+	<li>611e8bb858cbcddf883eb18efd3421e1764966</li>
+	</ul></li>
+	<li>f1/<ul>
+	<li>219584e84ab0cb51d73d00c4a6da71e7327f9b</li>
+	<li>eb27c3cac05f0eacd5dbab65dc05ac3c6d3d2a</li>
+	</ul></li>
+	<li>f2/<ul>
+	<li>3187cb1f3e3d61af9a073794737354b12a7dd1.1</li>
+	</ul></li>
+	<li>f5/<ul>
+	<li>85492b4a9a9738bb3b6e65ba6f163c92b08873</li>
+	<li>d5a8221764ba1142f8f6a5c20d97e7b16efa07</li>
+	</ul></li>
+	<li>f7/<ul>
+	<li>98b2261cc9bdc1c79879b1d2a1d0f6f3315863</li>
+	</ul></li>
+	<li>f8/<ul>
+	<li>2aabe82a65299065333e1c78635e8a74f632f9</li>
+	</ul></li>
+	<li>fe/<ul>
+	<li>c0ac926d97646fcd9f699da8d507cf332268d4</li>
+	</ul></li>
+	</ul></li>
+	<li>jvm/<ul>
+	<li>java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-fastdebug/<ul>
+	<li>bin/<ul>
+	<li>alt-java</li>
+	<li>java</li>
+	<li>keytool</li>
+	<li>rmiregistry</li>
+	</ul></li>
+	<li>conf</li>
+	<li>conf.rpmmoved</li>
+	<li>legal/<ul>
+	<li>java.base/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	<li>aes.md</li>
+	<li>asm.md</li>
+	<li>c-libutl.md</li>
+	<li>cldr.md</li>
+	<li>icu.md</li>
+	<li>public_suffix.md</li>
+	<li>unicode.md</li>
+	</ul></li>
+	<li>java.compiler/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.datatransfer/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.desktop/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	<li>colorimaging.md</li>
+	<li>mesa3d.md</li>
+	<li>xwd.md</li>
+	</ul></li>
+	<li>java.instrument/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.logging/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.management/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.management.rmi/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.naming/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.net.http/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.prefs/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.rmi/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.scripting/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.se/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.security.jgss/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.security.sasl/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.smartcardio/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	<li>pcsclite.md</li>
+	</ul></li>
+	<li>java.sql/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.sql.rowset/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.transaction.xa/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>java.xml/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	<li>bcel.md</li>
+	<li>dom.md</li>
+	<li>jcup.md</li>
+	<li>xalan.md</li>
+	<li>xerces.md</li>
+	</ul></li>
+	<li>java.xml.crypto/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	<li>santuario.md</li>
+	</ul></li>
+	<li>jdk.accessibility/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.attach/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.charsets/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.compiler/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.crypto.cryptoki/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	<li>pkcs11cryptotoken.md</li>
+	<li>pkcs11wrapper.md</li>
+	</ul></li>
+	<li>jdk.crypto.ec/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.dynalink/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	<li>dynalink.md</li>
+	</ul></li>
+	<li>jdk.editpad/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.hotspot.agent/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.httpserver/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.incubator.foreign/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.incubator.vector/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.internal.ed/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.internal.jvmstat/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.internal.le/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	<li>jline.md</li>
+	</ul></li>
+	<li>jdk.internal.opt/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	<li>jopt-simple.md</li>
+	</ul></li>
+	<li>jdk.internal.vm.ci/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.internal.vm.compiler/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.internal.vm.compiler.management/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.jartool/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.javadoc/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	<li>jquery.md</li>
+	<li>jqueryUI.md</li>
+	</ul></li>
+	<li>jdk.jcmd/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.jconsole/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.jdeps/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.jdi/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.jdwp.agent/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.jfr/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.jlink/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.jpackage/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.jshell/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.jsobject/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.jstatd/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.localedata/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	<li>cldr.md</li>
+	<li>thaidict.md</li>
+	</ul></li>
+	<li>jdk.management/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.management.agent/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.management.jfr/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.naming.dns/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.naming.rmi/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.net/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.nio.mapmode/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.random/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.sctp/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.security.auth/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.security.jgss/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.unsupported/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.unsupported.desktop/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.xml.dom/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	<li>jdk.zipfs/<ul>
+	<li>ADDITIONAL_LICENSE_INFO</li>
+	<li>ASSEMBLY_EXCEPTION</li>
+	<li>LICENSE</li>
+	</ul></li>
+	</ul></li>
+	<li>lib/<ul>
+	<li>classlist</li>
+	<li>jexec</li>
+	<li>jfr/<ul>
+	<li>default.jfc</li>
+	<li>profile.jfc</li>
+	</ul></li>
+	<li>jrt-fs.jar</li>
+	<li>jspawnhelper</li>
+	<li>jvm.cfg</li>
+	<li>libattach.so</li>
+	<li>libawt.so</li>
+	<li>libawt_headless.so</li>
+	<li>libdt_socket.so</li>
+	<li>libextnet.so</li>
+	<li>libfontmanager.so</li>
+	<li>libinstrument.so</li>
+	<li>libj2gss.so</li>
+	<li>libj2pcsc.so</li>
+	<li>libj2pkcs11.so</li>
+	<li>libjaas.so</li>
+	<li>libjava.so</li>
+	<li>libjavajpeg.so</li>
+	<li>libjdwp.so</li>
+	<li>libjimage.so</li>
+	<li>libjli.so</li>
+	<li>libjsig.so</li>
+	<li>libjsound.so</li>
+	<li>libjsvml.so</li>
+	<li>liblcms.so</li>
+	<li>libmanagement.so</li>
+	<li>libmanagement_agent.so</li>
+	<li>libmanagement_ext.so</li>
+	<li>libmlib_image.so</li>
+	<li>libnet.so</li>
+	<li>libnio.so</li>
+	<li>libprefs.so</li>
+	<li>librmi.so</li>
+	<li>libsaproc.so</li>
+	<li>libsctp.so</li>
+	<li>libsyslookup.so</li>
+	<li>libsystemconf.so</li>
+	<li>libverify.so</li>
+	<li>libzip.so</li>
+	<li>modules</li>
+	<li>psfont.properties.ja</li>
+	<li>psfontj2d.properties</li>
+	<li>security</li>
+	<li>security.rpmmoved</li>
+	<li>server/<ul>
+	<li>classes.jsa</li>
+	<li>classes_nocoops.jsa</li>
+	<li>libjsig.so</li>
+	<li>libjvm.so</li>
+	</ul></li>
+	<li>tzdb.dat</li>
+	<li>tzdb.dat.upstream</li>
+	</ul></li>
+	<li>release</li>
+	</ul></li>
+	<li>jre-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-fastdebug</li>
+	</ul></li>
+	</ul></li>
+	<li>share/<ul>
+	<li>doc/<ul>
+	<li>java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-fastdebug/<ul>
+	<li>NEWS</li>
+	</ul></li>
+	</ul></li>
+	<li>man/<ul>
+	<li>man1/<ul>
+	<li>alt-java-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-fastdebug.1.gz</li>
+	<li>java-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-fastdebug.1.gz</li>
+	<li>keytool-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-fastdebug.1.gz</li>
+	<li>rmiregistry-java-18-openjdk-18.0.2.0.9-1.rolling.el9.x86_64-fastdebug.1.gz</li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+	</ul></li>
+</div>
+
+  <div class="text-muted text-center">
+    <br>
+    Sources on <a href="https://pagure.io/fedora-packages-static">Pagure</a>
+  </div>
+</div>
